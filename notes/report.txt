@@ -1,0 +1,264 @@
+============================================================
+  NES -> GENESIS TRANSLATION REPORT
+  Legend of Zelda
+============================================================
+
+FILE: bank_00_gen68k.asm
+  Translated:  618
+  Warnings:    3952
+  Unknown:     1
+  Issues (2):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line 5222:     ; !! UNKNOWN: .OUT .sprintf("Free bytes in bank 00: 0x%04X [%d]", ($BFFA - *), ($BFFA - *))  ; orig: .out .sprintf("Free bytes in bank 00: 0x%04X [%d]", ($BFFA -
+
+FILE: bank_01_gen68k.asm
+  Translated:  1153
+  Warnings:    543
+  Unknown:     11
+  Issues (32):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line   21: ; !! bzk .org control commands here
+  Line   97:     ; !! UNKNOWN: CON_NEW_LINE_1 = $80  ; orig: con_new_line_1                          = $80 ;
+  Line   98:     ; !! UNKNOWN: CON_NEW_LINE_2 = $40  ; orig: con_new_line_2                          = $40 ;
+  Line   99:     ; !! UNKNOWN: CON_MESSAGE_END = $C0  ; orig: con_message_end                         = $C0 ;
+  Line  635:     ; !! CMP ram_indiv_random + $01 - needs manual review  ; orig: C - - - - - 0x004663 01:8653: C5 19     CMP ram_indiv_random
+  Line  933:     ; !! UNKNOWN: .DBYT $21A4  ; orig: - D 0 - - - 0x00481D 01:880D: 21 A4     .dbyt $21A4 ; ppu ad
+  Line 1056:     ; !! CMP ram_042B_enemy + $04,X - needs manual review  ; orig: - - - - - - 0x0048E0 01:88D0: DD 30 04  CMP ram_042B_enemy +
+  Line 1069:     ; !! CMP ram_042B_enemy + $04,X - needs manual review  ; orig: C - - - - - 0x0048FA 01:88EA: DD 30 04  CMP ram_042B_enemy +
+  Line 1139:     ; !! ADC ram_0437_enemy + $01 - complex mode, manual review needed  ; orig: - - - - - - 0x004964 01:8954: 6D 38 04  ADC ram_0437_enemy +
+  Line 1770:     ; !! UNKNOWN: .DBYT $0900  ; orig: - D 0 - - - 0x004D4F 01:8D3F: 09 00     .dbyt $0900 ; 900 by
+  Line 1771:     ; !! UNKNOWN: .DBYT $0820  ; orig: - D 0 - - - 0x004D51 01:8D41: 08 20     .dbyt $0820 ; 820 by
+  Line 1776:     ; !! UNKNOWN: .DBYT $0700  ; orig: - D 0 - - - 0x004D53 01:8D43: 07 00     .dbyt $0700 ; 0700-0
+  Line 1777:     ; !! UNKNOWN: .DBYT $1700  ; orig: - D 0 - - - 0x004D55 01:8D45: 17 00     .dbyt $1700 ; 1700-1
+  Line 1793:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x004D5A 01:8D4A: AD 02 20  LDA $2002
+  Line 1803:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x004D6F 01:8D5F: 8D 06 20  STA $2006
+  Line 1825:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x004D94 01:8D84: 8D 06 20  STA $2006
+  Line 1830:     MOVE.B  D0,PPU_REG_$2007  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x004D9B 01:8D8B: 8D 07 20  STA $2007
+  Line 1859:     ; !! UNKNOWN: .INCBIN "incbin/chr/01___8DB4_96B3.chr"  ; orig: .incbin "incbin/chr/01___8DB4_96B3.chr"
+  Line 1866:     ; !! UNKNOWN: .INCBIN "incbin/chr/01___96B4_9ED3.chr"  ; orig: .incbin "incbin/chr/01___96B4_9ED3.chr"
+  ... and 12 more
+
+FILE: bank_02_gen68k.asm
+  Translated:  2220
+  Warnings:    1480
+  Unknown:     23
+  Issues (30):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line   44:     ; !! UNKNOWN: .DBYT $0700  ; orig: - D 0 - - - 0x008016 02:8006: 07 00     .dbyt $0700     ; 70
+  Line   45:     ; !! UNKNOWN: .DBYT $0700  ; orig: - D 0 - - - 0x008018 02:8008: 07 00     .dbyt $0700     ; 70
+  Line   46:     ; !! UNKNOWN: .DBYT $00E0  ; orig: - D 0 - - - 0x00801A 02:800A: 00 E0     .dbyt $00E0     ;  E
+  Line   51:     ; !! UNKNOWN: .DBYT $0000  ; orig: - D 0 - - - 0x00801C 02:800C: 00 00     .dbyt $0000     ; 00
+  Line   52:     ; !! UNKNOWN: .DBYT $1000  ; orig: - D 0 - - - 0x00801E 02:800E: 10 00     .dbyt $1000     ; 10
+  Line   53:     ; !! UNKNOWN: .DBYT $1F20  ; orig: - D 0 - - - 0x008020 02:8010: 1F 20     .dbyt $1F20     ; 1F
+  Line   59:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x008025 02:8015: AD 02 20  LDA $2002
+  Line   69:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x00803A 02:802A: 8D 06 20  STA $2006
+  Line   89:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x00805F 02:804F: 8D 06 20  STA $2006
+  Line   94:     MOVE.B  D0,PPU_REG_$2007  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x008066 02:8056: 8D 07 20  STA $2007
+  Line  123:     ; !! UNKNOWN: .INCBIN "incbin/chr/02___807F_877E.chr"  ; orig: .incbin "incbin/chr/02___807F_877E.chr"
+  Line  130:     ; !! UNKNOWN: .INCBIN "incbin/chr/02___877F_8E7E.chr"  ; orig: .incbin "incbin/chr/02___877F_8E7E.chr"
+  Line  137:     ; !! UNKNOWN: .INCBIN "incbin/chr/02___8E7F_8F5E.chr"  ; orig: .incbin "incbin/chr/02___8E7F_8F5E.chr"
+  Line  986:     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - - - 0x0094FE 02:94EE: 3F 00     .dbyt $3F00 ; ppu ad
+  Line 1041:     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - - - 0x00955F 02:954F: 3F 00     .dbyt $3F00 ;
+  Line 1693:     ; !! ADC tbl_98B3_spr_T,X - complex mode, manual review needed  ; orig: C - - - - - 0x00995B 02:994B: 7D B3 98  ADC tbl_98B3_spr_T,X
+  Line 2121:     ; !! UNKNOWN: .DBYT $2064  ; orig: - D 0 - - - 0x009D51 02:9D41: 20 64     .dbyt $2064 ;
+  Line 2170:     ; !! UNKNOWN: .DBYT $20CE  ; orig: - D 0 - - - 0x009D8B 02:9D7B: 20 CE     .dbyt $20CE ;
+  Line 2177:     ; !! UNKNOWN: .DBYT $212E  ; orig: - D 0 - - - 0x009D96 02:9D86: 21 2E     .dbyt $212E ;
+  ... and 10 more
+
+FILE: bank_03_gen68k.asm
+  Translated:  93
+  Warnings:    351
+  Unknown:     21
+  Issues (26):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line   68:     ; !! UNKNOWN: .DBYT $1700  ; orig: - D 0 - - - 0x00C040 03:8030: 17 00     .dbyt $1700     ; 17
+  Line   69:     ; !! UNKNOWN: .DBYT $08E0  ; orig: - D 0 - - - 0x00C042 03:8032: 08 E0     .dbyt $08E0     ; 08
+  Line   70:     ; !! UNKNOWN: .DBYT $09E0  ; orig: - D 0 - - - 0x00C044 03:8034: 09 E0     .dbyt $09E0     ; 09
+  Line   71:     ; !! UNKNOWN: .DBYT $0C00  ; orig: - D 0 - - - 0x00C046 03:8036: 0C 00     .dbyt $0C00     ; 0C
+  Line   76:     ; !! UNKNOWN: .DBYT $0820  ; orig: - D 0 - - - 0x00C048 03:8038: 08 20     .dbyt $0820     ; 82
+  Line   77:     ; !! UNKNOWN: .DBYT $0720  ; orig: - D 0 - - - 0x00C04A 03:803A: 07 20     .dbyt $0720     ; 72
+  Line   82:     ; !! UNKNOWN: .DBYT $0820  ; orig: - D 0 - - - 0x00C04C 03:803C: 08 20     .dbyt $0820     ; 82
+  Line   83:     ; !! UNKNOWN: .DBYT $0100  ; orig: - D 0 - - - 0x00C04E 03:803E: 01 00     .dbyt $0100     ; 10
+  Line   84:     ; !! UNKNOWN: .DBYT $0220  ; orig: - D 0 - - - 0x00C050 03:8040: 02 20     .dbyt $0220     ; 22
+  Line   85:     ; !! UNKNOWN: .DBYT $0400  ; orig: - D 0 - - - 0x00C052 03:8042: 04 00     .dbyt $0400     ; 40
+  Line   91:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x00C057 03:8047: AD 02 20  LDA $2002
+  Line  225:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x00C0F4 03:80E4: 8D 06 20  STA $2006
+  Line  228:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x00C0FB 03:80EB: 8D 06 20  STA $2006
+  Line  233:     MOVE.B  D0,PPU_REG_$2007  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x00C102 03:80F2: 8D 07 20  STA $2007
+  Line  262:     ; !! UNKNOWN: .INCBIN "incbin/chr/03___811B_893A.chr"  ; orig: .incbin "incbin/chr/03___811B_893A.chr"
+  Line  269:     ; !! UNKNOWN: .INCBIN "incbin/chr/03___893B_915A.chr"  ; orig: .incbin "incbin/chr/03___893B_915A.chr"
+  Line  276:     ; !! UNKNOWN: .INCBIN "incbin/chr/03___915B_987A.chr"  ; orig: .incbin "incbin/chr/03___915B_987A.chr"
+  Line  285:     ; !! UNKNOWN: .INCBIN "incbin/chr/03___987B_9A9A.chr"  ; orig: .incbin "incbin/chr/03___987B_9A9A.chr"
+  Line  294:     ; !! UNKNOWN: .INCBIN "incbin/chr/03___9A9B_9CBA.chr"  ; orig: .incbin "incbin/chr/03___9A9B_9CBA.chr"
+  ... and 6 more
+
+FILE: bank_04_gen68k.asm
+  Translated:  5312
+  Warnings:    1323
+  Unknown:     1
+  Issues (107):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line  295:     ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x01003E 04:802E: F5 70     SBC ram_pos_X_enemy,
+  Line  305:     ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x01004E 04:803E: F5 84     SBC ram_pos_Y_enemy,
+  Line  350:     ; !! ORA ram_003D_enemy,X - needs manual review  ; orig: C - - - - - 0x01008B 04:807B: 15 3D     ORA ram_003D_enemy,X
+  Line  392:     ; !! CMP ram_indiv_random + $01,X - needs manual review  ; orig: C - - - - - 0x0100C6 04:80B6: D5 19     CMP ram_indiv_random
+  Line  399:     ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x0100D3 04:80C3: F5 70     SBC ram_pos_X_enemy,
+  Line  417:     ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x0100EF 04:80DF: F5 84     SBC ram_pos_Y_enemy,
+  Line  554:     ; !! ORA ram_003D_enemy,X - needs manual review  ; orig: C - - - - - 0x0101C7 04:81B7: 15 3D     ORA ram_003D_enemy,X
+  Line  620:     ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x010227 04:8217: F5 84     SBC ram_pos_Y_enemy,
+  Line  631:     ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x01023A 04:822A: F5 70     SBC ram_pos_X_enemy,
+  Line  856:     ; !! ADC tbl_82D3_pos_Y,Y - complex mode, manual review needed  ; orig: C - - - - - 0x010365 04:8355: 79 D3 82  ADC tbl_82D3_pos_Y,Y
+  Line  860:     ; !! ADC tbl_82D1_pos_X,Y - complex mode, manual review needed  ; orig: C - - - - - 0x01036D 04:835D: 79 D1 82  ADC tbl_82D1_pos_X,Y
+  Line 1378:     ; !! ORA ram_timer_enemy,X - needs manual review  ; orig: C - - - - - 0x0105EC 04:85DC: 15 28     ORA ram_timer_enemy,
+  Line 1551:     ; !! ADC tbl_863D,Y - complex mode, manual review needed  ; orig: C - - - - - 0x0106A9 04:8699: 79 3D 86  ADC tbl_863D,Y
+  Line 1574:     ; !! SBC ram_0002_t26,Y - complex mode, manual review needed  ; orig: C - - - - - 0x0106CE 04:86BE: F9 02 00  SBC ram_0002_t26,Y
+  Line 1903:     ; !! ORA ram_003D_enemy,X - needs manual review  ; orig: C - - - - - 0x010829 04:8819: 15 3D     ORA ram_003D_enemy,X
+  Line 2013:     ; !! ADC ram_indiv_random + $01,X - complex mode, manual review needed  ; orig: C - - - - - 0x0108CB 04:88BB: 75 19     ADC ram_indiv_random
+  Line 2020:     ; !! ADC ram_indiv_random + $01,X - complex mode, manual review needed  ; orig: C - - - - - 0x0108D5 04:88C5: 75 19     ADC ram_indiv_random
+  Line 2117:     ; !! ORA ram_003D_enemy,X - needs manual review  ; orig: C - - - - - 0x010915 04:8905: 15 3D     ORA ram_003D_enemy,X
+  Line 2134:     ; !! ORA ram_dir_enemy,X - needs manual review  ; orig: C - - - - - 0x010934 04:8924: 15 98     ORA ram_dir_enemy,X
+  ... and 87 more
+
+FILE: bank_05_gen68k.asm
+  Translated:  3888
+  Warnings:    1772
+  Unknown:     1
+  Issues (33):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line 1099:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x014531 05:8521: AD 02 20  LDA $2002
+  Line 1102:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x014538 05:8528: AD 02 20  LDA $2002
+  Line 1140:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x014569 05:8559: AD 02 20  LDA $2002
+  Line 1143:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x014570 05:8560: 8D 06 20  STA $2006
+  Line 1144:     MOVE.B  D2,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x014573 05:8563: 8C 06 20  STY $2006
+  Line 1145:     MOVE.B  PPU_REG_$2007  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x014576 05:8566: AD 07 20  LDA $2007
+  Line 1146:     MOVE.B  PPU_REG_$2007  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x014579 05:8569: AD 07 20  LDA $2007
+  Line 1161:     MOVE.B  D0,PPU_REG_$2000  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01458E 05:857E: 8D 00 20  STA $2000
+  Line 1163:     MOVE.B  D0,PPU_REG_$2005  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x014593 05:8583: 8D 05 20  STA $2005
+  Line 1165:     MOVE.B  D0,PPU_REG_$2005  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x014598 05:8588: 8D 05 20  STA $2005
+  Line 1176:     MOVE.B  D0,PPU_REG_$2000  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x0145A9 05:8599: 8D 00 20  STA $2000
+  Line 2127:     ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x014A26 05:8A16: F5 70     SBC ram_pos_X_enemy,
+  Line 2133:     ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x014A32 05:8A22: F5 84     SBC ram_pos_Y_enemy,
+  Line 2209:     ; !! ORA tbl_0x01E6CE_8_bits,X - needs manual review  ; orig: C - - - - - 0x014AAA 05:8A9A: 1D BE E6  ORA tbl_0x01E6CE_8_b
+  Line 2222:     ; !! AND (ram_0000_t13_data),Y - needs manual review  ; orig: C - - - - - 0x014AB8 05:8AA8: 31 00     AND (ram_0000_t13_da
+  Line 3124:     ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x014FA5 05:8F95: F5 84     SBC ram_pos_Y_enemy,
+  Line 3134:     ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x014FB6 05:8FA6: F5 70     SBC ram_pos_X_enemy,
+  Line 3370:     ; !! ORA (ram_0000_t13_data),Y - needs manual review  ; orig: C - - - - - 0x015115 05:9105: 11 00     ORA (ram_0000_t13_da
+  Line 3713:     ; !! SBC ram_0560,Y - complex mode, manual review needed  ; orig: C - - - - - 0x0152DB 05:92CB: F9 60 05  SBC ram_0560,Y
+  ... and 13 more
+
+FILE: bank_06_gen68k.asm
+  Translated:  177
+  Warnings:    6279
+  Unknown:     213
+  Issues (226):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line   21: ; !! bzk .org control commands here
+  Line  163:     ; !! UNKNOWN: TMP_COPY_START = ram_687E_map_data  ; orig: tmp_copy_start = ram_687E_map_data
+  Line  164:     ; !! UNKNOWN: TMP_COPY_END = ram_687E_map_data + $300 - $01  ; orig: tmp_copy_end   = ram_687E_map_data + $300 - $01
+  Line  188:     ; !! UNKNOWN: TMP_COPY_START = ram_6B7E_palette_buffer  ; orig: tmp_copy_start = ram_6B7E_palette_buffer
+  Line  189:     ; !! UNKNOWN: TMP_COPY_END = ram_6B7E_palette_buffer + $100 - $01  ; orig: tmp_copy_end   = ram_6B7E_palette_buffer + $100 - $01
+  Line 4876:     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - I - 0x019310 06:9300: 3F        .dbyt $3F00 ;
+  Line 4947:     ; !! UNKNOWN: .DBYT $2062  ; orig: - D 0 - I - 0x01935F 06:934F: 20 62     .dbyt $2062 ;
+  Line 4951:     ; !! UNKNOWN: .DBYT $2082  ; orig: - D 0 - I - 0x019363 06:9353: 20 82     .dbyt $2082 ;
+  Line 4955:     ; !! UNKNOWN: .DBYT $20A2  ; orig: - D 0 - I - 0x019367 06:9357: 20 A2     .dbyt $20A2 ;
+  Line 4959:     ; !! UNKNOWN: .DBYT $20C2  ; orig: - D 0 - I - 0x01936B 06:935B: 20 C2     .dbyt $20C2 ;
+  Line 5043:     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - I - 0x01940C 06:93FC: 3F        .dbyt $3F00 ;
+  Line 5114:     ; !! UNKNOWN: .DBYT $2084  ; orig: - D 0 - I - 0x01945B 06:944B: 20 84     .dbyt $2084 ;
+  Line 5118:     ; !! UNKNOWN: .DBYT $20A3  ; orig: - D 0 - I - 0x019463 06:9453: 20 A3     .dbyt $20A3 ;
+  Line 5122:     ; !! UNKNOWN: .DBYT $20C4  ; orig: - D 0 - I - 0x01946B 06:945B: 20 C4     .dbyt $20C4 ;
+  Line 5206:     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - I - 0x019508 06:94F8: 3F        .dbyt $3F00 ;
+  Line 5277:     ; !! UNKNOWN: .DBYT $2065  ; orig: - D 0 - I - 0x019557 06:9547: 20 65     .dbyt $2065 ;
+  Line 5281:     ; !! UNKNOWN: .DBYT $2086  ; orig: - D 0 - I - 0x01955D 06:954D: 20 86     .dbyt $2086 ;
+  Line 5285:     ; !! UNKNOWN: .DBYT $20A6  ; orig: - D 0 - I - 0x019562 06:9552: 20 A6     .dbyt $20A6 ;
+  Line 5289:     ; !! UNKNOWN: .DBYT $20C4  ; orig: - D 0 - I - 0x019567 06:9557: 20 C4     .dbyt $20C4 ;
+  ... and 206 more
+
+FILE: bank_FF_gen68k.asm
+  Translated:  2716
+  Warnings:    810
+  Unknown:     3
+  Issues (57):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line  117:     ; !! UNKNOWN: .INCBIN "DPCM.bin"  ; orig: .incbin "DPCM.bin"
+  Line  171:     MOVE.B  D0,PPU_REG_$2000  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E466 07:E456: 8D 00 20  STA $2000
+  Line  184:     MOVE.B  D0,PPU_REG_$2001  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E47A 07:E46A: 8D 01 20  STA $2001
+  Line  210:     MOVE.B  D0,PPU_REG_$2000  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4A2 07:E492: 8D 00 20  STA $2000
+  Line  223:     MOVE.B  D0,PPU_REG_$2001  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4B5 07:E4A5: 8D 01 20  STA $2001
+  Line  226:     MOVE.B  D0,PPU_REG_$2003  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4BC 07:E4AC: 8D 03 20  STA $2003
+  Line  230:     MOVE.B  D0,PPU_REG_$2005  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4C6 07:E4B6: 8D 05 20  STA $2005
+  Line  231:     MOVE.B  D0,PPU_REG_$2005  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4C9 07:E4B9: 8D 05 20  STA $2005
+  Line  236:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4D6 07:E4C6: 8D 06 20  STA $2006
+  Line  238:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4DB 07:E4CB: 8D 06 20  STA $2006
+  Line  241:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4DE 07:E4CE: 8D 06 20  STA $2006
+  Line  242:     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E4E1 07:E4D1: 8D 06 20  STA $2006
+  Line  246:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x01E4E4 07:E4D4: AD 02 20  LDA $2002
+  Line  251:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x01E4EB 07:E4DB: AD 02 20  LDA $2002
+  Line  275:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x01E516 07:E506: AD 02 20  LDA $2002
+  Line  277:     MOVE.B  D0,PPU_REG_$2005  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E51B 07:E50B: 8D 05 20  STA $2005
+  Line  279:     MOVE.B  D0,PPU_REG_$2005  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E520 07:E510: 8D 05 20  STA $2005
+  Line  281:     MOVE.B  D0,PPU_REG_$2000  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x01E525 07:E515: 8D 00 20  STA $2000
+  Line  365:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C D 3 - - - 0x01E583 07:E573: AD 02 20  LDA $2002
+  ... and 37 more
+
+FILE: bank___BF50_BFF9_gen68k.asm
+  Translated:  49
+  Warnings:    11
+  Unknown:     0
+  Issues (4):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line   59:     MOVE.B  D0,PPU_REG_$2000  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: - - - - - - 0x003F64 00:BF54: 8D 00 20  STA $2000
+  Line   63:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: - - - - - - 0x003F6A 00:BF5A: AD 02 20  LDA $2002
+  Line   67:     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: - - - - - - 0x003F71 00:BF61: AD 02 20  LDA $2002
+
+FILE: bank_s1_gen68k.asm
+  Translated:  0
+  Warnings:    82
+  Unknown:     8
+  Issues (10):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line   26: ; !!! bzk do not move these tables (don't edit .org as well), because
+  Line   58:     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - I - 0x019CE8 06:67F0: 3F        .dbyt $3F00 ;
+  Line   85:     ; !! UNKNOWN: .DBYT $3F1C  ; orig: - D 0 - I - 0x019D0C 06:6814: 3F        .dbyt $3F1C ;
+  Line  100:     ; !! UNKNOWN: .DBYT $2042  ; orig: - D 0 - I - 0x019D14 06:681C: 20        .dbyt $2042 ;
+  Line  136:     ; !! UNKNOWN: .DBYT $2AEE  ; orig: - D 0 - I - 0x019D3F 06:6847: 2A        .dbyt $2AEE ;
+  Line  152:     ; !! UNKNOWN: .DBYT $2B0D  ; orig: - D 0 - I - 0x019D47 06:684F: 2B        .dbyt $2B0D ;
+  Line  170:     ; !! UNKNOWN: .DBYT $2B2C  ; orig: - D 0 - I - 0x019D51 06:6859: 2B        .dbyt $2B2C ;
+  Line  190:     ; !! UNKNOWN: .DBYT $2B4B  ; orig: - D 0 - I - 0x019D5D 06:6865: 2B        .dbyt $2B4B ;
+  Line  212:     ; !! UNKNOWN: .DBYT $2BAC  ; orig: - D 0 - I - 0x019D6B 06:6873: 2B        .dbyt $2BAC ;
+
+FILE: bank_s2_gen68k.asm
+  Translated:  1707
+  Warnings:    1061
+  Unknown:     5
+  Issues (30):
+  Line    4: ; !! This is a FIRST PASS - hardware I/O needs manual work !!
+  Line  168:     ; !! UNKNOWN: .DBYT $20B6  ; orig: - D 1 - I - 0x006517 01:6C97: 20 B6     .dbyt $20B6 ; ppu ad
+  Line  172:     ; !! UNKNOWN: .DBYT $20D6  ; orig: - D 1 - I - 0x006522 01:6CA2: 20 D6     .dbyt $20D6 ; ppu ad
+  Line  176:     ; !! UNKNOWN: .DBYT $206C  ; orig: - D 1 - I - 0x00652D 01:6CAD: 20 6C     .dbyt $206C ; ppu ad
+  Line  180:     ; !! UNKNOWN: .DBYT $20AC  ; orig: - D 1 - I - 0x006533 01:6CB3: 20 AC     .dbyt $20AC ; ppu ad
+  Line  184:     ; !! UNKNOWN: .DBYT $20CC  ; orig: - D 1 - I - 0x006539 01:6CB9: 20 CC     .dbyt $20CC ; ppu ad
+  Line  343:     ; !! ORA ram_music,Y - needs manual review  ; orig: - D 1 - I - 0x006602 01:6D82: 19 00 06  ORA ram_music,Y
+  Line  354: ; !!! ram 6D90-6D9B has some weird SRAM checks when going into save elimination mode
+  Line  725:     ; !! ADC tbl_6EF9,X - complex mode, manual review needed  ; orig: - D 1 - I - 0x006788 01:6F08: 7D F9 6E  ADC tbl_6EF9,X
+  Line  883:     ; !! ADC ram_03BC_obj,X - complex mode, manual review needed  ; orig: - D 1 - I - 0x006845 01:6FC5: 7D BC 03  ADC ram_03BC_obj,X
+  Line  892:     MOVE    (A7)+,SR        ; PLP (approx - !! privilege risk)  ; orig: - D 1 - I - 0x006859 01:6FD9: 28        PLP
+  Line  896:     MOVE    (A7)+,SR        ; PLP (approx - !! privilege risk)  ; orig: - D 1 - I - 0x00685C 01:6FDC: 28        PLP
+  Line  901:     MOVE    (A7)+,SR        ; PLP (approx - !! privilege risk)  ; orig: - D 1 - I - 0x006866 01:6FE6: 28        PLP
+  Line  909:     ; !! SBC ram_03BC_obj,X - complex mode, manual review needed  ; orig: - D 1 - I - 0x00686C 01:6FEC: FD BC 03  SBC ram_03BC_obj,X
+  Line  918:     MOVE    (A7)+,SR        ; PLP (approx - !! privilege risk)  ; orig: - D 1 - I - 0x006880 01:7000: 28        PLP
+  Line  922:     MOVE    (A7)+,SR        ; PLP (approx - !! privilege risk)  ; orig: - D 1 - I - 0x006883 01:7003: 28        PLP
+  Line  927:     MOVE    (A7)+,SR        ; PLP (approx - !! privilege risk)  ; orig: - D 1 - I - 0x00688D 01:700D: 28        PLP
+  Line  998:     ; !! ADC ram_0394_enemy,X - complex mode, manual review needed  ; orig: - D 1 - I - 0x0068BE 01:703E: 7D 94 03  ADC ram_0394_enemy,X
+  Line 1411:     ; !! AND tbl_0x01E6CE_8_bits - $01,Y - needs manual review  ; orig: - D 1 - I - 0x006AAA 01:722A: 39 BD E6  AND tbl_0x01E6CE_8_b
+  Line 1706:     ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: - D 1 - I - 0x006BCC 01:734C: F5 84     SBC ram_pos_Y_enemy,
+  ... and 10 more
+
+============================================================
+TOTALS
+============================================================
+  Files processed: 11
+  Total translated instructions: 17933
+  Total warnings:  17664
+  Total unknown:   287
+
+Next step: review issues above and send to Claude for Phase 2!

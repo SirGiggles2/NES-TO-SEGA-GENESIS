@@ -1,0 +1,22 @@
+README.md
+docs/
+src/
+  bridge/
+  banks/
+    generated_vdp/
+    generated/
+    nes_original/
+  includes/
+build/
+  toolchain/
+diag/scripts/
+artifacts/
+  diagnostics/
+  screenshots/
+  logs/
+  roms/
+  archives/
+reference/
+notes/
+tools/
+tests/

@@ -1,0 +1,170 @@
+ 
++---------------------------------------+ 
+|   ZELDA NES->GENESIS PORT ASSEMBLER   | 
++---------------------------------------+ 
+ 
+Using Python: C:\Users\Jake Diggity\AppData\Local\Python\bin\python.exe 
+[1/5] Regenerating VDP-patched bank files... 
+=======================================================
+  VDP PATCH REPORT
+=======================================================
+
+FILE: bank_00_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             bank_00_gen68k_vdp.asm
+
+FILE: bank_01_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             bank_01_gen68k_vdp.asm
+
+FILE: bank_02_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             bank_02_gen68k_vdp.asm
+
+FILE: bank_03_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             bank_03_gen68k_vdp.asm
+
+FILE: bank_04_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             bank_04_gen68k_vdp.asm
+
+FILE: bank_05_gen68k.asm
+  PPU stubs replaced: 12
+  Unhandled:          0
+  Output:             bank_05_gen68k_vdp.asm
+
+FILE: bank_06_gen68k.asm
+  PPU stubs replaced: 9
+  Unhandled:          0
+  Output:             bank_06_gen68k_vdp.asm
+
+FILE: bank_FF_gen68k.asm
+  PPU stubs replaced: 32
+  Unhandled:          0
+  Output:             bank_FF_gen68k_vdp.asm
+
+FILE: bank___BF50_BFF9_gen68k.asm
+  PPU stubs replaced: 3
+  Unhandled:          0
+  Output:             bank___BF50_BFF9_gen68k_vdp.asm
+
+FILE: bank_s1_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             bank_s1_gen68k_vdp.asm
+
+FILE: bank_s2_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             bank_s2_gen68k_vdp.asm
+
+=======================================================
+TOTAL PPU stubs replaced: 68
+TOTAL unhandled:          0
+
+Next: build with vdp_layer.asm included!
+      assemble with: asmx or vasm (68000 mode)
+[2/5] Fixing ca65 syntax artifacts... 
+=================================================================
+  SYNTAX FIX REPORT
+=================================================================
+  bank_00_gen68k_vdp.asm                             fixed=  72  labels prefixed=215
+  bank_01_gen68k_vdp.asm                             fixed= 193  labels prefixed=304
+  bank_02_gen68k_vdp.asm                             fixed= 474  labels prefixed=508
+  bank_03_gen68k_vdp.asm                             fixed=  20  labels prefixed=12
+  bank_04_gen68k_vdp.asm                             fixed=1529  labels prefixed=1416
+  bank_05_gen68k_vdp.asm                             fixed= 480  labels prefixed=1075
+  bank_06_gen68k_vdp.asm                             fixed=  48  labels prefixed=29
+  bank_FF_gen68k_vdp.asm                             fixed= 525  labels prefixed=802
+  bank___BF50_BFF9_gen68k_vdp.asm                    fixed=   2  labels prefixed=4
+  bank_s1_gen68k_vdp.asm                             fixed=   0  labels prefixed=0
+  bank_s2_gen68k_vdp.asm                             fixed= 285  labels prefixed=481
+
+  Total lines fixed:         3628
+  Total labels prefixed:     4846
+
+=================================================================
+  PRE-SCAN: REMAINING SUSPECT PATTERNS
+=================================================================
+
+  FILE: bank_00_gen68k_vdp.asm (10 hits)
+    line 3217 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x00183B 00:982B: 8D 15 40  STA ($00FF8011).l
+    line 3219 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001840 00:9830: 8D 15 40  STA ($00FF8011).l
+    line 3223 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8012).l  ; orig: C - - - - - 0x001847 00:9837: 8D 17 40  STA ($00FF8012).l
+    line 3445 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001938 00:9928: 8D 15 40  STA ($00FF8011).l
+    line 3966 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BB6 00:9BA6: 8D 15 40  STA ($00FF8011).l
+    line 3979 [large displacement >4 hex digits]
+                 MOVE.B  D1,($00FF8010).l  ; orig: C - - - - - 0x001BC7 00:9BB7: 8E 11 40  STX ($00FF8010).l
+    line 4004 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BF5 00:9BE5: 8D 15 40  STA ($00FF8011).l
+    line 4006 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BFA 00:9BEA: 8D 15 40  STA ($00FF8011).l
+    line 4285 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001D5B 00:9D4B: 8D 15 40  STA ($00FF8011).l
+    line 4287 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001D60 00:9D50: 8D 15 40  STA ($00FF8011).l
+
+  FILE: bank_05_gen68k_vdp.asm (3 hits)
+    line 5223 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$EE,D0  ; orig: C - - - - - 0x0164A1 05:A491: C9 EE     CMP #< ( tbl_9FA0_ti
+    line 6278 [#>/#< with non-literal (unresolved)]
+                 MOVE.B  #$1A,D0  ; orig: C D 1 - - - 0x0168EE 05:A8DE: A9 1A     LDA #< (ram_6530 - $
+    line 6280 [#>/#< with non-literal (unresolved)]
+                 MOVE.B  #$65,D0  ; orig: C - - - - - 0x0168F2 05:A8E2: A9 65     LDA #> (ram_6530 - $
+
+  FILE: bank_FF_gen68k_vdp.asm (9 hits)
+    line  185 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8010).l  ; orig: C - - - - - 0x01E470 07:E460: 8D 11 40  STA ($00FF8010).l
+    line  187 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x01E475 07:E465: 8D 15 40  STA ($00FF8011).l
+    line  574 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00A10003).l  ; orig: C - - - - - 0x01E63F 07:E62F: 8D 16 40  STA ($00A10003).l
+    line  576 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00A10003).l  ; orig: C - - - - - 0x01E644 07:E634: 8D 16 40  STA ($00A10003).l
+    line  587 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00A10003).l  ; orig: C - - - - - 0x01E654 07:E644: 8D 16 40  STA ($00A10003).l
+    line  589 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00A10003).l  ; orig: C - - - - - 0x01E659 07:E649: 8D 16 40  STA ($00A10003).l
+    line 1155 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$F0,D0  ; orig: C - - - - - 0x01E8FB 07:E8EB: C9 F0     CMP #< (ram_6530 + $
+    line 1158 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$67,D0  ; orig: C - - - - - 0x01E901 07:E8F1: C9 67     CMP #> (ram_6530 + $
+    line 1828 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x01EC56 07:EC46: 8D 15 40  STA ($00FF8011).l
+
+  Total suspect lines: 22
+
+  All done! Run build.bat now.
+[3/5] Assembling with vasm... 
+vasm 2.0e (c) in 2002-2026 Volker Barthelmann
+vasm M68k/CPU32/ColdFire cpu backend 2.8 (c) 2002-2025 Frank Wille
+vasm motorola syntax module 3.19d (c) 2002-2025 Frank Wille
+vasm binary output module 2.3e (c) 2002-2025 Volker Barthelmann and Frank Wille
+
+error 68 in line 46 of "vdp_layer.asm": repeatedly defined symbol <ram_frm_cnt>
+	included from line 350 of "main.asm"
+>ram_frm_cnt                 EQU $FF0015
+
+error 68 in line 47 of "vdp_layer.asm": repeatedly defined symbol <ram_0011_screen_ready_flag>
+	included from line 350 of "main.asm"
+>ram_0011_screen_ready_flag  EQU $FF0011
+
+error 68 in line 48 of "vdp_layer.asm": repeatedly defined symbol <ram_0300_useless>
+	included from line 350 of "main.asm"
+>ram_0300_useless            EQU $FF0300
+
+error 75 in line 207 of "bank_FF_gen68k_vdp.asm": label <vec_0x01E494_NMI> redefined
+	included from line 351 of "main.asm"
+>vec_0x01E494_NMI:  ; orig: vec_0x01E494_NMI:
+ASSEMBLY FAILED 

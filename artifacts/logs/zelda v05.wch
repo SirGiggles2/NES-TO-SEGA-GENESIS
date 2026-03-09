@@ -1,0 +1,8 @@
+SystemID GEN
+0000FF	b	u	1	68K RAM	ram_for_2000 [A0=NMI+NMT, 20=NMI off]
+0000FE	b	u	1	68K RAM	ram_for_2001 [1E=render ON, 06=render OFF]
+00EF0A	b	u	1	68K RAM	VDP_REG1_SHADOW [74=disp+vint ON, 54=disp OFF]
+0000E3	b	u	1	68K RAM	screen_transition_flag [nonzero=force enable]
+000017	b	u	1	68K RAM	rendering_flag [nonzero=BLOCKS render enable]
+000014	b	u	1	68K RAM	ppu_load_index [nonzero=BLOCKS render enable]
+00EF08	w	u	1	68K RAM	VRAM_ADDR_CURR [word, changes=tile writes active]

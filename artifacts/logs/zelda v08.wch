@@ -1,0 +1,13 @@
+SystemID GEN
+000000	b	u	1	68K RAM	ppu_data_lo [low byte of tile pointer]
+000001	b	u	1	68K RAM	ppu_data_hi [HIGH byte — was $00, should be $37+]
+000014	b	u	1	68K RAM	ppu_load_index [index into tile ptr table]
+00EF00	b	u	1	68K RAM	PPUCTRL_SHADOW [VDP reg1 shadow]
+00EF08	w	u	1	68K RAM	VRAM_ADDR_CURR [word, changes=tile writes active]
+000012	b	u	1	68K RAM	ram_for_2000 [NMI enable — KEY indicator]
+000300	b	u	1	68K RAM	useless_flag [set $3F after buffer write]
+000301	b	u	1	68K RAM	buffer_index [PPU buffer idx, cleared after write]
+000302	b	u	1	68K RAM	ppu_buffer [first byte, set $FF after write]
+0000FF	b	u	1	68K RAM	ram_for_2000 [A0=NMI+NMT, 20=NMI off]
+0000FE	b	u	1	68K RAM	ram_for_2001 [1E=render ON, 06=render OFF]
+00EF0A	b	u	1	68K RAM	VDP_REG1_SHADOW [74=disp+vint ON, 54=disp OFF]
