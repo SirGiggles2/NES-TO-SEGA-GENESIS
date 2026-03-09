@@ -490,9 +490,21 @@ sub_0x01E5F2_jump_to_pointers_after_JSR:  ; orig: sub_0x01E5F2_jump_to_pointers_
     ; NES: JSR pushed 2-byte return addr; PLA/PLA recovered it; table was .WORD (16-bit)
     ; 68K: BSR pushes 4-byte return addr pointing right at DC.L table entries
     ; D0 = script index (0-based, byte)
+    MOVE.W  D0,(TRACE_SCRIPT_RAW).l
+    MOVE.L  A7,(TRACE_DISP_STACK).l
+    ANDI.W  #$00FF,D0
     ASL.W   #2,D0           ; D0 = index * 4 (DC.L entry = 4 bytes each)
+    MOVE.W  D0,(TRACE_DISP_INDEX).l
     MOVEA.L (A7)+,A1        ; pop BSR's 4-byte return address → A1 = DC.L table base
     MOVEA.L (A1,D0.W),A0   ; read 32-bit target address from table[index]
+    MOVE.L  A1,(TRACE_DISP_BASE).l
+    MOVE.L  A0,(TRACE_DISP_TARGET).l
+    MOVE.W  D0,-(A7)
+    MOVE.W  #$0317,D0
+    BSR     TRACE_MARK
+    MOVE.W  #$0318,D0
+    BSR     TRACE_MARK
+    MOVE.W  (A7)+,D0
     JMP     (A0)            ; jump to target (does not return through BSR)
 
 
@@ -1098,9 +1110,23 @@ bra_E919:  ; orig: bra_E919:
     BSR     TRACE_MARK
     MOVE.B  #con_prg_bank + $05,D0  ; orig: C - - - - - 0x01E929 07:E919: A9 05     LDA #con_prg_bank + 
     BSR     sub_FFAC_prg_bankswitch             ; JSR -> BSR  ; orig: C - - - - - 0x01E92B 07:E91B: 20 AC FF  JSR sub_FFAC_prg_ban
+    MOVE.W  #$0315,D0
+    BSR     TRACE_MARK
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x01E92E 07:E91E: A5 12     LDA ram_script
 
 ; see con_script
+    MOVE.W  #$0316,D0
+    BSR     TRACE_MARK
+    MOVE.B  ram_script,D0  ; restore the byte index after TRACE_MARK wrote its checkpoint id into D0
+    TST.B   D0
+    BNE     bra_E920_dispatch_via_table
+    MOVE.W  #$0420,D0
+    BSR     TRACE_MARK
+    BSR     ofs_main_script_1_E94B_00_title_screen
+    MOVE.W  #$0421,D0
+    BSR     TRACE_MARK
+    RTS
+bra_E920_dispatch_via_table:
     BSR     sub_E5E2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01E930 07:E920: 20 E2 E5  JSR sub_E5E2_jump_to
     DC.L    ofs_main_script_1_E94B_00_title_screen
     DC.L    ofs_main_script_1_E96F_01_slot_selection
@@ -1126,13 +1152,21 @@ bra_E919:  ; orig: bra_E919:
 
 
 ofs_main_script_1_E94B_00_title_screen:  ; orig: ofs_main_script_1_E94B_00_title_screen:
+    MOVE.W  #$0320,D0
+    BSR     TRACE_MARK
 
 ; con_script_title_screen
     MOVE.B  ram_00F5_reset_check_5A,D0  ; orig: C - - J - - 0x01E95B 07:E94B: A5 F5     LDA ram_00F5_reset_c
     CMPI.B  #$5A,D0  ; orig: C - - - - - 0x01E95D 07:E94D: C9 5A     CMP #$5A
     BEQ     bra_E959             ; BEQ  ; orig: C - - - - - 0x01E95F 07:E94F: F0 08     BEQ bra_E959
+    MOVE.W  #$0321,D0
+    BSR     TRACE_MARK
     MOVE.B  #con_prg_bank + $02,D0  ; orig: C - - - - - 0x01E961 07:E951: A9 02     LDA #con_prg_bank + 
     BSR     sub_FFAC_prg_bankswitch             ; JSR -> BSR  ; orig: C - - - - - 0x01E963 07:E953: 20 AC FF  JSR sub_FFAC_prg_ban
+    MOVE.W  #$0322,D0
+    BSR     TRACE_MARK
+    MOVE.W  #$0323,D0
+    BSR     TRACE_MARK
     JMP     loc_0x008022_fill_ppu_with_tiles_1  ; orig: C - - - - - 0x01E966 07:E956: 4C 12 80  JMP loc_0x008022_fil
 bra_E959:  ; orig: bra_E959:
     MOVE.B  ram_00F6_reset_check_A5,D0  ; orig: C - - - - - 0x01E969 07:E959: A5 F6     LDA ram_00F6_reset_c
@@ -5272,6 +5306,8 @@ sub_FF98_set_mirroring:  ; orig: sub_FF98_set_mirroring:
 
 sub_FFAC_prg_bankswitch:  ; orig: sub_FFAC_prg_bankswitch:
 loc_FFAC_prg_bankswitch:  ; orig: loc_FFAC_prg_bankswitch:
+    MOVE.W  D0,(TRACE_BANK_RAW).l
+    ANDI.W  #$00FF,D0
     MOVE.B  D0,ROM_$E000  ; orig: C D 3 - - - 0x01FFBC 07:FFAC: 8D 00 E0  STA $E000
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01FFBF 07:FFAF: 4A        LSR
     MOVE.B  D0,ROM_$E000  ; orig: C - - - - - 0x01FFC0 07:FFB0: 8D 00 E0  STA $E000
@@ -5281,6 +5317,7 @@ loc_FFAC_prg_bankswitch:  ; orig: loc_FFAC_prg_bankswitch:
     MOVE.B  D0,ROM_$E000  ; orig: C - - - - - 0x01FFC8 07:FFB8: 8D 00 E0  STA $E000
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01FFCB 07:FFBB: 4A        LSR
     MOVE.B  D0,ROM_$E000  ; orig: C - - - - - 0x01FFCC 07:FFBC: 8D 00 E0  STA $E000
+    MOVE.W  D0,(TRACE_BANK_POST).l
     RTS                     ; RTS  ; orig: C - - - - - 0x01FFCF 07:FFBF: 60        RTS
 
 

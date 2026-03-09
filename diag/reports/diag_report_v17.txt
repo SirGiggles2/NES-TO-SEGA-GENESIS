@@ -1,0 +1,818 @@
+================================================================
+  ZELDA GENESIS PORT - DIAGNOSTIC REPORT  v7
+  ROM: zelda_v17.md
+  Frames: 300  (~5.0s)
+  Report path: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\diag_report_v17.txt
+  ROM dir: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\
+  ROM domain: MD CART
+================================================================
+
+=== EXECUTIVE SUMMARY =========================================
+  PASS  NMI enabled (ram_for_2000 bit7=1)
+  PASS  NMI handler visibly completed (ram_frm_cnt changed 29 times)
+  PASS  PPU_WRITE_2000 updated shadow (PPUCTRL_SHADOW=$B0)
+  PASS  VDP VINT enabled
+  FAIL  VDP display never enabled
+  PASS  VRAM has 6430 nonzero words
+  PASS  CRAM has 50 nonzero colors
+  PASS  PPU buffer write completed
+  PASS  CPU not stuck in a single location
+  WARN  Rendering never enabled
+  WARN  Game mode never changed (stuck in mode $00)
+  WARN  No scroll shadow activity observed
+
+  Score: 8 PASS / 1 FAIL / 3 WARN
+  NMI completion count: 29
+  PC range observed: $0003F4 - $0010FA
+  Unique PCs sampled: 56
+  Longest same-PC run: 3 frames at $0010C4
+
+=== MILESTONES (chronological) ================================
+  Frame    1: ram_for_2000 became nonzero: $B0
+  Frame    1: PPU BUFFER WRITE COMPLETE: $0300=$3F
+  Frame    1: GAME MODE: dungeon=$00 screen_ready=$00
+  Frame    3: RENDER ENABLED: ram_for_2001=$1E
+  Frame    3: VDP DISPLAY ON: VDP_REG1=$74
+  Frame    3: ram_for_2001 became nonzero: $1E
+  Frame    6: ram_frm_cnt changed: $1C -> $1D
+  Frame   15: ram_frm_cnt changed: $1D -> $1E
+  Frame   24: VDP DISPLAY ON: VDP_REG1=$74
+  Frame   26: ram_frm_cnt changed: $1E -> $1F
+  Frame   35: ram_frm_cnt changed: $1F -> $20
+  Frame   44: VDP DISPLAY ON: VDP_REG1=$74
+  Frame   47: ram_frm_cnt changed: $20 -> $21
+  Frame   56: ram_frm_cnt changed: $21 -> $22
+  Frame   65: VDP DISPLAY ON: VDP_REG1=$74
+  Frame   68: ram_frm_cnt changed: $22 -> $23
+  Frame   77: ram_frm_cnt changed: $23 -> $24
+  Frame   86: VDP DISPLAY ON: VDP_REG1=$74
+  Frame   88: ram_frm_cnt changed: $24 -> $25
+  Frame   97: ram_frm_cnt changed: $25 -> $26
+  Frame  106: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  109: ram_frm_cnt changed: $26 -> $27
+  Frame  118: ram_frm_cnt changed: $27 -> $28
+  Frame  127: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  130: ram_frm_cnt changed: $28 -> $29
+  Frame  139: ram_frm_cnt changed: $29 -> $2A
+  Frame  148: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  150: ram_frm_cnt changed: $2A -> $2B
+  Frame  159: ram_frm_cnt changed: $2B -> $2C
+  Frame  168: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  171: ram_frm_cnt changed: $2C -> $2D
+  Frame  180: ram_frm_cnt changed: $2D -> $2E
+  Frame  189: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  192: ram_frm_cnt changed: $2E -> $2F
+  Frame  201: ram_frm_cnt changed: $2F -> $30
+  Frame  209: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  212: ram_frm_cnt changed: $30 -> $31
+  Frame  221: ram_frm_cnt changed: $31 -> $32
+  Frame  230: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  233: ram_frm_cnt changed: $32 -> $33
+  Frame  242: ram_frm_cnt changed: $33 -> $34
+  Frame  251: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  254: ram_frm_cnt changed: $34 -> $35
+  Frame  262: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  263: ram_frm_cnt changed: $35 -> $36
+  Frame  271: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  274: ram_frm_cnt changed: $36 -> $37
+  Frame  283: ram_frm_cnt changed: $37 -> $38
+  Frame  292: VDP DISPLAY ON: VDP_REG1=$74
+  Frame  295: ram_frm_cnt changed: $38 -> $39
+
+=== DEEP DIAG / INTERPRETATION ================================
+  Helper activity heuristic:
+    PPU_WRITE_2000         0 frames in sampled windows near $000534
+    PPU_READ_2002          0 frames in sampled windows near $0004BC
+    PPU_WRITE_2006         0 frames in sampled windows near $000544
+    PPU_WRITE_2007         0 frames in sampled windows near $000576
+    TARGET_LOOP_0007F6     0 frames in sampled windows near $0007F6
+    TITLE/NMI LOOP         0 frames in sampled windows near $014B80
+    vec_0x01E494_NMI       0 frames in sampled windows near $01E494
+  VRAM addr observed min/max: $0303 / $2C00
+  OAM nonzero pairs in $0200-$027F: 32
+  PPUCTRL first nonzero frame: 1
+  PPUMASK first nonzero frame: 3
+  VDP REG1 transitions: 32
+    Frame    3: $34 -> $74
+    Frame    6: $74 -> $34
+    Frame   24: $34 -> $74
+    Frame   26: $74 -> $34
+    Frame   44: $34 -> $74
+    Frame   47: $74 -> $34
+    Frame   65: $34 -> $74
+    Frame   68: $74 -> $34
+    Frame   86: $34 -> $74
+    Frame   88: $74 -> $34
+
+=== LOOP TRACE / RELEASE HINTS ================================
+  Target loop PC: $0007F6
+  First frame at target loop: never
+  Stable stuck entry frame: not reached
+  Last non-target PC before stable loop: (unknown)
+  Recent distinct PCs before loop stabilization:
+    (loop-specific prehistory not captured)
+
+  Loop-release suspect summary:
+    game_mode          final=$00       never changed   first=-     last=-     uniq=1
+    screen_ready       final=$00       never changed   first=-     last=-     uniq=1
+    ram_script         final=$00       never changed   first=-     last=-     uniq=1
+    ram_subscript      final=$00       never changed   first=-     last=-     uniq=1
+    ppu_load_index     final=$00       never changed   first=-     last=-     uniq=1
+    ram_frm_cnt        final=$39       changed 29 times  first=6     last=295   uniq=30
+    rendering_flag     final=$00       never changed   first=-     last=-     uniq=1
+    ram_next_script    final=$00       never changed   first=-     last=-     uniq=1
+    ram_005C           final=$00       never changed   first=-     last=-     uniq=1
+    scroll_Y           final=$00       never changed   first=-     last=-     uniq=1
+    scroll_X           final=$00       never changed   first=-     last=-     uniq=1
+    ram_for_2001       final=$00       changed 32 times  first=3     last=295   uniq=2
+    ram_for_2000       final=$B0       never changed   first=-     last=-     uniq=1
+    ppu_buf_status     final=$3F       never changed   first=-     last=-     uniq=1
+    ppu_buf_index      final=$00       never changed   first=-     last=-     uniq=1
+    PPUCTRL_SHADOW     final=$B0       never changed   first=-     last=-     uniq=1
+    PPUMASK_SHADOW     final=$00       changed 32 times  first=3     last=295   uniq=2
+    PPUSCROLL_X_sh     final=$00       never changed   first=-     last=-     uniq=1
+    PPUSCROLL_Y_sh     final=$00       never changed   first=-     last=-     uniq=1
+    VDP_REG1           final=$34       changed 32 times  first=3     last=295   uniq=2
+
+  Candidate interpretation:
+    game_mode never changed; possible missing release flag.
+    screen_ready never changed; possible missing release flag.
+    ram_script never changed; possible missing release flag.
+    ram_subscript never changed; possible missing release flag.
+    ppu_load_index never changed; possible missing release flag.
+    rendering_flag never changed; possible missing release flag.
+    ram_next_script never changed; possible missing release flag.
+    ram_005C never changed; possible missing release flag.
+    scroll_Y never changed; possible missing release flag.
+    scroll_X never changed; possible missing release flag.
+    ram_for_2000 never changed; possible missing release flag.
+    ppu_buf_status never changed; possible missing release flag.
+    ppu_buf_index never changed; possible missing release flag.
+    PPUCTRL_SHADOW never changed; possible missing release flag.
+    PPUSCROLL_X_sh never changed; possible missing release flag.
+    PPUSCROLL_Y_sh never changed; possible missing release flag.
+
+=== RAM WATCH SUMMARY =========================================
+  Name                  Final       Changes   Min         Max         Description
+  -----------------------------------------------------------------------------------------------
+  ppu_data_lo           $28         76        $00         $FF         PPU buf ptr lo  [ZP $00]
+  ppu_data_hi           $24         32        $03         $24         PPU buf ptr hi  [ZP $01]
+  obj_pos_x             $00         70        $00         $F9         object X-ish scratch [ZP $04]
+  obj_pos_y             $02         0         $02         $02         object Y-ish scratch [ZP $05]
+  game_mode             $00         0         $00         $00         dungeon_level/game mode [ZP $10]
+  screen_ready          $00         0         $00         $00         screen_ready_flag (0=init) [ZP $11]
+  ram_script            $00         0         $00         $00         current script# (0=title) [ZP $12]
+  ram_subscript         $00         0         $00         $00         sub-script [ZP $13]
+  ppu_load_index        $00         0         $00         $00         PPU data table index [ZP $14]
+  ram_frm_cnt           $39         29        $1C         $39         frame counter / NMI completion [ZP $15]
+  cur_save_slot         $00         0         $00         $00         current save slot [ZP $16]
+  rendering_flag        $00         0         $00         $00         blocks render enable [ZP $17]
+  ram_next_script       $00         0         $00         $00         next_script [ZP $5B]
+  ram_005C              $00         0         $00         $00         NMI toggle flag [ZP $5C]
+  link_dir              $00         0         $00         $00         direction / state scratch [ZP $6C]
+  obj_id_0              $00         0         $00         $00         object slot 0 id [ZP $70]
+  obj_id_1              $00         0         $00         $00         object slot 1 id [ZP $71]
+  pause_flag            $00         0         $00         $00         pause_flag [ZP $E0]
+  pause_script          $00         0         $00         $00         pause_script [ZP $E1]
+  screen_trans          $00         0         $00         $00         screen_transition_flag [ZP $E3]
+  ram_00F4              $01         0         $01         $01         reset/setup flag [ZP $F4]
+  btn_press_lo          $FF         0         $FF         $FF         button press lo byte
+  btn_press_hi          $FF         0         $FF         $FF         button press hi byte
+  btn_hold_lo           $FF         0         $FF         $FF         button hold lo byte
+  btn_hold_hi           $FF         0         $FF         $FF         button hold hi byte
+  scroll_Y              $00         0         $00         $00         ram_scroll_Y [ZP $FC]
+  scroll_X              $00         0         $00         $00         ram_scroll_X [ZP $FD]
+  ram_for_2001          $00         32        $00         $1E         PPU $2001 mirror - render ctrl [ZP $FE]
+  ram_for_2000          $B0         0         $B0         $B0         PPU $2000 mirror - NMI enable bit7 [ZP $FF]
+  oam_0_y               $F8         0         $F8         $F8         OAM sprite0 Y
+  oam_0_tile            $00         0         $00         $00         OAM sprite0 tile
+  oam_0_attr            $00         0         $00         $00         OAM sprite0 attr
+  oam_0_x               $00         0         $00         $00         OAM sprite0 X
+  ppu_buf_status        $3F         0         $3F         $3F         $3F when buffer write complete
+  ppu_buf_index         $00         0         $00         $00         PPU buffer write index
+  ppu_buf_0             $FF         0         $FF         $FF         PPU buffer[0] ($FF=terminator)
+  ppu_buf_1             $00         0         $00         $00         PPU buffer[1]
+  ppu_buf_2             $00         0         $00         $00         PPU buffer[2]
+  ppu_buf_3             $00         0         $00         $00         PPU buffer[3]
+  ppu_buf_16            $00         0         $00         $00         PPU buffer[16]
+  ppu_buf_17            $00         0         $00         $00         PPU buffer[17]
+  PPUCTRL_SHADOW        $B0         0         $B0         $B0         Shadow PPU $2000
+  PPUMASK_SHADOW        $00         32        $00         $1E         Shadow PPU $2001
+  PPUADDR_LATCH         $00         0         $00         $00         PPUADDR latch state
+  PPUSCROLL_X_sh        $00         0         $00         $00         HScroll shadow
+  PPUSCROLL_Y_sh        $00         0         $00         $00         VScroll shadow
+  PPUSCROLL_LATCH       $00         0         $00         $00         PPUSCROLL latch state
+  VRAM_ADDR_CURR        $290D       271       $0303       $2C00       Current VRAM write addr
+  VDP_REG1              $34         32        $34         $74         VDP Mode2 shadow
+  CRASH_MAGIC           $0000       0         $0000       $0000       Crash logger magic
+  CRASH_VEC             $0000       0         $0000       $0000       Crash logger vector/format (optional)
+  CRASH_SP              $00000000   0         $00000000   $00000000   Crash logger SP (optional)
+  CRASH_SR              $0000       0         $0000       $0000       Crash logger SR (optional)
+  CRASH_PC              $00000000   0         $00000000   $00000000   Crash logger PC (optional)
+  CRASH_AUX             $00000000   0         $00000000   $00000000   Crash aux data (fault addr for bus/address)
+  CRASH_AUX_W           $0000       0         $0000       $0000       Crash aux word (IR/SSW for bus/address)
+  TRACE_LAST            $0403       4         $0201       $0403       Last startup checkpoint
+  TRACE_SEQ             $04FB       76        $027D       $04FB       Startup checkpoint sequence
+  BANK_RAW              $0403       36        $0206       $0403       Raw bank arg word before byte cleanup
+  BANK_POST             $0400       14        $0000       $0400       Bank arg word after byte-only shifts
+  SCRIPT_RAW            $0403       18        $0000       $0403       Raw script selector word seen by helper
+  DISPATCH_INDEX        $0000       19        $0000       $0400       Sanitized helper table offset
+  DISPATCH_BASE         $000067DE   27        $00000317   $040367DE   Helper table base / popped return address
+  DISPATCH_TARGET       $000069FA   27        $00000317   $040369FA   Resolved helper jump target
+  DISPATCH_STACK        $00FFFD9E   0         $00FFFD9E   $00FFFD9E   Helper caller stack pointer before pop
+
+=== RAM CHANGE HISTORY (all key vars with any change) =========
+  ppu_data_lo [$0000] - 76 changes:
+    Frame    3: $28 -> $FF
+    Frame    6: $FF -> $20
+    Frame   10: $20 -> $28
+    Frame   15: $28 -> $20
+    Frame   19: $20 -> $28
+    Frame   24: $28 -> $FF
+    Frame   26: $FF -> $00
+    Frame   27: $00 -> $20
+    Frame   31: $20 -> $28
+    Frame   35: $28 -> $20
+    Frame   40: $20 -> $28
+    Frame   44: $28 -> $FF
+    Frame   47: $FF -> $20
+    Frame   52: $20 -> $28
+    Frame   56: $28 -> $20
+    Frame   61: $20 -> $28
+    Frame   65: $28 -> $FF
+    Frame   68: $FF -> $20
+    Frame   72: $20 -> $28
+    Frame   77: $28 -> $20
+    ... (30 more)
+  ppu_data_hi [$0001] - 32 changes:
+    Frame    3: $24 -> $03
+    Frame    6: $03 -> $24
+    Frame   24: $24 -> $03
+    Frame   27: $03 -> $24
+    Frame   44: $24 -> $03
+    Frame   47: $03 -> $24
+    Frame   65: $24 -> $03
+    Frame   68: $03 -> $24
+    Frame   86: $24 -> $03
+    Frame   88: $03 -> $24
+    Frame  106: $24 -> $03
+    Frame  109: $03 -> $24
+    Frame  127: $24 -> $03
+    Frame  130: $03 -> $24
+    Frame  148: $24 -> $03
+    Frame  150: $03 -> $24
+    Frame  168: $24 -> $03
+    Frame  171: $03 -> $24
+    Frame  189: $24 -> $03
+    Frame  192: $03 -> $24
+    ... (12 more)
+  obj_pos_x [$0004] - 70 changes:
+    Frame    3: $01 -> $2B
+    Frame    4: $2B -> $89
+    Frame    5: $89 -> $E6
+    Frame    6: $E6 -> $00
+    Frame   15: $00 -> $01
+    Frame   24: $01 -> $4B
+    Frame   25: $4B -> $A9
+    Frame   26: $A9 -> $00
+    Frame   35: $00 -> $01
+    Frame   44: $01 -> $0E
+    Frame   45: $0E -> $6C
+    Frame   46: $6C -> $CA
+    Frame   47: $CA -> $00
+    Frame   56: $00 -> $01
+    Frame   65: $01 -> $2F
+    Frame   66: $2F -> $8D
+    Frame   67: $8D -> $EB
+    Frame   68: $EB -> $00
+    Frame   77: $00 -> $01
+    Frame   86: $01 -> $51
+    ... (30 more)
+  ram_frm_cnt [$0015] - 29 changes:
+    Frame    6: $1C -> $1D
+    Frame   15: $1D -> $1E
+    Frame   26: $1E -> $1F
+    Frame   35: $1F -> $20
+    Frame   47: $20 -> $21
+    Frame   56: $21 -> $22
+    Frame   68: $22 -> $23
+    Frame   77: $23 -> $24
+    Frame   88: $24 -> $25
+    Frame   97: $25 -> $26
+    Frame  109: $26 -> $27
+    Frame  118: $27 -> $28
+    Frame  130: $28 -> $29
+    Frame  139: $29 -> $2A
+    Frame  150: $2A -> $2B
+    Frame  159: $2B -> $2C
+    Frame  171: $2C -> $2D
+    Frame  180: $2D -> $2E
+    Frame  192: $2E -> $2F
+    Frame  201: $2F -> $30
+    ... (9 more)
+  ram_for_2001 [$00FE] - 32 changes:
+    Frame    3: $00 -> $1E
+    Frame    6: $1E -> $00
+    Frame   24: $00 -> $1E
+    Frame   26: $1E -> $00
+    Frame   44: $00 -> $1E
+    Frame   47: $1E -> $00
+    Frame   65: $00 -> $1E
+    Frame   68: $1E -> $00
+    Frame   86: $00 -> $1E
+    Frame   88: $1E -> $00
+    Frame  106: $00 -> $1E
+    Frame  109: $1E -> $00
+    Frame  127: $00 -> $1E
+    Frame  130: $1E -> $00
+    Frame  148: $00 -> $1E
+    Frame  150: $1E -> $00
+    Frame  168: $00 -> $1E
+    Frame  171: $1E -> $00
+    Frame  189: $00 -> $1E
+    Frame  192: $1E -> $00
+    ... (12 more)
+  PPUMASK_SHADOW [$EF01] - 32 changes:
+    Frame    3: $00 -> $1E
+    Frame    6: $1E -> $00
+    Frame   24: $00 -> $1E
+    Frame   26: $1E -> $00
+    Frame   44: $00 -> $1E
+    Frame   47: $1E -> $00
+    Frame   65: $00 -> $1E
+    Frame   68: $1E -> $00
+    Frame   86: $00 -> $1E
+    Frame   88: $1E -> $00
+    Frame  106: $00 -> $1E
+    Frame  109: $1E -> $00
+    Frame  127: $00 -> $1E
+    Frame  130: $1E -> $00
+    Frame  148: $00 -> $1E
+    Frame  150: $1E -> $00
+    Frame  168: $00 -> $1E
+    Frame  171: $1E -> $00
+    Frame  189: $00 -> $1E
+    Frame  192: $1E -> $00
+    ... (12 more)
+  VRAM_ADDR_CURR [$EF08] - 271 changes:
+    Frame    2: $2AA9 -> $2B93
+    Frame    3: $2B93 -> $0303
+    Frame    6: $0303 -> $2095
+    Frame    7: $2095 -> $217E
+    Frame    8: $217E -> $2268
+    Frame    9: $2268 -> $2351
+    Frame   10: $2351 -> $2838
+    Frame   11: $2838 -> $2921
+    Frame   12: $2921 -> $2A0B
+    Frame   13: $2A0B -> $2AF4
+    Frame   14: $2AF4 -> $2BDE
+    Frame   15: $2BDE -> $209C
+    Frame   16: $209C -> $2186
+    Frame   17: $2186 -> $226F
+    Frame   18: $226F -> $2359
+    Frame   19: $2359 -> $2840
+    Frame   20: $2840 -> $2929
+    Frame   21: $2929 -> $2A12
+    Frame   22: $2A12 -> $2AFC
+    Frame   23: $2AFC -> $2BE5
+    ... (30 more)
+  VDP_REG1 [$EF0A] - 32 changes:
+    Frame    3: $34 -> $74
+    Frame    6: $74 -> $34
+    Frame   24: $34 -> $74
+    Frame   26: $74 -> $34
+    Frame   44: $34 -> $74
+    Frame   47: $74 -> $34
+    Frame   65: $34 -> $74
+    Frame   68: $74 -> $34
+    Frame   86: $34 -> $74
+    Frame   88: $74 -> $34
+    Frame  106: $34 -> $74
+    Frame  109: $74 -> $34
+    Frame  127: $34 -> $74
+    Frame  130: $74 -> $34
+    Frame  148: $34 -> $74
+    Frame  150: $74 -> $34
+    Frame  168: $34 -> $74
+    Frame  171: $74 -> $34
+    Frame  189: $34 -> $74
+    Frame  192: $74 -> $34
+    ... (12 more)
+  TRACE_LAST [$F000] - 4 changes:
+    Frame   26: $0403 -> $0318
+    Frame   27: $0318 -> $0403
+    Frame  200: $0403 -> $0201
+    Frame  201: $0201 -> $0403
+  TRACE_SEQ [$F002] - 76 changes:
+    Frame    3: $027D -> $0285
+    Frame    6: $0285 -> $0291
+    Frame   10: $0291 -> $0293
+    Frame   15: $0293 -> $02A7
+    Frame   19: $02A7 -> $02A9
+    Frame   24: $02A9 -> $02B1
+    Frame   26: $02B1 -> $02BB
+    Frame   27: $02BB -> $02BD
+    Frame   31: $02BD -> $02BF
+    Frame   35: $02BF -> $02D3
+    Frame   40: $02D3 -> $02D5
+    Frame   44: $02D5 -> $02DD
+    Frame   47: $02DD -> $02E9
+    Frame   52: $02E9 -> $02EB
+    Frame   56: $02EB -> $02FF
+    Frame   61: $02FF -> $0301
+    Frame   65: $0301 -> $0309
+    Frame   68: $0309 -> $0315
+    Frame   72: $0315 -> $0317
+    Frame   77: $0317 -> $032B
+    ... (30 more)
+  BANK_RAW [$F040] - 36 changes:
+    Frame    3: $0318 -> $0206
+    Frame    6: $0206 -> $0302
+    Frame   24: $0302 -> $0206
+    Frame   26: $0206 -> $0302
+    Frame   44: $0302 -> $0206
+    Frame   47: $0206 -> $0302
+    Frame   65: $0302 -> $0206
+    Frame   68: $0206 -> $0302
+    Frame   86: $0302 -> $0206
+    Frame   88: $0206 -> $0302
+    Frame  102: $0302 -> $0403
+    Frame  106: $0403 -> $0206
+    Frame  109: $0206 -> $0302
+    Frame  127: $0302 -> $0206
+    Frame  130: $0206 -> $0403
+    Frame  139: $0403 -> $0302
+    Frame  148: $0302 -> $0403
+    Frame  150: $0403 -> $0302
+    Frame  159: $0302 -> $0318
+    Frame  168: $0318 -> $0206
+    ... (16 more)
+  BANK_POST [$F042] - 14 changes:
+    Frame    3: $0400 -> $0000
+    Frame   26: $0000 -> $0317
+    Frame   35: $0317 -> $0000
+    Frame   44: $0000 -> $0400
+    Frame   47: $0400 -> $0000
+    Frame  134: $0000 -> $0400
+    Frame  139: $0400 -> $0000
+    Frame  159: $0000 -> $0400
+    Frame  168: $0400 -> $0000
+    Frame  192: $0000 -> $0317
+    Frame  201: $0317 -> $0000
+    Frame  209: $0000 -> $0400
+    Frame  212: $0400 -> $0000
+    Frame  299: $0000 -> $0400
+  SCRIPT_RAW [$F044] - 18 changes:
+    Frame    6: $0403 -> $0000
+    Frame   26: $0000 -> $0318
+    Frame   35: $0318 -> $0000
+    Frame   44: $0000 -> $0403
+    Frame   47: $0403 -> $0000
+    Frame  106: $0000 -> $0203
+    Frame  109: $0203 -> $0000
+    Frame  134: $0000 -> $0403
+    Frame  139: $0403 -> $0000
+    Frame  159: $0000 -> $0403
+    Frame  171: $0403 -> $0000
+    Frame  192: $0000 -> $0318
+    Frame  201: $0318 -> $0000
+    Frame  209: $0000 -> $0403
+    Frame  212: $0403 -> $0000
+    Frame  271: $0000 -> $0203
+    Frame  274: $0203 -> $0000
+    Frame  299: $0000 -> $0403
+  DISPATCH_INDEX [$F046] - 19 changes:
+    Frame    6: $0400 -> $0000
+    Frame   27: $0000 -> $0400
+    Frame   35: $0400 -> $0000
+    Frame   44: $0000 -> $0400
+    Frame   47: $0400 -> $0000
+    Frame   56: $0000 -> $0317
+    Frame   68: $0317 -> $0000
+    Frame  106: $0000 -> $0201
+    Frame  109: $0201 -> $0000
+    Frame  164: $0000 -> $0400
+    Frame  171: $0400 -> $0000
+    Frame  192: $0000 -> $0400
+    Frame  201: $0400 -> $0000
+    Frame  209: $0000 -> $0400
+    Frame  212: $0400 -> $0000
+    Frame  221: $0000 -> $0317
+    Frame  233: $0317 -> $0000
+    Frame  271: $0000 -> $0201
+    Frame  274: $0201 -> $0000
+  DISPATCH_BASE [$F048] - 27 changes:
+    Frame    3: $040367DE -> $04030421
+    Frame    6: $04030421 -> $000067DE
+    Frame   27: $000067DE -> $040367DE
+    Frame   31: $040367DE -> $04030400
+    Frame   35: $04030400 -> $000067DE
+    Frame   44: $000067DE -> $040367DE
+    Frame   47: $040367DE -> $000067DE
+    Frame   56: $000067DE -> $03180400
+    Frame   68: $03180400 -> $000067DE
+    Frame   88: $000067DE -> $00000317
+    Frame   97: $00000317 -> $000067DE
+    Frame  106: $000067DE -> $02020400
+    Frame  109: $02020400 -> $000067DE
+    Frame  164: $000067DE -> $040367DE
+    Frame  168: $040367DE -> $04030421
+    Frame  171: $04030421 -> $000067DE
+    Frame  192: $000067DE -> $040367DE
+    Frame  196: $040367DE -> $04030400
+    Frame  201: $04030400 -> $000067DE
+    Frame  209: $000067DE -> $040367DE
+    ... (7 more)
+  DISPATCH_TARGET [$F04C] - 27 changes:
+    Frame    3: $000069FA -> $02030201
+    Frame    6: $02030201 -> $000069FA
+    Frame   31: $000069FA -> $040369FA
+    Frame   35: $040369FA -> $000069FA
+    Frame   56: $000069FA -> $040369FA
+    Frame   61: $040369FA -> $04030400
+    Frame   68: $04030400 -> $000069FA
+    Frame   88: $000069FA -> $03180400
+    Frame   97: $03180400 -> $000069FA
+    Frame  106: $000069FA -> $04030400
+    Frame  109: $04030400 -> $000069FA
+    Frame  118: $000069FA -> $00000317
+    Frame  130: $00000317 -> $000069FA
+    Frame  168: $000069FA -> $02030201
+    Frame  171: $02030201 -> $000069FA
+    Frame  196: $000069FA -> $040369FA
+    Frame  200: $040369FA -> $04030421
+    Frame  201: $04030421 -> $000069FA
+    Frame  221: $000069FA -> $040369FA
+    Frame  226: $040369FA -> $04030400
+    ... (7 more)
+
+=== VRAM CONTENT ==============================================
+  Nonzero words: 6430 / 32768
+    VRAM $0000-$03FF: 383 nonzero words
+    VRAM $0400-$07FF: 354 nonzero words
+    VRAM $0800-$0BFF: 436 nonzero words
+    VRAM $0C00-$0FFF: 380 nonzero words
+    VRAM $1000-$13FF: 136 nonzero words
+    VRAM $1400-$17FF: 186 nonzero words
+    VRAM $1800-$1BFF: 363 nonzero words
+    VRAM $1C00-$1FFF: 510 nonzero words
+    VRAM $2000-$23FF: 401 nonzero words
+    VRAM $2400-$27FF: 148 nonzero words
+    VRAM $2C00-$2FFF: 341 nonzero words
+    VRAM $3000-$33FF: 465 nonzero words
+    VRAM $3400-$37FF: 489 nonzero words
+    VRAM $3800-$3BFF: 402 nonzero words
+    VRAM $3C00-$3FFF: 412 nonzero words
+    VRAM $C000-$C3FF: 256 nonzero words
+    VRAM $C400-$C7FF: 256 nonzero words
+    VRAM $C800-$CBFF: 256 nonzero words
+    VRAM $CC00-$CFFF: 256 nonzero words
+
+=== CRAM / PALETTE ============================================
+  Nonzero entries: 50 / 64
+  Palette 0: $0000 $0888 $0000 $0604 $0400 $0420 $0400 $0620 $0240 $0040 $0060 $0046 $0444 $0000 $0000 $0000
+  Palette 1: $0AAA $0E00 $0C04 $0A06 $0808 $0808 $0608 $0446 $0262 $0060 $0068 $0068 $0086 $0000 $0000 $0000
+  Palette 2: $0EEE $0EE2 $0EE6 $0EC8 $0EAA $0EAA $0EA4 $0EA0 $0CE0 $04E0 $04E4 $04EE $006E $0000 $0000 $0000
+  Palette 3: $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0000 $0000 $0000
+
+=== PC HOTSPOTS (sampled once/frame) ==========================
+  PC range this run: $0003F4 - $0010FA
+  $0007D2:   43 frames (14.3%)
+  $0007CA:   36 frames (12.0%)
+  $0009A8:   11 frames (3.7%)
+  $000F58:   10 frames (3.3%)
+  $0009F8:   10 frames (3.3%)
+  $0009FE:    9 frames (3.0%)
+  $0007A8:    8 frames (2.7%)
+  $000A1A:    8 frames (2.7%)
+  $000A38:    7 frames (2.3%)
+  $0009B0:    7 frames (2.3%)
+  $000A1E:    7 frames (2.3%)
+  $0007B4:    7 frames (2.3%)
+  $0010A0:    7 frames (2.3%)
+  $0010C4:    7 frames (2.3%)
+  $0009B8:    6 frames (2.0%)
+  $0009C0:    6 frames (2.0%)
+  $0007D6:    6 frames (2.0%)
+  $000A14:    6 frames (2.0%)
+  $000F5A:    6 frames (2.0%)
+  $0007AE:    6 frames (2.0%)
+  $0007C0:    5 frames (1.7%)
+  $0007C4:    5 frames (1.7%)
+  $000A02:    5 frames (1.7%)
+  $0007CE:    5 frames (1.7%)
+  $0007BE:    5 frames (1.7%)
+  $0010B6:    4 frames (1.3%)
+  $000A12:    4 frames (1.3%)
+  $0009A2:    4 frames (1.3%)
+  $0007B8:    3 frames (1.0%)
+  $0010CC:    3 frames (1.0%)
+
+=== ROM BYTE DUMPS AROUND STUCK/HOT PCS =======================
+  No stuck PC detected.
+
+  TARGET LOOP PC dump for $0007F6
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $0007E6 - $000826
+  $0007E0: 61 00 01 E8 41 F9 00 FF 92 00 11 80 40 00 61 00  |a...A.......@.a.|
+  $0007F0: 01 7E 33 C0 00 C0 00 00 61 00 01 C8 61 00 01 A4  |.~3.....a...a...|
+  $000800: 4E 75 36 39 FF FF EF 08 30 3C 04 01 61 00 FB E6  |Nu69....0<..a...|
+  $000810: 38 03 02 44 FF 00 0C 44 3F 00 67 32 70 00 10 39  |8..D...D?.g2p..9|
+  $000820: FF FF EF 0C 0C 43 20 00 65 12 0C 43 3F 00 64 0C  |.....C .e..C?.d.|
+
+  HOT PC #1  $0007D2  (43 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $0007C2 - $000802
+  $0007C0: 0C 43 3F 00 64 12 48 E7 FF 80 61 00 02 46 4C DF  |.C?.d.H...a..FL.|
+  $0007D0: 01 FF 61 00 01 CE 4E 75 61 00 01 C8 4E 75 38 03  |..a...Nua...Nu8.|
+  $0007E0: 61 00 01 E8 41 F9 00 FF 92 00 11 80 40 00 61 00  |a...A.......@.a.|
+  $0007F0: 01 7E 33 C0 00 C0 00 00 61 00 01 C8 61 00 01 A4  |.~3.....a...a...|
+  $000800: 4E 75 36 39 FF FF EF 08 30 3C 04 01 61 00 FB E6  |Nu69....0<..a...|
+
+  HOT PC #2  $0007CA  (36 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $0007BA - $0007FA
+  $0007B0: 02 44 FF 00 0C 44 3F 00 67 24 0C 43 20 00 65 18  |.D...D?.g$.C .e.|
+  $0007C0: 0C 43 3F 00 64 12 48 E7 FF 80 61 00 02 46 4C DF  |.C?.d.H...a..FL.|
+  $0007D0: 01 FF 61 00 01 CE 4E 75 61 00 01 C8 4E 75 38 03  |..a...Nua...Nu8.|
+  $0007E0: 61 00 01 E8 41 F9 00 FF 92 00 11 80 40 00 61 00  |a...A.......@.a.|
+  $0007F0: 01 7E 33 C0 00 C0 00 00 61 00 01 C8 61 00 01 A4  |.~3.....a...a...|
+
+  HOT PC #3  $0009A8  (11 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $000998 - $0009D8
+  $000990: 00 FF 92 00 70 00 3E 3C 00 07 20 C0 51 CF FF FC  |....p.><.. .Q...|
+  $0009A0: 4E 75 36 39 FF FF EF 08 08 39 00 02 FF FF EF 00  |Nu69.....9......|
+  $0009B0: 67 06 06 43 00 20 60 02 52 43 33 C3 FF FF EF 08  |g..C. `.RC3.....|
+  $0009C0: 4E 75 42 39 FF FF EF 12 4E 75 02 44 00 1F 0C 44  |NuB9....Nu.D...D|
+  $0009D0: 00 10 67 14 0C 44 00 14 67 12 0C 44 00 18 67 10  |..g..D..g..D..g.|
+
+  HOT PC #4  $000F58  (10 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $000F48 - $000F88
+  $000F40: 65 06 12 39 00 FF 00 02 14 3C 00 00 10 39 00 FF  |e..9.....<...9..|
+  $000F50: 00 01 10 00 61 00 F8 52 53 02 66 F6 53 01 66 F2  |....a..RS.f.S.f.|
+  $000F60: 14 39 00 FF 00 02 10 39 00 FF 00 00 0C 00 00 20  |.9.....9....... |
+  $000F70: 64 20 54 00 10 00 61 00 F7 B6 10 3C 00 C0 10 00  |d T...a....<....|
+  $000F80: 61 00 F7 AC 12 3C 00 40 10 02 61 00 F8 1C 53 01  |a....<.@..a...S.|
+
+  HOT PC #5  $0009F8  (10 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $0009E8 - $000A28
+  $0009E0: 0C 44 00 1C 67 0E 4E 75 42 44 4E 75 78 04 4E 75  |.D..g.NuBDNux.Nu|
+  $0009F0: 78 08 4E 75 78 0C 4E 75 38 03 02 44 3F FF 04 44  |x.Nux.Nu8..D?..D|
+  $000A00: 20 00 0C 44 10 00 65 04 04 44 10 00 02 44 03 FF  | ..D..e..D...D..|
+  $000A10: 4E 75 61 E4 41 F9 00 FF 82 00 B0 30 40 00 67 18  |Nua.A......0@.g.|
+  $000A20: 11 80 40 00 3A 04 02 45 03 FF 0C 45 03 C0 64 06  |..@.:..E...E..d.|
+
+  HOT PC #6  $0009FE  (9 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $0009EE - $000A2E
+  $0009E0: 0C 44 00 1C 67 0E 4E 75 42 44 4E 75 78 04 4E 75  |.D..g.NuBDNux.Nu|
+  $0009F0: 78 08 4E 75 78 0C 4E 75 38 03 02 44 3F FF 04 44  |x.Nux.Nu8..D?..D|
+  $000A00: 20 00 0C 44 10 00 65 04 04 44 10 00 02 44 03 FF  | ..D..e..D...D..|
+  $000A10: 4E 75 61 E4 41 F9 00 FF 82 00 B0 30 40 00 67 18  |Nua.A......0@.g.|
+  $000A20: 11 80 40 00 3A 04 02 45 03 FF 0C 45 03 C0 64 06  |..@.:..E...E..d.|
+
+  HOT PC #7  $0007A8  (8 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $000798 - $0007D8
+  $000790: 48 44 00 84 C0 00 00 00 23 C4 00 C0 00 04 30 3C  |HD......#.....0<|
+  $0007A0: 04 03 61 00 FC 50 4E 75 36 39 FF FF EF 08 38 03  |..a..PNu69....8.|
+  $0007B0: 02 44 FF 00 0C 44 3F 00 67 24 0C 43 20 00 65 18  |.D...D?.g$.C .e.|
+  $0007C0: 0C 43 3F 00 64 12 48 E7 FF 80 61 00 02 46 4C DF  |.C?.d.H...a..FL.|
+  $0007D0: 01 FF 61 00 01 CE 4E 75 61 00 01 C8 4E 75 38 03  |..a...Nua...Nu8.|
+
+  HOT PC #8  $000A1A  (8 frames)
+  ROM domain: MD CART
+  ROM size: $01B24E
+  Byte window: $000A0A - $000A4A
+  $000A00: 20 00 0C 44 10 00 65 04 04 44 10 00 02 44 03 FF  | ..D..e..D...D..|
+  $000A10: 4E 75 61 E4 41 F9 00 FF 82 00 B0 30 40 00 67 18  |Nua.A......0@.g.|
+  $000A20: 11 80 40 00 3A 04 02 45 03 FF 0C 45 03 C0 64 06  |..@.:..E...E..d.|
+  $000A30: 61 00 00 84 60 02 61 28 4E 75 61 BC 41 F9 00 FF  |a...`.a(Nua.A...|
+  $000A40: 82 00 13 F0 40 00 FF FF EF 0C 4E 75 38 03 61 00  |....@.....Nu8.a.|
+
+=== CHECKPOINT TRACE ==========================================
+  Trace sequence: 1275
+  Last checkpoint: $0403  PPU_WRITE_2006: VDP command programmed
+   1. $0000  (unknown checkpoint)
+   2. $0000  (unknown checkpoint)
+   3. $67DE  (unknown checkpoint)
+   4. $0000  (unknown checkpoint)
+   5. $69FA  (unknown checkpoint)
+   6. $0318  sub_E5E2_jump_to_pointers_after_JSR: target resolved
+   7. $0400  PPU_WRITE_2006: address latched
+   8. $0403  PPU_WRITE_2006: VDP command programmed
+   9. $0400  PPU_WRITE_2006: address latched
+  10. $0403  PPU_WRITE_2006: VDP command programmed
+  11. $0421  sub_E8F8_main_script_handler_1: direct title call returned
+  12. $0203  VDP_VBLANK_HANDLER: translated NMI returned
+  13. $0201  VDP_VBLANK_HANDLER: entry
+  14. $0202  VDP_VBLANK_HANDLER: calling translated NMI
+  15. $0400  PPU_WRITE_2006: address latched
+  16. $0403  PPU_WRITE_2006: VDP command programmed
+  17. $0400  PPU_WRITE_2006: address latched
+  18. $0403  PPU_WRITE_2006: VDP command programmed
+  19. $0301  vec_0x01E494_NMI: frame body reached
+  20. $0302  vec_0x01E494_NMI: taking startup handler 1
+  21. $0310  sub_E8F8_main_script_handler_1: entry
+  22. $0314  sub_E8F8_main_script_handler_1: title script dispatch
+  23. $0315  sub_E8F8_main_script_handler_1: bank 5 selected
+  24. $0316  sub_E8F8_main_script_handler_1: before script helper
+  25. $0420  sub_E8F8_main_script_handler_1: direct title call bypass
+  26. $0320  ofs_main_script_1_E94B_00_title_screen: entry
+  27. $0317  sub_E5E2_jump_to_pointers_after_JSR: sanitized index ready
+  28. $0318  sub_E5E2_jump_to_pointers_after_JSR: target resolved
+  29. $0400  PPU_WRITE_2006: address latched
+  30. $0403  PPU_WRITE_2006: VDP command programmed
+  31. $0400  PPU_WRITE_2006: address latched
+  32. $0403  PPU_WRITE_2006: VDP command programmed
+
+=== FINAL CPU STATE ===========================================
+  M68K D0    = $00000424
+  M68K D1    = $00000003
+  M68K D2    = $0000000A
+  M68K D3    = $000029F6
+  M68K D4    = $C0002900
+  M68K D5    = $00000302
+  M68K D6    = $00000000
+  M68K D7    = $0000FFFF
+  M68K A0    = $00FF0200
+  M68K A1    = $000067DE
+  M68K A2    = $00000000
+  M68K A3    = $00000000
+  M68K A4    = $00000000
+  M68K A5    = $00000000
+  M68K A6    = $00000000
+  M68K A7    = $00FFFD9A
+  M68K PC    = $000007D2
+  M68K SR    = $00002604
+
+=== RAM DUMP: $FF0000-$FF003F (core ZP) =======================
+  $FF0000: $28 $24 $00 $01 $00 $02 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FF0010: $00 $00 $00 $00 $00 $39 $00 $00 $AA $00 $00 $00 $00 $00 $00 $00
+  $FF0020: $00 $00 $00 $00 $00 $00 $03 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FF0030: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+=== RAM DUMP: $FF00E0-$FF011F (PPU ctrl / input / flags) ======
+  $FF00E0: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FF00F0: $00 $00 $00 $00 $01 $5A $A5 $00 $FF $FF $FF $FF $00 $00 $00 $B0
+  $FF0100: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FF0110: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+=== RAM DUMP: $FF0200-$FF021F (OAM sprite 0-7) ================
+  $FF0200: $F8 $00 $00 $00 $F8 $00 $00 $00 $F8 $00 $00 $00 $F8 $00 $00 $00
+  $FF0210: $F8 $00 $00 $00 $F8 $00 $00 $00 $F8 $00 $00 $00 $F8 $00 $00 $00
+
+=== RAM DUMP: $FF0300-$FF033F (PPU buffer) ====================
+  $FF0300: $3F $00 $FF $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FF0310: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FF0320: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FF0330: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+=== RAM DUMP: $FFEE00-$FFEE1F (optional crash logger area) ====
+  $FFEE00: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FFEE10: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+=== RAM DUMP: $FFEE40-$FFEE8F (saved crash regs / aux) ========
+  $FFEE40: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FFEE50: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FFEE60: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FFEE70: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FFEE80: $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+=== RAM DUMP: $FFF000-$FFF03F (trace ring) ====================
+  $FFF000: $04 $03 $04 $FB $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+  $FFF010: $03 $18 $04 $00 $04 $03 $04 $00 $04 $03 $04 $21 $02 $03 $02 $01
+  $FFF020: $02 $02 $04 $00 $04 $03 $04 $00 $04 $03 $03 $01 $03 $02 $03 $10
+  $FFF030: $03 $14 $03 $15 $03 $16 $04 $20 $03 $20 $03 $17 $03 $18 $04 $00
+
+=== RAM DUMP: $FFF040-$FFF05F (dispatch/bank meta) ============
+  $FFF040: $04 $03 $04 $00 $04 $03 $00 $00 $00 $00 $67 $DE $00 $00 $69 $FA
+  $FFF050: $00 $FF $FD $9E $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+=== RAM DUMP: $FFEF00-$FFEF1F (VDP shadow regs) ===============
+  $FFEF00: $B0 $00 $28 $00 $00 $00 $00 $00 $29 $F6 $34 $00 $00 $00 $00 $00
+  $FFEF10: $CF $BE $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00 $00
+
+=== SCREENSHOTS ===============================================
+  zelda_v17_f001.png
+  zelda_v17_f030.png
+  zelda_v17_f060.png
+  zelda_v17_f120.png
+  zelda_v17_f180.png
+  zelda_v17_f240.png
+  zelda_v17_f300.png
+
+================================================================
+  END OF DIAGNOSTIC REPORT
+================================================================

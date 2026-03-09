@@ -38,11 +38,17 @@ PPUSCROLL_LATCH EQU $FFFFEF07
 VRAM_ADDR_CURR  EQU $FFFFEF08
 VDP_REG1_SHADOW EQU $FFFFEF0A
 PPUDATA_BUFFER  EQU $FFFFEF0C
+PPU_LAST_PLANE_ADDR EQU $FFFFEF10
+PPU_PLANE_CACHE_VALID EQU $FFFFEF12
 
 RAM_FOR_2001    EQU $FFFF00FE
 RAM_FOR_2000    EQU $FFFF00FF
 RAM_SCROLL_Y    EQU $FFFF00FC
 RAM_SCROLL_X    EQU $FFFF00FD
+PLANE_A_MAP_BASE EQU $C000
+PPU_NT_SHADOW   EQU $00FF8200
+PPU_PAL_SHADOW  EQU $00FF9200
+PPU_NT_MIRROR_MASK EQU $03FF
 
 
 VDP_INIT:
@@ -74,6 +80,9 @@ VDP_INIT:
     clr.b   (PPUSCROLL_LATCH).l
     clr.w   (VRAM_ADDR_CURR).l
     clr.b   (PPUDATA_BUFFER).l
+    clr.w   (PPU_LAST_PLANE_ADDR).l
+    clr.b   (PPU_PLANE_CACHE_VALID).l
+    bsr     PPU_CLEAR_SHADOWS
 
     move.b  #$54,(VDP_REG1_SHADOW).l
     move.w  #$8154,($C00004)
@@ -142,6 +151,7 @@ PPU_WRITE_2005:
     move.b  (PPUSCROLL_X).l,D3
     neg.w   D3
     move.w  D3,($C00000)
+    bsr     PPU_INVALIDATE_PLANE_CACHE
     rts
 .write_y:
     move.b  D0,(PPUSCROLL_Y).l
@@ -151,6 +161,7 @@ PPU_WRITE_2005:
     moveq   #0,D3
     move.b  (PPUSCROLL_Y).l,D3
     move.w  D3,($C00000)
+    bsr     PPU_INVALIDATE_PLANE_CACHE
     rts
 
 PPU_WRITE_2006:
@@ -166,26 +177,19 @@ PPU_WRITE_2006:
     lsl.w   #8,D3
     move.b  (PPUADDR_LO).l,D3
     move.w  D3,(VRAM_ADDR_CURR).l
+    bsr     PPU_INVALIDATE_PLANE_CACHE
     move.w  #$0400,D0
     bsr     TRACE_MARK
     move.w  D3,D4
     andi.w  #$FF00,D4
     cmpi.w  #$3F00,D4
     beq     .palette_addr
-    move.w  D3,D4
-    andi.w  #$3FFF,D4
-    swap    D4
-    move.w  D3,D4
-    lsr.w   #8,D4
-    lsr.w   #6,D4
-    ori.l   #$40000000,D4
-    move.l  D4,($C00004)
     move.w  #$0403,D0
     bsr     TRACE_MARK
     rts
 .palette_addr:
     move.w  D3,D4
-    andi.w  #$1F,D4
+    bsr     PPU_NORMALIZE_PALETTE_INDEX
     lsl.w   #1,D4
     swap    D4
     ori.l   #$C0000000,D4
@@ -202,67 +206,56 @@ PPU_WRITE_2007:
     beq     .palette_write
     cmpi.w  #$2000,D3
     blo     .skip_write
-    move.w  D0,D3
-    lsl.w   #8,D3
-    move.w  D3,($C00000)
-    move.w  (VRAM_ADDR_CURR).l,D3
-    btst    #2,(PPUCTRL_SHADOW).l
-    beq     .inc_by_1
-    addi.w  #32,D3
-    bra     .inc_done
-.inc_by_1:
-    addi.w  #1,D3
-.inc_done:
-    move.w  D3,(VRAM_ADDR_CURR).l
+    cmpi.w  #$3F00,D3
+    bhs     .skip_write
+    movem.l D0-D7/A0,-(A7)
+    bsr     PPU_WRITE_NAMETABLE_BYTE
+    movem.l (A7)+,D0-D7/A0
+    bsr     PPU_ADVANCE_VRAM_ADDR
     rts
 .skip_write:
-    move.w  (VRAM_ADDR_CURR).l,D3
-    btst    #2,(PPUCTRL_SHADOW).l
-    beq     .skip_inc_by_1
-    addi.w  #32,D3
-    bra     .skip_inc_done
-.skip_inc_by_1:
-    addi.w  #1,D3
-.skip_inc_done:
-    move.w  D3,(VRAM_ADDR_CURR).l
+    bsr     PPU_ADVANCE_VRAM_ADDR
     rts
 .palette_write:
+    move.w  D3,D4
+    bsr     PPU_NORMALIZE_PALETTE_INDEX
+    lea     (PPU_PAL_SHADOW).l,A0
+    move.b  D0,(A0,D4.w)
     bsr     NES_PAL_TO_BGR555
     move.w  D0,($C00000)
-    move.w  (VRAM_ADDR_CURR).l,D3
-    addi.w  #1,D3
-    move.w  D3,(VRAM_ADDR_CURR).l
+    bsr     PPU_INVALIDATE_PLANE_CACHE
+    bsr     PPU_ADVANCE_VRAM_ADDR
     rts
 
 PPU_READ_2007:
     move.w  (VRAM_ADDR_CURR).l,D3
     move.w  #$0401,D0
     bsr     TRACE_MARK
-    moveq   #0,D0
-    move.b  (PPUDATA_BUFFER).l,D0
     move.w  D3,D4
     andi.w  #$FF00,D4
     cmpi.w  #$3F00,D4
-    beq     .skip_vdp_read
-    move.w  D3,D4
-    andi.w  #$3FFF,D4
-    swap    D4
-    move.w  D3,D4
-    lsr.w   #8,D4
-    lsr.w   #6,D4
-    move.l  D4,($C00004)
-    move.w  ($C00000),D4
-    lsr.w   #8,D4
-    move.b  D4,(PPUDATA_BUFFER).l
-.skip_vdp_read:
-    btst    #2,(PPUCTRL_SHADOW).l
-    beq     .read_inc_by_1
-    addi.w  #32,D3
-    bra     .read_inc_done
-.read_inc_by_1:
-    addi.w  #1,D3
-.read_inc_done:
-    move.w  D3,(VRAM_ADDR_CURR).l
+    beq     .palette_read
+    moveq   #0,D0
+    move.b  (PPUDATA_BUFFER).l,D0
+    cmpi.w  #$2000,D3
+    blo     .read_no_buffer_fill
+    cmpi.w  #$3F00,D3
+    bhs     .read_no_buffer_fill
+    movem.l D1-D7/A0,-(A7)
+    bsr     PPU_BUFFER_NAMETABLE_READ
+    movem.l (A7)+,D1-D7/A0
+.read_no_buffer_fill:
+    bsr     PPU_ADVANCE_VRAM_ADDR
+    move.l  D0,-(A7)
+    move.w  #$0402,D0
+    bsr     TRACE_MARK
+    move.l  (A7)+,D0
+    rts
+.palette_read:
+    movem.l D1-D7/A0,-(A7)
+    bsr     PPU_READ_PALETTE_BYTE
+    movem.l (A7)+,D1-D7/A0
+    bsr     PPU_ADVANCE_VRAM_ADDR
     move.l  D0,-(A7)
     move.w  #$0402,D0
     bsr     TRACE_MARK
@@ -328,6 +321,7 @@ VDP_OAM_DMA_TRANSFER:
     andi.w  #$01FF,D0
     move.w  D0,($C00000)
     dbra    D7,.sprite_loop
+    bsr     PPU_INVALIDATE_PLANE_CACHE
     rts
 
 VDP_CLEAR_VRAM:
@@ -353,6 +347,223 @@ NES_PAL_TO_BGR555:
     lsl.w   #1,D0
     lea     NES_PALETTE_DATA,A0
     move.w  (A0,D0.w),D0
+    rts
+
+PPU_CLEAR_SHADOWS:
+    lea     (PPU_NT_SHADOW).l,A0
+    move.w  #($1000/4)-1,D7
+.nt_loop:
+    clr.l   (A0)+
+    dbra    D7,.nt_loop
+    lea     (PPU_PAL_SHADOW).l,A0
+    moveq   #0,D0
+    move.w  #($20/4)-1,D7
+.pal_loop:
+    move.l  D0,(A0)+
+    dbra    D7,.pal_loop
+    rts
+
+PPU_ADVANCE_VRAM_ADDR:
+    move.w  (VRAM_ADDR_CURR).l,D3
+    btst    #2,(PPUCTRL_SHADOW).l
+    beq     .inc_by_1
+    addi.w  #32,D3
+    bra     .done
+.inc_by_1:
+    addi.w  #1,D3
+.done:
+    move.w  D3,(VRAM_ADDR_CURR).l
+    rts
+
+PPU_INVALIDATE_PLANE_CACHE:
+    clr.b   (PPU_PLANE_CACHE_VALID).l
+    rts
+
+PPU_NORMALIZE_PALETTE_INDEX:
+    andi.w  #$001F,D4
+    cmpi.w  #$0010,D4
+    beq     .mirror_00
+    cmpi.w  #$0014,D4
+    beq     .mirror_04
+    cmpi.w  #$0018,D4
+    beq     .mirror_08
+    cmpi.w  #$001C,D4
+    beq     .mirror_0C
+    rts
+.mirror_00:
+    clr.w   D4
+    rts
+.mirror_04:
+    moveq   #4,D4
+    rts
+.mirror_08:
+    moveq   #8,D4
+    rts
+.mirror_0C:
+    moveq   #12,D4
+    rts
+
+PPU_NORMALIZE_NAMETABLE_ADDR:
+    move.w  D3,D4
+    andi.w  #$3FFF,D4
+    subi.w  #$2000,D4
+    cmpi.w  #$1000,D4
+    blo     .done
+    subi.w  #$1000,D4
+.done:
+    andi.w  #PPU_NT_MIRROR_MASK,D4
+    rts
+
+PPU_WRITE_NAMETABLE_BYTE:
+    bsr     PPU_NORMALIZE_NAMETABLE_ADDR
+    lea     (PPU_NT_SHADOW).l,A0
+    cmp.b   (A0,D4.w),D0
+    beq     .done
+    move.b  D0,(A0,D4.w)
+    move.w  D4,D5
+    andi.w  #$03FF,D5
+    cmpi.w  #$03C0,D5
+    bhs     .attribute
+    bsr     PPU_RENDER_NAMETABLE_CELL
+    bra     .done
+.attribute:
+    bsr     PPU_RENDER_ATTRIBUTE_BLOCK
+.done:
+    rts
+
+PPU_BUFFER_NAMETABLE_READ:
+    bsr     PPU_NORMALIZE_NAMETABLE_ADDR
+    lea     (PPU_NT_SHADOW).l,A0
+    move.b  (A0,D4.w),(PPUDATA_BUFFER).l
+    rts
+
+PPU_READ_PALETTE_BYTE:
+    move.w  D3,D4
+    bsr     PPU_NORMALIZE_PALETTE_INDEX
+    lea     (PPU_PAL_SHADOW).l,A0
+    moveq   #0,D0
+    move.b  (A0,D4.w),D0
+    rts
+
+PPU_RENDER_ATTRIBUTE_BLOCK:
+    move.w  D4,D5
+    lsr.w   #8,D5
+    lsr.w   #2,D5
+    lsl.w   #8,D5
+    lsl.w   #2,D5
+    move.w  D4,D6
+    andi.w  #$03FF,D6
+    subi.w  #$03C0,D6
+    move.w  D6,D7
+    andi.w  #$0007,D7
+    lsl.w   #2,D7
+    lsr.w   #3,D6
+    lsl.w   #2,D6
+    moveq   #3,D1
+.row_loop:
+    move.w  D5,D4
+    move.w  D6,D2
+    lsl.w   #5,D2
+    add.w   D2,D4
+    add.w   D7,D4
+    moveq   #3,D0
+.col_loop:
+    move.l  D0,-(A7)
+    move.l  D1,-(A7)
+    move.l  D4,-(A7)
+    move.l  D5,-(A7)
+    move.l  D6,-(A7)
+    move.l  D7,-(A7)
+    bsr     PPU_RENDER_NAMETABLE_CELL
+    move.l  (A7)+,D7
+    move.l  (A7)+,D6
+    move.l  (A7)+,D5
+    move.l  (A7)+,D4
+    move.l  (A7)+,D1
+    move.l  (A7)+,D0
+    addq.w  #1,D4
+    dbra    D0,.col_loop
+    addq.w  #1,D6
+    dbra    D1,.row_loop
+    rts
+
+PPU_RENDER_NAMETABLE_CELL:
+    lea     (PPU_NT_SHADOW).l,A0
+    move.w  D4,D5
+    lsr.w   #8,D5
+    lsr.w   #2,D5
+    move.w  D4,D6
+    andi.w  #$03FF,D6
+    move.w  D6,D7
+    andi.w  #$001F,D7
+    move.w  D6,D1
+    lsr.w   #5,D1
+
+    moveq   #0,D2
+    move.b  (A0,D4.w),D2
+    btst    #4,(PPUCTRL_SHADOW).l
+    beq     .tile_base_done
+    addi.w  #$0100,D2
+.tile_base_done:
+
+    move.w  D5,D3
+    lsl.w   #8,D3
+    lsl.w   #2,D3
+    move.w  D1,D6
+    lsr.w   #2,D6
+    lsl.w   #3,D6
+    add.w   D6,D3
+    move.w  D7,D6
+    lsr.w   #2,D6
+    add.w   D6,D3
+    addi.w  #$03C0,D3
+    moveq   #0,D6
+    move.b  (A0,D3.w),D6
+
+    move.w  D1,D0
+    andi.w  #$0002,D0
+    lsl.w   #1,D0
+    move.w  D7,D3
+    andi.w  #$0002,D3
+    or.w    D3,D0
+    lsr.w   D0,D6
+    andi.w  #$0003,D6
+    lsl.w   #8,D6
+    lsl.w   #5,D6
+    or.w    D2,D6
+
+    move.w  D5,D0
+    andi.w  #$0001,D0
+    lsl.w   #5,D0
+    add.w   D0,D7
+    move.w  D1,D0
+    lsl.w   #6,D0
+    add.w   D7,D0
+    lsl.w   #1,D0
+    addi.w  #PLANE_A_MAP_BASE,D0
+    tst.b   (PPU_PLANE_CACHE_VALID).l
+    beq     .set_addr
+    move.w  (PPU_LAST_PLANE_ADDR).l,D3
+    addq.w  #2,D3
+    cmp.w   D0,D3
+    beq     .write_cell
+.set_addr:
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+.write_cell:
+    move.w  D0,(PPU_LAST_PLANE_ADDR).l
+    move.b  #1,(PPU_PLANE_CACHE_VALID).l
+    move.w  D6,($C00000)
+    rts
+
+VDP_SET_VRAM_WRITE_ADDR:
+    move.w  D0,D1
+    andi.w  #$3FFF,D1
+    swap    D1
+    move.w  D0,D1
+    lsr.w   #8,D1
+    lsr.w   #6,D1
+    ori.l   #$40000000,D1
+    move.l  D1,($C00004)
     rts
 
 NES_PALETTE_DATA:

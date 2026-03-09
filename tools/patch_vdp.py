@@ -135,8 +135,12 @@ def patch_file(filepath: str) -> dict:
         else:
             patched_lines.append(line)
 
-    # Write patched file
-    out_path = filepath.replace('_gen68k.asm', '_gen68k_vdp.asm')
+    # Write patched file into the assembled generated_vdp directory.
+    src_dir = os.path.dirname(os.path.abspath(filepath))
+    out_dir = os.path.normpath(os.path.join(src_dir, '..', 'generated_vdp'))
+    os.makedirs(out_dir, exist_ok=True)
+    out_name = os.path.basename(filepath).replace('_gen68k.asm', '_gen68k_vdp.asm')
+    out_path = os.path.join(out_dir, out_name)
     with open(out_path, 'w', encoding='utf-8') as f:
         f.writelines(patched_lines)
 

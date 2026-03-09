@@ -164,20 +164,20 @@ loc_0x009010:  ; orig: loc_0x009010:
     BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C D 0 - - - 0x009010 02:9000: 20 25 E6  JSR sub_0x01E635_dis
     MOVE.B  ram_042B_enemy,D0  ; orig: C - - - - - 0x009013 02:9003: AD 2C 04  LDA ram_042B_enemy
     BNE     bra_9014             ; BNE  ; orig: C - - - - - 0x009016 02:9006: D0 0C     BNE bra_9014
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x009018 02:9008: AD 2D 04  LDA ram_042B_enemy +
+    MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x009018 02:9008: AD 2D 04  LDA ram_042B_enemy +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00901B 02:900B: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_94E7_00  -- needs manual handling  ; orig: - D 0 - I - 0x00901E 02:900E: E7 94     .word ofs_94E7_00
-    ; [DIRECTIVE] .WORD ofs_9512_01  -- needs manual handling  ; orig: - D 0 - I - 0x009020 02:9010: 12 95     .word ofs_9512_01
-    ; [DIRECTIVE] .WORD ofs_9545_02  -- needs manual handling  ; orig: - D 0 - I - 0x009022 02:9012: 45 95     .word ofs_9545_02
+    DC.L    ofs_94E7_00
+    DC.L    ofs_9512_01
+    DC.L    ofs_9545_02
 
 
 
 bra_9014:  ; orig: bra_9014:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x009024 02:9014: AD 2D 04  LDA ram_042B_enemy +
+    MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x009024 02:9014: AD 2D 04  LDA ram_042B_enemy +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x009027 02:9017: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_94E7_00  -- needs manual handling  ; orig: - D 0 - I - 0x00902A 02:901A: E7 94     .word ofs_94E7_00
-    ; [DIRECTIVE] .WORD ofs_9573_01  -- needs manual handling  ; orig: - D 0 - I - 0x00902C 02:901C: 73 95     .word ofs_9573_01
-    ; [DIRECTIVE] .WORD ofs_959A_02  -- needs manual handling  ; orig: - D 0 - I - 0x00902E 02:901E: 9A 95     .word ofs_959A_02
+    DC.L    ofs_94E7_00
+    DC.L    ofs_9573_01
+    DC.L    ofs_959A_02
 
 
 
@@ -194,9 +194,9 @@ ofs_main_script_2_0x009030_00_title_screen:  ; orig: ofs_main_script_2_0x009030_
 bra_9030:  ; orig: bra_9030:
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x009040 02:9030: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x009042 02:9032: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_006_903B_00_title_screen_handler  -- needs manual handling  ; orig: - D 0 - I - 0x009045 02:9035: 3B 90     .word ofs_006_903B_0
-    ; [DIRECTIVE] .WORD ofs_006_A2A0_01_prepare_slot_select_screen_1  -- needs manual handling  ; orig: - D 0 - I - 0x009047 02:9037: A0 A2     .word ofs_006_A2A0_0
-    ; [DIRECTIVE] .WORD ofs_006_905D_02_prepare_slot_select_screen_2  -- needs manual handling  ; orig: - D 0 - I - 0x009049 02:9039: 5D 90     .word ofs_006_905D_0
+    DC.L    ofs_006_903B_00_title_screen_handler
+    DC.L    ofs_006_A2A0_01_prepare_slot_select_screen_1
+    DC.L    ofs_006_905D_02_prepare_slot_select_screen_2
 
 
 
@@ -304,21 +304,21 @@ bra_90BE_loop:  ; orig: bra_90BE_loop:
 sub_90CF:  ; orig: sub_90CF:
     MOVE.B  ram_042B_enemy,D0  ; orig: C - - - - - 0x0090DF 02:90CF: AD 2C 04  LDA ram_042B_enemy
     BNE     bra_90DE_demo_manual             ; BNE  ; orig: C - - - - - 0x0090E2 02:90D2: D0 0A     BNE bra_90DE_demo_ma
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0090E4 02:90D4: AD 2D 04  LDA ram_042B_enemy +
+    MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x0090E4 02:90D4: AD 2D 04  LDA ram_042B_enemy +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0090E7 02:90D7: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_007_95AC_00  -- needs manual handling  ; orig: - D 0 - I - 0x0090EA 02:90DA: AC 95     .word ofs_007_95AC_0
-    ; [DIRECTIVE] .WORD ofs_007_9B79_01  -- needs manual handling  ; orig: - D 0 - I - 0x0090EC 02:90DC: 79 9B     .word ofs_007_9B79_0
+    DC.L    ofs_007_95AC_00
+    DC.L    ofs_007_9B79_01
 
 
 
 bra_90DE_demo_manual:  ; orig: bra_90DE_demo_manual:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0090EE 02:90DE: AD 2D 04  LDA ram_042B_enemy +
+    MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x0090EE 02:90DE: AD 2D 04  LDA ram_042B_enemy +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0090F1 02:90E1: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_008_95C1_00  -- needs manual handling  ; orig: - D 0 - I - 0x0090F4 02:90E4: C1 95     .word ofs_008_95C1_0
-    ; [DIRECTIVE] .WORD ofs_008_95EC_01  -- needs manual handling  ; orig: - D 0 - I - 0x0090F6 02:90E6: EC 95     .word ofs_008_95EC_0
-    ; [DIRECTIVE] .WORD ofs_008_960C_02  -- needs manual handling  ; orig: - D 0 - I - 0x0090F8 02:90E8: 0C 96     .word ofs_008_960C_0
-    ; [DIRECTIVE] .WORD ofs_008_9830_03  -- needs manual handling  ; orig: - D 0 - I - 0x0090FA 02:90EA: 30 98     .word ofs_008_9830_0
-    ; [DIRECTIVE] .WORD ofs_008_983C_04  -- needs manual handling  ; orig: - D 0 - I - 0x0090FC 02:90EC: 3C 98     .word ofs_008_983C_0
+    DC.L    ofs_008_95C1_00
+    DC.L    ofs_008_95EC_01
+    DC.L    ofs_008_960C_02
+    DC.L    ofs_008_9830_03
+    DC.L    ofs_008_983C_04
 
 
 
@@ -984,7 +984,9 @@ tbl_94AD_demo_manual_text:  ; orig: tbl_94AD_demo_manual_text:
 ofs_94E7_00:  ; orig: ofs_94E7_00:
     BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - J - - 0x0094F7 02:94E7: 20 6D E4  JSR sub_0x01E47D_cle
 loc_94EA:  ; orig: loc_94EA:
-    ; (empty translation for INC)  ; orig: C D 0 - - - 0x0094FA 02:94EA: EE 2D 04  INC ram_042B_enemy +
+    MOVE.W  #$0430,D0
+    BSR     TRACE_MARK
+    ADDQ.B  #1,($00FF042D).l  ; orig: C D 0 - - - 0x0094FA 02:94EA: EE 2D 04  INC ram_042B_enemy +
     RTS                     ; RTS  ; orig: C - - - - - 0x0094FD 02:94ED: 60        RTS
 
 
@@ -1018,8 +1020,8 @@ bra_951A_loop:  ; orig: bra_951A_loop:
     BPL     bra_951A_loop             ; BPL  ; orig: C - - - - - 0x009531 02:9521: 10 F7     BPL bra_951A_loop
     MOVE.B  #$0A,D1  ; orig: C - - - - - 0x009533 02:9523: A2 0A     LDX #$0A
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x009535 02:9525: A9 00     LDA #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x009537 02:9527: 8D 2E 04  STA ram_042B_enemy +
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00953A 02:952A: 8D 2F 04  STA ram_042B_enemy +
+    MOVE.B  D0,($00FF042E).l  ; orig: C - - - - - 0x009537 02:9527: 8D 2E 04  STA ram_042B_enemy +
+    MOVE.B  D0,($00FF042F).l  ; orig: C - - - - - 0x00953A 02:952A: 8D 2F 04  STA ram_042B_enemy +
 bra_952D_loop:  ; orig: bra_952D_loop:
     MOVE.B  D0,ram_0412(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x00953D 02:952D: 9D 12 04  STA ram_0412,X
     MOVE.B  D0,ram_041F(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x009540 02:9530: 9D 1F 04  STA ram_041F,X
@@ -1092,7 +1094,9 @@ ofs_959A_02:  ; orig: ofs_959A_02:
 loc_95A2:  ; orig: loc_95A2:
     MOVE.B  D0,ram_ppu_load_index  ; orig: C D 0 - - - 0x0095B2 02:95A2: 85 14     STA ram_ppu_load_ind
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0095B4 02:95A4: A9 00     LDA #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0095B6 02:95A6: 8D 2D 04  STA ram_042B_enemy +
+    MOVE.B  D0,($00FF042D).l  ; orig: C - - - - - 0x0095B6 02:95A6: 8D 2D 04  STA ram_042B_enemy +
+    MOVE.W  #$0431,D0
+    BSR     TRACE_MARK
     ADDQ.B  #1,ram_0011_screen_ready_flag  ; orig: C - - - - - 0x0095B9 02:95A9: E6 11     INC ram_0011_screen_
     RTS                     ; RTS  ; orig: C - - - - - 0x0095BB 02:95AB: 60        RTS
 
@@ -1134,7 +1138,7 @@ bra_95D8:  ; orig: bra_95D8:
     BEQ     bra_95EB_RTS             ; BEQ  ; orig: C - - - - - 0x0095F1 02:95E1: F0 08     BEQ bra_95EB_RTS
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0095F3 02:95E3: A9 00     LDA #$00
     MOVE.B  D0,ram_0415  ; orig: C - - - - - 0x0095F5 02:95E5: 8D 15 04  STA ram_0415
-    ; (empty translation for INC)  ; orig: C - - - - - 0x0095F8 02:95E8: EE 2D 04  INC ram_042B_enemy +
+    ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x0095F8 02:95E8: EE 2D 04  INC ram_042B_enemy +
 bra_95EB_RTS:  ; orig: bra_95EB_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x0095FB 02:95EB: 60        RTS
 
@@ -1146,7 +1150,9 @@ ofs_008_95EC_01:  ; orig: ofs_008_95EC_01:
     ADDQ.B  #1,ram_041A  ; orig: C - - J - - 0x0095FC 02:95EC: EE 1A 04  INC ram_041A
     MOVE.B  ram_041A,D0  ; orig: C - - - - - 0x0095FF 02:95EF: AD 1A 04  LDA ram_041A
     BNE     bra_95F7             ; BNE  ; orig: C - - - - - 0x009602 02:95F2: D0 03     BNE bra_95F7
-    ; (empty translation for INC)  ; orig: C - - - - - 0x009604 02:95F4: EE 2D 04  INC ram_042B_enemy +
+    MOVE.W  #$0432,D0
+    BSR     TRACE_MARK
+    ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x009604 02:95F4: EE 2D 04  INC ram_042B_enemy +
 bra_95F7:  ; orig: bra_95F7:
     MOVE.B  #$29,D0  ; orig: C - - - - - 0x009607 02:95F7: A9 29     LDA #$29
     MOVE.B  D0,ram_041D  ; orig: C - - - - - 0x009609 02:95F9: 8D 1D 04  STA ram_041D
@@ -1169,7 +1175,8 @@ ofs_008_960C_02:  ; orig: ofs_008_960C_02:
     BEQ     bra_963E_RTS             ; BEQ  ; orig: C - - - - - 0x009629 02:9619: F0 23     BEQ bra_963E_RTS
     MOVE.B  #$0A,D1  ; orig: C - - - - - 0x00962B 02:961B: A2 0A     LDX #$0A
 bra_961D_loop:  ; orig: bra_961D_loop:
-    ; (empty translation for DEC)  ; orig: C - - - - - 0x00962D 02:961D: D6 84     DEC ram_pos_Y_enemy,
+    MOVEA.L #$FF0084,A0  ; Fix X: ; orig: C - - - - - 0x00962D 02:961D: D6 84     DEC ram_pos_Y_enemy,
+    SUBQ.B  #1,(A0,D1.L)  ; ^
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x00962F 02:961F: CA        DEX
     BNE     bra_961D_loop             ; BNE  ; orig: C - - - - - 0x009630 02:9620: D0 FB     BNE bra_961D_loop
     ADDQ.B  #1,ram_041B  ; orig: C - - - - - 0x009632 02:9622: EE 1B 04  INC ram_041B
@@ -1183,7 +1190,7 @@ bra_962D:  ; orig: bra_962D:
     MOVE.B  ram_041B,D0  ; orig: C - - - - - 0x009644 02:9634: AD 1B 04  LDA ram_041B
     CMPI.B  #$80,D0  ; orig: C - - - - - 0x009647 02:9637: C9 80     CMP #$80
     BNE     bra_963F             ; BNE  ; orig: C - - - - - 0x009649 02:9639: D0 04     BNE bra_963F
-    ; (empty translation for INC)  ; orig: C - - - - - 0x00964B 02:963B: EE 2D 04  INC ram_042B_enemy +
+    ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x00964B 02:963B: EE 2D 04  INC ram_042B_enemy +
 bra_963E_RTS:  ; orig: bra_963E_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x00964E 02:963E: 60        RTS
 bra_963F:  ; orig: bra_963F:
@@ -1201,19 +1208,21 @@ bra_964D:  ; orig: bra_964D:
     BSR     sub_973A             ; JSR -> BSR  ; orig: C - - - - - 0x009664 02:9654: 20 3A 97  JSR sub_973A
     MOVE.B  #$20,D1  ; orig: C - - - - - 0x009667 02:9657: A2 20     LDX #$20
     MOVE.B  #$FF,D0  ; orig: C - - - - - 0x009669 02:9659: A9 FF     LDA #$FF
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00966B 02:965B: 9D 05 03  STA ram_0302_ppu_buf
+    MOVEA.L #$FF0305,A0  ; Fix X: ; orig: C - - - - - 0x00966B 02:965B: 9D 05 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,(A0,D1.L)  ; ^
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x00966E 02:965E: CA        DEX ; 1F
 bra_965F_loop:  ; orig: bra_965F_loop:
     MOVE.B  #$24,D0  ; orig: C - - - - - 0x00966F 02:965F: A9 24     LDA #$24
-    ; (empty translation for STA)  ; orig: C - - - - - 0x009671 02:9661: 9D 05 03  STA ram_0302_ppu_buf
+    MOVEA.L #$FF0305,A0  ; Fix X: ; orig: C - - - - - 0x009671 02:9661: 9D 05 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,(A0,D1.L)  ; ^
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x009674 02:9664: CA        DEX
     BPL     bra_965F_loop             ; BPL  ; orig: C - - - - - 0x009675 02:9665: 10 F8     BPL bra_965F_loop
     MOVE.B  #$20,D0  ; orig: C - - - - - 0x009677 02:9667: A9 20     LDA #$20
-    ; (empty translation for STA)  ; orig: C - - - - - 0x009679 02:9669: 8D 04 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,($00FF0304).l  ; orig: C - - - - - 0x009679 02:9669: 8D 04 03  STA ram_0302_ppu_buf
     MOVE.B  ram_041D,D0  ; orig: C - - - - - 0x00967C 02:966C: AD 1D 04  LDA ram_041D
     MOVE.B  D0,ram_0302_ppu_buffer  ; orig: C - - - - - 0x00967F 02:966F: 8D 02 03  STA ram_0302_ppu_buf
     MOVE.B  ram_041C,D0  ; orig: C - - - - - 0x009682 02:9672: AD 1C 04  LDA ram_041C
-    ; (empty translation for STA)  ; orig: C - - - - - 0x009685 02:9675: 8D 03 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,($00FF0303).l  ; orig: C - - - - - 0x009685 02:9675: 8D 03 03  STA ram_0302_ppu_buf
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x009688 02:9678: 18        CLC
     ADDX.B  #$20,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x009689 02:9679: 69 20     ADC #$20
     MOVE.B  D0,ram_041C  ; orig: C - - - - - 0x00968B 02:967B: 8D 1C 04  STA ram_041C
@@ -1243,14 +1252,15 @@ loc_96A7:  ; orig: loc_96A7:
     MOVE.B  tbl_915E(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x0096BA 02:96AA: BD 5E 91  LDA tbl_915E,X
     ANDI.B  #$80,D0  ; orig: C - - - - - 0x0096BD 02:96AD: 29 80     AND #$80
     BEQ     bra_96D6             ; BEQ  ; orig: C - - - - - 0x0096BF 02:96AF: F0 25     BEQ bra_96D6
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0096C1 02:96B1: AD 2E 04  LDA ram_042B_enemy +
+    MOVE.B  ($00FF042E).l,D0  ; orig: C - - - - - 0x0096C1 02:96B1: AD 2E 04  LDA ram_042B_enemy +
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x0096C4 02:96B4: 0A        ASL
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x0096C5 02:96B5: AA        TAX
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x0096C6 02:96B6: A0 00     LDY #$00
     MOVE.B  tbl_94AD_demo_manual_text(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x0096C8 02:96B8: BD AD 94  LDA tbl_94AD_demo_ma
     MOVE.B  D0,ram_0000_t17_demo_manual_text_data  ; orig: C - - - - - 0x0096CB 02:96BB: 85 00     STA ram_0000_t17_dem
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0096CD 02:96BD: BD AE 94  LDA tbl_94AD_demo_ma
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0096D0 02:96C0: 85 01     STA ram_0000_t17_dem
+    MOVEA.L #$FF94AE,A0  ; Fix X: ; orig: C - - - - - 0x0096CD 02:96BD: BD AE 94  LDA tbl_94AD_demo_ma
+    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVE.B  D0,ram_0001_t17  ; orig: C - - - - - 0x0096D0 02:96C0: 85 01     STA ram_0000_t17_dem
     MOVEA.W ($FF0000+ram_0000_t17_demo_manual_text_data).l,A1  ; LDA (zp),Y
     MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x0096D2 02:96C2: B1 00     LDA (ram_0000_t17_de
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x0096D4 02:96C4: AA        TAX
@@ -1260,11 +1270,14 @@ loc_96C5_loop:  ; orig: loc_96C5_loop:
     MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x0096D6 02:96C6: B1 00     LDA (ram_0000_t17_de
     CMPI.B  #$FF,D0  ; orig: C - - - - - 0x0096D8 02:96C8: C9 FF     CMP #$FF
     BEQ     bra_96D3_FF             ; BEQ  ; orig: C - - - - - 0x0096DA 02:96CA: F0 07     BEQ bra_96D3_FF
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0096DC 02:96CC: 9D 05 03  STA ram_0302_ppu_buf
+    MOVEA.L #$FF0305,A0  ; Fix X: ; orig: C - - - - - 0x0096DC 02:96CC: 9D 05 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,(A0,D1.L)  ; ^
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x0096DF 02:96CF: E8        INX
     JMP     loc_96C5_loop  ; orig: C - - - - - 0x0096E0 02:96D0: 4C C5 96  JMP loc_96C5_loop
 bra_96D3_FF:  ; orig: bra_96D3_FF:
-    ; (empty translation for INC)  ; orig: C - - - - - 0x0096E3 02:96D3: EE 2E 04  INC ram_042B_enemy +
+    MOVE.W  #$0434,D0
+    BSR     TRACE_MARK
+    ADDQ.B  #1,($00FF042E).l  ; orig: C - - - - - 0x0096E3 02:96D3: EE 2E 04  INC ram_042B_enemy +
 bra_96D6:  ; orig: bra_96D6:
     BSR     sub_96DD             ; JSR -> BSR  ; orig: C - - - - - 0x0096E6 02:96D6: 20 DD 96  JSR sub_96DD
     ADDQ.B  #1,ram_0419  ; orig: C - - - - - 0x0096E9 02:96D9: EE 19 04  INC ram_0419
@@ -1278,15 +1291,15 @@ sub_96DD:  ; orig: sub_96DD:
     ANDI.B  #$40,D0  ; orig: C - - - - - 0x0096F3 02:96E3: 29 40     AND #$40
     BEQ     bra_9729_RTS             ; BEQ  ; orig: C - - - - - 0x0096F5 02:96E5: F0 42     BEQ bra_9729_RTS
     MOVE.B  ram_0418,D0  ; orig: C - - - - - 0x0096F7 02:96E7: AD 18 04  LDA ram_0418
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0096FA 02:96EA: 8D 25 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,($00FF0325).l  ; orig: C - - - - - 0x0096FA 02:96EA: 8D 25 03  STA ram_0302_ppu_buf
     MOVE.B  ram_0417,D0  ; orig: C - - - - - 0x0096FD 02:96ED: AD 17 04  LDA ram_0417
-    ; (empty translation for STA)  ; orig: C - - - - - 0x009700 02:96F0: 8D 26 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,($00FF0326).l  ; orig: C - - - - - 0x009700 02:96F0  STA ram_0302_ppu_buf
     MOVE.B  #$48,D0  ; orig: C - - - - - 0x009703 02:96F3: A9 48     LDA #$48
-    ; (empty translation for STA)  ; orig: C - - - - - 0x009705 02:96F5: 8D 27 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,($00FF0327).l  ; orig: C - - - - - 0x009705 02:96F5  STA ram_0302_ppu_buf
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x009708 02:96F8: A9 00     LDA #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00970A 02:96FA: 8D 28 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,($00FF0328).l  ; orig: C - - - - - 0x00970A 02:96FA  STA ram_0302_ppu_buf
     MOVE.B  #$FF,D0  ; orig: C - - - - - 0x00970D 02:96FD: A9 FF     LDA #$FF
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00970F 02:96FF: 8D 29 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,($00FF0329).l  ; orig: C - - - - - 0x00970F 02:96FF  STA ram_0302_ppu_buf
     ADDQ.B  #1,ram_0416  ; orig: C - - - - - 0x009712 02:9702: EE 16 04  INC ram_0416
     MOVE.B  ram_0417,D0  ; orig: C - - - - - 0x009715 02:9705: AD 17 04  LDA ram_0417
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x009718 02:9708: 18        CLC
@@ -3049,13 +3062,13 @@ loc_0x00A29A:  ; orig: loc_0x00A29A:
     BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C D 1 - - - 0x00A29A 02:A28A: 20 25 E6  JSR sub_0x01E635_dis
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x00A29D 02:A28D: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A29F 02:A28F: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_009_A2A0_00  -- needs manual handling  ; orig: - D 1 - I - 0x00A2A2 02:A292: A0 A2     .word ofs_009_A2A0_0
-    ; [DIRECTIVE] .WORD ofs_009_A47F_01  -- needs manual handling  ; orig: - D 1 - I - 0x00A2A4 02:A294: 7F A4     .word ofs_009_A47F_0
-    ; [DIRECTIVE] .WORD ofs_009_A4BD_02  -- needs manual handling  ; orig: - D 1 - I - 0x00A2A6 02:A296: BD A4     .word ofs_009_A4BD_0
-    ; [DIRECTIVE] .WORD ofs_009_A4C4_03  -- needs manual handling  ; orig: - D 1 - I - 0x00A2A8 02:A298: C4 A4     .word ofs_009_A4C4_0
-    ; [DIRECTIVE] .WORD ofs_009_A4C4_04  -- needs manual handling  ; orig: - D 1 - I - 0x00A2AA 02:A29A: C4 A4     .word ofs_009_A4C4_0
-    ; [DIRECTIVE] .WORD ofs_009_A4C4_05  -- needs manual handling  ; orig: - D 1 - I - 0x00A2AC 02:A29C: C4 A4     .word ofs_009_A4C4_0
-    ; [DIRECTIVE] .WORD ofs_009_A51E_06  -- needs manual handling  ; orig: - D 1 - I - 0x00A2AE 02:A29E: 1E A5     .word ofs_009_A51E_0
+    DC.L    ofs_009_A2A0_00
+    DC.L    ofs_009_A47F_01
+    DC.L    ofs_009_A4BD_02
+    DC.L    ofs_009_A4C4_03
+    DC.L    ofs_009_A4C4_04
+    DC.L    ofs_009_A4C4_05
+    DC.L    ofs_009_A51E_06
 
 
 
@@ -3616,8 +3629,8 @@ ofs_main_script_2_0x00A5A1_01_slot_selection:  ; orig: ofs_main_script_2_0x00A5A
 ; con_script_slot_selection
     MOVE.B  ram_subscript,D0  ; orig: C - - J - - 0x00A5A1 02:A591: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A5A3 02:A593: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_010_A59A_00  -- needs manual handling  ; orig: - D 1 - I - 0x00A5A6 02:A596: 9A A5     .word ofs_010_A59A_0
-    ; [DIRECTIVE] .WORD ofs_010_A5DF_01  -- needs manual handling  ; orig: - D 1 - I - 0x00A5A8 02:A598: DF A5     .word ofs_010_A5DF_0
+    DC.L    ofs_010_A59A_00
+    DC.L    ofs_010_A5DF_01
 
 
 
@@ -3809,9 +3822,9 @@ ofs_main_script_2_0x00A6BD_0D:  ; orig: ofs_main_script_2_0x00A6BD_0D:
 ; con_script_0D
     MOVE.B  ram_subscript,D0  ; orig: C - - J - - 0x00A6BD 02:A6AD: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A6BF 02:A6AF: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_011_A6B8_00  -- needs manual handling  ; orig: - D 1 - I - 0x00A6C2 02:A6B2: B8 A6     .word ofs_011_A6B8_0
-    ; [DIRECTIVE] .WORD ofs_011_A734_01  -- needs manual handling  ; orig: - D 1 - I - 0x00A6C4 02:A6B4: 34 A7     .word ofs_011_A734_0
-    ; [DIRECTIVE] .WORD ofs_011_A803_02  -- needs manual handling  ; orig: - D 1 - I - 0x00A6C6 02:A6B6: 03 A8     .word ofs_011_A803_0
+    DC.L    ofs_011_A6B8_00
+    DC.L    ofs_011_A734_01
+    DC.L    ofs_011_A803_02
 
 
 
@@ -4091,11 +4104,11 @@ bra_A827_loop:  ; orig: bra_A827_loop:
 loc_0x00A910_final_credits_handler:  ; orig: loc_0x00A910_final_credits_handler:
     MOVE.B  ram_subscript,D0  ; orig: C D 1 - - - 0x00A910 02:A900: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A912 02:A902: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_final_credits_A90F_00  -- needs manual handling  ; orig: - D 1 - I - 0x00A915 02:A905: 0F A9     .word ofs_final_cred
-    ; [DIRECTIVE] .WORD ofs_final_credits_A93F_01_prepare_nametable_attributes  -- needs manual handling  ; orig: - D 1 - I - 0x00A917 02:A907: 3F A9     .word ofs_final_cred
-    ; [DIRECTIVE] .WORD ofs_final_credits_A97F_02_thanks_link  -- needs manual handling  ; orig: - D 1 - I - 0x00A919 02:A909: 7F A9     .word ofs_final_cred
-    ; [DIRECTIVE] .WORD ofs_final_credits_A9F5_03  -- needs manual handling  ; orig: - D 1 - I - 0x00A91B 02:A90B: F5 A9     .word ofs_final_cred
-    ; [DIRECTIVE] .WORD ofs_final_credits_A9FF_04  -- needs manual handling  ; orig: - D 1 - I - 0x00A91D 02:A90D: FF A9     .word ofs_final_cred
+    DC.L    ofs_final_credits_A90F_00
+    DC.L    ofs_final_credits_A93F_01_prepare_nametable_attributes
+    DC.L    ofs_final_credits_A97F_02_thanks_link
+    DC.L    ofs_final_credits_A9F5_03
+    DC.L    ofs_final_credits_A9FF_04
 
 
 
@@ -4275,11 +4288,11 @@ ofs_main_script_2_0x00AA20_13_final_credits:  ; orig: ofs_main_script_2_0x00AA20
 ; con_script_final_credits
     MOVE.B  ram_subscript,D0  ; orig: C - - J - - 0x00AA20 02:AA10: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00AA22 02:AA12: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_013_AA23_00  -- needs manual handling  ; orig: - D 1 - I - 0x00AA25 02:AA15: 23 AA     .word ofs_013_AA23_0
-    ; [DIRECTIVE] .WORD ofs_013_AAA9_01  -- needs manual handling  ; orig: - D 1 - I - 0x00AA27 02:AA17: A9 AA     .word ofs_013_AAA9_0
-    ; [DIRECTIVE] .WORD ofs_013_AAA9_02  -- needs manual handling  ; orig: - D 1 - I - 0x00AA29 02:AA19: A9 AA     .word ofs_013_AAA9_0
-    ; [DIRECTIVE] .WORD ofs_013_ABC4_03  -- needs manual handling  ; orig: - D 1 - I - 0x00AA2B 02:AA1B: C4 AB     .word ofs_013_ABC4_0
-    ; [DIRECTIVE] .WORD ofs_013_AB7F_04_preparations_for_2nd_quest  -- needs manual handling  ; orig: - D 1 - I - 0x00AA2D 02:AA1D: 7F AB     .word ofs_013_AB7F_0
+    DC.L    ofs_013_AA23_00
+    DC.L    ofs_013_AAA9_01
+    DC.L    ofs_013_AAA9_02
+    DC.L    ofs_013_ABC4_03
+    DC.L    ofs_013_AB7F_04_preparations_for_2nd_quest
 
 
 

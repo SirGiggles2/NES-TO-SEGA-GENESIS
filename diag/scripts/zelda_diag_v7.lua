@@ -29,6 +29,7 @@ local TRACE_LAST_ADDR = 0xF000
 local TRACE_SEQ_ADDR  = 0xF002
 local TRACE_RING_ADDR = 0xF010
 local TRACE_RING_SIZE = 32
+local TRACE_META_ADDR = 0xF040
 local CRASH_AUX_ADDR  = 0xEE80
 local CRASH_REGS_ADDR = 0xEE40
 
@@ -62,6 +63,14 @@ local TRACE_NAMES = {
     [0x0312] = "sub_E8F8_main_script_handler_1: before sub_0x01809C",
     [0x0313] = "sub_E8F8_main_script_handler_1: setup complete",
     [0x0314] = "sub_E8F8_main_script_handler_1: title script dispatch",
+    [0x0315] = "sub_E8F8_main_script_handler_1: bank 5 selected",
+    [0x0316] = "sub_E8F8_main_script_handler_1: before script helper",
+    [0x0317] = "sub_E5E2_jump_to_pointers_after_JSR: sanitized index ready",
+    [0x0318] = "sub_E5E2_jump_to_pointers_after_JSR: target resolved",
+    [0x0320] = "ofs_main_script_1_E94B_00_title_screen: entry",
+    [0x0321] = "ofs_main_script_1_E94B_00_title_screen: taking stage 1 path",
+    [0x0322] = "ofs_main_script_1_E94B_00_title_screen: bank 2 selected",
+    [0x0323] = "ofs_main_script_1_E94B_00_title_screen: jumping to fill 1",
     [0x0400] = "PPU_WRITE_2006: address latched",
     [0x0401] = "PPU_READ_2007: entry",
     [0x0402] = "PPU_READ_2007: exit",
@@ -69,6 +78,13 @@ local TRACE_NAMES = {
     [0x0410] = "TITLE_FILL_1: stage 1 completion stub",
     [0x0411] = "TITLE_FILL_2: stage 2 completion stub",
     [0x0412] = "TITLE_FILL_3: stage 3 completion stub",
+    [0x0420] = "sub_E8F8_main_script_handler_1: direct title call bypass",
+    [0x0421] = "sub_E8F8_main_script_handler_1: direct title call returned",
+    [0x0430] = "TITLE_WARMUP: stage advanced",
+    [0x0431] = "TITLE_WARMUP: screen ready set",
+    [0x0432] = "TITLE_DEMO: stage advanced",
+    [0x0433] = "TITLE_FALLBACK: forced screen-ready release",
+    [0x0434] = "TITLE_DEMO: text page advanced",
 }
 
 local VECTOR_NAMES = {
@@ -529,6 +545,13 @@ local WATCHES = {
     {addr=0xEE84, sz=2, name="CRASH_AUX_W",    desc="Crash aux word (IR/SSW for bus/address)"},
     {addr=0xF000, sz=2, name="TRACE_LAST",     desc="Last startup checkpoint"},
     {addr=0xF002, sz=2, name="TRACE_SEQ",      desc="Startup checkpoint sequence"},
+    {addr=0xF040, sz=2, name="BANK_RAW",       desc="Raw bank arg word before byte cleanup"},
+    {addr=0xF042, sz=2, name="BANK_POST",      desc="Bank arg word after byte-only shifts"},
+    {addr=0xF044, sz=2, name="SCRIPT_RAW",     desc="Raw script selector word seen by helper"},
+    {addr=0xF046, sz=2, name="DISPATCH_INDEX", desc="Sanitized helper table offset"},
+    {addr=0xF048, sz=4, name="DISPATCH_BASE",  desc="Helper table base / popped return address"},
+    {addr=0xF04C, sz=4, name="DISPATCH_TARGET",desc="Resolved helper jump target"},
+    {addr=0xF050, sz=4, name="DISPATCH_STACK", desc="Helper caller stack pointer before pop"},
 }
 
 -- Hand-picked loop-release suspects to summarize separately.
@@ -1163,6 +1186,14 @@ local function run_diagnostics(rom_name)
     log_sep("RAM DUMP: $FFF000-$FFF03F (trace ring)")
     for row = 0, 3 do
         local base = 0xF000 + row*16
+        local dline = string.format("  $FF%04X:", base)
+        for col = 0, 15 do dline = dline .. " " .. hex(safe_read_byte("68K RAM", base+col)) end
+        log(dline)
+    end
+
+    log_sep("RAM DUMP: $FFF040-$FFF05F (dispatch/bank meta)")
+    for row = 0, 1 do
+        local base = TRACE_META_ADDR + row*16
         local dline = string.format("  $FF%04X:", base)
         for col = 0, 15 do dline = dline .. " " .. hex(safe_read_byte("68K RAM", base+col)) end
         log(dline)
