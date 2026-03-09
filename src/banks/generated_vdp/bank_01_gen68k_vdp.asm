@@ -1908,7 +1908,13 @@ tbl_8D43_ppu:  ; orig: tbl_8D43_ppu:
 
 
 loc_0x004D57_fill_ppu_with_tiles_2:  ; orig: loc_0x004D57_fill_ppu_with_tiles_2:
-    RTS     ; Genesis: tiles pre-loaded by CHR_VRAM_LOAD at startup
+    MOVE.W  #$0411,D0
+    BSR     TRACE_MARK
+    MOVE.B  #$A5,D0
+    MOVE.B  D0,ram_00F6_reset_check_A5
+    MOVE.B  #$00,D0
+    MOVE.B  D0,ram_051D
+    RTS     ; Genesis bring-up: skip unsafe bulk PPU copy, but preserve completion state
 
 ; in
 

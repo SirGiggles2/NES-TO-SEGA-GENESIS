@@ -87,7 +87,11 @@ tbl_803C_counter:  ; orig: tbl_803C_counter:
 
 
 sub_0x00C054_fill_ppu_with_tiles_3:  ; orig: sub_0x00C054_fill_ppu_with_tiles_3:
-    RTS     ; Genesis: tiles pre-loaded by CHR_VRAM_LOAD at startup
+    MOVE.W  #$0412,D0
+    BSR     TRACE_MARK
+    MOVE.B  #$00,D0
+    MOVE.B  D0,ram_051D
+    RTS     ; Genesis bring-up: skip unsafe bulk PPU copy, but preserve loop completion state
     BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - - - - 0x00C054 03:8044: 20 25 E6  JSR sub_0x01E635_dis
     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x00C057 03:8047: AD 02 20  LDA $2002
     BSR     sub_805E             ; JSR -> BSR  ; orig: C - - - - - 0x00C05A 03:804A: 20 5E 80  JSR sub_805E

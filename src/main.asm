@@ -25,16 +25,16 @@
     DC.L    GENESIS_RESET
 
     ; Exception vectors (bus error, address error, etc.)
-    DC.L    EXCEPTION_HANDLER   ; Bus error
-    DC.L    EXCEPTION_HANDLER   ; Address error
-    DC.L    EXCEPTION_HANDLER   ; Illegal instruction
-    DC.L    EXCEPTION_HANDLER   ; Division by zero
-    DC.L    EXCEPTION_HANDLER   ; CHK instruction
-    DC.L    EXCEPTION_HANDLER   ; TRAPV instruction
-    DC.L    EXCEPTION_HANDLER   ; Privilege violation
-    DC.L    EXCEPTION_HANDLER   ; Trace
-    DC.L    EXCEPTION_HANDLER   ; Line A emulator
-    DC.L    EXCEPTION_HANDLER   ; Line F emulator
+    DC.L    EXC_VECTOR_02       ; Bus error
+    DC.L    EXC_VECTOR_03       ; Address error
+    DC.L    EXC_VECTOR_04       ; Illegal instruction
+    DC.L    EXC_VECTOR_05       ; Division by zero
+    DC.L    EXC_VECTOR_06       ; CHK instruction
+    DC.L    EXC_VECTOR_07       ; TRAPV instruction
+    DC.L    EXC_VECTOR_08       ; Privilege violation
+    DC.L    EXC_VECTOR_09       ; Trace
+    DC.L    EXC_VECTOR_10       ; Line A emulator
+    DC.L    EXC_VECTOR_11       ; Line F emulator
     DC.L    EXCEPTION_HANDLER   ; (reserved)
     DC.L    EXCEPTION_HANDLER   ; (reserved)
     DC.L    EXCEPTION_HANDLER   ; (reserved)
@@ -47,30 +47,30 @@
     DC.L    EXCEPTION_HANDLER   ; (reserved)
     DC.L    EXCEPTION_HANDLER   ; (reserved)
     DC.L    EXCEPTION_HANDLER   ; (reserved)
-    DC.L    EXCEPTION_HANDLER   ; Spurious interrupt
-    DC.L    EXCEPTION_HANDLER   ; Level 1 interrupt
-    DC.L    EXCEPTION_HANDLER   ; Level 2 interrupt (EXT)
-    DC.L    EXCEPTION_HANDLER   ; Level 3 interrupt
-    DC.L    EXCEPTION_HANDLER   ; Level 4 interrupt (H-blank)
-    DC.L    EXCEPTION_HANDLER   ; Level 5 interrupt
+    DC.L    EXC_VECTOR_24       ; Spurious interrupt
+    DC.L    EXC_VECTOR_25       ; Level 1 interrupt
+    DC.L    EXC_VECTOR_26       ; Level 2 interrupt (EXT)
+    DC.L    EXC_VECTOR_27       ; Level 3 interrupt
+    DC.L    EXC_VECTOR_28       ; Level 4 interrupt (H-blank)
+    DC.L    EXC_VECTOR_29       ; Level 5 interrupt
     DC.L    VDP_VBLANK_HANDLER  ; Level 6 interrupt (V-blank) ← Genesis VDP VBlank
-    DC.L    EXCEPTION_HANDLER   ; Level 7 interrupt (NMI)
-    DC.L    EXCEPTION_HANDLER   ; TRAP #0
-    DC.L    EXCEPTION_HANDLER   ; TRAP #1
-    DC.L    EXCEPTION_HANDLER   ; TRAP #2
-    DC.L    EXCEPTION_HANDLER   ; TRAP #3
-    DC.L    EXCEPTION_HANDLER   ; TRAP #4
-    DC.L    EXCEPTION_HANDLER   ; TRAP #5
-    DC.L    EXCEPTION_HANDLER   ; TRAP #6
-    DC.L    EXCEPTION_HANDLER   ; TRAP #7
-    DC.L    EXCEPTION_HANDLER   ; TRAP #8
-    DC.L    EXCEPTION_HANDLER   ; TRAP #9
-    DC.L    EXCEPTION_HANDLER   ; TRAP #10
-    DC.L    EXCEPTION_HANDLER   ; TRAP #11
-    DC.L    EXCEPTION_HANDLER   ; TRAP #12
-    DC.L    EXCEPTION_HANDLER   ; TRAP #13
-    DC.L    EXCEPTION_HANDLER   ; TRAP #14
-    DC.L    EXCEPTION_HANDLER   ; TRAP #15
+    DC.L    EXC_VECTOR_31       ; Level 7 interrupt (NMI)
+    DC.L    EXC_VECTOR_32       ; TRAP #0
+    DC.L    EXC_VECTOR_33       ; TRAP #1
+    DC.L    EXC_VECTOR_34       ; TRAP #2
+    DC.L    EXC_VECTOR_35       ; TRAP #3
+    DC.L    EXC_VECTOR_36       ; TRAP #4
+    DC.L    EXC_VECTOR_37       ; TRAP #5
+    DC.L    EXC_VECTOR_38       ; TRAP #6
+    DC.L    EXC_VECTOR_39       ; TRAP #7
+    DC.L    EXC_VECTOR_40       ; TRAP #8
+    DC.L    EXC_VECTOR_41       ; TRAP #9
+    DC.L    EXC_VECTOR_42       ; TRAP #10
+    DC.L    EXC_VECTOR_43       ; TRAP #11
+    DC.L    EXC_VECTOR_44       ; TRAP #12
+    DC.L    EXC_VECTOR_45       ; TRAP #13
+    DC.L    EXC_VECTOR_46       ; TRAP #14
+    DC.L    EXC_VECTOR_47       ; TRAP #15
     DC.L    EXCEPTION_HANDLER   ; (reserved x16)
     DC.L    EXCEPTION_HANDLER
     DC.L    EXCEPTION_HANDLER
@@ -155,6 +155,110 @@ CRASH_SR        EQU $FFEE08
 CRASH_PC        EQU $FFEE0A
 CRASH_FRAME     EQU $FFEE10
 CRASH_REGS      EQU $FFEE40
+CRASH_AUX       EQU $FFEE80
+TRACE_LAST      EQU $FFF000
+TRACE_SEQ       EQU $FFF002
+TRACE_RING      EQU $FFF010
+
+EXC_VECTOR_02:
+    move.w  #$0002,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_03:
+    move.w  #$0003,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_04:
+    move.w  #$0004,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_05:
+    move.w  #$0005,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_06:
+    move.w  #$0006,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_07:
+    move.w  #$0007,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_08:
+    move.w  #$0008,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_09:
+    move.w  #$0009,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_10:
+    move.w  #$000A,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_11:
+    move.w  #$000B,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_24:
+    move.w  #$0018,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_25:
+    move.w  #$0019,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_26:
+    move.w  #$001A,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_27:
+    move.w  #$001B,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_28:
+    move.w  #$001C,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_29:
+    move.w  #$001D,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_31:
+    move.w  #$001F,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_32:
+    move.w  #$0020,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_33:
+    move.w  #$0021,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_34:
+    move.w  #$0022,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_35:
+    move.w  #$0023,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_36:
+    move.w  #$0024,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_37:
+    move.w  #$0025,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_38:
+    move.w  #$0026,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_39:
+    move.w  #$0027,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_40:
+    move.w  #$0028,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_41:
+    move.w  #$0029,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_42:
+    move.w  #$002A,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_43:
+    move.w  #$002B,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_44:
+    move.w  #$002C,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_45:
+    move.w  #$002D,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_46:
+    move.w  #$002E,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
+EXC_VECTOR_47:
+    move.w  #$002F,(CRASH_VECTOR).l
+    bra     EXCEPTION_HANDLER
 
 
 GENESIS_RESET:
@@ -196,6 +300,9 @@ GENESIS_RESET:
 
     ; ── Initialize joypad ──
     bsr     JOYPAD_INIT
+    clr.b   (ram_0011_screen_ready_flag).l
+    move.w  #$0101,D0
+    bsr     TRACE_MARK
 
     ; ── Allow VBlank (Level 6) interrupts ──
     ; NES NMI is non-maskable: fires regardless of I flag.
@@ -206,11 +313,25 @@ GENESIS_RESET:
     ; ── Now jump to the translated Zelda init ──
     ; This is the translated NES reset handler
     ; (after CLD, SEI, stack init which we've already done above)
+    move.w  #$0102,D0
+    bsr     TRACE_MARK
     JMP     ResetHandler_NES
 
 ; ═══════════════════════════════════════════════════════════════
 ; JOYPAD_INIT - Set up Genesis controller ports
 ; ═══════════════════════════════════════════════════════════════
+TRACE_MARK:
+    movem.l D7/A0,-(A7)
+    move.w  D0,(TRACE_LAST).l
+    move.w  (TRACE_SEQ).l,D7
+    andi.w  #$001F,D7
+    lsl.w   #1,D7
+    lea     (TRACE_RING).l,A0
+    move.w  D0,(A0,D7.w)
+    addq.w  #1,(TRACE_SEQ).l
+    movem.l (A7)+,D7/A0
+    rts
+
 JOYPAD_INIT:
     move.b  #$40,($A10009)          ; port 1 ctrl: D0=output (for strobe)
     move.b  #$40,($A1000B)          ; port 2 ctrl
@@ -288,21 +409,34 @@ READ_JOYPAD:
 ; The raw frame bytes are also copied for deeper inspection.
 ; ═══════════════════════════════════════════════════════════════
 EXCEPTION_HANDLER:
+    movem.l D0-D7/A0-A6,(CRASH_REGS).l
     move.l  A7,(CRASH_SP).l         ; exception frame SP on entry
+    move.w  #$BEEF,(CRASH_MAGIC).l
+    tst.w   (CRASH_VECTOR).l
+    bne     .vector_ready
+    move.w  #$FFFF,(CRASH_VECTOR).l
+.vector_ready:
     move.w  (A7),(CRASH_SR).l       ; generic SR
     move.l  2(A7),(CRASH_PC).l      ; generic PC
-    move.w  #$BEEF,(CRASH_MAGIC).l
-    clr.w   (CRASH_VECTOR).l
+    clr.l   (CRASH_AUX).l
+    clr.w   (CRASH_AUX+$04).l
+    cmpi.w  #$0002,(CRASH_VECTOR).l
+    beq     .decode_bus_addr
+    cmpi.w  #$0003,(CRASH_VECTOR).l
+    bne     .copy_frame_data
+.decode_bus_addr:
+    move.l  2(A7),(CRASH_AUX).l
+    move.w  6(A7),(CRASH_AUX+$04).l
+    move.w  8(A7),(CRASH_SR).l
+    move.l  10(A7),(CRASH_PC).l
 
+.copy_frame_data:
     lea     CRASH_FRAME,A0
     movea.l A7,A1
     moveq   #15,D7                  ; copy first 16 words (32 bytes) of raw frame
-.copy_frame:
+.copy_frame_loop:
     move.w  (A1)+,(A0)+
-    dbra    D7,.copy_frame
-
-    lea     CRASH_REGS,A0
-    movem.l D0-D7/A0-A6,(A0)
+    dbra    D7,.copy_frame_loop
 
     ; Write red to CRAM entry 0 (background color)
     move.l  #$C0000000,($C00004)    ; CRAM write addr 0

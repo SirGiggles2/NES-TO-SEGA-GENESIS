@@ -55,7 +55,13 @@ tbl_800C_ppu_ppu_addr:  ; orig: tbl_800C_ppu_ppu_addr:
 
 
 loc_0x008022_fill_ppu_with_tiles_1:  ; orig: loc_0x008022_fill_ppu_with_tiles_1:
-    RTS     ; Genesis: tiles pre-loaded by CHR_VRAM_LOAD at startup
+    MOVE.W  #$0410,D0
+    BSR     TRACE_MARK
+    MOVE.B  #$5A,D0
+    MOVE.B  D0,ram_00F5_reset_check_5A
+    MOVE.B  #$00,D0
+    MOVE.B  D0,ram_051D
+    RTS     ; Genesis bring-up: skip unsafe bulk PPU copy, but preserve completion state
     BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C D 0 - - - 0x008022 02:8012: 20 25 E6  JSR sub_0x01E635_dis
     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x008025 02:8015: AD 02 20  LDA $2002
 bra_8018_loop:  ; orig: bra_8018_loop:

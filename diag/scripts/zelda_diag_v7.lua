@@ -12,16 +12,25 @@
 
 -- ======================== CONFIG ============================
 local NUM_FRAMES     = 300
-local REPORT_PATH    = "D:\\Zelda port CHAT GPT2\\diag_report_v68.txt"
-local ROM_DIR        = "D:\\Zelda port CHAT GPT2\\"
+local REPORT_PATH_LEGACY = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\diag_report_v68.txt"
+local REPORT_DIR     = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
+local ROM_DIR        = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\build\\"
 local SCREENSHOT_AT  = {1, 30, 60, 120, 180, 240, 300}
 local SAMPLE_VRAM    = true
 local SAMPLE_CRAM    = true
-local POLL_SECONDS   = 3
 local PC_DUMP_BEFORE = 16
 local PC_DUMP_AFTER  = 48
 local TOP_PC_DUMPS   = 8
 local STATUS_Y       = 0
+local STOP_ON_CRASH  = true
+local START_ROM_HINT = nil -- e.g. "zelda_v05.md" if current-ROM detection ever fails
+
+local TRACE_LAST_ADDR = 0xF000
+local TRACE_SEQ_ADDR  = 0xF002
+local TRACE_RING_ADDR = 0xF010
+local TRACE_RING_SIZE = 32
+local CRASH_AUX_ADDR  = 0xEE80
+local CRASH_REGS_ADDR = 0xEE40
 
 -- Specific loop / guard addresses we care about right now
 local TARGET_LOOP_PC          = 0x0007F6
@@ -37,6 +46,66 @@ local HOT_SYMBOLS = {
     {name="TARGET_LOOP_0007F6",addr=0x0007F6},
     {name="TITLE/NMI LOOP",    addr=0x014B80},
     {name="vec_0x01E494_NMI",  addr=0x01E494},
+}
+
+local TRACE_NAMES = {
+    [0x0101] = "GENESIS_RESET: joypad init complete",
+    [0x0102] = "GENESIS_RESET: jump to Zelda reset",
+    [0x0201] = "VDP_VBLANK_HANDLER: entry",
+    [0x0202] = "VDP_VBLANK_HANDLER: calling translated NMI",
+    [0x0203] = "VDP_VBLANK_HANDLER: translated NMI returned",
+    [0x0301] = "vec_0x01E494_NMI: frame body reached",
+    [0x0302] = "vec_0x01E494_NMI: taking startup handler 1",
+    [0x0303] = "vec_0x01E494_NMI: taking steady-state handler 2",
+    [0x0310] = "sub_E8F8_main_script_handler_1: entry",
+    [0x0311] = "sub_E8F8_main_script_handler_1: before battery copy",
+    [0x0312] = "sub_E8F8_main_script_handler_1: before sub_0x01809C",
+    [0x0313] = "sub_E8F8_main_script_handler_1: setup complete",
+    [0x0314] = "sub_E8F8_main_script_handler_1: title script dispatch",
+    [0x0400] = "PPU_WRITE_2006: address latched",
+    [0x0401] = "PPU_READ_2007: entry",
+    [0x0402] = "PPU_READ_2007: exit",
+    [0x0403] = "PPU_WRITE_2006: VDP command programmed",
+    [0x0410] = "TITLE_FILL_1: stage 1 completion stub",
+    [0x0411] = "TITLE_FILL_2: stage 2 completion stub",
+    [0x0412] = "TITLE_FILL_3: stage 3 completion stub",
+}
+
+local VECTOR_NAMES = {
+    [0x0002] = "Bus error",
+    [0x0003] = "Address error",
+    [0x0004] = "Illegal instruction",
+    [0x0005] = "Division by zero",
+    [0x0006] = "CHK exception",
+    [0x0007] = "TRAPV exception",
+    [0x0008] = "Privilege violation",
+    [0x0009] = "Trace",
+    [0x000A] = "Line A emulator",
+    [0x000B] = "Line F emulator",
+    [0x0018] = "Spurious interrupt",
+    [0x0019] = "Level 1 interrupt",
+    [0x001A] = "Level 2 interrupt",
+    [0x001B] = "Level 3 interrupt",
+    [0x001C] = "Level 4 interrupt",
+    [0x001D] = "Level 5 interrupt",
+    [0x001F] = "Level 7 interrupt",
+    [0x0020] = "TRAP #0",
+    [0x0021] = "TRAP #1",
+    [0x0022] = "TRAP #2",
+    [0x0023] = "TRAP #3",
+    [0x0024] = "TRAP #4",
+    [0x0025] = "TRAP #5",
+    [0x0026] = "TRAP #6",
+    [0x0027] = "TRAP #7",
+    [0x0028] = "TRAP #8",
+    [0x0029] = "TRAP #9",
+    [0x002A] = "TRAP #10",
+    [0x002B] = "TRAP #11",
+    [0x002C] = "TRAP #12",
+    [0x002D] = "TRAP #13",
+    [0x002E] = "TRAP #14",
+    [0x002F] = "TRAP #15",
+    [0xFFFF] = "Unlabeled exception",
 }
 -- ============================================================
 
@@ -80,10 +149,132 @@ local function scan_roms()
     return roms
 end
 
-local function get_latest_rom()
+local function basename(path)
+    if not path or path == "" then return nil end
+    return (path:gsub("^.*[\\/]", ""))
+end
+
+local function extract_rom_stem(name)
+    if not name or name == "" then return nil end
+    local base = basename(name)
+    return base:match("(zelda_v%d+)")
+end
+
+local function rom_version_number(name)
+    local stem = extract_rom_stem(name)
+    if not stem then return nil end
+    local digits = stem:match("v(%d+)")
+    if not digits then return nil end
+    return tonumber(digits)
+end
+
+local function canonical_rom_name(name)
+    local target_ver = rom_version_number(name)
+    if not target_ver then return nil end
     local roms = scan_roms()
-    if #roms > 0 then return roms[1] end
+    for _, rom in ipairs(roms) do
+        if rom_version_number(rom) == target_ver then
+            return rom
+        end
+    end
+    local stem = extract_rom_stem(name)
+    if stem then
+        return stem .. ".md"
+    end
     return nil
+end
+
+local function current_loaded_rom()
+    local candidates = {}
+
+    if gameinfo then
+        if type(gameinfo.getromname) == "function" then
+            candidates[#candidates+1] = gameinfo.getromname
+        end
+        if type(gameinfo.getromfilename) == "function" then
+            candidates[#candidates+1] = gameinfo.getromfilename
+        end
+        if type(gameinfo.getfilename) == "function" then
+            candidates[#candidates+1] = gameinfo.getfilename
+        end
+        if type(gameinfo.getpath) == "function" then
+            candidates[#candidates+1] = gameinfo.getpath
+        end
+    end
+
+    if client then
+        if type(client.getromname) == "function" then
+            candidates[#candidates+1] = client.getromname
+        end
+        if type(client.getfilename) == "function" then
+            candidates[#candidates+1] = client.getfilename
+        end
+    end
+
+    if emu then
+        if type(emu.getromname) == "function" then
+            candidates[#candidates+1] = emu.getromname
+        end
+        if type(emu.getgameinfo) == "function" then
+            candidates[#candidates+1] = function()
+                local info = emu.getgameinfo()
+                if type(info) == "table" then
+                    return info.romname or info.filename or info.name or info.path
+                end
+                return info
+            end
+        end
+    end
+
+    for _, getter in ipairs(candidates) do
+        local ok, value = pcall(getter)
+        if ok and type(value) == "string" and value ~= "" then
+            local name = canonical_rom_name(value)
+            if name then
+                return name
+            end
+        end
+    end
+
+    return nil
+end
+
+local function strip_ext(name)
+    if not name then return "unknown_rom" end
+    return (name:gsub("%.[^.]+$", ""))
+end
+
+local function rom_version_tag(rom_name)
+    local stem = strip_ext(rom_name)
+    local ver = stem:match("_(v%d+)$")
+    if ver then return ver end
+    return stem
+end
+
+local function rom_version_short_tag(rom_name)
+    local ver = rom_version_number(rom_name)
+    if ver then return "v" .. tostring(ver) end
+    return rom_version_tag(rom_name)
+end
+
+local function vector_name(id)
+    return VECTOR_NAMES[id] or "(unknown vector)"
+end
+
+local function ensure_report_dir()
+    os.execute('if not exist "' .. REPORT_DIR .. '" mkdir "' .. REPORT_DIR .. '"')
+end
+
+local function get_report_paths(rom_name)
+    local stem = strip_ext(rom_name)
+    local ver = rom_version_tag(rom_name)
+    local short_ver = rom_version_short_tag(rom_name)
+    ensure_report_dir()
+    return {
+        primary = REPORT_DIR .. "diag_report_" .. ver .. ".txt",
+        short = REPORT_DIR .. "diag_report_" .. short_ver .. ".txt",
+        full = REPORT_DIR .. "diag_report_" .. stem .. ".txt",
+    }
 end
 
 local function get_domain_list()
@@ -118,6 +309,67 @@ local function read_rom_byte(addr, rom_domain)
     if addr < 0 then return nil end
     local ok, val = pcall(memory.readbyte, addr, rom_domain)
     if ok then return val end
+    return nil
+end
+
+local function file_matches_loaded_rom(rom_name)
+    local rom_domain = pick_rom_domain()
+    local rom_size = get_domain_size(rom_domain)
+    if not rom_name or not rom_domain or not rom_size then return false end
+
+    local path = ROM_DIR .. rom_name
+    local f = io.open(path, "rb")
+    if not f then return false end
+
+    local file_size = f:seek("end")
+    f:seek("set", 0)
+    if not file_size or rom_size < file_size then
+        f:close()
+        return false
+    end
+
+    local addr = 0
+    while true do
+        local chunk = f:read(4096)
+        if not chunk then break end
+        for i = 1, #chunk do
+            if read_rom_byte(addr, rom_domain) ~= string.byte(chunk, i) then
+                f:close()
+                return false
+            end
+            addr = addr + 1
+        end
+    end
+
+    f:close()
+    return true
+end
+
+local function detect_current_rom()
+    local hinted = canonical_rom_name(START_ROM_HINT)
+    if hinted then
+        return hinted
+    end
+
+    local loaded = current_loaded_rom()
+    if loaded then
+        return loaded
+    end
+
+    local roms = scan_roms()
+    table.sort(roms, function(a, b)
+        local av = rom_version_number(a) or -1
+        local bv = rom_version_number(b) or -1
+        if av == bv then return a > b end
+        return av > bv
+    end)
+
+    for _, rom in ipairs(roms) do
+        if file_matches_loaded_rom(rom) then
+            return rom
+        end
+    end
+
     return nil
 end
 
@@ -181,6 +433,42 @@ local function push_ring(list, value, max_n)
     end
 end
 
+local function trace_name(id)
+    return TRACE_NAMES[id] or "(unknown checkpoint)"
+end
+
+local function read_trace_state()
+    local seq = read_ram(TRACE_SEQ_ADDR, 2)
+    local last = read_ram(TRACE_LAST_ADDR, 2)
+    local ring = {}
+    for i = 0, TRACE_RING_SIZE - 1 do
+        ring[#ring+1] = read_ram(TRACE_RING_ADDR + i * 2, 2)
+    end
+    return {seq = seq, last = last, ring = ring}
+end
+
+local function get_trace_history(state)
+    local history = {}
+    local count = math.min(state.seq, TRACE_RING_SIZE)
+    for i = 0, count - 1 do
+        local ring_index = ((state.seq - count + i) % TRACE_RING_SIZE) + 1
+        history[#history+1] = state.ring[ring_index]
+    end
+    return history
+end
+
+local function read_crash_info()
+    return {
+        magic = read_ram(0xEE00, 2),
+        vector = read_ram(0xEE02, 2),
+        sp = read_ram(0xEE04, 4),
+        sr = read_ram(0xEE08, 2),
+        pc = read_ram(0xEE0A, 4),
+        aux_long = read_ram(CRASH_AUX_ADDR, 4),
+        aux_word = read_ram(CRASH_AUX_ADDR + 4, 2),
+    }
+end
+
 -- ======================== RAM WATCHES ============================
 local WATCHES = {
     {addr=0x0000, sz=1, name="ppu_data_lo",    desc="PPU buf ptr lo  [ZP $00]"},
@@ -232,10 +520,15 @@ local WATCHES = {
     {addr=0xEF07, sz=1, name="PPUSCROLL_LATCH",desc="PPUSCROLL latch state"},
     {addr=0xEF08, sz=2, name="VRAM_ADDR_CURR", desc="Current VRAM write addr"},
     {addr=0xEF0A, sz=1, name="VDP_REG1",       desc="VDP Mode2 shadow"},
-    {addr=0xEE00, sz=4, name="CRASH_SP",       desc="Crash logger SP (optional)"},
-    {addr=0xEE04, sz=2, name="CRASH_SR",       desc="Crash logger SR (optional)"},
-    {addr=0xEE06, sz=4, name="CRASH_PC",       desc="Crash logger PC (optional)"},
-    {addr=0xEE0A, sz=2, name="CRASH_VEC",      desc="Crash logger vector/format (optional)"},
+    {addr=0xEE00, sz=2, name="CRASH_MAGIC",    desc="Crash logger magic"},
+    {addr=0xEE02, sz=2, name="CRASH_VEC",      desc="Crash logger vector/format (optional)"},
+    {addr=0xEE04, sz=4, name="CRASH_SP",       desc="Crash logger SP (optional)"},
+    {addr=0xEE08, sz=2, name="CRASH_SR",       desc="Crash logger SR (optional)"},
+    {addr=0xEE0A, sz=4, name="CRASH_PC",       desc="Crash logger PC (optional)"},
+    {addr=0xEE80, sz=4, name="CRASH_AUX",      desc="Crash aux data (fault addr for bus/address)"},
+    {addr=0xEE84, sz=2, name="CRASH_AUX_W",    desc="Crash aux word (IR/SSW for bus/address)"},
+    {addr=0xF000, sz=2, name="TRACE_LAST",     desc="Last startup checkpoint"},
+    {addr=0xF002, sz=2, name="TRACE_SEQ",      desc="Startup checkpoint sequence"},
 }
 
 -- Hand-picked loop-release suspects to summarize separately.
@@ -263,6 +556,9 @@ local LOOP_SUSPECT_NAMES = {
 }
 
 local function run_diagnostics(rom_name)
+    local rom_base = strip_ext(rom_name)
+    local report_paths = get_report_paths(rom_name)
+    local report_path = report_paths.primary
     local report = {}
     local function log(s) report[#report+1] = s end
     local function log_sep(title)
@@ -295,6 +591,10 @@ local function run_diagnostics(rom_name)
     local pc_seen = {}
     local pc_run_len, longest_same_pc, longest_same_pc_addr = 0, 0, 0
     local oam_nonzero_words = 0
+    local crash_detected = false
+    local crash_frame = nil
+    local frames_ran = NUM_FRAMES
+    local trace_state = nil
 
     -- New loop-focused telemetry
     local pc_trace = {}
@@ -454,13 +754,37 @@ local function run_diagnostics(rom_name)
             rom_name or "?", i, hex(pc,6), hex(r2000), hex(r2001), hex(reg1), hex(frmcnt), hex(vramc,4))
         gui.drawText(0, STATUS_Y, status, 0xFFFFFFFF, 0xCC000000, 10)
 
+        local current_crash = read_crash_info()
+        if current_crash.magic == 0xBEEF and not crash_detected then
+            crash_detected = true
+            crash_frame = i
+            frames_ran = i
+            trace_state = read_trace_state()
+            add_ms(i, "CRASH LOGGER ARMED: vector=" .. hex(current_crash.vector, 4) .. " " .. vector_name(current_crash.vector))
+            add_ms(i, "CRASH LOGGER ARMED: last checkpoint=" .. hex(trace_state.last, 4) .. " " .. trace_name(trace_state.last))
+            if STOP_ON_CRASH then
+                if not screenshot_set[i] then
+                    local fname = rom_base .. "_f" .. string.format("%03d", i) .. "_crash.png"
+                    client.screenshot(fname)
+                    screenshots_taken[#screenshots_taken+1] = fname
+                end
+                break
+            end
+        end
+
         if screenshot_set[i] then
-            local fname = "zelda_diag_f" .. string.format("%03d", i) .. ".png"
+            local fname = rom_base .. "_f" .. string.format("%03d", i) .. ".png"
             client.screenshot(fname)
             screenshots_taken[#screenshots_taken+1] = fname
         end
         emu.frameadvance()
     end
+
+    if not crash_detected then
+        trace_state = read_trace_state()
+    end
+
+    local crash_info = read_crash_info()
 
     if SAMPLE_VRAM then
         local vram_regions = {}
@@ -490,8 +814,8 @@ local function run_diagnostics(rom_name)
     log("================================================================")
     log("  ZELDA GENESIS PORT - DIAGNOSTIC REPORT  v7")
     log("  ROM: " .. (rom_name or "(unknown)"))
-    log("  Frames: " .. NUM_FRAMES .. "  (~" .. string.format("%.1f", NUM_FRAMES/60.0) .. "s)")
-    log("  Report path: " .. REPORT_PATH)
+    log("  Frames: " .. frames_ran .. "  (~" .. string.format("%.1f", frames_ran/60.0) .. "s)")
+    log("  Report path: " .. report_path)
     log("  ROM dir: " .. ROM_DIR)
     log("  ROM domain: " .. (rom_domain or "(not found)"))
     log("================================================================")
@@ -550,9 +874,8 @@ local function run_diagnostics(rom_name)
     if ram_changes[0xEF05].count > 0 or ram_changes[0xEF06].count > 0 then checks[#checks+1] = "PASS  Scroll shadows changed" else checks[#checks+1] = "WARN  No scroll shadow activity observed" end
     if vdp_lost_vint then checks[#checks+1] = "WARN  VDP VINT was enabled then lost at frame " .. tostring(vdp_lost_frame) end
 
-    local crash_pc = read_ram(0xEE06,4)
-    if crash_pc ~= 0 then
-        checks[#checks+1] = "FAIL  EXCEPTION_HANDLER hit! crash_pc=" .. hex(crash_pc,8)
+    if crash_info.magic == 0xBEEF then
+        checks[#checks+1] = "FAIL  EXCEPTION_HANDLER hit! vector=" .. hex(crash_info.vector,4) .. " " .. vector_name(crash_info.vector) .. " crash_pc=" .. hex(crash_info.pc,8)
     end
 
     local pass_count, fail_count = 0, 0
@@ -710,7 +1033,7 @@ local function run_diagnostics(rom_name)
     table.sort(pc_sorted, function(a,b) return a.count > b.count end)
     for idx = 1, math.min(#pc_sorted, 30) do
         local p = pc_sorted[idx]
-        log(string.format("  %s: %4d frames (%.1f%%)", hex(p.pc,6), p.count, p.count/NUM_FRAMES*100))
+        log(string.format("  %s: %4d frames (%.1f%%)", hex(p.pc,6), p.count, p.count/math.max(1, frames_ran)*100))
     end
 
     log_sep("ROM BYTE DUMPS AROUND STUCK/HOT PCS")
@@ -732,11 +1055,53 @@ local function run_diagnostics(rom_name)
         append_lines(report, dump_rom_bytes(p.pc, PC_DUMP_BEFORE, PC_DUMP_AFTER, rom_domain))
     end
 
-    local crash_pc2 = read_ram(0xEE06,4)
-    if crash_pc2 ~= 0 then
+    if crash_info.magic == 0xBEEF and crash_info.pc ~= 0 then
         log("")
         log("  CRASH PC BYTE DUMP")
-        append_lines(report, dump_rom_bytes(crash_pc2, 16, 48, rom_domain))
+        append_lines(report, dump_rom_bytes(crash_info.pc, 16, 48, rom_domain))
+    end
+
+    log_sep("CHECKPOINT TRACE")
+    log("  Trace sequence: " .. tostring(trace_state.seq))
+    log("  Last checkpoint: " .. hex(trace_state.last, 4) .. "  " .. trace_name(trace_state.last))
+    local trace_history = get_trace_history(trace_state)
+    if #trace_history == 0 then
+        log("  (no checkpoints recorded)")
+    else
+        for i, id in ipairs(trace_history) do
+            log(string.format("  %2d. %s  %s", i, hex(id, 4), trace_name(id)))
+        end
+    end
+
+    if crash_info.magic == 0xBEEF then
+        log_sep("CRASH LOGGER")
+        log("  Crash frame: " .. tostring(crash_frame or frames_ran))
+        log("  Magic: " .. hex(crash_info.magic, 4))
+        log("  Vector: " .. hex(crash_info.vector, 4) .. "  " .. vector_name(crash_info.vector))
+        log("  Saved SP: " .. hex(crash_info.sp, 8))
+        log("  Saved SR: " .. hex(crash_info.sr, 4))
+        log("  Saved PC: " .. hex(crash_info.pc, 8))
+        if crash_info.vector == 0x0002 or crash_info.vector == 0x0003 then
+            log("  Fault address: " .. hex(crash_info.aux_long, 8))
+            log("  Fault IR/SSW: " .. hex(crash_info.aux_word, 4))
+        elseif crash_info.aux_long ~= 0 or crash_info.aux_word ~= 0 then
+            log("  Crash aux: " .. hex(crash_info.aux_long, 8) .. " / " .. hex(crash_info.aux_word, 4))
+        end
+        log("  Raw frame words:")
+        for row = 0, 1 do
+            local base = 0xEE10 + row * 16
+            local dline = string.format("    $FF%04X:", base)
+            for col = 0, 7 do
+                dline = dline .. " " .. hex(read_ram(base + col * 2, 2), 4)
+            end
+            log(dline)
+        end
+        log("  Saved registers:")
+        local crash_reg_names = {"D0","D1","D2","D3","D4","D5","D6","D7","A0","A1","A2","A3","A4","A5","A6"}
+        for idx, rn in ipairs(crash_reg_names) do
+            local reg_val = read_ram(CRASH_REGS_ADDR + (idx - 1) * 4, 4)
+            log(string.format("    %-3s = %s", rn, hex(reg_val, 8)))
+        end
     end
 
     log_sep("FINAL CPU STATE")
@@ -787,6 +1152,22 @@ local function run_diagnostics(rom_name)
         log(dline)
     end
 
+    log_sep("RAM DUMP: $FFEE40-$FFEE8F (saved crash regs / aux)")
+    for row = 0, 4 do
+        local base = 0xEE40 + row*16
+        local dline = string.format("  $FF%04X:", base)
+        for col = 0, 15 do dline = dline .. " " .. hex(safe_read_byte("68K RAM", base+col)) end
+        log(dline)
+    end
+
+    log_sep("RAM DUMP: $FFF000-$FFF03F (trace ring)")
+    for row = 0, 3 do
+        local base = 0xF000 + row*16
+        local dline = string.format("  $FF%04X:", base)
+        for col = 0, 15 do dline = dline .. " " .. hex(safe_read_byte("68K RAM", base+col)) end
+        log(dline)
+    end
+
     log_sep("RAM DUMP: $FFEF00-$FFEF1F (VDP shadow regs)")
     for row = 0, 1 do
         local base = 0xEF00 + row*16
@@ -802,11 +1183,30 @@ local function run_diagnostics(rom_name)
     log("  END OF DIAGNOSTIC REPORT")
     log("================================================================")
 
-    local f = io.open(REPORT_PATH, "w")
+    local f = io.open(report_path, "w")
     if f then
         for _, line_text in ipairs(report) do f:write(line_text .. "\n") end
         f:close()
-        console.log("Report written: " .. REPORT_PATH)
+        console.log("Report written: " .. report_path)
+        if report_paths.short ~= report_path then
+            local short = io.open(report_paths.short, "w")
+            if short then
+                for _, line_text in ipairs(report) do short:write(line_text .. "\n") end
+                short:close()
+            end
+        end
+        if report_paths.full ~= report_path then
+            local full = io.open(report_paths.full, "w")
+            if full then
+                for _, line_text in ipairs(report) do full:write(line_text .. "\n") end
+                full:close()
+            end
+        end
+        local legacy = io.open(REPORT_PATH_LEGACY, "w")
+        if legacy then
+            for _, line_text in ipairs(report) do legacy:write(line_text .. "\n") end
+            legacy:close()
+        end
     else
         for _, line_text in ipairs(report) do console.log(line_text) end
     end
@@ -815,14 +1215,17 @@ end
 
 console.clear()
 console.log("=== ZELDA GENESIS DIAGNOSTIC v7 ===")
-console.log("Watching: " .. ROM_DIR .. "zelda_v*.md")
+console.log("Current-ROM mode")
 console.log("")
 
-local current_rom = get_latest_rom()
-console.log("Latest ROM: " .. (current_rom or "(none found)"))
+local current_rom = detect_current_rom()
+if not current_rom then
+    console.log("Could not determine the currently loaded ROM.")
+    console.log("If needed, set START_ROM_HINT near the top of the script to something like zelda_v05.md and rerun.")
+    return
+end
+
+console.log("Detected current ROM: " .. current_rom)
 console.log("Running diagnostics (" .. NUM_FRAMES .. " frames)...")
 local pass, fail = run_diagnostics(current_rom)
 console.log(string.format("Done! %d PASS / %d FAIL", pass, fail))
-console.log("")
-console.log("Now watching for new builds... (poll every " .. POLL_SECONDS .. "s)")
-console.log("")

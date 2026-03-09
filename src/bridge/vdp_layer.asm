@@ -37,16 +37,13 @@ PPUSCROLL_Y     EQU $FFFFEF06
 PPUSCROLL_LATCH EQU $FFFFEF07
 VRAM_ADDR_CURR  EQU $FFFFEF08
 VDP_REG1_SHADOW EQU $FFFFEF0A
+PPUDATA_BUFFER  EQU $FFFFEF0C
 
 RAM_FOR_2001    EQU $FFFF00FE
 RAM_FOR_2000    EQU $FFFF00FF
 RAM_SCROLL_Y    EQU $FFFF00FC
 RAM_SCROLL_X    EQU $FFFF00FD
 
-ram_frm_cnt                 EQU $FF0015
-ram_0011_screen_ready_flag  EQU $FF0011
-ram_0300_useless            EQU $FF0300
-vec_0x01E494_NMI            EQU vec_E484_NMI   ; from bank_FF
 
 VDP_INIT:
     move.w  #$8000,($C00004)
@@ -76,6 +73,7 @@ VDP_INIT:
     clr.b   (PPUADDR_LATCH).l
     clr.b   (PPUSCROLL_LATCH).l
     clr.w   (VRAM_ADDR_CURR).l
+    clr.b   (PPUDATA_BUFFER).l
 
     move.b  #$54,(VDP_REG1_SHADOW).l
     move.w  #$8154,($C00004)
@@ -139,7 +137,7 @@ PPU_WRITE_2005:
     move.b  D0,(PPUSCROLL_X).l
     move.b  D0,(RAM_SCROLL_X).l
     move.b  #1,(PPUSCROLL_LATCH).l
-    move.l  #$BC000003,($C00004)
+    move.l  #$7C000002,($C00004)
     moveq   #0,D3
     move.b  (PPUSCROLL_X).l,D3
     neg.w   D3
@@ -168,6 +166,8 @@ PPU_WRITE_2006:
     lsl.w   #8,D3
     move.b  (PPUADDR_LO).l,D3
     move.w  D3,(VRAM_ADDR_CURR).l
+    move.w  #$0400,D0
+    bsr     TRACE_MARK
     move.w  D3,D4
     andi.w  #$FF00,D4
     cmpi.w  #$3F00,D4
@@ -180,6 +180,8 @@ PPU_WRITE_2006:
     lsr.w   #6,D4
     ori.l   #$40000000,D4
     move.l  D4,($C00004)
+    move.w  #$0403,D0
+    bsr     TRACE_MARK
     rts
 .palette_addr:
     move.w  D3,D4
@@ -188,6 +190,8 @@ PPU_WRITE_2006:
     swap    D4
     ori.l   #$C0000000,D4
     move.l  D4,($C00004)
+    move.w  #$0403,D0
+    bsr     TRACE_MARK
     rts
 
 PPU_WRITE_2007:
@@ -231,10 +235,26 @@ PPU_WRITE_2007:
     rts
 
 PPU_READ_2007:
-    move.w  ($C00000),D0
-    lsr.w   #8,D0
-    andi.w  #$00FF,D0
     move.w  (VRAM_ADDR_CURR).l,D3
+    move.w  #$0401,D0
+    bsr     TRACE_MARK
+    moveq   #0,D0
+    move.b  (PPUDATA_BUFFER).l,D0
+    move.w  D3,D4
+    andi.w  #$FF00,D4
+    cmpi.w  #$3F00,D4
+    beq     .skip_vdp_read
+    move.w  D3,D4
+    andi.w  #$3FFF,D4
+    swap    D4
+    move.w  D3,D4
+    lsr.w   #8,D4
+    lsr.w   #6,D4
+    move.l  D4,($C00004)
+    move.w  ($C00000),D4
+    lsr.w   #8,D4
+    move.b  D4,(PPUDATA_BUFFER).l
+.skip_vdp_read:
     btst    #2,(PPUCTRL_SHADOW).l
     beq     .read_inc_by_1
     addi.w  #32,D3
@@ -243,19 +263,24 @@ PPU_READ_2007:
     addi.w  #1,D3
 .read_inc_done:
     move.w  D3,(VRAM_ADDR_CURR).l
+    move.l  D0,-(A7)
+    move.w  #$0402,D0
+    bsr     TRACE_MARK
+    move.l  (A7)+,D0
     rts
 
 VDP_VBLANK_HANDLER:
     movem.l D0-D7/A0-A6,-(A7)
     move.w  ($C00004),D0
-    addq.b  #1,(ram_frm_cnt).l
-    move.b  #1,(ram_0011_screen_ready_flag).l
-    move.b  #$3F,(ram_0300_useless).l
-    move.b  #$80,(RAM_FOR_2000).l
-    bsr     PPU_WRITE_2000
-    moveq   #$1E,D0
-    bsr     PPU_WRITE_2001
-    jmp     vec_0x01E494_NMI        ; CRITICAL FIX: jmp (no stack corruption)
+    move.w  #$0201,D0
+    bsr     TRACE_MARK
+    move.b  #$FF,(ram_0302_ppu_buffer).l
+    move.w  #$0202,D0
+    bsr     TRACE_MARK
+    bsr     vec_0x01E494_NMI
+    move.w  #$0203,D0
+    bsr     TRACE_MARK
+
     movem.l (A7)+,D0-D7/A0-A6
     rte
 
@@ -339,3 +364,4 @@ NES_PALETTE_DATA:
     DC.W $0CE0,$04E0,$04E4,$04EE,$006E,$0000,$0000,$0000
     DC.W $0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0EEE
     DC.W $0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0000,$0000,$0000
+

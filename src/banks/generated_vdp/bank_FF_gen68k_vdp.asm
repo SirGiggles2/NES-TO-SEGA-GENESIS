@@ -234,7 +234,7 @@ bFF_bra_E4A5_skip_rendering:  ; orig: bFF_bra_E4A5_skip_rendering:
     MOVE.B  D0,D0  ; prep for PPU_WRITE_2003 (OAM addr)  ; was: C - - - - - 0x01E4BC 07:E4AC: 8D 03 20  STA $2003
     BSR     PPU_WRITE_2003
     MOVE.B  #$02,D0  ; orig: C - - - - - 0x01E4BF 07:E4AF: A9 02     LDA #$02
-    MOVE.B  D0,$4014  ; orig: C - - - - - 0x01E4C1 07:E4B1: 8D 14 40  STA $4014
+    BSR     VDP_OAM_DMA_TRANSFER  ; route NES OAM DMA to Genesis SAT upload
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x01E4C4 07:E4B4: A9 00     LDA #$00
     MOVE.B  D0,D0  ; prep for PPU_WRITE_2005 (scroll)  ; was: C - - - - - 0x01E4C6 07:E4B6: 8D 05 20  STA $2005
     BSR     PPU_WRITE_2005
@@ -388,11 +388,17 @@ bFF_bra_E556_loop:  ; orig: bFF_bra_E556_loop:
     BSR     sub_FFAC_prg_bankswitch             ; JSR -> BSR  ; orig: C - - - - - 0x01E56E 07:E55E: 20 AC FF  JSR sub_FFAC_prg_ban
     BSR     sub_0x001835_update_sound_driver             ; JSR -> BSR  ; orig: C - - - - - 0x01E571 07:E561: 20 25 98  JSR sub_0x001835_upd
     ADDQ.B  #1,ram_frm_cnt  ; orig: C - - - - - 0x01E574 07:E564: E6 15     INC ram_frm_cnt
+    MOVE.W  #$0301,D0
+    BSR     TRACE_MARK
     MOVE.B  ram_0011_screen_ready_flag,D0  ; orig: C - - - - - 0x01E576 07:E566: A5 11     LDA ram_0011_screen_
     BNE     bFF_bra_E570_skip_handler             ; BNE  ; orig: C - - - - - 0x01E578 07:E568: D0 06     BNE bra_E570_skip_ha
+    MOVE.W  #$0302,D0
+    BSR     TRACE_MARK
     BSR     sub_E8F8_main_script_handler_1             ; JSR -> BSR  ; orig: C - - - - - 0x01E57A 07:E56A: 20 F8 E8  JSR sub_E8F8_main_sc
     JMP     loc_E573  ; orig: C - - - - - 0x01E57D 07:E56D: 4C 73 E5  JMP loc_E573
 bFF_bra_E570_skip_handler:  ; orig: bFF_bra_E570_skip_handler:
+    MOVE.W  #$0303,D0
+    BSR     TRACE_MARK
     BSR     sub_EB30_main_script_handler_2             ; JSR -> BSR  ; orig: C - - - - - 0x01E580 07:E570: 20 30 EB  JSR sub_EB30_main_sc
 loc_E573:  ; orig: loc_E573:
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C D 3 - - - 0x01E583 07:E573: AD 02 20  LDA $2002
@@ -1167,21 +1173,31 @@ bFF_bra_E8E2_loop:  ; orig: bFF_bra_E8E2_loop:
 
 
 sub_E8F8_main_script_handler_1:  ; orig: sub_E8F8_main_script_handler_1:
+    MOVE.W  #$0310,D0
+    BSR     TRACE_MARK
     MOVE.B  ram_00F4_flag,D0  ; orig: C - - - - - 0x01E908 07:E8F8: A5 F4     LDA ram_00F4_flag
     BNE     bFF_bra_E919             ; BNE  ; orig: C - - - - - 0x01E90A 07:E8FA: D0 1D     BNE bFF_bra_E919
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x01E90C 07:E8FC: A9 01     LDA #con_prg_bank + 
     BSR     sub_FFAC_prg_bankswitch             ; JSR -> BSR  ; orig: C - - - - - 0x01E90E 07:E8FE: 20 AC FF  JSR sub_FFAC_prg_ban
+    MOVE.W  #$0311,D0
+    BSR     TRACE_MARK
     BSR     sub_0x004D10_copy_code_data_to_battery             ; JSR -> BSR  ; orig: C - - - - - 0x01E911 07:E901: 20 00 8D  JSR sub_0x004D10_cop
     MOVE.B  #$06,D0  ; orig: C - - - - - 0x01E914 07:E904: A9 06     LDA #con_prg_bank + 
     BSR     sub_FFAC_prg_bankswitch             ; JSR -> BSR  ; orig: C - - - - - 0x01E916 07:E906: 20 AC FF  JSR sub_FFAC_prg_ban
+    MOVE.W  #$0312,D0
+    BSR     TRACE_MARK
     BSR     sub_0x01809C             ; JSR -> BSR  ; orig: C - - - - - 0x01E919 07:E909: 20 8C 80  JSR sub_0x01809C
     MOVE.B  #$5A,D0  ; orig: C - - - - - 0x01E91C 07:E90C: A9 5A     LDA #$5A
     MOVE.B  D0,ram_battery_check_1  ; orig: C - - - - - 0x01E91E 07:E90E: 8D 01 60  STA ram_battery_chec
     MOVE.B  #$A5,D0  ; orig: C - - - - - 0x01E921 07:E911: A9 A5     LDA #$A5
     MOVE.B  D0,ram_battery_check_2  ; orig: C - - - - - 0x01E923 07:E913: 8D FF 7F  STA ram_battery_chec
     ADDQ.B  #1,ram_00F4_flag  ; orig: C - - - - - 0x01E926 07:E916: E6 F4     INC ram_00F4_flag   
+    MOVE.W  #$0313,D0
+    BSR     TRACE_MARK
     RTS                     ; RTS  ; orig: C - - - - - 0x01E928 07:E918: 60        RTS
 bFF_bra_E919:  ; orig: bFF_bra_E919:
+    MOVE.W  #$0314,D0
+    BSR     TRACE_MARK
     MOVE.B  #$05,D0  ; orig: C - - - - - 0x01E929 07:E919: A9 05     LDA #con_prg_bank + 
     BSR     sub_FFAC_prg_bankswitch             ; JSR -> BSR  ; orig: C - - - - - 0x01E92B 07:E91B: 20 AC FF  JSR sub_FFAC_prg_ban
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x01E92E 07:E91E: A5 12     LDA ram_script
