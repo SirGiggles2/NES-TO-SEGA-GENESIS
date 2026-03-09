@@ -215,7 +215,15 @@ ofs_main_script_2_0x009030_00_title_screen:  ; orig: ofs_main_script_2_0x009030_
     BNE     b02_bra_9030             ; BNE  ; orig: C - - - - - 0x009037 02:9027: D0 07     BNE b02_bra_9030
     BSR     sub_90CF             ; JSR -> BSR  ; orig: C - - - - - 0x009039 02:9029: 20 CF 90  JSR sub_90CF
     MOVE.B  ram_0011_screen_ready_flag,D0  ; orig: C - - - - - 0x00903C 02:902C: A5 11     LDA ram_0011_screen_
-    BEQ     b02_bra_905C_RTS             ; BEQ  ; orig: C - - - - - 0x00903E 02:902E: F0 2C     BEQ b02_bra_905C_RTS
+    BNE     b02_bra_9030
+    MOVE.B  ram_041D,D0
+    MOVE.B  ($00FF042E).l,D1
+    OR.B    D1,D0
+    BEQ     b02_bra_905C_RTS             ; orig: C - - - - - 0x00903E 02:902E: F0 2C     BEQ b02_bra_905C_RTS
+    MOVE.W  #$0433,D0
+    BSR     TRACE_MARK
+    MOVE.B  #con_ppu_buf_title_screen,D0
+    BSR     loc_95A2
 b02_bra_9030:  ; orig: b02_bra_9030:
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x009040 02:9030: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x009042 02:9032: 20 E2 E5  JSR sub_0x01E5F2_jum
