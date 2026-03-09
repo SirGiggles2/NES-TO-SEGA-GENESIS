@@ -1,7 +1,7 @@
 ; ═══════════════════════════════════════════════════════════════
 ; vdp_layer.asm - FULL FILE (v68 ready)
 ; Sega Genesis VDP → NES PPU translation layer
-; FIXED: VBlank now uses jmp (no stack corruption) + forced NMI every frame
+; FIXED: VBlank bridges into NES NMI via BSR and cleanly restores 68k context
 ; ═══════════════════════════════════════════════════════════════
 
 VDP_DATA        EQU $C00000
@@ -255,7 +255,7 @@ VDP_VBLANK_HANDLER:
     bsr     PPU_WRITE_2000
     moveq   #$1E,D0
     bsr     PPU_WRITE_2001
-    jmp     vec_0x01E494_NMI        ; CRITICAL FIX: jmp (no stack corruption)
+    bsr     vec_0x01E494_NMI
     movem.l (A7)+,D0-D7/A0-A6
     rte
 
