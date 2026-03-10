@@ -5,6 +5,9 @@
 local NUM_FRAMES = 300
 local OUT_DIR = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
 local TRACE_HINT = nil -- e.g. "zelda_v40" or "zelda_nes_title"
+local RESET_ON_START = true
+local RESET_KIND = "poweron" -- "poweron" or "softreset"
+local RESET_SETTLE_FRAMES = 0
 
 local WATCHES = {
     { key = "ram_0000_t49",    addr = 0x0000, width = 2 },
@@ -69,6 +72,30 @@ local GENESIS_ONLY_WATCHES = {
     { key = "PPU_REQ_INDEX",   addr = 0xF0A2, width = 4, bytes = 2 },
     { key = "PPU_REQ_PTR",     addr = 0xF0A4, width = 4, bytes = 2 },
     { key = "PPU_REQ_RES",     addr = 0xF0A8, width = 8, bytes = 4 },
+    { key = "SEQ_EVT_COUNT",   addr = 0xF0AC, width = 4, bytes = 2 },
+    { key = "PPU_EVT_COUNT",   addr = 0xF0AE, width = 4, bytes = 2 },
+}
+
+local TRACE_SEQ_EVT_COUNT_ADDR = 0xF0AC
+local TRACE_PPU_EVT_COUNT_ADDR = 0xF0AE
+local TRACE_SEQ_EVT_RING_ADDR = 0xF0C0
+local TRACE_PPU_EVT_RING_ADDR = 0xF140
+local TRACE_EVT_RING_SIZE = 8
+local TRACE_EVT_SLOT_SIZE = 16
+
+local EVENT_NAMES = {
+    [0x04A0] = "BANK6_PPU_LEGACY raw header",
+    [0x04A1] = "BANK6_PPU_LEGACY literal decode",
+    [0x04A2] = "BANK6_PPU_LEGACY repeat decode",
+    [0x04A3] = "BANK6_PPU_LEGACY palette fixup",
+    [0x04A4] = "BANK6_PPU_LEGACY pointer advance",
+    [0x04B1] = "BANK0_SEQ 9D37 primary fetch",
+    [0x04B2] = "BANK0_SEQ 9D63 follow fetch",
+    [0x04B3] = "BANK0_SEQ 9DBE pulse fetch",
+    [0x04B4] = "BANK0_SEQ 9DCE pulse follow",
+    [0x04B5] = "BANK0_SEQ 9E2C control fetch",
+    [0x04B6] = "BANK0_SEQ 9E66 triangle follow",
+    [0x04B7] = "BANK0_SEQ 9EA7 noise fetch",
 }
 
 local function get_domain_list()
@@ -329,6 +356,20 @@ local function read_watch(watch, domain, base)
     return 0
 end
 
+local function read_be(domain, addr, bytes)
+    local reader = memory.readbyte
+    if bytes == 2 then
+        reader = memory.read_u16_be
+    elseif bytes == 4 then
+        reader = memory.read_u32_be
+    end
+    local ok, value = pcall(reader, addr, domain)
+    if ok and type(value) == "number" then
+        return value
+    end
+    return 0
+end
+
 local function hex(value, width)
     return string.format("%0" .. tostring(width) .. "X", value or 0)
 end
@@ -362,7 +403,158 @@ local function csv_escape(value)
     return s
 end
 
-local function write_row(file, values)
+local write_row
+
+local function call_if_exists(fn)
+    if type(fn) == "function" then
+        local ok = pcall(fn)
+        if ok then
+            return true
+        end
+    end
+    return false
+end
+
+local function reset_emulation()
+    if not RESET_ON_START then
+        return "none"
+    end
+
+    local kind = string.lower(RESET_KIND or "poweron")
+
+    if kind == "softreset" then
+        if call_if_exists(emu and emu.softreset) then
+            return "softreset"
+        end
+    end
+
+    if call_if_exists(emu and emu.reset) then
+        return "reset"
+    end
+
+    if call_if_exists(emu and emu.poweron) then
+        return "poweron"
+    end
+
+    if call_if_exists(emu and emu.softreset) then
+        return "softreset"
+    end
+
+    if call_if_exists(client and client.reboot_core) then
+        return "reboot_core"
+    end
+
+    if client and type(client.openrom) == "function" then
+        local rom_candidates = {
+            try_name(gameinfo and gameinfo.getromfilename),
+            try_name(gameinfo and gameinfo.getfilename),
+            try_name(client and client.getfilename),
+            current_rom_name(),
+        }
+        for _, rom_name in ipairs(rom_candidates) do
+            if rom_name then
+                local ok = pcall(client.openrom, rom_name)
+                if ok then
+                    return "openrom"
+                end
+            end
+        end
+    end
+
+    return "unsupported"
+end
+
+local function event_name(event_id)
+    return EVENT_NAMES[event_id] or ""
+end
+
+local function count_delta(current, previous)
+    if previous == nil then
+        return current
+    end
+    if current >= previous then
+        return current - previous
+    end
+    return (0x10000 - previous) + current
+end
+
+local function append_seq_events(file, frame, system_name, rom_label, total_count, previous_count, domain, base_offset)
+    if not file then
+        return total_count
+    end
+    local delta = math.min(count_delta(total_count, previous_count), TRACE_EVT_RING_SIZE)
+    if delta <= 0 then
+        return total_count
+    end
+    for i = delta, 1, -1 do
+        local ordinal = total_count - i + 1
+        local slot = (ordinal - 1) % TRACE_EVT_RING_SIZE
+        local base = (base_offset or 0) + TRACE_SEQ_EVT_RING_ADDR + slot * TRACE_EVT_SLOT_SIZE
+        local event_id = read_be(domain, base, 2)
+        write_row(file, {
+            frame,
+            system_name,
+            rom_label,
+            "seq",
+            total_count,
+            ordinal,
+            hex(event_id, 4),
+            event_name(event_id),
+            hex(read_be(domain, base + 2, 2), 4),
+            "",
+            "",
+            hex(read_be(domain, base + 4, 2), 4),
+            hex(read_be(domain, base + 12, 4), 8),
+            hex(read_be(domain, base + 6, 2), 4),
+            hex(read_be(domain, base + 8, 2), 4),
+            hex(read_be(domain, base + 10, 2), 4),
+            "",
+            "",
+            "",
+        })
+    end
+    return total_count
+end
+
+local function append_ppu_events(file, frame, system_name, rom_label, total_count, previous_count, domain, base_offset)
+    if not file then
+        return total_count
+    end
+    local delta = math.min(count_delta(total_count, previous_count), TRACE_EVT_RING_SIZE)
+    if delta <= 0 then
+        return total_count
+    end
+    for i = delta, 1, -1 do
+        local ordinal = total_count - i + 1
+        local slot = (ordinal - 1) % TRACE_EVT_RING_SIZE
+        local base = (base_offset or 0) + TRACE_PPU_EVT_RING_ADDR + slot * TRACE_EVT_SLOT_SIZE
+        local event_id = read_be(domain, base, 2)
+        write_row(file, {
+            frame,
+            system_name,
+            rom_label,
+            "ppu",
+            total_count,
+            ordinal,
+            hex(event_id, 4),
+            event_name(event_id),
+            hex(read_be(domain, base + 2, 2), 4),
+            hex(read_be(domain, base + 4, 2), 4),
+            hex(read_be(domain, base + 6, 2), 4),
+            "",
+            hex(read_be(domain, base + 12, 4), 8),
+            "",
+            "",
+            "",
+            hex(read_be(domain, base + 8, 2), 4),
+            hex(read_be(domain, base + 10, 2), 4),
+            hex(read_be(domain, base + 12, 4), 8),
+        })
+    end
+    return total_count
+end
+
+write_row = function(file, values)
     for i, value in ipairs(values) do
         if i > 1 then
             file:write(",")
@@ -377,11 +569,22 @@ local function run()
     local rom_label = current_rom_label(system_name)
     local out_path = OUT_DIR .. "oracle_trace_" .. rom_label .. ".csv"
     local summary_path = OUT_DIR .. "oracle_trace_" .. rom_label .. "_summary.txt"
+    local event_path = OUT_DIR .. "oracle_events_" .. rom_label .. ".csv"
     local watches = {}
+    local event_file = nil
 
     local out_file, err = io.open(out_path, "w")
     if not out_file then
         error("Could not open trace output file: " .. tostring(err))
+    end
+    if system_name == "genesis" then
+        event_file = assert(io.open(event_path, "w"))
+        write_row(event_file, {
+            "frame", "system", "rom_label", "kind", "total_count", "ordinal",
+            "event_id", "event_name", "arg0", "arg1", "arg2",
+            "seq_ptr_raw", "ptr_res", "seq_index", "seq_byte", "seq_source",
+            "ppu_index", "ppu_ptr_raw", "ppu_ptr_res"
+        })
     end
 
     for _, watch in ipairs(WATCHES) do
@@ -399,8 +602,15 @@ local function run()
     end
     write_row(out_file, header)
 
+    local reset_result = reset_emulation()
+    for _ = 1, RESET_SETTLE_FRAMES do
+        emu.frameadvance()
+    end
+
     local first_change = {}
     local last_values = {}
+    local prev_seq_evt_count = 0
+    local prev_ppu_evt_count = 0
 
     for frame = 0, NUM_FRAMES do
         if frame > 0 then
@@ -425,9 +635,19 @@ local function run()
         end
 
         write_row(out_file, row)
+
+        if system_name == "genesis" then
+            local seq_count = read_be(ram_domain, (ram_base or 0) + TRACE_SEQ_EVT_COUNT_ADDR, 2)
+            local ppu_count = read_be(ram_domain, (ram_base or 0) + TRACE_PPU_EVT_COUNT_ADDR, 2)
+            prev_seq_evt_count = append_seq_events(event_file, frame, system_name, rom_label, seq_count, prev_seq_evt_count, ram_domain, ram_base)
+            prev_ppu_evt_count = append_ppu_events(event_file, frame, system_name, rom_label, ppu_count, prev_ppu_evt_count, ram_domain, ram_base)
+        end
     end
 
     out_file:close()
+    if event_file then
+        event_file:close()
+    end
 
     local summary = assert(io.open(summary_path, "w"))
     summary:write("Oracle trace summary\r\n")
@@ -435,8 +655,17 @@ local function run()
     summary:write("System: " .. system_name .. "\r\n")
     summary:write("RAM domain: " .. tostring(ram_domain) .. "\r\n")
     summary:write("RAM base: " .. hex(ram_base or 0, system_name == "genesis" and 6 or 4) .. "\r\n")
+    summary:write("Reset on start: " .. tostring(RESET_ON_START) .. "\r\n")
+    summary:write("Reset kind: " .. tostring(RESET_KIND) .. "\r\n")
+    summary:write("Reset result: " .. tostring(reset_result) .. "\r\n")
+    summary:write("Reset settle frames: " .. tostring(RESET_SETTLE_FRAMES) .. "\r\n")
     summary:write("Frames: 0-" .. tostring(NUM_FRAMES) .. "\r\n")
     summary:write("Trace: " .. out_path .. "\r\n\r\n")
+    if event_file then
+        summary:write("Event trace: " .. event_path .. "\r\n")
+        summary:write("Sequence event count: " .. tostring(prev_seq_evt_count) .. "\r\n")
+        summary:write("PPU event count: " .. tostring(prev_ppu_evt_count) .. "\r\n\r\n")
+    end
     summary:write("First changes:\r\n")
 
     for _, watch in ipairs(watches) do
@@ -453,10 +682,14 @@ local function run()
     print("Oracle trace written to:")
     print("  " .. out_path)
     print("  " .. summary_path)
+    if system_name == "genesis" then
+        print("  " .. event_path)
+    end
     print("System: " .. system_name)
     print("ROM label: " .. rom_label)
     print("RAM domain: " .. tostring(ram_domain))
     print("RAM base: " .. hex(ram_base or 0, system_name == "genesis" and 6 or 4))
+    print("Reset result: " .. tostring(reset_result))
 end
 
 run()

@@ -4113,19 +4113,18 @@ sub_9C3F:  ; orig: sub_9C3F:
 sub_9C54:  ; orig: sub_9C54:
     CMPI.B  #$10,D0  ; orig: C - - - - - 0x001C64 00:9C54: C9 10     CMP #$10
     BCC     b00_bra_9C67_RTS             ; BCC  ; orig: C - - - - - 0x001C66 00:9C56: 90 0F     BCC b00_bra_9C67_RTS
-
-; / 08
-    LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x001C68 00:9C58: 4A        LSR
-    LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x001C69 00:9C59: 4A        LSR
-    LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x001C6A 00:9C5A: 4A        LSR
-    BCS     b00_bra_9C62             ; BCS  ; orig: C - - - - - 0x001C6B 00:9C5B: B0 05     BCS b00_bra_9C62
+    MOVE.B  D0,D2
+    ANDI.B  #$04,D2         ; original bit 2 is the post-LSR carry that decides +/- 1
+    BNE     b00_bra_9C62             ; orig: C - - - - - 0x001C6B 00:9C5B: B0 05     BCS b00_bra_9C62
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x001C6D 00:9C5D: 8A        TXA
-    ADDQ.B  #1,D0       ; carry is clear here after the LSR/BCS path  ; orig: C - - - - - 0x001C6E 00:9C5E: 69 01
-    BNE     b00_bra_9C66             ; BNE  ; orig: C - - - - - 0x001C70 00:9C60: D0 04     BNE b00_bra_9C66    ; jm
+    ADDQ.B  #1,D0           ; exact 6502 C=0 ADC #$01
+    BNE     b00_bra_9C66             ; orig: C - - - - - 0x001C70 00:9C60: D0 04     BNE b00_bra_9C66    ; jm
 b00_bra_9C62:  ; orig: b00_bra_9C62:
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x001C72 00:9C62: 8A        TXA
-    SUBQ.B  #1,D0       ; CLC + ADC #$FF => A - 1  ; orig: C - - - - - 0x001C73 00:9C63: 18 / 69 FF
+    SUBQ.B  #1,D0           ; exact 6502 C=0 ADC #$FF => X - 1
 b00_bra_9C66:  ; orig: b00_bra_9C66:
+    MOVE.W  #$0492,D2
+    BSR     TRACE_MARK
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x001C76 00:9C66: AA        TAX
 b00_bra_9C67_RTS:  ; orig: b00_bra_9C67_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x001C77 00:9C67: 60        RTS
@@ -4187,17 +4186,17 @@ b00_RESOLVE_SEQ_PTR_REAL:
 b00_INIT_TITLE_TRACK_REAL:
     MOVE.W  #$0472,D0
     BSR     TRACE_MARK
-    MOVE.B  #$10,ram_05F4
-    MOVE.W  #b00_title_track_seq_real,D5
+    MOVE.B  #$20,ram_05F4
+    MOVE.W  #b00_seq_948B_real,D5
     MOVE.B  D5,ram_0066_se_t01_data
     LSR.W   #8,D5
     MOVE.B  D5,ram_0066_se_t01_data+$01
-    MOVE.B  #$3F,ram_060C
-    MOVE.B  #$20,ram_060B
-    MOVE.B  #$00,ram_060D
-    MOVE.B  #$00,ram_05F5
+    MOVE.B  #$3B,ram_060C
+    MOVE.B  #$1D,ram_060B
+    MOVE.B  #$4F,ram_060D
+    MOVE.B  #$4F,ram_05F5
     MOVE.B  #$80,ram_0619
-    MOVE.B  #$80,ram_05F1
+    MOVE.B  #$01,ram_05F1
     MOVE.B  #$01,D0
     MOVE.B  D0,ram_0611
     MOVE.B  D0,ram_0613
@@ -4227,8 +4226,8 @@ b00_INIT_SEQ_STATE_FROM_REAL_TABLE:
     CLR.B   ram_0017_rendering_flag
     MOVE.W  #$0483,D0
     BSR     TRACE_MARK
-    BSR     b00_INIT_TITLE_TRACK_REAL
-    RTS
+    MOVE.B  #$24,D2
+    BRA     .generic_init
 .generic_init:
     MOVEA.L #b00_tbl_8D60_offset_real-$01,A0
     MOVE.B  (A0,D2.L),D2
@@ -4394,6 +4393,9 @@ loc_9D2C:  ; orig: loc_9D2C:
     MOVE.B  ram_060A,D2  ; orig: C - - - - - 0x001D41 00:9D31: AC 0A 06  LDY ram_060A
     ADDQ.B  #1,ram_060A  ; orig: C - - - - - 0x001D44 00:9D34: EE 0A 06  INC ram_060A
     BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001D47 00:9D37: B1 66     LDA (ram_0066_se_t01
+    MOVE.B  D2,D1
+    MOVE.W  #$04B1,D0
+    BSR     TRACE_SEQ_EVENT
     BEQ     b00_bra_9D3F_00             ; BEQ  ; orig: C - - - - - 0x001D49 00:9D39: F0 04     BEQ b00_bra_9D3F_00
     BPL     b00_bra_9D65_01_7F             ; BPL  ; orig: C - - - - - 0x001D4B 00:9D3B: 10 28     BPL b00_bra_9D65_01_7F
     BNE     b00_bra_9D57_80_FF             ; BNE  ; orig: C - - - - - 0x001D4D 00:9D3D: D0 18     BNE b00_bra_9D57_80_FF  
@@ -4419,6 +4421,9 @@ b00_bra_9D57_80_FF:  ; orig: b00_bra_9D57_80_FF:
     MOVE.B  ram_060A,D2  ; orig: C - - - - - 0x001D6D 00:9D5D: AC 0A 06  LDY ram_060A
     ADDQ.B  #1,ram_060A  ; orig: C - - - - - 0x001D70 00:9D60: EE 0A 06  INC ram_060A
     BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001D73 00:9D63: B1 66     LDA (ram_0066_se_t01
+    MOVE.B  D2,D1
+    MOVE.W  #$04B2,D0
+    BSR     TRACE_SEQ_EVENT
 b00_bra_9D65_01_7F:  ; orig: b00_bra_9D65_01_7F:
     MOVE.B  ram_0607_sfx_2,D1  ; orig: C - - - - - 0x001D75 00:9D65: AE 07 06  LDX ram_0607_sfx_2
     BNE     b00_bra_9D7D             ; BNE  ; orig: C - - - - - 0x001D78 00:9D68: D0 13     BNE b00_bra_9D7D
@@ -4459,6 +4464,9 @@ b00_bra_9DAE:  ; orig: b00_bra_9DAE:
     MOVE.B  ram_060B,D2  ; orig: C - - - - - 0x001DC8 00:9DB8: AC 0B 06  LDY ram_060B
     ADDQ.B  #1,ram_060B  ; orig: C - - - - - 0x001DCB 00:9DBB: EE 0B 06  INC ram_060B
     BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001DCE 00:9DBE: B1 66     LDA (ram_0066_se_t01
+    MOVE.B  D2,D1
+    MOVE.W  #$04B3,D0
+    BSR     TRACE_SEQ_EVENT
     BPL     b00_bra_9DD0             ; BPL  ; orig: C - - - - - 0x001DD0 00:9DC0: 10 0E     BPL b00_bra_9DD0
 
 ; 80-FF
@@ -4467,6 +4475,9 @@ b00_bra_9DAE:  ; orig: b00_bra_9DAE:
     MOVE.B  ram_060B,D2  ; orig: C - - - - - 0x001DD8 00:9DC8: AC 0B 06  LDY ram_060B
     ADDQ.B  #1,ram_060B  ; orig: C - - - - - 0x001DDB 00:9DCB: EE 0B 06  INC ram_060B
     BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001DDE 00:9DCE: B1 66     LDA (ram_0066_se_t01
+    MOVE.B  D2,D1
+    MOVE.W  #$04B4,D0
+    BSR     TRACE_SEQ_EVENT
 b00_bra_9DD0:  ; orig: b00_bra_9DD0:
     MOVE.B  ram_0605_sfx_4,D1  ; orig: C - - - - - 0x001DE0 00:9DD0: AE 05 06  LDX ram_0605_sfx_4
     BNE     b00_bra_9DE8             ; BNE  ; orig: C - - - - - 0x001DE3 00:9DD3: D0 13     BNE b00_bra_9DE8
@@ -4511,6 +4522,9 @@ loc_9E26:  ; orig: loc_9E26:
     MOVE.B  ram_060C,D2  ; orig: C D 0 - - - 0x001E36 00:9E26: AC 0C 06  LDY ram_060C
     ADDQ.B  #1,ram_060C  ; orig: C - - - - - 0x001E39 00:9E29: EE 0C 06  INC ram_060C
     BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001E3C 00:9E2C: B1 66     LDA (ram_0066_se_t01
+    MOVE.B  D2,D1
+    MOVE.W  #$04B5,D0
+    BSR     TRACE_SEQ_EVENT
     BEQ     b00_bra_9E92             ; BEQ  ; orig: C - - - - - 0x001E3E 00:9E2E: F0 62     BEQ b00_bra_9E92
     BPL     b00_bra_9E6A             ; BPL  ; orig: C - - - - - 0x001E40 00:9E30: 10 38     BPL b00_bra_9E6A
 
@@ -4538,6 +4552,9 @@ b00_bra_9E55:  ; orig: b00_bra_9E55:
     MOVE.B  ram_060C,D2  ; orig: C - - - - - 0x001E70 00:9E60: AC 0C 06  LDY ram_060C
     ADDQ.B  #1,ram_060C  ; orig: C - - - - - 0x001E73 00:9E63: EE 0C 06  INC ram_060C
     BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001E76 00:9E66: B1 66     LDA (ram_0066_se_t01
+    MOVE.B  D2,D1
+    MOVE.W  #$04B6,D0
+    BSR     TRACE_SEQ_EVENT
     BEQ     b00_bra_9E92             ; BEQ  ; orig: C - - - - - 0x001E78 00:9E68: F0 28     BEQ b00_bra_9E92
 b00_bra_9E6A:  ; orig: b00_bra_9E6A:
     BSR     sub_9C3F             ; JSR -> BSR  ; orig: C - - - - - 0x001E7A 00:9E6A: 20 3F 9C  JSR sub_9C3F
@@ -4569,6 +4586,9 @@ b00_bra_9EA1_loop:  ; orig: b00_bra_9EA1_loop:
     MOVE.B  ram_060D,D2  ; orig: C - - - - - 0x001EB1 00:9EA1: AC 0D 06  LDY ram_060D
     ADDQ.B  #1,ram_060D  ; orig: C - - - - - 0x001EB4 00:9EA4: EE 0D 06  INC ram_060D
     BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001EB7 00:9EA7: B1 66     LDA (ram_0066_se_t01
+    MOVE.B  D2,D1
+    MOVE.W  #$04B7,D0
+    BSR     TRACE_SEQ_EVENT
     BNE     b00_bra_9EB3             ; BNE  ; orig: C - - - - - 0x001EB9 00:9EA9: D0 08     BNE b00_bra_9EB3
 
 ; 00
@@ -4620,12 +4640,13 @@ tbl_9EDC_400F:  ; orig: tbl_9EDC_400F:
 
 
 sub_9EE0:  ; orig: sub_9EE0:
-    MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x001EF0 00:9EE0: AA        TAX
-    ROXR.B  #1,D0           ; ROR A (uses X flag)  ; orig: C - - - - - 0x001EF1 00:9EE1: 6A        ROR
-    MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x001EF2 00:9EE2: 8A        TXA
-    ROXL.B  #1,D0           ; ROL A (uses X flag)  ; orig: C - - - - - 0x001EF3 00:9EE3: 2A        ROL
-    ROXL.B  #1,D0           ; ROL A (uses X flag)  ; orig: C - - - - - 0x001EF4 00:9EE4: 2A        ROL
-    ROXL.B  #1,D0           ; ROL A (uses X flag)  ; orig: C - - - - - 0x001EF5 00:9EE5: 2A        ROL
+    MOVE.B  D0,D1           ; preserve original A for exact 6502 carry/rotate derivation
+    ANDI.B  #$01,D0         ; original bit 0 becomes final bit 2
+    LSL.B   #2,D0
+    LSR.B   #6,D1           ; original bits 7:6 become final bits 1:0
+    OR.B    D1,D0
+    MOVE.W  #$0491,D1
+    BSR     TRACE_MARK
 sub_9EE6:  ; orig: sub_9EE6:
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x001EF6 00:9EE6: 29 07     AND #$07
     ADD.B   ram_05F4,D0  ; CLC + ADC ram_05F4 => A + M  ; orig: C - - - - - 0x001EF8 00:9EE8: 18 / 6D F4 05

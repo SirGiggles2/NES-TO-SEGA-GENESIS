@@ -3,8 +3,16 @@ ROM: current_genesis
 System: genesis
 RAM domain: M68K BUS
 RAM base: FF0000
+Reset on start: true
+Reset kind: poweron
+Reset result: unsupported
+Reset settle frames: 0
 Frames: 0-300
 Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_genesis.csv
+
+Event trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_events_current_genesis.csv
+Sequence event count: 1020
+PPU event count: 0
 
 First changes:
   ram_0000_t49     frame 14
@@ -12,18 +20,18 @@ First changes:
   ram_0003_t18     frame 12
   ram_0004_t18     frame 12
   game_mode        never changed
-  screen_ready     never changed
+  screen_ready     frame 32
   ram_script       never changed
   ram_subscript    never changed
-  ppu_load_index   never changed
+  ppu_load_index   frame 32
   ram_frm_cnt      frame 12
   rendering_flag   never changed
   ram_next_script  never changed
   ram_005C         never changed
-  se_ptr_lo        never changed
-  se_ptr_hi        never changed
-  ram_006C_se      never changed
-  ram_00F6         never changed
+  se_ptr_lo        frame 43
+  se_ptr_hi        frame 43
+  ram_006C_se      frame 43
+  ram_00F6         frame 21
   btn_press        frame 12
   btn_hold         frame 12
   scroll_y         never changed
@@ -31,38 +39,40 @@ First changes:
   ram_for_2001     frame 12
   ram_for_2000     frame 12
   ram_0415         never changed
-  ram_041A         never changed
-  ram_042D         never changed
+  ram_041A         frame 43
+  ram_042D         frame 31
   ram_042E         never changed
   ram_0528         never changed
-  ram_05F1         never changed
-  ram_05F4         never changed
-  ram_05F5         never changed
-  ram_music        never changed
-  ram_music_busy   never changed
+  ram_05F1         frame 43
+  ram_05F4         frame 43
+  ram_05F5         frame 43
+  ram_music        frame 32
+  ram_music_busy   frame 43
   ram_060A         never changed
   ram_060B         never changed
-  ram_060C         never changed
-  ram_060D         never changed
-  ram_0611         never changed
+  ram_060C         frame 43
+  ram_060D         frame 43
+  ram_0611         frame 43
   ram_0612         never changed
-  ram_0613         never changed
+  ram_0613         frame 43
   ram_0616         never changed
-  ram_0617         never changed
-  ram_0619         never changed
+  ram_0617         frame 43
+  ram_0619         frame 43
   ram_061B         never changed
   ppu_buf_status   frame 12
-  ppu_buf_index    never changed
+  ppu_buf_index    frame 31
   ppu_buf_0        frame 12
-  ppu_buf_1        never changed
+  ppu_buf_1        frame 31
   ppu_buf_2        never changed
-  ppu_buf_3        never changed
-  ppu_buf_4        never changed
-  ppu_buf_5        never changed
+  ppu_buf_3        frame 31
+  ppu_buf_4        frame 31
+  ppu_buf_5        frame 31
   ppu_buf_6        never changed
-  ppu_buf_7        never changed
+  ppu_buf_7        frame 31
   trace_last       frame 12
   trace_seq        frame 12
-  PPU_REQ_INDEX    never changed
+  PPU_REQ_INDEX    frame 33
   PPU_REQ_PTR      frame 12
-  PPU_REQ_RES      never changed
+  PPU_REQ_RES      frame 33
+  SEQ_EVT_COUNT    frame 43
+  PPU_EVT_COUNT    never changed

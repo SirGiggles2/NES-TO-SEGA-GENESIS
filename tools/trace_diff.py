@@ -39,6 +39,34 @@ def load_rows(path: Path):
         return rows
 
 
+def sibling_event_trace(path: Path) -> Path | None:
+    name = path.name
+    if not name.startswith("oracle_trace_"):
+        return None
+    return path.with_name(name.replace("oracle_trace_", "oracle_events_", 1))
+
+
+def summarize_event_trace(path: Path):
+    if path is None or not path.exists():
+        return None
+
+    rows = load_rows(path)
+    if not rows:
+        return {"path": path, "count": 0, "by_kind": {}, "recent": []}
+
+    by_kind: dict[str, int] = {}
+    for row in rows:
+        kind = row.get("kind", "")
+        by_kind[kind] = by_kind.get(kind, 0) + 1
+
+    return {
+        "path": path,
+        "count": len(rows),
+        "by_kind": by_kind,
+        "recent": rows[-8:],
+    }
+
+
 def field_matches(row: dict[str, str], field: str, target: str) -> bool:
     value = normalize_value(field, row.get(field, ""))
     if target == "nonzero":
@@ -179,6 +207,27 @@ def main(argv):
         f"Genesis {gen_rows[alignment['gen_index']]['frame']}"
     )
     print(f"  Frames compared after alignment: {limit}")
+
+    gen_events = summarize_event_trace(sibling_event_trace(gen_path))
+    if gen_events is not None:
+        print("\nGenesis event trace:")
+        print(f"  Path: {gen_events['path']}")
+        print(f"  Rows: {gen_events['count']}")
+        if gen_events["by_kind"]:
+            parts = [f"{kind}={count}" for kind, count in sorted(gen_events["by_kind"].items())]
+            print(f"  By kind: {', '.join(parts)}")
+        if gen_events["recent"]:
+            print("  Recent events:")
+            for row in gen_events["recent"]:
+                print(
+                    "    frame {frame:>3}  {kind:<3}  {event_id}  {event_name}  total={total_count}".format(
+                        frame=row.get("frame", "?"),
+                        kind=row.get("kind", ""),
+                        event_id=row.get("event_id", ""),
+                        event_name=row.get("event_name", ""),
+                        total_count=row.get("total_count", ""),
+                    )
+                )
 
     if first_state is None and first_any is None:
         print("\nNo divergence found in shared fields.")

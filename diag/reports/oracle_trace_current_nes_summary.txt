@@ -3,6 +3,10 @@ ROM: current_nes
 System: nes
 RAM domain: System Bus
 RAM base: 0000
+Reset on start: true
+Reset kind: poweron
+Reset result: unsupported
+Reset settle frames: 0
 Frames: 0-300
 Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_nes.csv
 
@@ -20,6 +24,9 @@ First changes:
   rendering_flag   frame 3
   ram_next_script  never changed
   ram_005C         frame 3
+  se_ptr_lo        frame 3
+  se_ptr_hi        frame 3
+  ram_006C_se      frame 3
   ram_00F6         frame 3
   btn_press        never changed
   btn_hold         never changed
@@ -42,10 +49,12 @@ First changes:
   ram_060C         frame 3
   ram_060D         frame 3
   ram_0611         frame 32
+  ram_0612         frame 32
   ram_0613         frame 32
   ram_0616         frame 3
   ram_0617         frame 3
   ram_0619         frame 32
+  ram_061B         frame 32
   ppu_buf_status   frame 5
   ppu_buf_index    frame 30
   ppu_buf_0        frame 3

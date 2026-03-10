@@ -6765,8 +6765,8 @@ b06_bra_b06_ppu_cleanup:
 
 
 b06_bra_A0A2_loop:  ; orig: b06_bra_A0A2_loop:
+    MOVE.B  D0,(TRACE_PPU_EVT_ARG0).l
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x01A0B2 06:A0A2: 48        PHA ; push ppu_hi
-    MOVE.B  D0,D0  ; prep for PPU_WRITE_2006 (VRAM addr)  ; was: C - - - - - 0x01A0B3 06:A0A3: 8D 06 20  STA $2006
     BSR     PPU_WRITE_2006
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01A0B6 06:A0A6: C8        INY
     MOVEA.L #ram_0000_t11_ppu_data,A0
@@ -6778,7 +6778,7 @@ b06_bra_A0A2_loop:  ; orig: b06_bra_A0A2_loop:
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
 
-    MOVE.B  D0,D0  ; prep for PPU_WRITE_2006 (VRAM addr)  ; was: C - - - - - 0x01A0B9 06:A0A9: 8D 06 20  STA $2006
+    MOVE.B  D0,(TRACE_PPU_EVT_ARG1).l
     BSR     PPU_WRITE_2006
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01A0BC 06:A0AC: C8        INY
     MOVEA.L #ram_0000_t11_ppu_data,A0
@@ -6790,33 +6790,49 @@ b06_bra_A0A2_loop:  ; orig: b06_bra_A0A2_loop:
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
 
-    ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x01A0BF 06:A0AF: 0A        ASL
-    MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x01A0C0 06:A0B0: 48        PHA
+    MOVE.B  D0,D4           ; exact legacy header decode starts from raw control byte
+    MOVE.B  D4,(TRACE_PPU_EVT_ARG2).l
+    MOVE.W  #$04A0,D0
+    BSR     TRACE_PPU_EVENT
     MOVE.B  ram_for_2000,D0  ; orig: C - - - - - 0x01A0C1 06:A0B1: A5 FF     LDA ram_for_2000
-    ORI.B   #$04,D0  ; orig: C - - - - - 0x01A0C3 06:A0B3: 09 04     ORA #$04    ; write 
-    BCS     b06_bra_A0B9             ; BCS  ; orig: C - - - - - 0x01A0C5 06:A0B5: B0 02     BCS b06_bra_A0B9
-    ANDI.B  #$FB,D0  ; orig: C - - - - - 0x01A0C7 06:A0B7: 29 FB     AND #$FB    ; write 
+    BTST    #7,D4
+    BEQ     b06_bra_A0B8_inc_by_1
+    ORI.B   #$04,D0
+    BRA     b06_bra_A0B9
+b06_bra_A0B8_inc_by_1:
+    ANDI.B  #$FB,D0
 b06_bra_A0B9:  ; orig: b06_bra_A0B9:
-    MOVE.B  D0,D0  ; prep for PPU_WRITE_2000  ; was: C - - - - - 0x01A0C9 06:A0B9: 8D 00 20  STA $2000
     BSR     PPU_WRITE_2000
     MOVE.B  D0,ram_for_2000  ; orig: C - - - - - 0x01A0CC 06:A0BC: 85 FF     STA ram_for_2000
-    MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x01A0CE 06:A0BE: 68        PLA
-    ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x01A0CF 06:A0BF: 0A        ASL
-    MOVE    SR,-(A7)        ; PHP (approx)  ; orig: C - - - - - 0x01A0D0 06:A0C0: 08        PHP
-    BCC     b06_bra_A0C6             ; BCC  ; orig: C - - - - - 0x01A0D1 06:A0C1: 90 03     BCC b06_bra_A0C6
-    ORI.B   #$02,D0  ; orig: C - - - - - 0x01A0D3 06:A0C3: 09 02     ORA #$02
-    ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01A0D5 06:A0C5: C8        INY
+    MOVE.B  D4,D0
+    LSL.B   #1,D0           ; shifted header byte after 6502 ASL
+    BTST    #7,D4
+    BEQ     b06_bra_A0C6
+    ORI.B   #$02,D0         ; exact ORA #$02 path when original carry was set
+    ADDQ.B  #1,D2           ; exact extra INY on high-bit headers
 b06_bra_A0C6:  ; orig: b06_bra_A0C6:
-    MOVE    (A7)+,SR        ; PLP (approx - !! privilege risk)  ; orig: C - - - - - 0x01A0D6 06:A0C6: 28        PLP
-    ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01A0D7 06:A0C7: 18        CLC
-    BNE     b06_bra_A0CB             ; BNE  ; orig: C - - - - - 0x01A0D8 06:A0C8: D0 01     BNE b06_bra_A0CB
-    ORI     #$0001,SR       ; SEC (set carry)  ; orig: - - - - - - 0x01A0DA 06:A0CA: 38        SEC
+    MOVE.B  D0,D5
+    ANDI.B  #$02,D5         ; legacy repeat flag is shifted bit 1
+    TST.B   D0
+    BNE     b06_bra_A0CB
+    MOVE.B  #$40,D1         ; exact SEC/ROR/LSR result when shifted byte became zero
+    BRA     b06_bra_A0CC
 b06_bra_A0CB:  ; orig: b06_bra_A0CB:
-    ROXR.B  #1,D0           ; ROR A (uses X flag)  ; orig: C - - - - - 0x01A0DB 06:A0CB: 6A        ROR
-    LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01A0DC 06:A0CC: 4A        LSR
-    MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x01A0DD 06:A0CD: AA        TAX
+    MOVE.B  D0,D1
+    LSR.B   #1,D1
+    LSR.B   #1,D1
+b06_bra_A0CC:
+    MOVE.B  D1,(TRACE_PPU_EVT_ARG1).l
+    MOVE.B  D5,(TRACE_PPU_EVT_ARG2).l
+    MOVE.W  #$04A1,D0
+    TST.B   D5
+    BEQ     b06_bra_A0CD_literal
+    MOVE.W  #$04A2,D0
+b06_bra_A0CD_literal:
+    BSR     TRACE_PPU_EVENT
 b06_bra_A0CE_loop:  ; orig: b06_bra_A0CE_loop:
-    BCS     b06_bra_A0D1_write_the_same_byte             ; BCS  ; orig: C - - - - - 0x01A0DE 06:A0CE: B0 01     BCS bra_A0D1_write_t
+    TST.B   D5
+    BNE     b06_bra_A0D1_write_the_same_byte
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01A0E0 06:A0D0: C8        INY
 b06_bra_A0D1_write_the_same_byte:  ; orig: b06_bra_A0D1_write_the_same_byte:
     MOVEA.L #ram_0000_t11_ppu_data,A0
@@ -6828,7 +6844,6 @@ b06_bra_A0D1_write_the_same_byte:  ; orig: b06_bra_A0D1_write_the_same_byte:
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
 
-    MOVE.B  D0,D0  ; prep for PPU_WRITE_2007 (VRAM data)  ; was: C - - - - - 0x01A0E3 06:A0D3: 8D 07 20  STA $2007
     BSR     PPU_WRITE_2007
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01A0E6 06:A0D6: CA        DEX
     BNE     b06_bra_A0CE_loop             ; BNE  ; orig: C - - - - - 0x01A0E7 06:A0D7: D0 F5     BNE b06_bra_A0CE_loop
@@ -6837,28 +6852,40 @@ b06_bra_A0D1_write_the_same_byte:  ; orig: b06_bra_A0D1_write_the_same_byte:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x01A0E9 06:A0D9: 68        PLA ; pull ppu_hi
     CMPI.B  #$3F,D0  ; orig: C - - - - - 0x01A0EA 06:A0DA: C9 3F     CMP #$3F
     BNE     b06_bra_A0EA_not_palette             ; BNE  ; orig: C - - - - - 0x01A0EC 06:A0DC: D0 0C     BNE bra_A0EA_not_pal
-    MOVE.B  D0,D0  ; prep for PPU_WRITE_2006 (VRAM addr)  ; was: C - - - - - 0x01A0EE 06:A0DE: 8D 06 20  STA $2006
+    MOVE.B  D0,(TRACE_PPU_EVT_ARG0).l
+    CLR.W   (TRACE_PPU_EVT_ARG1).l
+    CLR.W   (TRACE_PPU_EVT_ARG2).l
+    MOVE.W  #$04A3,D4
+    MOVE.W  D4,D0
+    BSR     TRACE_PPU_EVENT
+    MOVE.B  #$3F,D0
     BSR     PPU_WRITE_2006
-    MOVE.B  D1,D0  ; prep for PPU_WRITE_2006 (VRAM addr)  ; was: C - - - - - 0x01A0F1 06:A0E1: 8E 06 20  STX $2006
+    MOVEQ   #$00,D0
     BSR     PPU_WRITE_2006
-    MOVE.B  D1,D0  ; prep for PPU_WRITE_2006 (VRAM addr)  ; was: C - - - - - 0x01A0F4 06:A0E4: 8E 06 20  STX $2006
     BSR     PPU_WRITE_2006
-    MOVE.B  D1,D0  ; prep for PPU_WRITE_2006 (VRAM addr)  ; was: C - - - - - 0x01A0F7 06:A0E7: 8E 06 20  STX $2006
     BSR     PPU_WRITE_2006
 b06_bra_A0EA_not_palette:  ; orig: b06_bra_A0EA_not_palette:
     ; Fix: advance 16-bit PPU buffer pointer by (Y+1) bytes
     ; NES was: SEC; TYA; ADC ptr_lo; STA ptr_lo; LDA #0; ADC ptr_hi; STA ptr_hi
+    MOVE.B  ram_0000_t11_ppu_data,D1            ; start from current low byte
     MOVE.B  D2,D4                               ; D4 = Y (bytes consumed this record)
     ADDQ.B  #1,D4                               ; D4 = Y+1 (NES SEC effect)
-    ADD.B   ram_0000_t11_ppu_data,D4            ; D4 = lo_ptr + Y + 1
-    MOVE.B  D4,ram_0000_t11_ppu_data            ; store new low byte
+    ADD.B   D4,D1                               ; D1 = lo_ptr + Y + 1, carry = high-byte bump
+    MOVE.B  D1,ram_0000_t11_ppu_data            ; store new low byte without clobbering carry first
     BCC     b06_bra_b06_ppu_ptr_nocarry             ; no carry into high byte
     ADDQ.B  #1,ram_0000_t11_ppu_data+1         ; carry into high byte
 b06_bra_b06_ppu_ptr_nocarry:
+    MOVE.B  D2,(TRACE_PPU_EVT_ARG0).l
+    MOVE.B  ram_0000_t11_ppu_data,D4
+    MOVE.B  D4,(TRACE_PPU_EVT_ARG1).l
+    MOVE.B  ram_0000_t11_ppu_data+1,D4
+    MOVE.B  D4,(TRACE_PPU_EVT_ARG2).l
+    MOVE.W  #$04A4,D0
+    BSR     TRACE_PPU_EVENT
     MOVE.B  #$00,D0                             ; LDA #$00 (orig 06:A0F0)
 sub_A0F6_write_to_ppu:  ; orig: sub_A0F6_write_to_ppu:
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x01A106 06:A0F6: AE 02 20  LDX $2002
-    MOVE.B  D0,D1  ; move result to target register
+    MOVE.B  D0,D1
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x01A109 06:A0F9: A0 00     LDY #$00
     MOVEA.L #ram_0000_t11_ppu_data,A0
     MOVE.W  (A0),D5
@@ -6877,6 +6904,8 @@ sub_A0F6_write_to_ppu:  ; orig: sub_A0F6_write_to_ppu:
 
 
 sub_b06_select_ppu_buffer_ptr:
+    TST.B   D1
+    BEQ     b06_bra_b06_ppu_buf_ram_0302
     CMPI.B  #con_ppu_buf_title_screen,D1
     BEQ     b06_bra_b06_ppu_buf_title
     CMPI.B  #con_ppu_buf_guide,D1
@@ -6927,6 +6956,12 @@ sub_b06_select_ppu_buffer_ptr:
     BEQ     b06_bra_b06_ppu_buf_bat_0c
     CMPI.B  #$2E,D1
     BEQ     b06_bra_b06_ppu_buf_bat_2e
+    CMPI.B  #$1A,D1
+    BEQ     b06_bra_b06_ppu_buf_legacy_title_alias
+    CMPI.B  #$1C,D1
+    BEQ     b06_bra_b06_ppu_buf_legacy_title_alias
+    CMPI.B  #$28,D1
+    BEQ     b06_bra_b06_ppu_buf_legacy_title_alias
     CMPI.B  #$52,D1
     BEQ     b06_bra_b06_ppu_buf_bat_52
     CMPI.B  #$54,D1
@@ -6942,7 +6977,7 @@ sub_b06_select_ppu_buffer_ptr:
     RTS
 
 b06_cfg_real_1e_2a:
-    DC.B    $00
+    DC.B    $01
 b06_cfg_real_6a_6c:
     DC.B    $00
 b06_cfg_real_76_78:
@@ -6951,12 +6986,26 @@ b06_cfg_real_26_50_5a:
     DC.B    $00
 b06_cfg_real_continue:
     DC.B    $00
+b06_cfg_alias_title_legacy:
+    DC.B    $00
+b06_cfg_ram_0302_direct:
+    DC.B    $00
+b06_cfg_ram_0302_alias_direct:
+    DC.B    $00
 
 sub_b06_optional_legacy_fallback:
     MOVE.W  #$048A,D0
     BSR     TRACE_MARK
     MOVEQ   #$00,D4
     MOVEA.L D4,A1
+    RTS
+b06_bra_b06_ppu_buf_ram_0302:
+    MOVE.B  b06_cfg_ram_0302_direct(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0494,D0
+    BSR     TRACE_MARK
+    LEA     (ram_0302_ppu_buffer).l,A1
     RTS
 b06_bra_b06_ppu_buf_title:
     LEA     ppu_buf_title_screen_real(PC),A1
@@ -7032,6 +7081,22 @@ b06_bra_b06_ppu_buf_2a:
     MOVE.W  #$0485,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_2a_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_legacy_title_alias:
+    MOVE.B  b06_cfg_ram_0302_alias_direct(PC),D4
+    TST.B   D4
+    BNE     b06_bra_b06_ppu_buf_ram_0302_alias
+    MOVE.B  b06_cfg_alias_title_legacy(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0493,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_title_screen_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_ram_0302_alias:
+    MOVE.W  #$0495,D0
+    BSR     TRACE_MARK
+    LEA     (ram_0302_ppu_buffer).l,A1
     RTS
 b06_bra_b06_ppu_buf_6a:
     MOVE.B  b06_cfg_real_6a_6c(PC),D4

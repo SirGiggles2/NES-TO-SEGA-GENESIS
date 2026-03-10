@@ -174,6 +174,13 @@ TRACE_SEQ_SOURCE EQU $FFF0A0
 TRACE_PPU_INDEX EQU $FFF0A2
 TRACE_PPU_PTR_RAW EQU $FFF0A4
 TRACE_PPU_PTR_RES EQU $FFF0A8
+TRACE_SEQ_EVT_COUNT EQU $FFF0AC
+TRACE_PPU_EVT_COUNT EQU $FFF0AE
+TRACE_PPU_EVT_ARG0 EQU $FFF0B0
+TRACE_PPU_EVT_ARG1 EQU $FFF0B2
+TRACE_PPU_EVT_ARG2 EQU $FFF0B4
+TRACE_SEQ_EVT_RING EQU $FFF0C0
+TRACE_PPU_EVT_RING EQU $FFF140
 
 EXC_VECTOR_02:
     move.w  #$0002,(CRASH_VECTOR).l
@@ -315,6 +322,13 @@ GENESIS_RESET:
 
     ; ── Initialize joypad ──
     bsr     JOYPAD_INIT
+    clr.w   (TRACE_SEQ).l
+    clr.w   (TRACE_LAST).l
+    clr.w   (TRACE_SEQ_EVT_COUNT).l
+    clr.w   (TRACE_PPU_EVT_COUNT).l
+    clr.w   (TRACE_PPU_EVT_ARG0).l
+    clr.w   (TRACE_PPU_EVT_ARG1).l
+    clr.w   (TRACE_PPU_EVT_ARG2).l
     clr.b   (ram_0011_screen_ready_flag).l
     move.w  #$0101,D0
     bsr     TRACE_MARK
@@ -345,6 +359,40 @@ TRACE_MARK:
     move.w  D0,(A0,D7.w)
     addq.w  #1,(TRACE_SEQ).l
     movem.l (A7)+,D7/A0
+    rts
+
+TRACE_SEQ_EVENT:
+    movem.l D4/A0,-(A7)
+    move.w  (TRACE_SEQ_EVT_COUNT).l,D4
+    andi.w  #$0007,D4
+    lsl.w   #4,D4
+    lea     (TRACE_SEQ_EVT_RING).l,A0
+    move.w  D0,(A0,D4.w)
+    move.w  D1,2(A0,D4.w)
+    move.w  (TRACE_SEQ_PTR_RAW).l,4(A0,D4.w)
+    move.w  (TRACE_SEQ_INDEX).l,6(A0,D4.w)
+    move.w  (TRACE_SEQ_BYTE).l,8(A0,D4.w)
+    move.w  (TRACE_SEQ_SOURCE).l,10(A0,D4.w)
+    move.l  (TRACE_SEQ_PTR_RES).l,12(A0,D4.w)
+    addq.w  #1,(TRACE_SEQ_EVT_COUNT).l
+    movem.l (A7)+,D4/A0
+    rts
+
+TRACE_PPU_EVENT:
+    movem.l D4/A0,-(A7)
+    move.w  (TRACE_PPU_EVT_COUNT).l,D4
+    andi.w  #$0007,D4
+    lsl.w   #4,D4
+    lea     (TRACE_PPU_EVT_RING).l,A0
+    move.w  D0,(A0,D4.w)
+    move.w  (TRACE_PPU_EVT_ARG0).l,2(A0,D4.w)
+    move.w  (TRACE_PPU_EVT_ARG1).l,4(A0,D4.w)
+    move.w  (TRACE_PPU_EVT_ARG2).l,6(A0,D4.w)
+    move.w  (TRACE_PPU_INDEX).l,8(A0,D4.w)
+    move.w  (TRACE_PPU_PTR_RAW).l,10(A0,D4.w)
+    move.l  (TRACE_PPU_PTR_RES).l,12(A0,D4.w)
+    addq.w  #1,(TRACE_PPU_EVT_COUNT).l
+    movem.l (A7)+,D4/A0
     rts
 
 JOYPAD_INIT:

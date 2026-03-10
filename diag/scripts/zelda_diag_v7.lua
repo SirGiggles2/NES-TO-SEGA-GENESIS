@@ -1,6 +1,6 @@
 -- ============================================================
 --  zelda_diag.lua  -  Automated Zelda Genesis Port Diagnostics
---  v7 - loop-release focused telemetry
+--  v8 - loop-release focused telemetry + deterministic batch runner
 --
 --  Focus:
 --   * preserve all v6 diagnostics
@@ -11,11 +11,12 @@
 -- ============================================================
 
 -- ======================== CONFIG ============================
-local NUM_FRAMES     = 300
+local SCRIPT_VERSION = rawget(_G, "ZELDA_DIAG_VERSION") or "v8"
+local NUM_FRAMES     = 301
 local REPORT_PATH_LEGACY = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\diag_report_v68.txt"
 local REPORT_DIR     = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
 local ROM_DIR        = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\build\\"
-local SCREENSHOT_AT  = {1, 30, 60, 120, 180, 240, 300}
+local SCREENSHOT_AT  = {1, 30, 60, 120, 180, 240, 300, 301}
 local SAMPLE_VRAM    = true
 local SAMPLE_CRAM    = true
 local PC_DUMP_BEFORE = 16
@@ -24,12 +25,23 @@ local TOP_PC_DUMPS   = 8
 local STATUS_Y       = 0
 local STOP_ON_CRASH  = true
 local START_ROM_HINT = nil -- e.g. "zelda_v05.md" if current-ROM detection ever fails
+local BATCH_MODE     = rawget(_G, "ZELDA_DIAG_BATCH_MODE")
+if BATCH_MODE == nil then BATCH_MODE = true end
+local BATCH_REOPEN_FIRST_ROM = true
+local BATCH_SETTLE_FRAMES = 2
+local BATCH_SUMMARY_PATH = REPORT_DIR .. "diag_batch_summary_v8.txt"
 
 local TRACE_LAST_ADDR = 0xF000
 local TRACE_SEQ_ADDR  = 0xF002
 local TRACE_RING_ADDR = 0xF010
 local TRACE_RING_SIZE = 32
 local TRACE_META_ADDR = 0xF080
+local TRACE_SEQ_EVT_COUNT_ADDR = 0xF0AC
+local TRACE_PPU_EVT_COUNT_ADDR = 0xF0AE
+local TRACE_SEQ_EVT_RING_ADDR  = 0xF0C0
+local TRACE_PPU_EVT_RING_ADDR  = 0xF140
+local TRACE_EVT_RING_SIZE      = 8
+local TRACE_EVT_SLOT_SIZE      = 16
 local CRASH_AUX_ADDR  = 0xEE80
 local CRASH_REGS_ADDR = 0xEE40
 
@@ -132,6 +144,23 @@ local TRACE_NAMES = {
     [0x048E] = "BANK0_MUSIC: NES raw sequence pointer resolved to materialized data",
     [0x048F] = "BANK0_MUSIC: sequence pointer fell back to native 68k address",
     [0x0490] = "BANK0_MUSIC: unresolved title-state sequence forced to translated title track",
+    [0x0491] = "BANK0_MUSIC: exact 6502 rotate-derived sequence index path used",
+    [0x0492] = "BANK0_MUSIC: exact 6502 pitch-adjust carry path used",
+    [0x0493] = "BANK6_PPU: legacy title buffer index redirected to translated title payload",
+    [0x0494] = "BANK6_PPU: RAM $0302 buffer redirected to translated stream writer",
+    [0x0495] = "BANK6_PPU: legacy title alias redirected to RAM $0302 stream writer",
+    [0x04A0] = "BANK6_PPU_LEGACY: raw header byte captured",
+    [0x04A1] = "BANK6_PPU_LEGACY: literal header decoded",
+    [0x04A2] = "BANK6_PPU_LEGACY: repeat header decoded",
+    [0x04A3] = "BANK6_PPU_LEGACY: palette fixup branch",
+    [0x04A4] = "BANK6_PPU_LEGACY: pointer advanced",
+    [0x04B1] = "BANK0_SEQ: 9D37 primary byte fetch",
+    [0x04B2] = "BANK0_SEQ: 9D63 command-follow byte fetch",
+    [0x04B3] = "BANK0_SEQ: 9DBE pulse-1 byte fetch",
+    [0x04B4] = "BANK0_SEQ: 9DCE pulse-1 follow byte fetch",
+    [0x04B5] = "BANK0_SEQ: 9E2C triangle/control byte fetch",
+    [0x04B6] = "BANK0_SEQ: 9E66 triangle-follow byte fetch",
+    [0x04B7] = "BANK0_SEQ: 9EA7 noise/envelope byte fetch",
   }
 
 local VECTOR_NAMES = {
@@ -196,6 +225,12 @@ local function safe_read_u16(domain, addr)
     return 0
 end
 
+local function safe_read_u32(domain, addr)
+    local ok, v = pcall(memory.read_u32_be, addr, domain)
+    if ok then return v end
+    return 0
+end
+
 local function safe_read_byte(domain, addr)
     local ok, v = pcall(memory.readbyte, addr, domain)
     if ok then return v end
@@ -210,6 +245,74 @@ local function scan_roms()
         handle:close()
     end
     return roms
+end
+
+local function filename_version_number(name)
+    if not name or name == "" then return nil end
+    local digits = tostring(name):match("[Zz]elda_[Vv](%d+)")
+    if not digits then
+        digits = tostring(name):match("[\\/]zelda_[Vv](%d+)")
+    end
+    if not digits then return nil end
+    return tonumber(digits)
+end
+
+local function sorted_roms_ascending()
+    local roms = scan_roms()
+    table.sort(roms, function(a, b)
+        local av = filename_version_number(a) or -1
+        local bv = filename_version_number(b) or -1
+        if av == bv then return a < b end
+        return av < bv
+    end)
+    return roms
+end
+
+local function batch_queue_from(start_rom)
+    local start_ver = filename_version_number(start_rom)
+    local queue = {}
+    for _, rom in ipairs(sorted_roms_ascending()) do
+        local ver = filename_version_number(rom)
+        if ver and start_ver and ver >= start_ver then
+            queue[#queue + 1] = rom
+        end
+    end
+    return queue
+end
+
+local function open_rom(rom_name)
+    local full_path = ROM_DIR .. rom_name
+    local attempts = {
+        function() return client and client.openrom and client.openrom(full_path) end,
+        function() return client and client.open_rom and client.open_rom(full_path) end,
+        function() return emu and emu.loadrom and emu.loadrom(full_path) end,
+    }
+
+    for _, attempt in ipairs(attempts) do
+        local ok = pcall(attempt)
+        if ok then
+            return true, full_path
+        end
+    end
+
+    return false, full_path
+end
+
+local function write_batch_summary(results)
+    ensure_report_dir()
+    local f = io.open(BATCH_SUMMARY_PATH, "w")
+    if not f then return end
+    f:write("Zelda diagnostic batch summary " .. SCRIPT_VERSION .. "\n\n")
+    for _, result in ipairs(results) do
+        f:write(string.format(
+            "%s | %d PASS | %d FAIL | %s\n",
+            result.rom,
+            result.pass or 0,
+            result.fail or 0,
+            result.status or "done"
+        ))
+    end
+    f:close()
 end
 
 local function basename(path)
@@ -580,6 +683,42 @@ local function trace_name(id)
     return TRACE_NAMES[id] or "(unknown checkpoint)"
 end
 
+local function read_seq_event_slot(base)
+    return {
+        event_id = safe_read_u16("68K RAM", base),
+        arg = safe_read_u16("68K RAM", base + 2),
+        ptr_raw = safe_read_u16("68K RAM", base + 4),
+        seq_index = safe_read_u16("68K RAM", base + 6),
+        seq_byte = safe_read_u16("68K RAM", base + 8),
+        seq_source = safe_read_u16("68K RAM", base + 10),
+        ptr_res = safe_read_u32("68K RAM", base + 12),
+    }
+end
+
+local function read_ppu_event_slot(base)
+    return {
+        event_id = safe_read_u16("68K RAM", base),
+        arg0 = safe_read_u16("68K RAM", base + 2),
+        arg1 = safe_read_u16("68K RAM", base + 4),
+        arg2 = safe_read_u16("68K RAM", base + 6),
+        ppu_index = safe_read_u16("68K RAM", base + 8),
+        ptr_raw = safe_read_u16("68K RAM", base + 10),
+        ptr_res = safe_read_u32("68K RAM", base + 12),
+    }
+end
+
+local function read_event_ring(count_addr, ring_addr, decoder)
+    local total = read_ram(count_addr, 2)
+    local entries = {}
+    local used = math.min(total, TRACE_EVT_RING_SIZE)
+    for i = 0, used - 1 do
+        local ring_index = (total - used + i) % TRACE_EVT_RING_SIZE
+        local base = ring_addr + ring_index * TRACE_EVT_SLOT_SIZE
+        entries[#entries + 1] = decoder(base)
+    end
+    return total, entries
+end
+
 local function read_trace_state()
     local seq = read_ram(TRACE_SEQ_ADDR, 2)
     local last = read_ram(TRACE_LAST_ADDR, 2)
@@ -587,7 +726,17 @@ local function read_trace_state()
     for i = 0, TRACE_RING_SIZE - 1 do
         ring[#ring+1] = read_ram(TRACE_RING_ADDR + i * 2, 2)
     end
-    return {seq = seq, last = last, ring = ring}
+    local seq_evt_count, seq_events = read_event_ring(TRACE_SEQ_EVT_COUNT_ADDR, TRACE_SEQ_EVT_RING_ADDR, read_seq_event_slot)
+    local ppu_evt_count, ppu_events = read_event_ring(TRACE_PPU_EVT_COUNT_ADDR, TRACE_PPU_EVT_RING_ADDR, read_ppu_event_slot)
+    return {
+        seq = seq,
+        last = last,
+        ring = ring,
+        seq_evt_count = seq_evt_count,
+        seq_events = seq_events,
+        ppu_evt_count = ppu_evt_count,
+        ppu_events = ppu_events,
+    }
 end
 
 local function get_trace_history(state)
@@ -689,6 +838,8 @@ local WATCHES = {
     {addr=0xF0A2, sz=2, name="PPU_REQ_INDEX",  desc="Last bank-6 ppu_load_index request seen by writer"},
     {addr=0xF0A4, sz=2, name="PPU_REQ_PTR",    desc="Raw NES pointer word from bank-6 PPU table"},
     {addr=0xF0A8, sz=4, name="PPU_REQ_RES",    desc="Resolved ROM/BAT buffer address used by bank-6"},
+    {addr=0xF0AC, sz=2, name="SEQ_EVT_COUNT",  desc="Sequence event ring total count"},
+    {addr=0xF0AE, sz=2, name="PPU_EVT_COUNT",  desc="PPU event ring total count"},
 }
 
 -- Hand-picked loop-release suspects to summarize separately.
@@ -982,7 +1133,7 @@ local function run_diagnostics(rom_name)
     end
 
     log("================================================================")
-    log("  ZELDA GENESIS PORT - DIAGNOSTIC REPORT  v7")
+    log("  ZELDA GENESIS PORT - DIAGNOSTIC REPORT  " .. SCRIPT_VERSION)
     log("  ROM: " .. (rom_name or "(unknown)"))
     log("  Frames: " .. frames_ran .. "  (~" .. string.format("%.1f", frames_ran/60.0) .. "s)")
     log("  Report path: " .. report_path)
@@ -1243,6 +1394,46 @@ local function run_diagnostics(rom_name)
         end
     end
 
+    log_sep("EVENT TRACE")
+    log("  Sequence events captured: " .. tostring(trace_state.seq_evt_count))
+    if #trace_state.seq_events == 0 then
+        log("  Sequence ring: (empty)")
+    else
+        for i, evt in ipairs(trace_state.seq_events) do
+            log(string.format(
+                "  SEQ %2d. %s  %s  arg=%s ptr_raw=%s idx=%s byte=%s src=%s ptr_res=%s",
+                i,
+                hex(evt.event_id, 4),
+                trace_name(evt.event_id),
+                hex(evt.arg, 4),
+                hex(evt.ptr_raw, 4),
+                hex(evt.seq_index, 4),
+                hex(evt.seq_byte, 4),
+                hex(evt.seq_source, 4),
+                hex(evt.ptr_res, 8)
+            ))
+        end
+    end
+    log("  PPU events captured: " .. tostring(trace_state.ppu_evt_count))
+    if #trace_state.ppu_events == 0 then
+        log("  PPU ring: (empty)")
+    else
+        for i, evt in ipairs(trace_state.ppu_events) do
+            log(string.format(
+                "  PPU %2d. %s  %s  a0=%s a1=%s a2=%s idx=%s ptr_raw=%s ptr_res=%s",
+                i,
+                hex(evt.event_id, 4),
+                trace_name(evt.event_id),
+                hex(evt.arg0, 4),
+                hex(evt.arg1, 4),
+                hex(evt.arg2, 4),
+                hex(evt.ppu_index, 4),
+                hex(evt.ptr_raw, 4),
+                hex(evt.ptr_res, 8)
+            ))
+        end
+    end
+
     if crash_info.magic == 0xBEEF then
         log_sep("CRASH LOGGER")
         log("  Crash frame: " .. tostring(crash_frame or frames_ran))
@@ -1338,6 +1529,22 @@ local function run_diagnostics(rom_name)
         log(dline)
     end
 
+    log_sep("RAM DUMP: $FFF0C0-$FFF13F (seq event ring)")
+    for row = 0, 7 do
+        local base = TRACE_SEQ_EVT_RING_ADDR + row*16
+        local dline = string.format("  $FF%04X:", base)
+        for col = 0, 15 do dline = dline .. " " .. hex(safe_read_byte("68K RAM", base+col)) end
+        log(dline)
+    end
+
+    log_sep("RAM DUMP: $FFF140-$FFF1BF (ppu event ring)")
+    for row = 0, 7 do
+        local base = TRACE_PPU_EVT_RING_ADDR + row*16
+        local dline = string.format("  $FF%04X:", base)
+        for col = 0, 15 do dline = dline .. " " .. hex(safe_read_byte("68K RAM", base+col)) end
+        log(dline)
+    end
+
     log_sep("RAM DUMP: $FFF080-$FFF09F (dispatch/bank meta)")
     for row = 0, 1 do
         local base = TRACE_META_ADDR + row*16
@@ -1392,18 +1599,59 @@ local function run_diagnostics(rom_name)
 end
 
 console.clear()
-console.log("=== ZELDA GENESIS DIAGNOSTIC v7 ===")
-console.log("Current-ROM mode")
+console.log("=== ZELDA GENESIS DIAGNOSTIC " .. SCRIPT_VERSION .. " ===")
+console.log(BATCH_MODE and "Batch mode" or "Single-ROM mode")
 console.log("")
 
 local current_rom = detect_current_rom()
 if not current_rom then
     console.log("Could not determine the currently loaded ROM.")
-    console.log("If needed, set START_ROM_HINT near the top of the script to something like zelda_v05.md and rerun.")
+    console.log("If needed, set START_ROM_HINT near the top of the script to something like zelda_v85.md and rerun.")
     return
 end
 
-console.log("Detected current ROM: " .. current_rom)
-console.log("Running diagnostics (" .. NUM_FRAMES .. " frames)...")
-local pass, fail = run_diagnostics(current_rom)
-console.log(string.format("Done! %d PASS / %d FAIL", pass, fail))
+if not BATCH_MODE then
+    console.log("Detected current ROM: " .. current_rom)
+    console.log("Running diagnostics (" .. NUM_FRAMES .. " frames)...")
+    local pass, fail = run_diagnostics(current_rom)
+    console.log(string.format("Done! %d PASS / %d FAIL", pass, fail))
+    return
+end
+
+local queue = batch_queue_from(current_rom)
+if #queue == 0 then
+    console.log("No batch queue could be built from " .. current_rom)
+    return
+end
+
+console.log("Starting batch from: " .. current_rom)
+console.log("ROM count: " .. tostring(#queue))
+console.log("")
+
+local results = {}
+
+for idx, rom_name in ipairs(queue) do
+    console.log(string.format("[%d/%d] %s", idx, #queue, rom_name))
+
+    if idx > 1 or BATCH_REOPEN_FIRST_ROM then
+        local opened = open_rom(rom_name)
+        if not opened then
+            console.log("Could not open ROM automatically: " .. rom_name)
+            results[#results + 1] = {rom = rom_name, pass = 0, fail = 0, status = "open_failed"}
+            break
+        end
+        for _ = 1, BATCH_SETTLE_FRAMES do
+            emu.frameadvance()
+        end
+    end
+
+    console.log("Running diagnostics for " .. rom_name .. " (" .. NUM_FRAMES .. " frames)...")
+    local pass, fail = run_diagnostics(rom_name)
+    results[#results + 1] = {rom = rom_name, pass = pass, fail = fail, status = "done"}
+    console.log(string.format("Finished %s -> %d PASS / %d FAIL", rom_name, pass, fail))
+    console.log("")
+end
+
+write_batch_summary(results)
+console.log("Batch complete.")
+console.log("Summary: " .. BATCH_SUMMARY_PATH)
