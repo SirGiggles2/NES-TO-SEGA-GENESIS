@@ -4096,6 +4096,23 @@ bra_9C68:
 
 
 sub_9C6B_music:  ; orig: sub_9C6B_music:
+    TST.B   ram_script
+    BNE     .normal_music_path
+    CMPI.B  #$01,ram_subscript
+    BNE     .normal_music_path
+    TST.B   ram_0011_screen_ready_flag
+    BEQ     .normal_music_path
+    TST.B   ram_ppu_load_index
+    BNE     .normal_music_path
+    TST.B   ram_music
+    BNE     .normal_music_path
+    TST.B   ram_0609_music
+    BEQ     .normal_music_path
+    MOVE.W  #$0464,D0
+    BSR     TRACE_MARK
+    BSR     sub_9D46
+    RTS
+.normal_music_path:
     MOVE.B  ram_music,D0  ; orig: C - - - - - 0x001C7B 00:9C6B: AD 00 06  LDA ram_music
     BNE     bra_9C76             ; BNE  ; orig: C - - - - - 0x001C7E 00:9C6E: D0 06     BNE bra_9C76
     MOVE.B  ram_0609_music,D0  ; orig: C - - - - - 0x001C80 00:9C70: AD 09 06  LDA ram_0609_music

@@ -1047,6 +1047,9 @@ ofs_9545_02:  ; orig: ofs_9545_02:
 
 
 tbl_954F_demo_manual_palette:  ; orig: tbl_954F_demo_manual_palette:
+    DC.B $3F,$00,$20,$0F,$30,$30,$30,$0F,$21,$30,$30,$0F,$16,$30,$30,$0F
+    DC.B $29,$1A,$09,$0F,$29,$37,$17,$0F,$02,$22,$30,$0F,$16,$27,$30,$0F
+    DC.B $0B,$1B,$2B,$FF
     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - - - 0x00955F 02:954F: 3F 00     .dbyt $3F00 ;
     ; [DIRECTIVE] .BYTE $00 + $00 + $20  -- needs manual handling  ; orig: - D 0 - - - 0x009561 02:9551: 20        .byte $00 + $00 + $2
 

@@ -29,7 +29,7 @@ local TRACE_LAST_ADDR = 0xF000
 local TRACE_SEQ_ADDR  = 0xF002
 local TRACE_RING_ADDR = 0xF010
 local TRACE_RING_SIZE = 32
-local TRACE_META_ADDR = 0xF040
+local TRACE_META_ADDR = 0xF080
 local CRASH_AUX_ADDR  = 0xEE80
 local CRASH_REGS_ADDR = 0xEE40
 
@@ -85,6 +85,20 @@ local TRACE_NAMES = {
     [0x0432] = "TITLE_DEMO: stage advanced",
     [0x0433] = "TITLE_FALLBACK: forced screen-ready release",
     [0x0434] = "TITLE_DEMO: text page advanced",
+    [0x0435] = "TITLE_FALLBACK: forced PPUMASK/display release",
+    [0x0440] = "BANK6_PPU: translated ROM buffer selected",
+    [0x0441] = "BANK6_PPU: translated ROM buffer complete",
+    [0x0442] = "BANK6_PPU: legacy pointer fallback used",
+    [0x0450] = "BANK0_AUDIO: early boot full sound-driver bypass",
+    [0x0451] = "BANK0_AUDIO: early boot music bypass",
+    [0x0452] = "BANK0_AUDIO: early boot music self-loop release",
+    [0x0453] = "BANK0_AUDIO: early boot DPCM/SFX1 bypass",
+    [0x0460] = "BANK6_BAT: startup BAT import begin",
+    [0x0461] = "BANK6_BAT: startup BAT import complete",
+    [0x0462] = "BANK6_PPU: BAT ROM buffer selected",
+    [0x0463] = "BANK6_BAT: startup BAT import skipped",
+    [0x0464] = "BANK0_MUSIC: title music gate force-released",
+    [0x0465] = "BANK0_MUSIC: title music request hard-bypassed",
 }
 
 local VECTOR_NAMES = {
@@ -306,12 +320,43 @@ local function domain_exists(name)
     return false
 end
 
-local function pick_rom_domain()
-    local candidates = {"MD CART", "Genesis ROM", "ROM", "M68K BUS", "68K BUS"}
-    for _, d in ipairs(candidates) do
-        if domain_exists(d) then return d end
+local function pick_rom_domains()
+    local ordered = {}
+    local seen = {}
+    local function add(name)
+        if name and name ~= "" and not seen[name] and domain_exists(name) then
+            seen[name] = true
+            ordered[#ordered+1] = name
+        end
     end
-    return nil
+
+    for _, d in ipairs({"MD CART", "Genesis ROM", "ROM", "CART", "CART ROM", "M68K BUS", "68K BUS"}) do
+        add(d)
+    end
+
+    for _, d in ipairs(get_domain_list()) do
+        local upper = string.upper(d)
+        local looks_like_rom =
+            upper:find("ROM", 1, true) or
+            upper:find("CART", 1, true) or
+            upper:find("BUS", 1, true)
+        local looks_like_ram =
+            upper:find("RAM", 1, true) or
+            upper:find("VRAM", 1, true) or
+            upper:find("CRAM", 1, true) or
+            upper:find("VSRAM", 1, true) or
+            upper:find("SRAM", 1, true)
+        if looks_like_rom and not looks_like_ram then
+            add(d)
+        end
+    end
+
+    return ordered
+end
+
+local function pick_rom_domain()
+    local domains = pick_rom_domains()
+    return domains[1]
 end
 
 local function get_domain_size(name)
@@ -328,11 +373,37 @@ local function read_rom_byte(addr, rom_domain)
     return nil
 end
 
-local function file_matches_loaded_rom(rom_name)
-    local rom_domain = pick_rom_domain()
+local function make_sample_offsets(file_size)
+    local points = {}
+    local seen = {}
+    local function add(offset)
+        offset = math.floor(offset or 0)
+        if offset < 0 then offset = 0 end
+        if offset >= file_size then offset = file_size - 1 end
+        if offset >= 0 and not seen[offset] then
+            seen[offset] = true
+            points[#points+1] = offset
+        end
+    end
+
+    add(0)
+    add(1)
+    add(2)
+    add(3)
+    add(0x100)
+    add(0x101)
+    add(0x180)
+    add(0x18E)
+    add(math.floor(file_size / 4))
+    add(math.floor(file_size / 2))
+    add(file_size - 0x100)
+    add(file_size - 1)
+    return points
+end
+
+local function file_matches_loaded_rom_in_domain(rom_name, rom_domain)
     local rom_size = get_domain_size(rom_domain)
     if not rom_name or not rom_domain or not rom_size then return false end
-
     local path = ROM_DIR .. rom_name
     local f = io.open(path, "rb")
     if not f then return false end
@@ -344,21 +415,40 @@ local function file_matches_loaded_rom(rom_name)
         return false
     end
 
+    for _, offset in ipairs(make_sample_offsets(file_size)) do
+        f:seek("set", offset)
+        local chunk = f:read(1)
+        if not chunk or read_rom_byte(offset, rom_domain) ~= string.byte(chunk, 1) then
+            f:close()
+            return false
+        end
+    end
+
+    f:seek("set", 0)
     local addr = 0
-    while true do
-        local chunk = f:read(4096)
-        if not chunk then break end
+    while addr < math.min(file_size, 4096) do
+        local chunk = f:read(math.min(256, 4096 - addr))
+        if not chunk or #chunk == 0 then break end
         for i = 1, #chunk do
-            if read_rom_byte(addr, rom_domain) ~= string.byte(chunk, i) then
+            if read_rom_byte(addr + i - 1, rom_domain) ~= string.byte(chunk, i) then
                 f:close()
                 return false
             end
-            addr = addr + 1
         end
+        addr = addr + #chunk
     end
 
     f:close()
     return true
+end
+
+local function file_matches_loaded_rom(rom_name)
+    for _, rom_domain in ipairs(pick_rom_domains()) do
+        if file_matches_loaded_rom_in_domain(rom_name, rom_domain) then
+            return true
+        end
+    end
+    return false
 end
 
 local function detect_current_rom()
@@ -384,6 +474,10 @@ local function detect_current_rom()
         if file_matches_loaded_rom(rom) then
             return rom
         end
+    end
+
+    if #roms > 0 then
+        return roms[1]
     end
 
     return nil
@@ -545,13 +639,13 @@ local WATCHES = {
     {addr=0xEE84, sz=2, name="CRASH_AUX_W",    desc="Crash aux word (IR/SSW for bus/address)"},
     {addr=0xF000, sz=2, name="TRACE_LAST",     desc="Last startup checkpoint"},
     {addr=0xF002, sz=2, name="TRACE_SEQ",      desc="Startup checkpoint sequence"},
-    {addr=0xF040, sz=2, name="BANK_RAW",       desc="Raw bank arg word before byte cleanup"},
-    {addr=0xF042, sz=2, name="BANK_POST",      desc="Bank arg word after byte-only shifts"},
-    {addr=0xF044, sz=2, name="SCRIPT_RAW",     desc="Raw script selector word seen by helper"},
-    {addr=0xF046, sz=2, name="DISPATCH_INDEX", desc="Sanitized helper table offset"},
-    {addr=0xF048, sz=4, name="DISPATCH_BASE",  desc="Helper table base / popped return address"},
-    {addr=0xF04C, sz=4, name="DISPATCH_TARGET",desc="Resolved helper jump target"},
-    {addr=0xF050, sz=4, name="DISPATCH_STACK", desc="Helper caller stack pointer before pop"},
+    {addr=0xF080, sz=2, name="BANK_RAW",       desc="Raw bank arg word before byte cleanup"},
+    {addr=0xF082, sz=2, name="BANK_POST",      desc="Bank arg word after byte-only shifts"},
+    {addr=0xF084, sz=2, name="SCRIPT_RAW",     desc="Raw script selector word seen by helper"},
+    {addr=0xF086, sz=2, name="DISPATCH_INDEX", desc="Sanitized helper table offset"},
+    {addr=0xF088, sz=4, name="DISPATCH_BASE",  desc="Helper table base / popped return address"},
+    {addr=0xF08C, sz=4, name="DISPATCH_TARGET",desc="Resolved helper jump target"},
+    {addr=0xF090, sz=4, name="DISPATCH_STACK", desc="Helper caller stack pointer before pop"},
 }
 
 -- Hand-picked loop-release suspects to summarize separately.
@@ -1191,7 +1285,7 @@ local function run_diagnostics(rom_name)
         log(dline)
     end
 
-    log_sep("RAM DUMP: $FFF040-$FFF05F (dispatch/bank meta)")
+    log_sep("RAM DUMP: $FFF080-$FFF09F (dispatch/bank meta)")
     for row = 0, 1 do
         local base = TRACE_META_ADDR + row*16
         local dline = string.format("  $FF%04X:", base)

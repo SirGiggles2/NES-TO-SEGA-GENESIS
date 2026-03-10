@@ -215,15 +215,7 @@ ofs_main_script_2_0x009030_00_title_screen:  ; orig: ofs_main_script_2_0x009030_
     BNE     b02_bra_9030             ; BNE  ; orig: C - - - - - 0x009037 02:9027: D0 07     BNE b02_bra_9030
     BSR     sub_90CF             ; JSR -> BSR  ; orig: C - - - - - 0x009039 02:9029: 20 CF 90  JSR sub_90CF
     MOVE.B  ram_0011_screen_ready_flag,D0  ; orig: C - - - - - 0x00903C 02:902C: A5 11     LDA ram_0011_screen_
-    BNE     b02_bra_9030
-    MOVE.B  ram_041D,D0
-    MOVE.B  ($00FF042E).l,D1
-    OR.B    D1,D0
-    BEQ     b02_bra_905C_RTS             ; orig: C - - - - - 0x00903E 02:902E: F0 2C     BEQ b02_bra_905C_RTS
-    MOVE.W  #$0433,D0
-    BSR     TRACE_MARK
-    MOVE.B  #con_ppu_buf_title_screen,D0
-    BSR     loc_95A2
+    BEQ     b02_bra_905C_RTS             ; BEQ  ; orig: C - - - - - 0x00903E 02:902E: F0 2C     BEQ b02_bra_905C_RTS
 b02_bra_9030:  ; orig: b02_bra_9030:
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x009040 02:9030: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x009042 02:9032: 20 E2 E5  JSR sub_0x01E5F2_jum
@@ -1137,6 +1129,9 @@ ofs_9545_02:  ; orig: ofs_9545_02:
 
 
 tbl_954F_demo_manual_palette:  ; orig: tbl_954F_demo_manual_palette:
+    DC.B $3F,$00,$20,$0F,$30,$30,$30,$0F,$21,$30,$30,$0F,$16,$30,$30,$0F
+    DC.B $29,$1A,$09,$0F,$29,$37,$17,$0F,$02,$22,$30,$0F,$16,$27,$30,$0F
+    DC.B $0B,$1B,$2B,$FF
     ; !! UNKNOWN: .DBYT $3F00  ; orig: - D 0 - - - 0x00955F 02:954F: 3F 00     .dbyt $3F00 ;
     ; [DIRECTIVE] .BYTE $00 + $00 + $20  -- needs manual handling  ; orig: - D 0 - - - 0x009561 02:9551: 20        .byte $00 + $00 + $2
 

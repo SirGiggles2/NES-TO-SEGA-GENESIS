@@ -54,6 +54,16 @@ ofs_bat_67F0_bank_s1_asm_import:
 
 
 _off000_bat_67F0_12:  ; orig: _off000_bat_67F0_12:
+    DC.B $3F,$00,$20
+    DC.B $0F,$30,$00,$12
+    DC.B $0F,$16,$27,$36
+    DC.B $0F,$0C,$1C,$2C
+    DC.B $0F,$12,$1C,$2C
+    DC.B $0F,$29,$27,$07
+    DC.B $0F,$22,$27,$07
+    DC.B $0F,$26,$27,$07
+    DC.B $0F,$15,$27,$30
+    DC.B $FF
 
 ; con_ppu_buf_12
 
@@ -81,6 +91,9 @@ _off000_bat_67F0_12:  ; orig: _off000_bat_67F0_12:
 
 
 _off000_bat_6814_06:  ; orig: _off000_bat_6814_06:
+    DC.B $3F,$1C,$04
+    DC.B $0F,$0F,$0F,$0F
+    DC.B $FF
 
 ; con_ppu_buf_06
 
@@ -98,6 +111,9 @@ _off000_bat_681C_0C_level_text:  ; orig: _off000_bat_681C_0C_level_text:
 
 ; con_ppu_buf_level_text
 _off000_bat_681C_2E:  ; orig: _off000_bat_681C_2E:
+    DC.B $20,$42,$07
+    DC.B $15,$0E,$1F,$0E,$15,$62,$00
+    DC.B $FF
 
 ; ram_681C
     ; !! UNKNOWN: .DBYT $2042  ; orig: - D 0 - I - 0x019D14 06:681C: 20        .dbyt $2042 ;
@@ -110,6 +126,10 @@ _off000_bat_681C_2E:  ; orig: _off000_bat_681C_2E:
 
 
 tbl_bat_6827_columns:  ; orig: tbl_bat_6827_columns:
+    DC.B $D8,$9B,$0D,$9C,$3E,$9C,$80,$9C
+    DC.B $C4,$9C,$F6,$9C,$32,$9D,$6D,$9D
+    DC.B $A8,$9D,$E6,$9D,$27,$9E,$6C,$9E
+    DC.B $A9,$9E,$DF,$9E,$21,$9F,$55,$9F
 
 ; ram_6827_tbl_bat_columns
     ; [DIRECTIVE] .WORD _off006_0x015BE8_00  -- needs manual handling  ; orig: - D 0 - I - 0x019D1F 06:6827: D8 9B     .word _off006_0x015B
@@ -132,6 +152,7 @@ tbl_bat_6827_columns:  ; orig: tbl_bat_6827_columns:
 
 
 _off000_bat_6847_52:  ; orig: _off000_bat_6847_52:
+    DC.B $2A,$EE,$04,$ED,$E9,$EA,$EE,$FF
 
 ; con_ppu_buf_52
 
@@ -148,6 +169,7 @@ _off000_bat_6847_52:  ; orig: _off000_bat_6847_52:
 
 
 _off000_bat_684F_54:  ; orig: _off000_bat_684F_54:
+    DC.B $2B,$0D,$06,$ED,$E9,$24,$24,$EA,$EE,$FF
 
 ; con_ppu_buf_54
 
@@ -166,6 +188,7 @@ _off000_bat_684F_54:  ; orig: _off000_bat_684F_54:
 
 
 _off000_bat_6859_56:  ; orig: _off000_bat_6859_56:
+    DC.B $2B,$2C,$08,$ED,$E9,$24,$24,$24,$24,$EA,$EE,$FF
 
 ; con_ppu_buf_56
 
@@ -186,6 +209,7 @@ _off000_bat_6859_56:  ; orig: _off000_bat_6859_56:
 
 
 _off000_bat_6865_58:  ; orig: _off000_bat_6865_58:
+    DC.B $2B,$4B,$0A,$ED,$E9,$24,$24,$24,$24,$24,$24,$EA,$EE,$FF
 
 ; con_ppu_buf_58
 
@@ -208,6 +232,7 @@ _off000_bat_6865_58:  ; orig: _off000_bat_6865_58:
 
 
 _off000_bat_6873_5C_triforce_text:  ; orig: _off000_bat_6873_5C_triforce_text:
+    DC.B $2B,$AC,$08,$1D,$1B,$12,$0F,$18,$1B,$0C,$0E
 
 ; con_ppu_buf_triforce_text
 

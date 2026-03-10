@@ -583,10 +583,7 @@ bra_81F2_RTS:  ; orig: bra_81F2_RTS:
 
 
 tbl_81F3:  ; orig: tbl_81F3:
-    ; [DIRECTIVE] .BYTE $08  -- needs manual handling  ; orig: - D 0 - - - 0x010203 04:81F3: 08        .byte $08   ; 00
-    ; [DIRECTIVE] .BYTE $04  -- needs manual handling  ; orig: - D 0 - - - 0x010204 04:81F4: 04        .byte $04   ; 01
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - D 0 - - - 0x010205 04:81F5: 02        .byte $02   ; 02
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - D 0 - - - 0x010206 04:81F6: 01        .byte $01   ; 03
+    DC.B    $08,$04,$02,$01
 
 
 
@@ -600,9 +597,9 @@ ofs_004_0x010207_68:  ; orig: ofs_004_0x010207_68:
     MOVE.B  ram_state_obj(D1.L),D0  ; LDA abs,X  ; orig: C - - J - - 0x010207 04:81F7: B5 AC     LDA ram_state_obj,X
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x010209 04:81F9: 29 03     AND #$03
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01020B 04:81FB: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_014_8204_00  -- needs manual handling  ; orig: - D 0 - I - 0x01020E 04:81FE: 04 82     .word ofs_014_8204_0
-    ; [DIRECTIVE] .WORD ofs_014_8263_01  -- needs manual handling  ; orig: - D 0 - I - 0x010210 04:8200: 63 82     .word ofs_014_8263_0
-    ; [DIRECTIVE] .WORD ofs_014_8289_02_RTS  -- needs manual handling  ; orig: - D 0 - I - 0x010212 04:8202: 89 82     .word ofs_014_8289_0
+    DC.L    ofs_014_8204_00
+    DC.L    ofs_014_8263_01
+    DC.L    ofs_014_8289_02_RTS
 
 
 
@@ -639,12 +636,14 @@ bra_8232:  ; orig: bra_8232:
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x010246 04:8236: AD F8 03  LDA ram_03F8_link
     CMP.B   tbl_81F3(D2.L),D0  ; orig: C - - - - - 0x010249 04:8239: D9 F3 81  CMP tbl_81F3,Y
     BNE     bra_825D             ; BNE  ; orig: C - - - - - 0x01024C 04:823C: D0 1F     BNE bra_825D
-    ; (empty translation for INC)  ; orig: C - - - - - 0x01024E 04:823E: FE 12 04  INC ram_0412,X
+    MOVEA.L #ram_0412,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x01024E 04:823E: FE 12 04  INC ram_0412,X
+    ADDQ.B  #1,(A0,D1.L)  ; ^
     MOVE.B  ram_0412(D1.L),D2  ; LDY abs,X  ; orig: C - - - - - 0x010251 04:8241: BC 12 04  LDY ram_0412,X
     CMPI.B  #$10,D2  ; orig: C - - - - - 0x010254 04:8244: C0 10     CPY #$10    ; timer 
     BCC     bra_8262_RTS             ; BCC  ; orig: C - - - - - 0x010256 04:8246: 90 1A     BCC bra_8262_RTS
     MOVE.B  D0,ram_dir_enemy(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x010258 04:8248: 95 98     STA ram_dir_enemy,X
-    ; (empty translation for INC)  ; orig: C - - - - - 0x01025A 04:824A: F6 AC     INC ram_state_obj,X
+    MOVEA.L #ram_state_obj,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x01025A 04:824A: F6 AC     INC ram_state_obj,X
+    ADDQ.B  #1,(A0,D1.L)  ; ^
     ADDQ.B  #1,ram_00F7_flag  ; orig: C - - - - - 0x01025C 04:824C: E6 F7     INC ram_00F7_flag
     MOVE.B  #$74,D0  ; orig: C - - - - - 0x01025E 04:824E: A9 74     LDA #$74
     BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x010260 04:8250: 20 62 E8  JSR sub_0x01E872_bom
@@ -688,8 +687,8 @@ ofs_014_8289_02_RTS:  ; orig: ofs_014_8289_02_RTS:
 sub_828A:  ; orig: sub_828A:
 loc_828A:  ; orig: loc_828A:
     MOVE.B  #$F8,D0  ; orig: - - - - - - 0x01029A 04:828A: A9 F8     LDA #$F8
-    ; (empty translation for STA)  ; orig: - - - - - - 0x01029C 04:828C: 8D 40 02  STA ram_spr_Y + $40
-    ; (empty translation for STA)  ; orig: - - - - - - 0x01029F 04:828F: 8D 44 02  STA ram_spr_Y + $44
+    MOVE.B  D0,($00FF0240).l  ; orig: - - - - - - 0x01029C 04:828C: 8D 40 02  STA ram_spr_Y + $40
+    MOVE.B  D0,($00FF0244).l  ; orig: - - - - - - 0x01029F 04:828F: 8D 44 02  STA ram_spr_Y + $44
     RTS                     ; RTS  ; orig: - - - - - - 0x0102A2 04:8292: 60        RTS
 
 

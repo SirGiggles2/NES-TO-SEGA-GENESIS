@@ -40,6 +40,7 @@ VDP_REG1_SHADOW EQU $FFFFEF0A
 PPUDATA_BUFFER  EQU $FFFFEF0C
 PPU_LAST_PLANE_ADDR EQU $FFFFEF10
 PPU_PLANE_CACHE_VALID EQU $FFFFEF12
+PPU_FULL_REDRAW_PENDING EQU $FFFFEF13
 
 RAM_FOR_2001    EQU $FFFF00FE
 RAM_FOR_2000    EQU $FFFF00FF
@@ -82,6 +83,7 @@ VDP_INIT:
     clr.b   (PPUDATA_BUFFER).l
     clr.w   (PPU_LAST_PLANE_ADDR).l
     clr.b   (PPU_PLANE_CACHE_VALID).l
+    clr.b   (PPU_FULL_REDRAW_PENDING).l
     bsr     PPU_CLEAR_SHADOWS
 
     move.b  #$54,(VDP_REG1_SHADOW).l
@@ -104,6 +106,15 @@ PPU_WRITE_2000:
     move.w  #$8100,D4
     or.b    D3,D4
     move.w  D4,($C00004)
+    move.b  (PPUMASK_SHADOW).l,D4
+    andi.b  #$18,D4
+    beq     .done
+    tst.b   (PPU_FULL_REDRAW_PENDING).l
+    beq     .done
+    movem.l D0-D7/A0,-(A7)
+    bsr     PPU_FLUSH_VISIBLE_NAMETABLE
+    movem.l (A7)+,D0-D7/A0
+.done:
     rts
 
 PPU_WRITE_2001:
@@ -379,6 +390,24 @@ PPU_INVALIDATE_PLANE_CACHE:
     clr.b   (PPU_PLANE_CACHE_VALID).l
     rts
 
+PPU_FLUSH_VISIBLE_NAMETABLE:
+    clr.b   (PPU_FULL_REDRAW_PENDING).l
+    bsr     PPU_INVALIDATE_PLANE_CACHE
+    moveq   #0,D4
+    move.w  #29,D7
+.row_loop:
+    move.w  #31,D6
+.col_loop:
+    move.l  D6,-(A7)
+    move.l  D7,-(A7)
+    bsr     PPU_RENDER_NAMETABLE_CELL
+    move.l  (A7)+,D7
+    move.l  (A7)+,D6
+    addq.w  #1,D4
+    dbra    D6,.col_loop
+    dbra    D7,.row_loop
+    rts
+
 PPU_NORMALIZE_PALETTE_INDEX:
     andi.w  #$001F,D4
     cmpi.w  #$0010,D4
@@ -420,6 +449,10 @@ PPU_WRITE_NAMETABLE_BYTE:
     cmp.b   (A0,D4.w),D0
     beq     .done
     move.b  D0,(A0,D4.w)
+    moveq   #0,D5
+    move.b  (PPUMASK_SHADOW).l,D5
+    andi.w  #$0018,D5
+    beq     .defer_redraw
     move.w  D4,D5
     andi.w  #$03FF,D5
     cmpi.w  #$03C0,D5
@@ -428,6 +461,9 @@ PPU_WRITE_NAMETABLE_BYTE:
     bra     .done
 .attribute:
     bsr     PPU_RENDER_ATTRIBUTE_BLOCK
+    bra     .done
+.defer_redraw:
+    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
 .done:
     rts
 
