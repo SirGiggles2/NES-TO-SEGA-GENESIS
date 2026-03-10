@@ -1039,6 +1039,8 @@ bra_953B_loop:  ; orig: bra_953B_loop:
 
 
 ofs_9545_02:  ; orig: ofs_9545_02:
+    MOVE.W  #$0470,D0
+    BSR     TRACE_MARK
     MOVE.B  #con_music_title,D0  ; orig: C - - J - - 0x009555 02:9545: A9 80     LDA #con_music_title
     MOVE.B  D0,ram_music  ; orig: C - - - - - 0x009557 02:9547: 8D 00 06  STA ram_music
     MOVE.B  #con_ppu_buf_title_screen,D0  ; orig: C - - - - - 0x00955A 02:954A: A9 10     LDA #con_ppu_buf_tit
@@ -1563,8 +1565,10 @@ tbl_9863:  ; orig: tbl_9863:
 sub_986B:  ; orig: sub_986B:
     MOVE.B  #$70,D2  ; orig: C - - - - - 0x00987B 02:986B: A0 70     LDY #$70
 bra_986D_loop:  ; orig: bra_986D_loop:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00987D 02:986D: B9 ED 90  LDA tbl_90EE_spr_dat
-    ; (empty translation for STA)  ; orig: C - - - - - 0x009880 02:9870: 99 FF 01  STA ram_spr_Y - $01,
+    LEA     tbl_90EE_spr_data-1,A1
+    MOVE.B  (A1,D2.W),D0  ; orig: C - - - - - 0x00987D 02:986D: B9 ED 90  LDA tbl_90EE_spr_dat
+    LEA     ram_spr_Y-1,A1
+    MOVE.B  D0,(A1,D2.W)  ; orig: C - - - - - 0x009880 02:9870: 99 FF 01  STA ram_spr_Y - $01,
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x009883 02:9873: 88        DEY
     BNE     bra_986D_loop             ; BNE  ; orig: C - - - - - 0x009884 02:9874: D0 F7     BNE bra_986D_loop
     BSR     sub_98C3             ; JSR -> BSR  ; orig: C - - - - - 0x009886 02:9876: 20 C3 98  JSR sub_98C3
@@ -1578,7 +1582,7 @@ bra_9880_loop:  ; orig: bra_9880_loop:
     BPL     bra_9880_loop             ; BPL  ; orig: C - - - - - 0x009897 02:9887: 10 F7     BPL bra_9880_loop
     MOVE.B  ram_0413,D2  ; orig: C - - - - - 0x009899 02:9889: AC 13 04  LDY ram_0413
     MOVE.B  tbl_9863(D2.L),D0  ; LDA abs,Y  ; orig: C - - - - - 0x00989C 02:988C: B9 63 98  LDA tbl_9863,Y
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00989F 02:988F: 8D 07 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,ram_0302_ppu_buffer+$05  ; orig: C - - - - - 0x00989F 02:988F: 8D 07 03  STA ram_0302_ppu_buf
     MOVE.B  #$06,D0  ; orig: C - - - - - 0x0098A2 02:9892: A9 06     LDA #$06
     MOVE.B  D0,ram_0412  ; orig: C - - - - - 0x0098A4 02:9894: 8D 12 04  STA ram_0412
     ADDQ.B  #1,ram_0413  ; orig: C - - - - - 0x0098A7 02:9897: EE 13 04  INC ram_0413
@@ -1663,8 +1667,9 @@ bra_98EB_loop:  ; orig: bra_98EB_loop:
 
 
 sub_98F5:  ; orig: sub_98F5:
-    ; (empty translation for INC)  ; orig: C - - - - - 0x009905 02:98F5: FE 20 04  INC ram_0420,X
-    ; (empty translation for INC)  ; orig: C - - - - - 0x009908 02:98F8: FE 20 04  INC ram_0420,X
+    LEA     ram_0420,A1
+    ADDQ.B  #1,(A1,D1.W)  ; orig: C - - - - - 0x009905 02:98F5: FE 20 04  INC ram_0420,X
+    ADDQ.B  #1,(A1,D1.W)  ; orig: C - - - - - 0x009908 02:98F8: FE 20 04  INC ram_0420,X
     MOVE.B  ram_0420(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x00990B 02:98FB: BD 20 04  LDA ram_0420,X
     CMPI.B  #$E3,D0  ; orig: C - - - - - 0x00990E 02:98FE: C9 E3     CMP #$E3
     BCC     bra_9907             ; BCC  ; orig: C - - - - - 0x009910 02:9900: 90 05     BCC bra_9907
@@ -1713,7 +1718,8 @@ sub_9943:  ; orig: sub_9943:
 bra_9947_loop:  ; orig: bra_9947_loop:
     MOVE.B  ram_frm_cnt,D0  ; orig: C - - - - - 0x009957 02:9947: A5 15     LDA ram_frm_cnt
     ANDI.B  #$08,D0  ; orig: C - - - - - 0x009959 02:9949: 29 08     AND #$08
-    ; !! ADC tbl_98B3_spr_T,X - complex mode, manual review needed  ; orig: C - - - - - 0x00995B 02:994B: 7D B3 98  ADC tbl_98B3_spr_T,X
+    LEA     tbl_98B3_spr_T,A1
+    ADD.B   (A1,D1.W),D0  ; orig: C - - - - - 0x00995B 02:994B: 7D B3 98  ADC tbl_98B3_spr_T,X
     MOVE.B  D0,ram_spr_T(D2.L)  ; STA abs,Y  ; orig: C - - - - - 0x00995E 02:994E: 99 01 02  STA ram_spr_T,Y
     MOVE.B  #$A8,D0  ; orig: C - - - - - 0x009961 02:9951: A9 A8     LDA #$A8
     MOVE.B  D0,ram_spr_Y(D2.L)  ; STA abs,Y  ; orig: C - - - - - 0x009963 02:9953: 99 00 02  STA ram_spr_Y,Y

@@ -1,0 +1,68 @@
+Oracle trace summary
+ROM: current_genesis
+System: genesis
+RAM domain: M68K BUS
+RAM base: FF0000
+Frames: 0-300
+Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_genesis.csv
+
+First changes:
+  ram_0000_t49     frame 14
+  ram_0002_t17     frame 12
+  ram_0003_t18     frame 12
+  ram_0004_t18     frame 12
+  game_mode        never changed
+  screen_ready     never changed
+  ram_script       never changed
+  ram_subscript    never changed
+  ppu_load_index   never changed
+  ram_frm_cnt      frame 12
+  rendering_flag   never changed
+  ram_next_script  never changed
+  ram_005C         never changed
+  se_ptr_lo        never changed
+  se_ptr_hi        never changed
+  ram_006C_se      never changed
+  ram_00F6         never changed
+  btn_press        frame 12
+  btn_hold         frame 12
+  scroll_y         never changed
+  scroll_x         never changed
+  ram_for_2001     frame 12
+  ram_for_2000     frame 12
+  ram_0415         never changed
+  ram_041A         never changed
+  ram_042D         never changed
+  ram_042E         never changed
+  ram_0528         never changed
+  ram_05F1         never changed
+  ram_05F4         never changed
+  ram_05F5         never changed
+  ram_music        never changed
+  ram_music_busy   never changed
+  ram_060A         never changed
+  ram_060B         never changed
+  ram_060C         never changed
+  ram_060D         never changed
+  ram_0611         never changed
+  ram_0612         never changed
+  ram_0613         never changed
+  ram_0616         never changed
+  ram_0617         never changed
+  ram_0619         never changed
+  ram_061B         never changed
+  ppu_buf_status   frame 12
+  ppu_buf_index    never changed
+  ppu_buf_0        frame 12
+  ppu_buf_1        never changed
+  ppu_buf_2        never changed
+  ppu_buf_3        never changed
+  ppu_buf_4        never changed
+  ppu_buf_5        never changed
+  ppu_buf_6        never changed
+  ppu_buf_7        never changed
+  trace_last       frame 12
+  trace_seq        frame 12
+  PPU_REQ_INDEX    never changed
+  PPU_REQ_PTR      frame 12
+  PPU_REQ_RES      never changed

@@ -3408,12 +3408,14 @@ bra_98E7_loop:  ; orig: bra_98E7_loop:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x0018F7 00:98E7: C8        INY
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x0018F8 00:98E8: 4A        LSR
     BCC     bra_98E7_loop             ; BCC  ; orig: C - - - - - 0x0018F9 00:98E9: 90 FC     BCC bra_98E7_loop
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0018FB 00:98EB: B9 5A 98  LDA tbl_985B - $01,Y
+    MOVEA.L #b00_tbl_985B_real-$01,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x0018FB 00:98EB: B9 5A 98  LDA tbl_985B - $01,Y
     MOVE.B  D0,ram_060E  ; orig: C - - - - - 0x0018FE 00:98EE: 8D 0E 06  STA ram_060E
 bra_98F1:  ; orig: bra_98F1:
     MOVE.B  ram_060E,D2  ; orig: C - - - - - 0x001901 00:98F1: AC 0E 06  LDY ram_060E
     ADDQ.B  #1,ram_060E  ; orig: C - - - - - 0x001904 00:98F4: EE 0E 06  INC ram_060E
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001907 00:98F7: B9 5B 98  LDA tbl_9862 - $07,Y
+    MOVEA.L #b00_tbl_985B_real,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x001907 00:98F7: B9 5B 98  LDA tbl_9862 - $07,Y
     BMI     bra_9911             ; BMI  ; orig: C - - - - - 0x00190A 00:98FA: 30 15     BMI bra_9911
     BNE     bra_991D             ; BNE  ; orig: C - - - - - 0x00190C 00:98FC: D0 1F     BNE bra_991D
     MOVE.B  #$90,D1  ; orig: C - - - - - 0x00190E 00:98FE: A2 90     LDX #$90
@@ -3428,7 +3430,8 @@ bra_9911:  ; orig: bra_9911:
     MOVE.B  D0,$4000  ; orig: C - - - - - 0x001921 00:9911: 8D 00 40  STA $4000
     MOVE.B  ram_060E,D2  ; orig: C - - - - - 0x001924 00:9914: AC 0E 06  LDY ram_060E
     ADDQ.B  #1,ram_060E  ; orig: C - - - - - 0x001927 00:9917: EE 0E 06  INC ram_060E
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00192A 00:991A: B9 5B 98  LDA tbl_9862 - $07,Y
+    MOVEA.L #b00_tbl_985B_real,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x00192A 00:991A: B9 5B 98  LDA tbl_9862 - $07,Y
 bra_991D:  ; orig: bra_991D:
     BSR     sub_9C0D             ; JSR -> BSR  ; orig: C - - - - - 0x00192D 00:991D: 20 0D 9C  JSR sub_9C0D
     MOVE.B  #$7F,D0  ; orig: C - - - - - 0x001930 00:9920: A9 7F     LDA #$7F
@@ -3547,7 +3550,8 @@ bra_99D9:  ; orig: bra_99D9:
     MOVE.B  D0,ram_0069_se  ; orig: C - - - - - 0x0019EE 00:99DE: 85 69     STA ram_0069_se
 bra_99E0:  ; orig: bra_99E0:
     MOVE.B  ram_0069_se,D2  ; orig: C - - - - - 0x0019F0 00:99E0: A4 69     LDY ram_0069_se
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0019F2 00:99E2: B9 3C 9A  LDA tbl_9A3D - $01,Y
+    MOVEA.L #b00_tbl_9A3D_real-$01,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x0019F2 00:99E2: B9 3C 9A  LDA tbl_9A3D - $01,Y
     BNE     bra_996E             ; BNE  ; orig: C - - - - - 0x0019F5 00:99E5: D0 87     BNE bra_996E    ; bz
 bra_99E7:  ; orig: bra_99E7:
     MOVE.B  D2,ram_0606_sfx_3  ; orig: C - - - - - 0x0019F7 00:99E7: 8C 06 06  STY ram_0606_sfx_3
@@ -3816,7 +3820,8 @@ bra_9AEC_loop:  ; orig: bra_9AEC_loop:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x001AFC 00:9AEC: C8        INY
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x001AFD 00:9AED: 4A        LSR
     BCC     bra_9AEC_loop             ; BCC  ; orig: C - - - - - 0x001AFE 00:9AEE: 90 FC     BCC bra_9AEC_loop
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001B00 00:9AF0: B9 54 9A  LDA tbl_9A55 - $01,Y
+    MOVEA.L #b00_tbl_9A55_real-$01,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x001B00 00:9AF0: B9 54 9A  LDA tbl_9A55 - $01,Y
     MOVE.B  D0,ram_0618  ; orig: C - - - - - 0x001B03 00:9AF3: 8D 18 06  STA ram_0618
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x001B06 00:9AF6: A9 01     LDA #$01
     MOVE.B  D0,ram_006F_se  ; orig: C - - - - - 0x001B08 00:9AF8: 85 6F     STA ram_006F_se
@@ -3825,7 +3830,8 @@ bra_9AFA:  ; orig: bra_9AFA:
     BNE     bra_9B47             ; BNE  ; orig: C - - - - - 0x001B0C 00:9AFC: D0 49     BNE bra_9B47
     MOVE.B  ram_0618,D2  ; orig: C - - - - - 0x001B0E 00:9AFE: AC 18 06  LDY ram_0618
     ADDQ.B  #1,ram_0618  ; orig: C - - - - - 0x001B11 00:9B01: EE 18 06  INC ram_0618
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001B14 00:9B04: B9 55 9A  LDA tbl_9A5D - $08,Y
+    MOVEA.L #b00_tbl_9A5D_real-$08,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x001B14 00:9B04: B9 55 9A  LDA tbl_9A5D - $08,Y
     BMI     bra_9B25             ; BMI  ; orig: C - - - - - 0x001B17 00:9B07: 30 1C     BMI bra_9B25
     BNE     bra_9B32             ; BNE  ; orig: C - - - - - 0x001B19 00:9B09: D0 27     BNE bra_9B32
     MOVE.B  ram_0607_sfx_2,D0  ; orig: C - - - - - 0x001B1B 00:9B0B: AD 07 06  LDA ram_0607_sfx_2
@@ -3844,7 +3850,8 @@ bra_9B25:  ; orig: bra_9B25:
     MOVE.B  D0,ram_006E_se  ; orig: C - - - - - 0x001B37 00:9B27: 85 6E     STA ram_006E_se
     MOVE.B  ram_0618,D2  ; orig: C - - - - - 0x001B39 00:9B29: AC 18 06  LDY ram_0618
     ADDQ.B  #1,ram_0618  ; orig: C - - - - - 0x001B3C 00:9B2C: EE 18 06  INC ram_0618
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001B3F 00:9B2F: B9 55 9A  LDA tbl_9A5D - $08,Y
+    MOVEA.L #b00_tbl_9A5D_real-$08,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x001B3F 00:9B2F: B9 55 9A  LDA tbl_9A5D - $08,Y
 bra_9B32:  ; orig: bra_9B32:
     BSR     sub_9C2B             ; JSR -> BSR  ; orig: C - - - - - 0x001B42 00:9B32: 20 2B 9C  JSR sub_9C2B
     MOVE.B  #$7F,D0  ; orig: C - - - - - 0x001B45 00:9B35: A9 7F     LDA #$7F
@@ -3951,11 +3958,14 @@ bra_9BC8_loop:  ; orig: bra_9BC8_loop:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x001BD8 00:9BC8: C8        INY
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x001BD9 00:9BC9: 4A        LSR
     BCC     bra_9BC8_loop             ; BCC  ; orig: C - - - - - 0x001BDA 00:9BCA: 90 FC     BCC bra_9BC8_loop
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001BDC 00:9BCC: B9 FB 9B  LDA tbl_9BFC - $01,Y
+    MOVEA.L #b00_tbl_9BFC_real-$01,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x001BDC 00:9BCC: B9 FB 9B  LDA tbl_9BFC - $01,Y
     MOVE.B  D0,$4010  ; orig: C - - - - - 0x001BDF 00:9BCF: 8D 10 40  STA $4010
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001BE2 00:9BD2: B9 ED 9B  LDA tbl_9BEE_dpcm_st
+    MOVEA.L #b00_tbl_9BEE_dpcm_st_real,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x001BE2 00:9BD2: B9 ED 9B  LDA tbl_9BEE_dpcm_st
     MOVE.B  D0,$4012  ; orig: C - - - - - 0x001BE5 00:9BD5: 8D 12 40  STA $4012
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001BE8 00:9BD8: B9 F4 9B  LDA tbl_9BF5_dpcm_si
+    MOVEA.L #b00_tbl_9BF5_dpcm_size_real,A0
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x001BE8 00:9BD8: B9 F4 9B  LDA tbl_9BF5_dpcm_si
     MOVE.B  D0,$4013  ; orig: C - - - - - 0x001BEB 00:9BDB: 8D 13 40  STA $4013
     MOVE.B  #$A0,D0  ; orig: C - - - - - 0x001BEE 00:9BDE: A9 A0     LDA #$A0
     MOVE.B  D0,ram_05F2  ; orig: C - - - - - 0x001BF0 00:9BE0: 8D F2 05  STA ram_05F2
@@ -4016,11 +4026,12 @@ sub_9C03_set_4000_4001:  ; orig: sub_9C03_set_4000_4001:
 
 sub_9C0D:  ; orig: sub_9C0D:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x001C1D 00:9C0D: A8        TAY
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001C1E 00:9C0E: B9 01 9F  LDA tbl_9F00 + $01,Y
+    LEA     b00_tbl_9F00_real,A0
+    MOVE.B  1(A0,D2.W),D0  ; orig: C - - - - - 0x001C1E 00:9C0E: B9 01 9F  LDA tbl_9F00 + $01,Y
     BEQ     bra_9C20_RTS             ; BEQ  ; orig: C - - - - - 0x001C21 00:9C11: F0 0D     BEQ bra_9C20_RTS
     MOVE.B  D0,ram_006A_se  ; orig: C - - - - - 0x001C23 00:9C13: 85 6A     STA ram_006A_se
     MOVE.B  D0,$4002  ; orig: C - - - - - 0x001C25 00:9C15: 8D 02 40  STA $4002
-    MOVE.B  tbl_9F00(D2.L),D0  ; LDA abs,Y  ; orig: C - - - - - 0x001C28 00:9C18: B9 00 9F  LDA tbl_9F00,Y
+    MOVE.B  (A0,D2.W),D0  ; LDA abs,Y  ; orig: C - - - - - 0x001C28 00:9C18: B9 00 9F  LDA tbl_9F00,Y
     ORI.B   #$08,D0  ; orig: C - - - - - 0x001C2B 00:9C1B: 09 08     ORA #$08
     MOVE.B  D0,$4003  ; orig: C - - - - - 0x001C2D 00:9C1D: 8D 03 40  STA $4003
 bra_9C20_RTS:  ; orig: bra_9C20_RTS:
@@ -4042,11 +4053,12 @@ sub_9C21_set_4004_4005:  ; orig: sub_9C21_set_4004_4005:
 
 sub_9C2B:  ; orig: sub_9C2B:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x001C3B 00:9C2B: A8        TAY
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001C3C 00:9C2C: B9 01 9F  LDA tbl_9F00 + $01,Y
+    LEA     b00_tbl_9F00_real,A0
+    MOVE.B  1(A0,D2.W),D0  ; orig: C - - - - - 0x001C3C 00:9C2C: B9 01 9F  LDA tbl_9F00 + $01,Y
     BEQ     bra_9C20_RTS             ; BEQ  ; orig: C - - - - - 0x001C3F 00:9C2F: F0 EF     BEQ bra_9C20_RTS
     MOVE.B  D0,ram_006B_se  ; orig: C - - - - - 0x001C41 00:9C31: 85 6B     STA ram_006B_se
     MOVE.B  D0,$4006  ; orig: C - - - - - 0x001C43 00:9C33: 8D 06 40  STA $4006
-    MOVE.B  tbl_9F00(D2.L),D0  ; LDA abs,Y  ; orig: C - - - - - 0x001C46 00:9C36: B9 00 9F  LDA tbl_9F00,Y
+    MOVE.B  (A0,D2.W),D0  ; LDA abs,Y  ; orig: C - - - - - 0x001C46 00:9C36: B9 00 9F  LDA tbl_9F00,Y
     ORI.B   #$08,D0  ; orig: C - - - - - 0x001C49 00:9C39: 09 08     ORA #$08
     MOVE.B  D0,$4007  ; orig: C - - - - - 0x001C4B 00:9C3B: 8D 07 40  STA $4007
     RTS                     ; RTS  ; orig: C - - - - - 0x001C4E 00:9C3E: 60        RTS
@@ -4055,11 +4067,12 @@ sub_9C2B:  ; orig: sub_9C2B:
 
 sub_9C3F:  ; orig: sub_9C3F:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x001C4F 00:9C3F: A8        TAY
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001C50 00:9C40: B9 01 9F  LDA tbl_9F00 + $01,Y
+    LEA     b00_tbl_9F00_real,A0
+    MOVE.B  1(A0,D2.W),D0  ; orig: C - - - - - 0x001C50 00:9C40: B9 01 9F  LDA tbl_9F00 + $01,Y
     BEQ     bra_9C20_RTS             ; BEQ  ; orig: C - - - - - 0x001C53 00:9C43: F0 DB     BEQ bra_9C20_RTS
     MOVE.B  D0,ram_05F0  ; orig: C - - - - - 0x001C55 00:9C45: 8D F0 05  STA ram_05F0
     MOVE.B  D0,$400A  ; orig: C - - - - - 0x001C58 00:9C48: 8D 0A 40  STA $400A
-    MOVE.B  tbl_9F00(D2.L),D0  ; LDA abs,Y  ; orig: C - - - - - 0x001C5B 00:9C4B: B9 00 9F  LDA tbl_9F00,Y
+    MOVE.B  (A0,D2.W),D0  ; LDA abs,Y  ; orig: C - - - - - 0x001C5B 00:9C4B: B9 00 9F  LDA tbl_9F00,Y
     ORI.B   #$08,D0  ; orig: C - - - - - 0x001C5E 00:9C4E: 09 08     ORA #$08
     MOVE.B  D0,$400B  ; orig: C - - - - - 0x001C60 00:9C50: 8D 0B 40  STA $400B
     RTS                     ; RTS  ; orig: C - - - - - 0x001C63 00:9C53: 60        RTS
@@ -4093,9 +4106,130 @@ bra_9C68:
 ; bzk
     JMP     loc_9D2C  ; orig: C - - - - - 0x001C78 00:9C68: 4C 2C 9D  JMP loc_9D2C
 
+b00_LOAD_SEQ_BYTE:
+    LEA     ram_0066_se_t01_data,A0
+    MOVE.W  (A0),D5
+    ROL.W   #8,D5
+    MOVE.W  D5,(TRACE_SEQ_PTR_RAW).l
+    BSR     b00_RESOLVE_SEQ_PTR_REAL
+    MOVE.L  A1,(TRACE_SEQ_PTR_RES).l
+    MOVE.W  D2,(TRACE_SEQ_INDEX).l
+    MOVE.B  (A1,D2.W),D0
+    MOVE.W  D0,(TRACE_SEQ_BYTE).l
+    MOVE.B  ram_0609_music,D5
+    MOVE.W  D5,(TRACE_SEQ_SOURCE).l
+    RTS
+
+b00_RESOLVE_SEQ_PTR_REAL:
+    CMPI.W  #$8F0F,D5
+    BEQ     .seq_8F0F
+    CMPI.W  #$948B,D5
+    BEQ     .seq_948B
+    CMPI.W  #$94DC,D5
+    BEQ     .seq_94DC
+    CMPI.W  #$95A1,D5
+    BEQ     .seq_95A1
+    MOVE.W  #$048F,D0
+    BSR     TRACE_MARK
+    MOVEA.W D5,A1
+    RTS
+.seq_8F0F:
+    MOVE.W  #$048E,D0
+    BSR     TRACE_MARK
+    LEA     b00_seq_8F0F_real,A1
+    RTS
+.seq_948B:
+    MOVE.W  #$048E,D0
+    BSR     TRACE_MARK
+    LEA     b00_seq_948B_real,A1
+    RTS
+.seq_94DC:
+    MOVE.W  #$048E,D0
+    BSR     TRACE_MARK
+    LEA     b00_seq_94DC_real,A1
+    RTS
+.seq_95A1:
+    MOVE.W  #$048E,D0
+    BSR     TRACE_MARK
+    LEA     b00_seq_95A1_real,A1
+    RTS
+
+b00_INIT_TITLE_TRACK_REAL:
+    MOVE.W  #$0472,D0
+    BSR     TRACE_MARK
+    MOVE.B  #$10,ram_05F4
+    MOVE.W  #b00_title_track_seq_real,D5
+    MOVE.B  D5,ram_0066_se_t01_data
+    LSR.W   #8,D5
+    MOVE.B  D5,ram_0066_se_t01_data+$01
+    MOVE.B  #$3F,ram_060C
+    MOVE.B  #$20,ram_060B
+    MOVE.B  #$00,ram_060D
+    MOVE.B  #$00,ram_05F5
+    MOVE.B  #$80,ram_0619
+    MOVE.B  #$80,ram_05F1
+    MOVE.B  #$01,D0
+    MOVE.B  D0,ram_0611
+    MOVE.B  D0,ram_0613
+    MOVE.B  D0,ram_0616
+    MOVE.B  D0,ram_0617
+    LSR.B   #1,D0
+    MOVE.B  D0,ram_060A
+    RTS
+
+b00_INIT_SEQ_STATE_FROM_REAL_TABLE:
+    MOVE.W  #$0476,D0
+    BSR     TRACE_MARK
+    CMPI.B  #$19,D2
+    BNE     .generic_init
+    MOVE.W  #$0480,D0
+    BSR     TRACE_MARK
+    CLR.B   ram_music
+    MOVE.W  #$0481,D0
+    BSR     TRACE_MARK
+    CMPI.B  #con_ppu_buf_title_screen,ram_ppu_load_index
+    BNE     .skip_title_ppu_release
+    CLR.B   ram_ppu_load_index
+    MOVE.W  #$0482,D0
+    BSR     TRACE_MARK
+.skip_title_ppu_release:
+    MOVE.B  #$1E,ram_for_2001
+    CLR.B   ram_0017_rendering_flag
+    MOVE.W  #$0483,D0
+    BSR     TRACE_MARK
+    BSR     b00_INIT_TITLE_TRACK_REAL
+    RTS
+.generic_init:
+    MOVEA.L #b00_tbl_8D60_offset_real-$01,A0
+    MOVE.B  (A0,D2.L),D2
+    MOVEA.L #b00_tbl_8D84_music_real-$24,A0
+    MOVE.B  (A0,D2.L),D0
+    MOVE.B  D0,ram_05F4
+    MOVE.B  1(A0,D2.L),D0
+    MOVE.B  D0,ram_0066_se_t01_data
+    MOVE.B  2(A0,D2.L),D0
+    MOVE.B  D0,ram_0066_se_t01_data+$01
+    MOVE.B  3(A0,D2.L),D0
+    MOVE.B  D0,ram_060C
+    MOVE.B  4(A0,D2.L),D0
+    MOVE.B  D0,ram_060B
+    MOVE.B  5(A0,D2.L),D0
+    MOVE.B  D0,ram_060D
+    MOVE.B  D0,ram_05F5
+    MOVE.B  6(A0,D2.L),D0
+    MOVE.B  D0,ram_0619
+    MOVE.B  7(A0,D2.L),D0
+    MOVE.B  D0,ram_05F1
+    MOVE.W  #$0477,D0
+    BSR     TRACE_MARK
+    RTS
+
 
 
 sub_9C6B_music:  ; orig: sub_9C6B_music:
+    MOVE.W  #$048B,D0
+    BSR     TRACE_MARK
+    BRA     .read_music_request
     TST.B   ram_script
     BNE     .normal_music_path
     CMPI.B  #$01,ram_subscript
@@ -4113,6 +4247,23 @@ sub_9C6B_music:  ; orig: sub_9C6B_music:
     BSR     sub_9D46
     RTS
 .normal_music_path:
+    TST.B   ram_script
+    BNE     .read_music_request
+    TST.B   ram_subscript
+    BNE     .read_music_request
+    TST.B   ram_0011_screen_ready_flag
+    BEQ     .read_music_request
+    CMPI.B  #con_ppu_buf_title_screen,ram_ppu_load_index
+    BNE     .read_music_request
+    TST.B   ram_music
+    BNE     .read_music_request
+    TST.B   ram_0609_music
+    BNE     .read_music_request
+    MOVE.W  #$0479,D0
+    BSR     TRACE_MARK
+    MOVE.B  #con_music_title,D0
+    BRA     bra_9C76
+.read_music_request:
     MOVE.B  ram_music,D0  ; orig: C - - - - - 0x001C7B 00:9C6B: AD 00 06  LDA ram_music
     BNE     bra_9C76             ; BNE  ; orig: C - - - - - 0x001C7E 00:9C6E: D0 06     BNE bra_9C76
     MOVE.B  ram_0609_music,D0  ; orig: C - - - - - 0x001C80 00:9C70: AD 09 06  LDA ram_0609_music
@@ -4120,6 +4271,16 @@ sub_9C6B_music:  ; orig: sub_9C6B_music:
     RTS                     ; RTS  ; orig: C - - - - - 0x001C85 00:9C75: 60        RTS
 bra_9C76:  ; orig: bra_9C76:
     MOVE.B  D0,ram_0609_music  ; orig: C - - - - - 0x001C86 00:9C76: 8D 09 06  STA ram_0609_music
+bra_9C76_title_dispatch_done:
+    CMPI.B  #$06,D0
+    BNE     bra_9C76_normal_dispatch
+    TST.B   ram_script
+    BNE     bra_9C76_normal_dispatch
+    TST.B   ram_0011_screen_ready_flag
+    BEQ     bra_9C76_normal_dispatch
+    MOVE.W  #$0478,D0
+    BSR     TRACE_MARK
+bra_9C76_normal_dispatch:
     BMI     bra_9C93             ; BMI  ; orig: C - - - - - 0x001C89 00:9C79: 30 18     BMI bra_9C93
     CMPI.B  #$06,D0  ; orig: C - - - - - 0x001C8B 00:9C7B: C9 06     CMP #$06
     BNE     bra_9C83             ; BNE  ; orig: C - - - - - 0x001C8D 00:9C7D: D0 04     BNE bra_9C83
@@ -4189,25 +4350,7 @@ bra_9CE1_loop:  ; orig: bra_9CE1_loop:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x001CF2 00:9CE2: 4A        LSR
     BCC     bra_9CE1_loop             ; BCC  ; orig: C - - - - - 0x001CF3 00:9CE3: 90 FC     BCC bra_9CE1_loop
 bra_9CE5:  ; orig: bra_9CE5:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001CF5 00:9CE5: B9 5F 8D  LDA tbl_8D60_offset 
-    MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x001CF8 00:9CE8: A8        TAY
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001CF9 00:9CE9: B9 60 8D  LDA tbl_8D84_music -
-    MOVE.B  D0,ram_05F4  ; orig: C - - - - - 0x001CFC 00:9CEC: 8D F4 05  STA ram_05F4
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001CFF 00:9CEF: B9 61 8D  LDA tbl_8D84_music -
-    MOVE.B  D0,ram_0066_se_t01_data  ; orig: C - - - - - 0x001D02 00:9CF2: 85 66     STA ram_0066_se_t01_
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001D04 00:9CF4: B9 62 8D  LDA tbl_8D84_music -
-    ; (empty translation for STA)  ; orig: C - - - - - 0x001D07 00:9CF7: 85 67     STA ram_0066_se_t01_
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001D09 00:9CF9: B9 63 8D  LDA tbl_8D84_music -
-    MOVE.B  D0,ram_060C  ; orig: C - - - - - 0x001D0C 00:9CFC: 8D 0C 06  STA ram_060C
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001D0F 00:9CFF: B9 64 8D  LDA tbl_8D84_music -
-    MOVE.B  D0,ram_060B  ; orig: C - - - - - 0x001D12 00:9D02: 8D 0B 06  STA ram_060B
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001D15 00:9D05: B9 65 8D  LDA tbl_8D84_music -
-    MOVE.B  D0,ram_060D  ; orig: C - - - - - 0x001D18 00:9D08: 8D 0D 06  STA ram_060D
-    MOVE.B  D0,ram_05F5  ; orig: C - - - - - 0x001D1B 00:9D0B: 8D F5 05  STA ram_05F5
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001D1E 00:9D0E: B9 66 8D  LDA tbl_8D84_music -
-    MOVE.B  D0,ram_0619  ; orig: C - - - - - 0x001D21 00:9D11: 8D 19 06  STA ram_0619
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x001D24 00:9D14: B9 67 8D  LDA tbl_8D84_music -
-    MOVE.B  D0,ram_05F1  ; orig: C - - - - - 0x001D27 00:9D17: 8D F1 05  STA ram_05F1
+    BSR     b00_INIT_SEQ_STATE_FROM_REAL_TABLE
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x001D2A 00:9D1A: A9 01     LDA #$01
     MOVE.B  D0,ram_0611  ; orig: C - - - - - 0x001D2C 00:9D1C: 8D 11 06  STA ram_0611
     MOVE.B  D0,ram_0613  ; orig: C - - - - - 0x001D2F 00:9D1F: 8D 13 06  STA ram_0613
@@ -4220,8 +4363,7 @@ loc_9D2C:  ; orig: loc_9D2C:
     BNE     bra_9D83             ; BNE  ; orig: C - - - - - 0x001D3F 00:9D2F: D0 52     BNE bra_9D83
     MOVE.B  ram_060A,D2  ; orig: C - - - - - 0x001D41 00:9D31: AC 0A 06  LDY ram_060A
     ADDQ.B  #1,ram_060A  ; orig: C - - - - - 0x001D44 00:9D34: EE 0A 06  INC ram_060A
-    MOVEA.W ($FF0000+ram_0066_se_t01_data).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x001D47 00:9D37: B1 66     LDA (ram_0066_se_t01
+    BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001D47 00:9D37: B1 66     LDA (ram_0066_se_t01
     BEQ     bra_9D3F_00             ; BEQ  ; orig: C - - - - - 0x001D49 00:9D39: F0 04     BEQ bra_9D3F_00
     BPL     bra_9D65_01_7F             ; BPL  ; orig: C - - - - - 0x001D4B 00:9D3B: 10 28     BPL bra_9D65_01_7F
     BNE     bra_9D57_80_FF             ; BNE  ; orig: C - - - - - 0x001D4D 00:9D3D: D0 18     BNE bra_9D57_80_FF  
@@ -4246,8 +4388,7 @@ bra_9D57_80_FF:  ; orig: bra_9D57_80_FF:
     MOVE.B  D0,ram_0610  ; orig: C - - - - - 0x001D6A 00:9D5A: 8D 10 06  STA ram_0610
     MOVE.B  ram_060A,D2  ; orig: C - - - - - 0x001D6D 00:9D5D: AC 0A 06  LDY ram_060A
     ADDQ.B  #1,ram_060A  ; orig: C - - - - - 0x001D70 00:9D60: EE 0A 06  INC ram_060A
-    MOVEA.W ($FF0000+ram_0066_se_t01_data).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x001D73 00:9D63: B1 66     LDA (ram_0066_se_t01
+    BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001D73 00:9D63: B1 66     LDA (ram_0066_se_t01
 bra_9D65_01_7F:  ; orig: bra_9D65_01_7F:
     MOVE.B  ram_0607_sfx_2,D1  ; orig: C - - - - - 0x001D75 00:9D65: AE 07 06  LDX ram_0607_sfx_2
     BNE     bra_9D7D             ; BNE  ; orig: C - - - - - 0x001D78 00:9D68: D0 13     BNE bra_9D7D
@@ -4287,8 +4428,7 @@ bra_9DAE:  ; orig: bra_9DAE:
     BNE     bra_9DEE             ; BNE  ; orig: C - - - - - 0x001DC6 00:9DB6: D0 36     BNE bra_9DEE
     MOVE.B  ram_060B,D2  ; orig: C - - - - - 0x001DC8 00:9DB8: AC 0B 06  LDY ram_060B
     ADDQ.B  #1,ram_060B  ; orig: C - - - - - 0x001DCB 00:9DBB: EE 0B 06  INC ram_060B
-    MOVEA.W ($FF0000+ram_0066_se_t01_data).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x001DCE 00:9DBE: B1 66     LDA (ram_0066_se_t01
+    BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001DCE 00:9DBE: B1 66     LDA (ram_0066_se_t01
     BPL     bra_9DD0             ; BPL  ; orig: C - - - - - 0x001DD0 00:9DC0: 10 0E     BPL bra_9DD0
 
 ; 80-FF
@@ -4296,8 +4436,7 @@ bra_9DAE:  ; orig: bra_9DAE:
     MOVE.B  D0,ram_060F  ; orig: C - - - - - 0x001DD5 00:9DC5: 8D 0F 06  STA ram_060F
     MOVE.B  ram_060B,D2  ; orig: C - - - - - 0x001DD8 00:9DC8: AC 0B 06  LDY ram_060B
     ADDQ.B  #1,ram_060B  ; orig: C - - - - - 0x001DDB 00:9DCB: EE 0B 06  INC ram_060B
-    MOVEA.W ($FF0000+ram_0066_se_t01_data).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x001DDE 00:9DCE: B1 66     LDA (ram_0066_se_t01
+    BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001DDE 00:9DCE: B1 66     LDA (ram_0066_se_t01
 bra_9DD0:  ; orig: bra_9DD0:
     MOVE.B  ram_0605_sfx_4,D1  ; orig: C - - - - - 0x001DE0 00:9DD0: AE 05 06  LDX ram_0605_sfx_4
     BNE     bra_9DE8             ; BNE  ; orig: C - - - - - 0x001DE3 00:9DD3: D0 13     BNE bra_9DE8
@@ -4341,8 +4480,7 @@ bra_9E21:  ; orig: bra_9E21:
 loc_9E26:  ; orig: loc_9E26:
     MOVE.B  ram_060C,D2  ; orig: C D 0 - - - 0x001E36 00:9E26: AC 0C 06  LDY ram_060C
     ADDQ.B  #1,ram_060C  ; orig: C - - - - - 0x001E39 00:9E29: EE 0C 06  INC ram_060C
-    MOVEA.W ($FF0000+ram_0066_se_t01_data).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x001E3C 00:9E2C: B1 66     LDA (ram_0066_se_t01
+    BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001E3C 00:9E2C: B1 66     LDA (ram_0066_se_t01
     BEQ     bra_9E92             ; BEQ  ; orig: C - - - - - 0x001E3E 00:9E2E: F0 62     BEQ bra_9E92
     BPL     bra_9E6A             ; BPL  ; orig: C - - - - - 0x001E40 00:9E30: 10 38     BPL bra_9E6A
 
@@ -4350,8 +4488,7 @@ loc_9E26:  ; orig: loc_9E26:
     CMPI.B  #$F0,D0  ; orig: C - - - - - 0x001E42 00:9E32: C9 F0     CMP #$F0
     BEQ     bra_9E47             ; BEQ  ; orig: C - - - - - 0x001E44 00:9E34: F0 11     BEQ bra_9E47
     BCC     bra_9E55             ; BCC  ; orig: C - - - - - 0x001E46 00:9E36: 90 1D     BCC bra_9E55
-    ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x001E48 00:9E38: 38        SEC
-    SUBX.B  #$F0,D0       ; SBC imm  ; orig: C - - - - - 0x001E49 00:9E39: E9 F0     SBC #$F0
+    SUBI.B  #$F0,D0       ; SEC + SBC #$F0 => A - $F0  ; orig: C - - - - - 0x001E48 00:9E38: 38/E9 F0
     MOVE.B  D0,ram_061E  ; orig: C - - - - - 0x001E4B 00:9E3B: 8D 1E 06  STA ram_061E
     MOVE.B  ram_060C,D0  ; orig: C - - - - - 0x001E4E 00:9E3E: AD 0C 06  LDA ram_060C
     MOVE.B  D0,ram_061F  ; orig: C - - - - - 0x001E51 00:9E41: 8D 1F 06  STA ram_061F
@@ -4370,8 +4507,7 @@ bra_9E55:  ; orig: bra_9E55:
     MOVE.B  D0,$4008  ; orig: C - - - - - 0x001E6D 00:9E5D: 8D 08 40  STA $4008
     MOVE.B  ram_060C,D2  ; orig: C - - - - - 0x001E70 00:9E60: AC 0C 06  LDY ram_060C
     ADDQ.B  #1,ram_060C  ; orig: C - - - - - 0x001E73 00:9E63: EE 0C 06  INC ram_060C
-    MOVEA.W ($FF0000+ram_0066_se_t01_data).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x001E76 00:9E66: B1 66     LDA (ram_0066_se_t01
+    BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001E76 00:9E66: B1 66     LDA (ram_0066_se_t01
     BEQ     bra_9E92             ; BEQ  ; orig: C - - - - - 0x001E78 00:9E68: F0 28     BEQ bra_9E92
 bra_9E6A:  ; orig: bra_9E6A:
     BSR     sub_9C3F             ; JSR -> BSR  ; orig: C - - - - - 0x001E7A 00:9E6A: 20 3F 9C  JSR sub_9C3F
@@ -4402,8 +4538,7 @@ loc_9E95:  ; orig: loc_9E95:
 bra_9EA1_loop:  ; orig: bra_9EA1_loop:
     MOVE.B  ram_060D,D2  ; orig: C - - - - - 0x001EB1 00:9EA1: AC 0D 06  LDY ram_060D
     ADDQ.B  #1,ram_060D  ; orig: C - - - - - 0x001EB4 00:9EA4: EE 0D 06  INC ram_060D
-    MOVEA.W ($FF0000+ram_0066_se_t01_data).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x001EB7 00:9EA7: B1 66     LDA (ram_0066_se_t01
+    BSR     b00_LOAD_SEQ_BYTE  ; orig: C - - - - - 0x001EB7 00:9EA7: B1 66     LDA (ram_0066_se_t01
     BNE     bra_9EB3             ; BNE  ; orig: C - - - - - 0x001EB9 00:9EA9: D0 08     BNE bra_9EB3
 
 ; 00
@@ -4434,26 +4569,17 @@ bra_9ED3_RTS:  ; orig: bra_9ED3_RTS:
 
 
 tbl_9ED4_400C:  ; orig: tbl_9ED4_400C:
-    ; [DIRECTIVE] .BYTE $10  -- needs manual handling  ; orig: - D 0 - - - 0x001EE4 00:9ED4: 10        .byte $10   ; 00
-    ; [DIRECTIVE] .BYTE $1C  -- needs manual handling  ; orig: - D 0 - - - 0x001EE5 00:9ED5: 1C        .byte $1C   ; 10
-    ; [DIRECTIVE] .BYTE $1C  -- needs manual handling  ; orig: - - - - - - 0x001EE6 00:9ED6: 1C        .byte $1C   ; 20
-    ; [DIRECTIVE] .BYTE $1C  -- needs manual handling  ; orig: - D 0 - - - 0x001EE7 00:9ED7: 1C        .byte $1C   ; 30
+    DC.B    $10,$1C,$1C,$1C
 
 
 
 tbl_9ED8_400E:  ; orig: tbl_9ED8_400E:
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - - - 0x001EE8 00:9ED8: 00        .byte $00   ; 00
-    ; [DIRECTIVE] .BYTE $03  -- needs manual handling  ; orig: - D 0 - - - 0x001EE9 00:9ED9: 03        .byte $03   ; 10
-    ; [DIRECTIVE] .BYTE $0A  -- needs manual handling  ; orig: - - - - - - 0x001EEA 00:9EDA: 0A        .byte $0A   ; 20
-    ; [DIRECTIVE] .BYTE $03  -- needs manual handling  ; orig: - D 0 - - - 0x001EEB 00:9EDB: 03        .byte $03   ; 30
+    DC.B    $00,$03,$0A,$03
 
 
 
 tbl_9EDC_400F:  ; orig: tbl_9EDC_400F:
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - - - 0x001EEC 00:9EDC: 00        .byte $00   ; 00
-    ; [DIRECTIVE] .BYTE $18  -- needs manual handling  ; orig: - D 0 - - - 0x001EED 00:9EDD: 18        .byte $18   ; 10
-    ; [DIRECTIVE] .BYTE $18  -- needs manual handling  ; orig: - - - - - - 0x001EEE 00:9EDE: 18        .byte $18   ; 20
-    ; [DIRECTIVE] .BYTE $58  -- needs manual handling  ; orig: - D 0 - - - 0x001EEF 00:9EDF: 58        .byte $58   ; 30
+    DC.B    $00,$18,$18,$58
 
 
 
@@ -4466,8 +4592,7 @@ sub_9EE0:  ; orig: sub_9EE0:
     ROXL.B  #1,D0           ; ROL A (uses X flag)  ; orig: C - - - - - 0x001EF5 00:9EE5: 2A        ROL
 sub_9EE6:  ; orig: sub_9EE6:
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x001EF6 00:9EE6: 29 07     AND #$07
-    ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x001EF8 00:9EE8: 18        CLC
-    ADDX.B  ram_05F4,D0  ; orig: C - - - - - 0x001EF9 00:9EE9: 6D F4 05  ADC ram_05F4
+    ADD.B   ram_05F4,D0  ; CLC + ADC ram_05F4 => A + M  ; orig: C - - - - - 0x001EF8 00:9EE8: 18 / 6D F4 05
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x001EFC 00:9EEC: A8        TAY
     MOVE.B  tbl_9FD1(D2.L),D0  ; LDA abs,Y  ; orig: C - - - - - 0x001EFD 00:9EED: B9 D1 9F  LDA tbl_9FD1,Y
     RTS                     ; RTS  ; orig: C - - - - - 0x001F00 00:9EF0: 60        RTS
@@ -4483,16 +4608,7 @@ sub_9EE6:  ; orig: sub_9EE6:
 
 
 tbl_9EF8:  ; orig: tbl_9EF8:
-    ; [DIRECTIVE] .BYTE $CB  -- needs manual handling  ; orig: - - - - - - 0x001F08 00:9EF8: CB        .byte $CB   ; 00 unu
-    ; [DIRECTIVE] .BYTE $0E  -- needs manual handling  ; orig: - D 0 - - - 0x001F09 00:9EF9: 0E        .byte $0E   ; 01
-    ; [DIRECTIVE] .BYTE $0E  -- needs manual handling  ; orig: - D 0 - - - 0x001F0A 00:9EFA: 0E        .byte $0E   ; 02
-    ; [DIRECTIVE] .BYTE $4C  -- needs manual handling  ; orig: - D 0 - - - 0x001F0B 00:9EFB: 4C        .byte $4C   ; 03
-    ; [DIRECTIVE] .BYTE $6D  -- needs manual handling  ; orig: - D 0 - - - 0x001F0C 00:9EFC: 6D        .byte $6D   ; 04
-    ; [DIRECTIVE] .BYTE $8C  -- needs manual handling  ; orig: - D 0 - - - 0x001F0D 00:9EFD: 8C        .byte $8C   ; 05
-    ; [DIRECTIVE] .BYTE $CD  -- needs manual handling  ; orig: - D 0 - - - 0x001F0E 00:9EFE: CD        .byte $CD   ; 06
-
-; bzk garbage 0x001975
-    ; [DIRECTIVE] .BYTE $FF  -- needs manual handling  ; orig: - - - - - - 0x001F0F 00:9EFF: FF        .byte $FF   ; 07
+    DC.B    $CB,$0E,$0E,$4C,$6D,$8C,$CD,$FF
 
 
 
@@ -4554,6 +4670,128 @@ tbl_9F00:  ; orig: tbl_9F00:
     ; [DIRECTIVE] .BYTE $03, $BF  -- needs manual handling  ; orig: - D 0 - - - 0x001F7C 00:9F6C: 03        .byte $03, $BF   ; 3
     ; [DIRECTIVE] .BYTE $03, $89  -- needs manual handling  ; orig: - - - - - - 0x001F7E 00:9F6E: 03        .byte $03, $89   ; 3
     ; [DIRECTIVE] .BYTE $03, $57  -- needs manual handling  ; orig: - D 0 - - - 0x001F80 00:9F70: 03        .byte $03, $57   ; 3
+
+b00_tbl_9F00_real:
+    DC.B    $00,$23,$00,$6A,$03,$27,$00,$97,$00,$00,$02,$F9,$02,$CF,$02,$A6
+    DC.B    $02,$80,$02,$5C,$02,$3A,$02,$1A,$01,$FC,$01,$DF,$01,$C4,$01,$AB
+    DC.B    $01,$93,$01,$7C,$01,$67,$01,$53,$01,$40,$01,$2E,$01,$1D,$01,$0D
+    DC.B    $00,$FE,$00,$EF,$00,$E2,$00,$D5,$00,$C9,$00,$BE,$00,$B3,$00,$A9
+    DC.B    $00,$A0,$00,$8E,$00,$86,$00,$77,$00,$7E,$00,$71,$00,$54,$00,$64
+    DC.B    $00,$5F,$00,$59,$00,$50,$00,$47,$00,$43,$00,$3F,$00,$38,$00,$32
+    DC.B    $00,$21,$05,$4D,$05,$01,$04,$B9,$04,$35,$03,$F8,$03,$BF,$03,$89
+    DC.B    $03,$57
+
+b00_title_track_seq_real:
+    DC.B    $85,$36,$80,$36,$36,$81,$36,$82,$32,$2C,$3A,$85,$36,$80,$36,$36
+    DC.B    $81,$36,$82,$32,$2C,$3A,$83,$36,$80,$1E,$1E,$1E,$1E,$85,$1E,$00
+    DC.B    $85,$26,$80,$26,$26,$81,$26,$82,$22,$1E,$28,$85,$26,$80,$26,$26
+    DC.B    $81,$26,$82,$22,$1E,$28,$83,$2C,$80,$14,$14,$14,$14,$85,$14,$82
+    DC.B    $26,$1E,$26,$2C,$26,$2C,$32,$2C,$32,$3A,$32,$3A,$26,$1E,$26,$2C
+    DC.B    $26,$2C,$32,$2C,$32,$3A,$32,$3A,$83,$36,$80,$1E,$1E,$1E,$1E,$85
+    DC.B    $1E
+
+b00_seq_8F0F_real:
+    DC.B    $81,$32,$08,$84,$28,$80,$08,$32,$32,$36,$3A,$3C,$85,$40,$81,$08
+    DC.B    $40,$82,$40,$06,$44,$00,$81,$22,$08,$82,$22,$22,$1E,$81,$22,$80
+    DC.B    $08,$22,$22,$24,$28,$2C,$81,$2E,$80,$08,$32,$32,$36,$3A,$3C,$83
+    DC.B    $40,$82,$2E,$32,$36,$83,$1A,$82,$1A,$1A,$16,$83,$1A,$1A,$16,$82
+    DC.B    $16,$16,$12,$83,$16,$16
+
+b00_seq_948B_real:
+    DC.B    $81,$32,$84,$08,$28,$28,$32,$82,$2E,$2A,$81,$2E,$80,$08,$81,$32
+    DC.B    $84,$08,$2A,$2A,$32,$82,$30,$2C,$81,$30,$80,$08,$00,$83,$08,$81
+    DC.B    $32,$84,$08,$28,$28,$32,$82,$2E,$2A,$81,$2E,$80,$08,$81,$32,$84
+    DC.B    $08,$2A,$2A,$32,$82,$30,$2C,$81,$30,$80,$08,$86,$1A,$28,$81,$32
+    DC.B    $86,$16,$24,$81,$2E,$86,$12,$20,$81,$2A,$86,$10,$1E,$81,$28,$40
+    DC.B    $00
+
+b00_seq_94DC_real:
+    DC.B    $81,$04,$08,$81,$04,$08,$86,$32,$80,$28,$84,$32,$82,$32,$36,$3A
+    DC.B    $3C,$81,$40,$08,$86,$32,$80,$28,$84,$32,$82,$32,$36,$3A,$3C,$81
+    DC.B    $40,$08,$00,$11,$90,$90,$00,$F6,$84,$1A,$82,$1A,$1A,$84,$1A,$82
+    DC.B    $1A,$1A,$F0,$F2,$84,$16,$82,$16,$16,$84,$16,$82,$16,$16,$F0,$F2
+    DC.B    $84,$12,$82,$12,$12,$84,$12,$82,$12,$12,$F0,$F2,$84,$10,$82,$10
+    DC.B    $10,$84,$10,$82,$10,$10,$F0,$84,$10,$82,$10,$6C,$84,$10,$82,$10
+    DC.B    $6C,$84,$10,$82,$10,$6C,$10,$6C,$10,$6C,$84,$10,$82,$10,$6C,$84
+    DC.B    $10,$82,$10,$6C,$84,$10,$82,$10,$6C,$10,$6C,$10,$6C,$84,$10,$82
+    DC.B    $10,$6C,$84,$10,$82,$10,$6C,$84,$10,$82,$10,$6C,$10,$6C,$10,$6C
+    DC.B    $84,$0C,$1A,$82,$1A,$1E,$22,$24,$84,$28,$82,$0C,$68,$0C,$68,$0C
+    DC.B    $68,$84,$04,$82,$04,$66,$84,$04,$82,$04,$66,$84,$04,$82,$04,$66
+    DC.B    $04,$66,$04,$66,$84,$70,$1A,$82,$1A,$1E,$22,$24,$84,$28,$82,$70
+    DC.B    $64,$70,$64,$70,$64
+
+b00_seq_95A1_real:
+    DC.B    $84,$32,$08,$80,$28,$84,$32,$82,$32,$36,$3A,$3C,$81,$40,$84,$08
+    DC.B    $40,$85,$40,$06,$87,$44,$00,$84,$22,$08,$85,$22,$22,$87,$1E,$84
+    DC.B    $22,$82,$08,$22,$22,$24,$28,$2C,$84,$2E,$82,$08,$32,$32,$36,$3A
+    DC.B    $3C,$86,$40,$85,$2E,$32,$87,$36,$F2,$84,$1A,$82,$1A,$1A,$84,$1A
+    DC.B    $82,$1A,$1A,$F0,$F2,$84,$16,$82,$16,$16,$84,$16,$82,$16,$16,$F0
+
+b00_tbl_8D60_offset_real:
+    DC.B    $7D,$B5,$6E,$67,$7D,$AD,$64,$64,$75,$7D,$85,$95
+    DC.B    $7D,$8D,$95,$9D,$A5,$BD,$C5,$CD,$D5,$DD,$D5,$E5
+    DC.B    $ED,$24,$2C,$34,$3C,$44,$34,$4C,$54,$5C,$44,$F5
+
+b00_tbl_8D84_music_real:
+    DC.B    $20,$8B,$94,$3B,$1D,$4F,$80,$01,$20,$DC,$94,$27
+    DC.B    $57,$23,$01,$80,$20,$A1,$95,$38,$17,$B8,$80,$80
+    DC.B    $20,$F1,$95,$6C,$26,$68,$80,$80,$20,$8D,$96,$3E
+    DC.B    $25,$21,$80,$80,$20,$EB,$96,$19,$0D,$31,$80,$80
+    DC.B    $20,$20,$97,$3F,$27,$7C,$80,$80,$20,$8F,$97,$1D
+    DC.B    $11,$0D,$80,$80,$10,$A1,$8E,$10,$5D,$8E,$0D,$07
+    DC.B    $00,$80,$10,$A4,$91,$46,$22,$00,$80,$10,$70,$8E
+    DC.B    $32,$5D,$8E,$01,$80,$10,$0F,$8F,$35,$16,$CE,$01
+    DC.B    $80,$10,$55,$8F,$60,$26,$88,$01,$80,$10,$32,$90
+    DC.B    $59,$2D,$A4,$01,$80,$10,$E4,$8F,$3B,$1A,$F2,$01
+    DC.B    $80,$00,$DD,$90,$45,$22,$00,$01,$01,$00,$3A,$91
+    DC.B    $39,$1C,$00,$01,$01,$10,$FD,$91,$A5,$53,$CD,$80
+    DC.B    $80,$10,$CC,$92,$22,$10,$00,$80,$01,$08,$F7,$92
+    DC.B    $22,$50,$59,$01,$80,$08,$F7,$92,$2F,$50,$59,$01
+    DC.B    $80,$08,$52,$93,$7A,$1B,$C2,$80,$80,$08,$86,$93
+    DC.B    $46,$24,$8E,$01,$80,$08,$9D,$93,$44,$23,$77,$01
+    DC.B    $80,$08,$ED,$93,$1B,$0E,$27,$01,$80,$08,$1A,$94
+    DC.B    $40,$1A,$6B,$80,$80,$10,$C4,$97,$3F,$20,$00,$80
+    DC.B    $80
+
+b00_tbl_985B_real:
+    DC.B    $1C,$4C,$27,$5C,$46,$67,$07,$95,$50,$08,$08,$08
+    DC.B    $08,$08,$90,$08,$08,$08,$08,$08,$08,$08,$08,$08
+    DC.B    $08,$08,$08,$00,$82,$4A,$48,$4A,$08,$08,$08,$08
+    DC.B    $08,$08,$00,$9F,$1E,$22,$24,$26,$9F,$28,$2A,$2C
+    DC.B    $2E,$9A,$28,$2A,$2C,$2E,$9C,$28,$2A,$2C,$2E,$96
+    DC.B    $28,$2A,$2C,$2E,$98,$28,$2A,$2C,$2E,$00,$99,$42
+    DC.B    $4A,$50,$54,$00,$99,$70,$0A,$70,$0E,$70,$10,$9F
+    DC.B    $70,$2A,$12,$1E,$2A,$70,$1E,$00,$9A,$42,$08,$08
+    DC.B    $56,$08,$08,$00,$08,$08,$00,$9F,$40,$30,$40,$3A
+    DC.B    $28,$00,$4C,$46,$9D
+
+b00_tbl_9A3D_real:
+    DC.B    $1F,$2F,$2E,$3F,$3F,$4C,$4E,$5F,$6F,$6F,$7E,$8F
+    DC.B    $9E,$AF,$BE,$CF,$DE,$EF,$FE,$FD,$FE,$FF,$FF,$FE
+
+b00_tbl_9A55_real:
+    DC.B    $0C,$08,$11,$1C,$28,$33,$40,$62
+
+b00_tbl_9A5D_real:
+    DC.B    $8A,$4E,$58,$60,$8A,$5E,$94,$60,$00,$8A,$42,$06
+    DC.B    $3C,$30,$2E,$3E,$44,$CC,$02,$00,$83,$40,$42,$48
+    DC.B    $4A,$02,$50,$4C,$54,$94,$56,$00,$94,$3A,$3E,$A8
+    DC.B    $50,$8A,$4E,$02,$CC,$4A,$00,$81,$28,$3E,$24,$82
+    DC.B    $3A,$81,$16,$30,$1A,$82,$34,$00,$94,$56,$42,$02
+    DC.B    $4C,$52,$42,$5C,$4A,$5A,$02,$4C,$5A,$56,$02,$50
+    DC.B    $4C,$5A,$02,$54,$5A,$58,$02,$50,$54,$4C,$42,$02
+    DC.B    $4C,$50,$48,$4A,$50,$00,$8A,$08,$08,$08,$85,$3C
+    DC.B    $3A,$38,$36,$3A,$38,$36,$34,$38,$36,$34,$32,$36
+    DC.B    $34,$32,$30,$34,$32,$30,$2E,$2A,$28,$A8,$26,$00
+
+b00_tbl_9BEE_dpcm_st_real:
+    DC.B    $00,$4C,$80,$1D,$20,$28,$4C
+
+b00_tbl_9BF5_dpcm_size_real:
+    DC.B    $75,$C0,$40,$0A,$B0,$90,$D0
+
+b00_tbl_9BFC_real:
+    DC.B    $0F,$0F,$0D,$0F,$0E,$0F,$0E
 
 
 
@@ -4628,100 +4866,27 @@ tbl_9F92:  ; orig: tbl_9F92:
 
 
 tbl_9FB1:  ; orig: tbl_9FB1:
-    ; [DIRECTIVE] .BYTE $57  -- needs manual handling  ; orig: - D 0 - - - 0x001FC1 00:9FB1: 57        .byte $57   ; 00
-    ; [DIRECTIVE] .BYTE $47  -- needs manual handling  ; orig: - D 0 - - - 0x001FC2 00:9FB2: 47        .byte $47   ; 01
-    ; [DIRECTIVE] .BYTE $67  -- needs manual handling  ; orig: - D 0 - - - 0x001FC3 00:9FB3: 67        .byte $67   ; 02
-    ; [DIRECTIVE] .BYTE $87  -- needs manual handling  ; orig: - D 0 - - - 0x001FC4 00:9FB4: 87        .byte $87   ; 03
-    ; [DIRECTIVE] .BYTE $A8  -- needs manual handling  ; orig: - D 0 - - - 0x001FC5 00:9FB5: A8        .byte $A8   ; 04
-    ; [DIRECTIVE] .BYTE $B9  -- needs manual handling  ; orig: - D 0 - - - 0x001FC6 00:9FB6: B9        .byte $B9   ; 05
-    ; [DIRECTIVE] .BYTE $9A  -- needs manual handling  ; orig: - D 0 - - - 0x001FC7 00:9FB7: 9A        .byte $9A   ; 06
-    ; [DIRECTIVE] .BYTE $8A  -- needs manual handling  ; orig: - D 0 - - - 0x001FC8 00:9FB8: 8A        .byte $8A   ; 07
-    ; [DIRECTIVE] .BYTE $5A  -- needs manual handling  ; orig: - D 0 - - - 0x001FC9 00:9FB9: 5A        .byte $5A   ; 08
-    ; [DIRECTIVE] .BYTE $9B  -- needs manual handling  ; orig: - D 0 - - - 0x001FCA 00:9FBA: 9B        .byte $9B   ; 09
+    DC.B    $57,$47,$67,$87,$A8,$B9,$9A,$8A,$5A,$9B
 
 
 
 tbl_9FBB:  ; orig: tbl_9FBB:
-    ; [DIRECTIVE] .BYTE $8B  -- needs manual handling  ; orig: - D 0 - - - 0x001FCB 00:9FBB: 8B        .byte $8B   ; 00
-    ; [DIRECTIVE] .BYTE $FB  -- needs manual handling  ; orig: - D 0 - - - 0x001FCC 00:9FBC: FB        .byte $FB   ; 01
-    ; [DIRECTIVE] .BYTE $F9  -- needs manual handling  ; orig: - D 0 - - - 0x001FCD 00:9FBD: F9        .byte $F9   ; 02
-    ; [DIRECTIVE] .BYTE $9D  -- needs manual handling  ; orig: - D 0 - - - 0x001FCE 00:9FBE: 9D        .byte $9D   ; 03
-    ; [DIRECTIVE] .BYTE $6E  -- needs manual handling  ; orig: - D 0 - - - 0x001FCF 00:9FBF: 6E        .byte $6E   ; 04
+    DC.B    $8B,$FB,$F9,$9D,$6E
 
 
 
 tbl_9FC0:  ; orig: tbl_9FC0:
-    ; [DIRECTIVE] .BYTE $3F  -- needs manual handling  ; orig: - D 0 - - - 0x001FD0 00:9FC0: 3F        .byte $3F   ; 00
-    ; [DIRECTIVE] .BYTE $1A  -- needs manual handling  ; orig: - D 0 - - - 0x001FD1 00:9FC1: 1A        .byte $1A   ; 01
-    ; [DIRECTIVE] .BYTE $1A  -- needs manual handling  ; orig: - D 0 - - - 0x001FD2 00:9FC2: 1A        .byte $1A   ; 02
-    ; [DIRECTIVE] .BYTE $1C  -- needs manual handling  ; orig: - D 0 - - - 0x001FD3 00:9FC3: 1C        .byte $1C   ; 03
-    ; [DIRECTIVE] .BYTE $1D  -- needs manual handling  ; orig: - D 0 - - - 0x001FD4 00:9FC4: 1D        .byte $1D   ; 04
-    ; [DIRECTIVE] .BYTE $1D  -- needs manual handling  ; orig: - D 0 - - - 0x001FD5 00:9FC5: 1D        .byte $1D   ; 05
-    ; [DIRECTIVE] .BYTE $1E  -- needs manual handling  ; orig: - D 0 - - - 0x001FD6 00:9FC6: 1E        .byte $1E   ; 06
-    ; [DIRECTIVE] .BYTE $1E  -- needs manual handling  ; orig: - D 0 - - - 0x001FD7 00:9FC7: 1E        .byte $1E   ; 07
-    ; [DIRECTIVE] .BYTE $1F  -- needs manual handling  ; orig: - D 0 - - - 0x001FD8 00:9FC8: 1F        .byte $1F   ; 08
-    ; [DIRECTIVE] .BYTE $1F  -- needs manual handling  ; orig: - D 0 - - - 0x001FD9 00:9FC9: 1F        .byte $1F   ; 09
-    ; [DIRECTIVE] .BYTE $1E  -- needs manual handling  ; orig: - D 0 - - - 0x001FDA 00:9FCA: 1E        .byte $1E   ; 0A
-    ; [DIRECTIVE] .BYTE $1A  -- needs manual handling  ; orig: - D 0 - - - 0x001FDB 00:9FCB: 1A        .byte $1A   ; 0B
-    ; [DIRECTIVE] .BYTE $19  -- needs manual handling  ; orig: - D 0 - - - 0x001FDC 00:9FCC: 19        .byte $19   ; 0C
-    ; [DIRECTIVE] .BYTE $16  -- needs manual handling  ; orig: - D 0 - - - 0x001FDD 00:9FCD: 16        .byte $16   ; 0D
-    ; [DIRECTIVE] .BYTE $13  -- needs manual handling  ; orig: - D 0 - - - 0x001FDE 00:9FCE: 13        .byte $13   ; 0E
-    ; [DIRECTIVE] .BYTE $11  -- needs manual handling  ; orig: - D 0 - - - 0x001FDF 00:9FCF: 11        .byte $11   ; 0F
-    ; [DIRECTIVE] .BYTE $11  -- needs manual handling  ; orig: - D 0 - - - 0x001FE0 00:9FD0: 11        .byte $11   ; 10
+    DC.B    $3F,$1A,$1A,$1C,$1D,$1D,$1E,$1E,$1F,$1F,$1E,$1A,$19,$16,$13,$11
+    DC.B    $11
 
 
 
 tbl_9FD1:  ; orig: tbl_9FD1:
-
-; 00
-    ; [DIRECTIVE] .BYTE $03  -- needs manual handling  ; orig: - - - - - - 0x001FE1 00:9FD1: 03        .byte $03   ; 00
-    ; [DIRECTIVE] .BYTE $0A  -- needs manual handling  ; orig: - D 0 - - - 0x001FE2 00:9FD2: 0A        .byte $0A   ; 01
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - - - - - - 0x001FE3 00:9FD3: 01        .byte $01   ; 02
-    ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - D 0 - - - 0x001FE4 00:9FD4: 14        .byte $14   ; 03
-    ; [DIRECTIVE] .BYTE $05  -- needs manual handling  ; orig: - - - - - - 0x001FE5 00:9FD5: 05        .byte $05   ; 04
-    ; [DIRECTIVE] .BYTE $28  -- needs manual handling  ; orig: - D 0 - - - 0x001FE6 00:9FD6: 28        .byte $28   ; 05
-    ; [DIRECTIVE] .BYTE $3C  -- needs manual handling  ; orig: - - - - - - 0x001FE7 00:9FD7: 3C        .byte $3C   ; 06
-    ; [DIRECTIVE] .BYTE $70  -- needs manual handling  ; orig: - - - - - - 0x001FE8 00:9FD8: 70        .byte $70   ; 07
-
-; 08
-    ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - - - 0x001FE9 00:9FD9: 07        .byte $07   ; 00
-    ; [DIRECTIVE] .BYTE $1B  -- needs manual handling  ; orig: - D 0 - - - 0x001FEA 00:9FDA: 1B        .byte $1B   ; 01
-    ; [DIRECTIVE] .BYTE $35  -- needs manual handling  ; orig: - D 0 - - - 0x001FEB 00:9FDB: 35        .byte $35   ; 02
-    ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - D 0 - - - 0x001FEC 00:9FDC: 14        .byte $14   ; 03
-    ; [DIRECTIVE] .BYTE $0D  -- needs manual handling  ; orig: - D 0 - - - 0x001FED 00:9FDD: 0D        .byte $0D   ; 04
-    ; [DIRECTIVE] .BYTE $28  -- needs manual handling  ; orig: - D 0 - - - 0x001FEE 00:9FDE: 28        .byte $28   ; 05
-    ; [DIRECTIVE] .BYTE $3C  -- needs manual handling  ; orig: - D 0 - - - 0x001FEF 00:9FDF: 3C        .byte $3C   ; 06
-    ; [DIRECTIVE] .BYTE $50  -- needs manual handling  ; orig: - D 0 - - - 0x001FF0 00:9FE0: 50        .byte $50   ; 07
-
-; 10
-    ; [DIRECTIVE] .BYTE $06  -- needs manual handling  ; orig: - D 0 - - - 0x001FF1 00:9FE1: 06        .byte $06   ; 00
-    ; [DIRECTIVE] .BYTE $0C  -- needs manual handling  ; orig: - D 0 - - - 0x001FF2 00:9FE2: 0C        .byte $0C   ; 01
-    ; [DIRECTIVE] .BYTE $08  -- needs manual handling  ; orig: - D 0 - - - 0x001FF3 00:9FE3: 08        .byte $08   ; 02
-    ; [DIRECTIVE] .BYTE $18  -- needs manual handling  ; orig: - D 0 - - - 0x001FF4 00:9FE4: 18        .byte $18   ; 03
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x001FF5 00:9FE5: 24        .byte $24   ; 04
-    ; [DIRECTIVE] .BYTE $30  -- needs manual handling  ; orig: - D 0 - - - 0x001FF6 00:9FE6: 30        .byte $30   ; 05
-    ; [DIRECTIVE] .BYTE $48  -- needs manual handling  ; orig: - D 0 - - - 0x001FF7 00:9FE7: 48        .byte $48   ; 06
-    ; [DIRECTIVE] .BYTE $10  -- needs manual handling  ; orig: - D 0 - - - 0x001FF8 00:9FE8: 10        .byte $10   ; 07
-
-; 18
-    ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - - - - - - 0x001FF9 00:9FE9: 07        .byte $07   ; 00
-    ; [DIRECTIVE] .BYTE $0D  -- needs manual handling  ; orig: - - - - - - 0x001FFA 00:9FEA: 0D        .byte $0D   ; 01
-    ; [DIRECTIVE] .BYTE $09  -- needs manual handling  ; orig: - - - - - - 0x001FFB 00:9FEB: 09        .byte $09   ; 02
-    ; [DIRECTIVE] .BYTE $1B  -- needs manual handling  ; orig: - - - - - - 0x001FFC 00:9FEC: 1B        .byte $1B   ; 03
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - - - - - - 0x001FFD 00:9FED: 24        .byte $24   ; 04
-    ; [DIRECTIVE] .BYTE $36  -- needs manual handling  ; orig: - - - - - - 0x001FFE 00:9FEE: 36        .byte $36   ; 05
-    ; [DIRECTIVE] .BYTE $48  -- needs manual handling  ; orig: - - - - - - 0x001FFF 00:9FEF: 48        .byte $48   ; 06
-    ; [DIRECTIVE] .BYTE $10  -- needs manual handling  ; orig: - - - - - - 0x002000 00:9FF0: 10        .byte $10   ; 07
-
-; 20
-    ; [DIRECTIVE] .BYTE $3C  -- needs manual handling  ; orig: - D 0 - - - 0x002001 00:9FF1: 3C        .byte $3C   ; 00
-    ; [DIRECTIVE] .BYTE $50  -- needs manual handling  ; orig: - D 0 - - - 0x002002 00:9FF2: 50        .byte $50   ; 01
-    ; [DIRECTIVE] .BYTE $0A  -- needs manual handling  ; orig: - D 0 - - - 0x002003 00:9FF3: 0A        .byte $0A   ; 02
-    ; [DIRECTIVE] .BYTE $05  -- needs manual handling  ; orig: - D 0 - - - 0x002004 00:9FF4: 05        .byte $05   ; 03
-    ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - D 0 - - - 0x002005 00:9FF5: 14        .byte $14   ; 04
-    ; [DIRECTIVE] .BYTE $0D  -- needs manual handling  ; orig: - D 0 - - - 0x002006 00:9FF6: 0D        .byte $0D   ; 05
-    ; [DIRECTIVE] .BYTE $28  -- needs manual handling  ; orig: - D 0 - - - 0x002007 00:9FF7: 28        .byte $28   ; 06
-    ; [DIRECTIVE] .BYTE $0E  -- needs manual handling  ; orig: - D 0 - - - 0x002008 00:9FF8: 0E        .byte $0E   ; 07
+    DC.B    $03,$0A,$01,$14,$05,$28,$3C,$70
+    DC.B    $07,$1B,$35,$14,$0D,$28,$3C,$50
+    DC.B    $06,$0C,$08,$18,$24,$30,$48,$10
+    DC.B    $07,$0D,$09,$1B,$24,$36,$48,$10
+    DC.B    $3C,$50,$0A,$05,$14,$0D,$28,$0E
 
 
 

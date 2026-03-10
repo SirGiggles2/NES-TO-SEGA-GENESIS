@@ -547,7 +547,7 @@ sub_E62D_read_joysticks:  ; orig: sub_E62D_read_joysticks:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x01E642 07:E632: A9 00     LDA #$00
     MOVE.B  D0,$4016  ; orig: C - - - - - 0x01E644 07:E634: 8D 16 40  STA $4016
     MOVE.B  D0,ram_0003_t18  ; orig: C - - - - - 0x01E647 07:E637: 85 03     STA ram_0003_t18
-    ; (empty translation for STA)  ; orig: C - - - - - 0x01E649 07:E639: 85 04     STA ram_0003_t18 + $
+    MOVE.B  D0,ram_0004_t18_leftover_enemies  ; orig: C - - - - - 0x01E649 07:E639: 85 04     STA ram_0003_t18 + $
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x01E64B 07:E63B: AA        TAX ; 00
     BSR     sub_E640_read_player_input             ; JSR -> BSR  ; orig: C - - - - - 0x01E64C 07:E63C: 20 40 E6  JSR sub_E640_read_pl
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01E64F 07:E63F: E8        INX ; 01
@@ -563,7 +563,9 @@ bra_E640_loop:  ; orig: bra_E640_loop:
 bra_E64E_loop:  ; orig: bra_E64E_loop:
     MOVE.B  $4016(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x01E65E 07:E64E: BD 16 40  LDA $4016,X
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01E661 07:E651: 4A        LSR
-    ; (empty translation for ROL)  ; orig: C - - - - - 0x01E662 07:E652: 36 F8     ROL ram_btn_press,X
+    MOVE.B  ram_btn_press(D1.L),D3
+    ROXL.B  #1,D3           ; ROL ram_btn_press,X
+    MOVE.B  D3,ram_btn_press(D1.L)  ; orig: C - - - - - 0x01E662 07:E652: 36 F8     ROL ram_btn_press,X
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01E664 07:E654: 4A        LSR
     ROXL.B  #1,ram_0000_t49  ; orig: C - - - - - 0x01E665 07:E655: 26 00     ROL ram_0000_t49
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01E667 07:E657: 88        DEY
@@ -571,16 +573,20 @@ bra_E64E_loop:  ; orig: bra_E64E_loop:
     MOVE.B  ram_btn_press(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x01E66A 07:E65A: B5 F8     LDA ram_btn_press,X
     CMP.B   ram_0002_t17,D0  ; orig: C - - - - - 0x01E66C 07:E65C: C5 02     CMP ram_0002_t17
     BNE     bra_E640_loop             ; BNE  ; orig: C - - - - - 0x01E66E 07:E65E: D0 E0     BNE bra_E640_loop
-    ; (empty translation for INC)  ; orig: C - - - - - 0x01E670 07:E660: F6 03     INC ram_0003_t18,X
+    MOVE.B  ram_0003_t18(D1.L),D2
+    ADDQ.B  #1,D2           ; INC ram_0003_t18,X
+    MOVE.B  D2,ram_0003_t18(D1.L)  ; orig: C - - - - - 0x01E670 07:E660: F6 03     INC ram_0003_t18,X
     MOVE.B  ram_0003_t18(D1.L),D2  ; LDY abs,X  ; orig: C - - - - - 0x01E672 07:E662: B4 03     LDY ram_0003_t18,X
     CMPI.B  #$02,D2  ; orig: C - - - - - 0x01E674 07:E664: C0 02     CPY #$02
     BCC     bra_E640_loop             ; BCC  ; orig: C - - - - - 0x01E676 07:E666: 90 D8     BCC bra_E640_loop
     MOVE.B  ram_0000_t49,D0  ; orig: C - - - - - 0x01E678 07:E668: A5 00     LDA ram_0000_t49
-    ; !! ORA ram_btn_press,X - needs manual review  ; orig: C - - - - - 0x01E67A 07:E66A: 15 F8     ORA ram_btn_press,X
+    MOVE.B  ram_btn_press(D1.L),D3
+    OR.B    D3,D0           ; ORA ram_btn_press,X
     MOVE.B  D0,ram_btn_press(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x01E67C 07:E66C: 95 F8     STA ram_btn_press,X
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x01E67E 07:E66E: 48        PHA
-    ; !! EOR ram_btn_hold,X - needs manual review  ; orig: C - - - - - 0x01E67F 07:E66F: 55 FA     EOR ram_btn_hold,X
-    ; !! AND ram_btn_press,X - needs manual review  ; orig: C - - - - - 0x01E681 07:E671: 35 F8     AND ram_btn_press,X
+    MOVE.B  ram_btn_hold(D1.L),D3
+    EOR.B   D3,D0           ; EOR ram_btn_hold,X
+    AND.B   ram_btn_press(D1.L),D0  ; AND ram_btn_press,X
     MOVE.B  D0,ram_btn_press(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x01E683 07:E673: 95 F8     STA ram_btn_press,X
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x01E685 07:E675: 68        PLA
     MOVE.B  D0,ram_btn_hold(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x01E686 07:E676: 95 FA     STA ram_btn_hold,X

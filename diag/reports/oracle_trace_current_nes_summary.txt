@@ -1,0 +1,58 @@
+Oracle trace summary
+ROM: current_nes
+System: nes
+RAM domain: System Bus
+RAM base: 0000
+Frames: 0-300
+Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_nes.csv
+
+First changes:
+  ram_0000_t49     frame 3
+  ram_0002_t17     frame 5
+  ram_0003_t18     frame 5
+  ram_0004_t18     frame 3
+  game_mode        never changed
+  screen_ready     frame 31
+  ram_script       never changed
+  ram_subscript    never changed
+  ppu_load_index   frame 3
+  ram_frm_cnt      frame 3
+  rendering_flag   frame 3
+  ram_next_script  never changed
+  ram_005C         frame 3
+  ram_00F6         frame 3
+  btn_press        never changed
+  btn_hold         never changed
+  scroll_y         frame 3
+  scroll_x         frame 3
+  ram_for_2001     frame 3
+  ram_for_2000     frame 3
+  ram_0415         frame 3
+  ram_041A         frame 32
+  ram_042D         frame 3
+  ram_042E         frame 3
+  ram_0528         never changed
+  ram_05F1         frame 32
+  ram_05F4         frame 3
+  ram_05F5         frame 3
+  ram_music        frame 31
+  ram_music_busy   frame 32
+  ram_060A         frame 32
+  ram_060B         frame 32
+  ram_060C         frame 3
+  ram_060D         frame 3
+  ram_0611         frame 32
+  ram_0613         frame 32
+  ram_0616         frame 3
+  ram_0617         frame 3
+  ram_0619         frame 32
+  ppu_buf_status   frame 5
+  ppu_buf_index    frame 30
+  ppu_buf_0        frame 3
+  ppu_buf_1        frame 32
+  ppu_buf_2        frame 3
+  ppu_buf_3        frame 3
+  ppu_buf_4        frame 3
+  ppu_buf_5        frame 3
+  ppu_buf_6        frame 30
+  ppu_buf_7        frame 30

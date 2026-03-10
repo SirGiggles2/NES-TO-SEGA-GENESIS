@@ -6719,7 +6719,19 @@ tbl_A000_ppu_data:  ; orig: tbl_A000_ppu_data:
 
 sub_0x01A090_write_buffer_to_ppu:  ; orig: sub_0x01A090_write_buffer_to_ppu:
     MOVE.B  ram_ppu_load_index,D1  ; orig: C - - - - - 0x01A090 06:A080: A6 14     LDX ram_ppu_load_ind
+    MOVE.W  D1,(TRACE_PPU_INDEX).l
+    CLR.W   (TRACE_PPU_PTR_RAW).l
+    CLR.L   (TRACE_PPU_PTR_RES).l
+    MOVEQ   #$00,D5
+    MOVEA.L #tbl_A000_ppu_data+1,A0
+    MOVE.B  (A0,D1.L),D5
+    LSL.W   #8,D5
+    MOVEA.L #tbl_A000_ppu_data,A0
+    MOVE.B  (A0,D1.L),D5
+
+    MOVE.W  D5,(TRACE_PPU_PTR_RAW).l
     BSR     sub_b06_select_ppu_buffer_ptr
+    MOVE.L  A1,(TRACE_PPU_PTR_RES).l
     MOVE.L  A1,D4
     BEQ     b06_bra_b06_ppu_legacy
     MOVE.W  #$0440,D0
@@ -6869,8 +6881,44 @@ sub_b06_select_ppu_buffer_ptr:
     BEQ     b06_bra_b06_ppu_buf_title
     CMPI.B  #con_ppu_buf_guide,D1
     BEQ     b06_bra_b06_ppu_buf_guide
+    CMPI.B  #$04,D1
+    BEQ     b06_bra_b06_ppu_buf_continue
     CMPI.B  #con_ppu_buf_14,D1
     BEQ     b06_bra_b06_ppu_buf_14
+    CMPI.B  #$08,D1
+    BEQ     b06_bra_b06_ppu_buf_08
+    CMPI.B  #$0A,D1
+    BEQ     b06_bra_b06_ppu_buf_0a
+    CMPI.B  #$20,D1
+    BEQ     b06_bra_b06_ppu_buf_20
+    CMPI.B  #$22,D1
+    BEQ     b06_bra_b06_ppu_buf_22
+    CMPI.B  #$24,D1
+    BEQ     b06_bra_b06_ppu_buf_24
+    CMPI.B  #$26,D1
+    BEQ     b06_bra_b06_ppu_buf_26
+    CMPI.B  #$36,D1
+    BEQ     b06_bra_b06_ppu_buf_36
+    CMPI.B  #$50,D1
+    BEQ     b06_bra_b06_ppu_buf_50
+    CMPI.B  #$5A,D1
+    BEQ     b06_bra_b06_ppu_buf_5a
+    CMPI.B  #$1E,D1
+    BEQ     b06_bra_b06_ppu_buf_1e
+    CMPI.B  #$2A,D1
+    BEQ     b06_bra_b06_ppu_buf_2a
+    CMPI.B  #$6A,D1
+    BEQ     b06_bra_b06_ppu_buf_6a
+    CMPI.B  #$6C,D1
+    BEQ     b06_bra_b06_ppu_buf_6c
+    CMPI.B  #$76,D1
+    BEQ     b06_bra_b06_ppu_buf_76
+    CMPI.B  #$78,D1
+    BEQ     b06_bra_b06_ppu_buf_78
+    CMPI.B  #$7A,D1
+    BEQ     b06_bra_b06_ppu_buf_7a
+    CMPI.B  #$7C,D1
+    BEQ     b06_bra_b06_ppu_buf_7c
     CMPI.B  #$12,D1
     BEQ     b06_bra_b06_ppu_buf_bat_12
     CMPI.B  #con_ppu_buf_06,D1
@@ -6892,14 +6940,136 @@ sub_b06_select_ppu_buffer_ptr:
     MOVEQ   #$00,D4
     MOVEA.L D4,A1
     RTS
+
+b06_cfg_real_1e_2a:
+    DC.B    $00
+b06_cfg_real_6a_6c:
+    DC.B    $00
+b06_cfg_real_76_78:
+    DC.B    $00
+b06_cfg_real_26_50_5a:
+    DC.B    $00
+b06_cfg_real_continue:
+    DC.B    $00
+
+sub_b06_optional_legacy_fallback:
+    MOVE.W  #$048A,D0
+    BSR     TRACE_MARK
+    MOVEQ   #$00,D4
+    MOVEA.L D4,A1
+    RTS
 b06_bra_b06_ppu_buf_title:
     LEA     ppu_buf_title_screen_real(PC),A1
     RTS
 b06_bra_b06_ppu_buf_guide:
     LEA     ppu_buf_guide_real(PC),A1
     RTS
+b06_bra_b06_ppu_buf_continue:
+    MOVE.B  b06_cfg_real_continue(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0489,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_continue_real(PC),A1
+    RTS
 b06_bra_b06_ppu_buf_14:
     LEA     ppu_buf_14_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_08:
+    LEA     ppu_buf_08_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_0a:
+    LEA     ppu_buf_0a_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_20:
+    LEA     ppu_buf_20_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_22:
+    LEA     ppu_buf_22_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_24:
+    LEA     ppu_buf_24_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_26:
+    MOVE.B  b06_cfg_real_26_50_5a(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0488,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_26_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_36:
+    LEA     ppu_buf_36_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_50:
+    MOVE.B  b06_cfg_real_26_50_5a(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0488,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_50_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_5a:
+    MOVE.B  b06_cfg_real_26_50_5a(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0488,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_5a_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_1e:
+    MOVE.B  b06_cfg_real_1e_2a(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0485,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_1e_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_2a:
+    MOVE.B  b06_cfg_real_1e_2a(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0485,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_2a_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_6a:
+    MOVE.B  b06_cfg_real_6a_6c(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0486,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_6a_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_6c:
+    MOVE.B  b06_cfg_real_6a_6c(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0486,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_6c_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_76:
+    MOVE.B  b06_cfg_real_76_78(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0487,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_76_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_78:
+    MOVE.B  b06_cfg_real_76_78(PC),D4
+    TST.B   D4
+    BEQ     sub_b06_optional_legacy_fallback
+    MOVE.W  #$0487,D0
+    BSR     TRACE_MARK
+    LEA     ppu_buf_78_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_7a:
+    LEA     ppu_buf_7a_real(PC),A1
+    RTS
+b06_bra_b06_ppu_buf_7c:
+    LEA     ppu_buf_7c_real(PC),A1
     RTS
 b06_bra_b06_ppu_buf_bat_12:
     LEA     _off000_bat_67F0_12(PC),A1
@@ -7076,6 +7246,117 @@ ppu_buf_title_screen_real:
     DC.B $00,$0A,$0A,$0A,$0A,$0A,$0A,$00,$00,$00,$C0,$30,$00,$00,$00,$00
     DC.B $00,$00,$CC,$33,$00,$00,$00,$00,$00,$20,$FC,$F3,$00,$00,$F0,$F0
     DC.B $FF
+
+
+
+ppu_buf_continue_real:
+    DC.B $23,$C0,$7F,$00,$21,$4A,$08,$0C,$18,$17,$1D,$12,$17,$1E,$0E,$21
+    DC.B $AA,$04,$1C,$0A,$1F,$0E,$22,$0A,$05,$1B,$0E,$1D,$1B,$22,$FF,$23
+    DC.B $C2,$0E,$40,$00,$00,$44,$55,$55,$00,$00,$04,$00,$00,$44,$55,$55
+    DC.B $20,$6F,$0E,$69,$0B,$6B,$69,$0A,$6B,$24,$24,$62,$15,$12,$0F,$0E
+    DC.B $62,$20,$CF,$06,$6E,$6A,$6D,$6E,$6A,$6D,$20,$8F,$C2,$6C,$20,$91
+    DC.B $C2,$6C,$20,$92,$C2,$6C,$20,$94,$C2,$6C,$20,$6B,$84,$F7,$24,$F9
+    DC.B $61,$FF,$29,$84,$09,$12,$17,$1F,$0E,$17,$1D,$18,$1B,$22,$FF,$29
+    DC.B $C7,$04,$69,$6A,$6A,$6B,$29,$CF,$01,$69,$29,$D0,$4B,$6A,$29,$DB
+    DC.B $01,$6B,$FF,$29,$E7,$C2,$6C,$29,$EA,$C2,$6C,$29,$EF,$C4,$6C,$29
+    DC.B $FB,$C4,$6C,$FF,$2A,$27,$04,$6E,$6A,$6A,$6D,$FF,$2A,$42,$0C,$1E
+    DC.B $1C,$0E,$24,$0B,$24,$0B,$1E,$1D,$1D,$18,$17,$FF,$2A,$64,$08,$0F
+    DC.B $18,$1B,$24,$1D,$11,$12,$1C,$2A,$6F,$01,$6E,$2A,$70,$4B,$6A,$2A
+    DC.B $7B,$01,$6D,$FF,$2B,$43,$07,$0C,$18,$16,$19,$0A,$1C,$1C,$2A,$A5
+    DC.B $03,$16,$0A,$19,$2A,$8C,$10,$F5,$F5,$FD,$F5,$F5,$FD,$F5,$F5,$FD
+    DC.B $F5,$F5,$F5,$FD,$F5,$F5,$F5,$FF,$2B,$AC,$10,$F5,$FE,$F5,$F5,$F5
+    DC.B $FE,$F5,$F5,$F5,$F5,$FE,$F5,$F5,$F5,$FE,$F5,$FF,$2B,$D9,$43,$05
+    DC.B $2B,$DC,$4B,$00,$FF,$2B,$E9,$56,$55,$FF,$2B,$A0,$60,$24,$FF,$28
+    DC.B $E0,$60,$24,$FF,$3F,$10,$04,$0F,$10,$30,$00,$FF,$23,$E3,$03,$0F
+    DC.B $0F,$CF,$22,$4C,$0A,$10,$0A,$16,$0E,$24,$18,$1F,$0E,$1B,$24,$22
+    DC.B $6C,$4A,$24,$FF,$3F,$08,$08,$0F,$17,$16,$26,$0F,$17,$16,$26,$FF
+    DC.B $23,$D0,$58,$FF,$FF,$23,$E8,$58,$FF,$FF
+
+
+
+ppu_buf_08_real:
+    DC.B $3F,$1C,$04,$0F,$0A,$29,$30,$FF
+
+
+
+ppu_buf_0a_real:
+    DC.B $3F,$1C,$04,$0F,$17,$27,$30,$FF
+
+
+
+ppu_buf_20_real:
+    DC.B $3F,$1C,$04,$0F,$30,$00,$12,$FF
+
+
+
+ppu_buf_22_real:
+    DC.B $3F,$1C,$04,$0F,$1A,$37,$12,$FF
+
+
+
+ppu_buf_24_real:
+    DC.B $3F,$1C,$04,$0F,$17,$37,$12,$FF
+
+
+
+ppu_buf_26_real:
+    DC.B $23,$D0,$60,$AA,$23,$F0,$50,$AA,$FF
+
+
+
+ppu_buf_36_real:
+    DC.B $3F,$1C,$04,$0F,$16,$2C,$3C,$FF
+
+
+
+ppu_buf_50_real:
+    DC.B $2A,$CF,$02,$ED,$EE,$FF
+
+
+
+ppu_buf_5a_real:
+    DC.B $2B,$6A,$0C,$EB,$EF,$F1,$F1,$F1,$F1,$F1,$F1,$F1,$F1,$F0,$EC,$FF
+
+
+
+ppu_buf_1e_real:
+    DC.B $21,$A4,$58,$24,$21,$C4,$58,$24,$FF
+
+
+
+ppu_buf_2a_real:
+    DC.B $21,$E4,$58,$24,$22,$C8,$4D,$24,$FF
+
+
+
+ppu_buf_6a_real:
+    DC.B $3F,$08,$08,$0F,$22,$10,$00,$0F,$2A,$10,$00,$3F,$1C,$04,$0F,$27
+    DC.B $06,$16,$FF
+
+
+
+ppu_buf_6c_real:
+    DC.B $22,$CD,$04,$62,$01,$00,$00,$FF
+
+
+
+ppu_buf_76_real:
+    DC.B $22,$CB,$0A,$62,$01,$24,$24,$24,$24,$24,$62,$05,$00,$FF
+
+
+
+ppu_buf_78_real:
+    DC.B $3F,$08,$08,$0F,$30,$30,$30,$0F,$30,$30,$30,$FF
+
+
+
+ppu_buf_7a_real:
+    DC.B $3F,$1C,$04,$0F,$0F,$1C,$16,$FF
+
+
+
+ppu_buf_7c_real:
+    DC.B $3F,$1C,$04,$0F,$2A,$1A,$0C,$FF
 
 
 

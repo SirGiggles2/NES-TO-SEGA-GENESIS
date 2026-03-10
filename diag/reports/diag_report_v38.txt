@@ -23,8 +23,8 @@
 
   Score: 7 PASS / 2 FAIL / 3 WARN
   NMI completion count: 0
-  PC range observed: $004C84 - $004E12
-  Unique PCs sampled: 57
+  PC range observed: $004C7E - $004E12
+  Unique PCs sampled: 58
   Longest same-PC run: 0 frames at $000000
 
 === MILESTONES (chronological) ================================
@@ -116,7 +116,7 @@
   rendering_flag        $00         0         $00         $00         blocks render enable [ZP $17]
   ram_next_script       $00         0         $00         $00         next_script [ZP $5B]
   ram_005C              $00         0         $00         $00         NMI toggle flag [ZP $5C]
-  link_dir              $1F         19        $19         $24         direction / state scratch [ZP $6C]
+  link_dir              $1E         19        $19         $24         direction / state scratch [ZP $6C]
   obj_id_0              $00         0         $00         $00         object slot 0 id [ZP $70]
   obj_id_1              $00         0         $00         $00         object slot 1 id [ZP $71]
   pause_flag            $00         0         $00         $00         pause_flag [ZP $E0]
@@ -170,25 +170,25 @@
 
 === RAM CHANGE HISTORY (all key vars with any change) =========
   link_dir [$006C] - 19 changes:
-    Frame   19: $1A -> $19
-    Frame   20: $19 -> $24
-    Frame   22: $24 -> $23
-    Frame   41: $23 -> $22
-    Frame   61: $22 -> $21
-    Frame   80: $21 -> $20
-    Frame   99: $20 -> $1F
-    Frame  119: $1F -> $1E
-    Frame  138: $1E -> $1D
-    Frame  158: $1D -> $1C
-    Frame  177: $1C -> $1B
-    Frame  196: $1B -> $1A
-    Frame  216: $1A -> $19
-    Frame  217: $19 -> $24
-    Frame  218: $24 -> $23
-    Frame  238: $23 -> $22
-    Frame  257: $22 -> $21
-    Frame  277: $21 -> $20
-    Frame  296: $20 -> $1F
+    Frame    4: $1A -> $24
+    Frame    6: $24 -> $23
+    Frame   26: $23 -> $22
+    Frame   45: $22 -> $21
+    Frame   64: $21 -> $20
+    Frame   84: $20 -> $1F
+    Frame  103: $1F -> $1E
+    Frame  123: $1E -> $1D
+    Frame  142: $1D -> $1C
+    Frame  161: $1C -> $1B
+    Frame  181: $1B -> $1A
+    Frame  200: $1A -> $19
+    Frame  201: $19 -> $24
+    Frame  203: $24 -> $23
+    Frame  222: $23 -> $22
+    Frame  242: $22 -> $21
+    Frame  261: $21 -> $20
+    Frame  281: $20 -> $1F
+    Frame  300: $1F -> $1E
 
 === VRAM CONTENT ==============================================
   Nonzero words: 6366 / 32768
@@ -220,37 +220,37 @@
   Palette 3: $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0EEE $0000 $0000 $0000
 
 === PC HOTSPOTS (sampled once/frame) ==========================
-  PC range this run: $004C84 - $004E12
-  $004DA8:    9 frames (3.0%)
+  PC range this run: $004C7E - $004E12
+  $004CE8:   11 frames (3.7%)
   $004DD6:    9 frames (3.0%)
-  $004CE8:    9 frames (3.0%)
-  $004CEE:    8 frames (2.7%)
+  $004DBC:    8 frames (2.7%)
   $004DCC:    8 frames (2.7%)
-  $004DE4:    8 frames (2.7%)
-  $004DC6:    8 frames (2.7%)
-  $004D28:    7 frames (2.3%)
-  $004D7C:    7 frames (2.3%)
-  $004D72:    7 frames (2.3%)
-  $004D8C:    7 frames (2.3%)
-  $004D9C:    7 frames (2.3%)
-  $004DBC:    7 frames (2.3%)
-  $004D18:    7 frames (2.3%)
-  $004DB6:    7 frames (2.3%)
+  $004D10:    8 frames (2.7%)
+  $004DE0:    7 frames (2.3%)
+  $004D22:    7 frames (2.3%)
+  $004D3C:    7 frames (2.3%)
+  $004D6C:    7 frames (2.3%)
+  $004DA2:    7 frames (2.3%)
+  $004DAE:    7 frames (2.3%)
+  $004D32:    7 frames (2.3%)
+  $004D4C:    7 frames (2.3%)
+  $004CEE:    6 frames (2.0%)
   $004D82:    6 frames (2.0%)
-  $004DE0:    6 frames (2.0%)
-  $004DF0:    6 frames (2.0%)
-  $004D42:    6 frames (2.0%)
-  $004D38:    6 frames (2.0%)
-  $004D6C:    6 frames (2.0%)
-  $004C84:    6 frames (2.0%)
-  $004D62:    6 frames (2.0%)
-  $004D4C:    6 frames (2.0%)
-  $004D46:    6 frames (2.0%)
+  $004D72:    6 frames (2.0%)
   $004D5C:    6 frames (2.0%)
+  $004D56:    6 frames (2.0%)
+  $004DB6:    6 frames (2.0%)
+  $004DA8:    6 frames (2.0%)
+  $004D8C:    6 frames (2.0%)
+  $004DC0:    6 frames (2.0%)
+  $004DF0:    6 frames (2.0%)
+  $004D78:    6 frames (2.0%)
   $004D92:    6 frames (2.0%)
-  $004D0C:    5 frames (1.7%)
-  $004DA2:    5 frames (1.7%)
+  $004CF2:    5 frames (1.7%)
+  $004C84:    5 frames (1.7%)
+  $004D7C:    5 frames (1.7%)
   $004D66:    5 frames (1.7%)
+  $004D2C:    5 frames (1.7%)
 
 === ROM BYTE DUMPS AROUND STUCK/HOT PCS =======================
   No stuck PC detected.
@@ -265,15 +265,15 @@
   $000810: 11 80 40 00 61 00 01 7E 33 C0 00 C0 00 00 61 00  |..@.a..~3.....a.|
   $000820: 01 C8 61 00 01 A4 4E 75 36 39 FF FF EF 08 30 3C  |..a...Nu69....0<|
 
-  HOT PC #1  $004DA8  (9 frames)
+  HOT PC #1  $004CE8  (11 frames)
   ROM domain: MD CART
   ROM size: $01BF34
-  Byte window: $004D98 - $004DD8
-  $004D90: 05 F1 10 3C 00 01 13 C0 00 FF 06 11 13 C0 00 FF  |...<............|
-  $004DA0: 06 13 13 C0 00 FF 06 16 13 C0 00 FF 06 17 E2 08  |................|
-  $004DB0: 13 C0 00 FF 06 0A 53 39 00 FF 06 11 66 00 00 B8  |......S9....f...|
-  $004DC0: 14 39 00 FF 06 0A 52 39 00 FF 06 0A 20 7C 00 FF  |.9....R9.... |..|
-  $004DD0: 00 66 3A 10 E1 5D 32 45 20 49 D1 FC 00 FF 00 00  |.f:..]2E I......|
+  Byte window: $004CD8 - $004D18
+  $004CD0: 14 39 00 FF 00 6C 0C 02 00 10 66 2A 14 3C 00 09  |.9...l....f*.<..|
+  $004CE0: 66 9C 52 39 00 FF 00 6C 14 39 00 FF 00 6C 0C 02  |f.R9...l.9...l..|
+  $004CF0: 00 24 66 12 14 3C 00 19 66 84 10 01 14 3C 00 00  |.$f..<..f....<..|
+  $004D00: 52 02 E2 08 64 FA 20 7C 00 FF 8D 5F 10 30 28 00  |R...d. |..._.0(.|
+  $004D10: 14 00 20 7C 00 FF 8D 60 10 30 28 00 13 C0 00 FF  |.. |...`.0(.....|
 
   HOT PC #2  $004DD6  (9 frames)
   ROM domain: MD CART
@@ -285,27 +285,17 @@
   $004DF0: 02 00 00 F1 66 1C 10 3C 00 00 13 C0 00 FF 06 09  |....f..<........|
   $004E00: 13 C0 00 FF 80 11 10 3C 00 0F 13 C0 00 FF 80 11  |.......<........|
 
-  HOT PC #3  $004CE8  (9 frames)
+  HOT PC #3  $004DBC  (8 frames)
   ROM domain: MD CART
   ROM size: $01BF34
-  Byte window: $004CD8 - $004D18
-  $004CD0: 14 39 00 FF 00 6C 0C 02 00 10 66 2A 14 3C 00 09  |.9...l....f*.<..|
-  $004CE0: 66 9C 52 39 00 FF 00 6C 14 39 00 FF 00 6C 0C 02  |f.R9...l.9...l..|
-  $004CF0: 00 24 66 12 14 3C 00 19 66 84 10 01 14 3C 00 00  |.$f..<..f....<..|
-  $004D00: 52 02 E2 08 64 FA 20 7C 00 FF 8D 5F 10 30 28 00  |R...d. |..._.0(.|
-  $004D10: 14 00 20 7C 00 FF 8D 60 10 30 28 00 13 C0 00 FF  |.. |...`.0(.....|
+  Byte window: $004DAC - $004DEC
+  $004DA0: 06 13 13 C0 00 FF 06 16 13 C0 00 FF 06 17 E2 08  |................|
+  $004DB0: 13 C0 00 FF 06 0A 53 39 00 FF 06 11 66 00 00 B8  |......S9....f...|
+  $004DC0: 14 39 00 FF 06 0A 52 39 00 FF 06 0A 20 7C 00 FF  |.9....R9.... |..|
+  $004DD0: 00 66 3A 10 E1 5D 32 45 20 49 D1 FC 00 FF 00 00  |.f:..]2E I......|
+  $004DE0: 10 30 20 00 67 04 6A 5C 66 2C 10 39 00 FF 06 09  |.0 .g.j\f,.9....|
 
-  HOT PC #4  $004CEE  (8 frames)
-  ROM domain: MD CART
-  ROM size: $01BF34
-  Byte window: $004CDE - $004D1E
-  $004CD0: 14 39 00 FF 00 6C 0C 02 00 10 66 2A 14 3C 00 09  |.9...l....f*.<..|
-  $004CE0: 66 9C 52 39 00 FF 00 6C 14 39 00 FF 00 6C 0C 02  |f.R9...l.9...l..|
-  $004CF0: 00 24 66 12 14 3C 00 19 66 84 10 01 14 3C 00 00  |.$f..<..f....<..|
-  $004D00: 52 02 E2 08 64 FA 20 7C 00 FF 8D 5F 10 30 28 00  |R...d. |..._.0(.|
-  $004D10: 14 00 20 7C 00 FF 8D 60 10 30 28 00 13 C0 00 FF  |.. |...`.0(.....|
-
-  HOT PC #5  $004DCC  (8 frames)
+  HOT PC #4  $004DCC  (8 frames)
   ROM domain: MD CART
   ROM size: $01BF34
   Byte window: $004DBC - $004DFC
@@ -315,35 +305,45 @@
   $004DE0: 10 30 20 00 67 04 6A 5C 66 2C 10 39 00 FF 06 09  |.0 .g.j\f,.9....|
   $004DF0: 02 00 00 F1 66 1C 10 3C 00 00 13 C0 00 FF 06 09  |....f..<........|
 
-  HOT PC #6  $004DE4  (8 frames)
+  HOT PC #5  $004D10  (8 frames)
   ROM domain: MD CART
   ROM size: $01BF34
-  Byte window: $004DD4 - $004E14
+  Byte window: $004D00 - $004D40
+  $004D00: 52 02 E2 08 64 FA 20 7C 00 FF 8D 5F 10 30 28 00  |R...d. |..._.0(.|
+  $004D10: 14 00 20 7C 00 FF 8D 60 10 30 28 00 13 C0 00 FF  |.. |...`.0(.....|
+  $004D20: 05 F4 20 7C 00 FF 8D 61 10 30 28 00 13 C0 00 FF  |.. |...a.0(.....|
+  $004D30: 00 66 20 7C 00 FF 8D 62 10 30 28 00 20 7C 00 FF  |.f |...b.0(. |..|
+  $004D40: 8D 63 10 30 28 00 13 C0 00 FF 06 0C 20 7C 00 FF  |.c.0(....... |..|
+
+  HOT PC #6  $004DE0  (7 frames)
+  ROM domain: MD CART
+  ROM size: $01BF34
+  Byte window: $004DD0 - $004E10
   $004DD0: 00 66 3A 10 E1 5D 32 45 20 49 D1 FC 00 FF 00 00  |.f:..]2E I......|
   $004DE0: 10 30 20 00 67 04 6A 5C 66 2C 10 39 00 FF 06 09  |.0 .g.j\f,.9....|
   $004DF0: 02 00 00 F1 66 1C 10 3C 00 00 13 C0 00 FF 06 09  |....f..<........|
   $004E00: 13 C0 00 FF 80 11 10 3C 00 0F 13 C0 00 FF 80 11  |.......<........|
   $004E10: 4E 75 4E F8 4C 84 61 00 03 1A 13 C0 00 FF 06 10  |NuN.L.a.........|
 
-  HOT PC #7  $004DC6  (8 frames)
+  HOT PC #7  $004D22  (7 frames)
   ROM domain: MD CART
   ROM size: $01BF34
-  Byte window: $004DB6 - $004DF6
-  $004DB0: 13 C0 00 FF 06 0A 53 39 00 FF 06 11 66 00 00 B8  |......S9....f...|
-  $004DC0: 14 39 00 FF 06 0A 52 39 00 FF 06 0A 20 7C 00 FF  |.9....R9.... |..|
-  $004DD0: 00 66 3A 10 E1 5D 32 45 20 49 D1 FC 00 FF 00 00  |.f:..]2E I......|
-  $004DE0: 10 30 20 00 67 04 6A 5C 66 2C 10 39 00 FF 06 09  |.0 .g.j\f,.9....|
-  $004DF0: 02 00 00 F1 66 1C 10 3C 00 00 13 C0 00 FF 06 09  |....f..<........|
-
-  HOT PC #8  $004D28  (7 frames)
-  ROM domain: MD CART
-  ROM size: $01BF34
-  Byte window: $004D18 - $004D58
+  Byte window: $004D12 - $004D52
   $004D10: 14 00 20 7C 00 FF 8D 60 10 30 28 00 13 C0 00 FF  |.. |...`.0(.....|
   $004D20: 05 F4 20 7C 00 FF 8D 61 10 30 28 00 13 C0 00 FF  |.. |...a.0(.....|
   $004D30: 00 66 20 7C 00 FF 8D 62 10 30 28 00 20 7C 00 FF  |.f |...b.0(. |..|
   $004D40: 8D 63 10 30 28 00 13 C0 00 FF 06 0C 20 7C 00 FF  |.c.0(....... |..|
   $004D50: 8D 64 10 30 28 00 13 C0 00 FF 06 0B 20 7C 00 FF  |.d.0(....... |..|
+
+  HOT PC #8  $004D3C  (7 frames)
+  ROM domain: MD CART
+  ROM size: $01BF34
+  Byte window: $004D2C - $004D6C
+  $004D20: 05 F4 20 7C 00 FF 8D 61 10 30 28 00 13 C0 00 FF  |.. |...a.0(.....|
+  $004D30: 00 66 20 7C 00 FF 8D 62 10 30 28 00 20 7C 00 FF  |.f |...b.0(. |..|
+  $004D40: 8D 63 10 30 28 00 13 C0 00 FF 06 0C 20 7C 00 FF  |.c.0(....... |..|
+  $004D50: 8D 64 10 30 28 00 13 C0 00 FF 06 0B 20 7C 00 FF  |.d.0(....... |..|
+  $004D60: 8D 65 10 30 28 00 13 C0 00 FF 06 0D 13 C0 00 FF  |.e.0(...........|
 
 === CHECKPOINT TRACE ==========================================
   Trace sequence: 298
@@ -390,7 +390,7 @@
   M68K D5    = $00000000
   M68K D6    = $00000000
   M68K D7    = $0000FFFF
-  M68K A0    = $00FF8D67
+  M68K A0    = $00FF0000
   M68K A1    = $00000000
   M68K A2    = $00000000
   M68K A3    = $00000000
@@ -398,7 +398,7 @@
   M68K A5    = $00000000
   M68K A6    = $00000000
   M68K A7    = $00FFFD7A
-  M68K PC    = $00004DBC
+  M68K PC    = $00004DEA
   M68K SR    = $00002604
 
 === RAM DUMP: $FF0000-$FF003F (core ZP) =======================
