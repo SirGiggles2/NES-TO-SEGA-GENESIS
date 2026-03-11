@@ -1,8 +1,8 @@
-; ═══════════════════════════════════════════════════════════════
+; ???????????????????????????????????????????????????????????????
 ; vdp_layer.asm - FULL FILE (v68 ready)
-; Sega Genesis VDP → NES PPU translation layer
+; Sega Genesis VDP ? NES PPU translation layer
 ; FIXED: VBlank now uses jmp (no stack corruption) + forced NMI every frame
-; ═══════════════════════════════════════════════════════════════
+; ???????????????????????????????????????????????????????????????
 
 VDP_DATA        EQU $C00000
 VDP_CTRL        EQU $C00004
@@ -49,6 +49,7 @@ RAM_SCROLL_X    EQU $FFFF00FD
 PLANE_A_MAP_BASE EQU $C000
 PPU_NT_SHADOW   EQU $00FF8200
 PPU_PAL_SHADOW  EQU $00FF9200
+PPU_CHR_SHADOW  EQU $00FFC000
 PPU_NT_MIRROR_MASK EQU $03FF
 
 
@@ -216,12 +217,18 @@ PPU_WRITE_2007:
     cmpi.w  #$3F00,D4
     beq     .palette_write
     cmpi.w  #$2000,D3
-    blo     .skip_write
+    blo     .pattern_write
     cmpi.w  #$3F00,D3
     bhs     .skip_write
     movem.l D0-D7/A0,-(A7)
     bsr     PPU_WRITE_NAMETABLE_BYTE
     movem.l (A7)+,D0-D7/A0
+    bsr     PPU_ADVANCE_VRAM_ADDR
+    rts
+.pattern_write:
+    movem.l D1-D7/A0,-(A7)
+    bsr     PPU_WRITE_PATTERN_BYTE
+    movem.l (A7)+,D1-D7/A0
     bsr     PPU_ADVANCE_VRAM_ADDR
     rts
 .skip_write:
@@ -249,11 +256,16 @@ PPU_READ_2007:
     moveq   #0,D0
     move.b  (PPUDATA_BUFFER).l,D0
     cmpi.w  #$2000,D3
-    blo     .read_no_buffer_fill
+    blo     .pattern_read
     cmpi.w  #$3F00,D3
     bhs     .read_no_buffer_fill
     movem.l D1-D7/A0,-(A7)
     bsr     PPU_BUFFER_NAMETABLE_READ
+    movem.l (A7)+,D1-D7/A0
+    bra     .read_no_buffer_fill
+.pattern_read:
+    movem.l D1-D7/A0,-(A7)
+    bsr     PPU_BUFFER_PATTERN_READ
     movem.l (A7)+,D1-D7/A0
 .read_no_buffer_fill:
     bsr     PPU_ADVANCE_VRAM_ADDR
@@ -372,6 +384,11 @@ PPU_CLEAR_SHADOWS:
 .pal_loop:
     move.l  D0,(A0)+
     dbra    D7,.pal_loop
+    lea     (PPU_CHR_SHADOW).l,A0
+    move.w  #($2000/4)-1,D7
+.chr_loop:
+    clr.l   (A0)+
+    dbra    D7,.chr_loop
     rts
 
 PPU_ADVANCE_VRAM_ADDR:
@@ -473,12 +490,26 @@ PPU_BUFFER_NAMETABLE_READ:
     move.b  (A0,D4.w),(PPUDATA_BUFFER).l
     rts
 
+PPU_BUFFER_PATTERN_READ:
+    move.w  D3,D4
+    andi.w  #$1FFF,D4
+    lea     (PPU_CHR_SHADOW).l,A0
+    move.b  (A0,D4.w),(PPUDATA_BUFFER).l
+    rts
+
 PPU_READ_PALETTE_BYTE:
     move.w  D3,D4
     bsr     PPU_NORMALIZE_PALETTE_INDEX
     lea     (PPU_PAL_SHADOW).l,A0
     moveq   #0,D0
     move.b  (A0,D4.w),D0
+    rts
+
+PPU_WRITE_PATTERN_BYTE:
+    move.w  D3,D4
+    andi.w  #$1FFF,D4
+    lea     (PPU_CHR_SHADOW).l,A0
+    move.b  D0,(A0,D4.w)
     rts
 
 PPU_RENDER_ATTRIBUTE_BLOCK:

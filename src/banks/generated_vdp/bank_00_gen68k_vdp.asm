@@ -4258,7 +4258,23 @@ b00_INIT_SEQ_STATE_FROM_REAL_TABLE:
 sub_9C6B_music:  ; orig: sub_9C6B_music:
     MOVE.W  #$048B,D0
     BSR     TRACE_MARK
-    BRA     .read_music_request
+    TST.B   ram_script
+    BNE     .read_music_request
+    TST.B   ram_subscript
+    BNE     .read_music_request
+    TST.B   ram_0011_screen_ready_flag
+    BEQ     .read_music_request
+    CMPI.B  #con_ppu_buf_title_screen,ram_ppu_load_index
+    BNE     .normal_music_path
+    MOVE.B  ram_music,D0
+    CMPI.B  #$80,D0
+    BNE     .normal_music_path
+    TST.B   ram_0609_music
+    BNE     .read_music_request
+    MOVE.W  #$0496,D0
+    BSR     TRACE_MARK
+    MOVE.B  #$80,D0
+    BRA     b00_bra_9C76
     TST.B   ram_script
     BNE     .normal_music_path
     CMPI.B  #$01,ram_subscript

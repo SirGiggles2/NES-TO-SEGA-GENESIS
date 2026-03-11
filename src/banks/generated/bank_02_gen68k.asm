@@ -57,11 +57,6 @@ tbl_800C_ppu_ppu_addr:  ; orig: tbl_800C_ppu_ppu_addr:
 loc_0x008022_fill_ppu_with_tiles_1:  ; orig: loc_0x008022_fill_ppu_with_tiles_1:
     MOVE.W  #$0410,D0
     BSR     TRACE_MARK
-    MOVE.B  #$5A,D0
-    MOVE.B  D0,ram_00F5_reset_check_5A
-    MOVE.B  #$00,D0
-    MOVE.B  D0,ram_051D
-    RTS     ; Genesis bring-up: skip unsafe bulk PPU copy, but preserve completion state
     BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C D 0 - - - 0x008022 02:8012: 20 25 E6  JSR sub_0x01E635_dis
     MOVE.B  PPU_REG_$2002  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!,D0  ; orig: C - - - - - 0x008025 02:8015: AD 02 20  LDA $2002
 bra_8018_loop:  ; orig: bra_8018_loop:
@@ -76,7 +71,7 @@ bra_8018_loop:  ; orig: bra_8018_loop:
     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x00803A 02:802A: 8D 06 20  STA $2006
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x00803D 02:802D: E8        INX
     MOVE.B  tbl_8000_tiles(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x00803E 02:802E: BD 00 80  LDA tbl_8000_tiles,X
-    ; (empty translation for STA)  ; orig: C - - - - - 0x008041 02:8031: 85 01     STA ram_0000_t10_til
+    MOVE.B  D0,ram_0001_t10  ; orig: C - - - - - 0x008041 02:8031: 85 01     STA ram_0000_t10_til
     MOVE.B  tbl_8006_counter(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x008043 02:8033: BD 06 80  LDA tbl_8006_counter
     MOVE.B  D0,ram_0003_t09_counter_hi  ; orig: C - - - - - 0x008046 02:8036: 85 03     STA ram_0003_t09_cou
     MOVE.B  tbl_800C_ppu_ppu_addr(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x008048 02:8038: BD 0C 80  LDA tbl_800C_ppu_ppu
@@ -103,9 +98,9 @@ bra_8054_loop:  ; orig: bra_8054_loop:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x00806B 02:805B: 18        CLC
     ADDX.B  #< $0001,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x00806C 02:805C: 69 01     ADC #< $0001
     MOVE.B  D0,ram_0000_t10_tiles_data  ; orig: C - - - - - 0x00806E 02:805E: 85 00     STA ram_0000_t10_til
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x008070 02:8060: A5 01     LDA ram_0000_t10_til
+    MOVE.B  ram_0001_t10,D0  ; orig: C - - - - - 0x008070 02:8060: A5 01     LDA ram_0000_t10_til
     ADDX.B  #> $0001,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x008072 02:8062: 69 00     ADC #> $0001
-    ; (empty translation for STA)  ; orig: C - - - - - 0x008074 02:8064: 85 01     STA ram_0000_t10_til
+    MOVE.B  D0,ram_0001_t10  ; orig: C - - - - - 0x008074 02:8064: 85 01     STA ram_0000_t10_til
     MOVE.B  ram_0003_t09_counter_hi,D0  ; orig: C - - - - - 0x008076 02:8066: A5 03     LDA ram_0003_t09_cou
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x008078 02:8068: 38        SEC
     SUBX.B  #< $0001,D0       ; SBC imm  ; orig: C - - - - - 0x008079 02:8069: E9 01     SBC #< $0001
