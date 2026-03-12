@@ -12,11 +12,12 @@
 
 -- ======================== CONFIG ============================
 local SCRIPT_VERSION = rawget(_G, "ZELDA_DIAG_VERSION") or "v8"
-local NUM_FRAMES     = 301
-local REPORT_PATH_LEGACY = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\diag_report_v68.txt"
+local NUM_FRAMES     = 901
 local REPORT_DIR     = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
 local ROM_DIR        = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\build\\"
-local SCREENSHOT_AT  = {1, 30, 60, 120, 180, 240, 300, 301}
+local SCREENSHOT_DIR = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\scripts\\"
+local SEND_ME_DIR    = REPORT_DIR .. "Files I Want\\"
+local SCREENSHOT_AT  = {1, 30, 60, 120, 180, 240, 300, 420, 600, 780, 900, 901}
 local SAMPLE_VRAM    = true
 local SAMPLE_CRAM    = true
 local PC_DUMP_BEFORE = 16
@@ -24,12 +25,15 @@ local PC_DUMP_AFTER  = 48
 local TOP_PC_DUMPS   = 8
 local STATUS_Y       = 0
 local STOP_ON_CRASH  = true
-local START_ROM_HINT = nil -- e.g. "zelda_v05.md" if current-ROM detection ever fails
-local BATCH_MODE     = rawget(_G, "ZELDA_DIAG_BATCH_MODE")
-if BATCH_MODE == nil then BATCH_MODE = true end
+local START_ROM_HINT = "zelda_v232.md" -- update this to the first ROM in the newest batch
+local BATCH_MODE     = true -- run sequentially from START_ROM_HINT upward
 local BATCH_REOPEN_FIRST_ROM = true
 local BATCH_SETTLE_FRAMES = 2
 local BATCH_SUMMARY_PATH = REPORT_DIR .. "diag_batch_summary_v8.txt"
+local MENU_PPU_BUF_START = 0x0300
+local MENU_PPU_BUF_COUNT = 0x20
+local MENU_OAM_START = 0x0200
+local MENU_OAM_COUNT = 0x10
 
 local TRACE_LAST_ADDR = 0xF000
 local TRACE_SEQ_ADDR  = 0xF002
@@ -145,6 +149,9 @@ local TRACE_NAMES = {
     [0x0489] = "BANK6_PPU: optional continue buffer enabled",
     [0x048A] = "BANK6_PPU: optional real buffer forced back to legacy",
     [0x048B] = "BANK0_MUSIC: custom title/music preamble bypassed",
+    [0x0436] = "BANK2_TITLE: title advanced into slot-select script",
+    [0x0437] = "BANK2_MENU: slot-selection script entered",
+    [0x0438] = "BANK2_MENU: file-select buffer 6A staged",
     [0x048C] = "BANK0_MUSIC: forced title-track init suppressed",
     [0x048D] = "BANK0_MUSIC: early-title sequencer entry suppressed",
     [0x048E] = "BANK0_MUSIC: NES raw sequence pointer resolved to materialized data",
@@ -245,6 +252,90 @@ local function safe_read_byte(domain, addr)
     return 0
 end
 
+local function csv_escape(value)
+    local s = tostring(value or "")
+    if s:find('[,",\r\n]') then
+        s = '"' .. s:gsub('"', '""') .. '"'
+    end
+    return s
+end
+
+local function write_csv_row(file_handle, values)
+    for i, value in ipairs(values) do
+        if i > 1 then
+            file_handle:write(",")
+        end
+        file_handle:write(csv_escape(value))
+    end
+    file_handle:write("\n")
+end
+
+local function append_range_header(header, prefix, count)
+    for i = 0, count - 1 do
+        header[#header + 1] = string.format("%s_%02X", prefix, i)
+    end
+end
+
+local function append_range_values(row, start_addr, count)
+    for i = 0, count - 1 do
+        row[#row + 1] = string.format("%02X", read_ram(start_addr + i, 1))
+    end
+end
+
+local function menu_trace_header()
+    local header = {
+        "frame", "system", "rom_label", "pc",
+        "screen_ready", "ram_script", "ram_subscript", "ppu_load_index",
+        "cur_save_slot", "ram_004D", "ram_next_script",
+        "ram_041F", "ram_0421", "ram_0423",
+        "ram_0000", "ram_0001", "ram_0002", "ram_0003", "ram_0004", "ram_0005",
+        "spr_index_1", "spr_index_2",
+        "trace_last", "PPU_REQ_INDEX", "PPU_REQ_PTR", "PPU_REQ_RES",
+        "SEQ_EVT_COUNT", "PPU_EVT_COUNT"
+    }
+    append_range_header(header, "ppu_buf", MENU_PPU_BUF_COUNT)
+    append_range_header(header, "oam", MENU_OAM_COUNT)
+    return header
+end
+
+local function capture_menu_trace_row(frame, rom_name, pc)
+    local rom_label = tostring(rom_name or "")
+    rom_label = rom_label:gsub("%.[Mm][Dd]$", "")
+    local row = {
+        frame,
+        "genesis",
+        rom_label,
+        string.format("%06X", pc or 0),
+        string.format("%02X", read_ram(0x0011, 1)),
+        string.format("%02X", read_ram(0x0012, 1)),
+        string.format("%02X", read_ram(0x0013, 1)),
+        string.format("%02X", read_ram(0x0014, 1)),
+        string.format("%02X", read_ram(0x0016, 1)),
+        string.format("%02X", read_ram(0x004D, 1)),
+        string.format("%02X", read_ram(0x005B, 1)),
+        string.format("%02X", read_ram(0x041F, 1)),
+        string.format("%02X", read_ram(0x0421, 1)),
+        string.format("%02X", read_ram(0x0423, 1)),
+        string.format("%02X", read_ram(0x0000, 1)),
+        string.format("%02X", read_ram(0x0001, 1)),
+        string.format("%02X", read_ram(0x0002, 1)),
+        string.format("%02X", read_ram(0x0003, 1)),
+        string.format("%02X", read_ram(0x0004, 1)),
+        string.format("%02X", read_ram(0x0005, 1)),
+        string.format("%02X", read_ram(0x0343, 1)),
+        string.format("%02X", read_ram(0x0344, 1)),
+        string.format("%04X", read_ram(0xF000, 2)),
+        string.format("%04X", read_ram(0xF0A2, 2)),
+        string.format("%04X", read_ram(0xF0A4, 2)),
+        string.format("%08X", read_ram(0xF0A8, 4)),
+        string.format("%04X", read_ram(0xF0AC, 2)),
+        string.format("%04X", read_ram(0xF0AE, 2)),
+    }
+    append_range_values(row, MENU_PPU_BUF_START, MENU_PPU_BUF_COUNT)
+    append_range_values(row, MENU_OAM_START, MENU_OAM_COUNT)
+    return row
+end
+
 local function scan_roms()
     local roms = {}
     local handle = io.popen('dir /b /o-d "' .. ROM_DIR .. 'zelda_v*.md" 2>nul')
@@ -321,6 +412,7 @@ local function write_batch_summary(results)
         ))
     end
     f:close()
+    bundle_file(BATCH_SUMMARY_PATH)
 end
 
 local function basename(path)
@@ -425,12 +517,6 @@ local function rom_version_tag(rom_name)
     return stem
 end
 
-local function rom_version_short_tag(rom_name)
-    local ver = rom_version_number(rom_name)
-    if ver then return "v" .. tostring(ver) end
-    return rom_version_tag(rom_name)
-end
-
 local function vector_name(id)
     return VECTOR_NAMES[id] or "(unknown vector)"
 end
@@ -439,15 +525,61 @@ local function ensure_report_dir()
     os.execute('if not exist "' .. REPORT_DIR .. '" mkdir "' .. REPORT_DIR .. '"')
 end
 
+local function ensure_screenshot_dir()
+    os.execute('if not exist "' .. SCREENSHOT_DIR .. '" mkdir "' .. SCREENSHOT_DIR .. '"')
+end
+
+local function reset_send_me_dir()
+    os.execute('if exist "' .. SEND_ME_DIR .. '" rmdir /s /q "' .. SEND_ME_DIR .. '"')
+    os.execute('if not exist "' .. SEND_ME_DIR .. '" mkdir "' .. SEND_ME_DIR .. '"')
+end
+
+local function copy_file(src_path, dst_path)
+    local src = io.open(src_path, "rb")
+    if not src then return false end
+
+    local dst = io.open(dst_path, "wb")
+    if not dst then
+        src:close()
+        return false
+    end
+
+    while true do
+        local chunk = src:read(65536)
+        if not chunk then break end
+        dst:write(chunk)
+    end
+
+    dst:close()
+    src:close()
+    return true
+end
+
+local function bundle_file(path, alias_name)
+    if not path then return nil end
+    local name = alias_name or basename(path)
+    if not name then return nil end
+    local bundled = SEND_ME_DIR .. name
+    if copy_file(path, bundled) then
+        return bundled
+    end
+    return nil
+end
+
+local function capture_screenshot_file(file_name)
+    ensure_screenshot_dir()
+    local full_path = SCREENSHOT_DIR .. file_name
+    client.screenshot(full_path)
+    bundle_file(full_path)
+    return full_path
+end
+
 local function get_report_paths(rom_name)
-    local stem = strip_ext(rom_name)
     local ver = rom_version_tag(rom_name)
-    local short_ver = rom_version_short_tag(rom_name)
     ensure_report_dir()
     return {
-        primary = REPORT_DIR .. "diag_report_" .. ver .. ".txt",
-        short = REPORT_DIR .. "diag_report_" .. short_ver .. ".txt",
-        full = REPORT_DIR .. "diag_report_" .. stem .. ".txt",
+        report = REPORT_DIR .. "diag_report_" .. ver .. ".txt",
+        menu = REPORT_DIR .. "diag_menu_" .. ver .. ".csv",
     }
 end
 
@@ -606,24 +738,6 @@ local function detect_current_rom()
         return loaded
     end
 
-    local roms = scan_roms()
-    table.sort(roms, function(a, b)
-        local av = rom_version_number(a) or -1
-        local bv = rom_version_number(b) or -1
-        if av == bv then return a > b end
-        return av > bv
-    end)
-
-    for _, rom in ipairs(roms) do
-        if file_matches_loaded_rom(rom) then
-            return rom
-        end
-    end
-
-    if #roms > 0 then
-        return roms[1]
-    end
-
     return nil
 end
 
@@ -716,6 +830,38 @@ local function bank6_ptr_note(ptr)
         return "NES table entry $10 => title screen tile mappings ($A869)."
     elseif ptr == 0x0302 then
         return "NES table entry points at CPU RAM $0302; original bank 6 stores $FF there after the stream completes, so this is sentinel/cleanup state." 
+    end
+    return nil
+end
+
+local function title_tile_ptr()
+    return read_ram(0x0000, 1) | (read_ram(0x0001, 1) << 8)
+end
+
+local function title_tile_count()
+    return read_ram(0x0002, 1) | (read_ram(0x0003, 1) << 8)
+end
+
+local function title_tile_ptr_note(ptr)
+    if ptr == 0x807F then
+        return "Bank-2 title CHR upload source block 0 ($807F-$877E)."
+    elseif ptr == 0x877F then
+        return "Bank-2 title CHR upload source block 1 ($877F-$8E7E)."
+    elseif ptr == 0x8E7F then
+        return "Bank-2 title CHR upload source block 2 ($8E7F-$8F5E)."
+    elseif ptr == 0x0000 then
+        return "Null tile source pointer."
+    end
+    return nil
+end
+
+local function title_tile_count_note(count)
+    if count == 0x0700 then
+        return "Expected full 0x700-byte CHR transfer."
+    elseif count == 0x00E0 then
+        return "Expected short 0x0E0-byte CHR tail transfer."
+    elseif count == 0x0000 then
+        return "Transfer counter idle/finished."
     end
     return nil
 end
@@ -817,6 +963,8 @@ end
 local WATCHES = {
     {addr=0x0000, sz=1, name="ppu_data_lo",    desc="PPU buf ptr lo  [ZP $00]"},
     {addr=0x0001, sz=1, name="ppu_data_hi",    desc="PPU buf ptr hi  [ZP $01]"},
+    {addr=0x0002, sz=1, name="slot_tmp_02",    desc="slot/file-select temp byte 0 [ZP $02]"},
+    {addr=0x0003, sz=1, name="slot_tmp_03",    desc="slot/file-select temp byte 1 [ZP $03]"},
     {addr=0x0004, sz=1, name="obj_pos_x",      desc="object X-ish scratch [ZP $04]"},
     {addr=0x0005, sz=1, name="obj_pos_y",      desc="object Y-ish scratch [ZP $05]"},
     {addr=0x0010, sz=1, name="game_mode",      desc="dungeon_level/game mode [ZP $10]"},
@@ -827,6 +975,7 @@ local WATCHES = {
     {addr=0x0015, sz=1, name="ram_frm_cnt",    desc="frame counter / NMI completion [ZP $15]"},
     {addr=0x0016, sz=1, name="cur_save_slot",  desc="current save slot [ZP $16]"},
     {addr=0x0017, sz=1, name="rendering_flag", desc="blocks render enable [ZP $17]"},
+    {addr=0x004D, sz=1, name="ram_004D",       desc="menu/file-select timer/gate [$4D]"},
     {addr=0x005B, sz=1, name="ram_next_script",desc="next_script [ZP $5B]"},
     {addr=0x005C, sz=1, name="ram_005C",       desc="NMI toggle flag [ZP $5C]"},
     {addr=0x0066, sz=1, name="se_ptr_lo",      desc="music seq ptr lo [ZP $66]"},
@@ -858,6 +1007,11 @@ local WATCHES = {
     {addr=0x0305, sz=1, name="ppu_buf_3",      desc="PPU buffer[3]"},
     {addr=0x0310, sz=1, name="ppu_buf_16",     desc="PPU buffer[16]"},
     {addr=0x0311, sz=1, name="ppu_buf_17",     desc="PPU buffer[17]"},
+    {addr=0x0343, sz=1, name="spr_index_1",    desc="sprite list index 1 [$0343]"},
+    {addr=0x0344, sz=1, name="spr_index_2",    desc="sprite list index 2 [$0344]"},
+    {addr=0x041F, sz=1, name="ram_041F",       desc="menu/file-select text row index [$041F]"},
+    {addr=0x0421, sz=1, name="ram_0421",       desc="menu/file-select slot char cursor [$0421]"},
+    {addr=0x0423, sz=1, name="ram_0423",       desc="menu/file-select name copy counter [$0423]"},
     {addr=0xEF00, sz=1, name="PPUCTRL_SHADOW", desc="Shadow PPU $2000"},
     {addr=0xEF01, sz=1, name="PPUMASK_SHADOW", desc="Shadow PPU $2001"},
     {addr=0xEF04, sz=1, name="PPUADDR_LATCH",  desc="PPUADDR latch state"},
@@ -931,7 +1085,7 @@ local LOOP_SUSPECT_NAMES = {
 local function run_diagnostics(rom_name)
     local rom_base = strip_ext(rom_name)
     local report_paths = get_report_paths(rom_name)
-    local report_path = report_paths.primary
+    local report_path = report_paths.report
     local report = {}
     local function log(s) report[#report+1] = s end
     local function log_sep(title)
@@ -981,6 +1135,22 @@ local function run_diagnostics(rom_name)
     local loop_candidate_notes = {}
     local bank6_flow = {}
     local bank6_last = nil
+    local title_slice_flow = {}
+    local title_slice_last = nil
+    local slot_select_flow = {}
+    local slot_select_last = nil
+    local menu_trace_rows = { menu_trace_header() }
+    local menu_milestones = {
+        script1 = nil,
+        subscript = nil,
+        load14 = nil,
+        slot = nil,
+        row041F = nil,
+        row0421 = nil,
+        row0423 = nil,
+        spr = nil,
+        req14 = nil,
+    }
     local startup_flags = {
         reached_main_handler = false,
         reached_title_dispatch = false,
@@ -1185,6 +1355,134 @@ local function run_diagnostics(rom_name)
         if read_ram(TRACE_PPU_EVT_COUNT_ADDR, 2) ~= 0 then startup_flags.any_ppu_events = true end
         if read_ram(0xF0AC, 2) ~= 0 then startup_flags.sequence_loader_live = true end
 
+        local title_phase = read_ram(0x051D, 1)
+        local title_ptr = title_tile_ptr()
+        local title_count = title_tile_count()
+        local title_vram = read_ram(0xEF08, 2)
+        local title_evt = read_ram(0xF0AE, 2)
+        local title_state = string.format("%02X/%04X/%04X/%04X/%04X/%02X/%02X/%02X",
+            title_phase,
+            title_ptr,
+            title_count,
+            title_vram,
+            trace_last,
+            read_ram(0x0011,1),
+            read_ram(0x0014,1),
+            read_ram(0x00F5,1))
+        if title_slice_last == nil or title_slice_last ~= title_state then
+            title_slice_flow[#title_slice_flow + 1] = {
+                frame = i,
+                pc = pc,
+                trace_last = trace_last,
+                phase = title_phase,
+                tile_ptr = title_ptr,
+                tile_count = title_count,
+                vram_addr = title_vram,
+                screen_ready = read_ram(0x0011,1),
+                ppu_load_index = read_ram(0x0014,1),
+                reset_guard = read_ram(0x00F5,1),
+                ppu_evt = title_evt,
+                ptr_note = title_tile_ptr_note(title_ptr),
+                count_note = title_tile_count_note(title_count),
+            }
+            title_slice_last = title_state
+        end
+
+        local slot_script = read_ram(0x0012, 1)
+        local slot_sub = read_ram(0x0013, 1)
+        local slot_load = read_ram(0x0014, 1)
+        local slot_cur = read_ram(0x0016, 1)
+        local slot_gate = read_ram(0x004D, 1)
+        local slot_i_041F = read_ram(0x041F, 1)
+        local slot_i_0421 = read_ram(0x0421, 1)
+        local slot_i_0423 = read_ram(0x0423, 1)
+        local slot_tmp_02 = read_ram(0x0002, 1)
+        local slot_tmp_03 = read_ram(0x0003, 1)
+        local slot_tmp_04 = read_ram(0x0004, 1)
+        local slot_tmp_05 = read_ram(0x0005, 1)
+        local slot_spr_idx_1 = read_ram(0x0343, 1)
+        local slot_spr_idx_2 = read_ram(0x0344, 1)
+        local slot_state = string.format("%02X/%02X/%02X/%02X/%02X/%02X/%02X/%02X/%02X/%02X/%02X/%02X/%02X/%04X",
+            slot_script,
+            slot_sub,
+            slot_load,
+            slot_cur,
+            slot_gate,
+            slot_i_041F,
+            slot_i_0421,
+            slot_i_0423,
+            slot_tmp_02,
+            slot_tmp_03,
+            slot_tmp_04,
+            slot_tmp_05,
+            slot_spr_idx_1,
+            slot_spr_idx_2,
+            trace_last)
+        local slot_interesting =
+            slot_script == 0x01 or
+            slot_load == 0x6A or slot_load == 0x6C or slot_load == 0x76 or slot_load == 0x78 or
+            trace_last == 0x0437 or trace_last == 0x0438
+        if slot_interesting and (slot_select_last == nil or slot_select_last ~= slot_state) then
+            slot_select_flow[#slot_select_flow + 1] = {
+                frame = i,
+                pc = pc,
+                trace_last = trace_last,
+                script = slot_script,
+                subscript = slot_sub,
+                load = slot_load,
+                cur_slot = slot_cur,
+                gate = slot_gate,
+                idx_041F = slot_i_041F,
+                idx_0421 = slot_i_0421,
+                idx_0423 = slot_i_0423,
+                tmp_02 = slot_tmp_02,
+                tmp_03 = slot_tmp_03,
+                tmp_04 = slot_tmp_04,
+                tmp_05 = slot_tmp_05,
+                spr_index_1 = slot_spr_idx_1,
+                spr_index_2 = slot_spr_idx_2,
+                ppu_evt = ppu_evt_now,
+                buf0 = read_ram(0x0300,1),
+                buf1 = read_ram(0x0301,1),
+                buf2 = read_ram(0x0302,1),
+                buf3 = read_ram(0x0303,1),
+                buf4 = read_ram(0x0304,1),
+                buf5 = read_ram(0x0305,1),
+                buf6 = read_ram(0x0306,1),
+                buf7 = read_ram(0x0307,1),
+            }
+            slot_select_last = slot_state
+        end
+
+        menu_trace_rows[#menu_trace_rows + 1] = capture_menu_trace_row(i, rom_name, pc)
+        if menu_milestones.script1 == nil and slot_script == 0x01 then
+            menu_milestones.script1 = i
+        end
+        if menu_milestones.subscript == nil and slot_sub ~= 0x00 then
+            menu_milestones.subscript = i
+        end
+        if menu_milestones.load14 == nil and slot_load == 0x14 then
+            menu_milestones.load14 = i
+        end
+        if menu_milestones.slot == nil and slot_cur ~= 0x00 then
+            menu_milestones.slot = i
+        end
+        if menu_milestones.row041F == nil and slot_i_041F ~= 0x00 then
+            menu_milestones.row041F = i
+        end
+        if menu_milestones.row0421 == nil and slot_i_0421 ~= 0x00 then
+            menu_milestones.row0421 = i
+        end
+        if menu_milestones.row0423 == nil and slot_i_0423 ~= 0x00 then
+            menu_milestones.row0423 = i
+        end
+        if menu_milestones.spr == nil and (slot_spr_idx_1 ~= 0x00 or slot_spr_idx_2 ~= 0x00) then
+            menu_milestones.spr = i
+        end
+        if menu_milestones.req14 == nil and req_index_now == 0x0014 then
+            menu_milestones.req14 = i
+        end
+
         local current_crash = read_crash_info()
         if current_crash.magic == 0xBEEF and not crash_detected then
             crash_detected = true
@@ -1196,8 +1494,7 @@ local function run_diagnostics(rom_name)
             if STOP_ON_CRASH then
                 if not screenshot_set[i] then
                     local fname = rom_base .. "_f" .. string.format("%03d", i) .. "_crash.png"
-                    client.screenshot(fname)
-                    screenshots_taken[#screenshots_taken+1] = fname
+                    screenshots_taken[#screenshots_taken+1] = capture_screenshot_file(fname)
                 end
                 break
             end
@@ -1205,8 +1502,7 @@ local function run_diagnostics(rom_name)
 
         if screenshot_set[i] then
             local fname = rom_base .. "_f" .. string.format("%03d", i) .. ".png"
-            client.screenshot(fname)
-            screenshots_taken[#screenshots_taken+1] = fname
+            screenshots_taken[#screenshots_taken+1] = capture_screenshot_file(fname)
         end
         emu.frameadvance()
     end
@@ -1551,6 +1847,87 @@ local function run_diagnostics(rom_name)
         end
     end
 
+    log_sep("TITLE SLICE WATCHER")
+    log("  Focus: bank-2 title CHR uploader / title-ready handshake.")
+    log("  Fields: phase=$051D ptr=$0000/$0001 count=$0002/$0003 vram=$EF08 trace=$F000 ready=$11 load=$14 guard=$F5")
+    if #title_slice_flow == 0 then
+        log("  (no title-slice snapshots captured)")
+    else
+        local start_idx = math.max(1, #title_slice_flow - 23)
+        for idx = start_idx, #title_slice_flow do
+            local snap = title_slice_flow[idx]
+            log(string.format(
+                "  F%3d PC=%s trace=%s phase=%s ptr=%s count=%s vram=%s ready=%s load=%s guard=%s ppu_evt=%s",
+                snap.frame,
+                hex(snap.pc,6),
+                hex(snap.trace_last,4),
+                hex(snap.phase),
+                hex(snap.tile_ptr,4),
+                hex(snap.tile_count,4),
+                hex(snap.vram_addr,4),
+                hex(snap.screen_ready),
+                hex(snap.ppu_load_index),
+                hex(snap.reset_guard),
+                hex(snap.ppu_evt,4)
+            ))
+            if snap.ptr_note then
+                log("    Source: " .. snap.ptr_note)
+            end
+            if snap.count_note then
+                log("    Counter: " .. snap.count_note)
+            end
+        end
+    end
+
+    log_sep("MENU HANDOFF MILESTONES")
+    log("  Focus: first frame where the title/file-select path visibly wakes up.")
+    log("  Menu trace CSV: " .. report_paths.menu)
+    log("  script=$01 first frame: " .. tostring(menu_milestones.script1 or "never"))
+    log("  nonzero subscript first frame: " .. tostring(menu_milestones.subscript or "never"))
+    log("  ppu_load_index=$14 first frame: " .. tostring(menu_milestones.load14 or "never"))
+    log("  bank-6 req index $0014 first frame: " .. tostring(menu_milestones.req14 or "never"))
+    log("  cur_save_slot nonzero first frame: " .. tostring(menu_milestones.slot or "never"))
+    log("  ram_041F nonzero first frame: " .. tostring(menu_milestones.row041F or "never"))
+    log("  ram_0421 nonzero first frame: " .. tostring(menu_milestones.row0421 or "never"))
+    log("  ram_0423 nonzero first frame: " .. tostring(menu_milestones.row0423 or "never"))
+    log("  sprite index active first frame: " .. tostring(menu_milestones.spr or "never"))
+
+    log_sep("SLOT SELECT WATCHER")
+    log("  Focus: bank-2 slot/file-select handoff after title Start.")
+    log("  Fields: script=$12 sub=$13 load=$14 slot=$16 gate=$4D idx=$041F/$0421/$0423 tmp=$02/$03/$04/$05 spr=$0343/$0344 trace=$F000")
+    if #slot_select_flow == 0 then
+        log("  (no slot-select snapshots captured)")
+    else
+        local start_idx = math.max(1, #slot_select_flow - 23)
+        for idx = start_idx, #slot_select_flow do
+            local snap = slot_select_flow[idx]
+            log(string.format(
+                "  F%3d PC=%s trace=%s script=%s sub=%s load=%s slot=%s gate=%s idx=%s/%s/%s tmp=%s/%s/%s/%s spr=%s/%s ppu_evt=%s",
+                snap.frame,
+                hex(snap.pc,6),
+                hex(snap.trace_last,4),
+                hex(snap.script),
+                hex(snap.subscript),
+                hex(snap.load),
+                hex(snap.cur_slot),
+                hex(snap.gate),
+                hex(snap.idx_041F),
+                hex(snap.idx_0421),
+                hex(snap.idx_0423),
+                hex(snap.tmp_02),
+                hex(snap.tmp_03),
+                hex(snap.tmp_04),
+                hex(snap.tmp_05),
+                hex(snap.spr_index_1),
+                hex(snap.spr_index_2),
+                hex(snap.ppu_evt,4)
+            ))
+            log(string.format("    RAM $0300 bytes: %s %s %s %s %s %s %s %s",
+                hex(snap.buf0), hex(snap.buf1), hex(snap.buf2), hex(snap.buf3),
+                hex(snap.buf4), hex(snap.buf5), hex(snap.buf6), hex(snap.buf7)))
+        end
+    end
+
     log_sep("CHECKPOINT TRACE")
     log("  Trace sequence: " .. tostring(trace_state.seq))
     log("  Last checkpoint: " .. hex(trace_state.last, 4) .. "  " .. trace_name(trace_state.last))
@@ -1741,26 +2118,18 @@ local function run_diagnostics(rom_name)
     if f then
         for _, line_text in ipairs(report) do f:write(line_text .. "\n") end
         f:close()
+        bundle_file(report_path)
         console.log("Report written: " .. report_path)
-        if report_paths.short ~= report_path then
-            local short = io.open(report_paths.short, "w")
-            if short then
-                for _, line_text in ipairs(report) do short:write(line_text .. "\n") end
-                short:close()
+        local function write_menu_csv(path)
+            local csv_file = io.open(path, "w")
+            if not csv_file then return end
+            for _, row in ipairs(menu_trace_rows) do
+                write_csv_row(csv_file, row)
             end
+            csv_file:close()
         end
-        if report_paths.full ~= report_path then
-            local full = io.open(report_paths.full, "w")
-            if full then
-                for _, line_text in ipairs(report) do full:write(line_text .. "\n") end
-                full:close()
-            end
-        end
-        local legacy = io.open(REPORT_PATH_LEGACY, "w")
-        if legacy then
-            for _, line_text in ipairs(report) do legacy:write(line_text .. "\n") end
-            legacy:close()
-        end
+        write_menu_csv(report_paths.menu)
+        bundle_file(report_paths.menu)
     else
         for _, line_text in ipairs(report) do console.log(line_text) end
     end
@@ -1770,12 +2139,14 @@ end
 console.clear()
 console.log("=== ZELDA GENESIS DIAGNOSTIC " .. SCRIPT_VERSION .. " ===")
 console.log(BATCH_MODE and "Batch mode" or "Single-ROM mode")
+reset_send_me_dir()
+console.log("Send Me This folder: " .. SEND_ME_DIR)
 console.log("")
 
 local current_rom = detect_current_rom()
 if not current_rom then
     console.log("Could not determine the currently loaded ROM.")
-    console.log("If needed, set START_ROM_HINT near the top of the script to something like zelda_v85.md and rerun.")
+    console.log("Set START_ROM_HINT to the first ROM you want in the batch and rerun.")
     return
 end
 

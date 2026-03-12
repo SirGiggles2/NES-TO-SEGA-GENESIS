@@ -512,6 +512,137 @@ PPU_WRITE_PATTERN_BYTE:
     move.b  D0,(A0,D4.w)
     rts
 
+PPU_FLUSH_CHR_SHADOW_TO_VRAM:
+    movem.l D0-D7/A0-A3,-(A7)
+    move.l  #$40000000,(VDP_CTRL)
+    lea     (PPU_CHR_SHADOW).l,A0
+    lea     PPU_PIXEL_PAIR_TABLE(pc),A3
+    move.w  #511,D7
+.tile_loop:
+    movea.l A0,A1
+    lea     8(A0),A2
+    moveq   #7,D6
+.row_loop:
+    moveq   #0,D0
+    moveq   #0,D1
+    move.b  (A1)+,D0
+    move.b  (A2)+,D1
+    bsr     PPU_BUILD_GENESIS_ROW
+    move.l  D2,(VDP_DATA)
+    dbra    D6,.row_loop
+    lea     16(A0),A0
+    dbra    D7,.tile_loop
+    movem.l (A7)+,D0-D7/A0-A3
+    rts
+
+PPU_FLUSH_TITLE_CHR_TO_VRAM:
+    movem.l D0-D7/A0-A3,-(A7)
+    moveq   #0,D0
+    move.w  #112,D1
+    bsr     PPU_FLUSH_TILE_RANGE_TO_VRAM
+    move.w  #256,D0
+    move.w  #112,D1
+    bsr     PPU_FLUSH_TILE_RANGE_TO_VRAM
+    move.w  #498,D0
+    move.w  #14,D1
+    bsr     PPU_FLUSH_TILE_RANGE_TO_VRAM
+    movem.l (A7)+,D0-D7/A0-A3
+    rts
+
+PPU_FLUSH_TILE_RANGE_TO_VRAM:
+    tst.w   D1
+    beq     .done
+    move.w  D1,D7
+    subq.w  #1,D7
+    move.w  D0,D2
+    lsl.w   #5,D2
+    move.w  D2,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+
+    move.w  D2,D3
+    lsr.w   #1,D3
+    lea     (PPU_CHR_SHADOW).l,A0
+    adda.w  D3,A0
+    lea     PPU_PIXEL_PAIR_TABLE(pc),A3
+.tile_loop:
+    movea.l A0,A1
+    lea     8(A0),A2
+    moveq   #7,D6
+.row_loop:
+    moveq   #0,D0
+    moveq   #0,D1
+    move.b  (A1)+,D0
+    move.b  (A2)+,D1
+    bsr     PPU_BUILD_GENESIS_ROW
+    move.l  D2,(VDP_DATA)
+    dbra    D6,.row_loop
+    lea     16(A0),A0
+    dbra    D7,.tile_loop
+.done:
+    rts
+
+PPU_BUILD_GENESIS_ROW:
+    clr.l   D2
+
+    moveq   #0,D3
+    move.b  D1,D3
+    andi.w  #$00C0,D3
+    lsr.w   #4,D3
+    moveq   #0,D4
+    move.b  D0,D4
+    andi.w  #$00C0,D4
+    lsr.w   #6,D4
+    or.w    D4,D3
+    lsl.l   #8,D2
+    move.b  (A3,D3.w),D2
+    lsl.b   #2,D0
+    lsl.b   #2,D1
+
+    moveq   #0,D3
+    move.b  D1,D3
+    andi.w  #$00C0,D3
+    lsr.w   #4,D3
+    moveq   #0,D4
+    move.b  D0,D4
+    andi.w  #$00C0,D4
+    lsr.w   #6,D4
+    or.w    D4,D3
+    lsl.l   #8,D2
+    move.b  (A3,D3.w),D2
+    lsl.b   #2,D0
+    lsl.b   #2,D1
+
+    moveq   #0,D3
+    move.b  D1,D3
+    andi.w  #$00C0,D3
+    lsr.w   #4,D3
+    moveq   #0,D4
+    move.b  D0,D4
+    andi.w  #$00C0,D4
+    lsr.w   #6,D4
+    or.w    D4,D3
+    lsl.l   #8,D2
+    move.b  (A3,D3.w),D2
+    lsl.b   #2,D0
+    lsl.b   #2,D1
+
+    moveq   #0,D3
+    move.b  D1,D3
+    andi.w  #$00C0,D3
+    lsr.w   #4,D3
+    moveq   #0,D4
+    move.b  D0,D4
+    andi.w  #$00C0,D4
+    lsr.w   #6,D4
+    or.w    D4,D3
+    lsl.l   #8,D2
+    move.b  (A3,D3.w),D2
+    rts
+
+PPU_PIXEL_PAIR_TABLE:
+    dc.b    $00,$01,$10,$11,$02,$03,$12,$13
+    dc.b    $20,$21,$30,$31,$22,$23,$32,$33
+
 PPU_RENDER_ATTRIBUTE_BLOCK:
     move.w  D4,D5
     lsr.w   #8,D5

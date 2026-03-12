@@ -7002,7 +7002,9 @@ sub_b06_optional_legacy_fallback:
 b06_bra_b06_ppu_buf_ram_0302:
     MOVE.B  b06_cfg_ram_0302_direct(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_ram_0302_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_ram_0302_enabled:
     MOVE.W  #$0494,D0
     BSR     TRACE_MARK
     LEA     (ram_0302_ppu_buffer).l,A1
@@ -7016,7 +7018,9 @@ b06_bra_b06_ppu_buf_guide:
 b06_bra_b06_ppu_buf_continue:
     MOVE.B  b06_cfg_real_continue(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_continue_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_continue_enabled:
     MOVE.W  #$0489,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_continue_real(PC),A1
@@ -7042,7 +7046,9 @@ b06_bra_b06_ppu_buf_24:
 b06_bra_b06_ppu_buf_26:
     MOVE.B  b06_cfg_real_26_50_5a(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_26_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_26_enabled:
     MOVE.W  #$0488,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_26_real(PC),A1
@@ -7053,7 +7059,9 @@ b06_bra_b06_ppu_buf_36:
 b06_bra_b06_ppu_buf_50:
     MOVE.B  b06_cfg_real_26_50_5a(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_50_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_50_enabled:
     MOVE.W  #$0488,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_50_real(PC),A1
@@ -7061,7 +7069,9 @@ b06_bra_b06_ppu_buf_50:
 b06_bra_b06_ppu_buf_5a:
     MOVE.B  b06_cfg_real_26_50_5a(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_5a_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_5a_enabled:
     MOVE.W  #$0488,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_5a_real(PC),A1
@@ -7069,7 +7079,9 @@ b06_bra_b06_ppu_buf_5a:
 b06_bra_b06_ppu_buf_1e:
     MOVE.B  b06_cfg_real_1e_2a(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_1e_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_1e_enabled:
     MOVE.W  #$0485,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_1e_real(PC),A1
@@ -7077,7 +7089,9 @@ b06_bra_b06_ppu_buf_1e:
 b06_bra_b06_ppu_buf_2a:
     MOVE.B  b06_cfg_real_1e_2a(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_2a_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_2a_enabled:
     MOVE.W  #$0485,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_2a_real(PC),A1
@@ -7088,7 +7102,9 @@ b06_bra_b06_ppu_buf_legacy_title_alias:
     BNE     b06_bra_b06_ppu_buf_ram_0302_alias
     MOVE.B  b06_cfg_alias_title_legacy(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_legacy_title_alias_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_legacy_title_alias_enabled:
     MOVE.W  #$0493,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_title_screen_real(PC),A1
@@ -7101,7 +7117,9 @@ b06_bra_b06_ppu_buf_ram_0302_alias:
 b06_bra_b06_ppu_buf_6a:
     MOVE.B  b06_cfg_real_6a_6c(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_6a_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_6a_enabled:
     MOVE.W  #$0486,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_6a_real(PC),A1
@@ -7109,7 +7127,9 @@ b06_bra_b06_ppu_buf_6a:
 b06_bra_b06_ppu_buf_6c:
     MOVE.B  b06_cfg_real_6a_6c(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_6c_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_6c_enabled:
     MOVE.W  #$0486,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_6c_real(PC),A1
@@ -7117,7 +7137,9 @@ b06_bra_b06_ppu_buf_6c:
 b06_bra_b06_ppu_buf_76:
     MOVE.B  b06_cfg_real_76_78(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_76_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_76_enabled:
     MOVE.W  #$0487,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_76_real(PC),A1
@@ -7125,7 +7147,9 @@ b06_bra_b06_ppu_buf_76:
 b06_bra_b06_ppu_buf_78:
     MOVE.B  b06_cfg_real_76_78(PC),D4
     TST.B   D4
-    BEQ     sub_b06_optional_legacy_fallback
+    BNE     b06_bra_b06_ppu_buf_78_enabled
+    JMP     sub_b06_optional_legacy_fallback
+b06_bra_b06_ppu_buf_78_enabled:
     MOVE.W  #$0487,D0
     BSR     TRACE_MARK
     LEA     ppu_buf_78_real(PC),A1
@@ -7137,7 +7161,7 @@ b06_bra_b06_ppu_buf_7c:
     LEA     ppu_buf_7c_real(PC),A1
     RTS
 b06_bra_b06_ppu_buf_bat_12:
-    LEA     _off000_bat_67F0_12(PC),A1
+    LEA     ppu_buf_bat_12_real(PC),A1
     BRA     b06_bra_b06_ppu_buf_bat_trace
 b06_bra_b06_ppu_buf_bat_06:
     LEA     _off000_bat_6814_06(PC),A1
@@ -8332,7 +8356,17 @@ _off000_A3FE_02_guide:  ; orig: _off000_A3FE_02_guide:
 
     ; [DIRECTIVE] .BYTE $FF  -- needs manual handling  ; orig: - D 1 - I - 0x01A878 06:A868: FF        .byte $FF   ; end to
 
-
+ppu_buf_bat_12_real:
+    DC.B $3F,$00,$20
+    DC.B $0F,$30,$00,$12
+    DC.B $0F,$16,$27,$36
+    DC.B $0F,$0C,$1C,$2C
+    DC.B $0F,$12,$1C,$2C
+    DC.B $0F,$29,$27,$07
+    DC.B $0F,$22,$27,$07
+    DC.B $0F,$26,$27,$07
+    DC.B $0F,$15,$27,$30
+    DC.B $FF
 
 _off000_A869_10_title_screen:  ; orig: _off000_A869_10_title_screen:
 

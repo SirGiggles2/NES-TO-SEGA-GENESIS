@@ -1117,9 +1117,13 @@ sub_0x01E872_bomb_blasts_breakable_wall:  ; orig: sub_0x01E872_bomb_blasts_break
     MOVEA.L #$FF030B,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x01E8A2 07:E892: 9D 0B 03  STA ram_0302_ppu_buf
     MOVE.B  D0,(A0,D1.L)  ; ^
     CMPI.B  #$46,D0  ; orig: C - - - - - 0x01E8A5 07:E895: C9 46     CMP #$46
-    BCC     bFF_bra_E8AC             ; BCC  ; orig: C - - - - - 0x01E8A7 07:E897: 90 13     BCC bFF_bra_E8AC
+    BCS     bFF_bra_E897_bcc_not_taken
+    JMP     bFF_bra_E8AC
+bFF_bra_E897_bcc_not_taken:
     CMPI.B  #$F3,D0  ; orig: C - - - - - 0x01E8A9 07:E899: C9 F3     CMP #$F3
-    BCS     bFF_bra_E8AC             ; BCS  ; orig: C - - - - - 0x01E8AB 07:E89B: B0 0F     BCS bFF_bra_E8AC
+    BCC     bFF_bra_E89B_bcs_not_taken
+    JMP     bFF_bra_E8AC
+bFF_bra_E89B_bcs_not_taken:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01E8AD 07:E89D: 18        CLC
     ADD.B  #$02,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x01E8AE 07:E89E: 69 02     ADC #$02
     MOVEA.L #$FF030A,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x01E8B0 07:E8A0: 9D 0A 03  STA ram_0302_ppu_buf
@@ -1345,11 +1349,15 @@ ofs_main_script_1_E9A1_07:  ; orig: ofs_main_script_1_E9A1_07:
     BSR     sub_FFAC_prg_bankswitch             ; JSR -> BSR  ; orig: C - - - - - 0x01E9B3 07:E9A3: 20 AC FF  JSR sub_FFAC_prg_ban
     BSR     sub_0x0142B8             ; JSR -> BSR  ; orig: C - - - - - 0x01E9B6 07:E9A6: 20 A8 82  JSR sub_0x0142B8
     MOVE.B  ram_screen_transition_flag,D0  ; orig: C - - - - - 0x01E9B9 07:E9A9: A5 E3     LDA ram_screen_trans
-    BEQ     bFF_bra_E9C2_RTS             ; BEQ  ; orig: C - - - - - 0x01E9BB 07:E9AB: F0 15     BEQ bFF_bra_E9C2_RTS
+    BNE     bFF_bra_E9AB_beq_not_taken
+    JMP     bFF_bra_E9C2_RTS
+bFF_bra_E9AB_beq_not_taken:
 
 ; if transition is ON
     MOVE.B  ram_prev_screen_transition_flag,D0  ; orig: C - - - - - 0x01E9BD 07:E9AD: A5 F3     LDA ram_prev_screen_
-    BNE     bFF_bra_E9C2_RTS             ; BNE  ; orig: C - - - - - 0x01E9BF 07:E9AF: D0 11     BNE bFF_bra_E9C2_RTS
+    BEQ     bFF_bra_E9AF_bne_not_taken
+    JMP     bFF_bra_E9C2_RTS
+bFF_bra_E9AF_bne_not_taken:
     ADDQ.B  #1,ram_prev_screen_transition_flag  ; orig: C - - - - - 0x01E9C1 07:E9B1: E6 F3     INC ram_prev_screen_
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x01E9C3 07:E9B3: A5 98     LDA ram_dir_link
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x01E9C5 07:E9B5: C9 04     CMP #$04

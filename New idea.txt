@@ -1,0 +1,736 @@
+Step by step: the toolchain
+1. Normalize the NES disassembly
+
+First, clean the NES source into something machine-readable:
+
+one label style
+
+one macro style
+
+one include layout
+
+explicit RAM/ROM/zero-page symbols
+
+all hardware registers named consistently
+
+You want your analyzer to answer: “is this routine game logic, engine logic, or hardwired NES behavior?” The cleanest split is:
+
+portable gameplay logic: movement, AI, collision, room logic
+
+semi-portable engine logic: object systems, state machines, data decoders
+
+NES-only code: PPU writes, OAM DMA, APU, mapper banking, NMI timing
+
+This matters because NES code is usually entangled with hardware and timing rather than being “just algorithms.” That’s the part a converter cannot safely guess.
+
+2. Build an analyzer before a transpiler
+
+Before converting instructions, make a report generator:
+
+all reads/writes to $2000-$2007, $4014, APU regs, mapper regs
+
+call graph of routines
+
+which routines touch hardware directly
+
+which routines are pure RAM math / branch / table lookup
+
+bank-crossing and interrupt dependencies
+
+The first big win is not 68k output. The first big win is a report that says:
+
+“portable with light edits”
+
+“portable but timing-sensitive”
+
+“rewrite for Genesis”
+
+“unknown / mixed”
+
+That report saves huge time.
+
+3. Do a partial 6502→68000 translation
+
+Only mechanically translate routines that are mostly pure logic. For example:
+
+loads/stores
+
+add/subtract
+
+branches
+
+compare
+
+tables
+
+loops
+
+state dispatch
+
+Do not try to auto-convert:
+
+PPU update loops
+
+sprite DMA behavior
+
+vblank/NMI submission patterns
+
+mapper tricks
+
+scanline effects
+
+APU music/SFX drivers
+
+Your translator should emit ugly but traceable 68k, not pretty code. Preserve label names and comments as much as possible.
+
+4. Replace NES hardware accesses with stubs
+
+Instead of converting a write like:
+
+STA $2006
+
+STA $2007
+
+STA $4014
+
+have the converter emit calls/macros like:
+
+NES_PPUADDR_WRITE_STUB
+
+NES_PPUDATA_WRITE_STUB
+
+NES_OAMDMA_STUB
+
+Then you hand-replace those with Genesis-side systems:
+
+VDP command queue
+
+sprite list builder
+
+palette/tile upload queue
+
+scroll update queue
+
+This keeps the port from becoming a total mystery.
+
+5. Recreate the engine contract on Genesis
+
+Make a thin “compatibility layer” on Genesis that mimics what the original game logic expects:
+
+object arrays
+
+flags
+
+room state
+
+collision buffers
+
+RNG state
+
+player state format
+
+animation/frame counters
+
+Do not start with “what is the most Genesis-native architecture?”
+Start with “what memory model would let original game logic survive?”
+
+6. Make behavior checkpoints
+
+Define a shared set of checkpoints for both ROMs:
+
+player x/y
+
+room ID / map ID
+
+player HP
+
+current item
+
+enemy count
+
+active object states
+
+RNG seed/state
+
+scroll position
+
+current mode/state
+
+frame counter
+
+These become your truth points. If they match for 300 frames, you know your logic port is holding. If they diverge on frame 47, you know exactly where to look.
+
+Best BizHawk workflow for debugging both ROMs
+
+BizHawk Lua scripts can run every frame with either a loop using emu.frameadvance() or event callbacks; it also exposes event.onframestart, event.onframeend, memory domain selection, mainmemory.read_u8, generic memory.read_u8, save/load state, joypad injection, frame count, screenshots, and bus read/write callbacks.
+
+The best loop is not “watch the screen and guess.”
+It is:
+
+start both games from known savestates
+
+drive both with the same input script
+
+sample agreed checkpoints every frame
+
+log divergences
+
+capture screenshots on the first bad frame
+
+add temporary bus/memory hooks around the suspect system
+
+That turns debugging from “it feels wrong” into “Genesis room transition flag diverged on frame 182 because object 03 state became 05 instead of 04.”
+
+The three BizHawk script types you want
+1) HUD / watcher script
+
+Shows important values on screen every frame:
+
+player pos
+
+room
+
+HP
+
+mode
+
+RNG
+
+enemy count
+
+Use this first. It is the fastest way to see whether the port is “basically in sync.”
+
+2) Logger / diff script
+
+Writes a CSV or text log each frame:
+
+frame number
+
+inputs
+
+checkpoint values
+
+maybe selected register values
+
+Use this when behavior looks close but eventually drifts.
+
+3) Event hook script
+
+Attach event.on_bus_write or event.on_bus_read to suspicious addresses or broad ranges to see who touched what and when. These callbacks fire before reads/writes and can be scoped by address; they are powerful, but very noisy, so use them only after the diff script narrows the area.
+
+Recommended comparison loop
+Phase 1: Make the NES ROM observable
+
+For the original NES ROM, build a Lua script that prints/logs:
+
+frame
+
+room ID
+
+player x/y
+
+player state
+
+RNG
+
+object count
+
+first few object slots
+
+scroll x/y
+
+Run that from a stable savestate.
+
+Phase 2: Make the Genesis ROM observable
+
+Build the same script structure for your Genesis port, even if the addresses are different. The values should be named the same in the output:
+
+player_x
+
+player_y
+
+room_id
+
+rng
+
+etc.
+
+Now you can compare conceptually identical signals even though the memory maps differ.
+
+Phase 3: Drive both with identical input
+
+Use joypad.set() so both games receive the same per-frame input sequence. Keep the input script deterministic and simple at first: title screen, start game, walk right 120 frames, swing sword, move up, etc.
+
+Phase 4: Detect first divergence
+
+At each frame:
+
+record inputs
+
+read all checkpoints
+
+compare to expected behavior or compare logs offline
+
+As soon as a key value differs, dump:
+
+frame number
+
+full checkpoint set
+
+screenshot
+
+optional savestate
+
+BizHawk supports screenshots and savestate save/load from Lua, so you can automate this.
+
+Phase 5: Narrow the fault
+
+Once you know “first bad frame,” rerun from a few frames earlier and add more probes:
+
+registers with emu.getregisters()
+
+extra object slots
+
+collision buffers
+
+bus writes to key addresses
+
+render or queue variables
+
+BizHawk also exposes register inspection and even per-core disassembly helpers, which can help correlate runtime state with the instruction stream.
+
+What to compare first
+
+Do this in order:
+
+1. Determinism
+
+Can both builds take the same inputs and stay aligned for 2–5 seconds?
+
+2. Player simulation
+
+Compare:
+
+position
+
+velocity
+
+facing
+
+action state
+
+invulnerability timers
+
+knockback
+
+item use
+
+3. Room loading
+
+Compare:
+
+room ID
+
+door transition flags
+
+scroll target
+
+spawn lists
+
+object initialization
+
+4. Collision and object updates
+
+Compare:
+
+tile collision result
+
+object active flags
+
+enemy HP/state
+
+hitbox/hurtbox outcomes
+
+5. Rendering submission
+
+Only after logic is stable, compare:
+
+sprite counts
+
+tile indices
+
+scroll values
+
+palette selections
+
+per-frame upload counts
+
+That order matters because rendering bugs often distract from earlier logic bugs.
+
+How I would use BizHawk Lua on your project
+
+I’d use one common log format for both ROMs. Something like:
+
+frame, input, room, px, py, pstate, hp, rng, obj0_id, obj0_state, obj1_id, obj1_state, scroll_x, scroll_y
+
+Then:
+
+run NES with nes_watch.lua
+
+run Genesis with gen_watch.lua
+
+keep the output columns identical
+
+diff the logs with a small script outside the emulator
+
+That gives you a “first mismatching frame” instantly.
+
+I’d also add:
+
+a screenshot on mismatch with client.screenshot()
+
+a save state every 60 frames
+
+a “verbose mode” that turns on bus hooks only near divergence
+
+That keeps the normal run fast and the deep run surgical. BizHawk’s Lua API supports per-frame callbacks, screenshots, frame count, save states, memory domains, and bus callbacks, which is exactly the mix you want here.
+
+The smartest overall workflow
+
+Here’s the highest-value loop for a Zelda-style port:
+
+Stage A: static analysis
+
+parse disassembly
+
+classify routines
+
+identify portable logic
+
+identify NES-only code
+
+emit a porting report
+
+Stage B: hand-create a Genesis runtime skeleton
+
+RAM layout
+
+object system
+
+room system
+
+VDP queue
+
+controller/input path
+
+update loop
+
+Stage C: port only one vertical slice
+
+For example:
+
+title → gameplay
+
+one room
+
+movement
+
+sword swing
+
+one enemy
+
+one transition
+
+Do not port the whole game before instrumentation works.
+
+Stage D: build paired emulator scripts
+
+NES observer
+
+Genesis observer
+
+shared log format
+
+shared input sequence
+
+Stage E: synchronize behavior
+
+Keep fixing until:
+
+player motion matches
+
+collision matches
+
+transitions match
+
+object states match
+
+only then tune visuals
+
+Stage F: expand slice by slice
+
+Once one slice is stable, add:
+
+more rooms
+
+more enemies
+
+more items
+
+UI
+
+audio
+
+edge cases
+
+One important warning
+
+Do not try to compare the two games only visually.
+Visual parity is too late and too fuzzy.
+
+Compare:
+
+state
+
+counters
+
+flags
+
+object slots
+
+transitions
+
+inputs
+
+first divergence frame
+
+That is where BizHawk Lua becomes genuinely powerful.
+
+If you want, next I can draft:
+
+a concrete NES watch Lua script template,
+
+a matching Genesis watch Lua script template, and
+
+a diff log format tailored to your Zelda port.
+
+If I gave you the disassembly could you  normalize it and build an analyzer? 
+Thought for a couple of seconds
+
+Yes.
+
+If you give me the disassembly, I can help normalize it and build an analyzer around it. That is actually one of the most realistic and useful parts of this whole idea.
+
+What I could do with the disassembly:
+
+standardize labels, formatting, comments, and file structure
+
+identify RAM, zero-page, ROM, vectors, and bank boundaries
+
+find reads/writes to NES hardware registers
+
+separate likely portable game logic from NES-specific hardware code
+
+build reports like:
+
+routines that touch PPU/APU/mapper registers
+
+call graph / cross-reference map
+
+probable object-update routines
+
+possible room / player / enemy state handlers
+
+routines that are good candidates for 68k translation
+
+create a foundation for a later partial transpiler
+
+A very good first target would be an analyzer that outputs things like:
+
+Pure logic
+
+math, state transitions, tables, collision helpers, AI helpers
+
+Mixed
+
+game logic plus some NES assumptions
+
+Hardware-bound
+
+PPU writes, NMI routines, OAM DMA, mapper banking, sound driver
+
+That alone would massively reduce confusion.
+
+A good workflow would be:
+
+Normalize source
+
+unify syntax
+
+resolve includes/macros where possible
+
+clean symbol names
+
+map memory regions
+
+Build static analysis
+
+scan labels and references
+
+detect code vs data
+
+identify hardware access patterns
+
+generate per-routine summaries
+
+Generate reports
+
+address map
+
+call graph
+
+hardware access report
+
+candidate portable routines
+
+suspicious / unresolved regions
+
+Optionally build instrumentation helpers
+
+emit symbol tables for BizHawk Lua
+
+produce watch lists for player/room/object state
+
+generate CSV/JSON reports
+
+What I would need from you:
+
+the disassembly files
+
+assembler flavor if you know it (ca65, NESASM, asm6, custom, etc.)
+
+any linker/config files if they exist
+
+any RAM map docs or notes you already have
+
+And one important thing: if the project is split across multiple files, I need the whole relevant set, not just one main .asm, because includes/macros/constants matter a lot.
+
+Once you upload it, I can start by:
+
+normalizing the layout
+
+identifying the memory map
+
+giving you a first-pass analyzer report
+
+Upload the disassembly and I’ll start with a clean first-pass breakdown.
+
+https://github.com/aldonunez/zelda1-disassembly
+
+I’m checking the repo structure first so I can tell you whether it’s in good enough shape to normalize directly or whether it needs a preprocessing pass. Then I’ll map out what analyzer outputs we can generate from it right away.
+
+This repo is promising: it’s already a structured ca65 disassembly split into bank files plus variable include files, which is exactly the shape an analyzer wants. I’m pulling a closer view of the file contents now so I can tell you how much normalization is still needed versus what we can analyze immediately.
+
+Thought for 1m 20s
+
+Yes — and this repo is a good candidate.
+
+It is already a ca65-based, bank-split disassembly with a src directory containing Z_00.asm through Z_07.asm, include files like Variables.inc, and a linker config Z.cfg, plus a build script. The README also says the source is meant to be assembled with ca65/ld65 and that the listing was produced from Mesen label data, which is exactly the kind of structure that helps an analyzer.
+
+That means this is not a messy “single giant dump” situation. It already has:
+
+bank separation
+
+named variables/includes
+
+a linker config
+
+comments and labels
+
+some data/code separation via .INCBIN and segments
+
+So the answer is: yes, absolutely, and with this repo the job is more “normalize and index” than “rescue from chaos.”
+
+What I’d build for this repo first:
+
+Normalizer
+
+standardize indentation, spacing, label style, and directive casing
+
+expand a unified inventory of .SEGMENT, .INCLUDE, .INCBIN, .EXPORT
+
+produce one clean symbol/index report across all banks
+
+Static analyzer
+
+detect routines and entry points
+
+build a JSR/JMP cross-reference map
+
+classify lines as probable code, table data, binary blob, or config
+
+find NES hardware touches like PPU/APU/mapper/OAM accesses
+
+identify “portable logic” candidates versus “NES-bound” routines
+
+Porting report
+
+likely gameplay logic
+
+likely engine/shared systems
+
+definitely audio/PPU/interrupt/hardware code
+
+routines that are good first candidates for 68k translation
+
+BizHawk helper output
+
+symbol tables / watch lists for player state, room state, objects, RNG, etc.
+
+machine-readable CSV/JSON reports you can use in Lua tooling
+
+A few things are already encouraging from the repo:
+
+the README says it is a complete disassembly and documents the workflow used to produce it.
+
+the tree shows clear bank files and variable include files instead of one monolithic source.
+
+Z_00.asm is readable, commented, and already separates binary song data from labeled code like DriveAudio, which is the kind of structure an analyzer can exploit immediately.
+
+What I would not trust automatically:
+
+any “code vs data” boundary that isn’t explicitly marked
+
+bank-switch call interpretation until we parse all bank files together
+
+indirect jump/call flows without a second pass
+
+So my suggested work order for this exact repo would be:
+
+Pass 1
+
+inventory all files
+
+parse segments/includes/exports
+
+extract labels and local labels
+
+build a per-bank symbol map
+
+Pass 2
+
+scan for JSR, JMP, branch targets, tables, and .INCBIN
+
+classify routines by hardware dependence
+
+produce a first call graph
+
+Pass 3
+
+emit a “portable vs rewrite” report
+
+generate a BizHawk watchlist from important RAM symbols
+
+The only practical limitation here is that to actually do the normalization/analyzer work in this chat, I need the files themselves available as files I can process directly. A GitHub URL is enough for inspection, but for real output I’d want the repo uploaded as a zip, or at least the src folder uploaded here.
+
+Best next move: upload the repo zip or the src folder, and I’ll start with a first-pass analyzer report plus a normalized file inventory.

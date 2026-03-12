@@ -975,6 +975,34 @@
     Pointer note: NES table entry points at CPU RAM $0302; original bank 6 stores $FF there after the stream completes, so this is sentinel/cleanup state.
     RAM $0300 bytes: $3F $00 $FF $3C $00 $23
 
+=== TITLE SLICE WATCHER =======================================
+  Focus: bank-2 title CHR uploader / title-ready handshake.
+  Fields: phase=$051D ptr=$0000/$0001 count=$0002/$0003 vram=$EF08 trace=$F000 ready=$11 load=$14 guard=$F5
+  F 29 PC=$000AE8 trace=$0403 phase=$00 ptr=$2428 count=$0100 vram=$2AA6 ready=$00 load=$00 guard=$5A ppu_evt=$0000
+  F 30 PC=$0008E0 trace=$0403 phase=$00 ptr=$2428 count=$0100 vram=$2B90 ready=$00 load=$00 guard=$5A ppu_evt=$0000
+  F 31 PC=$0008F2 trace=$0203 phase=$00 ptr=$0300 count=$01FF vram=$0364 ready=$00 load=$00 guard=$5A ppu_evt=$0000
+  F 32 PC=$0008C4 trace=$0203 phase=$00 ptr=$0302 count=$01FF vram=$03FB ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 33 PC=$000736 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$2424 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 34 PC=$0008D6 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$D72C ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 35 PC=$000B68 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$2438 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 36 PC=$000AE8 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$0015 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 37 PC=$000BFE trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$0428 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 38 PC=$000B8E trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$25A4 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 39 PC=$000AE8 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$243C ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 40 PC=$0008D0 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$2447 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 41 PC=$000B84 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$24C4 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 42 PC=$0008D6 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$2014 ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 43 PC=$0008C4 trace=$0403 phase=$00 ptr=$0302 count=$01FF vram=$13DD ready=$01 load=$10 guard=$5A ppu_evt=$0000
+  F 44 PC=$000C9A trace=$0403 phase=$00 ptr=$0302 count=$0100 vram=$0303 ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 49 PC=$0012CC trace=$0403 phase=$00 ptr=$03FF count=$01FF vram=$0303 ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 50 PC=$0008FA trace=$0403 phase=$00 ptr=$0310 count=$0100 vram=$12FD ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 51 PC=$0008E8 trace=$0403 phase=$00 ptr=$2428 count=$0100 vram=$2854 ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 52 PC=$000AE8 trace=$0203 phase=$00 ptr=$0310 count=$0100 vram=$03D0 ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 53 PC=$0008F2 trace=$0203 phase=$00 ptr=$0310 count=$0100 vram=$03CF ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 54 PC=$000BFE trace=$0203 phase=$00 ptr=$0310 count=$0100 vram=$03D1 ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 56 PC=$000DEC trace=$0403 phase=$00 ptr=$0310 count=$0100 vram=$1300 ready=$01 load=$00 guard=$5A ppu_evt=$0000
+  F 57 PC=$000DEC trace=$0203 phase=$00 ptr=$0310 count=$0100 vram=$0303 ready=$01 load=$00 guard=$5A ppu_evt=$0000
+
 === CHECKPOINT TRACE ==========================================
   Trace sequence: 6992
   Last checkpoint: $0203  VDP_VBLANK_HANDLER: translated NMI returned

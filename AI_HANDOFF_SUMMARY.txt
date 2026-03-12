@@ -1,0 +1,191 @@
+NES-TO-SEGA-GENESIS AI Handoff Summary
+Date: 2026-03-12
+
+Project goal
+- Port Zelda 1 from NES to Sega Genesis while preserving the original game logic as much as possible.
+- The project translates 6502 bank code into 68000 assembly, then emulates the NES PPU contract on top of the Genesis VDP.
+
+High-level architecture
+- Genesis startup and trace infrastructure:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\main.asm
+- NES PPU to Genesis VDP bridge:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\bridge\vdp_layer.asm
+- Translated Zelda banks actually being built:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated\*.asm
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\*.asm
+- Build pipeline:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\build.bat
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\translator.py
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\patch_vdp.py
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\fix_syntax.py
+
+Current overall state
+- Boot/reset/NMI are healthy.
+- Rendering is on.
+- Audio and sequence flow are no longer the main blocker.
+- The old forced-menu lane does wake menu state in some builds, but is still unstable and misleading.
+- The healthiest current lane is the natural non-autostart intro/story lane.
+- That lane now appears to run far enough to show partially readable Zelda intro text and story content, but visuals are still heavily corrupted.
+
+Why the current focus changed
+- Earlier debugging spent a lot of time on forced title/menu/script progression.
+- A longer diagnostic horizon plus BlastEm screenshots showed that the non-autostart control lane was progressing farther than the 300-frame reports implied.
+- The healthier lane is now the intro/story path, not the forced-menu path.
+
+Key diagnostic workflow
+- Main Genesis diag script:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\scripts\zelda_diag_v8.lua
+- Main oracle script:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\scripts\zelda_oracle_trace.lua
+- Current bundling folder used for sharing:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want
+
+Important diag script behavior
+- zelda_diag_v8.lua currently batches from the newest batch start by hardcoding START_ROM_HINT.
+- It writes one canonical report file and one canonical menu CSV per ROM:
+  diag_report_v###.txt
+  diag_menu_v###.csv
+- It also copies the fresh outputs into:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want
+- It now runs 901 frames and captures later screenshots at 420, 600, 780, and 900.
+
+Best evidence so far
+1. v226-v230 all stay on the same healthy intro/story lane
+- Reports:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v226.txt
+  ...
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v230.txt
+- Common shape:
+  Score: 10 PASS / 1 FAIL / 1 WARN
+  NMI completion count: 794
+  CPU settles at PC=$000F34
+  screen_ready becomes $01
+  ram_script stays $00
+  ram_subscript stays $00
+  ppu_load_index does wake briefly, then returns to $00
+  PPU events captured: 0
+
+2. v231 is special but not yet correct
+- Report:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v231.txt
+- Same healthy intro/story shape as v226-v230, but:
+  PPU events captured: 24
+  those events are still BANK6_PPU_LEGACY fallback events
+  this suggests extra activity, but not correct final rendering
+
+3. The visible clue from BlastEm is important
+- One of the recent control-lane builds (v218 class, and likely descendants of that lane) showed partial readable intro text similar to the real Zelda opening story.
+- The visible text included phrases like:
+  "ONE OF THE TRIFORCE..."
+  "SHE WAS CAPT..."
+- That means the project is not merely "alive"; it is reaching the intro/story screen and building at least some of the correct content.
+
+4. The bank-6 request shape in the healthy intro lane
+- Example from v226:
+  at frame 88, request index 10 resolves to ROM pointer A869 -> resolved address 00017591
+  resolved bytes look sane for title tile mappings:
+  20 00 20 24 24 24 24 24 ...
+- After that, the system falls back to the old RAM $0302 sentinel/cleanup path:
+  req_ptr=$0302
+  req_res=$00000000
+- This fallback is expected in the original game at some points, but the rendered output is still not correct.
+
+5. The big recent insight about bank-02 data
+- A lot of bank-02 intro/manual/title data was still comment-only or collapsing onto the same address.
+- A restore script already exists:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\restore_bank02_title_tables.py
+- It can materialize original bytes from the translator comments into real DC.B / DC.W blocks.
+
+What v226-v231 proved
+- Broad "restore core intro data" changes do matter.
+- But broad profiles are too coarse to tell which exact label is the real lever.
+- v226 control, v227 core, v228 text, v229 core+text, v230 extended, and v231 full all remain on the same general intro lane.
+- The biggest observable differences are:
+  - the exact $0300 buffer family late in the run
+  - whether legacy PPU fallback events wake up
+  - which intro/story screenshots look closest to the real NES story screen
+- That means the next best experiment is one-label-at-a-time isolation inside the "core" intro set.
+
+Current next plan
+- Isolate the four core bank-02 intro labels one-by-one on the healthy intro/story lane:
+  tbl_90EE_spr_data:
+  tbl_915E:
+  tbl_94AD_demo_manual_text:
+  tbl_94EE_logo_palette:
+- Reason:
+  the broad core/full restores showed that this area matters, but not which specific label is doing the useful work or the damage.
+
+New batch already built for that plan
+- Control and one-label isolation batch:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v232.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v233.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v234.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v235.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v236.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v237.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v238.md
+- Batch builder:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\build_intro_core_isolation_batch.py
+- Variants:
+  v232 control
+  v233 spr_data only
+  v234 tbl_915E only
+  v235 demo_text_ptrs only
+  v236 logo_palette only
+  v237 core_no_palette
+  v238 core_full
+
+Why this is the best next move
+- It keeps us on the healthiest known natural gameplay/content lane.
+- It reduces a broad restore into a real binary search over the most promising intro labels.
+- It avoids going back to the misleading forced-menu lane unless the intro lane stalls completely.
+
+Strongly relevant files for another AI to inspect
+- Current healthy-lane diag bundle:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v226.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v227.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v228.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v229.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v230.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v231.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v226.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v227.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v228.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v229.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v230.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v231.csv
+
+- NES oracle files:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_nes.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_menu_current_nes.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_nes_summary.txt
+
+- Genesis oracle files from the live menu lane:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_genesis.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_menu_current_genesis.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_genesis_summary.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_events_current_genesis.csv
+
+- Core code likely relevant right now:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated\bank_02_gen68k.asm
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_02_gen68k_vdp.asm
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_06_gen68k_vdp.asm
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\bridge\vdp_layer.asm
+
+Open questions for another AI
+1. In the healthy intro lane, which exact bank-02 intro data label is the true missing piece?
+2. Are the corrupted intro/story visuals mainly a data problem, a palette problem, a sprite-data problem, or a background/tilemap decode problem?
+3. Is the late fallback to the $0302 sentinel path happening at the right time but being rendered incorrectly, or is the transition itself happening too early?
+4. Does v231's extra PPU event activity point to progress, or is it simply waking the wrong legacy fallback path?
+5. Is bank-06 legacy pointer handling still masking a good intro lane that bank-02 is already building correctly?
+
+Current best recommendation
+- Do not go back to broad random build batches.
+- Run the new one-label isolation batch v232-v238.
+- Compare late screenshots and diag_menu output first.
+- If one label clearly improves the intro screen, pivot hard to that sub-lane.
+
+Short status line
+- The port is no longer stuck at boot/NMI bring-up.
+- The healthiest current lane reaches the Zelda intro/story flow and shows partially readable story text.
+- The current problem is getting the intro/story screen and later title/demo content to render correctly, most likely due to still-bad or still-missing bank-02 intro data.

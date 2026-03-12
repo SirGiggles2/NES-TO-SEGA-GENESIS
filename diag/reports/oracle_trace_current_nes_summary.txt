@@ -3,12 +3,47 @@ ROM: current_nes
 System: nes
 RAM domain: System Bus
 RAM base: 0000
-Reset on start: true
-Reset kind: poweron
-Reset result: unsupported
+Reset on start: false
+Reset kind: rebootcore
+Reset result: none
 Reset settle frames: 0
-Frames: 0-300
+Frames: 0-424
+Max wait before Start: 600
+Post-Start capture frames: 180
+Max total frames: 900
 Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_nes.csv
+Menu trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_menu_current_nes.csv
+
+Menu milestones:
+  script1 first frame: 250
+  nonzero subscript first frame: 244
+  ppu_load_index=$14 first frame: 255
+  cur_save_slot nonzero first frame: 0
+  ram_041F nonzero first frame: 0
+  ram_0421 nonzero first frame: 32
+  ram_0423 nonzero first frame: 32
+  sprite index active first frame: 0
+
+Manual Start Detection:
+  enabled: true
+  input supported: false
+  key name: never seen
+  first press frame: never
+  press frames: 
+
+Internal Start Capture:
+  enabled: true
+  detected frame: 244
+  detected source: nes_btn_press_hold
+  post-end frame: 424
+
+Auto-Start:
+  enabled: false
+  input supported: nil
+  ready frame: never
+  attempts: 0
+  attempt frames: 
+  stop frame: never
 
 First changes:
   ram_0000_t49     frame 3
@@ -17,28 +52,35 @@ First changes:
   ram_0004_t18     frame 3
   game_mode        never changed
   screen_ready     frame 31
-  ram_script       never changed
-  ram_subscript    never changed
+  ram_script       frame 250
+  ram_subscript    frame 244
   ppu_load_index   frame 3
   ram_frm_cnt      frame 3
+  cur_save_slot    frame 3
   rendering_flag   frame 3
+  ram_004D         frame 3
   ram_next_script  never changed
   ram_005C         frame 3
   se_ptr_lo        frame 3
   se_ptr_hi        frame 3
   ram_006C_se      frame 3
   ram_00F6         frame 3
-  btn_press        never changed
-  btn_hold         never changed
+  btn_press        frame 244
+  btn_hold         frame 244
   scroll_y         frame 3
   scroll_x         frame 3
   ram_for_2001     frame 3
   ram_for_2000     frame 3
   ram_0415         frame 3
   ram_041A         frame 32
+  ram_041F         frame 3
+  ram_0421         frame 32
+  ram_0423         frame 32
+  spr_index_1      frame 260
+  spr_index_2      frame 3
   ram_042D         frame 3
   ram_042E         frame 3
-  ram_0528         never changed
+  ram_0528         frame 244
   ram_05F1         frame 32
   ram_05F4         frame 3
   ram_05F5         frame 3
