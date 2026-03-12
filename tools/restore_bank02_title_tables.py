@@ -55,6 +55,19 @@ TEXT_PAYLOAD_LABELS = [
     "_off002_9499_06_letter___food:",
 ]
 
+TITLE_FIX_LABELS = [
+    "tbl_90EE_spr_data:",
+    "tbl_915E:",
+    "tbl_94AD_demo_manual_text:",
+    *TEXT_PAYLOAD_LABELS,
+    "tbl_94EE_logo_palette:",
+    "tbl_9240:",
+    "tbl_9268_pos_X_44:",
+    "tbl_9269_pos_X_AC:",
+    "tbl_926A_spr_T:",
+    "tbl_9282_spr_A:",
+]
+
 
 LABEL_RE = re.compile(r"^[A-Za-z0-9_\.]+:\s*(;.*)?$")
 
@@ -172,7 +185,7 @@ def restore_labels(path: Path, labels):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("path", nargs="?", default="src/banks/generated_vdp/bank_02_gen68k_vdp.asm")
-    parser.add_argument("--profile", choices=["core", "extended", "text", "full"], default="core")
+    parser.add_argument("--profile", choices=["core", "extended", "text", "full", "titlefix"], default="core")
     args = parser.parse_args()
 
     labels = []
@@ -182,6 +195,8 @@ def main():
         labels.extend(EXTENDED_ONLY_LABELS)
     if args.profile in ("text", "full"):
         labels.extend(TEXT_PAYLOAD_LABELS)
+    if args.profile == "titlefix":
+        labels.extend(TITLE_FIX_LABELS)
 
     restore_labels(Path(args.path), labels)
     print(f"restored {args.profile} bank-02 title tables in {args.path}")

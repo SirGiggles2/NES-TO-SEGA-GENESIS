@@ -25,7 +25,7 @@ local PC_DUMP_AFTER  = 48
 local TOP_PC_DUMPS   = 8
 local STATUS_Y       = 0
 local STOP_ON_CRASH  = true
-local START_ROM_HINT = "zelda_v249.md" -- update this to the first ROM in the newest batch
+local START_ROM_HINT = "zelda_v340.md" -- auto-set by run_batch.ps1 when needed
 local BATCH_MODE     = true -- run sequentially from START_ROM_HINT upward
 local BATCH_SIZE     = 5    -- maximum number of ROMs to process in one batch
 local BATCH_REOPEN_FIRST_ROM = true
@@ -49,6 +49,27 @@ local TRACE_EVT_RING_SIZE      = 8
 local TRACE_EVT_SLOT_SIZE      = 16
 local CRASH_AUX_ADDR  = 0xEE80
 local CRASH_REGS_ADDR = 0xEE40
+
+local function exit_bizhawk()
+    if not (client and type(client.exit) == "function") then
+        return
+    end
+
+    if event and type(event.onframeend) == "function" and emu and type(emu.frameadvance) == "function" then
+        local requested = false
+        event.onframeend(function()
+            if requested then
+                return
+            end
+            requested = true
+            client.exit()
+        end, "zelda_diag_v9_auto_exit")
+        emu.frameadvance()
+        return
+    end
+
+    client.exit()
+end
 
 -- Specific loop / guard addresses we care about right now
 local TARGET_LOOP_PC          = 0x0007F6
@@ -170,6 +191,11 @@ local TRACE_NAMES = {
     [0x04A2] = "BANK6_PPU_LEGACY: repeat header decoded",
     [0x04A3] = "BANK6_PPU_LEGACY: palette fixup branch",
     [0x04A4] = "BANK6_PPU_LEGACY: pointer advanced",
+    [0x04A8] = "BANK6_PPU: fallback request captured",
+    [0x04A9] = "BANK6_PPU: request captured",
+    [0x04AA] = "BANK2_TITLE: logo palette header written",
+    [0x04AB] = "BANK2_TITLE: title template header written",
+    [0x04AC] = "BANK2_TITLE: title block header written",
     [0x04B1] = "BANK0_SEQ: 9D37 primary byte fetch",
     [0x04B2] = "BANK0_SEQ: 9D63 command-follow byte fetch",
     [0x04B3] = "BANK0_SEQ: 9DBE pulse-1 byte fetch",
@@ -293,7 +319,8 @@ local function menu_trace_header()
         "ram_041F", "ram_0421", "ram_0423",
         "ram_0000", "ram_0001", "ram_0002", "ram_0003", "ram_0004", "ram_0005",
         "spr_index_1", "spr_index_2",
-        "trace_last", "PPU_REQ_INDEX", "PPU_REQ_PTR", "PPU_REQ_RES",
+        "trace_last",
+        "PPU_REQ_INDEX", "PPU_REQ_PTR", "PPU_REQ_RES",
         "SEQ_EVT_COUNT", "PPU_EVT_COUNT"
     }
     append_range_header(header, "ppu_buf", MENU_PPU_BUF_COUNT)
@@ -407,6 +434,9 @@ local function open_rom(rom_name)
 
     return false, full_path
 end
+
+local ensure_report_dir
+local bundle_file
 
 local function write_batch_summary(results)
     ensure_report_dir()
@@ -532,7 +562,7 @@ local function vector_name(id)
     return VECTOR_NAMES[id] or "(unknown vector)"
 end
 
-local function ensure_report_dir()
+ensure_report_dir = function()
     os.execute('if not exist "' .. REPORT_DIR .. '" mkdir "' .. REPORT_DIR .. '"')
 end
 
@@ -566,7 +596,7 @@ local function copy_file(src_path, dst_path)
     return true
 end
 
-local function bundle_file(path, alias_name)
+bundle_file = function(path, alias_name)
     if not path then return nil end
     local name = alias_name or basename(path)
     if not name then return nil end
@@ -2157,63 +2187,71 @@ local function run_diagnostics(rom_name)
     return pass_count, fail_count
 end
 
-console.clear()
-console.log("=== ZELDA GENESIS DIAGNOSTIC " .. SCRIPT_VERSION .. " ===")
-console.log(BATCH_MODE and "Batch mode" or "Single-ROM mode")
-reset_send_me_dir()
-console.log("Send Me This folder: " .. SEND_ME_DIR)
-console.log("")
+local function main()
+    console.clear()
+    console.log("=== ZELDA GENESIS DIAGNOSTIC " .. SCRIPT_VERSION .. " ===")
+    console.log(BATCH_MODE and "Batch mode" or "Single-ROM mode")
+    reset_send_me_dir()
+    console.log("Send Me This folder: " .. SEND_ME_DIR)
+    console.log("")
 
-local current_rom = detect_current_rom()
-if not current_rom then
-    console.log("Could not determine the currently loaded ROM.")
-    console.log("Set START_ROM_HINT to the first ROM you want in the batch and rerun.")
-    return
-end
-
-if not BATCH_MODE then
-    console.log("Detected current ROM: " .. current_rom)
-    console.log("Running diagnostics (" .. NUM_FRAMES .. " frames)...")
-    local pass, fail = run_diagnostics(current_rom)
-    console.log(string.format("Done! %d PASS / %d FAIL", pass, fail))
-    return
-end
-
-local queue = batch_queue_from(current_rom)
-if #queue == 0 then
-    console.log("No batch queue could be built from " .. current_rom)
-    return
-end
-
-console.log("Starting batch from: " .. current_rom)
-console.log("ROM count: " .. tostring(#queue))
-console.log("")
-
-local results = {}
-
-for idx, rom_name in ipairs(queue) do
-    console.log(string.format("[%d/%d] %s", idx, #queue, rom_name))
-
-    if idx > 1 or BATCH_REOPEN_FIRST_ROM then
-        local opened = open_rom(rom_name)
-        if not opened then
-            console.log("Could not open ROM automatically: " .. rom_name)
-            results[#results + 1] = {rom = rom_name, pass = 0, fail = 0, status = "open_failed"}
-            break
-        end
-        for _ = 1, BATCH_SETTLE_FRAMES do
-            emu.frameadvance()
-        end
+    local current_rom = detect_current_rom()
+    if not current_rom then
+        console.log("Could not determine the currently loaded ROM.")
+        console.log("Set START_ROM_HINT to the first ROM you want in the batch and rerun.")
+        return
     end
 
-    console.log("Running diagnostics for " .. rom_name .. " (" .. NUM_FRAMES .. " frames)...")
-    local pass, fail = run_diagnostics(rom_name)
-    results[#results + 1] = {rom = rom_name, pass = pass, fail = fail, status = "done"}
-    console.log(string.format("Finished %s -> %d PASS / %d FAIL", rom_name, pass, fail))
+    if not BATCH_MODE then
+        console.log("Detected current ROM: " .. current_rom)
+        console.log("Running diagnostics (" .. NUM_FRAMES .. " frames)...")
+        local pass, fail = run_diagnostics(current_rom)
+        console.log(string.format("Done! %d PASS / %d FAIL", pass, fail))
+        return
+    end
+
+    local queue = batch_queue_from(current_rom)
+    if #queue == 0 then
+        console.log("No batch queue could be built from " .. current_rom)
+        return
+    end
+
+    console.log("Starting batch from: " .. current_rom)
+    console.log("ROM count: " .. tostring(#queue))
     console.log("")
+
+    local results = {}
+
+    for idx, rom_name in ipairs(queue) do
+        console.log(string.format("[%d/%d] %s", idx, #queue, rom_name))
+
+        if idx > 1 or BATCH_REOPEN_FIRST_ROM then
+            local opened = open_rom(rom_name)
+            if not opened then
+                console.log("Could not open ROM automatically: " .. rom_name)
+                results[#results + 1] = {rom = rom_name, pass = 0, fail = 0, status = "open_failed"}
+                break
+            end
+            for _ = 1, BATCH_SETTLE_FRAMES do
+                emu.frameadvance()
+            end
+        end
+
+        console.log("Running diagnostics for " .. rom_name .. " (" .. NUM_FRAMES .. " frames)...")
+        local pass, fail = run_diagnostics(rom_name)
+        results[#results + 1] = {rom = rom_name, pass = pass, fail = fail, status = "done"}
+        console.log(string.format("Finished %s -> %d PASS / %d FAIL", rom_name, pass, fail))
+        console.log("")
+    end
+
+    write_batch_summary(results)
+    console.log("Batch complete.")
+    console.log("Summary: " .. BATCH_SUMMARY_PATH)
 end
 
-write_batch_summary(results)
-console.log("Batch complete.")
-console.log("Summary: " .. BATCH_SUMMARY_PATH)
-client.exit()
+local ok, err = xpcall(main, debug.traceback)
+if not ok then
+    console.log("Diagnostic script error:")
+    console.log(tostring(err))
+end
+exit_bizhawk()

@@ -1,0 +1,7 @@
+frame,system,rom_label,kind,total_count,ordinal,event_id,event_name,arg0,arg1,arg2,seq_ptr_raw,ptr_res,seq_index,seq_byte,seq_source,ppu_index,ppu_ptr_raw,ppu_ptr_res
+12,genesis,zelda_v338,ppu,1,1,04A9,BANK6_PPU request,0000,0302,00FF,,00000000,,,,0000,0302,00000000
+18,genesis,zelda_v338,ppu,2,2,04A9,BANK6_PPU request,0000,0302,00FF,,00000000,,,,0000,0302,00000000
+54,genesis,zelda_v338,ppu,3,3,04A9,BANK6_PPU request,0000,0302,00FF,,00000000,,,,0000,0302,00000000
+60,genesis,zelda_v338,ppu,4,4,04A9,BANK6_PPU request,0000,0302,00FF,,00000000,,,,0000,0302,00000000
+75,genesis,zelda_v338,ppu,5,5,04A9,BANK6_PPU request,0000,0302,00FF,,00000000,,,,0000,0302,00000000
+81,genesis,zelda_v338,ppu,6,6,04A9,BANK6_PPU request,0000,0302,003F,,00000000,,,,0000,0302,00000000

@@ -51,6 +51,8 @@ Auto-Start:
 
 First changes:
   ram_0000_t49     frame 13
+  ram_0000_t41     frame 13
+  ram_0000_t42     frame 12
   ram_0002_t17     frame 12
   ram_0003_t18     frame 12
   ram_0004_t18     frame 12
@@ -84,6 +86,9 @@ First changes:
   spr_index_2      never changed
   ram_042D         frame 44
   ram_042E         never changed
+  ram_00E7         never changed
+  ram_map_location never changed
+  ram_next_map_location never changed
   ram_0528         never changed
   ram_05F1         frame 77
   ram_05F4         frame 77

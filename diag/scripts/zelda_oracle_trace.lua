@@ -6,7 +6,7 @@ local MAX_WAIT_FOR_START_FRAMES = 600
 local POST_START_CAPTURE_FRAMES = 180
 local MAX_TOTAL_FRAMES = 900
 local OUT_DIR = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
-local TRACE_HINT = "zelda_v251" -- auto-set by run_oracle_trace.ps1
+local TRACE_HINT = "zelda_v340" -- auto-set by run_oracle_trace.ps1
 local RESET_ON_START = false
 local RESET_KIND = "rebootcore" -- "rebootcore", "poweron", or "softreset"
 local RESET_SETTLE_FRAMES = 0
@@ -95,6 +95,14 @@ local WATCHES = {
     { key = "ppu_buf_5",       addr = 0x0307, width = 2 },
     { key = "ppu_buf_6",       addr = 0x0308, width = 2 },
     { key = "ppu_buf_7",       addr = 0x0309, width = 2 },
+    { key = "pal_sh_00",       addr = 0x9200, width = 2 },
+    { key = "pal_sh_01",       addr = 0x9201, width = 2 },
+    { key = "pal_sh_02",       addr = 0x9202, width = 2 },
+    { key = "pal_sh_03",       addr = 0x9203, width = 2 },
+    { key = "pal_sh_04",       addr = 0x9204, width = 2 },
+    { key = "pal_sh_05",       addr = 0x9205, width = 2 },
+    { key = "pal_sh_06",       addr = 0x9206, width = 2 },
+    { key = "pal_sh_07",       addr = 0x9207, width = 2 },
 }
 
 local GENESIS_ONLY_WATCHES = {
@@ -105,6 +113,26 @@ local GENESIS_ONLY_WATCHES = {
     { key = "PPU_REQ_RES",     addr = 0xF0A8, width = 8, bytes = 4 },
     { key = "SEQ_EVT_COUNT",   addr = 0xF0AC, width = 4, bytes = 2 },
     { key = "PPU_EVT_COUNT",   addr = 0xF0AE, width = 4, bytes = 2 },
+}
+
+local GENESIS_REG_EXPORTS = {
+    { key = "reg_d0", candidates = { "M68K D0", "68K D0", "D0" }, width = 8 },
+    { key = "reg_d1", candidates = { "M68K D1", "68K D1", "D1" }, width = 8 },
+    { key = "reg_d2", candidates = { "M68K D2", "68K D2", "D2" }, width = 8 },
+    { key = "reg_d3", candidates = { "M68K D3", "68K D3", "D3" }, width = 8 },
+    { key = "reg_d4", candidates = { "M68K D4", "68K D4", "D4" }, width = 8 },
+    { key = "reg_d5", candidates = { "M68K D5", "68K D5", "D5" }, width = 8 },
+    { key = "reg_d6", candidates = { "M68K D6", "68K D6", "D6" }, width = 8 },
+    { key = "reg_d7", candidates = { "M68K D7", "68K D7", "D7" }, width = 8 },
+    { key = "reg_a0", candidates = { "M68K A0", "68K A0", "A0" }, width = 8 },
+    { key = "reg_a1", candidates = { "M68K A1", "68K A1", "A1" }, width = 8 },
+    { key = "reg_a2", candidates = { "M68K A2", "68K A2", "A2" }, width = 8 },
+    { key = "reg_a3", candidates = { "M68K A3", "68K A3", "A3" }, width = 8 },
+    { key = "reg_a4", candidates = { "M68K A4", "68K A4", "A4" }, width = 8 },
+    { key = "reg_a5", candidates = { "M68K A5", "68K A5", "A5" }, width = 8 },
+    { key = "reg_a6", candidates = { "M68K A6", "68K A6", "A6" }, width = 8 },
+    { key = "reg_a7", candidates = { "M68K A7", "68K A7", "A7" }, width = 8 },
+    { key = "reg_sr", candidates = { "M68K SR", "68K SR", "SR" }, width = 4 },
 }
 
 local TRACE_SEQ_EVT_COUNT_ADDR = 0xF0AC
@@ -120,6 +148,11 @@ local EVENT_NAMES = {
     [0x04A2] = "BANK6_PPU_LEGACY repeat decode",
     [0x04A3] = "BANK6_PPU_LEGACY palette fixup",
     [0x04A4] = "BANK6_PPU_LEGACY pointer advance",
+    [0x04A8] = "BANK6_PPU fallback request",
+    [0x04A9] = "BANK6_PPU request",
+    [0x04AA] = "BANK2_TITLE logo palette header",
+    [0x04AB] = "BANK2_TITLE title template header",
+    [0x04AC] = "BANK2_TITLE title block header",
     [0x04B1] = "BANK0_SEQ 9D37 primary fetch",
     [0x04B2] = "BANK0_SEQ 9D63 follow fetch",
     [0x04B3] = "BANK0_SEQ 9DBE pulse fetch",
@@ -426,12 +459,81 @@ local function get_pc(system_name)
     return ""
 end
 
+local function get_register_table()
+    local ok, regs = pcall(emu.getregisters)
+    if ok and type(regs) == "table" then
+        return regs
+    end
+    return nil
+end
+
+local function get_register_hex(regs, candidates, width)
+    if type(regs) ~= "table" then
+        return ""
+    end
+
+    for _, key in ipairs(candidates or {}) do
+        local value = regs[key]
+        if type(value) == "number" then
+            return hex(value, width)
+        end
+    end
+
+    return ""
+end
+
 local function csv_escape(value)
     local s = tostring(value or "")
     if s:find('[,",\r\n]') then
         s = '"' .. s:gsub('"', '""') .. '"'
     end
     return s
+end
+
+local function make_ppu_header_write_logger(write_file, system_name)
+    if not write_file or system_name ~= "genesis" then
+        return false
+    end
+    if not (event and type(event.onmemorywrite) == "function") then
+        return false
+    end
+
+    local function reg(name)
+        local ok, value = pcall(emu.getregister, name)
+        if ok and type(value) == "number" then
+            return value
+        end
+        return 0
+    end
+
+    local function log_write(addr)
+        write_row(write_file, {
+            tostring(emu.framecount()),
+            hex(addr, 6),
+            hex(memory.read_u8(addr), 2),
+            hex(reg("M68K PC"), 6),
+            hex(memory.read_u16_be(0xFFF000), 4),
+            hex(memory.read_u16_be(0xFFF002), 4),
+            hex(memory.read_u8(0xFF0301), 2),
+            hex(memory.read_u8(0xFF0302), 2),
+            hex(memory.read_u8(0xFF0303), 2),
+            hex(memory.read_u8(0xFF0304), 2),
+            hex(reg("M68K D0"), 8),
+            hex(reg("M68K D1"), 8),
+            hex(reg("M68K D2"), 8),
+            hex(reg("M68K D3"), 8),
+            hex(reg("M68K A0"), 8),
+            hex(reg("M68K A1"), 8),
+            hex(reg("M68K A7"), 8),
+            hex(reg("M68K SR"), 4),
+        })
+    end
+
+    local ok0 = pcall(event.onmemorywrite, function() log_write(0xFF0301) end, 0xFF0301)
+    local ok1 = pcall(event.onmemorywrite, function() log_write(0xFF0302) end, 0xFF0302)
+    local ok2 = pcall(event.onmemorywrite, function() log_write(0xFF0303) end, 0xFF0303)
+    local ok3 = pcall(event.onmemorywrite, function() log_write(0xFF0304) end, 0xFF0304)
+    return ok0 or ok1 or ok2 or ok3
 end
 
 local function read_abs(domain, base_offset, addr, bytes)
@@ -839,9 +941,12 @@ local function run()
     local menu_path = OUT_DIR .. "oracle_menu_" .. rom_label .. ".csv"
     local summary_path = OUT_DIR .. "oracle_trace_" .. rom_label .. "_summary.txt"
     local event_path = OUT_DIR .. "oracle_events_" .. rom_label .. ".csv"
+    local write_path = OUT_DIR .. "oracle_writes_" .. rom_label .. ".csv"
     local watches = {}
     local event_file = nil
     local menu_file = nil
+    local write_file = nil
+    local write_watch_enabled = false
 
     local out_file, err = io.open(out_path, "w")
     if not out_file then
@@ -850,11 +955,17 @@ local function run()
     menu_file = assert(io.open(menu_path, "w"))
     if system_name == "genesis" then
         event_file = assert(io.open(event_path, "w"))
+        write_file = assert(io.open(write_path, "w"))
         write_row(event_file, {
             "frame", "system", "rom_label", "kind", "total_count", "ordinal",
             "event_id", "event_name", "arg0", "arg1", "arg2",
             "seq_ptr_raw", "ptr_res", "seq_index", "seq_byte", "seq_source",
             "ppu_index", "ppu_ptr_raw", "ppu_ptr_res"
+        })
+        write_row(write_file, {
+            "frame", "addr", "value", "pc", "trace_last", "trace_seq",
+            "ppu_buf_index", "ppu_buf_0", "ppu_buf_1", "ppu_buf_2",
+            "d0", "d1", "d2", "d3", "a0", "a1", "a7", "sr"
         })
     end
 
@@ -865,11 +976,16 @@ local function run()
         for _, watch in ipairs(GENESIS_ONLY_WATCHES) do
             watches[#watches + 1] = watch
         end
+        memory.usememorydomain(ram_domain)
+        write_watch_enabled = make_ppu_header_write_logger(write_file, system_name)
     end
 
     local header = { "frame", "system", "rom_label", "pc" }
     for _, watch in ipairs(watches) do
         header[#header + 1] = watch.key
+    end
+    for _, reg in ipairs(GENESIS_REG_EXPORTS) do
+        header[#header + 1] = reg.key
     end
     write_row(out_file, header)
     write_row(menu_file, menu_trace_header())
@@ -958,6 +1074,7 @@ local function run()
             emu.frameadvance()
         end
 
+        local regs = get_register_table()
         local row = { frame, system_name, rom_label, get_pc(system_name) }
 
         for _, watch in ipairs(watches) do
@@ -972,6 +1089,14 @@ local function run()
                 last_values[watch.key] = hex_value
             else
                 last_values[watch.key] = hex_value
+            end
+        end
+
+        for _, reg in ipairs(GENESIS_REG_EXPORTS) do
+            if system_name == "genesis" then
+                row[#row + 1] = get_register_hex(regs, reg.candidates, reg.width)
+            else
+                row[#row + 1] = ""
             end
         end
 
@@ -1131,6 +1256,9 @@ local function run()
     if event_file then
         event_file:close()
     end
+    if write_file then
+        write_file:close()
+    end
 
     local summary = assert(io.open(summary_path, "w"))
     summary:write("Oracle trace summary\r\n")
@@ -1150,6 +1278,10 @@ local function run()
     summary:write("Menu trace: " .. menu_path .. "\r\n\r\n")
     if event_file then
         summary:write("Event trace: " .. event_path .. "\r\n")
+        if write_file then
+            summary:write("Write trace: " .. write_path .. "\r\n")
+            summary:write("Write watch enabled: " .. tostring(write_watch_enabled) .. "\r\n")
+        end
         summary:write("Sequence event count: " .. tostring(prev_seq_evt_count) .. "\r\n")
         summary:write("PPU event count: " .. tostring(prev_ppu_evt_count) .. "\r\n\r\n")
     end
@@ -1205,6 +1337,9 @@ local function run()
     print("RAM domain: " .. tostring(ram_domain))
     print("RAM base: " .. hex(ram_base or 0, system_name == "genesis" and 6 or 4))
     print("Reset result: " .. tostring(reset_result))
+    if client and type(client.exit) == "function" then
+        client.exit()
+    end
 end
 
 run()

@@ -6677,6 +6677,17 @@ sub_0x01A090_write_buffer_to_ppu:  ; orig: sub_0x01A090_write_buffer_to_ppu:
     LSL.W   #8,D5
     MOVE.B  tbl_A000_ppu_data(D1.L),D5
     MOVE.W  D5,(TRACE_PPU_PTR_RAW).l
+    MOVE.W  D1,(TRACE_PPU_EVT_ARG0).l
+    MOVE.W  D5,(TRACE_PPU_EVT_ARG1).l
+    CLR.W   (TRACE_PPU_EVT_ARG2).l
+    TST.B   D1
+    BNE     bra_b06_trace_request_ready
+    MOVE.B  ram_0302_ppu_buffer,D0
+    ANDI.W  #$00FF,D0
+    MOVE.W  D0,(TRACE_PPU_EVT_ARG2).l
+bra_b06_trace_request_ready:
+    MOVE.W  #$04A9,D0
+    BSR     TRACE_PPU_EVENT
     BSR     sub_b06_select_ppu_buffer_ptr
     MOVE.L  A1,(TRACE_PPU_PTR_RES).l
     MOVE.L  A1,D4
@@ -6735,34 +6746,28 @@ bra_A0B8_inc_by_1:
 bra_A0B9:  ; orig: bra_A0B9:
     BSR     PPU_WRITE_2000
     MOVE.B  D0,ram_for_2000  ; orig: C - - - - - 0x01A0CC 06:A0BC: 85 FF     STA ram_for_2000
-    MOVE.B  D4,D0
-    LSL.B   #1,D0           ; shifted header byte after 6502 ASL
-    BTST    #7,D4
-    BEQ     bra_A0C6
-    ORI.B   #$02,D0         ; exact ORA #$02 path when original carry was set
-    ADDQ.B  #1,D2           ; exact extra INY on high-bit headers
+    MOVEQ   #$00,D1
+    MOVEQ   #$00,D6
+    MOVE.B  D4,D1
+    ANDI.B  #$3F,D1         ; literal count comes from low 6 bits, with 0 meaning 64 bytes
+    BNE     bra_A0C6
+    MOVE.B  #$40,D1
 bra_A0C6:  ; orig: bra_A0C6:
-    MOVE.B  D0,D5
-    ANDI.B  #$02,D5         ; legacy repeat flag is shifted bit 1
-    TST.B   D0
-    BNE     bra_A0CB
-    MOVE.B  #$40,D1         ; exact SEC/ROR/LSR result when shifted byte became zero
-    BRA     bra_A0CC
-bra_A0CB:  ; orig: bra_A0CB:
-    MOVE.B  D0,D1
-    LSR.B   #1,D1
-    LSR.B   #1,D1
+    BTST    #6,D4
+    BEQ     bra_A0CC
+    MOVEQ   #$01,D6         ; non-zero => repeat run
+    ADDQ.B  #1,D2           ; exact extra INY on repeat headers
 bra_A0CC:
     MOVE.B  D1,(TRACE_PPU_EVT_ARG1).l
-    MOVE.B  D5,(TRACE_PPU_EVT_ARG2).l
+    MOVE.B  D6,(TRACE_PPU_EVT_ARG2).l
     MOVE.W  #$04A1,D0
-    TST.B   D5
+    TST.B   D6
     BEQ     bra_A0CD_literal
     MOVE.W  #$04A2,D0
 bra_A0CD_literal:
     BSR     TRACE_PPU_EVENT
 bra_A0CE_loop:  ; orig: bra_A0CE_loop:
-    TST.B   D5
+    TST.B   D6
     BNE     bra_A0D1_write_the_same_byte
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01A0E0 06:A0D0: C8        INY
 bra_A0D1_write_the_same_byte:  ; orig: bra_A0D1_write_the_same_byte:
@@ -6810,7 +6815,7 @@ bra_b06_ppu_ptr_nocarry:
 sub_A0F6_write_to_ppu:  ; orig: sub_A0F6_write_to_ppu:
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x01A106 06:A0F6: AE 02 20  LDX $2002
     MOVE.B  D0,D1
-    MOVE.B  #$00,D2  ; orig: C - - - - - 0x01A109 06:A0F9: A0 00     LDY #$00
+    MOVEQ   #$00,D2  ; orig: C - - - - - 0x01A109 06:A0F9: A0 00     LDY #$00
     MOVEA.W ($FF0000+ram_0000_t11_ppu_data).l,A1  ; LDA (zp),Y
     MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C - - - - - 0x01A10B 06:A0FB: B1 00     LDA (ram_0000_t11_pp
     BPL     bra_A0A2_loop             ; BPL  ; orig: C - - - - - 0x01A10D 06:A0FD: 10 A3     BPL bra_A0A2_loop
@@ -6911,6 +6916,11 @@ b06_cfg_ram_0302_alias_direct:
     DC.B    $00
 
 sub_b06_optional_legacy_fallback:
+    MOVE.W  D1,(TRACE_PPU_EVT_ARG0).l
+    MOVE.W  D5,(TRACE_PPU_EVT_ARG1).l
+    MOVE.W  D4,(TRACE_PPU_EVT_ARG2).l
+    MOVE.W  #$04A8,D0
+    BSR     TRACE_PPU_EVENT
     MOVE.W  #$048A,D0
     BSR     TRACE_MARK
     MOVEQ   #$00,D4
@@ -7136,7 +7146,9 @@ bra_b06_rom_write_ppuctrl:
     MOVEQ   #$00,D1
     MOVE.B  D3,D1
     ANDI.W  #$003F,D1
-    BEQ     bra_b06_rom_palette_fix
+    BNE     bra_b06_rom_count_ready
+    MOVE.W  #$0040,D1         ; legacy PPU buffer semantics: zero count means 64 bytes
+bra_b06_rom_count_ready:
     BTST    #6,D3
     BNE     bra_b06_rom_repeat_mode
 bra_b06_rom_literal_loop:

@@ -50,7 +50,7 @@ PLANE_A_MAP_BASE EQU $C000
 PPU_NT_SHADOW   EQU $00FF8200
 PPU_PAL_SHADOW  EQU $00FF9200
 PPU_CHR_SHADOW  EQU $00FFC000
-PPU_NT_MIRROR_MASK EQU $03FF
+PPU_NT_MIRROR_MASK EQU $07FF
 
 
 VDP_INIT:
@@ -290,7 +290,10 @@ VDP_VBLANK_HANDLER:
     move.w  ($C00004),D0
     move.w  #$0201,D0
     bsr     TRACE_MARK
+    tst.b   (ram_0301_buffer_index).l
+    bne     .keep_staged_ppu_buffer
     move.b  #$FF,(ram_0302_ppu_buffer).l
+.keep_staged_ppu_buffer:
     move.w  #$0202,D0
     bsr     TRACE_MARK
     bsr     vec_0x01E494_NMI

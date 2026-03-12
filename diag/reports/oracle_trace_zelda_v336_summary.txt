@@ -1,0 +1,135 @@
+Oracle trace summary
+ROM: zelda_v336
+System: genesis
+RAM domain: M68K BUS
+RAM base: FF0000
+Reset on start: false
+Reset kind: rebootcore
+Reset result: none
+Reset settle frames: 0
+Frames: 0-300
+Max wait before Start: 600
+Post-Start capture frames: 180
+Max total frames: 900
+Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_zelda_v336.csv
+Menu trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_menu_zelda_v336.csv
+
+Event trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_events_zelda_v336.csv
+Write trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_writes_zelda_v336.csv
+Write watch enabled: false
+Sequence event count: 0
+PPU event count: 0
+
+Menu milestones:
+  script1 first frame: never
+  nonzero subscript first frame: never
+  ppu_load_index=$14 first frame: never
+  cur_save_slot nonzero first frame: never
+  ram_041F nonzero first frame: never
+  ram_0421 nonzero first frame: never
+  ram_0423 nonzero first frame: never
+  sprite index active first frame: never
+
+Manual Start Detection:
+  enabled: false
+  input supported: false
+  key name: never seen
+  first press frame: never
+  press frames: 
+
+Internal Start Capture:
+  enabled: false
+  detected frame: never
+  detected source: never
+  post-end frame: never
+
+Auto-Start:
+  enabled: false
+  input supported: nil
+  ready frame: never
+  attempts: 0
+  attempt frames: 
+  stop frame: never
+
+First changes:
+  ram_0000_t49     never changed
+  ram_0000_t41     never changed
+  ram_0000_t42     never changed
+  ram_0002_t17     never changed
+  ram_0003_t18     never changed
+  ram_0004_t18     never changed
+  game_mode        never changed
+  screen_ready     never changed
+  ram_script       never changed
+  ram_subscript    never changed
+  ppu_load_index   never changed
+  ram_frm_cnt      never changed
+  cur_save_slot    never changed
+  rendering_flag   never changed
+  ram_004D         never changed
+  ram_next_script  never changed
+  ram_005C         never changed
+  se_ptr_lo        never changed
+  se_ptr_hi        never changed
+  ram_006C_se      never changed
+  ram_00F6         never changed
+  btn_press        never changed
+  btn_hold         never changed
+  scroll_y         never changed
+  scroll_x         never changed
+  ram_for_2001     never changed
+  ram_for_2000     never changed
+  ram_0415         never changed
+  ram_041A         never changed
+  ram_041F         never changed
+  ram_0421         never changed
+  ram_0423         never changed
+  spr_index_1      never changed
+  spr_index_2      never changed
+  ram_042D         never changed
+  ram_042E         never changed
+  ram_00E7         never changed
+  ram_map_location never changed
+  ram_next_map_location never changed
+  ram_0528         never changed
+  ram_05F1         never changed
+  ram_05F4         never changed
+  ram_05F5         never changed
+  ram_music        never changed
+  ram_music_busy   never changed
+  ram_060A         never changed
+  ram_060B         never changed
+  ram_060C         never changed
+  ram_060D         never changed
+  ram_0611         never changed
+  ram_0612         never changed
+  ram_0613         never changed
+  ram_0616         never changed
+  ram_0617         never changed
+  ram_0619         never changed
+  ram_061B         never changed
+  ppu_buf_status   never changed
+  ppu_buf_index    never changed
+  ppu_buf_0        never changed
+  ppu_buf_1        never changed
+  ppu_buf_2        never changed
+  ppu_buf_3        never changed
+  ppu_buf_4        never changed
+  ppu_buf_5        never changed
+  ppu_buf_6        never changed
+  ppu_buf_7        never changed
+  pal_sh_00        never changed
+  pal_sh_01        never changed
+  pal_sh_02        never changed
+  pal_sh_03        never changed
+  pal_sh_04        never changed
+  pal_sh_05        never changed
+  pal_sh_06        never changed
+  pal_sh_07        never changed
+  trace_last       never changed
+  trace_seq        never changed
+  PPU_REQ_INDEX    never changed
+  PPU_REQ_PTR      never changed
+  PPU_REQ_RES      never changed
+  SEQ_EVT_COUNT    never changed
+  PPU_EVT_COUNT    never changed

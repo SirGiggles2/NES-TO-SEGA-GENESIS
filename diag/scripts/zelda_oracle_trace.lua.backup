@@ -6,7 +6,7 @@ local MAX_WAIT_FOR_START_FRAMES = 600
 local POST_START_CAPTURE_FRAMES = 180
 local MAX_TOTAL_FRAMES = 900
 local OUT_DIR = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
-local TRACE_HINT = nil -- e.g. "zelda_v40" or "zelda_nes_title"
+local TRACE_HINT = nil -- auto-set by run_oracle_trace.ps1
 local RESET_ON_START = false
 local RESET_KIND = "rebootcore" -- "rebootcore", "poweron", or "softreset"
 local RESET_SETTLE_FRAMES = 0
@@ -30,6 +30,8 @@ local OVERLAY_LINE_HEIGHT = 12
 
 local WATCHES = {
     { key = "ram_0000_t49",    addr = 0x0000, width = 2 },
+    { key = "ram_0000_t41",    addr = 0x0000, width = 2 },
+    { key = "ram_0000_t42",    addr = 0x0001, width = 2 },
     { key = "ram_0002_t17",    addr = 0x0002, width = 2 },
     { key = "ram_0003_t18",    addr = 0x0003, width = 2 },
     { key = "ram_0004_t18",    addr = 0x0004, width = 2 },
@@ -63,6 +65,9 @@ local WATCHES = {
     { key = "spr_index_2",     addr = 0x0344, width = 2 },
     { key = "ram_042D",        addr = 0x042D, width = 2 },
     { key = "ram_042E",        addr = 0x042E, width = 2 },
+    { key = "ram_00E7",        addr = 0x00E7, width = 2 },
+    { key = "ram_map_location", addr = 0x00EB, width = 2 },
+    { key = "ram_next_map_location", addr = 0x00EC, width = 2 },
     { key = "ram_0528",        addr = 0x0528, width = 2 },
     { key = "ram_05F1",        addr = 0x05F1, width = 2 },
     { key = "ram_05F4",        addr = 0x05F4, width = 2 },
@@ -100,6 +105,26 @@ local GENESIS_ONLY_WATCHES = {
     { key = "PPU_REQ_RES",     addr = 0xF0A8, width = 8, bytes = 4 },
     { key = "SEQ_EVT_COUNT",   addr = 0xF0AC, width = 4, bytes = 2 },
     { key = "PPU_EVT_COUNT",   addr = 0xF0AE, width = 4, bytes = 2 },
+}
+
+local GENESIS_REG_EXPORTS = {
+    { key = "reg_d0", candidates = { "M68K D0", "68K D0", "D0" }, width = 8 },
+    { key = "reg_d1", candidates = { "M68K D1", "68K D1", "D1" }, width = 8 },
+    { key = "reg_d2", candidates = { "M68K D2", "68K D2", "D2" }, width = 8 },
+    { key = "reg_d3", candidates = { "M68K D3", "68K D3", "D3" }, width = 8 },
+    { key = "reg_d4", candidates = { "M68K D4", "68K D4", "D4" }, width = 8 },
+    { key = "reg_d5", candidates = { "M68K D5", "68K D5", "D5" }, width = 8 },
+    { key = "reg_d6", candidates = { "M68K D6", "68K D6", "D6" }, width = 8 },
+    { key = "reg_d7", candidates = { "M68K D7", "68K D7", "D7" }, width = 8 },
+    { key = "reg_a0", candidates = { "M68K A0", "68K A0", "A0" }, width = 8 },
+    { key = "reg_a1", candidates = { "M68K A1", "68K A1", "A1" }, width = 8 },
+    { key = "reg_a2", candidates = { "M68K A2", "68K A2", "A2" }, width = 8 },
+    { key = "reg_a3", candidates = { "M68K A3", "68K A3", "A3" }, width = 8 },
+    { key = "reg_a4", candidates = { "M68K A4", "68K A4", "A4" }, width = 8 },
+    { key = "reg_a5", candidates = { "M68K A5", "68K A5", "A5" }, width = 8 },
+    { key = "reg_a6", candidates = { "M68K A6", "68K A6", "A6" }, width = 8 },
+    { key = "reg_a7", candidates = { "M68K A7", "68K A7", "A7" }, width = 8 },
+    { key = "reg_sr", candidates = { "M68K SR", "68K SR", "SR" }, width = 4 },
 }
 
 local TRACE_SEQ_EVT_COUNT_ADDR = 0xF0AC
@@ -415,6 +440,29 @@ local function get_pc(system_name)
     for key, value in pairs(regs) do
         if type(key) == "string" and type(value) == "number" and key:lower() == "pc" then
             return hex(value, system_name == "genesis" and 6 or 4)
+        end
+    end
+
+    return ""
+end
+
+local function get_register_table()
+    local ok, regs = pcall(emu.getregisters)
+    if ok and type(regs) == "table" then
+        return regs
+    end
+    return nil
+end
+
+local function get_register_hex(regs, candidates, width)
+    if type(regs) ~= "table" then
+        return ""
+    end
+
+    for _, key in ipairs(candidates or {}) do
+        local value = regs[key]
+        if type(value) == "number" then
+            return hex(value, width)
         end
     end
 
@@ -866,6 +914,9 @@ local function run()
     for _, watch in ipairs(watches) do
         header[#header + 1] = watch.key
     end
+    for _, reg in ipairs(GENESIS_REG_EXPORTS) do
+        header[#header + 1] = reg.key
+    end
     write_row(out_file, header)
     write_row(menu_file, menu_trace_header())
 
@@ -953,6 +1004,7 @@ local function run()
             emu.frameadvance()
         end
 
+        local regs = get_register_table()
         local row = { frame, system_name, rom_label, get_pc(system_name) }
 
         for _, watch in ipairs(watches) do
@@ -967,6 +1019,14 @@ local function run()
                 last_values[watch.key] = hex_value
             else
                 last_values[watch.key] = hex_value
+            end
+        end
+
+        for _, reg in ipairs(GENESIS_REG_EXPORTS) do
+            if system_name == "genesis" then
+                row[#row + 1] = get_register_hex(regs, reg.candidates, reg.width)
+            else
+                row[#row + 1] = ""
             end
         end
 
@@ -1200,6 +1260,9 @@ local function run()
     print("RAM domain: " .. tostring(ram_domain))
     print("RAM base: " .. hex(ram_base or 0, system_name == "genesis" and 6 or 4))
     print("Reset result: " .. tostring(reset_result))
+    if client and type(client.exit) == "function" then
+        client.exit()
+    end
 end
 
 run()

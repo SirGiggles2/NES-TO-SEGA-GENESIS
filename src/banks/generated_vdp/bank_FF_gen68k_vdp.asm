@@ -570,8 +570,11 @@ bFF_bra_E60E_loop:  ; orig: bFF_bra_E60E_loop:
     MOVE.B  (ram_0000_t06_data+1+$FF0000).l,D0  ; FIXED: LDA ram_0000_t06_data+1
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x01E62B 07:E61B: C9 03     CMP #$03
     BCS     bFF_bra_E60E_loop             ; BCS  ; orig: C - - - - - 0x01E62D 07:E61D: B0 EF     BCS bFF_bra_E60E_loop
+    TST.B   ram_0301_buffer_index
+    BNE     bFF_bra_E621_keep_live_buffer
     MOVE.B  #$FF,D0  ; orig: C - - - - - 0x01E62F 07:E61F: A9 FF     LDA #$FF
     MOVE.B  D0,ram_0302_ppu_buffer  ; orig: C - - - - - 0x01E631 07:E621: 8D 02 03  STA ram_0302_ppu_buf
+bFF_bra_E621_keep_live_buffer:
     RTS                     ; RTS  ; orig: C - - - - - 0x01E634 07:E624: 60        RTS
 
 

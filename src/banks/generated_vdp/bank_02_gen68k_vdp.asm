@@ -91,6 +91,7 @@ b02_bra_8018_loop:  ; orig: b02_bra_8018_loop:
     MOVE.B  ram_051D,D0  ; orig: C - - - - - 0x00804E 02:803E: AD 1D 05  LDA ram_051D
     CMPI.B  #$03,D0  ; title uploader uses all three CHR ranges with real CHR payloads in place
     BNE     b02_bra_8018_loop             ; BNE  ; orig: C - - - - - 0x008053 02:8043: D0 D3     BNE b02_bra_8018_loop
+    BSR     PPU_FLUSH_TITLE_CHR_TO_VRAM  ; commit freshly uploaded title tiles from CHR shadow to Genesis VRAM
     MOVE.B  #$5A,D0  ; orig: C - - - - - 0x008055 02:8045: A9 5A     LDA #$5A
     MOVE.B  D0,ram_00F5_reset_check_5A  ; orig: C - - - - - 0x008057 02:8047: 85 F5     STA ram_00F5_reset_c
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x008059 02:8049: A9 00     LDA #$00
@@ -449,6 +450,23 @@ tbl_90EE_spr_data:  ; orig: tbl_90EE_spr_data:
 
 
 tbl_915E:  ; orig: tbl_915E:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $80,$00,$00,$00,$00,$00,$00,$00,$40,$80,$80,$00,$60,$00,$00,$00
+    DC.B $40,$80,$00,$00,$60,$00,$00,$00,$00,$C0,$00,$00,$60,$00,$40,$00
+    DC.B $00,$C0,$00,$00,$20,$00,$40,$00,$00,$C0,$00,$00,$20,$00,$40,$00
+    DC.B $40,$80,$80,$00,$20,$00,$40,$00,$40,$80,$80,$00,$60,$00,$00,$00
+    DC.B $40,$80,$80,$00,$60,$00,$00,$00,$40,$80,$00,$00,$60,$00,$00,$00
+    DC.B $40,$80,$80,$00,$60,$00,$00,$00,$40,$C0,$80,$00,$20,$00,$40,$00
+    DC.B $40,$80,$80,$00,$20,$00,$40,$00,$40,$80,$80,$00,$20,$00,$40,$00
+    DC.B $40,$80,$00,$00,$20,$00,$40,$00,$40,$80,$80,$00,$60,$00,$00,$00
+    DC.B $40,$80,$80,$00,$60,$00,$00,$00,$00,$C0,$00,$00,$60,$00,$00,$00
+    DC.B $40,$00,$C0,$00,$00,$20,$40,$00,$00,$00,$40,$00,$00,$00,$00,$20
+    DC.B $00,$20,$00,$20,$00,$20,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    DC.B $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    DC.B $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    DC.B $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    DC.B $00,$00
+; AUTO-RESTORED TITLE DATA END
 
 ;                                              +-----------------
 
@@ -644,6 +662,10 @@ tbl_915E:  ; orig: tbl_915E:
 
 
 tbl_9240:  ; orig: tbl_9240:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $22,$23,$18,$1F,$15,$01,$03,$1D,$00,$08,$06,$12,$14,$0C,$10,$19
+    DC.B $17,$1B,$30,$31,$32,$33
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $22  -- needs manual handling  ; orig: - D 0 - - - 0x009250 02:9240: 22        .byte $22   ; 00
     ; [DIRECTIVE] .BYTE $23  -- needs manual handling  ; orig: - D 0 - - - 0x009251 02:9241: 23        .byte $23   ; 01
     ; [DIRECTIVE] .BYTE $18  -- needs manual handling  ; orig: - D 0 - - - 0x009252 02:9242: 18        .byte $18   ; 02
@@ -692,18 +714,30 @@ tbl_9256:  ; orig: tbl_9256:
 
 
 tbl_9268_pos_X_44:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $44
+    EVEN
+; AUTO-RESTORED TITLE DATA END
 ; bzk optimize, LDA #$44
     ; [DIRECTIVE] .BYTE $44  -- needs manual handling  ; orig: - D 0 - - - 0x009278 02:9268: 44        .byte $44   ;
 
 
 
 tbl_9269_pos_X_AC:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $AC
+    EVEN
+; AUTO-RESTORED TITLE DATA END
 ; bzk optimize, LDA #$AC
     ; [DIRECTIVE] .BYTE $AC  -- needs manual handling  ; orig: - D 0 - - - 0x009279 02:9269: AC        .byte $AC   ;
 
 
 
 tbl_926A_spr_T:  ; orig: tbl_926A_spr_T:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $E0,$E2,$EC,$EE,$F8,$FA,$E4,$E6,$F0,$F2,$FC,$FE,$E8,$EA,$F4,$F6
+    DC.B $DC,$DE,$00,$00,$78,$78,$00,$00
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $E0, $E2, $EC, $EE, $F8, $FA  -- needs manual handling  ; orig: - D 0 - - - 0x00927A 02:926A: E0        .byte $E0, $E2, $EC,
     ; [DIRECTIVE] .BYTE $E4, $E6, $F0, $F2, $FC, $FE  -- needs manual handling  ; orig: - D 0 - - - 0x009280 02:9270: E4        .byte $E4, $E6, $F0,
     ; [DIRECTIVE] .BYTE $E8, $EA, $F4, $F6, $DC, $DE  -- needs manual handling  ; orig: - D 0 - - - 0x009286 02:9276: E8        .byte $E8, $EA, $F4,
@@ -712,6 +746,10 @@ tbl_926A_spr_T:  ; orig: tbl_926A_spr_T:
 
 
 tbl_9282_spr_A:  ; orig: tbl_9282_spr_A:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    DC.B $00,$00,$00,$00,$00,$40,$00,$00
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $00, $00, $00, $00, $00, $00  -- needs manual handling  ; orig: - D 0 - - - 0x009292 02:9282: 00        .byte $00, $00, $00,
     ; [DIRECTIVE] .BYTE $00, $00, $00, $00, $00, $00  -- needs manual handling  ; orig: - D 0 - - - 0x009298 02:9288: 00        .byte $00, $00, $00,
     ; [DIRECTIVE] .BYTE $00, $00, $00, $00, $00, $00  -- needs manual handling  ; orig: - D 0 - - - 0x00929E 02:928E: 00        .byte $00, $00, $00,
@@ -720,6 +758,11 @@ tbl_9282_spr_A:  ; orig: tbl_9282_spr_A:
 
 
 _off002_929A_00_all_of_treasures:  ; orig: _off002_929A_00_all_of_treasures:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $00,$E4,$E5,$E4,$E5,$E4,$E5,$E6,$24,$0A,$15,$15,$24,$18,$0F,$24
+    DC.B $1D,$1B,$0E,$0A,$1C,$1E,$1B,$0E,$1C,$24,$E6,$E4,$E5,$E4,$E5,$E4
+    DC.B $E5,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - I - 0x0092AA 02:929A: 00        .byte $00   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -731,6 +774,11 @@ _off002_929A_00_all_of_treasures:  ; orig: _off002_929A_00_all_of_treasures:
 
 
 _off002_92BC_01_heart___container:  ; orig: _off002_92BC_01_heart___container:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$11,$0E,$0A,$1B,$1D,$24,$24,$24,$24,$24,$0C,$18,$17,$1D,$0A
+    DC.B $12,$17,$0E,$1B,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x0092CC 02:92BC: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -742,6 +790,10 @@ _off002_92BC_01_heart___container:  ; orig: _off002_92BC_01_heart___container:
 
 
 _off002_92D1_02_heart:  ; orig: _off002_92D1_02_heart:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $14,$11,$0E,$0A,$1B,$1D,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - D 0 - I - 0x0092E1 02:92D1: 14        .byte $14   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -752,6 +804,10 @@ _off002_92D1_02_heart:  ; orig: _off002_92D1_02_heart:
 
 
 _off002_92D8_03_fairy___clock:  ; orig: _off002_92D8_03_fairy___clock:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$0F,$0A,$12,$1B,$22,$24,$24,$24,$24,$24,$24,$24,$24,$0C,$15
+    DC.B $18,$0C,$14,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x0092E8 02:92D8: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -763,6 +819,11 @@ _off002_92D8_03_fairy___clock:  ; orig: _off002_92D8_03_fairy___clock:
 
 
 _off002_92EC_04_rupy___5_rupies:  ; orig: _off002_92EC_04_rupy___5_rupies:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$1B,$1E,$19,$22,$24,$24,$24,$24,$24,$24,$24,$05,$24,$1B,$1E
+    DC.B $19,$12,$0E,$1C,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x0092FC 02:92EC: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -774,6 +835,10 @@ _off002_92EC_04_rupy___5_rupies:  ; orig: _off002_92EC_04_rupy___5_rupies:
 
 
 _off002_9301_07_sword___white:  ; orig: _off002_9301_07_sword___white:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$1C,$20,$18,$1B,$0D,$24,$24,$24,$24,$24,$24,$24,$24,$20,$11
+    DC.B $12,$1D,$0E,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x009311 02:9301: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -785,6 +850,10 @@ _off002_9301_07_sword___white:  ; orig: _off002_9301_07_sword___white:
 
 
 _off002_9315_08_sword:  ; orig: _off002_9315_08_sword:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $14,$1C,$20,$18,$1B,$0D,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - D 0 - I - 0x009325 02:9315: 14        .byte $14   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -795,6 +864,10 @@ _off002_9315_08_sword:  ; orig: _off002_9315_08_sword:
 
 
 _off002_931C_09_magical___magical:  ; orig: _off002_931C_09_magical___magical:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $06,$16,$0A,$10,$12,$0C,$0A,$15,$24,$24,$24,$24,$24,$24,$16,$0A
+    DC.B $10,$12,$0C,$0A,$15,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $06  -- needs manual handling  ; orig: - D 0 - I - 0x00932C 02:931C: 06        .byte $06   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -806,6 +879,11 @@ _off002_931C_09_magical___magical:  ; orig: _off002_931C_09_magical___magical:
 
 
 _off002_9332_0A_sword_shield:  ; orig: _off002_9332_0A_sword_shield:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$1C,$20,$18,$1B,$0D,$24,$24,$24,$24,$24,$24,$24,$24,$1C,$11
+    DC.B $12,$0E,$15,$0D,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x009342 02:9332: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -817,6 +895,11 @@ _off002_9332_0A_sword_shield:  ; orig: _off002_9332_0A_sword_shield:
 
 
 _off002_9347_0B_boomerang___magical:  ; orig: _off002_9347_0B_boomerang___magical:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $05,$0B,$18,$18,$16,$0E,$1B,$0A,$17,$10,$24,$24,$24,$24,$24,$16
+    DC.B $0A,$10,$12,$0C,$0A,$15,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $05  -- needs manual handling  ; orig: - D 0 - I - 0x009357 02:9347: 05        .byte $05   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -828,6 +911,10 @@ _off002_9347_0B_boomerang___magical:  ; orig: _off002_9347_0B_boomerang___magica
 
 
 _off002_935E_0C_boomerang:  ; orig: _off002_935E_0C_boomerang:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $12,$0B,$18,$18,$16,$0E,$1B,$0A,$17,$10,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $12  -- needs manual handling  ; orig: - D 0 - I - 0x00936E 02:935E: 12        .byte $12   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -838,6 +925,11 @@ _off002_935E_0C_boomerang:  ; orig: _off002_935E_0C_boomerang:
 
 
 _off002_9369_0D_bomb___bow:  ; orig: _off002_9369_0D_bomb___bow:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$0B,$18,$16,$0B,$24,$24,$24,$24,$24,$24,$24,$24,$24,$24,$0B
+    DC.B $18,$20,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x009379 02:9369: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -849,6 +941,11 @@ _off002_9369_0D_bomb___bow:  ; orig: _off002_9369_0D_bomb___bow:
 
 
 _off002_937C_0E_arrow___silver:  ; orig: _off002_937C_0E_arrow___silver:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$0A,$1B,$1B,$18,$20,$24,$24,$24,$24,$24,$24,$24,$24,$1C,$12
+    DC.B $15,$1F,$0E,$1B,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x00938C 02:937C: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -860,6 +957,10 @@ _off002_937C_0E_arrow___silver:  ; orig: _off002_937C_0E_arrow___silver:
 
 
 _off002_9391_0F_arrow:  ; orig: _off002_9391_0F_arrow:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $14,$0A,$1B,$1B,$18,$20,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - D 0 - I - 0x0093A1 02:9391: 14        .byte $14   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -870,6 +971,11 @@ _off002_9391_0F_arrow:  ; orig: _off002_9391_0F_arrow:
 
 
 _off002_9398_10_blue___red:  ; orig: _off002_9398_10_blue___red:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$0B,$15,$1E,$0E,$24,$24,$24,$24,$24,$24,$24,$24,$24,$24,$1B
+    DC.B $0E,$0D,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x0093A8 02:9398: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -881,6 +987,10 @@ _off002_9398_10_blue___red:  ; orig: _off002_9398_10_blue___red:
 
 
 _off002_93AB_11_candle___candle:  ; orig: _off002_93AB_11_candle___candle:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $06,$0C,$0A,$17,$0D,$15,$0E,$24,$24,$24,$24,$24,$24,$24,$24,$0C
+    DC.B $0A,$17,$0D,$15,$0E,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $06  -- needs manual handling  ; orig: - D 0 - I - 0x0093BB 02:93AB: 06        .byte $06   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -892,6 +1002,11 @@ _off002_93AB_11_candle___candle:  ; orig: _off002_93AB_11_candle___candle:
 
 
 _off002_93C1_12_blue___red:  ; orig: _off002_93C1_12_blue___red:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$0B,$15,$1E,$0E,$24,$24,$24,$24,$24,$24,$24,$24,$24,$24,$1B
+    DC.B $0E,$0D,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x0093D1 02:93C1: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -903,6 +1018,10 @@ _off002_93C1_12_blue___red:  ; orig: _off002_93C1_12_blue___red:
 
 
 _off002_93D4_13_ring___ring:  ; orig: _off002_93D4_13_ring___ring:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$1B,$12,$17,$10,$24,$24,$24,$24,$24,$24,$24,$24,$24,$24,$1B
+    DC.B $12,$17,$10,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x0093E4 02:93D4: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -914,6 +1033,10 @@ _off002_93D4_13_ring___ring:  ; orig: _off002_93D4_13_ring___ring:
 
 
 _off002_93E8_14_power___recorder:  ; orig: _off002_93E8_14_power___recorder:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$19,$18,$20,$0E,$1B,$24,$24,$24,$24,$24,$24,$24,$1B,$0E,$0C
+    DC.B $18,$1B,$0D,$0E,$1B,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x0093F8 02:93E8: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -925,6 +1048,9 @@ _off002_93E8_14_power___recorder:  ; orig: _off002_93E8_14_power___recorder:
 
 
 _off002_93FE_15_bracelet:  ; orig: _off002_93FE_15_bracelet:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $05,$0B,$1B,$0A,$0C,$0E,$15,$0E,$1D,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $05  -- needs manual handling  ; orig: - D 0 - I - 0x00940E 02:93FE: 05        .byte $05   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -935,6 +1061,11 @@ _off002_93FE_15_bracelet:  ; orig: _off002_93FE_15_bracelet:
 
 
 _off002_9408_16_raft___stepladder:  ; orig: _off002_9408_16_raft___stepladder:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $07,$1B,$0A,$0F,$1D,$24,$24,$24,$24,$24,$24,$24,$1C,$1D,$0E,$19
+    DC.B $15,$0A,$0D,$0D,$0E,$1B,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 0 - I - 0x009418 02:9408: 07        .byte $07   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -946,6 +1077,10 @@ _off002_9408_16_raft___stepladder:  ; orig: _off002_9408_16_raft___stepladder:
 
 
 _off002_941F_17_magical___book_of:  ; orig: _off002_941F_17_magical___book_of:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $06,$16,$0A,$10,$12,$0C,$0A,$15,$24,$24,$24,$24,$24,$24,$0B,$18
+    DC.B $18,$14,$24,$18,$0F,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $06  -- needs manual handling  ; orig: - D 0 - I - 0x00942F 02:941F: 06        .byte $06   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -957,6 +1092,11 @@ _off002_941F_17_magical___book_of:  ; orig: _off002_941F_17_magical___book_of:
 
 
 _off002_9435_18_rod___magic:  ; orig: _off002_9435_18_rod___magic:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $08,$1B,$18,$0D,$24,$24,$24,$24,$24,$24,$24,$24,$24,$16,$0A,$10
+    DC.B $12,$0C,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $08  -- needs manual handling  ; orig: - D 0 - I - 0x009445 02:9435: 08        .byte $08   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -968,6 +1108,10 @@ _off002_9435_18_rod___magic:  ; orig: _off002_9435_18_rod___magic:
 
 
 _off002_9448_19_key___magical:  ; orig: _off002_9448_19_key___magical:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $08,$14,$0E,$22,$24,$24,$24,$24,$24,$24,$24,$24,$16,$0A,$10,$12
+    DC.B $0C,$0A,$15,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $08  -- needs manual handling  ; orig: - D 0 - I - 0x009458 02:9448: 08        .byte $08   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -979,6 +1123,10 @@ _off002_9448_19_key___magical:  ; orig: _off002_9448_19_key___magical:
 
 
 _off002_945C_1A_key:  ; orig: _off002_945C_1A_key:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $15,$14,$0E,$22,$FF
+    EVEN
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $15  -- needs manual handling  ; orig: - D 0 - I - 0x00946C 02:945C: 15        .byte $15   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -989,6 +1137,10 @@ _off002_945C_1A_key:  ; orig: _off002_945C_1A_key:
 
 
 _off002_9461_1B_map___compass:  ; orig: _off002_9461_1B_map___compass:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $08,$16,$0A,$19,$24,$24,$24,$24,$24,$24,$24,$24,$0C,$18,$16,$19
+    DC.B $0A,$1C,$1C,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $08  -- needs manual handling  ; orig: - D 0 - I - 0x009471 02:9461: 08        .byte $08   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -1000,6 +1152,9 @@ _off002_9461_1B_map___compass:  ; orig: _off002_9461_1B_map___compass:
 
 
 _off002_9475_1C_triforce:  ; orig: _off002_9475_1C_triforce:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $0C,$1D,$1B,$12,$0F,$18,$1B,$0C,$0E,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $0C  -- needs manual handling  ; orig: - D 0 - I - 0x009485 02:9475: 0C        .byte $0C   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -1011,6 +1166,10 @@ _off002_9475_1C_triforce:  ; orig: _off002_9475_1C_triforce:
 
 
 _off002_947F_05_life_potion___2nd_potion:  ; orig: _off002_947F_05_life_potion___2nd_potion:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $04,$15,$12,$0F,$0E,$24,$19,$18,$1D,$12,$18,$17,$24,$24,$24,$02
+    DC.B $17,$0D,$24,$19,$18,$1D,$12,$18,$17,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $04  -- needs manual handling  ; orig: - D 0 - I - 0x00948F 02:947F: 04        .byte $04   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -1022,6 +1181,10 @@ _off002_947F_05_life_potion___2nd_potion:  ; orig: _off002_947F_05_life_potion__
 
 
 _off002_9499_06_letter___food:  ; orig: _off002_9499_06_letter___food:
+; AUTO-RESTORED TITLE DATA BEGIN
+    DC.B $06,$15,$0E,$1D,$1D,$0E,$1B,$24,$24,$24,$24,$24,$24,$24,$24,$0F
+    DC.B $18,$18,$0D,$FF
+; AUTO-RESTORED TITLE DATA END
     ; [DIRECTIVE] .BYTE $06  -- needs manual handling  ; orig: - D 0 - I - 0x0094A9 02:9499: 06        .byte $06   ;
 
 ;                                              00   01   02   03   04   05   06   07   08   09   0A   0B   0C   0D   0E   0F
@@ -1386,7 +1549,7 @@ loc_96A7:  ; orig: loc_96A7:
     MOVE.B  (A0,D1.L),D0
 
     MOVE.B  D0,ram_0000_t17_demo_manual_text_data  ; orig: C - - - - - 0x0096CB 02:96BB: 85 00     STA ram_0000_t17_dem
-    MOVEA.L #$FF94AE,A0  ; Fix X: ; orig: C - - - - - 0x0096CD 02:96BD: BD AE 94  LDA tbl_94AD_demo_ma
+    MOVEA.L #tbl_94AD_demo_manual_text+1,A0  ; Fix X: use symbol-relative second byte of demo text pointer table
     MOVE.B  (A0,D1.L),D0  ; ^
     MOVE.B  D0,ram_0001_t17  ; orig: C - - - - - 0x0096D0 02:96C0: 85 01     STA ram_0000_t17_dem
     MOVEA.L #ram_0000_t17_demo_manual_text_data,A0

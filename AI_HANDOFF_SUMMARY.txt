@@ -318,40 +318,45 @@ Strongly relevant files for another AI to inspect
   C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\diag_matrix.py
 
 Open questions for another AI
-1. Where exactly does v252 diverge from v251 in the oracle trace? (Run trace_diff.py)
-2. Is the suppressor in the helper routine (sub_973A) or in downstream PPU buffer handling?
-3. Does the logo_palette data trigger an early exit condition that demo_text doesn't?
-4. What is the exact fix needed in bank_02_gen68k.asm to allow demo_text + logo_palette to coexist?
-5. Once the suppressor is fixed, will v252-class builds finally show correct intro/story rendering?
+1. The frame-44 raw PC split is no longer an open question: it was ROM-layout drift, not a source-level control-flow split.
+2. Why does the real `tbl_94EE_logo_palette` payload suppress PPU events while the code-byte fallback in v251 wakes them?
+3. Is the suppressor entirely data-driven inside the title/logo/manual path, or is there still a helper-side bug after the correct palette bytes are present?
+4. What exact bank-02 change is needed so `demo_text + logo_palette` preserves the intended title/logo path without killing PPU events?
+5. Once that suppressor is fixed, will v252-class builds finally show correct intro/story rendering?
 
-Latest trace-comparison result (after fixing the missing v251 oracle event export)
+Latest trace-comparison result (after rerunning fresh oracle traces with register export)
 - v251 summary is now complete and confirms:
   - `Sequence event count: 404`
   - `PPU event count: 24`
 - v252 still shows:
   - `Sequence event count: 404`
   - `PPU event count: 0`
-- The first meaningful v251/v252 split is earlier than the PPU event burst:
-  - frame `44`
+- Raw frame `44` still shows the first visible split:
   - v251 `PC=016602`
   - v252 `PC=016626`
-- Those PCs map into bank 05, not bank 02:
-  - `016602` = still in `b05_bra_B4FB_loop`
-  - `016626` = already in `b05_bra_B51C`
-  - source:
-    C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_05_gen68k_vdp.asm
-- Immediate side effect at the same frame:
-  - the PPU buffer bytes diverge at `$0303-$0309`
-  - v251: `3C 00 23 13 C1 00 FF`
-  - v252: `00 20 36 0F 00 10 36`
-- The later `PPU_REQ_RES` split around frame `88` is not the root cause:
+  - v251 `ppu_buf_1..7 = 3C 00 23 13 C1 00 FF`
+  - v252 `ppu_buf_1..7 = 00 20 36 0F 00 10 36`
+- But the raw PCs were misleading across builds:
+  - per-ROM `.lst` mapping shows both frame-44 PCs are the same source-level bank-05 location (`b05_bra_B4FB_loop`)
+  - so the old "bank-05 branch split" theory was wrong
+  - the differing raw PC values were just ROM-layout drift between `v251` and `v252`
+- New negative result from the added oracle register export:
+  - at raw frame `44`, `ram_00E7`, `ram_map_location`, `ram_next_map_location`, `ram_0000_t41`, `ram_0000_t42`, and exported `reg_d*` / `reg_a*` / `reg_sr` all still match
+  - the first frame-boundary difference is the emitted PPU buffer payload itself, not branch-driver RAM or saved CPU state
+- Exact source-level cause now identified in bank 02:
+  - `ofs_9512_01` copies bytes from `tbl_94EE_logo_palette` into `ram_0302_ppu_buffer`
+  - in `v252`, `tbl_94EE_logo_palette` exists as real title-data bytes, so the buffer receives the intended logo-palette payload:
+    `00 20 36 0F 00 10 36`
+  - in `v251`, that table does not occupy real bytes in the built ROM, so the same copy loop reads the opcode stream starting at `ofs_9512_01` instead:
+    `3C 00 23 13 C1 00 FF`
+  - this was proven by matching the fresh oracle payloads against `build\zelda_v251.lst` / `build\zelda_v252.lst`
+- Consequence:
+  - the suppressor bug is not a bank-05 branch condition
+  - it is tied directly to bank-02 title/logo data layout, specifically `tbl_94EE_logo_palette` and its interaction with the `ofs_9512_01` copy loop
+- The later `PPU_REQ_RES` split around frame `88` is still not the root cause:
   - it is just `ppu_buf_title_screen_real` moving because ROM layout changed
   - v251 resolves that label at `00017625`
   - v252 resolves that same label at `00017649`
-- Interpretation:
-  - the suppressor is probably upstream control flow in bank 05
-  - it is not just a bad bank-6 pointer or a bank-6 decoder-only bug
-  - the key branch to inspect is around `loc_B528` / `b05_bra_B51C`, where `BTST D0,ram_0000_t41` decides whether the scan loop advances
 
 Newest tooling update for the next pass
 - `diag/scripts/zelda_oracle_trace.lua` now watches explicit bank-05 branch-driver state:
@@ -360,12 +365,215 @@ Newest tooling update for the next pass
   - `ram_next_map_location`
   - `ram_0000_t41`
   - `ram_0000_t42`
+- `diag/scripts/zelda_oracle_trace.lua` also now exports live Genesis registers per frame:
+  - `reg_d0`..`reg_d7`
+  - `reg_a0`..`reg_a7`
+  - `reg_sr`
 - `diag/scripts/zelda_diag_v9.lua` now exports the same fields in the menu CSV / report-oriented watch set.
-- `tools/trace_diff.py` now focuses on those branch fields plus the early PPU buffer bytes, so the next diff should name the exact branch state change instead of only the diverging PC.
+- `tools/trace_diff.py` now focuses on those branch fields, the new register fields, and the early PPU buffer bytes.
+- `run_oracle_trace.ps1` and `run_batch.ps1` now quote BizHawk args correctly, wait for the GUI process, and restore the Lua script after retargeting `TRACE_HINT`.
 
 Short status line
 - The port is no longer stuck at boot/NMI bring-up.
 - The healthiest current lane reaches the Zelda intro/story flow and shows partially readable story text.
 - The current problem is a specific data interaction (demo_text + logo_palette) that kills PPU events.
-- The suppressor pattern is identified; root cause analysis via oracle trace comparison is ready to run.
-- Next milestone: Find and fix the exact code that mishandles the palette data when combined with demo_text.
+- The suppressor pattern is identified, and the earlier "bank-05 branch split" diagnosis is now disproven.
+- Next milestone: Find the exact bank-02 title-data fix that lets the real `tbl_94EE_logo_palette` bytes coexist with `demo_text` without suppressing PPU events.
+
+================================================================
+LATEST SESSION UPDATE (v264-v278)
+================================================================
+
+Oracle runner/tooling repair
+- `run_oracle_trace.ps1` is now race-safe:
+  - uses an on-disk lock file
+  - keeps the original Lua script contents in memory
+  - restores with `WriteAllText(...)` in `finally`
+  - no longer depends on renaming a shared `.backup` file
+- Root cause of the temporary
+  `Unable to access file ...\diag\scripts\zelda_oracle_trace.lua`
+  error:
+  two oracle traces were launched in parallel and both rewrote / restored
+  the same `zelda_oracle_trace.lua`.
+- `diag\scripts\zelda_oracle_trace.lua` has been reset to the neutral default:
+  `local TRACE_HINT = nil`
+
+Bank-02 helper fix result
+- The suspicious hardcoded fetch in bank 02 was repaired:
+  - old: `MOVEA.L #$FF94AE,A0`
+  - new: `MOVEA.L #tbl_94AD_demo_manual_text+1,A0`
+- This was a real cleanup, but it did **not** change the suppressor behavior
+  by itself.
+
+Important correction to earlier experiments
+- Earlier "demo_text restored" probe batches were incomplete.
+- Those builds restored the pointer table `tbl_94AD_demo_manual_text`,
+  but **not** the actual `_off002_92xx...` text payload labels it points to.
+- Once the real text payload bytes were restored too, the suppressor pattern
+  changed materially.
+
+Corrected full-text batch (v269-v273)
+- New builder:
+  `tools\build_intro_fulltext_signal_batch.py`
+- Variants:
+  - `v269` control
+  - `v270` full_demo_text
+  - `v271` full_text_palette
+  - `v272` spr_full_text
+  - `v273` spr_full_text_palette
+
+diag result:
+- `v269` = `PPU 0`, stuck at `$000F34`
+- `v270` = short non-stuck lane, `NMI 15`, `PPU 0`
+- `v271` = `PPU 24`
+- `v272` = `PPU 24`
+- `v273` = `PPU 0`, stuck at `$000F34`
+
+Conclusion from v269-v273:
+- The remaining bad combination is no longer "demo_text + palette".
+- The remaining bad combination is:
+  `spr_data + full_demo_text + palette`
+
+Healthy-vs-bad oracle comparison
+- `v271` (healthy of this batch) vs `v273` (bad):
+  - early PPU buffer bytes are identical and use the real palette payload:
+    `00 20 36 0F 00 10 36`
+  - first exported state diff is still only ROM-layout drift
+  - real behavioral split begins at frame `105`
+- `v271` event trace:
+  - `Sequence event count: 701`
+  - `PPU event count: 24`
+  - at frame `105`, a side-stream appears from:
+    - `seq_ptr_raw = $92CC`
+    - `seq_source  = $924E`
+- `v273` event trace:
+  - `Sequence event count: 404`
+  - `PPU event count: 0`
+  - it never enters that extra `92CC/924E` side-stream
+
+Meaning:
+- The bad case is not caused by the early palette copy anymore.
+- The remaining live issue is downstream:
+  `spr_data` suppresses a title-side follow-on stream that the fully restored
+  text/palette lane needs.
+
+Extended-table recovery batch (v274-v278)
+- New builder:
+  `tools\build_intro_extended_fix_batch.py`
+- Variants:
+  - `v274` bad_base
+    = `spr_data + full_demo_text + palette`
+  - `v275` bad_plus_915E
+  - `v276` bad_plus_extended`
+  - `v277` bad_plus_915E_extended
+  - `v278` all_title_data
+
+diag result:
+- `v274` = `PPU 0`
+- `v275` = `PPU 0`
+- `v276` = short non-stuck lane, `NMI 14`, `PPU 0`
+- `v277` = `PPU 24`
+- `v278` = `PPU 24`
+
+Conclusion from v274-v278:
+- The minimal data set that clears the remaining suppressor is:
+  - `tbl_90EE_spr_data`
+  - `tbl_915E`
+  - `tbl_94AD_demo_manual_text`
+  - all referenced `_off002_92xx...` text payload labels
+  - `tbl_94EE_logo_palette`
+  - extended title tables:
+    - `tbl_9240`
+    - `tbl_9256`
+    - `tbl_9268_pos_X_44`
+    - `tbl_9269_pos_X_AC`
+    - `tbl_926A_spr_T`
+    - `tbl_9282_spr_A`
+
+Oracle result for recovered v277/v278 lane
+- `v277` and `v278` are effectively the same path:
+  - both have `PPU event count: 24`
+  - both have `Sequence event count: 799`
+  - both still enter the long `$000F34` lane in the diag run
+- Compared to `v271`, they are **not** a clean restoration of the same path.
+- `v271` side-stream at frame `105`:
+  - `seq_ptr_raw = $92CC`
+  - `seq_source  = $924E`
+- `v277` / `v278` side-stream at frame `105`:
+  - `seq_ptr_raw = $8F0F`
+  - `seq_source  = $8F35`
+- `8F0F` / `8F35` map into bank 00 sequence data, not the bank-02 text payload
+  lane that `v271` wakes.
+
+Current best interpretation
+- `v277` / `v278` prove the remaining suppressor is data-layout-sensitive and
+  title-data-dependent.
+- But they do **not** look like the final correct intro path yet.
+- They recover PPU activity, but they wake a larger alternate sequence stream
+  than `v271`, and they are farther from `v251` than `v271` is.
+
+Current best next step
+1. Use `v271` as the best current recovered reference for the real-palette path.
+2. Diff `v271` against the bad `v273` around frame `105` / `106` and identify
+   what `spr_data` changes that blocks the `92CC/924E` side-stream.
+3. Avoid treating `v277` / `v278` as the final fix; they are a useful recovery
+   signal, not yet proof of correctness.
+
+Permanent titlefix landed (v319)
+- A permanent bank-02 fix was applied directly to
+  `src\banks\generated\bank_02_gen68k.asm`.
+- New helper profile added to `tools\restore_bank02_title_tables.py`:
+  `--profile titlefix`
+- The permanent restored subset is:
+  - `tbl_90EE_spr_data`
+  - `tbl_915E`
+  - `tbl_94AD_demo_manual_text`
+  - all referenced `_off002_92xx...` demo text payload labels
+  - `tbl_94EE_logo_palette`
+  - `tbl_9240`
+  - `tbl_9268_pos_X_44`
+  - `tbl_9269_pos_X_AC`
+  - `tbl_926A_spr_T`
+  - `tbl_9282_spr_A`
+- Important exclusion:
+  - `tbl_9256` is still **not** part of the permanent fix because restoring it
+    was what pushed experiments into the alternate `799`-sequence lane.
+
+Verification of permanent fix
+- Fresh build:
+  - `v319`
+- diag result:
+  - `PPU 24`
+  - `SEQ $0710`
+  - same general recovered title lane as the successful subset experiments
+- oracle result:
+  - `v319` vs `v310`: `No divergence found in shared fields`
+  - `v319` event totals:
+    - `Sequence event count: 701`
+    - `PPU event count: 24`
+- This confirms the permanent source fix exactly matches the minimal recovered
+  `v310` lane and avoids the older `799`-event over-correction lane.
+
+Important limitation after landing v319
+- The title suppressor is fixed, but the title screen is still visually wrong.
+- The diag screenshots for `v319` remain visibly corrupted.
+- So the completed fix is:
+  - suppressor/data-layout fix for restoring the recovered title path
+- The remaining live issue is now:
+  - title rendering / VDP presentation correctness on that recovered path
+
+Best current live suspect after v319
+- `diag_report_v319.txt` still shows:
+  - checkpoint `048A  BANK6_PPU: optional real buffer forced back to legacy`
+  - checkpoint `0442  BANK6_PPU: legacy pointer fallback used`
+- `v319` PPU activity is still coming from `BANK6_PPU_LEGACY` events, not a
+  clean title buffer path.
+- This is the next investigation target.
+
+Updated next step after v319
+1. Treat the bank-02 suppressor fix as landed and stable.
+2. Shift debugging to bank-6 title rendering:
+   - why the optional real title buffer is still being forced back to legacy
+   - why the recovered lane still renders corrupt visuals
+3. Use `v319` as the new stable Genesis reference lane for all further title
+   rendering traces and screenshots.

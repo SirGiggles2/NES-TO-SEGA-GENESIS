@@ -1,0 +1,135 @@
+Oracle trace summary
+ROM: zelda_v319
+System: genesis
+RAM domain: M68K BUS
+RAM base: FF0000
+Reset on start: false
+Reset kind: rebootcore
+Reset result: none
+Reset settle frames: 0
+Frames: 0-300
+Max wait before Start: 600
+Post-Start capture frames: 180
+Max total frames: 900
+Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_zelda_v319.csv
+Menu trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_menu_zelda_v319.csv
+
+Event trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_events_zelda_v319.csv
+Write trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_writes_zelda_v319.csv
+Write watch enabled: false
+Sequence event count: 701
+PPU event count: 24
+
+Menu milestones:
+  script1 first frame: never
+  nonzero subscript first frame: never
+  ppu_load_index=$14 first frame: never
+  cur_save_slot nonzero first frame: never
+  ram_041F nonzero first frame: 100
+  ram_0421 nonzero first frame: 100
+  ram_0423 nonzero first frame: 100
+  sprite index active first frame: never
+
+Manual Start Detection:
+  enabled: false
+  input supported: false
+  key name: never seen
+  first press frame: never
+  press frames: 
+
+Internal Start Capture:
+  enabled: false
+  detected frame: never
+  detected source: never
+  post-end frame: never
+
+Auto-Start:
+  enabled: false
+  input supported: nil
+  ready frame: never
+  attempts: 0
+  attempt frames: 
+  stop frame: never
+
+First changes:
+  ram_0000_t49     frame 13
+  ram_0000_t41     frame 13
+  ram_0000_t42     frame 12
+  ram_0002_t17     frame 12
+  ram_0003_t18     frame 12
+  ram_0004_t18     frame 12
+  game_mode        never changed
+  screen_ready     frame 87
+  ram_script       never changed
+  ram_subscript    never changed
+  ppu_load_index   frame 87
+  ram_frm_cnt      frame 12
+  cur_save_slot    never changed
+  rendering_flag   never changed
+  ram_004D         never changed
+  ram_next_script  never changed
+  ram_005C         never changed
+  se_ptr_lo        frame 77
+  se_ptr_hi        frame 77
+  ram_006C_se      frame 77
+  ram_00F6         frame 34
+  btn_press        frame 12
+  btn_hold         frame 12
+  scroll_y         never changed
+  scroll_x         never changed
+  ram_for_2001     frame 12
+  ram_for_2000     frame 12
+  ram_0415         never changed
+  ram_041A         frame 105
+  ram_041F         frame 100
+  ram_0421         frame 100
+  ram_0423         frame 100
+  spr_index_1      never changed
+  spr_index_2      never changed
+  ram_042D         frame 44
+  ram_042E         never changed
+  ram_00E7         never changed
+  ram_map_location never changed
+  ram_next_map_location never changed
+  ram_0528         never changed
+  ram_05F1         frame 77
+  ram_05F4         frame 77
+  ram_05F5         frame 77
+  ram_music        frame 76
+  ram_music_busy   frame 77
+  ram_060A         frame 77
+  ram_060B         frame 77
+  ram_060C         frame 77
+  ram_060D         frame 77
+  ram_0611         frame 86
+  ram_0612         frame 77
+  ram_0613         frame 100
+  ram_0616         never changed
+  ram_0617         frame 77
+  ram_0619         frame 77
+  ram_061B         frame 77
+  ppu_buf_status   frame 12
+  ppu_buf_index    frame 44
+  ppu_buf_0        frame 12
+  ppu_buf_1        never changed
+  ppu_buf_2        frame 44
+  ppu_buf_3        frame 44
+  ppu_buf_4        frame 44
+  ppu_buf_5        frame 100
+  ppu_buf_6        frame 44
+  ppu_buf_7        frame 44
+  pal_sh_00        never changed
+  pal_sh_01        never changed
+  pal_sh_02        never changed
+  pal_sh_03        never changed
+  pal_sh_04        never changed
+  pal_sh_05        never changed
+  pal_sh_06        never changed
+  pal_sh_07        never changed
+  trace_last       frame 12
+  trace_seq        frame 12
+  PPU_REQ_INDEX    frame 88
+  PPU_REQ_PTR      frame 12
+  PPU_REQ_RES      frame 88
+  SEQ_EVT_COUNT    frame 77
+  PPU_EVT_COUNT    frame 110
