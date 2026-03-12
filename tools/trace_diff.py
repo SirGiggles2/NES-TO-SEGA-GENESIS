@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare NES and Genesis Zelda oracle traces and report the first useful divergence."""
+"""Compare two Zelda oracle traces and report the first useful divergence."""
 
 from __future__ import annotations
 
@@ -14,6 +14,38 @@ ALIGNMENT_RULES = (
     ("ram_script", "nonzero", "ram_script!=00"),
     ("ram_frm_cnt", "nonzero", "ram_frm_cnt!=00"),
     ("ram_for_2001", "nonzero", "ram_for_2001!=00"),
+)
+FOCUS_FIELDS = (
+    "ram_script",
+    "ram_subscript",
+    "screen_ready",
+    "ppu_load_index",
+    "ram_frm_cnt",
+    "ram_005C",
+    "ram_00E7",
+    "ram_map_location",
+    "ram_next_map_location",
+    "ram_0000_t41",
+    "ram_0000_t42",
+    "ram_for_2001",
+    "ppu_buf_status",
+    "ppu_buf_index",
+    "ppu_buf_0",
+    "ppu_buf_1",
+    "ppu_buf_2",
+    "ppu_buf_3",
+    "ppu_buf_4",
+    "ppu_buf_5",
+    "ppu_buf_6",
+    "ppu_buf_7",
+    "PPU_REQ_INDEX",
+    "PPU_REQ_PTR",
+    "PPU_REQ_RES",
+    "SEQ_EVT_COUNT",
+    "PPU_EVT_COUNT",
+    "ram_music",
+    "ram_music_busy",
+    "pc",
 )
 
 
@@ -166,24 +198,24 @@ def print_window(nes_rows, gen_rows, detail, fields):
             break
         nes = nes_rows[nes_pos]
         gen = gen_rows[gen_pos]
-        print(f"  NES {' | '.join(f'{nes[name]:>14}' for name in header)}")
-        print(f"  GEN {' | '.join(f'{gen[name]:>14}' for name in header)}")
+        print(f"    A {' | '.join(f'{nes[name]:>14}' for name in header)}")
+        print(f"    B {' | '.join(f'{gen[name]:>14}' for name in header)}")
         print("  " + "-" * (17 * len(header)))
 
 
 def main(argv):
     if len(argv) != 3:
-        print("Usage: py -3 tools/trace_diff.py <nes_trace.csv> <genesis_trace.csv>")
+        print("Usage: py -3 tools/trace_diff.py <trace_a.csv> <trace_b.csv>")
         return 1
 
     nes_path = Path(argv[1])
     gen_path = Path(argv[2])
 
     if not nes_path.exists():
-        print(f"ERROR: Missing NES trace: {nes_path}")
+        print(f"ERROR: Missing trace A: {nes_path}")
         return 1
     if not gen_path.exists():
-        print(f"ERROR: Missing Genesis trace: {gen_path}")
+        print(f"ERROR: Missing trace B: {gen_path}")
         return 1
 
     nes_rows = load_rows(nes_path)
@@ -199,26 +231,30 @@ def main(argv):
     )
 
     print("Zelda trace diff")
-    print(f"  NES:      {nes_path}")
-    print(f"  Genesis:  {gen_path}")
+    print(f"  Trace A:  {nes_path}")
+    print(f"  Trace B:  {gen_path}")
     print(f"  Alignment: {alignment['label']}")
     print(
-        f"  Start frames: NES {nes_rows[alignment['nes_index']]['frame']} | "
-        f"Genesis {gen_rows[alignment['gen_index']]['frame']}"
+        f"  Start frames: A {nes_rows[alignment['nes_index']]['frame']} | "
+        f"B {gen_rows[alignment['gen_index']]['frame']}"
     )
     print(f"  Frames compared after alignment: {limit}")
 
-    gen_events = summarize_event_trace(sibling_event_trace(gen_path))
-    if gen_events is not None:
-        print("\nGenesis event trace:")
-        print(f"  Path: {gen_events['path']}")
-        print(f"  Rows: {gen_events['count']}")
-        if gen_events["by_kind"]:
-            parts = [f"{kind}={count}" for kind, count in sorted(gen_events["by_kind"].items())]
+    for label, summary in (
+        ("Trace A", summarize_event_trace(sibling_event_trace(nes_path))),
+        ("Trace B", summarize_event_trace(sibling_event_trace(gen_path))),
+    ):
+        if summary is None:
+            continue
+        print(f"\n{label} event trace:")
+        print(f"  Path: {summary['path']}")
+        print(f"  Rows: {summary['count']}")
+        if summary["by_kind"]:
+            parts = [f"{kind}={count}" for kind, count in sorted(summary["by_kind"].items())]
             print(f"  By kind: {', '.join(parts)}")
-        if gen_events["recent"]:
+        if summary["recent"]:
             print("  Recent events:")
-            for row in gen_events["recent"]:
+            for row in summary["recent"]:
                 print(
                     "    frame {frame:>3}  {kind:<3}  {event_id}  {event_name}  total={total_count}".format(
                         frame=row.get("frame", "?"),
@@ -235,11 +271,11 @@ def main(argv):
 
     if first_state is not None:
         print("\nFirst state divergence:")
-        print(f"  NES frame:      {first_state['nes_frame']}")
-        print(f"  Genesis frame:  {first_state['gen_frame']}")
+        print(f"  Trace A frame:  {first_state['nes_frame']}")
+        print(f"  Trace B frame:  {first_state['gen_frame']}")
         print(f"  Field:          {first_state['field']}")
-        print(f"  NES:            {first_state['nes']}")
-        print(f"  Genesis:        {first_state['gen']}")
+        print(f"  Trace A:        {first_state['nes']}")
+        print(f"  Trace B:        {first_state['gen']}")
     else:
         print("\nNo state divergence found.")
 
@@ -249,11 +285,11 @@ def main(argv):
         or first_any["field"] != first_state["field"]
     ):
         print("\nFirst divergence of any kind:")
-        print(f"  NES frame:      {first_any['nes_frame']}")
-        print(f"  Genesis frame:  {first_any['gen_frame']}")
+        print(f"  Trace A frame:  {first_any['nes_frame']}")
+        print(f"  Trace B frame:  {first_any['gen_frame']}")
         print(f"  Field:          {first_any['field']}")
-        print(f"  NES:            {first_any['nes']}")
-        print(f"  Genesis:        {first_any['gen']}")
+        print(f"  Trace A:        {first_any['nes']}")
+        print(f"  Trace B:        {first_any['gen']}")
 
     print("\nEarliest divergence by field:")
     for field, detail in sorted(
@@ -263,22 +299,12 @@ def main(argv):
         marker = " (non-state)" if field in NON_STATE_FIELDS else ""
         print(
             f"  {field:<16} offset {detail['offset']} "
-            f"(NES frame {detail['nes_frame']}, Genesis frame {detail['gen_frame']}){marker}"
+            f"(Trace A frame {detail['nes_frame']}, Trace B frame {detail['gen_frame']}){marker}"
         )
 
     focus_fields = [
         field
-        for field in (
-            "ram_script",
-            "ram_subscript",
-            "screen_ready",
-            "ppu_load_index",
-            "ram_frm_cnt",
-            "ram_for_2001",
-            "ram_music",
-            "ram_music_busy",
-            "pc",
-        )
+        for field in FOCUS_FIELDS
         if field in shared_fields
     ]
     print_window(nes_rows, gen_rows, first_state or first_any, focus_fields)

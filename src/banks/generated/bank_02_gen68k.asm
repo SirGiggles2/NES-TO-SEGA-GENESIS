@@ -1369,7 +1369,7 @@ loc_9747_loop:  ; orig: loc_9747_loop:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x00975B 02:974B: CA        DEX
     JMP     loc_9747_loop  ; orig: C - - - - - 0x00975C 02:974C: 4C 47 97  JMP loc_9747_loop
 bra_974F:  ; orig: bra_974F:
-    ; (empty translation for LDY)  ; orig: C - - - - - 0x00975F 02:974F: AC 2F 04  LDY ram_042B_enemy +
+    MOVE.B  ($00FF042F).l,D2  ; orig: C - - - - - 0x00975F 02:974F: AC 2F 04  LDY ram_042B_enemy +
     MOVE.B  tbl_9240(D2.L),D0  ; LDA abs,Y  ; orig: C - - - - - 0x009762 02:9752: B9 40 92  LDA tbl_9240,Y
     MOVE.B  D0,ram_0444_enemy(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x009765 02:9755: 9D 44 04  STA ram_0444_enemy,X
     MOVE.B  #$EF,D0  ; orig: C - - - - - 0x009768 02:9758: A9 EF     LDA #$EF
@@ -1395,12 +1395,13 @@ bra_974F:  ; orig: bra_974F:
     BNE     bra_9792             ; BNE  ; orig: C - - - - - 0x009795 02:9785: D0 0B     BNE bra_9792
     MOVE.B  #$78,D0  ; orig: C - - - - - 0x009797 02:9787: A9 78     LDA #$78
     MOVE.B  D0,ram_pos_X_enemy(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x009799 02:9789: 95 70     STA ram_pos_X_enemy,
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00979B 02:978B: 95 71     STA ram_pos_X_enemy 
+    MOVEA.L #ram_pos_X_enemy+1,A0
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x00979B 02:978B: 95 71     STA ram_pos_X_enemy 
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x00979D 02:978D: A9 00     LDA #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00979F 02:978F: 8D 30 04  STA ram_042B_enemy +
+    MOVE.B  D0,($00FF0430).l  ; orig: C - - - - - 0x00979F 02:978F: 8D 30 04  STA ram_042B_enemy +
 bra_9792:  ; orig: bra_9792:
 loc_9792:  ; orig: loc_9792:
-    ; (empty translation for INC)  ; orig: C D 0 - - - 0x0097A2 02:9792: EE 2F 04  INC ram_042B_enemy +
+    ADDQ.B  #1,($00FF042F).l  ; orig: C D 0 - - - 0x0097A2 02:9792: EE 2F 04  INC ram_042B_enemy +
     RTS                     ; RTS  ; orig: C - - - - - 0x0097A5 02:9795: 60        RTS
 bra_9796:  ; orig: bra_9796:
     MOVE.B  #$68,D0  ; orig: C - - - - - 0x0097A6 02:9796: A9 68     LDA #$68
@@ -2922,13 +2923,13 @@ bra_A190_loop:  ; orig: bra_A190_loop:
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x00A1BE 02:A1AE: A5 84     LDA ram_pos_Y_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x00A1C0 02:A1B0: 38        SEC
     SUBX.B  #$08,D0       ; SBC imm  ; orig: C - - - - - 0x00A1C1 02:A1B1: E9 08     SBC #$08
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A1C3 02:A1B3: 8D 04 02  STA ram_spr_Y + $04
+    MOVE.B  D0,ram_spr_Y+$04  ; orig: C - - - - - 0x00A1C3 02:A1B3: 8D 04 02  STA ram_spr_Y + $04
     MOVE.B  #$70,D0  ; orig: C - - - - - 0x00A1C6 02:A1B6: A9 70     LDA #$70
     MOVE.B  D0,ram_pos_X_link  ; orig: C - - - - - 0x00A1C8 02:A1B8: 85 70     STA ram_pos_X_link
     MOVE.B  #$87,D0  ; orig: C - - - - - 0x00A1CA 02:A1BA: A9 87     LDA #$87
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A1CC 02:A1BC: 85 85     STA ram_pos_Y_enemy 
+    MOVE.B  D0,ram_pos_Y_enemy  ; orig: C - - - - - 0x00A1CC 02:A1BC: 85 85     STA ram_pos_Y_enemy 
     MOVE.B  #$30,D0  ; orig: C - - - - - 0x00A1CE 02:A1BE: A9 30     LDA #$30
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A1D0 02:A1C0: 85 71     STA ram_pos_X_enemy 
+    MOVE.B  D0,ram_pos_X_enemy  ; orig: C - - - - - 0x00A1D0 02:A1C0: 85 71     STA ram_pos_X_enemy 
 bra_A1C2_RTS:  ; orig: bra_A1C2_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x00A1D2 02:A1C2: 60        RTS
 
@@ -2939,15 +2940,15 @@ sub_A1C3:  ; orig: sub_A1C3:
     CMPI.B  #$77,D0  ; orig: C - - - - - 0x00A1D5 02:A1C5: C9 77     CMP #$77
     BNE     bra_A1CF             ; BNE  ; orig: C - - - - - 0x00A1D7 02:A1C7: D0 06     BNE bra_A1CF
     MOVE.B  #$F8,D0  ; orig: C - - - - - 0x00A1D9 02:A1C9: A9 F8     LDA #$F8
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A1DB 02:A1CB: 8D 04 02  STA ram_spr_Y + $04
+    MOVE.B  D0,ram_spr_Y+$04  ; orig: C - - - - - 0x00A1DB 02:A1CB: 8D 04 02  STA ram_spr_Y + $04
     RTS                     ; RTS  ; orig: C - - - - - 0x00A1DE 02:A1CE: 60        RTS
 bra_A1CF:  ; orig: bra_A1CF:
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x00A1DF 02:A1CF: A5 84     LDA ram_pos_Y_link
     BSR     sub_A1F7             ; JSR -> BSR  ; orig: C - - - - - 0x00A1E1 02:A1D1: 20 F7 A1  JSR sub_A1F7
-    ; (empty translation for STY)  ; orig: C - - - - - 0x00A1E4 02:A1D4: 8C 04 02  STY ram_spr_Y + $04
+    MOVE.B  D2,ram_spr_Y+$04  ; orig: C - - - - - 0x00A1E4 02:A1D4: 8C 04 02  STY ram_spr_Y + $04
 loc_A1D7:  ; orig: loc_A1D7:
     MOVE.B  ram_pos_X_link,D0  ; orig: C D 1 - - - 0x00A1E7 02:A1D7: A5 70     LDA ram_pos_X_link
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A1E9 02:A1D9: 8D 07 02  STA ram_spr_X + $04
+    MOVE.B  D0,ram_spr_X+$04  ; orig: C - - - - - 0x00A1E9 02:A1D9: 8D 07 02  STA ram_spr_X + $04
     RTS                     ; RTS  ; orig: C - - - - - 0x00A1EC 02:A1DC: 60        RTS
 
 
@@ -2957,14 +2958,14 @@ sub_A1DD:  ; orig: sub_A1DD:
     CMPI.B  #$77,D0  ; orig: C - - - - - 0x00A1EF 02:A1DF: C9 77     CMP #$77
     BNE     bra_A1E9             ; BNE  ; orig: C - - - - - 0x00A1F1 02:A1E1: D0 06     BNE bra_A1E9
     MOVE.B  #$F8,D0  ; orig: C - - - - - 0x00A1F3 02:A1E3: A9 F8     LDA #$F8
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A1F5 02:A1E5: 8D 08 02  STA ram_spr_Y + $08
+    MOVE.B  D0,ram_spr_Y+$08  ; orig: C - - - - - 0x00A1F5 02:A1E5: 8D 08 02  STA ram_spr_Y + $08
     RTS                     ; RTS  ; orig: C - - - - - 0x00A1F8 02:A1E8: 60        RTS
 bra_A1E9:  ; orig: bra_A1E9:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00A1F9 02:A1E9: A5 85     LDA ram_pos_Y_enemy 
+    MOVE.B  ram_pos_Y_enemy,D0  ; orig: C - - - - - 0x00A1F9 02:A1E9: A5 85     LDA ram_pos_Y_enemy 
     BSR     sub_A1F7             ; JSR -> BSR  ; orig: C - - - - - 0x00A1FB 02:A1EB: 20 F7 A1  JSR sub_A1F7
-    ; (empty translation for STY)  ; orig: C - - - - - 0x00A1FE 02:A1EE: 8C 08 02  STY ram_spr_Y + $08
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00A201 02:A1F1: A5 71     LDA ram_pos_X_enemy 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A203 02:A1F3: 8D 0B 02  STA ram_spr_X + $08
+    MOVE.B  D2,ram_spr_Y+$08  ; orig: C - - - - - 0x00A1FE 02:A1EE: 8C 08 02  STY ram_spr_Y + $08
+    MOVE.B  ram_pos_X_enemy,D0  ; orig: C - - - - - 0x00A201 02:A1F1: A5 71     LDA ram_pos_X_enemy 
+    MOVE.B  D0,ram_spr_X+$08  ; orig: C - - - - - 0x00A203 02:A1F3: 8D 0B 02  STA ram_spr_X + $08
     RTS                     ; RTS  ; orig: C - - - - - 0x00A206 02:A1F6: 60        RTS
 
 
@@ -3013,7 +3014,7 @@ bra_A21B:  ; orig: bra_A21B:
 bra_A236:  ; orig: bra_A236:
     MOVE.B  D0,ram_spr_Y  ; orig: C - - - - - 0x00A246 02:A236: 8D 00 02  STA ram_spr_Y
     MOVE.B  #$70,D0  ; orig: C - - - - - 0x00A249 02:A239: A9 70     LDA #$70
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00A24B 02:A23B: 8D 07 02  STA ram_spr_X + $04
+    MOVE.B  D0,ram_spr_X+$04  ; orig: C - - - - - 0x00A24B 02:A23B: 8D 07 02  STA ram_spr_X + $04
     MOVE.B  D0,ram_pos_X_link  ; orig: C - - - - - 0x00A24E 02:A23E: 85 70     STA ram_pos_X_link
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x00A250 02:A240: A9 00     LDA #$00
     MOVE.B  D0,ram_0420  ; orig: C - - - - - 0x00A252 02:A242: 8D 20 04  STA ram_0420

@@ -6,7 +6,7 @@ local MAX_WAIT_FOR_START_FRAMES = 600
 local POST_START_CAPTURE_FRAMES = 180
 local MAX_TOTAL_FRAMES = 900
 local OUT_DIR = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
-local TRACE_HINT = nil -- e.g. "zelda_v40" or "zelda_nes_title"
+local TRACE_HINT = "zelda_v251" -- auto-set by run_oracle_trace.ps1
 local RESET_ON_START = false
 local RESET_KIND = "rebootcore" -- "rebootcore", "poweron", or "softreset"
 local RESET_SETTLE_FRAMES = 0
@@ -30,6 +30,8 @@ local OVERLAY_LINE_HEIGHT = 12
 
 local WATCHES = {
     { key = "ram_0000_t49",    addr = 0x0000, width = 2 },
+    { key = "ram_0000_t41",    addr = 0x0000, width = 2 },
+    { key = "ram_0000_t42",    addr = 0x0001, width = 2 },
     { key = "ram_0002_t17",    addr = 0x0002, width = 2 },
     { key = "ram_0003_t18",    addr = 0x0003, width = 2 },
     { key = "ram_0004_t18",    addr = 0x0004, width = 2 },
@@ -63,6 +65,9 @@ local WATCHES = {
     { key = "spr_index_2",     addr = 0x0344, width = 2 },
     { key = "ram_042D",        addr = 0x042D, width = 2 },
     { key = "ram_042E",        addr = 0x042E, width = 2 },
+    { key = "ram_00E7",        addr = 0x00E7, width = 2 },
+    { key = "ram_map_location", addr = 0x00EB, width = 2 },
+    { key = "ram_next_map_location", addr = 0x00EC, width = 2 },
     { key = "ram_0528",        addr = 0x0528, width = 2 },
     { key = "ram_05F1",        addr = 0x05F1, width = 2 },
     { key = "ram_05F4",        addr = 0x05F4, width = 2 },

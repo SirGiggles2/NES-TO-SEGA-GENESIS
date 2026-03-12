@@ -33,12 +33,42 @@ Why the current focus changed
 - The healthier lane is now the intro/story path, not the forced-menu path.
 
 Key diagnostic workflow
-- Main Genesis diag script:
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\scripts\zelda_diag_v8.lua
+- Main Genesis diag script (updated to v9 with CLI automation):
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\scripts\zelda_diag_v9.lua
 - Main oracle script:
   C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\scripts\zelda_oracle_trace.lua
+- Batch runner (new PowerShell automation):
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\run_batch.ps1
+- Oracle trace runner (new PowerShell automation):
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\run_oracle_trace.ps1
+- Report analyzer (updated with NMI/PPU/SEQ metrics):
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\diag_matrix.py
 - Current bundling folder used for sharing:
   C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want
+
+NEW: Workflow Automation (Completed This Session)
+- zelda_diag_v9.lua improvements:
+  - Added BATCH_SIZE = 5 limit to prevent infinite looping through all ROMs in build folder
+  - Added client.exit() at end for headless CLI automation (BizHawk 2.11 requires manual close)
+  - Updated SCRIPT_VERSION to "v9"
+  - Updated BATCH_SUMMARY_PATH to diag_batch_summary_v9.txt
+  
+- run_batch.ps1 (new):
+  - PowerShell script that launches BizHawk with --lua flag
+  - Usage: .\run_batch.ps1 -StartRom zelda_v249
+  - Automatically runs BATCH_MODE through all 5 ROMs sequentially
+  - Reports written to diag\reports\Files I Want\
+  
+- run_oracle_trace.ps1 (new):
+  - PowerShell script for running oracle traces with proper naming
+  - Automatically modifies TRACE_HINT to use version number in output filenames
+  - Copies all trace outputs to Files I Want folder
+  - Usage: .\run_oracle_trace.ps1 -Rom zelda_v251
+  
+- diag_matrix.py improvements:
+  - Added parsing for NMI_COMPLETE_COUNT, PPU_EVT_COUNT, SEQ_EVT_COUNT, CPU_STUCK_PC
+  - Output now shows: ROM | Frames | Score | NMI | PPU | SEQ | Stuck_PC | Crash PC | Vector | Checkpoint
+  - Usage: py tools\diag_matrix.py (auto-finds all reports) or specify individual files
 
 Important diag script behavior
 - zelda_diag_v8.lua currently batches from the newest batch start by hardcoding START_ROM_HINT.
@@ -135,25 +165,135 @@ New batch already built for that plan
   v237 core_no_palette
   v238 core_full
 
-Why this is the best next move
-- It keeps us on the healthiest known natural gameplay/content lane.
-- It reduces a broad restore into a real binary search over the most promising intro labels.
-- It avoids going back to the misleading forced-menu lane unless the intro lane stalls completely.
+What v232-v238 proved
+- The one-label isolation batch gave a much sharper answer than the broad restore profiles.
+- Results:
+  v232 control
+  v233 spr_data only
+  v234 tbl_915E only
+  v235 demo_text_ptrs only
+  v236 logo_palette only
+  v237 core_no_palette
+  v238 core_full
+- Common shape:
+  all seven still stay on the healthy intro/story lane
+  all seven still end at PC=$000F34
+  all seven keep strong NMI health (794 completions)
+- The important split:
+  v233, v235, and v236 each wake 24 PPU events
+  v232, v234, v237, and v238 do not
+- Interpretation:
+  - tbl_915E is probably not the main active lever
+  - tbl_90EE_spr_data, tbl_94AD_demo_manual_text, and tbl_94EE_logo_palette each touch the live path
+  - but combining more core labels can suppress the useful effect again
+  - so the remaining problem is likely in interactions between those three labels, not in tbl_915E
+
+Current best narrowed hypothesis
+- The highest-ROI data labels for the intro/story lane are now:
+  tbl_90EE_spr_data:
+  tbl_94AD_demo_manual_text:
+  tbl_94EE_logo_palette:
+- That lines up with the visible behavior:
+  - story text is partially readable
+  - palette/background still look wrong
+  - sprite/title polish may also be involved
+
+New tighter combo batch already built
+- Focused combo batch:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v239.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v240.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v241.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v242.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v243.md
+- Batch builder:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\build_intro_signal_batch.py
+- Variants:
+  v239 control
+  v240 text + palette
+  v241 spr_data + text
+  v242 spr_data + palette
+  v243 spr_data + text + palette
+
+What v239-v243 proved
+- v239-v242 all stayed on the same healthy intro/story lane:
+  - strong NMI (`794`)
+  - `PC=$000F34`
+  - no real finish-line jump
+- v243 was a regression:
+  - only `18` NMI completions
+  - `PC=$0013A8`
+  - `PPU events captured: 24`
+- The practical split:
+  - `text + palette` definitely changes the live buffer family
+  - `spr_data + text + palette` trips the wrong path
+  - `tbl_915E` remains low-value
+- That means the active intro labels are real, but data-table combinations alone are not the final blocker.
+
+Key pattern discovered (v250-v253):
+- demo_text + logo_palette combination = 0 PPU events (SUPPRESSOR)
+- spr_data + logo_palette = 24 PPU events (healthy)
+- demo_text alone = 24 PPU events (healthy)
+- logo_palette alone = 0 PPU events
+- The suppressor is specifically the demo_text + logo_palette interaction
+- Triple combo (spr_data + text + palette) causes regression (18 NMI, PC=$0013A8)
+
+Most important new code-level finding
+- The next real bug was not another missing table. It was a broken live helper routine in bank 02:
+  - `sub_973A` / `loc_9792`
+  - file:
+    C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated\bank_02_gen68k.asm
+- Comparing the translated code against the NES original showed missing live operations in the healthy intro/manual lane:
+  - missing `LDY ram_042B_enemy + $03` at original `02:974F`
+  - missing second sprite-X write at `02:978B`
+  - missing `STA ram_042B_enemy + $05` at `02:978F`
+  - missing `INC ram_042B_enemy + $04` at `02:9792`
+- Those were restored in the generated source-of-truth file.
+- One assembler issue had to be corrected too:
+  - `ram_pos_X_enemy+1(D1.L)` was not accepted by the 68000 backend
+  - it was rewritten as:
+    `MOVEA.L #ram_pos_X_enemy+1,A0`
+    `MOVE.B  D0,(A0,D1.L)`
+
+Why this helper bug matters more than the old table-only batches
+- It is on the live healthy intro/manual path, not a speculative dead branch.
+- It affects sprite/helper state used while the intro/story screen is being assembled.
+- It is a concrete code divergence from the NES original, not just “maybe missing data.”
+
+Newest batch already built from that repair
+- Focused helper-fix intro batch:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v244.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v245.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v246.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v247.md
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v248.md
+- Batch builder:
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\build_intro_helper_fix_batch.py
+- Variants:
+  v244 control
+  v245 spr_data
+  v246 demo_text
+  v247 text_palette
+  v248 spr_text_palette
+
+Current best recommendation
+- Do not go back to broad random build batches.
+- The intro/story lane is still the healthiest natural lane.
+- The newest best hypothesis is:
+  the remaining corruption is caused by broken live bank-02 intro/manual helper logic plus specific intro data, not by missing table data alone.
+- Run `v244-v248` next and compare them against the recent control-family behavior.
+- If any of them keep the healthy `794`-NMI lane but materially improve story layout/colors/text, pivot hard to that exact variant.
 
 Strongly relevant files for another AI to inspect
-- Current healthy-lane diag bundle:
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v226.txt
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v227.txt
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v228.txt
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v229.txt
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v230.txt
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v231.txt
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v226.csv
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v227.csv
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v228.csv
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v229.csv
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v230.csv
-  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_menu_v231.csv
+- Current healthy-lane diag bundle (v249-v253):
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v249.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v250.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v251.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v252.txt
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\diag_report_v253.txt
+
+- Oracle trace files (ready for comparison):
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\oracle_trace_zelda_v251.csv
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Files I Want\oracle_trace_zelda_v252.csv
 
 - NES oracle files:
   C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_trace_current_nes.csv
@@ -172,20 +312,60 @@ Strongly relevant files for another AI to inspect
   C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_06_gen68k_vdp.asm
   C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\bridge\vdp_layer.asm
 
-Open questions for another AI
-1. In the healthy intro lane, which exact bank-02 intro data label is the true missing piece?
-2. Are the corrupted intro/story visuals mainly a data problem, a palette problem, a sprite-data problem, or a background/tilemap decode problem?
-3. Is the late fallback to the $0302 sentinel path happening at the right time but being rendered incorrectly, or is the transition itself happening too early?
-4. Does v231's extra PPU event activity point to progress, or is it simply waking the wrong legacy fallback path?
-5. Is bank-06 legacy pointer handling still masking a good intro lane that bank-02 is already building correctly?
+- Automation scripts (new this session):
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\run_batch.ps1
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\run_oracle_trace.ps1
+  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\tools\diag_matrix.py
 
-Current best recommendation
-- Do not go back to broad random build batches.
-- Run the new one-label isolation batch v232-v238.
-- Compare late screenshots and diag_menu output first.
-- If one label clearly improves the intro screen, pivot hard to that sub-lane.
+Open questions for another AI
+1. Where exactly does v252 diverge from v251 in the oracle trace? (Run trace_diff.py)
+2. Is the suppressor in the helper routine (sub_973A) or in downstream PPU buffer handling?
+3. Does the logo_palette data trigger an early exit condition that demo_text doesn't?
+4. What is the exact fix needed in bank_02_gen68k.asm to allow demo_text + logo_palette to coexist?
+5. Once the suppressor is fixed, will v252-class builds finally show correct intro/story rendering?
+
+Latest trace-comparison result (after fixing the missing v251 oracle event export)
+- v251 summary is now complete and confirms:
+  - `Sequence event count: 404`
+  - `PPU event count: 24`
+- v252 still shows:
+  - `Sequence event count: 404`
+  - `PPU event count: 0`
+- The first meaningful v251/v252 split is earlier than the PPU event burst:
+  - frame `44`
+  - v251 `PC=016602`
+  - v252 `PC=016626`
+- Those PCs map into bank 05, not bank 02:
+  - `016602` = still in `b05_bra_B4FB_loop`
+  - `016626` = already in `b05_bra_B51C`
+  - source:
+    C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_05_gen68k_vdp.asm
+- Immediate side effect at the same frame:
+  - the PPU buffer bytes diverge at `$0303-$0309`
+  - v251: `3C 00 23 13 C1 00 FF`
+  - v252: `00 20 36 0F 00 10 36`
+- The later `PPU_REQ_RES` split around frame `88` is not the root cause:
+  - it is just `ppu_buf_title_screen_real` moving because ROM layout changed
+  - v251 resolves that label at `00017625`
+  - v252 resolves that same label at `00017649`
+- Interpretation:
+  - the suppressor is probably upstream control flow in bank 05
+  - it is not just a bad bank-6 pointer or a bank-6 decoder-only bug
+  - the key branch to inspect is around `loc_B528` / `b05_bra_B51C`, where `BTST D0,ram_0000_t41` decides whether the scan loop advances
+
+Newest tooling update for the next pass
+- `diag/scripts/zelda_oracle_trace.lua` now watches explicit bank-05 branch-driver state:
+  - `ram_00E7`
+  - `ram_map_location`
+  - `ram_next_map_location`
+  - `ram_0000_t41`
+  - `ram_0000_t42`
+- `diag/scripts/zelda_diag_v9.lua` now exports the same fields in the menu CSV / report-oriented watch set.
+- `tools/trace_diff.py` now focuses on those branch fields plus the early PPU buffer bytes, so the next diff should name the exact branch state change instead of only the diverging PC.
 
 Short status line
 - The port is no longer stuck at boot/NMI bring-up.
 - The healthiest current lane reaches the Zelda intro/story flow and shows partially readable story text.
-- The current problem is getting the intro/story screen and later title/demo content to render correctly, most likely due to still-bad or still-missing bank-02 intro data.
+- The current problem is a specific data interaction (demo_text + logo_palette) that kills PPU events.
+- The suppressor pattern is identified; root cause analysis via oracle trace comparison is ready to run.
+- Next milestone: Find and fix the exact code that mishandles the palette data when combined with demo_text.

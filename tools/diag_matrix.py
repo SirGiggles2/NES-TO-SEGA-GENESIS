@@ -24,6 +24,10 @@ LEGACY_CRASH_RE = re.compile(r"EXCEPTION_HANDLER hit! crash_pc=\$(?P<pc>[0-9A-Fa
 CHECKPOINT_RE = re.compile(r"Last checkpoint:\s+\$(?P<id>[0-9A-Fa-f]{4})\s+(?P<name>.*)")
 TRACE_SEQ_RE = re.compile(r"Trace sequence:\s+(?P<seq>\d+)")
 FAULT_RE = re.compile(r"Fault address:\s+\$(?P<addr>[0-9A-Fa-f]{8})")
+NMI_COUNT_RE = re.compile(r"NMI completion count:\s+(\d+)")
+PPU_EVT_RE = re.compile(r"PPU events captured:\s+(\d+)")
+SEQ_EVT_RE = re.compile(r"SEQ_EVT_COUNT.*?\$([0-9A-Fa-f]+)\s+\d+\s+\$[0-9A-Fa-f]+\s+\$[0-9A-Fa-f]+")
+STUCK_PC_RE = re.compile(r"CPU STUCK at PC=\$([0-9A-Fa-f]+)")
 LISTING_RE = re.compile(r"^\d\d:([0-9A-Fa-f]{8})\s+[0-9A-Fa-f]+\s+\d+:\s+(.*)$")
 
 
@@ -40,6 +44,10 @@ class ReportSummary:
     last_checkpoint_name: str | None
     trace_seq: int | None
     fault_addr: int | None
+    nmi_count: int | None
+    ppu_events: int | None
+    seq_events: int | None
+    stuck_pc: int | None
 
 
 def version_key(name: str) -> tuple[int, str]:
@@ -60,6 +68,10 @@ def parse_report(path: pathlib.Path) -> ReportSummary:
     last_checkpoint_name = None
     trace_seq = None
     fault_addr = None
+    nmi_count = None
+    ppu_events = None
+    seq_events = None
+    stuck_pc = None
 
     for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
         if rom_name == path.stem:
@@ -97,6 +109,22 @@ def parse_report(path: pathlib.Path) -> ReportSummary:
             match = FAULT_RE.search(line)
             if match:
                 fault_addr = int(match.group("addr"), 16)
+        if nmi_count is None:
+            match = NMI_COUNT_RE.search(line)
+            if match:
+                nmi_count = int(match.group(1))
+        if ppu_events is None:
+            match = PPU_EVT_RE.search(line)
+            if match:
+                ppu_events = int(match.group(1))
+        if seq_events is None:
+            match = SEQ_EVT_RE.search(line)
+            if match:
+                seq_events = int(match.group(1), 16)
+        if stuck_pc is None:
+            match = STUCK_PC_RE.search(line)
+            if match:
+                stuck_pc = int(match.group(1), 16)
 
     return ReportSummary(
         report_path=path,
@@ -110,6 +138,10 @@ def parse_report(path: pathlib.Path) -> ReportSummary:
         last_checkpoint_name=last_checkpoint_name,
         trace_seq=trace_seq,
         fault_addr=fault_addr,
+        nmi_count=nmi_count,
+        ppu_events=ppu_events,
+        seq_events=seq_events,
+        stuck_pc=stuck_pc,
     )
 
 
@@ -165,33 +197,32 @@ def main(argv: list[str]) -> int:
 
     summaries = [parse_report(path) for path in reports]
 
-    print("ROM        Frames  Score   Crash PC   Vector  Checkpoint  Trace  Fault Addr  Listing")
-    print("-" * 110)
+    print("ROM        Frames  Score   NMI   PPU  SEQ    Stuck_PC   Crash PC   Vector  Checkpoint")
+    print("-" * 95)
     for summary in summaries:
         rom_base = pathlib.Path(summary.rom_name).stem
         listing = BUILD_DIR / f"{rom_base}.lst"
         vector = summary.crash_vector or "-"
         checkpoint = summary.last_checkpoint or "-"
-        trace_seq = str(summary.trace_seq) if summary.trace_seq is not None else "-"
+        nmi = str(summary.nmi_count) if summary.nmi_count is not None else "-"
+        ppu = str(summary.ppu_events) if summary.ppu_events is not None else "-"
+        seq = f"${summary.seq_events:04X}" if summary.seq_events is not None else "-"
+        stuck = f"${summary.stuck_pc:06X}" if summary.stuck_pc is not None else "-"
         crash_pc = f"${summary.crash_pc:08X}" if summary.crash_pc is not None else "-"
-        fault_addr = f"${summary.fault_addr:08X}" if summary.fault_addr is not None else "-"
-        listing_hit = lookup_listing(summary.crash_pc, listing)
         print(
             f"{rom_base:<10} "
             f"{str(summary.frames or '-'):>6}  "
             f"{format_score(summary.score):<7} "
+            f"{nmi:>4}  "
+            f"{ppu:>3}  "
+            f"{seq:<6} "
+            f"{stuck:<10} "
             f"{crash_pc:<10} "
             f"{vector:<6} "
-            f"{checkpoint:<10} "
-            f"{trace_seq:<5} "
-            f"{fault_addr:<10} "
-            f"{listing_hit}"
+            f"{checkpoint}"
         )
         if summary.crash_name:
             print(f"  crash: {summary.crash_name}")
-        if summary.last_checkpoint_name:
-            print(f"  trace: {summary.last_checkpoint_name}")
-        print(f"  report: {summary.report_path}")
 
     return 0
 
