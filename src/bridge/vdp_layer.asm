@@ -47,10 +47,14 @@ RAM_FOR_2000    EQU $FFFF00FF
 RAM_SCROLL_Y    EQU $FFFF00FC
 RAM_SCROLL_X    EQU $FFFF00FD
 PLANE_A_MAP_BASE EQU $C000
+PLANE_B_MAP_BASE EQU $E000
 PPU_NT_SHADOW   EQU $00FF8200
 PPU_PAL_SHADOW  EQU $00FF9200
 PPU_CHR_SHADOW  EQU $00FFC000
-PPU_NT_MIRROR_MASK EQU $07FF
+PPU_NT_MIRROR_MASK EQU $03FF
+NES_BACKDROP_TILE_INDEX EQU $0200
+NES_BACKDROP_TILE_VRAM  EQU $4000
+NES_BACKDROP_CRAM_INDEX EQU $000F
 
 
 VDP_INIT:
@@ -70,6 +74,7 @@ VDP_INIT:
     move.w  #$9200,($C00004)
 
     bsr     VDP_CLEAR_VRAM
+    bsr     VDP_INIT_NES_BACKDROP
     bsr     VDP_LOAD_NES_PALETTE
 
     clr.b   (PPUCTRL_SHADOW).l
@@ -240,7 +245,13 @@ PPU_WRITE_2007:
     lea     (PPU_PAL_SHADOW).l,A0
     move.b  D0,(A0,D4.w)
     bsr     NES_PAL_TO_BGR555
-    move.w  D0,($C00000)
+    move.w  D0,D5
+    move.w  D5,($C00000)
+    tst.w   D4
+    bne     .palette_done
+    move.w  D5,D0
+    bsr     VDP_SYNC_NES_BACKDROP_COLOR
+.palette_done:
     bsr     PPU_INVALIDATE_PLANE_CACHE
     bsr     PPU_ADVANCE_VRAM_ADDR
     rts
@@ -366,6 +377,35 @@ VDP_LOAD_NES_PALETTE:
 .pal_loop:
     move.w  (A0)+,($C00000)
     dbra    D7,.pal_loop
+    move.w  NES_PALETTE_DATA,D0
+    bsr     VDP_SYNC_NES_BACKDROP_COLOR
+    rts
+
+VDP_INIT_NES_BACKDROP:
+    movem.l D0/D7,-(A7)
+    move.w  #NES_BACKDROP_TILE_VRAM,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  #15,D7
+.tile_loop:
+    move.w  #$FFFF,($C00000)
+    dbra    D7,.tile_loop
+    move.w  #PLANE_B_MAP_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  #2047,D7
+.plane_loop:
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    dbra    D7,.plane_loop
+    movem.l (A7)+,D0/D7
+    rts
+
+VDP_SYNC_NES_BACKDROP_COLOR:
+    move.w  D0,D1
+    move.w  #NES_BACKDROP_CRAM_INDEX,D4
+    lsl.w   #1,D4
+    swap    D4
+    ori.l   #$C0000000,D4
+    move.l  D4,($C00004)
+    move.w  D1,($C00000)
     rts
 
 NES_PAL_TO_BGR555:

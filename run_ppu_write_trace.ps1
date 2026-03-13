@@ -13,6 +13,8 @@ $LOCK_PATH = "$PROJECT\diag\scripts\zelda_ppu_write_trace.lock"
 
 $BaseName = [System.IO.Path]::GetFileNameWithoutExtension($Rom)
 $RomPath  = "$BUILD_DIR\$BaseName.md"
+$ReportPath = "$PROJECT\diag\reports\ppu_writes_${BaseName}.csv"
+$DonePath = "$PROJECT\diag\reports\ppu_writes_${BaseName}.done"
 
 if (-not (Test-Path $BIZHAWK)) {
     Write-Error "EmuHawk.exe not found at: $BIZHAWK"
@@ -26,6 +28,7 @@ if (-not (Test-Path $RomPath)) {
 
 $LockAcquired = $false
 $OriginalLuaContent = $null
+$PreviousDoneWriteTime = $null
 
 try {
     if (Test-Path $LOCK_PATH) {
@@ -38,13 +41,54 @@ try {
     $OriginalLuaContent = [System.IO.File]::ReadAllText($SCRIPT)
     $UpdatedLuaContent = $OriginalLuaContent -replace 'local TRACE_HINT = .*', "local TRACE_HINT = `"$BaseName`" -- auto-set by runner"
     [System.IO.File]::WriteAllText($SCRIPT, $UpdatedLuaContent)
+    if (Test-Path $DonePath) {
+        $PreviousDoneWriteTime = (Get-Item $DonePath).LastWriteTimeUtc
+    }
 
     $BizArgs = @(
         "`"$RomPath`"",
         "`"--lua=$SCRIPT`""
     )
-    $proc = Start-Process -FilePath $BIZHAWK -ArgumentList $BizArgs -Wait -PassThru
-    if ($proc.ExitCode -ne 0) {
+    $proc = Start-Process -FilePath $BIZHAWK -ArgumentList $BizArgs -PassThru
+
+    $timeout = [TimeSpan]::FromMinutes(3)
+    $deadline = [DateTime]::UtcNow + $timeout
+    while ([DateTime]::UtcNow -lt $deadline) {
+        Start-Sleep -Milliseconds 250
+        if ($proc.HasExited) {
+            break
+        }
+        if (Test-Path $DonePath) {
+            $doneTime = (Get-Item $DonePath).LastWriteTimeUtc
+            if ($null -eq $PreviousDoneWriteTime -or $doneTime -gt $PreviousDoneWriteTime) {
+                break
+            }
+        }
+    }
+
+    if (-not $proc.HasExited) {
+        if ($proc.CloseMainWindow()) {
+            Start-Sleep -Seconds 2
+            $proc.Refresh()
+        }
+        if (-not $proc.HasExited) {
+            Stop-Process -Id $proc.Id -Force
+        }
+    }
+
+    $Completed = $false
+    if (Test-Path $DonePath) {
+        $doneTime = (Get-Item $DonePath).LastWriteTimeUtc
+        if ($null -eq $PreviousDoneWriteTime -or $doneTime -gt $PreviousDoneWriteTime) {
+            $Completed = $true
+        }
+    }
+
+    if (-not $Completed -and -not (Test-Path $ReportPath)) {
+        throw "PPU write trace did not produce $ReportPath"
+    }
+
+    if (-not $Completed -and $proc.HasExited -and $proc.ExitCode -ne 0) {
         throw "BizHawk exited with code $($proc.ExitCode)"
     }
 }

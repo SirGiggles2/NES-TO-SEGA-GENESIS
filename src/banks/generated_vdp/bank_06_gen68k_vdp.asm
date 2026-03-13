@@ -6722,6 +6722,10 @@ sub_0x01A090_write_buffer_to_ppu:  ; orig: sub_0x01A090_write_buffer_to_ppu:
     MOVE.W  D1,(TRACE_PPU_INDEX).l
     CLR.W   (TRACE_PPU_PTR_RAW).l
     CLR.L   (TRACE_PPU_PTR_RES).l
+    CLR.B   (TRACE_PPU_ROM_REC_HI).l
+    CLR.B   (TRACE_PPU_ROM_REC_LO).l
+    CLR.B   (TRACE_PPU_ROM_REC_CTRL).l
+    CLR.L   (TRACE_PPU_ROM_REC_DATA).l
     MOVEQ   #$00,D5
     MOVEA.L #tbl_A000_ppu_data+1,A0
     MOVE.B  (A0,D1.L),D5
@@ -6813,7 +6817,9 @@ b06_bra_A0A2_loop:  ; orig: b06_bra_A0A2_loop:
 b06_bra_A0B8_inc_by_1:
     ANDI.B  #$FB,D0
 b06_bra_A0B9:  ; orig: b06_bra_A0B9:
+    MOVE.W  D4,-(A7)
     BSR     PPU_WRITE_2000
+    MOVE.W  (A7)+,D4
     MOVE.B  D0,ram_for_2000  ; orig: C - - - - - 0x01A0CC 06:A0BC: 85 FF     STA ram_for_2000
     MOVEQ   #$00,D1
     MOVEQ   #$00,D6
@@ -6849,7 +6855,9 @@ b06_bra_A0D1_write_the_same_byte:  ; orig: b06_bra_A0D1_write_the_same_byte:
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
 
+    MOVE.W  D1,-(A7)
     BSR     PPU_WRITE_2007
+    MOVE.W  (A7)+,D1
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01A0E6 06:A0D6: CA        DEX
     BNE     b06_bra_A0CE_loop             ; BNE  ; orig: C - - - - - 0x01A0E7 06:A0D7: D0 F5     BNE b06_bra_A0CE_loop
 
@@ -7205,17 +7213,26 @@ b06_bra_b06_ppu_buf_bat_trace:
 
 sub_b06_write_ppu_buffer_rom:
     BSR     PPU_READ_2002
+    BSR     sub_b06_apply_staged_title_palette_if_needed
 b06_bra_b06_rom_buffer_next_record:
     MOVEQ   #$00,D2
     MOVE.B  (A1)+,D2
     CMPI.B  #$FF,D2
     BEQ     b06_bra_b06_rom_buffer_done
+    MOVE.B  D2,(TRACE_PPU_ROM_REC_HI).l
     MOVE.B  D2,D0
+    MOVE.L  A1,-(A7)
     BSR     PPU_WRITE_2006
+    MOVEA.L (A7)+,A1
     MOVE.B  (A1)+,D0
+    MOVE.B  D0,(TRACE_PPU_ROM_REC_LO).l
+    MOVE.L  A1,-(A7)
     BSR     PPU_WRITE_2006
+    MOVEA.L (A7)+,A1
     MOVEQ   #$00,D3
     MOVE.B  (A1)+,D3
+    MOVE.B  D3,(TRACE_PPU_ROM_REC_CTRL).l
+    MOVE.L  A1,(TRACE_PPU_ROM_REC_DATA).l
     MOVE.B  ram_for_2000,D0
     BTST    #7,D3
     BEQ     b06_bra_b06_rom_inc_by_1
@@ -7224,7 +7241,11 @@ b06_bra_b06_rom_buffer_next_record:
 b06_bra_b06_rom_inc_by_1:
     ANDI.B  #$FB,D0
 b06_bra_b06_rom_write_ppuctrl:
+    MOVE.L  D3,-(A7)
+    MOVE.L  A1,-(A7)
     BSR     PPU_WRITE_2000
+    MOVEA.L (A7)+,A1
+    MOVE.L  (A7)+,D3
     MOVE.B  D0,ram_for_2000
     MOVEQ   #$00,D1
     MOVE.B  D3,D1
@@ -7236,7 +7257,11 @@ b06_bra_b06_rom_count_ready:
     BNE     b06_bra_b06_rom_repeat_mode
 b06_bra_b06_rom_literal_loop:
     MOVE.B  (A1)+,D0
+    MOVE.L  A1,-(A7)
+    MOVE.W  D1,-(A7)
     BSR     PPU_WRITE_2007
+    MOVE.W  (A7)+,D1
+    MOVEA.L (A7)+,A1
     SUBQ.W  #1,D1
     BNE     b06_bra_b06_rom_literal_loop
     BRA     b06_bra_b06_rom_palette_fix
@@ -7244,20 +7269,51 @@ b06_bra_b06_rom_repeat_mode:
     MOVE.B  (A1)+,D4
 b06_bra_b06_rom_repeat_loop:
     MOVE.B  D4,D0
+    MOVE.L  A1,-(A7)
+    MOVE.W  D1,-(A7)
+    MOVE.W  D4,-(A7)
     BSR     PPU_WRITE_2007
+    MOVE.W  (A7)+,D4
+    MOVE.W  (A7)+,D1
+    MOVEA.L (A7)+,A1
     SUBQ.W  #1,D1
     BNE     b06_bra_b06_rom_repeat_loop
 b06_bra_b06_rom_palette_fix:
     CMPI.B  #$3F,D2
     BNE     b06_bra_b06_rom_buffer_next_record
     MOVE.B  #$3F,D0
+    MOVE.L  A1,-(A7)
     BSR     PPU_WRITE_2006
+    MOVEA.L (A7)+,A1
     MOVEQ   #$00,D0
+    MOVE.L  A1,-(A7)
     BSR     PPU_WRITE_2006
+    MOVEA.L (A7)+,A1
+    MOVE.L  A1,-(A7)
     BSR     PPU_WRITE_2006
+    MOVEA.L (A7)+,A1
+    MOVE.L  A1,-(A7)
     BSR     PPU_WRITE_2006
+    MOVEA.L (A7)+,A1
     BRA     b06_bra_b06_rom_buffer_next_record
 b06_bra_b06_rom_buffer_done:
+    RTS
+
+
+
+sub_b06_apply_staged_title_palette_if_needed:
+    CMPA.L  #ppu_buf_title_screen_real,A1
+    BNE     b06_bra_b06_title_palette_done
+    TST.B   (PPU_PAL_SHADOW+$01).l
+    BNE     b06_bra_b06_title_palette_done
+    CMPI.B  #$3F,(ram_0302_ppu_buffer).l
+    BNE     b06_bra_b06_title_palette_done
+    MOVE.L  A1,-(A7)
+    LEA     (ram_0302_ppu_buffer).l,A1
+    BSR     b06_bra_b06_rom_buffer_next_record
+    MOVEA.L (A7)+,A1
+    BSR     PPU_READ_2002
+b06_bra_b06_title_palette_done:
     RTS
 
 

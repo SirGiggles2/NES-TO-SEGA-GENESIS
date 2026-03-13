@@ -577,3 +577,334 @@ Updated next step after v319
    - why the recovered lane still renders corrupt visuals
 3. Use `v319` as the new stable Genesis reference lane for all further title
    rendering traces and screenshots.
+
+Additional bank-6 title findings after v319
+
+v352: palette wipe fixed, title screen became visible
+- Root cause fixed in `src\banks\generated\bank_06_gen68k.asm` and
+  `src\banks\generated_vdp\bank_06_gen68k_vdp.asm`:
+  - the legacy bank-6 `$0302` writer was letting `PPU_WRITE_2007` clobber the
+    live byte-count register during palette writes
+  - that caused the title palette upload to overrun into mirrored `$3F20+`
+    addresses and wipe earlier palette entries back to zero
+- Fix applied:
+  - save/restore `D1` around `PPU_WRITE_2007` in the legacy literal loop
+  - save/restore `D1` around `PPU_WRITE_2007` in the ROM literal loop
+  - save/restore `D1` and `D4` around `PPU_WRITE_2007` in the ROM repeat loop
+- Result:
+  - `v352` keeps `pal_sh_00..07 = 36 0F 00 10 36 17 27 0F` through the title
+    wake instead of losing them at frame `59`
+  - title screenshots became visible instead of mostly black
+  - oracle moved to:
+    - `Sequence event count: 589`
+    - `PPU event count: 815`
+  - `diag_report_v352.txt` still reaches the long `$000FC2` idle lane, but that
+    is likely heuristic noise rather than the active title bug
+
+Focused write-trace result on v352
+- `diag\scripts\zelda_ppu_write_trace.lua` was extended to log direct
+  `PPU_PAL_SHADOW` writes.
+- This showed the remaining title bug is not “palette never applied.”
+- Instead, only the first 24 title palette bytes are actually reaching
+  `PPU_PAL_SHADOW`:
+  - loaded in `v352`:
+    - `00-17 = 36 0F 00 10 36 17 27 0F 36 08 1A 28 36 30 3B 22`
+    - `10-17 = 00 30 3B 16 00 17 27 0F`
+  - missing in `v352`:
+    - `18-1F` never receive the final 8 bytes from
+      `tbl_94EE_logo_palette`
+- This matches the visible symptom:
+  - title/file-select layout is present
+  - logo colors are still wrong because the last palette quarter is missing
+
+Why the palette truncates in v352
+- `tbl_94EE_logo_palette` is correct in bank 02:
+  - header: `3F 00 20`
+  - payload: full 32 palette bytes
+  - terminator: `FF`
+- The v352 write trace proved bank 6 was only materializing the first 24 bytes.
+- The live suspect is the legacy bank-6 parser in `sub_A0F6_write_to_ppu`:
+  - raw control byte is preserved in `D4`
+  - then `PPU_WRITE_2000` is called
+  - then the count in `D1` is derived from `D4`
+- In `src\bridge\vdp_layer.asm`, `PPU_WRITE_2000` definitely clobbers `D4`
+  while composing the VDP register write.
+- So the most likely explanation is:
+  - the legacy parser is no longer using the original `$20` control byte after
+    the `PPU_WRITE_2000` call
+  - that is why the effective palette upload behaves like 24 bytes instead of 32
+
+v353: attempted fix for the truncated 32-byte title palette
+- New patch applied in both bank-6 source variants:
+  - save/restore `D4` around the `PPU_WRITE_2000` call in the legacy parser so
+    the raw control byte survives long enough to derive the correct literal count
+- Build:
+  - `v353`
+- Immediate oracle result:
+  - regression
+  - `Sequence event count: 33`
+  - `PPU event count: 41`
+  - `screen_ready` first frame: `105`
+  - `PPU_REQ_INDEX` / `PPU_REQ_RES` first frame: `106`
+- So `v353` is not the new baseline.
+- Best tested version remains:
+  - `v352`
+
+Best current interpretation
+- `v352` is the current best lane because it fixed the major palette wipe and
+  made the title screen visible.
+- The remaining live rendering bug is now narrow:
+  - bank 6 is still failing to upload the last 8 bytes of the title palette
+- `v353` is the first attempt to fix that truncation, but it regressed the title
+  path badly enough that it should not replace `v352` yet.
+
+Best next step after v353
+1. Diff `v352` against `v353` right at the legacy palette-record parse to see
+   what else the `D4` save/restore disturbed.
+2. Keep `v352` as the working reference while fixing the 24-byte truncation.
+3. Do not switch the baseline to `v353` unless the title path and event counts
+   recover back to the `v352` neighborhood.
+
+======================================================================
+OPERATIONAL GUIDE FOR THE NEXT AI
+======================================================================
+
+Read this first
+- This repo is not a normal “rewrite Zelda in a higher-level engine” project.
+- It is a low-level NES-to-Genesis port that preserves original Zelda logic and
+  data layout as much as possible, then emulates the NES PPU contract on top of
+  the Genesis VDP.
+- The debugging style that works here is:
+  1. make a very small source/data change
+  2. build a new numbered ROM
+  3. run batch diag and/or oracle trace
+  4. compare artifacts, not gut feelings
+- Do not assume a visual bug is in the renderer until the traces say so.
+- Do not assume a sequence/music split is “just audio” until the traces say so.
+- The project has repeatedly produced bugs where one register-clobber or one
+  table-shape mistake manifests as “graphics”, “audio”, or “title logic.”
+
+What the important directories are
+- `src\main.asm`
+  - Genesis entry point, vectors, crash/trace plumbing, and the inclusion point
+    for the translated bank code and bridge.
+- `src\bridge\vdp_layer.asm`
+  - the heart of the port
+  - emulates NES PPU register behavior using Genesis VDP
+  - includes `PPU_WRITE_2000`, `PPU_WRITE_2006`, `PPU_WRITE_2007`,
+    nametable rendering, palette conversion, CHR shadow flushes, and trace marks
+- `src\banks\generated\`
+  - “editable truth” for translated bank code
+  - if you need to patch translated Zelda logic, patch here first
+- `src\banks\generated_vdp\`
+  - regenerated build products
+  - these are recreated by `build\build.bat`
+  - do not treat these as durable hand-edited source unless you intentionally
+    understand that the next build regeneration may overwrite them
+- `tools\`
+  - all build helpers, batch builders, diff tools, and report summarizers live here
+- `diag\scripts\`
+  - BizHawk Lua scripts used for diag/oracle/focused traces
+- `diag\reports\`
+  - canonical output folder for all reports
+- `diag\reports\Files I Want\`
+  - convenience copy target for the user to inspect/share artifacts quickly
+- `build\`
+  - numbered output ROMs (`zelda_vNNN.md`) and corresponding listings (`.lst`)
+
+How the translated-bank build flow actually works
+- `build\build.bat` does all of this:
+  1. runs `tools\patch_vdp.py`
+     - regenerates `src\banks\generated_vdp\*.asm` from
+       `src\banks\generated\*.asm`
+  2. runs `tools\fix_syntax.py`
+     - normalizes translated syntax for vasm
+  3. assembles `src\main.asm` with `vasmm68k_mot.exe`
+  4. fixes the Genesis checksum with `tools\fix_checksum.py`
+  5. writes the next unused numbered ROM to `build\zelda_vNNN.md`
+- Consequence:
+  - if you only patch `generated_vdp`, your changes may be blown away on the next build
+  - durable changes should usually go in `generated`
+
+How to build a new ROM
+- Command:
+  - `.\build\build.bat`
+- Output:
+  - next unused ROM path: `build\zelda_vNNN.md`
+  - matching listing: `build\zelda_vNNN.lst`
+- Important:
+  - version numbers are auto-assigned by scanning existing `build\zelda_v*.md`
+  - do not guess the next number; let the script allocate it
+
+How to run batch diagnostics
+- Runner:
+  - `run_batch.ps1`
+- Example:
+  - `.\run_batch.ps1 -StartRom zelda_v352`
+- What it does:
+  - rewrites `START_ROM_HINT` in `diag\scripts\zelda_diag_v9.lua`
+  - launches BizHawk on the requested ROM
+  - BizHawk loads the diag script and runs batch mode
+  - the Lua script runs the requested ROM and the next `BATCH_SIZE-1` ROMs
+  - current `BATCH_SIZE` is `5`
+  - when `diag_batch_summary_v9.txt` updates, the PowerShell runner closes BizHawk
+- Outputs:
+  - `diag\reports\diag_report_vNNN.txt`
+  - `diag\reports\diag_menu_vNNN.csv`
+  - screenshots written by the diag script
+  - copied convenience artifacts in `diag\reports\Files I Want\`
+- Important implementation details:
+  - `run_batch.ps1` creates `diag\scripts\zelda_diag_v9.lock`
+  - if that lock remains after a crash, remove it manually before rerunning
+  - the runner restores the Lua script afterward
+- What the batch summary file is:
+  - `diag\reports\diag_batch_summary_v9.txt`
+  - this is the completion signal the runner trusts
+
+How to run a single oracle trace
+- Runner:
+  - `run_oracle_trace.ps1`
+- Example:
+  - `.\run_oracle_trace.ps1 -Rom zelda_v352`
+- What it does:
+  - rewrites `TRACE_HINT` in `diag\scripts\zelda_oracle_trace.lua`
+  - launches BizHawk on a single ROM
+  - captures frame-by-frame CSV state
+  - closes BizHawk automatically when the summary file updates
+  - copies trace artifacts to `Files I Want`
+- Outputs:
+  - `diag\reports\oracle_trace_zelda_vNNN.csv`
+  - `diag\reports\oracle_menu_zelda_vNNN.csv`
+  - `diag\reports\oracle_trace_zelda_vNNN_summary.txt`
+  - `diag\reports\oracle_events_zelda_vNNN.csv`
+  - `diag\reports\oracle_writes_zelda_vNNN.csv`
+- Important implementation details:
+  - lock file:
+    - `diag\scripts\zelda_oracle_trace.lock`
+  - completion signal:
+    - `diag\reports\oracle_trace_zelda_vNNN_summary.txt`
+  - the runner rewrites the Lua file in-place, so do not run two oracle jobs in parallel
+
+How to run a focused PPU/VDP write trace
+- Runner:
+  - `run_ppu_write_trace.ps1`
+- Example:
+  - `.\run_ppu_write_trace.ps1 -Rom zelda_v352`
+- Purpose:
+  - use this only when normal diag/oracle traces are too coarse
+  - this is for answering “what exact shadow writes / VDP writes / render-cell
+    words happened?”
+- Outputs:
+  - `diag\reports\ppu_writes_zelda_vNNN.csv`
+  - `diag\reports\render_cells_zelda_vNNN.csv`
+  - `diag\reports\chr_dirty_zelda_vNNN.csv`
+  - `diag\reports\chr_focus_zelda_vNNN.csv`
+  - completion sentinel:
+    - `diag\reports\ppu_writes_zelda_vNNN.done`
+- What each file is for:
+  - `ppu_writes_...csv`
+    - low-level writes: `vdp_ctrl`, `vdp_data`, `ppu_buf`, and now `pal_shadow`
+  - `render_cells_...csv`
+    - every live `PPU_RENDER_NAMETABLE_CELL` write with the renderer’s expected
+      tileword and palette bits
+  - `chr_dirty_...csv`
+    - per-frame CHR tile dirtiness summary
+  - `chr_focus_...csv`
+    - very focused logging for suspicious title tiles
+
+How to summarize batch reports quickly
+- Tool:
+  - `tools\diag_matrix.py`
+- Example:
+  - `py tools\diag_matrix.py`
+- Purpose:
+  - gives one-line summaries of many diag reports
+  - shows score, NMI count, PPU count, sequence count, stuck PC, crash PC, etc.
+- This is the fastest way to scan a new experiment batch before drilling deeper.
+
+How to diff oracle traces
+- Tool:
+  - `tools\trace_diff.py`
+- Example:
+  - `py tools\trace_diff.py diag\reports\oracle_trace_zelda_v351.csv diag\reports\oracle_trace_zelda_v352.csv`
+- Purpose:
+  - find the first useful divergence between two oracle traces
+  - best for “what changed in the live path?” questions
+- Use oracle event CSVs directly when the main trace is too coarse and the key
+  difference is event order rather than exported RAM state.
+
+When to use each trace mode
+- Use batch diag when:
+  - you have 3-5 ROM variants and need quick comparative health
+  - you care about high-level metrics and screenshots
+- Use oracle trace when:
+  - you need exact frame-by-frame state comparisons
+  - you have narrowed the question to 1-2 ROMs
+- Use focused PPU write trace when:
+  - oracle proves the lane is alive but the rendering is still wrong
+  - you need exact palette shadow writes, render-cell palette bits, or CHR mutations
+
+What the key recurring metrics usually mean
+- High `NMI completion count`
+  - the build is alive; not necessarily correct
+- `PPU event count = 0`
+  - title/intro requests probably never woke or were fully suppressed
+- `PPU event count = 24`
+  - older “recovered but still legacy/fallback” title lane
+- High hundreds of PPU events
+  - often means the title/file-select path is much more awake, but still may be wrong
+- `CPU STUCK at PC=$000F34`, `$000F3C`, or `$000FC2`
+  - often heuristic noise, because these correspond to idle-loop-style states once
+    the engine is alive
+  - treat them as symptoms only if other metrics regress too
+- `screen_ready`
+  - this waking is a strong signal the title lane or follow-on lane advanced
+- `PPU_REQ_INDEX / PPU_REQ_PTR / PPU_REQ_RES`
+  - these are often the best “what buffer is really being requested?” clues in oracle
+
+Current best known state of the project
+- The bank-02 title-data suppressor is fixed in source.
+- The best current title-rendering baseline is:
+  - `v352`
+- `v352` is not fully correct visually, but it is far better than the pre-fix lanes:
+  - the title palette no longer gets wiped to black
+  - the title/file-select screen becomes visible
+- The remaining live issue is narrow:
+  - bank 6 still fails to upload the last 8 bytes of the title palette
+- The first attempted fix for that truncation:
+  - `v353`
+  - currently regresses the title lane and is not the baseline
+
+Current best tested version
+- `v352`
+
+Current main bug track
+- Area:
+  - bank 6 legacy title palette handling
+- Symptom:
+  - only 24 of 32 title palette bytes reach `PPU_PAL_SHADOW`
+- Evidence:
+  - focused `pal_shadow` write trace in `v352`
+  - `tbl_94EE_logo_palette` in bank 02 is correct and contains all 32 bytes
+- Most likely remaining cause:
+  - one more state/register preservation issue in the legacy bank-6 palette record parser
+  - likely near the `PPU_WRITE_2000` path and raw control-byte handling
+
+What the next AI should avoid doing
+- Do not restart from the old “forced menu/title” theory.
+- Do not treat `generated_vdp` edits as durable unless you also patch the source
+  side in `generated` or understand the regeneration flow.
+- Do not run multiple oracle or PPU-trace jobs at once; the Lua-rewrite runners use
+  lock files and shared scripts.
+- Do not assume `v353` is progress just because it is newer.
+- Do not conflate “audio/sequence changed” with “this is now a music task.”
+  The title bug has repeatedly shown up through sequence-side evidence.
+
+Recommended next action
+1. Keep `v352` as the baseline.
+2. Diff `v352` and `v353` around the legacy palette-record parse.
+3. Repair the missing final 8 palette bytes without breaking the recovered `v352` title lane.
+4. Once the full 32-byte title palette lands, rerun:
+   - `.\run_oracle_trace.ps1 -Rom zelda_vNNN`
+   - `.\run_batch.ps1 -StartRom zelda_vNNN`
+   - and inspect both screenshots and `pal_shadow` writes.
