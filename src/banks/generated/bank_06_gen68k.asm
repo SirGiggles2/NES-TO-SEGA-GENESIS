@@ -7130,7 +7130,6 @@ bra_b06_ppu_buf_bat_trace:
 
 sub_b06_write_ppu_buffer_rom:
     BSR     PPU_READ_2002
-    BSR     sub_b06_apply_staged_title_palette_if_needed
 bra_b06_rom_buffer_next_record:
     MOVEQ   #$00,D2
     MOVE.B  (A1)+,D2
@@ -7214,23 +7213,6 @@ bra_b06_rom_palette_fix:
     MOVEA.L (A7)+,A1
     BRA     bra_b06_rom_buffer_next_record
 bra_b06_rom_buffer_done:
-    RTS
-
-
-
-sub_b06_apply_staged_title_palette_if_needed:
-    CMPA.L  #ppu_buf_title_screen_real,A1
-    BNE     bra_b06_title_palette_done
-    TST.B   (PPU_PAL_SHADOW+$01).l
-    BNE     bra_b06_title_palette_done
-    CMPI.B  #$3F,(ram_0302_ppu_buffer).l
-    BNE     bra_b06_title_palette_done
-    MOVE.L  A1,-(A7)
-    LEA     (ram_0302_ppu_buffer).l,A1
-    BSR     bra_b06_rom_buffer_next_record
-    MOVEA.L (A7)+,A1
-    BSR     PPU_READ_2002
-bra_b06_title_palette_done:
     RTS
 
 

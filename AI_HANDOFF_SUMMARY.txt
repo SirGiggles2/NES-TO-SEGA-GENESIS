@@ -862,49 +862,80 @@ What the key recurring metrics usually mean
 - `PPU_REQ_INDEX / PPU_REQ_PTR / PPU_REQ_RES`
   - these are often the best “what buffer is really being requested?” clues in oracle
 
-Current best known state of the project
-- The bank-02 title-data suppressor is fixed in source.
-- The best current title-rendering baseline is:
-  - `v352`
-- `v352` is not fully correct visually, but it is far better than the pre-fix lanes:
-  - the title palette no longer gets wiped to black
-  - the title/file-select screen becomes visible
-- The remaining live issue is narrow:
-  - bank 6 still fails to upload the last 8 bytes of the title palette
-- The first attempted fix for that truncation:
-  - `v353`
-  - currently regresses the title lane and is not the baseline
+v354: surgical fix — removed staged-palette pre-apply function
+- Root cause of v353 regression identified:
+  - `sub_b06_apply_staged_title_palette_if_needed` was added to the start of
+    `sub_b06_write_ppu_buffer_rom`
+  - It called `bra_b06_rom_buffer_next_record` with A1 pointing to `ram_0302_ppu_buffer`
+  - This ran a full palette record through the ROM-path parser BEFORE the main title-screen
+    buffer, corrupting PPU VRAM state and collapsing the title lane
+- Fix applied in `src\banks\generated\bank_06_gen68k.asm`:
+  - Removed `BSR sub_b06_apply_staged_title_palette_if_needed` call
+  - Removed the function body entirely
+  - `patch_vdp.py` regenerated `generated_vdp\bank_06_gen68k_vdp.asm` cleanly
+- The D4 save/restore around `PPU_WRITE_2000` in the legacy path remains in place:
+  - This is the correct fix for the 24→32 byte count truncation
+  - Without it: PPU_WRITE_2000 clobbered D4 to PPUMASK_SHADOW&$18 = $18 = 24
+  - With it: D4 preserved as $20 (real control byte), count = $20&$3F = 32 ✓
+- The D1 save/restore around `PPU_WRITE_2007` in the legacy write loop also remains
+- All ROM-path register saves (A1 around PPU_WRITE_2006, A1+D3 around PPU_WRITE_2000,
+  A1+D1 around PPU_WRITE_2007 in literal loop, A1+D1+D4 in repeat loop) remain
 
 Current best tested version
-- `v352`
+- `v352` (still unverified: v354 is the first candidate to have 32-byte palette)
 
-Current main bug track
+Current best pending test
+- `v354`
+- Expected behavior vs v352:
+  - Should recover to v352 PPU/SEQ neighborhood (815 PPU events, 589 seq events)
+    since the ROM path is now v352-equivalent (no staged palette pre-apply)
+  - Should ALSO write all 32 title palette bytes instead of 24
+    since D4 is now preserved through PPU_WRITE_2000
+
+Current main bug track (pending v354 test results)
 - Area:
   - bank 6 legacy title palette handling
 - Symptom:
-  - only 24 of 32 title palette bytes reach `PPU_PAL_SHADOW`
-- Evidence:
-  - focused `pal_shadow` write trace in `v352`
-  - `tbl_94EE_logo_palette` in bank 02 is correct and contains all 32 bytes
-- Most likely remaining cause:
-  - one more state/register preservation issue in the legacy bank-6 palette record parser
-  - likely near the `PPU_WRITE_2000` path and raw control-byte handling
+  - only 24 of 32 title palette bytes reach `PPU_PAL_SHADOW` (v352 state)
+- Fix applied in v354:
+  - D4 save/restore around `PPU_WRITE_2000` in `bra_A0A2_loop` (legacy path)
+- Next: run PPU write trace on v354 to confirm all 32 bytes now reach PAL_SHADOW
+
+Build note
+- `build\build.bat` now fails silently in Git Bash (cmd /c mintty capture issue)
+- Use manual build steps instead:
+  1. `cd src\banks\generated && py ../../../tools/patch_vdp.py`
+  2. `cd src\banks\generated_vdp && py ../../../tools/fix_syntax.py`
+  3. `cd src && ..\build\toolchain\vasmm68k_mot.exe -Fbin -m68000 -maxerrors=5000
+     -Iincludes -Ibridge -Ibanks\generated_vdp -I..\reference
+     -L ..\build\zelda_vNNN.lst -o ..\build\zelda_raw.md main.asm`
+  4. `py tools\fix_checksum.py build\zelda_raw.md build\zelda_vNNN.md`
+- The `build\build.bat` was updated to add the pythoncore-3.14-64 path, but
+  the cmd /c capture issue is a Git Bash/mintty limitation.
 
 What the next AI should avoid doing
 - Do not restart from the old “forced menu/title” theory.
-- Do not treat `generated_vdp` edits as durable unless you also patch the source
-  side in `generated` or understand the regeneration flow.
-- Do not run multiple oracle or PPU-trace jobs at once; the Lua-rewrite runners use
-  lock files and shared scripts.
-- Do not assume `v353` is progress just because it is newer.
+- Do not treat `generated_vdp` edits as durable; `patch_vdp.py` regenerates them.
+  Only edit `generated\*.asm` for durable fixes.
+- Do not run multiple oracle or PPU-trace jobs at once; lock files are shared.
 - Do not conflate “audio/sequence changed” with “this is now a music task.”
   The title bug has repeatedly shown up through sequence-side evidence.
+- Do not use `cmd /c “build\build.bat”` from Git Bash — it runs silently. Use `py`
+  directly as shown in the manual build steps above.
 
 Recommended next action
-1. Keep `v352` as the baseline.
-2. Diff `v352` and `v353` around the legacy palette-record parse.
-3. Repair the missing final 8 palette bytes without breaking the recovered `v352` title lane.
-4. Once the full 32-byte title palette lands, rerun:
-   - `.\run_oracle_trace.ps1 -Rom zelda_vNNN`
-   - `.\run_batch.ps1 -StartRom zelda_vNNN`
-   - and inspect both screenshots and `pal_shadow` writes.
+1. Run PPU write trace on v354:
+   - `.\run_ppu_write_trace.ps1 -Rom zelda_v354`
+   - Check `diag\reports\ppu_writes_zelda_v354.csv` for pal_shadow writes
+   - Confirm all 32 bytes (indices 00-1F) reach PAL_SHADOW
+2. Run oracle trace for comparison:
+   - `.\run_oracle_trace.ps1 -Rom zelda_v354`
+   - Compare SEQ and PPU event counts against v352 baseline (target: ~815 PPU, ~589 SEQ)
+3. Run batch diag for screenshots:
+   - `.\run_batch.ps1 -StartRom zelda_v354`
+   - Inspect title screen screenshots for palette improvement
+4. If v354 shows full 32-byte palette AND recovers v352 PPU/SEQ metrics:
+   - That is the new baseline
+   - Look at screenshots for remaining visual issues
+5. If v354 regresses relative to v352:
+   - The D4 save/restore itself is the problem; revert it and investigate further
