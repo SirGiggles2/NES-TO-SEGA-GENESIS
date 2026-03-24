@@ -1,0 +1,20 @@
+=== INPUT OVERRIDE PROBE zelda_v472 ===
+state frame=1 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=60 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=120 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=180 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=240 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=300 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=360 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=420 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=480 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=540 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=600 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=660 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=720 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=780 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=840 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=900 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+
+=== SUMMARY ===
+final frame=900 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]

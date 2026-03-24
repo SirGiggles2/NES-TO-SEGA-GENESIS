@@ -1,0 +1,14 @@
+=== FILE SELECT NAV PROBE zelda_v425 ===
+
+=== SUMMARY ===
+final frame=1500 ready=1 script=5 sub=0 ppu=00 slot=0 active=[00,F8,00,01,01] spr_idx=[48,4C] trace=[0318,08EE]
+spr[0]=Y:1F T:C0 A:3B X:9B
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:F8 T:00 A:00 X:00
+spr[5]=Y:F8 T:00 A:00 X:00
+spr[6]=Y:F8 T:00 A:00 X:00
+spr[7]=Y:F8 T:00 A:00 X:00
+spr[8]=Y:F8 T:00 A:00 X:00
+spr[9]=Y:F8 T:00 A:00 X:00

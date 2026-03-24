@@ -1,0 +1,31 @@
+=== INPUT OVERRIDE PROBE zelda_v474 ===
+state frame=1 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+state frame=13 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[FF,FF] ov=[00,00] trace=[0203,0014]
+state frame=14 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,002B]
+state frame=55 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0203,0079]
+heartbeat frame=60 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,007F]
+state frame=61 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[FF,FF] ov=[00,00] trace=[0313,0090]
+state frame=62 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00A8]
+heartbeat frame=120 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=180 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=240 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=300 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=360 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=420 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=480 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=540 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=600 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=660 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00FD]
+heartbeat frame=720 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0403,00FD]
+state frame=752 ready=1 script=0 sub=0 ppu=10 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0421,0163]
+state frame=758 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0202,01C0]
+title_ready_frame=758
+state frame=764 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[3F,FF] ov=[00,00] trace=[0403,01D9]
+state frame=765 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0203,01F7]
+action=start_override frame=778 until=783
+state frame=779 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[10,01] trace=[0203,030D]
+heartbeat frame=780 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[10,01] trace=[0203,0320]
+state frame=785 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0203,037F]
+
+=== SUMMARY ===
+final frame=814 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,FF] ov=[00,00] trace=[0203,05BE]

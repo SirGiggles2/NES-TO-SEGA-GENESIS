@@ -1,0 +1,110 @@
+=== FILE SELECT NAV PROBE zelda_v427 ===
+state frame=1 ready=0 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0000,0000]
+state frame=284 ready=1 script=0 sub=0 ppu=10 slot=0 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0421,0091]
+state frame=290 ready=1 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0432,00EE]
+state frame=298 ready=0 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,01,01] spr_idx=[00,00] trace=[0403,015D]
+state frame=577 ready=1 script=0 sub=0 ppu=10 slot=0 btn=[00,00] active=[23,13,C1,01,01] spr_idx=[00,00] trace=[0421,01F4]
+state frame=583 ready=1 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0403,0258]
+state frame=612 ready=1 script=0 sub=1 ppu=12 slot=0 btn=[00,00] active=[23,F8,C1,00,FF] spr_idx=[00,00] trace=[0203,04FA]
+state frame=613 ready=1 script=0 sub=1 ppu=00 slot=0 btn=[00,00] active=[23,F8,C1,00,FF] spr_idx=[00,00] trace=[0318,051A]
+state frame=615 ready=1 script=0 sub=1 ppu=00 slot=0 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0318,051A]
+state frame=616 ready=1 script=0 sub=1 ppu=00 slot=1 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0318,051A]
+state frame=619 ready=1 script=0 sub=1 ppu=00 slot=2 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0318,051A]
+state frame=623 ready=1 script=0 sub=2 ppu=00 slot=2 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0318,052A]
+state frame=624 ready=1 script=0 sub=2 ppu=00 slot=1 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0318,052A]
+state frame=626 ready=1 script=0 sub=2 ppu=00 slot=0 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0318,052A]
+state frame=627 ready=0 script=1 sub=0 ppu=00 slot=0 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0436,052B]
+state frame=629 ready=0 script=1 sub=0 ppu=00 slot=1 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0318,053F]
+state frame=630 ready=0 script=1 sub=0 ppu=00 slot=2 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0318,053F]
+state frame=631 ready=0 script=1 sub=2 ppu=12 slot=0 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0403,0555]
+state frame=640 ready=0 script=1 sub=2 ppu=00 slot=0 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0403,0567]
+state frame=641 ready=0 script=1 sub=3 ppu=14 slot=0 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0403,0588]
+state frame=642 ready=0 script=1 sub=4 ppu=00 slot=1 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0403,05B1]
+state frame=643 ready=0 script=1 sub=6 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0203,05D1]
+state frame=644 ready=1 script=1 sub=0 ppu=00 slot=0 btn=[00,00] active=[00,00,00,01,01] spr_idx=[00,00] trace=[0203,05E5]
+state frame=645 ready=1 script=1 sub=0 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[20,24] trace=[0318,05F5]
+stable frame=688 ready=1 script=1 sub=0 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[20,24] trace=[0203,088D]
+spr[0]=Y:A8 T:F3 A:03 X:28
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:58 T:08 A:00 X:30
+spr[5]=Y:58 T:0A A:00 X:38
+spr[6]=Y:70 T:08 A:01 X:30
+spr[7]=Y:70 T:0A A:01 X:38
+spr[8]=Y:88 T:08 A:02 X:30
+spr[9]=Y:88 T:0A A:02 X:38
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v427_file_select_nav_initial_f688.png
+action=select_pulse index=1 frame=689
+after_select frame=709 ready=1 script=1 sub=0 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[20,24] trace=[0203,09F2]
+spr[0]=Y:A8 T:F3 A:03 X:28
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:58 T:08 A:00 X:30
+spr[5]=Y:58 T:0A A:00 X:38
+spr[6]=Y:70 T:08 A:01 X:30
+spr[7]=Y:70 T:0A A:01 X:38
+spr[8]=Y:88 T:08 A:02 X:30
+spr[9]=Y:88 T:0A A:02 X:38
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v427_file_select_nav_p1_f709.png
+slot_change=NO
+cursor_y_change=NO current=A8
+action=select_pulse index=2 frame=710
+after_select frame=730 ready=1 script=1 sub=0 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[20,24] trace=[0203,0B57]
+spr[0]=Y:A8 T:F3 A:03 X:28
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:58 T:08 A:00 X:30
+spr[5]=Y:58 T:0A A:00 X:38
+spr[6]=Y:70 T:08 A:01 X:30
+spr[7]=Y:70 T:0A A:01 X:38
+spr[8]=Y:88 T:08 A:02 X:30
+spr[9]=Y:88 T:0A A:02 X:38
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v427_file_select_nav_p2_f730.png
+slot_change=NO
+cursor_y_change=NO current=A8
+action=select_pulse index=3 frame=731
+after_select frame=751 ready=1 script=1 sub=0 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[20,24] trace=[0203,0CBC]
+spr[0]=Y:A8 T:F3 A:03 X:28
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:58 T:08 A:00 X:30
+spr[5]=Y:58 T:0A A:00 X:38
+spr[6]=Y:70 T:08 A:01 X:30
+spr[7]=Y:70 T:0A A:01 X:38
+spr[8]=Y:88 T:08 A:02 X:30
+spr[9]=Y:88 T:0A A:02 X:38
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v427_file_select_nav_p3_f751.png
+slot_change=NO
+cursor_y_change=NO current=A8
+action=select_pulse index=4 frame=752
+after_select frame=772 ready=1 script=1 sub=0 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[20,24] trace=[0203,0E21]
+spr[0]=Y:A8 T:F3 A:03 X:28
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:58 T:08 A:00 X:30
+spr[5]=Y:58 T:0A A:00 X:38
+spr[6]=Y:70 T:08 A:01 X:30
+spr[7]=Y:70 T:0A A:01 X:38
+spr[8]=Y:88 T:08 A:02 X:30
+spr[9]=Y:88 T:0A A:02 X:38
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v427_file_select_nav_p4_f772.png
+slot_change=NO
+cursor_y_change=NO current=A8
+
+=== SUMMARY ===
+final frame=772 ready=1 script=1 sub=0 ppu=00 slot=3 btn=[00,00] active=[00,00,00,01,01] spr_idx=[20,24] trace=[0203,0E21]
+spr[0]=Y:A8 T:F3 A:03 X:28
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:58 T:08 A:00 X:30
+spr[5]=Y:58 T:0A A:00 X:38
+spr[6]=Y:70 T:08 A:01 X:30
+spr[7]=Y:70 T:0A A:01 X:38
+spr[8]=Y:88 T:08 A:02 X:30
+spr[9]=Y:88 T:0A A:02 X:38

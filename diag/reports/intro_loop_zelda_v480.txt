@@ -1,0 +1,13 @@
+=== INTRO LOOP PROBE: zelda_v480 ===
+f=00000 frm=  0 rdy=0 phase=0 timer=  0 sy=$00 2000=$00 nmi=1 cfr=0
+f=00054 frm=  0 rdy=0 phase=2 timer=  0 sy=$00 2000=$00 nmi=6 cfr=0
+f=00097 frm=  0 rdy=0 phase=0 timer=  0 sy=$00 2000=$B0 nmi=10 cfr=0
+f=00744 frm=  3 rdy=0 phase=1 timer=  0 sy=$00 2000=$B0 nmi=13 cfr=10
+f=00745 frm=  4 rdy=0 phase=2 timer=  0 sy=$00 2000=$B0 nmi=14 cfr=0
+handler_2 active at f=751 frm=5 nmi=15
+f=00751 frm=  5 rdy=1 phase=0 timer=  0 sy=$00 2000=$B0 nmi=15 cfr=0
+f=00961 frm=206 rdy=1 phase=0 timer=100 sy=$00 2000=$B0 nmi=215 cfr=0
+*** FREEZE DETECTED at f=1009 frm=244 nmi=253 PC=00682A SR=2614 ***
+
+=== FINAL STATE: f=6000 nmi=253 frm=244 frozen=true ===
+=== PROBE COMPLETE ===

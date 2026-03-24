@@ -1,0 +1,34 @@
+=== INPUT OVERRIDE PROBE zelda_v445 ===
+state frame=1 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=60 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,002F]
+heartbeat frame=120 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,002F]
+heartbeat frame=180 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,002F]
+heartbeat frame=240 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,002F]
+state frame=284 ready=1 script=0 sub=0 ppu=10 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0203,0092]
+state frame=290 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00F7]
+title_ready_frame=290
+state frame=298 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,015D]
+heartbeat frame=300 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,0192]
+heartbeat frame=360 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,0192]
+heartbeat frame=420 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,0192]
+heartbeat frame=480 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,0192]
+heartbeat frame=540 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,0192]
+state frame=577 ready=1 script=0 sub=0 ppu=10 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0202,01F7]
+state frame=583 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,0258]
+title_ready_frame=583
+heartbeat frame=600 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0203,03B3]
+action=start_override frame=603 until=608
+state frame=604 ready=1 script=0 sub=1 ppu=12 trans=00 joy=10 btn=[10,10] ov=[10,01] trace=[0203,0422]
+state frame=605 ready=1 script=0 sub=1 ppu=00 trans=00 joy=10 btn=[00,10] ov=[10,01] trace=[0318,0442]
+state frame=610 ready=1 script=0 sub=1 ppu=00 trans=00 joy=10 btn=[00,10] ov=[00,00] trace=[0318,0442]
+state frame=615 ready=1 script=0 sub=2 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0318,0452]
+state frame=619 ready=0 script=1 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0436,0453]
+state frame=622 ready=0 script=1 sub=1 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0318,0467]
+state frame=623 ready=0 script=1 sub=2 ppu=12 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,047D]
+state frame=632 ready=0 script=1 sub=3 ppu=14 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0318,049A]
+state frame=634 ready=0 script=1 sub=5 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0318,04E4]
+state frame=635 ready=0 script=1 sub=6 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0203,04F9]
+state frame=636 ready=1 script=1 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0203,050D]
+
+=== SUMMARY ===
+final frame=639 ready=1 script=1 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0318,051D]

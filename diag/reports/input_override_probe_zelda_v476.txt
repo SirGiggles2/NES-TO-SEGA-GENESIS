@@ -1,0 +1,25 @@
+=== INPUT OVERRIDE PROBE zelda_v476 ===
+state frame=1 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0000,0000]
+heartbeat frame=60 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,007F]
+heartbeat frame=120 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=180 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=240 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=300 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=360 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00F9]
+heartbeat frame=420 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=480 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=540 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=600 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00FB]
+heartbeat frame=660 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00FD]
+heartbeat frame=720 ready=0 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,00FD]
+state frame=752 ready=1 script=0 sub=0 ppu=10 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0202,0166]
+state frame=758 ready=1 script=0 sub=0 ppu=00 trans=00 joy=00 btn=[00,00] ov=[00,00] trace=[0403,01C6]
+title_ready_frame=758
+action=start_override frame=778 until=783
+state frame=779 ready=1 script=0 sub=1 ppu=12 trans=00 joy=10 btn=[10,10] ov=[10,01] trace=[0203,030E]
+state frame=780 ready=1 script=0 sub=1 ppu=00 trans=00 joy=10 btn=[00,10] ov=[10,01] trace=[0318,0324]
+heartbeat frame=780 ready=1 script=0 sub=1 ppu=00 trans=00 joy=10 btn=[00,10] ov=[10,01] trace=[0318,0324]
+state frame=785 ready=0 script=0 sub=0 ppu=00 trans=00 joy=10 btn=[00,10] ov=[00,00] trace=[0318,0324]
+
+=== SUMMARY ===
+final frame=814 ready=0 script=0 sub=0 ppu=00 trans=00 joy=10 btn=[00,10] ov=[00,00] trace=[0318,0324]

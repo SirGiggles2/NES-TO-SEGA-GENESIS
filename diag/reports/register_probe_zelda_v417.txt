@@ -1,0 +1,39 @@
+=== REGISTER PROBE zelda_v417 ===
+Goal: capture the register/name-entry screen after it settles.
+
+state frame=1 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0000,0000] pc=0003CC crash=0000/0000/00000000
+state frame=106 ready=1 script=0 sub=0 ppu=0x10 slot=0 active=[00,F8,00,01,01] trace=[0203,0132] pc=000916 crash=0000/0000/00000000
+state frame=112 ready=1 script=0 sub=0 ppu=0x00 slot=0 active=[23,13,C1,00,FF] trace=[0403,0197] pc=000EDE crash=0000/0000/00000000
+heartbeat frame=120 ready=1 script=0 sub=0 ppu=0x00 slot=0 active=[23,13,C1,00,FF] trace=[0403,0203] pc=000B84 crash=0000/0000/00000000
+state frame=144 ready=1 script=0 sub=1 ppu=0x12 slot=0 active=[23,F8,C1,00,FF] trace=[0203,04A6] pc=000FD6 crash=0000/0000/00000000
+state frame=145 ready=1 script=0 sub=1 ppu=0x00 slot=0 active=[23,F8,C1,00,FF] trace=[0318,04C6] pc=00A534 crash=0000/0000/00000000
+state frame=148 ready=1 script=0 sub=1 ppu=0x00 slot=1 active=[23,F8,C1,00,FF] trace=[0318,04C6] pc=00A484 crash=0000/0000/00000000
+state frame=151 ready=1 script=0 sub=1 ppu=0x00 slot=2 active=[23,F8,C1,00,FF] trace=[0318,04C6] pc=00A54C crash=0000/0000/00000000
+state frame=155 ready=1 script=0 sub=2 ppu=0x00 slot=2 active=[23,F8,00,00,FF] trace=[0318,04D6] pc=00A194 crash=0000/0000/00000000
+state frame=156 ready=1 script=0 sub=2 ppu=0x00 slot=1 active=[23,00,00,00,FF] trace=[0318,04D6] pc=00A2D4 crash=0000/0000/00000000
+state frame=158 ready=1 script=0 sub=2 ppu=0x00 slot=0 active=[00,00,00,00,FF] trace=[0318,04D6] pc=00A19C crash=0000/0000/00000000
+state frame=159 ready=0 script=1 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0318,04EB] pc=00A160 crash=0000/0000/00000000
+state frame=160 ready=0 script=1 sub=0 ppu=0x00 slot=1 active=[00,00,00,01,01] trace=[0318,04EB] pc=00A248 crash=0000/0000/00000000
+state frame=161 ready=0 script=1 sub=0 ppu=0x00 slot=2 active=[00,00,00,01,01] trace=[0318,04EB] pc=00A194 crash=0000/0000/00000000
+state frame=162 ready=0 script=1 sub=2 ppu=0x12 slot=0 active=[00,00,00,01,01] trace=[0403,0501] pc=000C12 crash=0000/0000/00000000
+state frame=172 ready=0 script=1 sub=3 ppu=0x14 slot=0 active=[00,00,00,01,01] trace=[0203,051F] pc=000FD6 crash=0000/0000/00000000
+state frame=174 ready=0 script=1 sub=5 ppu=0x00 slot=2 active=[00,00,00,01,01] trace=[0203,0569] pc=000FD6 crash=0000/0000/00000000
+state frame=175 ready=0 script=1 sub=6 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0203,057D] pc=000FD6 crash=0000/0000/00000000
+state frame=176 ready=1 script=1 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0203,0591] pc=000FD6 crash=0000/0000/00000000
+state frame=177 ready=1 script=1 sub=1 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0318,05A1] pc=000E58 crash=0000/0000/00000000
+state frame=182 ready=0 script=14 sub=0 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0203,05B3] pc=000FD6 crash=0000/0000/00000000
+register_entered frame=182
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v417_register_entry_f182.png
+state frame=183 ready=0 script=14 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0403,05C6] pc=0012DE crash=0000/0000/00000000
+state frame=193 ready=0 script=14 sub=0 ppu=0x00 slot=1 active=[00,00,00,01,01] trace=[0403,05C8] pc=009558 crash=0000/0000/00000000
+state frame=194 ready=0 script=14 sub=0 ppu=0x00 slot=2 active=[00,00,00,01,01] trace=[0403,05C8] pc=00A5CA crash=0000/0000/00000000
+state frame=196 ready=0 script=14 sub=1 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0403,05CF] pc=000E5A crash=0000/0000/00000000
+state frame=201 ready=0 script=14 sub=2 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0403,05E5] pc=0008E0 crash=0000/0000/00000000
+state frame=202 ready=0 script=14 sub=3 ppu=0x16 slot=0 active=[00,00,00,01,01] trace=[0403,060E] pc=000C12 crash=0000/0000/00000000
+state frame=203 ready=1 script=14 sub=4 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0203,063A] pc=000FD6 crash=0000/0000/00000000
+register_settled frame=232
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v417_register_settled_f232.png
+
+=== SUMMARY ===
+final frame=232 ready=1 script=14 sub=4 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0203,0798] pc=000FD6 crash=0000/0000/00000000
+register_entry_frame=182

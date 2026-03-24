@@ -1,0 +1,375 @@
+=== INTRO DEBUG PROBE: zelda_v481 ===
+f=00000 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=0
+f=00001 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=1
+f=00002 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=2
+f=00003 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=3
+f=00004 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=4
+f=00005 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=5
+f=00006 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=6
+f=00007 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=7
+f=00008 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=8
+f=00009 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=9
+f=00010 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=10
+f=00011 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=11
+f=00012 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=0
+f=00013 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=0
+f=00014 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=1
+f=00015 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=2
+f=00016 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=3
+f=00017 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=4
+f=00018 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=5
+f=00019 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=6
+f=00020 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=7
+f=00021 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=8
+f=00022 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=9
+f=00023 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=10
+f=00024 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=11
+f=00025 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=12
+f=00026 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=13
+f=00027 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=14
+f=00028 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=15
+f=00029 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=16
+f=00030 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=17
+f=00031 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=18
+f=00032 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=19
+f=00033 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=20
+f=00034 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=21
+f=00035 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=22
+f=00036 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=23
+f=00037 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=24
+f=00038 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=25
+f=00039 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=26
+f=00040 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=27
+f=00041 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=28
+f=00042 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=29
+f=00043 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=0
+f=00044 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00045 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=1
+f=00046 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=2
+f=00047 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=3
+f=00048 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=4
+f=00049 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=5
+f=00050 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=6
+f=00051 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=7
+f=00052 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=8
+f=00053 frm=  4 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=9
+f=00054 frm=  0 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 ppu=0 cfr=0
+f=00055 frm=  0 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=1
+f=00056 frm=  0 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=2
+f=00057 frm=  0 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=3
+f=00058 frm=  0 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=4
+f=00059 frm=  0 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=5
+f=00060 frm=  1 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=0
+f=00061 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=0
+f=00062 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=1
+f=00063 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=2
+f=00064 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=3
+f=00065 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=4
+f=00066 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=5
+f=00067 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=6
+f=00068 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=7
+f=00069 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=8
+f=00070 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=9
+f=00071 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=10
+f=00072 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=11
+f=00073 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=12
+f=00074 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=13
+f=00075 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=14
+f=00076 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=15
+f=00077 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=16
+f=00078 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=17
+f=00079 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=18
+f=00080 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=19
+f=00081 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=20
+f=00082 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=21
+f=00083 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=22
+f=00084 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=23
+f=00085 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=24
+f=00086 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=25
+f=00087 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=26
+f=00088 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=27
+f=00089 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=28
+f=00090 frm=  2 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=29
+f=00091 frm=  3 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=0
+f=00092 frm=  3 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=1
+f=00093 frm=  3 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=2
+f=00094 frm=  3 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=3
+f=00095 frm=  3 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=4
+f=00096 frm=  3 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$80 5C=0 0415=0 ppu=0 cfr=5
+f=00097 frm=  0 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00098 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00099 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=1
+f=00100 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=2
+f=00101 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=3
+f=00102 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=4
+f=00103 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=5
+f=00104 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=6
+f=00105 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=7
+f=00106 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=8
+f=00107 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=9
+f=00108 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=10
+f=00109 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=11
+f=00110 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=12
+f=00111 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=13
+f=00112 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=14
+f=00113 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=15
+f=00114 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=16
+f=00115 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=17
+f=00116 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=18
+f=00117 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=19
+f=00118 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=20
+f=00119 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=21
+f=00120 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=22
+f=00121 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=23
+f=00122 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=24
+f=00123 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=25
+f=00124 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=26
+f=00125 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=27
+f=00126 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=28
+f=00127 frm=  1 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=29
+f=00128 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00129 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=1
+f=00130 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=2
+f=00131 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=3
+f=00132 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=4
+f=00133 frm=  2 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=5
+f=00134 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00135 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=1
+f=00136 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=2
+f=00137 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=3
+f=00138 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=4
+f=00139 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=5
+f=00140 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=6
+f=00141 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=7
+f=00142 frm=  3 rdy=0 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=8
+f=00143 frm=  3 rdy=0 ad=0 ph=1 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=9
+f=00144 frm=  4 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00145 frm=  4 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=1
+f=00146 frm=  4 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=2
+f=00147 frm=  4 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=3
+f=00148 frm=  4 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=4
+f=00149 frm=  4 rdy=0 ad=0 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=5
+handler_2 active at f=150 frm=5 nmi=15
+f=00150 frm=  5 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=16 cfr=0
+f=00151 frm=  5 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=16 cfr=1
+f=00152 frm=  5 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=16 cfr=2
+f=00153 frm=  5 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=16 cfr=3
+f=00154 frm=  5 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=16 cfr=4
+f=00155 frm=  5 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=16 cfr=5
+f=00156 frm=  6 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00157 frm=  6 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=1
+f=00158 frm=  6 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=2
+f=00159 frm=  6 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=3
+f=00160 frm=  6 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=4
+f=00361 frm=207 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=101 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00561 frm=151 rdy=1 ad=0 ph=0 sub=0 scr=0 timer=201 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00761 frm= 95 rdy=1 ad=0 ph=1 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+f=00961 frm= 39 rdy=1 ad=0 ph=1 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 cfr=0
+*** TRANSITION DETECTED at f=1106 nmi=961 ***
+f=01106 frm=184 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01107 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01108 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=1
+f=01109 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=2
+f=01110 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=3
+f=01111 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=4
+f=01112 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=5
+f=01113 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=6
+f=01114 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=7
+f=01115 frm=185 rdy=0 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=8
+f=01116 frm=185 rdy=0 ad=1 ph=1 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=9
+f=01117 frm=186 rdy=0 ad=1 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01118 frm=186 rdy=0 ad=1 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=1
+f=01119 frm=186 rdy=0 ad=1 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=2
+f=01120 frm=186 rdy=0 ad=1 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=3
+f=01121 frm=186 rdy=0 ad=1 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=4
+f=01122 frm=186 rdy=0 ad=1 ph=2 sub=0 scr=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 ppu=0 0528=0 cfr=5
+f=01123 frm=187 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=1 0415=0 ppu=2 0528=0 cfr=0
+f=01124 frm=187 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=1 0415=0 ppu=2 0528=0 cfr=1
+f=01125 frm=187 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=1 0415=0 ppu=2 0528=0 cfr=2
+f=01126 frm=187 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=1 0415=0 ppu=2 0528=0 cfr=3
+f=01127 frm=187 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=1 0415=0 ppu=2 0528=0 cfr=4
+f=01128 frm=187 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=1 0415=0 ppu=2 0528=0 cfr=5
+f=01129 frm=188 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01130 frm=188 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=1
+f=01131 frm=188 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=2
+f=01132 frm=188 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=3
+f=01133 frm=188 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=4
+f=01134 frm=188 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=5
+f=01135 frm=190 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01136 frm=191 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01137 frm=192 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01138 frm=193 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01139 frm=194 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01140 frm=195 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01141 frm=196 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01142 frm=197 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01143 frm=198 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01144 frm=199 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01145 frm=200 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01146 frm=201 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01147 frm=202 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01148 frm=203 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01149 frm=204 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01150 frm=205 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01151 frm=206 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01152 frm=207 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01153 frm=208 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01154 frm=209 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01155 frm=210 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01156 frm=211 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01157 frm=212 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01158 frm=213 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01159 frm=214 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01160 frm=215 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01161 frm=216 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01162 frm=217 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01163 frm=218 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01164 frm=219 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01165 frm=220 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01166 frm=221 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01167 frm=222 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01168 frm=223 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01169 frm=224 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01170 frm=225 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01171 frm=226 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01172 frm=227 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01173 frm=228 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01174 frm=229 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01175 frm=230 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01176 frm=231 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01177 frm=232 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01178 frm=233 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01179 frm=234 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01180 frm=235 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01181 frm=236 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01182 frm=237 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01183 frm=238 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01184 frm=239 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01185 frm=240 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01186 frm=241 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01187 frm=242 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01188 frm=243 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01189 frm=244 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01190 frm=245 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01191 frm=246 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01192 frm=247 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01193 frm=248 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01194 frm=249 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01195 frm=250 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01196 frm=251 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01197 frm=252 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01198 frm=253 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01199 frm=254 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01200 frm=255 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01201 frm=  0 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01202 frm=  1 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01203 frm=  2 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01204 frm=  3 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01205 frm=  4 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01206 frm=  5 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01207 frm=  6 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01208 frm=  7 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01209 frm=  8 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01210 frm=  9 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01211 frm= 10 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01212 frm= 11 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01213 frm= 12 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01214 frm= 13 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01215 frm= 14 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01216 frm= 15 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01217 frm= 16 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01218 frm= 17 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01219 frm= 18 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01220 frm= 19 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01221 frm= 20 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01222 frm= 21 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01223 frm= 22 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01224 frm= 23 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01225 frm= 24 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01226 frm= 25 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01227 frm= 26 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01228 frm= 27 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01229 frm= 28 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01230 frm= 29 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01231 frm= 30 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01232 frm= 31 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01233 frm= 32 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01234 frm= 33 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01235 frm= 34 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01236 frm= 35 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01237 frm= 36 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01238 frm= 37 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01239 frm= 38 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01240 frm= 39 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01241 frm= 40 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01242 frm= 41 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01243 frm= 42 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01244 frm= 43 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01245 frm= 44 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01246 frm= 45 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01247 frm= 46 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01248 frm= 47 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01249 frm= 48 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01250 frm= 49 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01251 frm= 50 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01252 frm= 51 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01253 frm= 52 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01254 frm= 53 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01255 frm= 54 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01256 frm= 55 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01257 frm= 56 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01258 frm= 57 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01259 frm= 58 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01260 frm= 59 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01261 frm= 60 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01262 frm= 61 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01263 frm= 62 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01264 frm= 63 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01265 frm= 64 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01266 frm= 65 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01267 frm= 66 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01268 frm= 67 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01269 frm= 68 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01270 frm= 69 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01271 frm= 70 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01272 frm= 71 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01273 frm= 72 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01274 frm= 73 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01275 frm= 74 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01276 frm= 75 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01277 frm= 76 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01278 frm= 77 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01279 frm= 78 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01280 frm= 79 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01281 frm= 80 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01282 frm= 81 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01283 frm= 82 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01284 frm= 83 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01285 frm= 84 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01286 frm= 85 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01287 frm= 86 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01288 frm= 87 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01289 frm= 88 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01290 frm= 89 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01291 frm= 90 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01292 frm= 91 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01293 frm= 92 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01294 frm= 93 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01295 frm= 94 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01296 frm= 95 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01297 frm= 96 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01298 frm= 97 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01299 frm= 98 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01300 frm= 99 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01301 frm=100 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01302 frm=101 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01303 frm=102 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01304 frm=103 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01305 frm=104 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$00 2000=$B2 5C=0 0415=0 ppu=0 0528=0 cfr=0
+f=01306 frm=105 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 cfr=0
+f=01506 frm= 49 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 cfr=0
+f=01706 frm=249 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 cfr=0
+f=01906 frm=193 rdy=1 ad=1 ph=0 sub=0 scr=0 timer=  0 sy=$01 2000=$B2 5C=0 0415=0 ppu=0 cfr=0
+
+=== FINAL: f=2000 nmi=1831 frm=31 frozen=0 ===
+=== PROBE COMPLETE ===

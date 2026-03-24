@@ -1,0 +1,8 @@
+vasm 2.0e (c) in 2002-2026 Volker Barthelmann
+vasm M68k/CPU32/ColdFire cpu backend 2.8 (c) 2002-2025 Frank Wille
+vasm motorola syntax module 3.19d (c) 2002-2025 Frank Wille
+vasm binary output module 2.3e (c) 2002-2025 Volker Barthelmann and Frank Wille
+
+org0001:0(acrwx1):	         256 bytes
+org0002:100(acrwx1):	         246 bytes
+org0003:200(acrwx2):	      132322 bytes

@@ -1,0 +1,66 @@
+=== FRONTEND PROBE zelda_v423 ===
+Validating title -> file select -> name-entry/gameplay branch with ROM autostarts disabled.
+
+state frame=1 ready=0 script=0 sub=0 ppu=0x00 frm=0 slot=0 slot_active=[00,00,00,00,00] btn=[00,00] spr=[00,00] trace=[0000,0000] phase=wait_title_ready
+state frame=95 ready=0 script=0 sub=0 ppu=0x00 frm=0 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,00D7] phase=wait_title_ready
+state frame=96 ready=0 script=0 sub=0 ppu=0x00 frm=1 slot=0 slot_active=[00,F8,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,00F6] phase=wait_title_ready
+state frame=106 ready=1 script=0 sub=0 ppu=0x10 frm=3 slot=0 slot_active=[00,F8,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,0132] phase=wait_title_ready
+state frame=112 ready=1 script=0 sub=1 ppu=0x00 frm=4 slot=0 slot_active=[23,F8,C1,00,FF] btn=[FF,FF] spr=[00,00] trace=[0403,019F] phase=wait_title_ready
+state frame=116 ready=1 script=0 sub=1 ppu=0x00 frm=5 slot=1 slot_active=[23,F8,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0318,01B0] phase=wait_title_ready
+state frame=119 ready=1 script=0 sub=1 ppu=0x00 frm=5 slot=2 slot_active=[23,F8,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0318,01B0] phase=wait_title_ready
+heartbeat frame=120 ready=1 script=0 sub=1 ppu=0x00 frm=5 slot=2 slot_active=[23,F8,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0318,01B0] phase=wait_title_ready
+state frame=122 ready=1 script=0 sub=1 ppu=0x00 frm=5 slot=3 slot_active=[23,F8,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0318,01B0] phase=wait_title_ready
+state frame=123 ready=1 script=0 sub=2 ppu=0x00 frm=5 slot=3 slot_active=[23,F8,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0403,01B9] phase=wait_title_ready
+state frame=128 ready=1 script=0 sub=2 ppu=0x00 frm=6 slot=2 slot_active=[23,F8,00,00,FF] btn=[FF,FF] spr=[00,00] trace=[0318,01C0] phase=wait_title_ready
+state frame=130 ready=1 script=0 sub=2 ppu=0x00 frm=6 slot=1 slot_active=[23,00,00,00,FF] btn=[00,00] spr=[00,00] trace=[0318,01C0] phase=wait_title_ready
+state frame=131 ready=1 script=0 sub=2 ppu=0x00 frm=6 slot=0 slot_active=[00,00,00,00,FF] btn=[00,00] spr=[00,00] trace=[0318,01C0] phase=wait_title_ready
+state frame=132 ready=1 script=0 sub=2 ppu=0x00 frm=6 slot=0 slot_active=[00,00,00,01,01] btn=[00,00] spr=[00,00] trace=[0318,01C0] phase=wait_title_ready
+state frame=133 ready=0 script=1 sub=0 ppu=0x00 frm=7 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0318,01D5] phase=wait_title_ready
+state frame=134 ready=0 script=1 sub=0 ppu=0x00 frm=7 slot=1 slot_active=[00,00,00,01,01] btn=[00,00] spr=[00,00] trace=[0318,01D5] phase=wait_title_ready
+state frame=135 ready=0 script=1 sub=1 ppu=0x00 frm=7 slot=3 slot_active=[00,00,00,01,01] btn=[00,00] spr=[00,00] trace=[0442,01D9] phase=wait_title_ready
+state frame=136 ready=0 script=1 sub=2 ppu=0x12 frm=8 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,01EB] phase=wait_title_ready
+state frame=145 ready=0 script=1 sub=3 ppu=0x14 frm=9 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,0209] phase=wait_title_ready
+state frame=147 ready=0 script=1 sub=5 ppu=0x00 frm=11 slot=2 slot_active=[00,00,00,01,01] btn=[00,FF] spr=[00,00] trace=[0203,0253] phase=wait_title_ready
+state frame=148 ready=0 script=1 sub=6 ppu=0x00 frm=12 slot=3 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,0267] phase=wait_title_ready
+state frame=149 ready=1 script=1 sub=0 ppu=0x00 frm=13 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,027D] phase=wait_title_ready
+state frame=150 ready=1 script=1 sub=1 ppu=0x00 frm=14 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0318,028D] phase=wait_title_ready
+state frame=156 ready=0 script=2 sub=0 ppu=0x00 frm=16 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0412,02B1] phase=wait_title_ready
+state frame=166 ready=1 script=2 sub=0 ppu=0x00 frm=17 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,02CA] phase=wait_title_ready
+state frame=167 ready=0 script=3 sub=0 ppu=0x00 frm=18 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,02D8] phase=wait_title_ready
+state frame=168 ready=0 script=3 sub=1 ppu=0x00 frm=19 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,02ED] phase=wait_title_ready
+state frame=177 ready=0 script=3 sub=2 ppu=0x18 frm=20 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,0304] phase=wait_title_ready
+state frame=179 ready=0 script=3 sub=3 ppu=0x18 frm=21 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0400,0322] phase=wait_title_ready
+state frame=181 ready=0 script=3 sub=5 ppu=0x00 frm=23 slot=0 slot_active=[00,00,00,01,01] btn=[00,FF] spr=[00,00] trace=[0203,034C] phase=wait_title_ready
+state frame=182 ready=0 script=3 sub=6 ppu=0x0E frm=24 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,0362] phase=wait_title_ready
+state frame=183 ready=0 script=3 sub=7 ppu=0x44 frm=25 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,0386] phase=wait_title_ready
+state frame=184 ready=0 script=3 sub=8 ppu=0x0C frm=26 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,039A] phase=wait_title_ready
+state frame=185 ready=0 script=3 sub=8 ppu=0x00 frm=27 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0318,03B0] phase=wait_title_ready
+state frame=187 ready=1 script=3 sub=0 ppu=0x00 frm=27 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0403,03B9] phase=wait_title_ready
+heartbeat frame=240 ready=1 script=3 sub=0 ppu=0x00 frm=76 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,0687] phase=wait_title_ready
+state frame=267 ready=0 script=4 sub=0 ppu=0x00 frm=103 slot=0 slot_active=[00,00,00,01,01] btn=[FF,FF] spr=[00,00] trace=[0203,0815] phase=wait_title_ready
+state frame=268 ready=1 script=4 sub=0 ppu=0x00 frm=104 slot=0 slot_active=[00,F8,00,01,01] btn=[FF,FF] spr=[48,4C] trace=[0203,0833] phase=wait_title_ready
+state frame=269 ready=0 script=5 sub=0 ppu=0x00 frm=105 slot=0 slot_active=[00,F8,00,01,01] btn=[FF,FF] spr=[48,4C] trace=[0203,084B] phase=wait_title_ready
+state frame=270 ready=1 script=5 sub=0 ppu=0x7A frm=106 slot=0 slot_active=[00,F8,00,01,01] btn=[FF,FF] spr=[48,4C] trace=[0203,085D] phase=wait_title_ready
+state frame=271 ready=1 script=5 sub=0 ppu=0x00 frm=107 slot=0 slot_active=[00,F8,00,01,01] btn=[FF,FF] spr=[48,4C] trace=[0203,0871] phase=wait_title_ready
+heartbeat frame=360 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=480 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=600 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=720 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=840 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=960 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1080 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1200 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1320 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1440 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1560 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1680 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1800 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=1920 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=2040 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=2160 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=2280 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+heartbeat frame=2400 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+
+=== SUMMARY ===
+final frame=2400 ready=1 script=5 sub=0 ppu=0x00 frm=109 slot=0 slot_active=[00,F8,00,01,01] btn=[00,00] spr=[48,4C] trace=[0318,088D] phase=wait_title_ready
+final_phase=wait_title_ready

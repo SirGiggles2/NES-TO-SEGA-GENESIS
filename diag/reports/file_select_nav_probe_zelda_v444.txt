@@ -1,0 +1,27 @@
+=== FILE SELECT NAV PROBE zelda_v444 ===
+state frame=1 ready=0 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0000,0000]
+state frame=284 ready=1 script=0 sub=0 ppu=10 slot=0 btn=[00,00] active=[00,00,00,00,00] spr_idx=[00,00] trace=[0203,0092]
+state frame=290 ready=1 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0403,00F7]
+title_ready_frame=290
+state frame=299 ready=0 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,01,01] spr_idx=[00,00] trace=[0403,0178]
+state frame=578 ready=1 script=0 sub=0 ppu=10 slot=0 btn=[00,00] active=[23,13,C1,01,01] spr_idx=[00,00] trace=[0202,0212]
+state frame=584 ready=1 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0403,0273]
+title_ready_frame=584
+action=hold_start_title frame=604 input_ok=true joypad_keys=ram injection fallback
+hold_start_status frame=605 input_ok=true joypad_keys=ram injection fallback
+state frame=1099 ready=0 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0203,384E]
+state frame=1115 ready=1 script=0 sub=0 ppu=02 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0202,389C]
+state frame=1121 ready=1 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0403,38F9]
+
+=== SUMMARY ===
+final frame=1500 ready=1 script=0 sub=0 ppu=00 slot=0 btn=[00,00] active=[23,13,C1,00,FF] spr_idx=[00,00] trace=[0203,54D5]
+spr[0]=Y:F8 T:00 A:00 X:00
+spr[1]=Y:F8 T:00 A:00 X:00
+spr[2]=Y:F8 T:00 A:00 X:00
+spr[3]=Y:F8 T:00 A:00 X:00
+spr[4]=Y:F8 T:00 A:00 X:00
+spr[5]=Y:F8 T:00 A:00 X:00
+spr[6]=Y:F8 T:00 A:00 X:00
+spr[7]=Y:F8 T:00 A:00 X:00
+spr[8]=Y:F8 T:00 A:00 X:00
+spr[9]=Y:F8 T:00 A:00 X:00

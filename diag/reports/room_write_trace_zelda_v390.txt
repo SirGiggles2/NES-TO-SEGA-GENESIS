@@ -1,0 +1,15 @@
+=== ROOM WRITE TRACE zelda_v390 ===
+Frames observed: 850..1700
+Final script=0 sub=0 ready=0 map=00 next=00
+
+Region summaries:
+6530 total=0 nonzero=0 unique=0 first_frame=- last_frame=-
+687E total=0 nonzero=0 unique=0 first_frame=- last_frame=-
+68FE total=0 nonzero=0 unique=0 first_frame=- last_frame=-
+697E total=0 nonzero=0 unique=0 first_frame=- last_frame=-
+69FE total=0 nonzero=0 unique=0 first_frame=- last_frame=-
+6A7E total=0 nonzero=0 unique=0 first_frame=- last_frame=-
+6AFE total=0 nonzero=0 unique=0 first_frame=- last_frame=-
+
+First events:
+frame,region,addr,value,pc,script,sub,ready,map,next

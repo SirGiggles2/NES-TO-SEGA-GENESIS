@@ -1,0 +1,82 @@
+=== VISUAL CAPTURE ===
+SCREENSHOT: ad0_ph0 at f=150 nmi=15 sy=$00 sx=$00
+TITLE SCREENSHOT at nmi=100
+  Palette shadow:
+    00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+SCREENSHOT: ad0_ph1 at f=671 nmi=526 sy=$00 sx=$00
+FADE MID SCREENSHOT at nmi=601
+SCREENSHOT: ad1_ph0 at f=1106 nmi=961 sy=$00 sx=$00
+SCREENSHOT: ad1_ph2 at f=1117 nmi=963 sy=$00 sx=$00
+PHASE2 SCREENSHOT at phase2_frame=1 f=1117 nmi=963
+  OAM (Y, Tile, Attr, X):
+    Spr00: Y=$F8 T=$CA A=$C2 X=$D0
+    Spr01: Y=$F8 T=$CC A=$C2 X=$C8
+    Spr02: Y=$F8 T=$CA A=$82 X=$28
+    Spr03: Y=$F8 T=$CC A=$82 X=$30
+    Spr04: Y=$F8 T=$CA A=$42 X=$D0
+    Spr05: Y=$F8 T=$CC A=$42 X=$C8
+    Spr06: Y=$F8 T=$CA A=$02 X=$28
+    Spr07: Y=$F8 T=$CC A=$02 X=$30
+    Spr08: Y=$F8 T=$CE A=$02 X=$74
+    Spr09: Y=$F8 T=$D0 A=$02 X=$7C
+    Spr10: Y=$F8 T=$D2 A=$02 X=$57
+  Palette shadow ($FF0300? or PPU_PAL_SHADOW):
+    00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+  PPU buffer ($FF0302-$FF0325):
+    3F 00 20 0F 30 30 30 0F 21 30 30 0F 16 30 30 0F 29 1A 09 0F 29 37 17 0F 02 22 30 0F 16 27 30 0F 0B 1B 2B FF 
+SCREENSHOT: ad1_ph1 at f=1596 nmi=1427 sy=$08 sx=$00
+PHASE2 SCREENSHOT at phase2_frame=100 f=1945 nmi=1776
+  OAM (Y, Tile, Attr, X):
+    Spr00: Y=$F8 T=$CA A=$C2 X=$D0
+    Spr01: Y=$F8 T=$CC A=$C2 X=$C8
+    Spr02: Y=$F8 T=$CA A=$82 X=$28
+    Spr03: Y=$F8 T=$CC A=$82 X=$30
+    Spr04: Y=$F8 T=$CA A=$42 X=$D0
+    Spr05: Y=$F8 T=$CC A=$42 X=$C8
+    Spr06: Y=$F8 T=$CA A=$02 X=$28
+    Spr07: Y=$F8 T=$CC A=$02 X=$30
+    Spr08: Y=$F8 T=$CE A=$02 X=$74
+    Spr09: Y=$F8 T=$D0 A=$02 X=$7C
+    Spr10: Y=$F8 T=$D2 A=$02 X=$57
+  Palette shadow ($FF0300? or PPU_PAL_SHADOW):
+    00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+  PPU buffer ($FF0302-$FF0325):
+    FF 80 20 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 FF 
+PHASE2 SCREENSHOT at phase2_frame=300 f=2145 nmi=1976
+  OAM (Y, Tile, Attr, X):
+    Spr00: Y=$C5 T=$68 A=$42 X=$B3
+    Spr01: Y=$F8 T=$CC A=$C2 X=$C8
+    Spr02: Y=$F8 T=$CA A=$82 X=$28
+    Spr03: Y=$F8 T=$CC A=$82 X=$30
+    Spr04: Y=$F8 T=$CA A=$42 X=$D0
+    Spr05: Y=$F8 T=$CC A=$42 X=$C8
+    Spr06: Y=$F8 T=$CA A=$02 X=$28
+    Spr07: Y=$F8 T=$CC A=$02 X=$30
+    Spr08: Y=$F8 T=$CE A=$02 X=$74
+    Spr09: Y=$F8 T=$D0 A=$02 X=$7C
+    Spr10: Y=$F8 T=$D2 A=$02 X=$57
+  Palette shadow ($FF0300? or PPU_PAL_SHADOW):
+    00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+  PPU buffer ($FF0302-$FF0325):
+    FF 20 20 24 24 24 24 24 24 24 0F 0A 12 1B 22 24 24 24 24 24 24 24 24 0C 15 18 0C 14 24 24 24 24 24 24 24 FF 
+PHASE2 SCREENSHOT at phase2_frame=600 f=2445 nmi=2276
+  OAM (Y, Tile, Attr, X):
+    Spr00: Y=$6F T=$66 A=$42 X=$B3
+    Spr01: Y=$F8 T=$CC A=$C2 X=$C8
+    Spr02: Y=$F8 T=$CA A=$82 X=$28
+    Spr03: Y=$F8 T=$CC A=$82 X=$30
+    Spr04: Y=$F8 T=$CA A=$42 X=$D0
+    Spr05: Y=$F8 T=$CC A=$42 X=$C8
+    Spr06: Y=$F8 T=$CA A=$02 X=$28
+    Spr07: Y=$F8 T=$CC A=$02 X=$30
+    Spr08: Y=$F8 T=$CE A=$02 X=$74
+    Spr09: Y=$F8 T=$D0 A=$02 X=$7C
+    Spr10: Y=$F8 T=$D2 A=$02 X=$57
+  Palette shadow ($FF0300? or PPU_PAL_SHADOW):
+    00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+  PPU buffer ($FF0302-$FF0325):
+    FF C0 20 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 FF 
+SCREENSHOT: ad1_ph3 at f=4668 nmi=4499 sy=$D7 sx=$00
+SCREENSHOT: ad1_ph4 at f=4924 nmi=4755 sy=$D7 sx=$00
+SCREENSHOT: ad0_ph2 at f=4992 nmi=4814 sy=$00 sx=$00
+=== PROBE COMPLETE ===

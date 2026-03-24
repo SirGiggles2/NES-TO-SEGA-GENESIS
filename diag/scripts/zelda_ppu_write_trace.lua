@@ -1,6 +1,6 @@
 local OUT_DIR = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
 local TRACE_HINT = nil -- auto-set by runner
-local FRAME_LIMIT = 240
+local FRAME_LIMIT = 800
 local PPUCTRL_ADDR = 0xFF00FF
 local NT_SHADOW_BASE = 0xFF8200
 local CHR_SHADOW_BASE = 0xFFC000

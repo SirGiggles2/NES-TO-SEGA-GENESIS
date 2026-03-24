@@ -1,0 +1,73 @@
+=== INTRO LOOP PROBE: zelda_v481 ===
+f=00000 frm=  0 rdy=0 phase=0 timer=  0 sy=$00 2000=$00 nmi=1 cfr=0
+f=00054 frm=  0 rdy=0 phase=2 timer=  0 sy=$00 2000=$00 nmi=6 cfr=0
+f=00097 frm=  0 rdy=0 phase=0 timer=  0 sy=$00 2000=$B0 nmi=10 cfr=0
+f=00143 frm=  3 rdy=0 phase=1 timer=  0 sy=$00 2000=$B0 nmi=13 cfr=9
+f=00144 frm=  4 rdy=0 phase=2 timer=  0 sy=$00 2000=$B0 nmi=14 cfr=0
+handler_2 active at f=150 frm=5 nmi=15
+f=00150 frm=  5 rdy=1 phase=0 timer=  0 sy=$00 2000=$B0 nmi=15 cfr=0
+f=00260 frm=106 rdy=1 phase=0 timer= 50 sy=$00 2000=$B0 nmi=115 cfr=0
+f=00360 frm=206 rdy=1 phase=0 timer=100 sy=$00 2000=$B0 nmi=215 cfr=0
+f=00460 frm= 50 rdy=1 phase=0 timer=150 sy=$00 2000=$B0 nmi=315 cfr=0
+f=00560 frm=150 rdy=1 phase=0 timer=200 sy=$00 2000=$B0 nmi=415 cfr=0
+f=00660 frm=250 rdy=1 phase=0 timer=250 sy=$00 2000=$B0 nmi=515 cfr=0
+f=00671 frm=  5 rdy=1 phase=1 timer=  0 sy=$00 2000=$B0 nmi=526 cfr=0
+f=00771 frm=105 rdy=1 phase=1 timer=  0 sy=$00 2000=$B0 nmi=626 cfr=0
+f=00871 frm=205 rdy=1 phase=1 timer=  0 sy=$00 2000=$B0 nmi=726 cfr=0
+f=00971 frm= 49 rdy=1 phase=1 timer=  0 sy=$00 2000=$B0 nmi=826 cfr=0
+f=01071 frm=149 rdy=1 phase=1 timer=  0 sy=$00 2000=$B0 nmi=926 cfr=0
+f=01106 frm=184 rdy=0 phase=0 timer=  0 sy=$00 2000=$B0 nmi=961 cfr=0
+f=01116 frm=185 rdy=0 phase=1 timer=  0 sy=$00 2000=$B0 nmi=962 cfr=9
+f=01117 frm=186 rdy=0 phase=2 timer=  0 sy=$00 2000=$B0 nmi=963 cfr=0
+f=01123 frm=187 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=964 cfr=0
+f=01233 frm= 32 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1064 cfr=0
+f=01333 frm=132 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1164 cfr=0
+f=01433 frm=232 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1264 cfr=0
+f=01533 frm= 76 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1364 cfr=0
+f=01633 frm=176 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1464 cfr=0
+f=01733 frm= 20 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1564 cfr=0
+f=01833 frm=120 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1664 cfr=0
+f=01933 frm=220 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1764 cfr=0
+f=02033 frm= 64 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1864 cfr=0
+f=02133 frm=164 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=1964 cfr=0
+f=02233 frm=  8 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2064 cfr=0
+f=02333 frm=108 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2164 cfr=0
+f=02433 frm=208 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2264 cfr=0
+f=02533 frm= 52 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2364 cfr=0
+f=02633 frm=152 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2464 cfr=0
+f=02733 frm=252 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2564 cfr=0
+f=02833 frm= 96 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2664 cfr=0
+f=02933 frm=196 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2764 cfr=0
+f=03033 frm= 40 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2864 cfr=0
+f=03133 frm=140 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=2964 cfr=0
+f=03233 frm=240 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3064 cfr=0
+f=03333 frm= 84 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3164 cfr=0
+f=03433 frm=184 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3264 cfr=0
+f=03533 frm= 28 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3364 cfr=0
+f=03633 frm=128 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3464 cfr=0
+f=03733 frm=228 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3564 cfr=0
+f=03833 frm= 72 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3664 cfr=0
+f=03933 frm=172 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3764 cfr=0
+f=04033 frm= 16 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3864 cfr=0
+f=04133 frm=116 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=3964 cfr=0
+f=04233 frm=216 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4064 cfr=0
+f=04333 frm= 60 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4164 cfr=0
+f=04433 frm=160 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4264 cfr=0
+f=04533 frm=  4 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4364 cfr=0
+f=04633 frm=104 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4464 cfr=0
+f=04733 frm=204 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4564 cfr=0
+f=04833 frm= 48 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4664 cfr=0
+f=04933 frm=148 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4764 cfr=0
+f=05033 frm=248 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4864 cfr=0
+f=05133 frm= 92 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=4964 cfr=0
+f=05233 frm=192 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5064 cfr=0
+f=05333 frm= 36 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5164 cfr=0
+f=05433 frm=136 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5264 cfr=0
+f=05533 frm=236 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5364 cfr=0
+f=05633 frm= 80 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5464 cfr=0
+f=05733 frm=180 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5564 cfr=0
+f=05833 frm= 24 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5664 cfr=0
+f=05933 frm=124 rdy=1 phase=0 timer=  0 sy=$00 2000=$B2 nmi=5764 cfr=0
+
+=== FINAL: f=6000 nmi=5831 frm=191 frozen=false ===
+=== PROBE COMPLETE ===

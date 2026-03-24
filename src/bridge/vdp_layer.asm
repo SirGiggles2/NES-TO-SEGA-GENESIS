@@ -26,6 +26,11 @@ VDP_REG_DMASRC1 EQU $95
 VDP_REG_DMASRC2 EQU $96
 VDP_REG_DMASRC3 EQU $97
 
+; NES CRT overscan offset: NES=240 lines, Genesis=224 lines
+; CRT TVs clip ~8px top + ~8px bottom, so intended visible = rows 8-231
+; Offset Genesis vscroll by 8 to center the NES content
+NES_VSCROLL_OFFSET EQU 8
+
 VDP_SHADOW_BASE EQU $FFFFEF00
 PPUCTRL_SHADOW  EQU $FFFFEF00
 PPUMASK_SHADOW  EQU $FFFFEF01
@@ -52,14 +57,18 @@ PPU_NT_SHADOW   EQU $00FF8200
 PPU_PAL_SHADOW  EQU $00FF9200
 PPU_CHR_SHADOW  EQU $00FFC000
 PPU_NT_MIRROR_MASK EQU $03FF
-NES_BACKDROP_TILE_INDEX EQU $0200
-NES_BACKDROP_TILE_VRAM  EQU $4000
+NES_BACKDROP_TILE_INDEX EQU $0400
+NES_BACKDROP_TILE_VRAM  EQU $8000
+; FIX v490: Sprite tile copies live at VRAM $4000-$7FFF (tiles 512-1023)
+; These copies have pixel values shifted +4 so sprites use palette colors 4-7
+SPRITE_TILE_VRAM_BASE   EQU $4000
+SPRITE_TILE_INDEX_OFS   EQU $0200
 NES_BACKDROP_CRAM_INDEX EQU $000F
 
 
 VDP_INIT:
     move.w  #$8000,($C00004)
-    move.w  #$8134,($C00004)
+    move.w  #$813C,($C00004)    ; V30 mode (240 lines) to match NES resolution
     move.w  #$8230,($C00004)
     move.w  #$8307,($C00004)
     move.w  #$8407,($C00004)
@@ -92,8 +101,8 @@ VDP_INIT:
     clr.b   (PPU_FULL_REDRAW_PENDING).l
     bsr     PPU_CLEAR_SHADOWS
 
-    move.b  #$54,(VDP_REG1_SHADOW).l
-    move.w  #$8154,($C00004)
+    move.b  #$5C,(VDP_REG1_SHADOW).l  ; V30 mode + display on + DMA
+    move.w  #$815C,($C00004)
     rts
 
 PPU_WRITE_2000:
@@ -161,7 +170,9 @@ PPU_WRITE_2005:
     tst.b   (PPUSCROLL_LATCH).l
     bne     .write_y
     move.b  D0,(PPUSCROLL_X).l
-    move.b  D0,(RAM_SCROLL_X).l
+    ; FIX v482: removed RAM_SCROLL_X writeback — NES $2005 write does NOT
+    ; modify the game's RAM shadow ($FD). Only the game code itself updates
+    ; ram_scroll_X. The VDP layer must not clobber it.
     move.b  #1,(PPUSCROLL_LATCH).l
     move.l  #$7C000002,($C00004)
     moveq   #0,D3
@@ -172,7 +183,8 @@ PPU_WRITE_2005:
     rts
 .write_y:
     move.b  D0,(PPUSCROLL_Y).l
-    move.b  D0,(RAM_SCROLL_Y).l
+    ; FIX v482: removed RAM_SCROLL_Y writeback — same as scroll X fix above.
+    ; NES $2005 write only sets PPU internal scroll, not RAM at $FC.
     clr.b   (PPUSCROLL_LATCH).l
     move.l  #$40004000,($C00004)
     moveq   #0,D3
@@ -308,6 +320,8 @@ VDP_VBLANK_HANDLER:
     move.w  #$0202,D0
     bsr     TRACE_MARK
     bsr     vec_0x01E494_NMI
+    bsr     PPU_SYNC_PALETTE_SHADOW_TO_CRAM
+    bsr     VDP_OAM_DMA_TRANSFER
     move.w  #$0203,D0
     bsr     TRACE_MARK
 
@@ -351,6 +365,13 @@ VDP_OAM_DMA_TRANSFER:
     ori.w   #$8000,D0
     move.w  D4,D2
     andi.w  #$00FF,D2
+    ; FIX v490: Add PPUCTRL sprite pattern table offset
+    btst    #3,(PPUCTRL_SHADOW).l
+    beq     .spr_no_pt_ofs
+    addi.w  #$0100,D2
+.spr_no_pt_ofs:
+    ; FIX v490: Use sprite tile copies (pixel values shifted for colors 4-7)
+    addi.w  #SPRITE_TILE_INDEX_OFS,D2
     or.w    D2,D0
     move.w  D0,($C00000)
     move.w  D6,D0
@@ -408,12 +429,188 @@ VDP_SYNC_NES_BACKDROP_COLOR:
     move.w  D1,($C00000)
     rts
 
+PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
+; FIX v490: Write BG palettes at colors 0-3 AND sprite palettes at colors 4-7
+; of each Genesis palette line, so BG and sprites can coexist properly
+    movem.l D0-D5/A0,-(A7)
+    move.b  (ram_script).l,D0
+    cmpi.b  #con_script_title_screen,D0
+    beq     .sync_frontend_layout
+    cmpi.b  #$01,D0
+    beq     .sync_frontend_layout
+    cmpi.b  #con_script_register,D0
+    beq     .sync_frontend_layout
+    cmpi.b  #con_script_elimination,D0
+    beq     .sync_frontend_layout
+    cmpi.b  #con_script_final_credits,D0
+    beq     .sync_frontend_layout
+    ; --- Gameplay palette sync ---
+    lea     (PPU_PAL_SHADOW).l,A0
+    moveq   #0,D5
+.gp_line_loop:
+    ; Set CRAM write address for palette line D5, color 0
+    move.w  D5,D4
+    lsl.w   #5,D4              ; D4 = line * 32 (CRAM byte offset per line)
+    swap    D4
+    ori.l   #$C0000000,D4
+    move.l  D4,($C00004)
+    ; Write BG pal D5 at colors 0-3
+    moveq   #0,D3
+.gp_bg_loop:
+    moveq   #0,D4
+    tst.w   D3
+    beq     .gp_bg_backdrop
+    move.w  D5,D4
+    lsl.w   #2,D4
+    add.w   D3,D4
+    bra     .gp_bg_have_idx
+.gp_bg_backdrop:
+    moveq   #0,D4
+.gp_bg_have_idx:
+    moveq   #0,D0
+    move.b  (A0,D4.w),D0
+    move.l  A0,-(A7)
+    bsr     NES_PAL_TO_BGR555
+    move.l  (A7)+,A0
+    move.w  D0,($C00000)
+    addq.w  #1,D3
+    cmpi.w  #4,D3
+    bne     .gp_bg_loop
+    ; Write sprite pal D5 at colors 4-7 (VDP auto-incremented to color 4)
+    moveq   #0,D3
+.gp_sp_loop:
+    moveq   #0,D4
+    tst.w   D3
+    beq     .gp_sp_backdrop
+    move.w  D5,D4
+    lsl.w   #2,D4
+    add.w   D3,D4
+    addi.w  #16,D4             ; sprite palettes at shadow[16..31]
+    bra     .gp_sp_have_idx
+.gp_sp_backdrop:
+    moveq   #0,D4              ; color 0 = backdrop (shadow[0])
+.gp_sp_have_idx:
+    moveq   #0,D0
+    move.b  (A0,D4.w),D0
+    move.l  A0,-(A7)
+    bsr     NES_PAL_TO_BGR555
+    move.l  (A7)+,A0
+    move.w  D0,($C00000)
+    addq.w  #1,D3
+    cmpi.w  #4,D3
+    bne     .gp_sp_loop
+    ; Next palette line
+    addq.w  #1,D5
+    cmpi.w  #4,D5
+    bne     .gp_line_loop
+    ; Sync NES backdrop color
+    moveq   #0,D0
+    move.b  (A0),D0
+    move.l  A0,-(A7)
+    bsr     NES_PAL_TO_BGR555
+    move.l  (A7)+,A0
+    bsr     VDP_SYNC_NES_BACKDROP_COLOR
+    movem.l (A7)+,D0-D5/A0
+    rts
+.sync_frontend_layout:
+; FIX v490: Frontend palette sync — BG at colors 0-3, sprites at colors 4-7
+    lea     (PPU_PAL_SHADOW).l,A0
+    moveq   #0,D5
+.fe_line_loop:
+    ; Set CRAM write address for palette line D5, color 0
+    move.w  D5,D4
+    lsl.w   #5,D4
+    swap    D4
+    ori.l   #$C0000000,D4
+    move.l  D4,($C00004)
+    ; Write BG pal D5 at colors 0-3
+    moveq   #0,D3
+.fe_bg_loop:
+    moveq   #0,D4
+    tst.w   D3
+    beq     .fe_bg_backdrop
+    move.w  D5,D4
+    lsl.w   #2,D4
+    add.w   D3,D4
+    bra     .fe_bg_have_idx
+.fe_bg_backdrop:
+    moveq   #0,D4
+.fe_bg_have_idx:
+    moveq   #0,D0
+    move.b  (A0,D4.w),D0
+    bsr     FRONTEND_PAL_LOOKUP
+    move.w  D0,($C00000)
+    addq.w  #1,D3
+    cmpi.w  #4,D3
+    bne     .fe_bg_loop
+    ; Write sprite pal D5 at colors 4-7 (VDP auto-incremented to color 4)
+    moveq   #0,D3
+.fe_sp_loop:
+    moveq   #0,D4
+    tst.w   D3
+    beq     .fe_sp_backdrop
+    move.w  D5,D4
+    lsl.w   #2,D4
+    add.w   D3,D4
+    addi.w  #16,D4
+    bra     .fe_sp_have_idx
+.fe_sp_backdrop:
+    moveq   #0,D4
+.fe_sp_have_idx:
+    moveq   #0,D0
+    move.b  (A0,D4.w),D0
+    bsr     FRONTEND_PAL_LOOKUP
+    move.w  D0,($C00000)
+    addq.w  #1,D3
+    cmpi.w  #4,D3
+    bne     .fe_sp_loop
+    ; Next palette line
+    addq.w  #1,D5
+    cmpi.w  #4,D5
+    bne     .fe_line_loop
+    ; Sync NES backdrop color
+    moveq   #0,D0
+    move.b  (A0),D0
+    bsr     FRONTEND_PAL_LOOKUP
+    bsr     VDP_SYNC_NES_BACKDROP_COLOR
+    movem.l (A7)+,D0-D5/A0
+    rts
+
 NES_PAL_TO_BGR555:
     andi.w  #$3F,D0
     lsl.w   #1,D0
     lea     NES_PALETTE_DATA,A0
     move.w  (A0,D0.w),D0
     rts
+
+; FIX v446: Frontend-specific palette lookup using CORRECT NES palette
+; Uses A1 internally — does NOT clobber A0 (critical for sync loops)
+FRONTEND_PAL_LOOKUP:
+    andi.w  #$3F,D0
+    lsl.w   #1,D0
+    lea     CORRECT_NES_PALETTE(PC),A1
+    move.w  (A1,D0.w),D0
+    rts
+
+; Accurate NES 2C02 NTSC palette → Genesis $0BGR (3-bit per channel)
+; Computed from standard NES 2C02 RGB values, rounded to nearest Genesis level
+CORRECT_NES_PALETTE:
+;   $00      $01      $02      $03      $04      $05      $06      $07
+    DC.W $0666, $0820, $0A02, $0A04, $0606, $0406, $0006, $0024
+;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
+    DC.W $0022, $0040, $0040, $0040, $0440, $0000, $0000, $0000
+;   $10      $11      $12      $13      $14      $15      $16      $17
+    DC.W $0AAA, $0C62, $0E44, $0E26, $0C28, $062A, $022A, $0048
+;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
+    DC.W $0066, $0084, $0080, $0280, $0860, $0000, $0000, $0000
+;   $20      $21      $22      $23      $24      $25      $26      $27
+    DC.W $0EEE, $0EA6, $0E88, $0E6A, $0E6E, $0C6E, $068E, $028C
+;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
+    DC.W $00AA, $00C8, $02C6, $08C4, $0CC4, $0444, $0000, $0000
+;   $30      $31      $32      $33      $34      $35      $36      $37
+    DC.W $0EEE, $0ECA, $0ECC, $0EAC, $0EAE, $0CAE, $0ACE, $0ACE
+;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
+    DC.W $08CC, $08EC, $0AEA, $0CEA, $0ECA, $0000, $0000, $0000
 
 PPU_CLEAR_SHADOWS:
     lea     (PPU_NT_SHADOW).l,A0
@@ -686,6 +883,12 @@ PPU_PIXEL_PAIR_TABLE:
     dc.b    $00,$01,$10,$11,$02,$03,$12,$13
     dc.b    $20,$21,$30,$31,$22,$23,$32,$33
 
+; FIX v490: Sprite pixel pair table — non-zero pixels shifted +4
+; So sprite tiles use palette colors 4-7 instead of 0-3
+PPU_SPRITE_PIXEL_PAIR_TABLE:
+    dc.b    $00,$05,$50,$55,$06,$07,$56,$57
+    dc.b    $60,$65,$70,$75,$66,$67,$76,$77
+
 PPU_RENDER_ATTRIBUTE_BLOCK:
     move.w  D4,D5
     lsr.w   #8,D5
@@ -742,6 +945,19 @@ PPU_RENDER_NAMETABLE_CELL:
 
     moveq   #0,D2
     move.b  (A0,D4.w),D2
+.ppuctrl_bg_select:
+    move.b  (ram_script).l,D0
+    cmpi.b  #con_script_register,D0
+    beq     .check_ppuctrl_bg_select
+    cmpi.b  #con_script_elimination,D0
+    beq     .check_ppuctrl_bg_select
+    cmpi.b  #con_script_final_credits,D0
+    beq     .check_ppuctrl_bg_select
+    cmpi.b  #$03,D0
+    bcs     .check_ppuctrl_bg_select
+    tst.b   (ram_dungeon_level).l
+    beq     .tile_base_done
+.check_ppuctrl_bg_select:
     btst    #4,(PPUCTRL_SHADOW).l
     beq     .tile_base_done
     addi.w  #$0100,D2
@@ -808,12 +1024,21 @@ VDP_SET_VRAM_WRITE_ADDR:
     rts
 
 NES_PALETTE_DATA:
-    DC.W $0000,$0888,$0000,$0406,$0004,$0024,$0004,$0026
-    DC.W $0042,$0040,$0060,$0640,$0444,$0000,$0000,$0000
-    DC.W $0AAA,$000E,$040C,$060A,$0808,$0808,$0806,$0046
-    DC.W $0262,$0060,$0060,$0860,$0680,$0000,$0000,$0000
-    DC.W $0EEE,$02EE,$06EE,$08CE,$0AAE,$0AAE,$04AE,$028C
-    DC.W $00EC,$00E4,$04E4,$0EE4,$0E60,$0000,$0000,$0000
-    DC.W $0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0EEE
-    DC.W $0EEE,$0EEE,$0EEE,$0EEE,$0EEE,$0000,$0000,$0000
+;   $00      $01      $02      $03      $04      $05      $06      $07
+    DC.W $0666, $0820, $0A02, $0A04, $0606, $0406, $0006, $0024
+;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
+    DC.W $0022, $0040, $0040, $0040, $0440, $0000, $0000, $0000
+;   $10      $11      $12      $13      $14      $15      $16      $17
+    DC.W $0AAA, $0C62, $0E44, $0E26, $0C28, $062A, $022A, $0048
+;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
+    DC.W $0066, $0084, $0080, $0280, $0860, $0000, $0000, $0000
+;   $20      $21      $22      $23      $24      $25      $26      $27
+    DC.W $0EEE, $0EA6, $0E88, $0E6A, $0E6E, $0C6E, $068E, $028C
+;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
+    DC.W $00AA, $00C8, $02C6, $08C4, $0CC4, $0444, $0000, $0000
+;   $30      $31      $32      $33      $34      $35      $36      $37
+    DC.W $0EEE, $0ECA, $0ECC, $0EAC, $0EAE, $0CAE, $0ACE, $0ACE
+;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
+    DC.W $08CC, $08EC, $0AEA, $0CEA, $0ECA, $0000, $0000, $0000
+
 

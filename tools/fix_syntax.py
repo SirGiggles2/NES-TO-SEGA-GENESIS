@@ -5,6 +5,7 @@ fix_syntax.py - Fix ca65 syntax artifacts in translated 68000 assembly
 
 import re
 import glob
+import os
 from collections import defaultdict
 
 KNOWN_CONSTANTS = {
@@ -80,6 +81,8 @@ GLOBAL_LABELS = {
     'ram_oam', 'ram_stack', 'ram_zp',
 }
 
+CURRENT_FILE = None
+
 
 def strip_bank_prefix(tok):
     """Strip bank prefix like b05_ from a token before label lookup."""
@@ -87,6 +90,80 @@ def strip_bank_prefix(tok):
     if m:
         return m.group(1)
     return tok
+
+
+def resolve_known_label_value(label):
+    """Resolve a label against the small known-label map, tolerating bank prefixes."""
+    raw = label.lower()
+    for candidate in (raw, strip_bank_prefix(raw).lower()):
+        if candidate in ALL_LABELS:
+            return ALL_LABELS[candidate]
+    return None
+
+
+def extract_orig_immediate_byte(line):
+    """
+    Use the original 6502 opcode bytes as a fallback source of truth.
+    For immediates like:
+        ; orig: ...: A9 DE  LDA #< tbl_A0DE
+    return DE.
+    """
+    m = re.search(r';\s*orig:.*?:\s*[0-9A-Fa-f]{2}\s+([0-9A-Fa-f]{2})(?:\s+[0-9A-Fa-f]{2})?\b', line)
+    if m:
+        return int(m.group(1), 16)
+    return None
+
+
+def extract_orig_data_byte(line):
+    """
+    For raw data directives, use the first emitted byte shown in the original
+    listing comment, e.g.:
+        ; orig: ...: 38        .byte < (...)
+    return 0x38.
+    """
+    m = re.search(r';\s*orig:.*?:\s*([0-9A-Fa-f]{2})\b', line)
+    if m:
+        return int(m.group(1), 16)
+    return None
+
+
+def resolve_data_byte_token(token, line, single_token=False):
+    """
+    Resolve a token used inside a .BYTE directive.
+    Supports plain values/expressions plus <expr / >expr byte extraction.
+    Falls back to the original emitted byte when the expression can't be
+    resolved from translated symbols.
+    """
+    tok = token.strip()
+    m = re.match(r'^([<>])\s*(.+)$', tok)
+    if not m:
+        val = eval_const_expr(tok)
+        if val is not None and 0 <= val <= 0xFF:
+            return '$%02X' % (val & 0xFF)
+        if single_token and re.search(r'[A-Za-z_]', tok):
+            orig_byte = extract_orig_data_byte(line)
+            if orig_byte is not None:
+                return '$%02X' % orig_byte
+        return tok
+
+    op, expr = m.group(1), m.group(2).strip()
+    val = eval_const_expr(expr)
+    if val is None:
+        val = resolve_known_label_value(expr)
+    if val is None and expr.startswith('(') and expr.endswith(')'):
+        inner = expr[1:-1].strip()
+        val = eval_const_expr(inner)
+        if val is None:
+            val = resolve_known_label_value(inner)
+    if val is None:
+        orig_byte = extract_orig_data_byte(line)
+        if orig_byte is not None:
+            return '$%02X' % orig_byte
+        return tok
+
+    if op == '>':
+        return '$%02X' % ((val >> 8) & 0xFF)
+    return '$%02X' % (val & 0xFF)
 
 
 def eval_const_expr(expr):
@@ -206,6 +283,10 @@ def prefix_labels_in_file(lines, prefix):
 
 
 def fix_line(line):
+    restore_data_directives = (
+        CURRENT_FILE is not None
+        and os.path.basename(CURRENT_FILE).lower() == 'bank_06_gen68k_vdp.asm'
+    )
 
     # Fix A: MOVE.B (D0).l,D3 → wrong ROL/ROR A expansion
     if '(D0).l' in line:
@@ -242,11 +323,16 @@ def fix_line(line):
     # Fix D: #< label, #> label
     def fix_label_byte_op(m):
         op    = m.group(1)
-        label = m.group(2).lower()
-        if label in ALL_LABELS:
-            val = ALL_LABELS[label]
+        label = m.group(2)
+        val = resolve_known_label_value(label)
+        if val is not None:
             return '#$%02X' % ((val >> 8) & 0xFF if op == '>' else val & 0xFF)
-        return '#$00' if op == '<' else '#$02'
+        orig_imm = extract_orig_immediate_byte(line)
+        if orig_imm is not None:
+            return '#$%02X' % orig_imm
+        # Keep the unresolved token intact so the build fails loudly instead of
+        # silently corrupting the ROM with bogus fallback bytes.
+        return m.group(0)
     line = re.sub(r'#([><])\s*([a-z_][a-z0-9_]*)(?!\s*[+\-\^\(])',
                   fix_label_byte_op, line, flags=re.IGNORECASE)
 
@@ -258,7 +344,11 @@ def fix_line(line):
         if val is not None:
             result = (val >> 8) & 0xFF if op == '>' else val & 0xFF
             return '#$%02X' % result
-        return '#$F0  ; !! UNRESOLVED %s(%s)' % ('hi' if op == '>' else 'lo', expr.strip())
+        orig_imm = extract_orig_immediate_byte(line)
+        if orig_imm is not None:
+            return '#$%02X' % orig_imm
+        # Preserve the original token so unresolved expressions stay visible.
+        return m.group(0)
     line = re.sub(r'#([><])\s*(\([^)]+\))', fix_complex_byte_op, line, flags=re.IGNORECASE)
 
     # Fix F: comment-in-operand: MOVE.B #$xx ; comment,D0
@@ -292,22 +382,48 @@ def fix_line(line):
             return m.group(0)
         return ('%sMOVE.B  (%s).l,D3\n'
                 '%s%s.B  %s,D3\n'
-                '%sMOVE.B  D3,(%s).l%s\n') % (i, label, i, instr, count, i, label, rest)
+                '%sMOVE.B  D3,(%s).l%s\n'
+                '%sMOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)\n'
+                '%sNEGX.B  D3                ; C = X = original shift carry\n') % (i, label, i, instr, count, i, label, rest, i, i)
     line = re.sub(
         r'^(\s*)(ROXL|ROXR|LSR|ASL|LSL|ROL|ROR)\.B\s+(#\d+),([a-zA-Z_][a-zA-Z0-9_]*)(.*)',
         fix_shift_mem, line, flags=re.IGNORECASE
     )
     line = re.sub(
         r'^(\s*)(ROXL|ROXR)\s+(#\d+),\(([a-zA-Z_][a-zA-Z0-9_]*)\)\.l(.*)',
-        lambda m: ('%sMOVE.B  (%s).l,D3\n%s%s.B  %s,D3\n%sMOVE.B  D3,(%s).l%s\n') % (
+        lambda m: ('%sMOVE.B  (%s).l,D3\n%s%s.B  %s,D3\n%sMOVE.B  D3,(%s).l%s\n'
+                    '%sMOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)\n'
+                    '%sNEGX.B  D3                ; C = X = original shift carry\n') % (
             m.group(1), m.group(4), m.group(1), m.group(2),
-            m.group(3), m.group(1), m.group(4), m.group(5)),
+            m.group(3), m.group(1), m.group(4), m.group(5),
+            m.group(1), m.group(1)),
         line, flags=re.IGNORECASE
     )
 
-    # Fix J: .DBYT → DC.W
-    line = re.sub(r';\s*\[DIRECTIVE\]\s*\.DBYT\s+(\$[0-9A-Fa-f]+)', r'    DC.W \1', line)
-    line = re.sub(r'^\s*\.DBYT\s+(\$[0-9A-Fa-f]+)', r'    DC.W \1', line)
+    # Fix J: restore translated data directives that were left as comments
+    if restore_data_directives:
+        mm = re.match(
+            r'^\s*;\s*(?:\[DIRECTIVE\]\s*|!! UNKNOWN:\s*)?\.BYTE\s+(.+?)(?:\s+-- needs manual handling)?(?:\s*;.*)?$',
+            line, re.IGNORECASE
+        )
+        if mm:
+            tokens = [tok.strip() for tok in mm.group(1).split(',')]
+            payload = ', '.join(resolve_data_byte_token(tok, line, len(tokens) == 1) for tok in tokens)
+            line = '    DC.B %s\n' % payload
+
+        mm = re.match(
+            r'^\s*;\s*(?:\[DIRECTIVE\]\s*|!! UNKNOWN:\s*)?\.DBYT\s+(.+?)(?:\s+-- needs manual handling)?(?:\s*;.*)?$',
+            line, re.IGNORECASE
+        )
+        if mm:
+            line = '    DC.W %s\n' % mm.group(1).strip()
+
+        mm = re.match(r'^\s*\.BYTE\s+(.+)$', line, re.IGNORECASE)
+        if mm:
+            tokens = [tok.strip() for tok in mm.group(1).split(',')]
+            payload = ', '.join(resolve_data_byte_token(tok, line, len(tokens) == 1) for tok in tokens)
+            line = '    DC.B %s\n' % payload
+        line = re.sub(r'^\s*\.DBYT\s+(.+)$', r'    DC.W \1', line, flags=re.IGNORECASE)
 
     # Fix K: .INCBIN → INCBIN
     line = re.sub(r';\s*\[DIRECTIVE\]\s*\.INCBIN\s+"([^"]+)"', r'    INCBIN "\1"', line)
@@ -711,7 +827,14 @@ def prescan_file(filepath):
     return hits
 
 
+def safe_console_text(text):
+    """Best-effort ASCII-safe text for Windows console output."""
+    return text.encode('ascii', 'replace').decode('ascii')
+
+
 def fix_file(filepath):
+    global CURRENT_FILE
+    CURRENT_FILE = filepath
     with open(filepath, 'r', encoding='utf-8') as f:
         lines = f.readlines()
 
@@ -730,6 +853,8 @@ def fix_file(filepath):
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.writelines(fixed_lines)
+
+    CURRENT_FILE = None
 
     return fix_count, prefix_count
 
@@ -766,8 +891,8 @@ if __name__ == '__main__':
         if hits:
             print("\n  FILE: %s (%d hits)" % (f, len(hits)))
             for lineno, desc, line in hits[:20]:  # cap at 20 per file
-                print("    line %4d [%s]" % (lineno, desc))
-                print("             %s" % line[:100])
+                print("    line %4d [%s]" % (lineno, safe_console_text(desc)))
+                print("             %s" % safe_console_text(line[:100]))
             total_suspects += len(hits)
     if total_suspects == 0:
         print("  No suspect patterns found — should assemble cleanly!")

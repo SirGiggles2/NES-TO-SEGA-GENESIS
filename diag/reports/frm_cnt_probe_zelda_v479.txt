@@ -1,0 +1,392 @@
+=== FRM_CNT PROBE: zelda_v479 ===
+f=00000 frm=  0 rdy=0 scr=0 nmi=1
+f=00012 frm=  1 rdy=0 scr=0 nmi=2 <<< TICK
+f=00013 frm=  2 rdy=0 scr=0 nmi=3 <<< TICK
+f=00043 frm=  3 rdy=0 scr=0 nmi=4 <<< TICK
+f=00044 frm=  4 rdy=0 scr=0 nmi=5 <<< TICK
+f=00054 frm=  0 rdy=0 scr=0 nmi=6 <<< TICK
+f=00060 frm=  1 rdy=0 scr=0 nmi=7 <<< TICK
+f=00061 frm=  2 rdy=0 scr=0 nmi=8 <<< TICK
+f=00091 frm=  3 rdy=0 scr=0 nmi=9 <<< TICK
+f=00097 frm=  0 rdy=0 scr=0 nmi=10 <<< TICK
+f=00098 frm=  1 rdy=0 scr=0 nmi=11 <<< TICK
+f=00729 frm=  2 rdy=0 scr=0 nmi=12 <<< TICK
+f=00734 frm=  3 rdy=0 scr=0 nmi=13 <<< TICK
+f=00740 frm=  3 rdy=0 scr=0 nmi=13
+f=00741 frm=  3 rdy=0 scr=0 nmi=13
+f=00742 frm=  3 rdy=0 scr=0 nmi=13
+f=00743 frm=  3 rdy=0 scr=0 nmi=13
+f=00744 frm=  3 rdy=0 scr=0 nmi=13
+f=00745 frm=  4 rdy=0 scr=0 nmi=14 <<< TICK
+f=00746 frm=  4 rdy=0 scr=0 nmi=14
+f=00747 frm=  4 rdy=0 scr=0 nmi=14
+f=00748 frm=  4 rdy=0 scr=0 nmi=14
+f=00749 frm=  4 rdy=0 scr=0 nmi=14
+f=00750 frm=  4 rdy=0 scr=0 nmi=14
+f=00751 frm=  5 rdy=1 scr=0 nmi=15 <<< TICK
+f=00752 frm=  5 rdy=1 scr=0 nmi=15
+f=00753 frm=  5 rdy=1 scr=0 nmi=15
+f=00754 frm=  5 rdy=1 scr=0 nmi=15
+f=00755 frm=  5 rdy=1 scr=0 nmi=15
+f=00756 frm=  5 rdy=1 scr=0 nmi=15
+f=00757 frm=  6 rdy=1 scr=0 nmi=16 <<< TICK
+f=00758 frm=  6 rdy=1 scr=0 nmi=16
+f=00759 frm=  6 rdy=1 scr=0 nmi=16
+f=00760 frm=  6 rdy=1 scr=0 nmi=16
+f=00761 frm=  6 rdy=1 scr=0 nmi=16
+f=00762 frm=  6 rdy=1 scr=0 nmi=16
+f=00763 frm=  8 rdy=1 scr=0 nmi=17 <<< TICK
+f=00764 frm=  9 rdy=1 scr=0 nmi=18 <<< TICK
+f=00765 frm= 10 rdy=1 scr=0 nmi=19 <<< TICK
+f=00766 frm= 11 rdy=1 scr=0 nmi=20 <<< TICK
+f=00767 frm= 12 rdy=1 scr=0 nmi=21 <<< TICK
+f=00768 frm= 13 rdy=1 scr=0 nmi=22 <<< TICK
+f=00769 frm= 14 rdy=1 scr=0 nmi=23 <<< TICK
+f=00770 frm= 15 rdy=1 scr=0 nmi=24 <<< TICK
+f=00771 frm= 16 rdy=1 scr=0 nmi=25 <<< TICK
+f=00772 frm= 17 rdy=1 scr=0 nmi=26 <<< TICK
+f=00773 frm= 18 rdy=1 scr=0 nmi=27 <<< TICK
+f=00774 frm= 19 rdy=1 scr=0 nmi=28 <<< TICK
+f=00775 frm= 20 rdy=1 scr=0 nmi=29 <<< TICK
+f=00776 frm= 21 rdy=1 scr=0 nmi=30 <<< TICK
+f=00777 frm= 22 rdy=1 scr=0 nmi=31 <<< TICK
+f=00778 frm= 23 rdy=1 scr=0 nmi=32 <<< TICK
+f=00779 frm= 24 rdy=1 scr=0 nmi=33 <<< TICK
+f=00780 frm= 25 rdy=1 scr=0 nmi=34 <<< TICK
+f=00781 frm= 26 rdy=1 scr=0 nmi=35 <<< TICK
+f=00782 frm= 27 rdy=1 scr=0 nmi=36 <<< TICK
+f=00783 frm= 28 rdy=1 scr=0 nmi=37 <<< TICK
+f=00784 frm= 29 rdy=1 scr=0 nmi=38 <<< TICK
+f=00785 frm= 30 rdy=1 scr=0 nmi=39 <<< TICK
+f=00786 frm= 31 rdy=1 scr=0 nmi=40 <<< TICK
+f=00787 frm= 32 rdy=1 scr=0 nmi=41 <<< TICK
+f=00788 frm= 33 rdy=1 scr=0 nmi=42 <<< TICK
+f=00789 frm= 34 rdy=1 scr=0 nmi=43 <<< TICK
+f=00790 frm= 35 rdy=1 scr=0 nmi=44 <<< TICK
+f=00791 frm= 36 rdy=1 scr=0 nmi=45 <<< TICK
+f=00792 frm= 37 rdy=1 scr=0 nmi=46 <<< TICK
+f=00793 frm= 38 rdy=1 scr=0 nmi=47 <<< TICK
+f=00794 frm= 39 rdy=1 scr=0 nmi=48 <<< TICK
+f=00795 frm= 40 rdy=1 scr=0 nmi=49 <<< TICK
+f=00796 frm= 41 rdy=1 scr=0 nmi=50 <<< TICK
+f=00797 frm= 42 rdy=1 scr=0 nmi=51 <<< TICK
+f=00798 frm= 43 rdy=1 scr=0 nmi=52 <<< TICK
+f=00799 frm= 44 rdy=1 scr=0 nmi=53 <<< TICK
+f=00800 frm= 45 rdy=1 scr=0 nmi=54 <<< TICK
+f=00801 frm= 46 rdy=1 scr=0 nmi=55 <<< TICK
+f=00802 frm= 47 rdy=1 scr=0 nmi=56 <<< TICK
+f=00803 frm= 48 rdy=1 scr=0 nmi=57 <<< TICK
+f=00804 frm= 49 rdy=1 scr=0 nmi=58 <<< TICK
+f=00805 frm= 50 rdy=1 scr=0 nmi=59 <<< TICK
+f=00806 frm= 51 rdy=1 scr=0 nmi=60 <<< TICK
+f=00807 frm= 52 rdy=1 scr=0 nmi=61 <<< TICK
+f=00808 frm= 53 rdy=1 scr=0 nmi=62 <<< TICK
+f=00809 frm= 54 rdy=1 scr=0 nmi=63 <<< TICK
+f=00810 frm= 55 rdy=1 scr=0 nmi=64 <<< TICK
+f=00811 frm= 56 rdy=1 scr=0 nmi=65 <<< TICK
+f=00812 frm= 57 rdy=1 scr=0 nmi=66 <<< TICK
+f=00813 frm= 58 rdy=1 scr=0 nmi=67 <<< TICK
+f=00814 frm= 59 rdy=1 scr=0 nmi=68 <<< TICK
+f=00815 frm= 60 rdy=1 scr=0 nmi=69 <<< TICK
+f=00816 frm= 61 rdy=1 scr=0 nmi=70 <<< TICK
+f=00817 frm= 62 rdy=1 scr=0 nmi=71 <<< TICK
+f=00818 frm= 63 rdy=1 scr=0 nmi=72 <<< TICK
+f=00819 frm= 64 rdy=1 scr=0 nmi=73 <<< TICK
+f=00820 frm= 65 rdy=1 scr=0 nmi=74 <<< TICK
+f=00821 frm= 66 rdy=1 scr=0 nmi=75 <<< TICK
+f=00822 frm= 67 rdy=1 scr=0 nmi=76 <<< TICK
+f=00823 frm= 68 rdy=1 scr=0 nmi=77 <<< TICK
+f=00824 frm= 69 rdy=1 scr=0 nmi=78 <<< TICK
+f=00825 frm= 70 rdy=1 scr=0 nmi=79 <<< TICK
+f=00826 frm= 71 rdy=1 scr=0 nmi=80 <<< TICK
+f=00827 frm= 72 rdy=1 scr=0 nmi=81 <<< TICK
+f=00828 frm= 73 rdy=1 scr=0 nmi=82 <<< TICK
+f=00829 frm= 74 rdy=1 scr=0 nmi=83 <<< TICK
+f=00830 frm= 75 rdy=1 scr=0 nmi=84 <<< TICK
+f=00831 frm= 76 rdy=1 scr=0 nmi=85 <<< TICK
+f=00832 frm= 77 rdy=1 scr=0 nmi=86 <<< TICK
+f=00833 frm= 78 rdy=1 scr=0 nmi=87 <<< TICK
+f=00834 frm= 79 rdy=1 scr=0 nmi=88 <<< TICK
+f=00835 frm= 80 rdy=1 scr=0 nmi=89 <<< TICK
+f=00836 frm= 81 rdy=1 scr=0 nmi=90 <<< TICK
+f=00837 frm= 82 rdy=1 scr=0 nmi=91 <<< TICK
+f=00838 frm= 83 rdy=1 scr=0 nmi=92 <<< TICK
+f=00839 frm= 84 rdy=1 scr=0 nmi=93 <<< TICK
+f=00840 frm= 85 rdy=1 scr=0 nmi=94 <<< TICK
+f=00841 frm= 86 rdy=1 scr=0 nmi=95 <<< TICK
+f=00842 frm= 87 rdy=1 scr=0 nmi=96 <<< TICK
+f=00843 frm= 88 rdy=1 scr=0 nmi=97 <<< TICK
+f=00844 frm= 89 rdy=1 scr=0 nmi=98 <<< TICK
+f=00845 frm= 90 rdy=1 scr=0 nmi=99 <<< TICK
+f=00846 frm= 91 rdy=1 scr=0 nmi=100 <<< TICK
+f=00847 frm= 92 rdy=1 scr=0 nmi=101 <<< TICK
+f=00848 frm= 93 rdy=1 scr=0 nmi=102 <<< TICK
+f=00849 frm= 94 rdy=1 scr=0 nmi=103 <<< TICK
+f=00850 frm= 95 rdy=1 scr=0 nmi=104 <<< TICK
+f=00851 frm= 96 rdy=1 scr=0 nmi=105 <<< TICK
+f=00852 frm= 97 rdy=1 scr=0 nmi=106 <<< TICK
+f=00853 frm= 98 rdy=1 scr=0 nmi=107 <<< TICK
+f=00854 frm= 99 rdy=1 scr=0 nmi=108 <<< TICK
+f=00855 frm=100 rdy=1 scr=0 nmi=109 <<< TICK
+f=00856 frm=101 rdy=1 scr=0 nmi=110 <<< TICK
+f=00857 frm=102 rdy=1 scr=0 nmi=111 <<< TICK
+f=00858 frm=103 rdy=1 scr=0 nmi=112 <<< TICK
+f=00859 frm=104 rdy=1 scr=0 nmi=113 <<< TICK
+f=00860 frm=105 rdy=1 scr=0 nmi=114 <<< TICK
+f=00861 frm=106 rdy=1 scr=0 nmi=115 <<< TICK
+f=00862 frm=107 rdy=1 scr=0 nmi=116 <<< TICK
+f=00863 frm=108 rdy=1 scr=0 nmi=117 <<< TICK
+f=00864 frm=109 rdy=1 scr=0 nmi=118 <<< TICK
+f=00865 frm=110 rdy=1 scr=0 nmi=119 <<< TICK
+f=00866 frm=111 rdy=1 scr=0 nmi=120 <<< TICK
+f=00867 frm=112 rdy=1 scr=0 nmi=121 <<< TICK
+f=00868 frm=113 rdy=1 scr=0 nmi=122 <<< TICK
+f=00869 frm=114 rdy=1 scr=0 nmi=123 <<< TICK
+f=00870 frm=115 rdy=1 scr=0 nmi=124 <<< TICK
+f=00871 frm=116 rdy=1 scr=0 nmi=125 <<< TICK
+f=00872 frm=117 rdy=1 scr=0 nmi=126 <<< TICK
+f=00873 frm=118 rdy=1 scr=0 nmi=127 <<< TICK
+f=00874 frm=119 rdy=1 scr=0 nmi=128 <<< TICK
+f=00875 frm=120 rdy=1 scr=0 nmi=129 <<< TICK
+f=00876 frm=121 rdy=1 scr=0 nmi=130 <<< TICK
+f=00877 frm=122 rdy=1 scr=0 nmi=131 <<< TICK
+f=00878 frm=123 rdy=1 scr=0 nmi=132 <<< TICK
+f=00879 frm=124 rdy=1 scr=0 nmi=133 <<< TICK
+f=00880 frm=125 rdy=1 scr=0 nmi=134 <<< TICK
+f=00881 frm=126 rdy=1 scr=0 nmi=135 <<< TICK
+f=00882 frm=127 rdy=1 scr=0 nmi=136 <<< TICK
+f=00883 frm=128 rdy=1 scr=0 nmi=137 <<< TICK
+f=00884 frm=129 rdy=1 scr=0 nmi=138 <<< TICK
+f=00885 frm=130 rdy=1 scr=0 nmi=139 <<< TICK
+f=00886 frm=131 rdy=1 scr=0 nmi=140 <<< TICK
+f=00887 frm=132 rdy=1 scr=0 nmi=141 <<< TICK
+f=00888 frm=133 rdy=1 scr=0 nmi=142 <<< TICK
+f=00889 frm=134 rdy=1 scr=0 nmi=143 <<< TICK
+f=00890 frm=135 rdy=1 scr=0 nmi=144 <<< TICK
+f=00891 frm=136 rdy=1 scr=0 nmi=145 <<< TICK
+f=00892 frm=137 rdy=1 scr=0 nmi=146 <<< TICK
+f=00893 frm=138 rdy=1 scr=0 nmi=147 <<< TICK
+f=00894 frm=139 rdy=1 scr=0 nmi=148 <<< TICK
+f=00895 frm=140 rdy=1 scr=0 nmi=149 <<< TICK
+f=00896 frm=141 rdy=1 scr=0 nmi=150 <<< TICK
+f=00897 frm=142 rdy=1 scr=0 nmi=151 <<< TICK
+f=00898 frm=143 rdy=1 scr=0 nmi=152 <<< TICK
+f=00899 frm=144 rdy=1 scr=0 nmi=153 <<< TICK
+f=00900 frm=145 rdy=1 scr=0 nmi=154 <<< TICK
+f=00901 frm=146 rdy=1 scr=0 nmi=155 <<< TICK
+f=00902 frm=147 rdy=1 scr=0 nmi=156 <<< TICK
+f=00903 frm=148 rdy=1 scr=0 nmi=157 <<< TICK
+f=00904 frm=149 rdy=1 scr=0 nmi=158 <<< TICK
+f=00905 frm=150 rdy=1 scr=0 nmi=159 <<< TICK
+f=00906 frm=151 rdy=1 scr=0 nmi=160 <<< TICK
+f=00907 frm=152 rdy=1 scr=0 nmi=161 <<< TICK
+f=00908 frm=153 rdy=1 scr=0 nmi=162 <<< TICK
+f=00909 frm=154 rdy=1 scr=0 nmi=163 <<< TICK
+f=00910 frm=155 rdy=1 scr=0 nmi=164 <<< TICK
+f=00911 frm=156 rdy=1 scr=0 nmi=165 <<< TICK
+f=00912 frm=157 rdy=1 scr=0 nmi=166 <<< TICK
+f=00913 frm=158 rdy=1 scr=0 nmi=167 <<< TICK
+f=00914 frm=159 rdy=1 scr=0 nmi=168 <<< TICK
+f=00915 frm=160 rdy=1 scr=0 nmi=169 <<< TICK
+f=00916 frm=161 rdy=1 scr=0 nmi=170 <<< TICK
+f=00917 frm=162 rdy=1 scr=0 nmi=171 <<< TICK
+f=00918 frm=163 rdy=1 scr=0 nmi=172 <<< TICK
+f=00919 frm=164 rdy=1 scr=0 nmi=173 <<< TICK
+f=00920 frm=165 rdy=1 scr=0 nmi=174 <<< TICK
+f=00921 frm=166 rdy=1 scr=0 nmi=175 <<< TICK
+f=00922 frm=167 rdy=1 scr=0 nmi=176 <<< TICK
+f=00923 frm=168 rdy=1 scr=0 nmi=177 <<< TICK
+f=00924 frm=169 rdy=1 scr=0 nmi=178 <<< TICK
+f=00925 frm=170 rdy=1 scr=0 nmi=179 <<< TICK
+f=00926 frm=171 rdy=1 scr=0 nmi=180 <<< TICK
+f=00927 frm=172 rdy=1 scr=0 nmi=181 <<< TICK
+f=00928 frm=173 rdy=1 scr=0 nmi=182 <<< TICK
+f=00929 frm=174 rdy=1 scr=0 nmi=183 <<< TICK
+f=00930 frm=175 rdy=1 scr=0 nmi=184 <<< TICK
+f=00931 frm=176 rdy=1 scr=0 nmi=185 <<< TICK
+f=00932 frm=177 rdy=1 scr=0 nmi=186 <<< TICK
+f=00933 frm=178 rdy=1 scr=0 nmi=187 <<< TICK
+f=00934 frm=179 rdy=1 scr=0 nmi=188 <<< TICK
+f=00935 frm=180 rdy=1 scr=0 nmi=189 <<< TICK
+f=00936 frm=181 rdy=1 scr=0 nmi=190 <<< TICK
+f=00937 frm=182 rdy=1 scr=0 nmi=191 <<< TICK
+f=00938 frm=183 rdy=1 scr=0 nmi=192 <<< TICK
+f=00939 frm=184 rdy=1 scr=0 nmi=193 <<< TICK
+f=00940 frm=185 rdy=1 scr=0 nmi=194 <<< TICK
+f=00941 frm=186 rdy=1 scr=0 nmi=195 <<< TICK
+f=00942 frm=187 rdy=1 scr=0 nmi=196 <<< TICK
+f=00943 frm=188 rdy=1 scr=0 nmi=197 <<< TICK
+f=00944 frm=189 rdy=1 scr=0 nmi=198 <<< TICK
+f=00945 frm=190 rdy=1 scr=0 nmi=199 <<< TICK
+f=00946 frm=191 rdy=1 scr=0 nmi=200 <<< TICK
+f=00947 frm=192 rdy=1 scr=0 nmi=201 <<< TICK
+f=00948 frm=193 rdy=1 scr=0 nmi=202 <<< TICK
+f=00949 frm=194 rdy=1 scr=0 nmi=203 <<< TICK
+f=00950 frm=195 rdy=1 scr=0 nmi=204 <<< TICK
+f=00951 frm=196 rdy=1 scr=0 nmi=205 <<< TICK
+f=00952 frm=197 rdy=1 scr=0 nmi=206 <<< TICK
+f=00953 frm=198 rdy=1 scr=0 nmi=207 <<< TICK
+f=00954 frm=199 rdy=1 scr=0 nmi=208 <<< TICK
+f=00955 frm=200 rdy=1 scr=0 nmi=209 <<< TICK
+f=00956 frm=201 rdy=1 scr=0 nmi=210 <<< TICK
+f=00957 frm=202 rdy=1 scr=0 nmi=211 <<< TICK
+f=00958 frm=203 rdy=1 scr=0 nmi=212 <<< TICK
+f=00959 frm=204 rdy=1 scr=0 nmi=213 <<< TICK
+f=00960 frm=205 rdy=1 scr=0 nmi=214 <<< TICK
+f=00961 frm=206 rdy=1 scr=0 nmi=215 <<< TICK
+f=00962 frm=207 rdy=1 scr=0 nmi=216 <<< TICK
+f=00963 frm=208 rdy=1 scr=0 nmi=217 <<< TICK
+f=00964 frm=209 rdy=1 scr=0 nmi=218 <<< TICK
+f=00965 frm=210 rdy=1 scr=0 nmi=219 <<< TICK
+f=00966 frm=211 rdy=1 scr=0 nmi=220 <<< TICK
+f=00967 frm=212 rdy=1 scr=0 nmi=221 <<< TICK
+f=00968 frm=213 rdy=1 scr=0 nmi=222 <<< TICK
+f=00969 frm=214 rdy=1 scr=0 nmi=223 <<< TICK
+f=00970 frm=215 rdy=1 scr=0 nmi=224 <<< TICK
+f=00971 frm=216 rdy=1 scr=0 nmi=225 <<< TICK
+f=00972 frm=217 rdy=1 scr=0 nmi=226 <<< TICK
+f=00973 frm=218 rdy=1 scr=0 nmi=227 <<< TICK
+f=00974 frm=219 rdy=1 scr=0 nmi=228 <<< TICK
+f=00975 frm=220 rdy=1 scr=0 nmi=229 <<< TICK
+f=00976 frm=221 rdy=1 scr=0 nmi=230 <<< TICK
+f=00977 frm=222 rdy=1 scr=0 nmi=231 <<< TICK
+f=00978 frm=223 rdy=1 scr=0 nmi=232 <<< TICK
+f=00979 frm=224 rdy=1 scr=0 nmi=233 <<< TICK
+f=00980 frm=225 rdy=1 scr=0 nmi=234 <<< TICK
+f=00981 frm=226 rdy=1 scr=0 nmi=235 <<< TICK
+f=00982 frm=227 rdy=1 scr=0 nmi=236 <<< TICK
+f=00983 frm=228 rdy=1 scr=0 nmi=237 <<< TICK
+f=00984 frm=229 rdy=1 scr=0 nmi=238 <<< TICK
+f=00985 frm=230 rdy=1 scr=0 nmi=239 <<< TICK
+f=00986 frm=231 rdy=1 scr=0 nmi=240 <<< TICK
+f=00987 frm=232 rdy=1 scr=0 nmi=241 <<< TICK
+f=00988 frm=233 rdy=1 scr=0 nmi=242 <<< TICK
+f=00989 frm=234 rdy=1 scr=0 nmi=243 <<< TICK
+f=00990 frm=235 rdy=1 scr=0 nmi=244 <<< TICK
+f=00991 frm=236 rdy=1 scr=0 nmi=245 <<< TICK
+f=00992 frm=237 rdy=1 scr=0 nmi=246 <<< TICK
+f=00993 frm=238 rdy=1 scr=0 nmi=247 <<< TICK
+f=00994 frm=239 rdy=1 scr=0 nmi=248 <<< TICK
+f=00995 frm=240 rdy=1 scr=0 nmi=249 <<< TICK
+f=00996 frm=241 rdy=1 scr=0 nmi=250 <<< TICK
+f=00997 frm=242 rdy=1 scr=0 nmi=251 <<< TICK
+f=00998 frm=243 rdy=1 scr=0 nmi=252 <<< TICK
+f=00999 frm=244 rdy=1 scr=0 nmi=253 <<< TICK
+f=01000 frm=244 rdy=1 scr=0 nmi=253
+f=01001 frm=244 rdy=1 scr=0 nmi=253
+f=01002 frm=244 rdy=1 scr=0 nmi=253
+f=01003 frm=244 rdy=1 scr=0 nmi=253
+f=01004 frm=244 rdy=1 scr=0 nmi=253
+f=01005 frm=244 rdy=1 scr=0 nmi=253
+f=01006 frm=244 rdy=1 scr=0 nmi=253
+f=01007 frm=244 rdy=1 scr=0 nmi=253
+f=01008 frm=244 rdy=1 scr=0 nmi=253
+f=01009 frm=244 rdy=1 scr=0 nmi=253
+f=01010 frm=244 rdy=1 scr=0 nmi=253
+f=01011 frm=244 rdy=1 scr=0 nmi=253
+f=01012 frm=244 rdy=1 scr=0 nmi=253
+f=01013 frm=244 rdy=1 scr=0 nmi=253
+f=01014 frm=244 rdy=1 scr=0 nmi=253
+f=01015 frm=244 rdy=1 scr=0 nmi=253
+f=01016 frm=244 rdy=1 scr=0 nmi=253
+f=01017 frm=244 rdy=1 scr=0 nmi=253
+f=01018 frm=244 rdy=1 scr=0 nmi=253
+f=01019 frm=244 rdy=1 scr=0 nmi=253
+f=01020 frm=244 rdy=1 scr=0 nmi=253
+f=01021 frm=244 rdy=1 scr=0 nmi=253
+f=01022 frm=244 rdy=1 scr=0 nmi=253
+f=01023 frm=244 rdy=1 scr=0 nmi=253
+f=01024 frm=244 rdy=1 scr=0 nmi=253
+f=01025 frm=244 rdy=1 scr=0 nmi=253
+f=01026 frm=244 rdy=1 scr=0 nmi=253
+f=01027 frm=244 rdy=1 scr=0 nmi=253
+f=01028 frm=244 rdy=1 scr=0 nmi=253
+f=01029 frm=244 rdy=1 scr=0 nmi=253
+f=01030 frm=244 rdy=1 scr=0 nmi=253
+f=01031 frm=244 rdy=1 scr=0 nmi=253
+f=01032 frm=244 rdy=1 scr=0 nmi=253
+f=01033 frm=244 rdy=1 scr=0 nmi=253
+f=01034 frm=244 rdy=1 scr=0 nmi=253
+f=01035 frm=244 rdy=1 scr=0 nmi=253
+f=01036 frm=244 rdy=1 scr=0 nmi=253
+f=01037 frm=244 rdy=1 scr=0 nmi=253
+f=01038 frm=244 rdy=1 scr=0 nmi=253
+f=01039 frm=244 rdy=1 scr=0 nmi=253
+f=01040 frm=244 rdy=1 scr=0 nmi=253
+f=01041 frm=244 rdy=1 scr=0 nmi=253
+f=01042 frm=244 rdy=1 scr=0 nmi=253
+f=01043 frm=244 rdy=1 scr=0 nmi=253
+f=01044 frm=244 rdy=1 scr=0 nmi=253
+f=01045 frm=244 rdy=1 scr=0 nmi=253
+f=01046 frm=244 rdy=1 scr=0 nmi=253
+f=01047 frm=244 rdy=1 scr=0 nmi=253
+f=01048 frm=244 rdy=1 scr=0 nmi=253
+f=01049 frm=244 rdy=1 scr=0 nmi=253
+f=01050 frm=244 rdy=1 scr=0 nmi=253
+f=01051 frm=244 rdy=1 scr=0 nmi=253
+f=01052 frm=244 rdy=1 scr=0 nmi=253
+f=01053 frm=244 rdy=1 scr=0 nmi=253
+f=01054 frm=244 rdy=1 scr=0 nmi=253
+f=01055 frm=244 rdy=1 scr=0 nmi=253
+f=01056 frm=244 rdy=1 scr=0 nmi=253
+f=01057 frm=244 rdy=1 scr=0 nmi=253
+f=01058 frm=244 rdy=1 scr=0 nmi=253
+f=01059 frm=244 rdy=1 scr=0 nmi=253
+f=01060 frm=244 rdy=1 scr=0 nmi=253
+f=01061 frm=244 rdy=1 scr=0 nmi=253
+f=01062 frm=244 rdy=1 scr=0 nmi=253
+f=01063 frm=244 rdy=1 scr=0 nmi=253
+f=01064 frm=244 rdy=1 scr=0 nmi=253
+f=01065 frm=244 rdy=1 scr=0 nmi=253
+f=01066 frm=244 rdy=1 scr=0 nmi=253
+f=01067 frm=244 rdy=1 scr=0 nmi=253
+f=01068 frm=244 rdy=1 scr=0 nmi=253
+f=01069 frm=244 rdy=1 scr=0 nmi=253
+f=01070 frm=244 rdy=1 scr=0 nmi=253
+f=01071 frm=244 rdy=1 scr=0 nmi=253
+f=01072 frm=244 rdy=1 scr=0 nmi=253
+f=01073 frm=244 rdy=1 scr=0 nmi=253
+f=01074 frm=244 rdy=1 scr=0 nmi=253
+f=01075 frm=244 rdy=1 scr=0 nmi=253
+f=01076 frm=244 rdy=1 scr=0 nmi=253
+f=01077 frm=244 rdy=1 scr=0 nmi=253
+f=01078 frm=244 rdy=1 scr=0 nmi=253
+f=01079 frm=244 rdy=1 scr=0 nmi=253
+f=01080 frm=244 rdy=1 scr=0 nmi=253
+f=01081 frm=244 rdy=1 scr=0 nmi=253
+f=01082 frm=244 rdy=1 scr=0 nmi=253
+f=01083 frm=244 rdy=1 scr=0 nmi=253
+f=01084 frm=244 rdy=1 scr=0 nmi=253
+f=01085 frm=244 rdy=1 scr=0 nmi=253
+f=01086 frm=244 rdy=1 scr=0 nmi=253
+f=01087 frm=244 rdy=1 scr=0 nmi=253
+f=01088 frm=244 rdy=1 scr=0 nmi=253
+f=01089 frm=244 rdy=1 scr=0 nmi=253
+f=01090 frm=244 rdy=1 scr=0 nmi=253
+f=01091 frm=244 rdy=1 scr=0 nmi=253
+f=01092 frm=244 rdy=1 scr=0 nmi=253
+f=01093 frm=244 rdy=1 scr=0 nmi=253
+f=01094 frm=244 rdy=1 scr=0 nmi=253
+f=01095 frm=244 rdy=1 scr=0 nmi=253
+f=01096 frm=244 rdy=1 scr=0 nmi=253
+f=01097 frm=244 rdy=1 scr=0 nmi=253
+f=01098 frm=244 rdy=1 scr=0 nmi=253
+f=01099 frm=244 rdy=1 scr=0 nmi=253
+f=01100 frm=244 rdy=1 scr=0 nmi=253
+f=01200 frm=244 rdy=1 scr=0 nmi=253
+f=01300 frm=244 rdy=1 scr=0 nmi=253
+f=01400 frm=244 rdy=1 scr=0 nmi=253
+f=01500 frm=244 rdy=1 scr=0 nmi=253
+f=01600 frm=244 rdy=1 scr=0 nmi=253
+f=01700 frm=244 rdy=1 scr=0 nmi=253
+f=01800 frm=244 rdy=1 scr=0 nmi=253
+f=01900 frm=244 rdy=1 scr=0 nmi=253
+f=02000 frm=244 rdy=1 scr=0 nmi=253
+f=02100 frm=244 rdy=1 scr=0 nmi=253
+f=02200 frm=244 rdy=1 scr=0 nmi=253
+f=02300 frm=244 rdy=1 scr=0 nmi=253
+f=02400 frm=244 rdy=1 scr=0 nmi=253
+f=02500 frm=244 rdy=1 scr=0 nmi=253
+
+=== PROBE COMPLETE ===
+Total NMI ticks: 253

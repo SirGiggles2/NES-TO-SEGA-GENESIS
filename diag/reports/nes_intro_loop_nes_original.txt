@@ -1,0 +1,79 @@
+=== NES INTRO LOOP ORACLE: nes_original ===
+domain=System Bus max_frames=12000
+
+f=00000 nmi=  0 scr=0 sub=00 rdy=0 ppu=FF frm=255 F5=FF F6=FF e3=00 2000=FF 2001=FF sx=FF sy=FF 0528=00 4D=FF 5B=00 <<< CHANGED
+f=00029 nmi=  7 scr=0 sub=00 rdy=1 ppu=10 frm=  6 F5=5A F6=A5 e3=00 2000=B0 2001=00 sx=00 sy=00 0528=00 4D=00 5B=00 <<< CHANGED (rdy 0->1)
+f=00200 nmi=178 scr=0 sub=00 rdy=1 ppu=00 frm=177 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=00400 nmi=378 scr=0 sub=00 rdy=1 ppu=00 frm=121 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=00600 nmi=578 scr=0 sub=00 rdy=1 ppu=00 frm= 65 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=00800 nmi=778 scr=0 sub=00 rdy=1 ppu=00 frm=  9 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=00975 nmi=953 scr=0 sub=00 rdy=0 ppu=00 frm=184 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00 <<< CHANGED (rdy 1->0)
+f=00978 nmi=956 scr=0 sub=00 rdy=1 ppu=02 frm=187 F5=5A F6=A5 e3=00 2000=B0 2001=00 sx=00 sy=10 0528=00 4D=00 5B=00 <<< CHANGED (rdy 0->1)
+f=01000 nmi=978 scr=0 sub=00 rdy=1 ppu=00 frm=209 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=1B 0528=00 4D=00 5B=00
+f=01200 nmi=1178 scr=0 sub=00 rdy=1 ppu=00 frm=153 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=7F 0528=00 4D=00 5B=00
+f=01400 nmi=1378 scr=0 sub=00 rdy=1 ppu=00 frm= 97 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=E3 0528=00 4D=00 5B=00
+f=01600 nmi=1578 scr=0 sub=00 rdy=1 ppu=00 frm= 41 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=08 0528=00 4D=00 5B=00
+f=01800 nmi=1778 scr=0 sub=00 rdy=1 ppu=00 frm=241 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=3B 0528=00 4D=00 5B=00
+f=02000 nmi=1978 scr=0 sub=00 rdy=1 ppu=00 frm=185 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=9F 0528=00 4D=00 5B=00
+f=02200 nmi=2178 scr=0 sub=00 rdy=1 ppu=00 frm=129 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=13 0528=00 4D=00 5B=00
+f=02400 nmi=2378 scr=0 sub=00 rdy=1 ppu=00 frm= 73 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=77 0528=00 4D=00 5B=00
+f=02600 nmi=2578 scr=0 sub=00 rdy=1 ppu=00 frm= 17 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=DB 0528=00 4D=00 5B=00
+f=02800 nmi=2778 scr=0 sub=00 rdy=1 ppu=00 frm=217 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=4F 0528=00 4D=00 5B=00
+f=03000 nmi=2978 scr=0 sub=00 rdy=1 ppu=00 frm=161 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=B3 0528=00 4D=00 5B=00
+f=03200 nmi=3178 scr=0 sub=00 rdy=1 ppu=00 frm=105 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=27 0528=00 4D=00 5B=00
+f=03400 nmi=3378 scr=0 sub=00 rdy=1 ppu=00 frm= 49 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=8B 0528=00 4D=00 5B=00
+f=03600 nmi=3578 scr=0 sub=00 rdy=1 ppu=00 frm=249 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=EF 0528=00 4D=00 5B=00
+f=03800 nmi=3778 scr=0 sub=00 rdy=1 ppu=00 frm=193 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=63 0528=00 4D=00 5B=00
+f=04000 nmi=3978 scr=0 sub=00 rdy=1 ppu=00 frm=137 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=C7 0528=00 4D=00 5B=00
+f=04200 nmi=4178 scr=0 sub=00 rdy=1 ppu=00 frm= 81 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=3B 0528=00 4D=00 5B=00
+f=04400 nmi=4378 scr=0 sub=00 rdy=1 ppu=00 frm= 25 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=9F 0528=00 4D=00 5B=00
+f=04600 nmi=4578 scr=0 sub=00 rdy=1 ppu=00 frm=225 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=D7 0528=00 4D=00 5B=00
+f=04800 nmi=4778 scr=0 sub=00 rdy=1 ppu=00 frm=169 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=D7 0528=00 4D=00 5B=00
+f=04827 nmi=4805 scr=0 sub=00 rdy=0 ppu=00 frm=196 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=D7 0528=00 4D=00 5B=00 <<< CHANGED (rdy 1->0)
+f=04830 nmi=4808 scr=0 sub=00 rdy=1 ppu=10 frm=199 F5=5A F6=A5 e3=00 2000=B0 2001=00 sx=00 sy=00 0528=00 4D=00 5B=00 <<< CHANGED (rdy 0->1)
+f=05000 nmi=4978 scr=0 sub=00 rdy=1 ppu=00 frm=113 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=05200 nmi=5178 scr=0 sub=00 rdy=1 ppu=00 frm= 57 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=05400 nmi=5378 scr=0 sub=00 rdy=1 ppu=00 frm=  1 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=05600 nmi=5578 scr=0 sub=00 rdy=1 ppu=00 frm=201 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=05777 nmi=5755 scr=0 sub=00 rdy=0 ppu=00 frm=122 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00 <<< CHANGED (rdy 1->0)
+f=05780 nmi=5758 scr=0 sub=00 rdy=1 ppu=02 frm=125 F5=5A F6=A5 e3=00 2000=B0 2001=00 sx=00 sy=10 0528=00 4D=00 5B=00 <<< CHANGED (rdy 0->1)
+f=05800 nmi=5778 scr=0 sub=00 rdy=1 ppu=00 frm=145 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=1A 0528=00 4D=00 5B=00
+f=06000 nmi=5978 scr=0 sub=00 rdy=1 ppu=00 frm= 89 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=7E 0528=00 4D=00 5B=00
+f=06200 nmi=6178 scr=0 sub=00 rdy=1 ppu=00 frm= 33 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=E2 0528=00 4D=00 5B=00
+f=06400 nmi=6378 scr=0 sub=00 rdy=1 ppu=00 frm=233 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=08 0528=00 4D=00 5B=00
+f=06600 nmi=6578 scr=0 sub=00 rdy=1 ppu=00 frm=177 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=3A 0528=00 4D=00 5B=00
+f=06800 nmi=6778 scr=0 sub=00 rdy=1 ppu=00 frm=121 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=9E 0528=00 4D=00 5B=00
+f=07000 nmi=6978 scr=0 sub=00 rdy=1 ppu=00 frm= 65 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=12 0528=00 4D=00 5B=00
+f=07200 nmi=7178 scr=0 sub=00 rdy=1 ppu=00 frm=  9 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=76 0528=00 4D=00 5B=00
+f=07400 nmi=7378 scr=0 sub=00 rdy=1 ppu=00 frm=209 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=DA 0528=00 4D=00 5B=00
+f=07600 nmi=7578 scr=0 sub=00 rdy=1 ppu=00 frm=153 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=4E 0528=00 4D=00 5B=00
+f=07800 nmi=7778 scr=0 sub=00 rdy=1 ppu=00 frm= 97 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=B2 0528=00 4D=00 5B=00
+f=08000 nmi=7978 scr=0 sub=00 rdy=1 ppu=00 frm= 41 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=26 0528=00 4D=00 5B=00
+f=08200 nmi=8178 scr=0 sub=00 rdy=1 ppu=00 frm=241 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=8A 0528=00 4D=00 5B=00
+f=08400 nmi=8378 scr=0 sub=00 rdy=1 ppu=00 frm=185 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=EE 0528=00 4D=00 5B=00
+f=08600 nmi=8578 scr=0 sub=00 rdy=1 ppu=00 frm=129 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=62 0528=00 4D=00 5B=00
+f=08800 nmi=8778 scr=0 sub=00 rdy=1 ppu=00 frm= 73 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=C6 0528=00 4D=00 5B=00
+f=09000 nmi=8978 scr=0 sub=00 rdy=1 ppu=00 frm= 17 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=3A 0528=00 4D=00 5B=00
+f=09200 nmi=9178 scr=0 sub=00 rdy=1 ppu=00 frm=217 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=9E 0528=00 4D=00 5B=00
+f=09400 nmi=9378 scr=0 sub=00 rdy=1 ppu=00 frm=161 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=D7 0528=00 4D=00 5B=00
+f=09600 nmi=9578 scr=0 sub=00 rdy=1 ppu=00 frm=105 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=D7 0528=00 4D=00 5B=00
+f=09629 nmi=9607 scr=0 sub=00 rdy=0 ppu=00 frm=134 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=D7 0528=00 4D=00 5B=00 <<< CHANGED (rdy 1->0)
+f=09632 nmi=9610 scr=0 sub=00 rdy=1 ppu=10 frm=137 F5=5A F6=A5 e3=00 2000=B0 2001=00 sx=00 sy=00 0528=00 4D=00 5B=00 <<< CHANGED (rdy 0->1)
+f=09800 nmi=9778 scr=0 sub=00 rdy=1 ppu=00 frm= 49 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=10000 nmi=9978 scr=0 sub=00 rdy=1 ppu=00 frm=249 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=10200 nmi=10178 scr=0 sub=00 rdy=1 ppu=00 frm=193 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=10400 nmi=10378 scr=0 sub=00 rdy=1 ppu=00 frm=137 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00
+f=10579 nmi=10557 scr=0 sub=00 rdy=0 ppu=00 frm= 60 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=00 0528=00 4D=00 5B=00 <<< CHANGED (rdy 1->0)
+f=10582 nmi=10560 scr=0 sub=00 rdy=1 ppu=02 frm= 63 F5=5A F6=A5 e3=00 2000=B0 2001=00 sx=00 sy=10 0528=00 4D=00 5B=00 <<< CHANGED (rdy 0->1)
+f=10600 nmi=10578 scr=0 sub=00 rdy=1 ppu=00 frm= 81 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=19 0528=00 4D=00 5B=00
+f=10800 nmi=10778 scr=0 sub=00 rdy=1 ppu=00 frm= 25 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=7D 0528=00 4D=00 5B=00
+f=11000 nmi=10978 scr=0 sub=00 rdy=1 ppu=00 frm=225 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=E1 0528=00 4D=00 5B=00
+f=11200 nmi=11178 scr=0 sub=00 rdy=1 ppu=00 frm=169 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=08 0528=00 4D=00 5B=00
+f=11400 nmi=11378 scr=0 sub=00 rdy=1 ppu=00 frm=113 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=39 0528=00 4D=00 5B=00
+f=11600 nmi=11578 scr=0 sub=00 rdy=1 ppu=00 frm= 57 F5=5A F6=A5 e3=00 2000=B0 2001=1E sx=00 sy=9D 0528=00 4D=00 5B=00
+f=11800 nmi=11778 scr=0 sub=00 rdy=1 ppu=00 frm=  1 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=11 0528=00 4D=00 5B=00
+f=12000 nmi=11978 scr=0 sub=00 rdy=1 ppu=00 frm=201 F5=5A F6=A5 e3=00 2000=B2 2001=1E sx=00 sy=75 0528=00 4D=00 5B=00
+
+=== NES INTRO LOOP ORACLE COMPLETE ===
+Total NMI ticks: 11978
+Total cycles: 0

@@ -1,0 +1,40 @@
+=== FRONTEND PROBE zelda_v444 ===
+Validating title -> file select -> name-entry/gameplay branch with ROM autostarts disabled.
+
+state frame=1 ready=0 script=0 sub=0 ppu=0x00 frm=0 slot=0 slot_active=[00,00,00,00,00] btn=[00,00] spr=[00,00] trace=[0000,0000] phase=wait_title_ready
+heartbeat frame=120 ready=0 script=0 sub=0 ppu=0x00 frm=2 slot=0 slot_active=[00,00,00,00,00] btn=[00,00] spr=[00,00] trace=[0403,002F] phase=wait_title_ready
+heartbeat frame=240 ready=0 script=0 sub=0 ppu=0x00 frm=2 slot=0 slot_active=[00,00,00,00,00] btn=[00,00] spr=[00,00] trace=[0403,002F] phase=wait_title_ready
+state frame=284 ready=1 script=0 sub=0 ppu=0x10 frm=6 slot=0 slot_active=[00,00,00,00,00] btn=[00,00] spr=[00,00] trace=[0203,0092] phase=wait_title_ready
+state frame=290 ready=1 script=0 sub=0 ppu=0x00 frm=7 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0403,00F7] phase=wait_title_ready
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v444_title_ready_f290.png
+title_ready_frame=290
+state frame=299 ready=0 script=0 sub=0 ppu=0x00 frm=0 slot=0 slot_active=[23,13,C1,01,01] btn=[00,00] spr=[00,00] trace=[0403,0178] phase=wait_title_ready
+heartbeat frame=360 ready=0 script=0 sub=0 ppu=0x00 frm=2 slot=0 slot_active=[23,13,C1,01,01] btn=[00,00] spr=[00,00] trace=[0403,01AD] phase=wait_title_ready
+heartbeat frame=480 ready=0 script=0 sub=0 ppu=0x00 frm=2 slot=0 slot_active=[23,13,C1,01,01] btn=[00,00] spr=[00,00] trace=[0403,01AD] phase=wait_title_ready
+state frame=578 ready=1 script=0 sub=0 ppu=0x10 frm=6 slot=0 slot_active=[23,13,C1,01,01] btn=[00,00] spr=[00,00] trace=[0202,0212] phase=wait_title_ready
+state frame=584 ready=1 script=0 sub=0 ppu=0x00 frm=7 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0403,0273] phase=wait_title_ready
+action=press_start_title frame=584
+heartbeat frame=600 ready=1 script=0 sub=0 ppu=0x00 frm=19 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,03B3] phase=wait_file_select
+heartbeat frame=720 ready=1 script=0 sub=0 ppu=0x00 frm=139 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,105D] phase=wait_file_select
+heartbeat frame=840 ready=1 script=0 sub=0 ppu=0x00 frm=3 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,1D06] phase=wait_file_select
+heartbeat frame=960 ready=1 script=0 sub=0 ppu=0x00 frm=123 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,29AE] phase=wait_file_select
+heartbeat frame=1080 ready=1 script=0 sub=0 ppu=0x00 frm=243 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,3656] phase=wait_file_select
+state frame=1099 ready=0 script=0 sub=0 ppu=0x00 frm=6 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,384E] phase=wait_file_select
+state frame=1115 ready=1 script=0 sub=0 ppu=0x02 frm=9 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0202,389C] phase=wait_file_select
+state frame=1121 ready=1 script=0 sub=0 ppu=0x00 frm=10 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0403,38F9] phase=wait_file_select
+heartbeat frame=1200 ready=1 script=0 sub=0 ppu=0x00 frm=85 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,3E82] phase=wait_file_select
+heartbeat frame=1320 ready=1 script=0 sub=0 ppu=0x00 frm=205 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,476A] phase=wait_file_select
+heartbeat frame=1440 ready=1 script=0 sub=0 ppu=0x00 frm=69 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,5061] phase=wait_file_select
+heartbeat frame=1560 ready=1 script=0 sub=0 ppu=0x00 frm=189 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,5949] phase=wait_file_select
+heartbeat frame=1680 ready=1 script=0 sub=0 ppu=0x00 frm=53 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,6231] phase=wait_file_select
+heartbeat frame=1800 ready=1 script=0 sub=0 ppu=0x00 frm=173 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,6B19] phase=wait_file_select
+heartbeat frame=1920 ready=1 script=0 sub=0 ppu=0x00 frm=37 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,7401] phase=wait_file_select
+heartbeat frame=2040 ready=1 script=0 sub=0 ppu=0x00 frm=157 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,7CE9] phase=wait_file_select
+heartbeat frame=2160 ready=1 script=0 sub=0 ppu=0x00 frm=21 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,85D1] phase=wait_file_select
+heartbeat frame=2280 ready=1 script=0 sub=0 ppu=0x00 frm=141 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,8EB9] phase=wait_file_select
+heartbeat frame=2400 ready=1 script=0 sub=0 ppu=0x00 frm=5 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,97A1] phase=wait_file_select
+
+=== SUMMARY ===
+final frame=2400 ready=1 script=0 sub=0 ppu=0x00 frm=5 slot=0 slot_active=[23,13,C1,00,FF] btn=[00,00] spr=[00,00] trace=[0203,97A1] phase=wait_file_select
+final_phase=wait_file_select
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v444_title_ready_f290.png

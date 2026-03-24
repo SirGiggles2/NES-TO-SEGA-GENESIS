@@ -1,0 +1,3 @@
+BIZHAWK_LUA_ALIVE
+Timestamp: 1773890732
+ram_script (0xFF0012) = 0

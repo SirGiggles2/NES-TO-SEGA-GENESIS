@@ -1,0 +1,244 @@
+=== SFX3 PROBE v480 ===
+f=00000 frm=  0 sfx3=$00 0606=$00 se69=$00 nmi=1 cfr=0
+handler_2 active f=751 frm=5 nmi=15
+f=00776 frm= 21 sfx3=$12 0606=$FF se69=$00 nmi=30 cfr=0
+f=00777 frm= 22 sfx3=$00 0606=$FF se69=$FF nmi=31 cfr=0
+f=00778 frm= 23 sfx3=$00 0606=$FF se69=$FE nmi=32 cfr=0
+f=00779 frm= 24 sfx3=$00 0606=$FF se69=$FD nmi=33 cfr=0
+f=00780 frm= 25 sfx3=$00 0606=$FF se69=$FC nmi=34 cfr=0
+f=00781 frm= 26 sfx3=$00 0606=$FF se69=$FB nmi=35 cfr=0
+f=00782 frm= 27 sfx3=$00 0606=$FF se69=$FA nmi=36 cfr=0
+f=00783 frm= 28 sfx3=$00 0606=$FF se69=$F9 nmi=37 cfr=0
+f=00784 frm= 29 sfx3=$00 0606=$FF se69=$F8 nmi=38 cfr=0
+f=00785 frm= 30 sfx3=$00 0606=$FF se69=$F7 nmi=39 cfr=0
+f=00786 frm= 31 sfx3=$00 0606=$FF se69=$F6 nmi=40 cfr=0
+f=00787 frm= 32 sfx3=$12 0606=$FF se69=$F5 nmi=41 cfr=0
+f=00788 frm= 33 sfx3=$00 0606=$FF se69=$F4 nmi=42 cfr=0
+f=00789 frm= 34 sfx3=$00 0606=$FF se69=$F3 nmi=43 cfr=0
+f=00790 frm= 35 sfx3=$00 0606=$FF se69=$F2 nmi=44 cfr=0
+f=00791 frm= 36 sfx3=$00 0606=$FF se69=$F1 nmi=45 cfr=0
+f=00792 frm= 37 sfx3=$00 0606=$FF se69=$F0 nmi=46 cfr=0
+f=00793 frm= 38 sfx3=$00 0606=$FF se69=$EF nmi=47 cfr=0
+f=00794 frm= 39 sfx3=$00 0606=$FF se69=$EE nmi=48 cfr=0
+f=00795 frm= 40 sfx3=$00 0606=$FF se69=$ED nmi=49 cfr=0
+f=00796 frm= 41 sfx3=$00 0606=$FF se69=$EC nmi=50 cfr=0
+f=00797 frm= 42 sfx3=$00 0606=$FF se69=$EB nmi=51 cfr=0
+f=00798 frm= 43 sfx3=$12 0606=$FF se69=$EA nmi=52 cfr=0
+f=00799 frm= 44 sfx3=$00 0606=$FF se69=$E9 nmi=53 cfr=0
+f=00800 frm= 45 sfx3=$00 0606=$FF se69=$E8 nmi=54 cfr=0
+f=00801 frm= 46 sfx3=$00 0606=$FF se69=$E7 nmi=55 cfr=0
+f=00802 frm= 47 sfx3=$00 0606=$FF se69=$E6 nmi=56 cfr=0
+f=00803 frm= 48 sfx3=$00 0606=$FF se69=$E5 nmi=57 cfr=0
+f=00804 frm= 49 sfx3=$00 0606=$FF se69=$E4 nmi=58 cfr=0
+f=00805 frm= 50 sfx3=$00 0606=$FF se69=$E3 nmi=59 cfr=0
+f=00806 frm= 51 sfx3=$00 0606=$FF se69=$E2 nmi=60 cfr=0
+f=00807 frm= 52 sfx3=$00 0606=$FF se69=$E1 nmi=61 cfr=0
+f=00808 frm= 53 sfx3=$00 0606=$FF se69=$E0 nmi=62 cfr=0
+f=00809 frm= 54 sfx3=$12 0606=$FF se69=$DF nmi=63 cfr=0
+f=00810 frm= 55 sfx3=$00 0606=$FF se69=$DE nmi=64 cfr=0
+f=00811 frm= 56 sfx3=$00 0606=$FF se69=$DD nmi=65 cfr=0
+f=00812 frm= 57 sfx3=$00 0606=$FF se69=$DC nmi=66 cfr=0
+f=00813 frm= 58 sfx3=$00 0606=$FF se69=$DB nmi=67 cfr=0
+f=00814 frm= 59 sfx3=$00 0606=$FF se69=$DA nmi=68 cfr=0
+f=00815 frm= 60 sfx3=$00 0606=$FF se69=$D9 nmi=69 cfr=0
+f=00816 frm= 61 sfx3=$00 0606=$FF se69=$D8 nmi=70 cfr=0
+f=00817 frm= 62 sfx3=$00 0606=$FF se69=$D7 nmi=71 cfr=0
+f=00818 frm= 63 sfx3=$00 0606=$FF se69=$D6 nmi=72 cfr=0
+f=00819 frm= 64 sfx3=$00 0606=$FF se69=$D5 nmi=73 cfr=0
+f=00820 frm= 65 sfx3=$12 0606=$FF se69=$D4 nmi=74 cfr=0
+f=00821 frm= 66 sfx3=$00 0606=$FF se69=$D3 nmi=75 cfr=0
+f=00822 frm= 67 sfx3=$00 0606=$FF se69=$D2 nmi=76 cfr=0
+f=00823 frm= 68 sfx3=$00 0606=$FF se69=$D1 nmi=77 cfr=0
+f=00824 frm= 69 sfx3=$00 0606=$FF se69=$D0 nmi=78 cfr=0
+f=00825 frm= 70 sfx3=$00 0606=$FF se69=$CF nmi=79 cfr=0
+f=00826 frm= 71 sfx3=$00 0606=$FF se69=$CE nmi=80 cfr=0
+f=00827 frm= 72 sfx3=$00 0606=$FF se69=$CD nmi=81 cfr=0
+f=00828 frm= 73 sfx3=$00 0606=$FF se69=$CC nmi=82 cfr=0
+f=00829 frm= 74 sfx3=$00 0606=$FF se69=$CB nmi=83 cfr=0
+f=00830 frm= 75 sfx3=$00 0606=$FF se69=$CA nmi=84 cfr=0
+f=00831 frm= 76 sfx3=$12 0606=$FF se69=$C9 nmi=85 cfr=0
+f=00832 frm= 77 sfx3=$00 0606=$FF se69=$C8 nmi=86 cfr=0
+f=00833 frm= 78 sfx3=$00 0606=$FF se69=$C7 nmi=87 cfr=0
+f=00834 frm= 79 sfx3=$00 0606=$FF se69=$C6 nmi=88 cfr=0
+f=00835 frm= 80 sfx3=$00 0606=$FF se69=$C5 nmi=89 cfr=0
+f=00836 frm= 81 sfx3=$00 0606=$FF se69=$C4 nmi=90 cfr=0
+f=00837 frm= 82 sfx3=$00 0606=$FF se69=$C3 nmi=91 cfr=0
+f=00838 frm= 83 sfx3=$00 0606=$FF se69=$C2 nmi=92 cfr=0
+f=00839 frm= 84 sfx3=$00 0606=$FF se69=$C1 nmi=93 cfr=0
+f=00840 frm= 85 sfx3=$00 0606=$FF se69=$C0 nmi=94 cfr=0
+f=00841 frm= 86 sfx3=$00 0606=$FF se69=$BF nmi=95 cfr=0
+f=00842 frm= 87 sfx3=$12 0606=$FF se69=$BE nmi=96 cfr=0
+f=00843 frm= 88 sfx3=$00 0606=$FF se69=$BD nmi=97 cfr=0
+f=00844 frm= 89 sfx3=$00 0606=$FF se69=$BC nmi=98 cfr=0
+f=00845 frm= 90 sfx3=$00 0606=$FF se69=$BB nmi=99 cfr=0
+f=00846 frm= 91 sfx3=$00 0606=$FF se69=$BA nmi=100 cfr=0
+f=00847 frm= 92 sfx3=$00 0606=$FF se69=$B9 nmi=101 cfr=0
+f=00848 frm= 93 sfx3=$00 0606=$FF se69=$B8 nmi=102 cfr=0
+f=00849 frm= 94 sfx3=$00 0606=$FF se69=$B7 nmi=103 cfr=0
+f=00850 frm= 95 sfx3=$00 0606=$FF se69=$B6 nmi=104 cfr=0
+f=00851 frm= 96 sfx3=$00 0606=$FF se69=$B5 nmi=105 cfr=0
+f=00852 frm= 97 sfx3=$00 0606=$FF se69=$B4 nmi=106 cfr=0
+f=00853 frm= 98 sfx3=$12 0606=$FF se69=$B3 nmi=107 cfr=0
+f=00854 frm= 99 sfx3=$00 0606=$FF se69=$B2 nmi=108 cfr=0
+f=00855 frm=100 sfx3=$00 0606=$FF se69=$B1 nmi=109 cfr=0
+f=00856 frm=101 sfx3=$00 0606=$FF se69=$B0 nmi=110 cfr=0
+f=00857 frm=102 sfx3=$00 0606=$FF se69=$AF nmi=111 cfr=0
+f=00858 frm=103 sfx3=$00 0606=$FF se69=$AE nmi=112 cfr=0
+f=00859 frm=104 sfx3=$00 0606=$FF se69=$AD nmi=113 cfr=0
+f=00860 frm=105 sfx3=$00 0606=$FF se69=$AC nmi=114 cfr=0
+f=00861 frm=106 sfx3=$00 0606=$FF se69=$AB nmi=115 cfr=0
+f=00862 frm=107 sfx3=$00 0606=$FF se69=$AA nmi=116 cfr=0
+f=00863 frm=108 sfx3=$00 0606=$FF se69=$A9 nmi=117 cfr=0
+f=00864 frm=109 sfx3=$12 0606=$FF se69=$A8 nmi=118 cfr=0
+f=00865 frm=110 sfx3=$00 0606=$FF se69=$A7 nmi=119 cfr=0
+f=00866 frm=111 sfx3=$00 0606=$FF se69=$A6 nmi=120 cfr=0
+f=00867 frm=112 sfx3=$00 0606=$FF se69=$A5 nmi=121 cfr=0
+f=00868 frm=113 sfx3=$00 0606=$FF se69=$A4 nmi=122 cfr=0
+f=00869 frm=114 sfx3=$00 0606=$FF se69=$A3 nmi=123 cfr=0
+f=00870 frm=115 sfx3=$00 0606=$FF se69=$A2 nmi=124 cfr=0
+f=00871 frm=116 sfx3=$00 0606=$FF se69=$A1 nmi=125 cfr=0
+f=00872 frm=117 sfx3=$00 0606=$FF se69=$A0 nmi=126 cfr=0
+f=00873 frm=118 sfx3=$00 0606=$FF se69=$9F nmi=127 cfr=0
+f=00874 frm=119 sfx3=$00 0606=$FF se69=$9E nmi=128 cfr=0
+f=00875 frm=120 sfx3=$12 0606=$FF se69=$9D nmi=129 cfr=0
+f=00876 frm=121 sfx3=$00 0606=$FF se69=$9C nmi=130 cfr=0
+f=00877 frm=122 sfx3=$00 0606=$FF se69=$9B nmi=131 cfr=0
+f=00878 frm=123 sfx3=$00 0606=$FF se69=$9A nmi=132 cfr=0
+f=00879 frm=124 sfx3=$00 0606=$FF se69=$99 nmi=133 cfr=0
+f=00880 frm=125 sfx3=$00 0606=$FF se69=$98 nmi=134 cfr=0
+f=00881 frm=126 sfx3=$00 0606=$FF se69=$97 nmi=135 cfr=0
+f=00882 frm=127 sfx3=$00 0606=$FF se69=$96 nmi=136 cfr=0
+f=00883 frm=128 sfx3=$00 0606=$FF se69=$95 nmi=137 cfr=0
+f=00884 frm=129 sfx3=$00 0606=$FF se69=$94 nmi=138 cfr=0
+f=00885 frm=130 sfx3=$00 0606=$FF se69=$93 nmi=139 cfr=0
+f=00886 frm=131 sfx3=$12 0606=$FF se69=$92 nmi=140 cfr=0
+f=00887 frm=132 sfx3=$00 0606=$FF se69=$91 nmi=141 cfr=0
+f=00888 frm=133 sfx3=$00 0606=$FF se69=$90 nmi=142 cfr=0
+f=00889 frm=134 sfx3=$00 0606=$FF se69=$8F nmi=143 cfr=0
+f=00890 frm=135 sfx3=$00 0606=$FF se69=$8E nmi=144 cfr=0
+f=00891 frm=136 sfx3=$00 0606=$FF se69=$8D nmi=145 cfr=0
+f=00892 frm=137 sfx3=$00 0606=$FF se69=$8C nmi=146 cfr=0
+f=00893 frm=138 sfx3=$00 0606=$FF se69=$8B nmi=147 cfr=0
+f=00894 frm=139 sfx3=$00 0606=$FF se69=$8A nmi=148 cfr=0
+f=00895 frm=140 sfx3=$00 0606=$FF se69=$89 nmi=149 cfr=0
+f=00896 frm=141 sfx3=$00 0606=$FF se69=$88 nmi=150 cfr=0
+f=00897 frm=142 sfx3=$12 0606=$FF se69=$87 nmi=151 cfr=0
+f=00898 frm=143 sfx3=$00 0606=$FF se69=$86 nmi=152 cfr=0
+f=00899 frm=144 sfx3=$00 0606=$FF se69=$85 nmi=153 cfr=0
+f=00900 frm=145 sfx3=$00 0606=$FF se69=$84 nmi=154 cfr=0
+f=00901 frm=146 sfx3=$00 0606=$FF se69=$83 nmi=155 cfr=0
+f=00902 frm=147 sfx3=$00 0606=$FF se69=$82 nmi=156 cfr=0
+f=00903 frm=148 sfx3=$00 0606=$FF se69=$81 nmi=157 cfr=0
+f=00904 frm=149 sfx3=$00 0606=$FF se69=$80 nmi=158 cfr=0
+f=00905 frm=150 sfx3=$00 0606=$FF se69=$7F nmi=159 cfr=0
+f=00906 frm=151 sfx3=$00 0606=$FF se69=$7E nmi=160 cfr=0
+f=00907 frm=152 sfx3=$00 0606=$FF se69=$7D nmi=161 cfr=0
+f=00908 frm=153 sfx3=$12 0606=$FF se69=$7C nmi=162 cfr=0
+f=00909 frm=154 sfx3=$00 0606=$FF se69=$7B nmi=163 cfr=0
+f=00910 frm=155 sfx3=$00 0606=$FF se69=$7A nmi=164 cfr=0
+f=00911 frm=156 sfx3=$00 0606=$FF se69=$79 nmi=165 cfr=0
+f=00912 frm=157 sfx3=$00 0606=$FF se69=$78 nmi=166 cfr=0
+f=00913 frm=158 sfx3=$00 0606=$FF se69=$77 nmi=167 cfr=0
+f=00914 frm=159 sfx3=$00 0606=$FF se69=$76 nmi=168 cfr=0
+f=00915 frm=160 sfx3=$00 0606=$FF se69=$75 nmi=169 cfr=0
+f=00916 frm=161 sfx3=$00 0606=$FF se69=$74 nmi=170 cfr=0
+f=00917 frm=162 sfx3=$00 0606=$FF se69=$73 nmi=171 cfr=0
+f=00918 frm=163 sfx3=$00 0606=$FF se69=$72 nmi=172 cfr=0
+f=00919 frm=164 sfx3=$12 0606=$FF se69=$71 nmi=173 cfr=0
+f=00920 frm=165 sfx3=$00 0606=$FF se69=$70 nmi=174 cfr=0
+f=00921 frm=166 sfx3=$00 0606=$FF se69=$6F nmi=175 cfr=0
+f=00922 frm=167 sfx3=$00 0606=$FF se69=$6E nmi=176 cfr=0
+f=00923 frm=168 sfx3=$00 0606=$FF se69=$6D nmi=177 cfr=0
+f=00924 frm=169 sfx3=$00 0606=$FF se69=$6C nmi=178 cfr=0
+f=00925 frm=170 sfx3=$00 0606=$FF se69=$6B nmi=179 cfr=0
+f=00926 frm=171 sfx3=$00 0606=$FF se69=$6A nmi=180 cfr=0
+f=00927 frm=172 sfx3=$00 0606=$FF se69=$69 nmi=181 cfr=0
+f=00928 frm=173 sfx3=$00 0606=$FF se69=$68 nmi=182 cfr=0
+f=00929 frm=174 sfx3=$00 0606=$FF se69=$67 nmi=183 cfr=0
+f=00930 frm=175 sfx3=$12 0606=$FF se69=$66 nmi=184 cfr=0
+f=00931 frm=176 sfx3=$00 0606=$FF se69=$65 nmi=185 cfr=0
+f=00932 frm=177 sfx3=$00 0606=$FF se69=$64 nmi=186 cfr=0
+f=00933 frm=178 sfx3=$00 0606=$FF se69=$63 nmi=187 cfr=0
+f=00934 frm=179 sfx3=$00 0606=$FF se69=$62 nmi=188 cfr=0
+f=00935 frm=180 sfx3=$00 0606=$FF se69=$61 nmi=189 cfr=0
+f=00936 frm=181 sfx3=$00 0606=$FF se69=$60 nmi=190 cfr=0
+f=00937 frm=182 sfx3=$00 0606=$FF se69=$5F nmi=191 cfr=0
+f=00938 frm=183 sfx3=$00 0606=$FF se69=$5E nmi=192 cfr=0
+f=00939 frm=184 sfx3=$00 0606=$FF se69=$5D nmi=193 cfr=0
+f=00940 frm=185 sfx3=$00 0606=$FF se69=$5C nmi=194 cfr=0
+f=00941 frm=186 sfx3=$12 0606=$FF se69=$5B nmi=195 cfr=0
+f=00942 frm=187 sfx3=$00 0606=$FF se69=$5A nmi=196 cfr=0
+f=00943 frm=188 sfx3=$00 0606=$FF se69=$59 nmi=197 cfr=0
+f=00944 frm=189 sfx3=$00 0606=$FF se69=$58 nmi=198 cfr=0
+f=00945 frm=190 sfx3=$00 0606=$FF se69=$57 nmi=199 cfr=0
+f=00946 frm=191 sfx3=$00 0606=$FF se69=$56 nmi=200 cfr=0
+f=00947 frm=192 sfx3=$00 0606=$FF se69=$55 nmi=201 cfr=0
+f=00948 frm=193 sfx3=$00 0606=$FF se69=$54 nmi=202 cfr=0
+f=00949 frm=194 sfx3=$00 0606=$FF se69=$53 nmi=203 cfr=0
+f=00950 frm=195 sfx3=$00 0606=$FF se69=$52 nmi=204 cfr=0
+f=00951 frm=196 sfx3=$00 0606=$FF se69=$51 nmi=205 cfr=0
+f=00952 frm=197 sfx3=$12 0606=$FF se69=$50 nmi=206 cfr=0
+f=00953 frm=198 sfx3=$00 0606=$FF se69=$4F nmi=207 cfr=0
+f=00954 frm=199 sfx3=$00 0606=$FF se69=$4E nmi=208 cfr=0
+f=00955 frm=200 sfx3=$00 0606=$FF se69=$4D nmi=209 cfr=0
+f=00956 frm=201 sfx3=$00 0606=$FF se69=$4C nmi=210 cfr=0
+f=00957 frm=202 sfx3=$00 0606=$FF se69=$4B nmi=211 cfr=0
+f=00958 frm=203 sfx3=$00 0606=$FF se69=$4A nmi=212 cfr=0
+f=00959 frm=204 sfx3=$00 0606=$FF se69=$49 nmi=213 cfr=0
+f=00960 frm=205 sfx3=$00 0606=$FF se69=$48 nmi=214 cfr=0
+f=00961 frm=206 sfx3=$00 0606=$FF se69=$47 nmi=215 cfr=0
+f=00962 frm=207 sfx3=$00 0606=$FF se69=$46 nmi=216 cfr=0
+f=00963 frm=208 sfx3=$12 0606=$FF se69=$45 nmi=217 cfr=0
+f=00964 frm=209 sfx3=$00 0606=$FF se69=$44 nmi=218 cfr=0
+f=00965 frm=210 sfx3=$00 0606=$FF se69=$43 nmi=219 cfr=0
+f=00966 frm=211 sfx3=$00 0606=$FF se69=$42 nmi=220 cfr=0
+f=00967 frm=212 sfx3=$00 0606=$FF se69=$41 nmi=221 cfr=0
+f=00968 frm=213 sfx3=$00 0606=$FF se69=$40 nmi=222 cfr=0
+f=00969 frm=214 sfx3=$00 0606=$FF se69=$3F nmi=223 cfr=0
+f=00970 frm=215 sfx3=$00 0606=$FF se69=$3E nmi=224 cfr=0
+f=00971 frm=216 sfx3=$00 0606=$FF se69=$3D nmi=225 cfr=0
+f=00972 frm=217 sfx3=$00 0606=$FF se69=$3C nmi=226 cfr=0
+f=00973 frm=218 sfx3=$00 0606=$FF se69=$3B nmi=227 cfr=0
+f=00974 frm=219 sfx3=$12 0606=$FF se69=$3A nmi=228 cfr=0
+f=00975 frm=220 sfx3=$00 0606=$FF se69=$39 nmi=229 cfr=0
+f=00976 frm=221 sfx3=$00 0606=$FF se69=$38 nmi=230 cfr=0
+f=00977 frm=222 sfx3=$00 0606=$FF se69=$37 nmi=231 cfr=0
+f=00978 frm=223 sfx3=$00 0606=$FF se69=$36 nmi=232 cfr=0
+f=00979 frm=224 sfx3=$00 0606=$FF se69=$35 nmi=233 cfr=0
+f=00980 frm=225 sfx3=$00 0606=$FF se69=$34 nmi=234 cfr=0
+f=00981 frm=226 sfx3=$00 0606=$FF se69=$33 nmi=235 cfr=0
+f=00982 frm=227 sfx3=$00 0606=$FF se69=$32 nmi=236 cfr=0
+f=00983 frm=228 sfx3=$00 0606=$FF se69=$31 nmi=237 cfr=0
+f=00984 frm=229 sfx3=$00 0606=$FF se69=$30 nmi=238 cfr=0
+f=00985 frm=230 sfx3=$12 0606=$FF se69=$2F nmi=239 cfr=0
+f=00986 frm=231 sfx3=$00 0606=$FF se69=$2E nmi=240 cfr=0
+f=00987 frm=232 sfx3=$00 0606=$FF se69=$2D nmi=241 cfr=0
+f=00988 frm=233 sfx3=$00 0606=$FF se69=$2C nmi=242 cfr=0
+f=00989 frm=234 sfx3=$00 0606=$FF se69=$2B nmi=243 cfr=0
+f=00990 frm=235 sfx3=$00 0606=$FF se69=$2A nmi=244 cfr=0
+f=00991 frm=236 sfx3=$00 0606=$FF se69=$29 nmi=245 cfr=0
+f=00992 frm=237 sfx3=$00 0606=$FF se69=$28 nmi=246 cfr=0
+f=00993 frm=238 sfx3=$00 0606=$FF se69=$27 nmi=247 cfr=0
+f=00994 frm=239 sfx3=$00 0606=$FF se69=$26 nmi=248 cfr=0
+f=00995 frm=240 sfx3=$00 0606=$FF se69=$25 nmi=249 cfr=0
+f=00995 frm=240 sfx3=$00 0606=$FF se69=$25 nmi=249 cfr=0 [freeze_zone]
+f=00996 frm=241 sfx3=$12 0606=$FF se69=$24 nmi=250 cfr=0
+f=00996 frm=241 sfx3=$12 0606=$FF se69=$24 nmi=250 cfr=0 [freeze_zone]
+f=00997 frm=242 sfx3=$00 0606=$FF se69=$23 nmi=251 cfr=0
+f=00997 frm=242 sfx3=$00 0606=$FF se69=$23 nmi=251 cfr=0 [freeze_zone]
+f=00998 frm=243 sfx3=$00 0606=$FF se69=$22 nmi=252 cfr=0
+f=00998 frm=243 sfx3=$00 0606=$FF se69=$22 nmi=252 cfr=0 [freeze_zone]
+f=00999 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=0
+f=00999 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=0 [freeze_zone]
+f=01000 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=1 [freeze_zone]
+f=01001 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=2 [freeze_zone]
+f=01002 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=3 [freeze_zone]
+f=01003 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=4 [freeze_zone]
+f=01004 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=5 [freeze_zone]
+f=01005 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=6 [freeze_zone]
+f=01006 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=7 [freeze_zone]
+f=01007 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=8 [freeze_zone]
+f=01008 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=9 [freeze_zone]
+f=01009 frm=244 sfx3=$00 0606=$FF se69=$21 nmi=253 cfr=10 [freeze_zone]
+*** FREEZE f=1009 frm=244 sfx3=$00 0606=$FF se69=$21 PC=00682A ***
+=== PROBE COMPLETE ===

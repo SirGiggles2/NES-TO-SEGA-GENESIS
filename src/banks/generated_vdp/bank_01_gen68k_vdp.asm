@@ -56,44 +56,44 @@
 tbl_8000_text_messages:  ; orig: tbl_8000_text_messages:
 
 ; see con_msg
-    ; [DIRECTIVE] .WORD _off001_804C_00  -- needs manual handling  ; orig: - D 0 - - - 0x004010 01:8000: 4C 80     .word _off001_804C_0
-    ; [DIRECTIVE] .WORD _off001_8077_01  -- needs manual handling  ; orig: - D 0 - - - 0x004012 01:8002: 77 80     .word _off001_8077_0
-    ; [DIRECTIVE] .WORD _off001_80A1_02  -- needs manual handling  ; orig: - D 0 - - - 0x004014 01:8004: A1 80     .word _off001_80A1_0
-    ; [DIRECTIVE] .WORD _off001_80B9_03  -- needs manual handling  ; orig: - - - - - - 0x004016 01:8006: B9 80     .word _off001_80B9_0
-    ; [DIRECTIVE] .WORD _off001_80E3_04  -- needs manual handling  ; orig: - D 0 - - - 0x004018 01:8008: E3 80     .word _off001_80E3_0
-    ; [DIRECTIVE] .WORD _off001_8105_05  -- needs manual handling  ; orig: - - - - - - 0x00401A 01:800A: 05 81     .word _off001_8105_0
-    ; [DIRECTIVE] .WORD _off001_812D_06  -- needs manual handling  ; orig: - D 0 - - - 0x00401C 01:800C: 2D 81     .word _off001_812D_0
-    ; [DIRECTIVE] .WORD _off001_8152_07  -- needs manual handling  ; orig: - - - - - - 0x00401E 01:800E: 52 81     .word _off001_8152_0
-    ; [DIRECTIVE] .WORD _off001_8179_08  -- needs manual handling  ; orig: - D 0 - - - 0x004020 01:8010: 79 81     .word _off001_8179_0
-    ; [DIRECTIVE] .WORD _off001_8197_09  -- needs manual handling  ; orig: - - - - - - 0x004022 01:8012: 97 81     .word _off001_8197_0
-    ; [DIRECTIVE] .WORD _off001_81AE_0A  -- needs manual handling  ; orig: - - - - - - 0x004024 01:8014: AE 81     .word _off001_81AE_0
-    ; [DIRECTIVE] .WORD _off001_81D2_0B  -- needs manual handling  ; orig: - - - - - - 0x004026 01:8016: D2 81     .word _off001_81D2_0
-    ; [DIRECTIVE] .WORD _off001_81F8_0C  -- needs manual handling  ; orig: - - - - - - 0x004028 01:8018: F8 81     .word _off001_81F8_0
-    ; [DIRECTIVE] .WORD _off001_822C_0D  -- needs manual handling  ; orig: - - - - - - 0x00402A 01:801A: 2C 82     .word _off001_822C_0
-    ; [DIRECTIVE] .WORD _off001_8241_0E  -- needs manual handling  ; orig: - D 0 - - - 0x00402C 01:801C: 41 82     .word _off001_8241_0
-    ; [DIRECTIVE] .WORD _off001_8258_0F  -- needs manual handling  ; orig: - D 0 - - - 0x00402E 01:801E: 58 82     .word _off001_8258_0
-    ; [DIRECTIVE] .WORD _off001_827D_10  -- needs manual handling  ; orig: - D 0 - - - 0x004030 01:8020: 7D 82     .word _off001_827D_1
-    ; [DIRECTIVE] .WORD _off001_8294_11  -- needs manual handling  ; orig: - D 0 - - - 0x004032 01:8022: 94 82     .word _off001_8294_1
-    ; [DIRECTIVE] .WORD _off001_82B8_12  -- needs manual handling  ; orig: - D 0 - - - 0x004034 01:8024: B8 82     .word _off001_82B8_1
-    ; [DIRECTIVE] .WORD _off001_82CD_13  -- needs manual handling  ; orig: - - - - - - 0x004036 01:8026: CD 82     .word _off001_82CD_1
-    ; [DIRECTIVE] .WORD _off001_82F5_14  -- needs manual handling  ; orig: - - - - - - 0x004038 01:8028: F5 82     .word _off001_82F5_1
-    ; [DIRECTIVE] .WORD _off001_830D_15  -- needs manual handling  ; orig: - - - - - - 0x00403A 01:802A: 0D 83     .word _off001_830D_1
-    ; [DIRECTIVE] .WORD _off001_834D_16  -- needs manual handling  ; orig: - - - - - - 0x00403C 01:802C: 4D 83     .word _off001_834D_1
-    ; [DIRECTIVE] .WORD _off001_8370_17  -- needs manual handling  ; orig: - - - - - - 0x00403E 01:802E: 70 83     .word _off001_8370_1
-    ; [DIRECTIVE] .WORD _off001_839C_18  -- needs manual handling  ; orig: - - - - - - 0x004040 01:8030: 9C 83     .word _off001_839C_1
-    ; [DIRECTIVE] .WORD _off001_83C6_19  -- needs manual handling  ; orig: - D 0 - - - 0x004042 01:8032: C6 83     .word _off001_83C6_1
-    ; [DIRECTIVE] .WORD _off001_83F0_1A  -- needs manual handling  ; orig: - - - - - - 0x004044 01:8034: F0 83     .word _off001_83F0_1
-    ; [DIRECTIVE] .WORD _off001_841C_1B  -- needs manual handling  ; orig: - D 0 - - - 0x004046 01:8036: 1C 84     .word _off001_841C_1
-    ; [DIRECTIVE] .WORD _off001_843F_1C  -- needs manual handling  ; orig: - - - - - - 0x004048 01:8038: 3F 84     .word _off001_843F_1
-    ; [DIRECTIVE] .WORD _off001_846D_1D  -- needs manual handling  ; orig: - - - - - - 0x00404A 01:803A: 6D 84     .word _off001_846D_1
-    ; [DIRECTIVE] .WORD _off001_8490_1E  -- needs manual handling  ; orig: - - - - - - 0x00404C 01:803C: 90 84     .word _off001_8490_1
-    ; [DIRECTIVE] .WORD _off001_84B8_1F  -- needs manual handling  ; orig: - - - - - - 0x00404E 01:803E: B8 84     .word _off001_84B8_1
-    ; [DIRECTIVE] .WORD _off001_84E3_20  -- needs manual handling  ; orig: - - - - - - 0x004050 01:8040: E3 84     .word _off001_84E3_2
-    ; [DIRECTIVE] .WORD _off001_850E_21  -- needs manual handling  ; orig: - - - - - - 0x004052 01:8042: 0E 85     .word _off001_850E_2
-    ; [DIRECTIVE] .WORD _off001_8526_22  -- needs manual handling  ; orig: - - - - - - 0x004054 01:8044: 26 85     .word _off001_8526_2
-    ; [DIRECTIVE] .WORD _off001_8553_23  -- needs manual handling  ; orig: - - - - - - 0x004056 01:8046: 53 85     .word _off001_8553_2
-    ; [DIRECTIVE] .WORD _off001_8568_24  -- needs manual handling  ; orig: - D 0 - - - 0x004058 01:8048: 68 85     .word _off001_8568_2
-    ; [DIRECTIVE] .WORD _off001_857E_25  -- needs manual handling  ; orig: - - - - - - 0x00405A 01:804A: 7E 85     .word _off001_857E_2
+    DC.B $4C,$80  ; data (was .WORD _off001_804C_00)
+    DC.B $77,$80  ; data (was .WORD _off001_8077_01)
+    DC.B $A1,$80  ; data (was .WORD _off001_80A1_02)
+    DC.B $B9,$80  ; data (was .WORD _off001_80B9_03)
+    DC.B $E3,$80  ; data (was .WORD _off001_80E3_04)
+    DC.B $05,$81  ; data (was .WORD _off001_8105_05)
+    DC.B $2D,$81  ; data (was .WORD _off001_812D_06)
+    DC.B $52,$81  ; data (was .WORD _off001_8152_07)
+    DC.B $79,$81  ; data (was .WORD _off001_8179_08)
+    DC.B $97,$81  ; data (was .WORD _off001_8197_09)
+    DC.B $AE,$81  ; data (was .WORD _off001_81AE_0A)
+    DC.B $D2,$81  ; data (was .WORD _off001_81D2_0B)
+    DC.B $F8,$81  ; data (was .WORD _off001_81F8_0C)
+    DC.B $2C,$82  ; data (was .WORD _off001_822C_0D)
+    DC.B $41,$82  ; data (was .WORD _off001_8241_0E)
+    DC.B $58,$82  ; data (was .WORD _off001_8258_0F)
+    DC.B $7D,$82  ; data (was .WORD _off001_827D_10)
+    DC.B $94,$82  ; data (was .WORD _off001_8294_11)
+    DC.B $B8,$82  ; data (was .WORD _off001_82B8_12)
+    DC.B $CD,$82  ; data (was .WORD _off001_82CD_13)
+    DC.B $F5,$82  ; data (was .WORD _off001_82F5_14)
+    DC.B $0D,$83  ; data (was .WORD _off001_830D_15)
+    DC.B $4D,$83  ; data (was .WORD _off001_834D_16)
+    DC.B $70,$83  ; data (was .WORD _off001_8370_17)
+    DC.B $9C,$83  ; data (was .WORD _off001_839C_18)
+    DC.B $C6,$83  ; data (was .WORD _off001_83C6_19)
+    DC.B $F0,$83  ; data (was .WORD _off001_83F0_1A)
+    DC.B $1C,$84  ; data (was .WORD _off001_841C_1B)
+    DC.B $3F,$84  ; data (was .WORD _off001_843F_1C)
+    DC.B $6D,$84  ; data (was .WORD _off001_846D_1D)
+    DC.B $90,$84  ; data (was .WORD _off001_8490_1E)
+    DC.B $B8,$84  ; data (was .WORD _off001_84B8_1F)
+    DC.B $E3,$84  ; data (was .WORD _off001_84E3_20)
+    DC.B $0E,$85  ; data (was .WORD _off001_850E_21)
+    DC.B $26,$85  ; data (was .WORD _off001_8526_22)
+    DC.B $53,$85  ; data (was .WORD _off001_8553_23)
+    DC.B $68,$85  ; data (was .WORD _off001_8568_24)
+    DC.B $7E,$85  ; data (was .WORD _off001_857E_25)
 
 
 
@@ -108,8 +108,8 @@ _off001_804C_00:  ; orig: _off001_804C_00:
 ; con_msg_00
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $12, $1D, $2A, $1C, $24, $0D, $0A, $17, $10, $0E, $1B, $18, $1E, $1C, $24, $1D, $18, $24, $10, $18 + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x00405C 01:804C: 25        .byte $25, $25, $12,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $0A, $15, $18, $17, $0E, $29, $24, $1D, $0A, $14, $0E, $24, $1D, $11, $12, $1C, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x004072 01:8062: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $12, $1D, $2A, $1C, $24, $0D, $0A, $17, $10, $0E, $1B, $18, $1E, $1C, $24, $1D, $18, $24, $10, $18 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $0A, $15, $18, $17, $0E, $29, $24, $1D, $0A, $14, $0E, $24, $1D, $11, $12, $1C, $2C + con_message_end)
 
 
 
@@ -118,8 +118,8 @@ _off001_8077_01:  ; orig: _off001_8077_01:
 ; con_msg_01
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $16, $0A, $1C, $1D, $0E, $1B, $24, $1E, $1C, $12, $17, $10, $24, $12, $1D, $24, $0A, $17, $0D + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x004087 01:8077: 25        .byte $25, $25, $16,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $22, $18, $1E, $24, $0C, $0A, $17, $24, $11, $0A, $1F, $0E, $24, $1D, $11, $12, $1C, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x00409C 01:808C: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $16, $0A, $1C, $1D, $0E, $1B, $24, $1E, $1C, $12, $17, $10, $24, $12, $1D, $24, $0A, $17, $0D + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $22, $18, $1E, $24, $0C, $0A, $17, $24, $11, $0A, $1F, $0E, $24, $1D, $11, $12, $1C, $2C + con_message_end)
 
 
 
@@ -128,7 +128,8 @@ _off001_80A1_02:  ; orig: _off001_80A1_02:
 ; con_msg_02
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $1D, $0A, $14, $0E, $24, $0A, $17, $22, $24, $1B, $18, $0A, $0D, $24, $22, $18, $1E, $24, $20, $0A, $17, $1D, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x0040B1 01:80A1: 25        .byte $25, $1D, $0A,
+    DC.B $25  ; data (was .BYTE $25, $1D, $0A, $14, $0E, $24, $0A, $17, $22, $24, $1B, $18, $0A, $0D, $24, $22, $18, $1E, $24, $20, $0A, $17, $1D, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -137,8 +138,8 @@ _off001_80B9_03:  ; orig: _off001_80B9_03:
 ; con_msg_03
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $1C, $0E, $0C, $1B, $0E, $1D, $24, $12, $1C, $24, $12, $17, $24, $1D, $11, $0E, $24, $1D, $1B, $0E, $0E + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0040C9 01:80B9: 25        .byte $25, $1C, $0E,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $0A, $1D, $24, $1D, $11, $0E, $24, $0D, $0E, $0A, $0D, $2F, $0E, $17, $0D, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0040DF 01:80CF: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $1C, $0E, $0C, $1B, $0E, $1D, $24, $12, $1C, $24, $12, $17, $24, $1D, $11, $0E, $24, $1D, $1B, $0E, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $0A, $1D, $24, $1D, $11, $0E, $24, $0D, $0E, $0A, $0D, $2F, $0E, $17, $0D, $2C + con_message_end)
 
 
 
@@ -147,8 +148,8 @@ _off001_80E3_04:  ; orig: _off001_80E3_04:
 ; con_msg_04
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $15, $0E, $1D, $2A, $1C, $24, $19, $15, $0A, $22, $24, $16, $18, $17, $0E, $22 + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x0040F3 01:80E3: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $16, $0A, $14, $12, $17, $10, $24, $10, $0A, $16, $0E, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x004106 01:80F6: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $15, $0E, $1D, $2A, $1C, $24, $19, $15, $0A, $22, $24, $16, $18, $17, $0E, $22 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $16, $0A, $14, $12, $17, $10, $24, $10, $0A, $16, $0E, $2C + con_message_end)
 
 
 
@@ -157,8 +158,8 @@ _off001_8105_05:  ; orig: _off001_8105_05:
 ; con_msg_05
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $19, $0A, $22, $24, $16, $0E, $24, $0F, $18, $1B, $24, $1D, $11, $0E, $24, $0D, $18, $18, $1B + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x004115 01:8105: 25        .byte $25, $25, $19,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $1B, $0E, $19, $0A, $12, $1B, $24, $0C, $11, $0A, $1B, $10, $0E, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x00412A 01:811A: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $19, $0A, $22, $24, $16, $0E, $24, $0F, $18, $1B, $24, $1D, $11, $0E, $24, $0D, $18, $18, $1B + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $1B, $0E, $19, $0A, $12, $1B, $24, $0C, $11, $0A, $1B, $10, $0E, $2C + con_message_end)
 
 
 
@@ -167,8 +168,8 @@ _off001_812D_06:  ; orig: _off001_812D_06:
 ; con_msg_06
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $1C, $11, $18, $20, $24, $1D, $11, $12, $1C, $24, $1D, $18, $24, $1D, $11, $0E + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x00413D 01:812D: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $25, $25, $18, $15, $0D, $24, $20, $18, $16, $0A, $17, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x004151 01:8141: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $1C, $11, $18, $20, $24, $1D, $11, $12, $1C, $24, $1D, $18, $24, $1D, $11, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $25, $25, $18, $15, $0D, $24, $20, $18, $16, $0A, $17, $2C + con_message_end)
 
 
 
@@ -177,8 +178,8 @@ _off001_8152_07:  ; orig: _off001_8152_07:
 ; con_msg_07
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $16, $0E, $0E, $1D, $24, $1D, $11, $0E, $24, $18, $15, $0D, $24, $16, $0A, $17 + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x004162 01:8152: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $25, $0A, $1D, $24, $1D, $11, $0E, $24, $10, $1B, $0A, $1F, $0E, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004176 01:8166: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $16, $0E, $0E, $1D, $24, $1D, $11, $0E, $24, $18, $15, $0D, $24, $16, $0A, $17 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $25, $0A, $1D, $24, $1D, $11, $0E, $24, $10, $1B, $0A, $1F, $0E, $2C + con_message_end)
 
 
 
@@ -187,8 +188,8 @@ _off001_8179_08:  ; orig: _off001_8179_08:
 ; con_msg_08
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $0B, $1E, $22, $24, $16, $0E, $0D, $12, $0C, $12, $17, $0E, $24, $0B, $0E, $0F, $18, $1B, $0E + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x004189 01:8179: 25        .byte $25, $25, $0B,
-    ; [DIRECTIVE] .BYTE $25, $25, $22, $18, $1E, $24, $10, $18, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x00419E 01:818E: 25        .byte $25, $25, $22,
+    DC.B $25  ; data (was .BYTE $25, $25, $0B, $1E, $22, $24, $16, $0E, $0D, $12, $0C, $12, $17, $0E, $24, $0B, $0E, $0F, $18, $1B, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $22, $18, $1E, $24, $10, $18, $2C + con_message_end)
 
 
 
@@ -197,7 +198,8 @@ _off001_8197_09:  ; orig: _off001_8197_09:
 ; con_msg_09
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $19, $0A, $22, $24, $16, $0E, $24, $0A, $17, $0D, $24, $12, $2A, $15, $15, $24, $1D, $0A, $15, $14, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0041A7 01:8197: 25        .byte $25, $25, $19,
+    DC.B $25  ; data (was .BYTE $25, $25, $19, $0A, $22, $24, $16, $0E, $24, $0A, $17, $0D, $24, $12, $2A, $15, $15, $24, $1D, $0A, $15, $14, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -206,8 +208,8 @@ _off001_81AE_0A:  ; orig: _off001_81AE_0A:
 ; con_msg_0A
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $1D, $11, $12, $1C, $24, $0A, $12, $17, $2A, $1D, $24, $0E, $17, $18, $1E, $10, $11 + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0041BE 01:81AE: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $25, $25, $25, $1D, $18, $24, $1D, $0A, $15, $14, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0041D2 01:81C2: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $1D, $11, $12, $1C, $24, $0A, $12, $17, $2A, $1D, $24, $0E, $17, $18, $1E, $10, $11 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $25, $25, $25, $1D, $18, $24, $1D, $0A, $15, $14, $2C + con_message_end)
 
 
 
@@ -216,8 +218,8 @@ _off001_81D2_0B:  ; orig: _off001_81D2_0B:
 ; con_msg_0B
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $25, $25, $10, $18, $24, $1E, $19, $28, $1E, $19, $28 + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0041E2 01:81D2: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $1D, $11, $0E, $24, $16, $18, $1E, $17, $1D, $0A, $12, $17, $24, $0A, $11, $0E, $0A, $0D, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0041F2 01:81E2: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $25, $25, $10, $18, $24, $1E, $19, $28, $1E, $19, $28 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $1D, $11, $0E, $24, $16, $18, $1E, $17, $1D, $0A, $12, $17, $24, $0A, $11, $0E, $0A, $0D, $2C + con_message_end)
 
 
 
@@ -226,9 +228,10 @@ _off001_81F8_0C:  ; orig: _off001_81F8_0C:
 ; con_msg_0C
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $10, $18, $24, $17, $18, $1B, $1D, $11, $28, $20, $0E, $1C, $1D, $28, $1C, $18, $1E, $1D, $11, $28 + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x004208 01:81F8: 25        .byte $25, $25, $10,
-    ; [DIRECTIVE] .BYTE $25, $25, $20, $0E, $1C, $1D, $24, $1D, $18, $24, $1D, $11, $0E, $24, $0F, $18, $1B, $0E, $1C, $1D + con_new_line_2  -- needs manual handling  ; orig: - - - - - - 0x00421E 01:820E: 25        .byte $25, $25, $20,
-    ; [DIRECTIVE] .BYTE $24, $24, $18, $0F, $24, $16, $0A, $23, $0E, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004232 01:8222: 24        .byte $24, $24, $18,
+    DC.B $25  ; data (was .BYTE $25, $25, $10, $18, $24, $17, $18, $1B, $1D, $11, $28, $20, $0E, $1C, $1D, $28, $1C, $18, $1E, $1D, $11, $28 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $20, $0E, $1C, $1D, $24, $1D, $18, $24, $1D, $11, $0E, $24, $0F, $18, $1B, $0E, $1C, $1D + con_new_line_2)
+    DC.B $24  ; data (was .BYTE $24, $24, $18, $0F, $24, $16, $0A, $23, $0E, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -237,7 +240,8 @@ _off001_822C_0D:  ; orig: _off001_822C_0D:
 ; con_msg_0D
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $0B, $18, $22, $28, $24, $22, $18, $1E, $2A, $1B, $0E, $24, $1B, $12, $0C, $11, $29 + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x00423C 01:822C: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $0B, $18, $22, $28, $24, $22, $18, $1E, $2A, $1B, $0E, $24, $1B, $12, $0C, $11, $29 + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -246,7 +250,8 @@ _off001_8241_0E:  ; orig: _off001_8241_0E:
 ; con_msg_0E
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $0B, $1E, $22, $24, $1C, $18, $16, $0E, $1D, $11, $12, $17, $2A, $24, $20, $12, $15, $15, $24, $22, $0A, $29 + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x004251 01:8241: 25        .byte $25, $0B, $1E,
+    DC.B $25  ; data (was .BYTE $25, $0B, $1E, $22, $24, $1C, $18, $16, $0E, $1D, $11, $12, $17, $2A, $24, $20, $12, $15, $15, $24, $22, $0A, $29 + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -255,8 +260,8 @@ _off001_8258_0F:  ; orig: _off001_8258_0F:
 ; con_msg_0F
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $0B, $18, $22, $28, $24, $1D, $11, $12, $1C, $24, $12, $1C + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x004268 01:8258: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $1B, $0E, $0A, $15, $15, $22, $24, $0E, $21, $19, $0E, $17, $1C, $12, $1F, $0E, $29 + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x004279 01:8269: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $0B, $18, $22, $28, $24, $1D, $11, $12, $1C, $24, $12, $1C + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $1B, $0E, $0A, $15, $15, $22, $24, $0E, $21, $19, $0E, $17, $1C, $12, $1F, $0E, $29 + con_message_end)
 
 
 
@@ -265,7 +270,8 @@ _off001_827D_10:  ; orig: _off001_827D_10:
 ; con_msg_10
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $1D, $0A, $14, $0E, $24, $0A, $17, $22, $24, $18, $17, $0E, $24, $22, $18, $1E, $24, $20, $0A, $17, $1D, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x00428D 01:827D: 25        .byte $25, $1D, $0A,
+    DC.B $25  ; data (was .BYTE $25, $1D, $0A, $14, $0E, $24, $0A, $17, $22, $24, $18, $17, $0E, $24, $22, $18, $1E, $24, $20, $0A, $17, $1D, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -274,8 +280,8 @@ _off001_8294_11:  ; orig: _off001_8294_11:
 ; con_msg_11
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $12, $1D, $2A, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x0042A4 01:8294: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $1D, $18, $24, $0E, $1F, $0E, $1B, $22, $0B, $18, $0D, $22, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x0042B6 01:82A6: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $12, $1D, $2A, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $1D, $18, $24, $0E, $1F, $0E, $1B, $22, $0B, $18, $0D, $22, $2C + con_message_end)
 
 
 
@@ -284,7 +290,8 @@ _off001_82B8_12:  ; orig: _off001_82B8_12:
 ; con_msg_12
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $10, $1B, $1E, $16, $0B, $15, $0E, $28, $10, $1B, $1E, $16, $0B, $15, $0E, $2C, $2C, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x0042C8 01:82B8: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $10, $1B, $1E, $16, $0B, $15, $0E, $28, $10, $1B, $1E, $16, $0B, $15, $0E, $2C, $2C, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -293,8 +300,8 @@ _off001_82CD_13:  ; orig: _off001_82CD_13:
 ; con_msg_13
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $0E, $0A, $1C, $1D, $16, $18, $1C, $1D, $24, $19, $0E, $17, $17, $12, $17, $1C, $1E, $15, $0A + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0042DD 01:82CD: 25        .byte $25, $25, $0E,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $12, $1C, $24, $1D, $11, $0E, $24, $1C, $0E, $0C, $1B, $0E, $1D, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0042F2 01:82E2: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $0E, $0A, $1C, $1D, $16, $18, $1C, $1D, $24, $19, $0E, $17, $17, $12, $17, $1C, $1E, $15, $0A + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $12, $1C, $24, $1D, $11, $0E, $24, $1C, $0E, $0C, $1B, $0E, $1D, $2C + con_message_end)
 
 
 
@@ -303,7 +310,8 @@ _off001_82F5_14:  ; orig: _off001_82F5_14:
 ; con_msg_14
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $0D, $18, $0D, $18, $17, $10, $18, $24, $0D, $12, $1C, $15, $12, $14, $0E, $1C, $24, $1C, $16, $18, $14, $0E, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004305 01:82F5: 25        .byte $25, $0D, $18,
+    DC.B $25  ; data (was .BYTE $25, $0D, $18, $0D, $18, $17, $10, $18, $24, $0D, $12, $1C, $15, $12, $14, $0E, $1C, $24, $1C, $16, $18, $14, $0E, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -312,9 +320,10 @@ _off001_830D_15:  ; orig: _off001_830D_15:
 ; con_msg_15
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $0D, $12, $0D, $24, $22, $18, $1E, $24, $10, $0E, $1D, $24, $1D, $11, $0E, $24, $1C, $20, $18, $1B, $0D + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x00431D 01:830D: 25        .byte $25, $0D, $12,
-    ; [DIRECTIVE] .BYTE $25, $0F, $1B, $18, $16, $24, $1D, $11, $0E, $24, $18, $15, $0D, $24, $16, $0A, $17, $24, $18, $17 + con_new_line_2  -- needs manual handling  ; orig: - - - - - - 0x004333 01:8323: 25        .byte $25, $0F, $1B,
-    ; [DIRECTIVE] .BYTE $25, $1D, $18, $19, $24, $18, $0F, $24, $1D, $11, $0E, $24, $20, $0A, $1D, $0E, $1B, $0F, $0A, $15, $15, $2E + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004347 01:8337: 25        .byte $25, $1D, $18,
+    DC.B $25  ; data (was .BYTE $25, $0D, $12, $0D, $24, $22, $18, $1E, $24, $10, $0E, $1D, $24, $1D, $11, $0E, $24, $1C, $20, $18, $1B, $0D + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $0F, $1B, $18, $16, $24, $1D, $11, $0E, $24, $18, $15, $0D, $24, $16, $0A, $17, $24, $18, $17 + con_new_line_2)
+    DC.B $25  ; data (was .BYTE $25, $1D, $18, $19, $24, $18, $0F, $24, $1D, $11, $0E, $24, $20, $0A, $1D, $0E, $1B, $0F, $0A, $15, $15, $2E + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -323,8 +332,8 @@ _off001_834D_16:  ; orig: _off001_834D_16:
 ; con_msg_16
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $20, $0A, $15, $14, $24, $12, $17, $1D, $18, $24, $1D, $11, $0E + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x00435D 01:834D: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $25, $25, $20, $0A, $1D, $0E, $1B, $0F, $0A, $15, $15, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x00436F 01:835F: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $20, $0A, $15, $14, $24, $12, $17, $1D, $18, $24, $1D, $11, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $25, $25, $20, $0A, $1D, $0E, $1B, $0F, $0A, $15, $15, $2C + con_message_end)
 
 
 
@@ -333,8 +342,8 @@ _off001_8370_17:  ; orig: _off001_8370_17:
 ; con_msg_17
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $1C, $0E, $0C, $1B, $0E, $1D, $24, $19, $18, $20, $0E, $1B, $24, $12, $1C, $24, $1C, $0A, $12, $0D + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x004380 01:8370: 25        .byte $25, $25, $1C,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $1D, $18, $24, $0B, $0E, $24, $12, $17, $24, $1D, $11, $0E, $24, $0A, $1B, $1B, $18, $20, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004396 01:8386: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $1C, $0E, $0C, $1B, $0E, $1D, $24, $19, $18, $20, $0E, $1B, $24, $12, $1C, $24, $1C, $0A, $12, $0D + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $1D, $18, $24, $0B, $0E, $24, $12, $17, $24, $1D, $11, $0E, $24, $0A, $1B, $1B, $18, $20, $2C + con_message_end)
 
 
 
@@ -343,8 +352,8 @@ _off001_839C_18:  ; orig: _off001_839C_18:
 ; con_msg_18
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $0D, $12, $10, $0D, $18, $10, $10, $0E, $1B, $24, $11, $0A, $1D, $0E, $1C + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0043AC 01:839C: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $0C, $0E, $1B, $1D, $0A, $12, $17, $24, $14, $12, $17, $0D, $24, $18, $0F, $24, $1C, $18, $1E, $17, $0D, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0043BF 01:83AF: 25        .byte $25, $0C, $0E,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $0D, $12, $10, $0D, $18, $10, $10, $0E, $1B, $24, $11, $0A, $1D, $0E, $1C + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $0C, $0E, $1B, $1D, $0A, $12, $17, $24, $14, $12, $17, $0D, $24, $18, $0F, $24, $1C, $18, $1E, $17, $0D, $2C + con_message_end)
 
 
 
@@ -353,8 +362,8 @@ _off001_83C6_19:  ; orig: _off001_83C6_19:
 ; con_msg_19
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $12, $24, $0B, $0E, $1D, $24, $22, $18, $1E, $2A, $0D, $24, $15, $12, $14, $0E + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x0043D6 01:83C6: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $1D, $18, $24, $11, $0A, $1F, $0E, $24, $16, $18, $1B, $0E, $24, $0B, $18, $16, $0B, $1C, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x0043EA 01:83DA: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $12, $24, $0B, $0E, $1D, $24, $22, $18, $1E, $2A, $0D, $24, $15, $12, $14, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $1D, $18, $24, $11, $0A, $1F, $0E, $24, $16, $18, $1B, $0E, $24, $0B, $18, $16, $0B, $1C, $2C + con_message_end)
 
 
 
@@ -363,8 +372,8 @@ _off001_83F0_1A:  ; orig: _off001_83F0_1A:
 ; con_msg_1A
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $12, $0F, $24, $22, $18, $1E, $24, $10, $18, $24, $12, $17, $24, $1D, $11, $0E + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x004400 01:83F0: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $0D, $12, $1B, $0E, $0C, $1D, $12, $18, $17, $24, $18, $0F, $24, $1D, $11, $0E, $24, $0A, $1B, $1B, $18, $20, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004414 01:8404: 25        .byte $25, $0D, $12,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $12, $0F, $24, $22, $18, $1E, $24, $10, $18, $24, $12, $17, $24, $1D, $11, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $0D, $12, $1B, $0E, $0C, $1D, $12, $18, $17, $24, $18, $0F, $24, $1D, $11, $0E, $24, $0A, $1B, $1B, $18, $20, $2C + con_message_end)
 
 
 
@@ -373,8 +382,8 @@ _off001_841C_1B:  ; orig: _off001_841C_1B:
 ; con_msg_1B
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $15, $0E, $0A, $1F, $0E, $24, $22, $18, $1E, $1B, $24, $15, $12, $0F, $0E + con_new_line_1  -- needs manual handling  ; orig: - D 0 - I - 0x00442C 01:841C: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $25, $25, $18, $1B, $24, $16, $18, $17, $0E, $22, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x00443F 01:842F: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $15, $0E, $0A, $1F, $0E, $24, $22, $18, $1E, $1B, $24, $15, $12, $0F, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $25, $25, $18, $1B, $24, $16, $18, $17, $0E, $22, $2C + con_message_end)
 
 
 
@@ -383,8 +392,8 @@ _off001_843F_1C:  ; orig: _off001_843F_1C:
 ; con_msg_1C
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $1D, $11, $0E, $1B, $0E, $24, $0A, $1B, $0E, $24, $1C, $0E, $0C, $1B, $0E, $1D, $1C, $24, $20, $11, $0E, $1B, $0E + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x00444F 01:843F: 25        .byte $25, $1D, $11,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $0F, $0A, $12, $1B, $12, $0E, $1C, $24, $0D, $18, $17, $2A, $1D, $24, $15, $12, $1F, $0E, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004467 01:8457: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $1D, $11, $0E, $1B, $0E, $24, $0A, $1B, $0E, $24, $1C, $0E, $0C, $1B, $0E, $1D, $1C, $24, $20, $11, $0E, $1B, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $0F, $0A, $12, $1B, $12, $0E, $1C, $24, $0D, $18, $17, $2A, $1D, $24, $15, $12, $1F, $0E, $2C + con_message_end)
 
 
 
@@ -393,8 +402,8 @@ _off001_846D_1D:  ; orig: _off001_846D_1D:
 ; con_msg_1D
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $0A, $12, $16, $24, $0A, $1D, $24, $1D, $11, $0E, $24, $0E, $22, $0E, $1C + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x00447D 01:846D: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $25, $25, $18, $0F, $24, $10, $18, $11, $16, $0A, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004490 01:8480: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $0A, $12, $16, $24, $0A, $1D, $24, $1D, $11, $0E, $24, $0E, $22, $0E, $1C + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $25, $25, $18, $0F, $24, $10, $18, $11, $16, $0A, $2C + con_message_end)
 
 
 
@@ -403,8 +412,8 @@ _off001_8490_1E:  ; orig: _off001_8490_1E:
 ; con_msg_1E
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $1C, $18, $1E, $1D, $11, $24, $18, $0F, $24, $0A, $1B, $1B, $18, $20, $24, $16, $0A, $1B, $14 + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0044A0 01:8490: 25        .byte $25, $25, $1C,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $11, $12, $0D, $0E, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0044B5 01:84A5: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $1C, $18, $1E, $1D, $11, $24, $18, $0F, $24, $0A, $1B, $1B, $18, $20, $24, $16, $0A, $1B, $14 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $11, $12, $0D, $0E, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D, $2C + con_message_end)
 
 
 
@@ -413,8 +422,8 @@ _off001_84B8_1F:  ; orig: _off001_84B8_1F:
 ; con_msg_1F
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $1D, $11, $0E, $1B, $0E, $2A, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D, $24, $12, $17 + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0044C8 01:84B8: 25        .byte $25, $25, $1D,
-    ; [DIRECTIVE] .BYTE $25, $25, $1D, $11, $0E, $24, $1D, $12, $19, $24, $18, $0F, $24, $1D, $11, $0E, $24, $17, $18, $1C, $0E, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0044DD 01:84CD: 25        .byte $25, $25, $1D,
+    DC.B $25  ; data (was .BYTE $25, $25, $1D, $11, $0E, $1B, $0E, $2A, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D, $24, $12, $17 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $1D, $11, $0E, $24, $1D, $12, $19, $24, $18, $0F, $24, $1D, $11, $0E, $24, $17, $18, $1C, $0E, $2C + con_message_end)
 
 
 
@@ -423,8 +432,8 @@ _off001_84E3_20:  ; orig: _off001_84E3_20:
 ; con_msg_20
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $1C, $19, $0E, $0C, $1D, $0A, $0C, $15, $0E, $24, $1B, $18, $0C, $14, $24, $12, $1C + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x0044F3 01:84E3: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $0A, $17, $24, $0E, $17, $1D, $1B, $0A, $17, $0C, $0E, $24, $1D, $18, $24, $0D, $0E, $0A, $1D, $11, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004507 01:84F7: 25        .byte $25, $25, $0A,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $1C, $19, $0E, $0C, $1D, $0A, $0C, $15, $0E, $24, $1B, $18, $0C, $14, $24, $12, $1C + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $0A, $17, $24, $0E, $17, $1D, $1B, $0A, $17, $0C, $0E, $24, $1D, $18, $24, $0D, $0E, $0A, $1D, $11, $2C + con_message_end)
 
 
 
@@ -433,7 +442,8 @@ _off001_850E_21:  ; orig: _off001_850E_21:
 ; con_msg_21
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $01, $00, $1D, $11, $24, $0E, $17, $0E, $16, $22, $24, $11, $0A, $1C, $24, $1D, $11, $0E, $24, $0B, $18, $16, $0B, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x00451E 01:850E: 01        .byte $01, $00, $1D,
+    DC.B $01  ; data (was .BYTE $01, $00, $1D, $11, $24, $0E, $17, $0E, $16, $22, $24, $11, $0A, $1C, $24, $1D, $11, $0E, $24, $0B, $18, $16, $0B, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -442,8 +452,8 @@ _off001_8526_22:  ; orig: _off001_8526_22:
 ; con_msg_22
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $18, $17, $0E, $1C, $24, $20, $11, $18, $24, $0D, $18, $0E, $1C, $24, $17, $18, $1D, $24, $11, $0A, $1F, $0E + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x004536 01:8526: 25        .byte $25, $18, $17,
-    ; [DIRECTIVE] .BYTE $25, $1D, $1B, $12, $0F, $18, $1B, $0C, $0E, $24, $0C, $0A, $17, $2A, $1D, $24, $10, $18, $24, $12, $17, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x00454D 01:853D: 25        .byte $25, $1D, $1B,
+    DC.B $25  ; data (was .BYTE $25, $18, $17, $0E, $1C, $24, $20, $11, $18, $24, $0D, $18, $0E, $1C, $24, $17, $18, $1D, $24, $11, $0A, $1F, $0E + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $1D, $1B, $12, $0F, $18, $1B, $0C, $0E, $24, $0C, $0A, $17, $2A, $1D, $24, $10, $18, $24, $12, $17, $2C + con_message_end)
 
 
 
@@ -452,7 +462,8 @@ _off001_8553_23:  ; orig: _off001_8553_23:
 ; con_msg_23
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $19, $0A, $1D, $1B, $0A, $24, $11, $0A, $1C, $24, $1D, $11, $0E, $24, $16, $0A, $19, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x004563 01:8553: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $19, $0A, $1D, $1B, $0A, $24, $11, $0A, $1C, $24, $1D, $11, $0E, $24, $16, $0A, $19, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -461,7 +472,8 @@ _off001_8568_24:  ; orig: _off001_8568_24:
 ; con_msg_24
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $10, $18, $24, $1D, $18, $24, $1D, $11, $0E, $24, $17, $0E, $21, $1D, $24, $1B, $18, $18, $16, $2C + con_message_end  -- needs manual handling  ; orig: - D 0 - I - 0x004578 01:8568: 25        .byte $25, $25, $10,
+    DC.B $25  ; data (was .BYTE $25, $25, $10, $18, $24, $1D, $18, $24, $1D, $11, $0E, $24, $17, $0E, $21, $1D, $24, $1B, $18, $18, $16, $2C + con_message_end)
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -470,40 +482,40 @@ _off001_857E_25:  ; orig: _off001_857E_25:
 ; con_msg_25
 
 ;                                              04   05   06   07   08   09   0A   0B   0C   0D   0E   0F   10   11   12   13   14   15   16   17   18   19   1A   1B
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $0E, $22, $0E, $1C, $24, $18, $0F, $24, $1C, $14, $1E, $15, $15 + con_new_line_1  -- needs manual handling  ; orig: - - - - - - 0x00458E 01:857E: 25        .byte $25, $25, $25,
-    ; [DIRECTIVE] .BYTE $25, $25, $25, $25, $25, $11, $0A, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D, $2C + con_message_end  -- needs manual handling  ; orig: - - - - - - 0x0045A0 01:8590: 25        .byte $25, $25, $25,
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $0E, $22, $0E, $1C, $24, $18, $0F, $24, $1C, $14, $1E, $15, $15 + con_new_line_1)
+    DC.B $25  ; data (was .BYTE $25, $25, $25, $25, $25, $11, $0A, $1C, $24, $0A, $24, $1C, $0E, $0C, $1B, $0E, $1D, $2C + con_message_end)
 
 
 
 tbl_85A2:  ; orig: tbl_85A2:
 
 ; ??? + message id
-    ; [DIRECTIVE] .BYTE $40 + con_msg_00  -- needs manual handling  ; orig: - D 0 - - - 0x0045B2 01:85A2: 40        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_20  -- needs manual handling  ; orig: - D 0 - - - 0x0045B3 01:85A3: 60        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_02  -- needs manual handling  ; orig: - D 0 - - - 0x0045B4 01:85A4: 42        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_02  -- needs manual handling  ; orig: - D 0 - - - 0x0045B5 01:85A5: 42        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $00 + con_msg_04  -- needs manual handling  ; orig: - D 0 - - - 0x0045B6 01:85A6: 04        .byte $00 + con_msg_
-    ; [DIRECTIVE] .BYTE $00 + con_msg_06  -- needs manual handling  ; orig: - - - - - - 0x0045B7 01:85A7: 06        .byte $00 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_08  -- needs manual handling  ; orig: - D 0 - - - 0x0045B8 01:85A8: 48        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $00 + con_msg_0A  -- needs manual handling  ; orig: - - - - - - 0x0045B9 01:85A9: 0A        .byte $00 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_0C  -- needs manual handling  ; orig: - D 0 - - - 0x0045BA 01:85AA: 4C        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $00 + con_msg_0E  -- needs manual handling  ; orig: - - - - - - 0x0045BB 01:85AB: 0E        .byte $00 + con_msg_
-    ; [DIRECTIVE] .BYTE $C0 + con_msg_10  -- needs manual handling  ; orig: - D 0 - - - 0x0045BC 01:85AC: D0        .byte $C0 + con_msg_
-    ; [DIRECTIVE] .BYTE $C0 + con_msg_12  -- needs manual handling  ; orig: - - - - - - 0x0045BD 01:85AD: D2        .byte $C0 + con_msg_
-    ; [DIRECTIVE] .BYTE $C0 + con_msg_12  -- needs manual handling  ; orig: - - - - - - 0x0045BE 01:85AE: D2        .byte $C0 + con_msg_
-    ; [DIRECTIVE] .BYTE $C0 + con_msg_1C  -- needs manual handling  ; orig: - D 0 - - - 0x0045BF 01:85AF: DC        .byte $C0 + con_msg_
-    ; [DIRECTIVE] .BYTE $C0 + con_msg_1C  -- needs manual handling  ; orig: - D 0 - - - 0x0045C0 01:85B0: DC        .byte $C0 + con_msg_
-    ; [DIRECTIVE] .BYTE $C0 + con_msg_1E  -- needs manual handling  ; orig: - D 0 - - - 0x0045C1 01:85B1: DE        .byte $C0 + con_msg_
-    ; [DIRECTIVE] .BYTE $C0 + con_msg_1E  -- needs manual handling  ; orig: - D 0 - - - 0x0045C2 01:85B2: DE        .byte $C0 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_22  -- needs manual handling  ; orig: - - - - - - 0x0045C3 01:85B3: 62        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_22  -- needs manual handling  ; orig: - D 0 - - - 0x0045C4 01:85B4: 62        .byte $40 + con_msg_
-    ; [DIRECTIVE] .BYTE $40 + con_msg_22  -- needs manual handling  ; orig: - - - - - - 0x0045C5 01:85B5: 62        .byte $40 + con_msg_
+    DC.B $40  ; data (was .BYTE $40 + con_msg_00)
+    DC.B $60  ; data (was .BYTE $40 + con_msg_20)
+    DC.B $42  ; data (was .BYTE $40 + con_msg_02)
+    DC.B $42  ; data (was .BYTE $40 + con_msg_02)
+    DC.B $04  ; data (was .BYTE $00 + con_msg_04)
+    DC.B $06  ; data (was .BYTE $00 + con_msg_06)
+    DC.B $48  ; data (was .BYTE $40 + con_msg_08)
+    DC.B $0A  ; data (was .BYTE $00 + con_msg_0A)
+    DC.B $4C  ; data (was .BYTE $40 + con_msg_0C)
+    DC.B $0E  ; data (was .BYTE $00 + con_msg_0E)
+    DC.B $D0  ; data (was .BYTE $C0 + con_msg_10)
+    DC.B $D2  ; data (was .BYTE $C0 + con_msg_12)
+    DC.B $D2  ; data (was .BYTE $C0 + con_msg_12)
+    DC.B $DC  ; data (was .BYTE $C0 + con_msg_1C)
+    DC.B $DC  ; data (was .BYTE $C0 + con_msg_1C)
+    DC.B $DE  ; data (was .BYTE $C0 + con_msg_1E)
+    DC.B $DE  ; data (was .BYTE $C0 + con_msg_1E)
+    DC.B $62  ; data (was .BYTE $40 + con_msg_22)
+    DC.B $62  ; data (was .BYTE $40 + con_msg_22)
+    DC.B $62  ; data (was .BYTE $40 + con_msg_22)
 
 
 
 tbl_85B6:  ; orig: tbl_85B6:
-    ; [DIRECTIVE] .BYTE $0A  -- needs manual handling  ; orig: - D 0 - - - 0x0045C6 01:85B6: 0A        .byte $0A   ; 00
-    ; [DIRECTIVE] .BYTE $28  -- needs manual handling  ; orig: - D 0 - - - 0x0045C7 01:85B7: 28        .byte $28   ; 01
+    DC.B $0A  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045C6 01:85B6: 0A        .byte $0A   ; 00
+    DC.B $28  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045C7 01:85B7: 28        .byte $28   ; 01
 
 
 
@@ -512,44 +524,44 @@ tbl_85B8:  ; orig: tbl_85B8:
 ; offset via 0x0045DA
 
 ; 02
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - - - - - - 0x0045C8 01:85B8: 00        .byte $00   ; unused
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - - - - - - 0x0045C9 01:85B9: 01        .byte $01   ; unused
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - - - - - - 0x0045CA 01:85BA: 02        .byte $02   ; unused
+    DC.B $00  ; data (was .BYTE) ; orig: - - - - - - 0x0045C8 01:85B8: 00        .byte $00   ; unused
+    DC.B $01  ; data (was .BYTE) ; orig: - - - - - - 0x0045C9 01:85B9: 01        .byte $01   ; unused
+    DC.B $02  ; data (was .BYTE) ; orig: - - - - - - 0x0045CA 01:85BA: 02        .byte $02   ; unused
 
 ; 05
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - D 0 - - - 0x0045CB 01:85BB: 01        .byte $01   ;
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - D 0 - - - 0x0045CC 01:85BC: 02        .byte $02   ;
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - - - 0x0045CD 01:85BD: 00        .byte $00   ;
+    DC.B $01  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045CB 01:85BB: 01        .byte $01   ;
+    DC.B $02  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045CC 01:85BC: 02        .byte $02   ;
+    DC.B $00  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045CD 01:85BD: 00        .byte $00   ;
 
 ; 08
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - D 0 - - - 0x0045CE 01:85BE: 02        .byte $02   ;
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - - - 0x0045CF 01:85BF: 00        .byte $00   ;
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - D 0 - - - 0x0045D0 01:85C0: 01        .byte $01   ;
+    DC.B $02  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045CE 01:85BE: 02        .byte $02   ;
+    DC.B $00  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045CF 01:85BF: 00        .byte $00   ;
+    DC.B $01  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D0 01:85C0: 01        .byte $01   ;
 
 ; 0B
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - - - 0x0045D1 01:85C1: 00        .byte $00   ;
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - D 0 - - - 0x0045D2 01:85C2: 02        .byte $02   ;
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - D 0 - - - 0x0045D3 01:85C3: 01        .byte $01   ;
+    DC.B $00  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D1 01:85C1: 00        .byte $00   ;
+    DC.B $02  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D2 01:85C2: 02        .byte $02   ;
+    DC.B $01  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D3 01:85C3: 01        .byte $01   ;
 
 ; 0E
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - D 0 - - - 0x0045D4 01:85C4: 02        .byte $02   ;
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - D 0 - - - 0x0045D5 01:85C5: 01        .byte $01   ;
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - - - 0x0045D6 01:85C6: 00        .byte $00   ;
+    DC.B $02  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D4 01:85C4: 02        .byte $02   ;
+    DC.B $01  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D5 01:85C5: 01        .byte $01   ;
+    DC.B $00  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D6 01:85C6: 00        .byte $00   ;
 
 ; 11
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - D 0 - - - 0x0045D7 01:85C7: 01        .byte $01   ;
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 0 - - - 0x0045D8 01:85C8: 00        .byte $00   ;
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - D 0 - - - 0x0045D9 01:85C9: 02        .byte $02   ;
+    DC.B $01  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D7 01:85C7: 01        .byte $01   ;
+    DC.B $00  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D8 01:85C8: 00        .byte $00   ;
+    DC.B $02  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D9 01:85C9: 02        .byte $02   ;
 
 
 
 tbl_85CA_offset:  ; orig: tbl_85CA_offset:
-    ; [DIRECTIVE] .BYTE $02  -- needs manual handling  ; orig: - - - - - - 0x0045DA 01:85CA: 02        .byte $02   ; 00
-    ; [DIRECTIVE] .BYTE $05  -- needs manual handling  ; orig: - D 0 - - - 0x0045DB 01:85CB: 05        .byte $05   ; 01
-    ; [DIRECTIVE] .BYTE $08  -- needs manual handling  ; orig: - D 0 - - - 0x0045DC 01:85CC: 08        .byte $08   ; 02
-    ; [DIRECTIVE] .BYTE $0B  -- needs manual handling  ; orig: - D 0 - - - 0x0045DD 01:85CD: 0B        .byte $0B   ; 03
-    ; [DIRECTIVE] .BYTE $0E  -- needs manual handling  ; orig: - D 0 - - - 0x0045DE 01:85CE: 0E        .byte $0E   ; 04
-    ; [DIRECTIVE] .BYTE $11  -- needs manual handling  ; orig: - D 0 - - - 0x0045DF 01:85CF: 11        .byte $11   ; 05
+    DC.B $02  ; data (was .BYTE) ; orig: - - - - - - 0x0045DA 01:85CA: 02        .byte $02   ; 00
+    DC.B $05  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045DB 01:85CB: 05        .byte $05   ; 01
+    DC.B $08  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045DC 01:85CC: 08        .byte $08   ; 02
+    DC.B $0B  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045DD 01:85CD: 0B        .byte $0B   ; 03
+    DC.B $0E  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045DE 01:85CE: 0E        .byte $0E   ; 04
+    DC.B $11  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045DF 01:85CF: 11        .byte $11   ; 05
 
 
 
@@ -563,9 +575,9 @@ loc_0x0045E0_old_man_handler:  ; orig: loc_0x0045E0_old_man_handler:
     CMPI.B  #con_obj_id_71,D0  ; orig: C - - - - - 0x0045EE 01:85DE: C9 71     CMP #con_obj_id_71
     BEQ     b01_bra_85EA             ; BEQ  ; orig: C - - - - - 0x0045F0 01:85E0: F0 08     BEQ b01_bra_85EA
     CMPI.B  #$7B,D0  ; orig: C - - - - - 0x0045F2 01:85E2: C9 7B     CMP #$7B
-    BCS     b01_bra_85EA             ; BCS  ; orig: C - - - - - 0x0045F4 01:85E4: B0 04     BCS b01_bra_85EA    ; if
+    BCC     b01_bra_85EA             ; BCS  ; orig: C - - - - - 0x0045F4 01:85E4: B0 04     BCS b01_bra_85EA    ; if
     CMPI.B  #$6E,D0  ; orig: C - - - - - 0x0045F6 01:85E6: C9 6E     CMP #$6E
-    BCS     b01_bra_85F9             ; BCS  ; orig: C - - - - - 0x0045F8 01:85E8: B0 0F     BCS b01_bra_85F9    ; if
+    BCC     b01_bra_85F9             ; BCS  ; orig: C - - - - - 0x0045F8 01:85E8: B0 0F     BCS b01_bra_85F9    ; if
 b01_bra_85EA:  ; orig: b01_bra_85EA:
 
 ; 00-6D, 71, 72
@@ -594,7 +606,7 @@ b01_bra_85F9:  ; orig: b01_bra_85F9:
     MOVE.B  #$FD,D0  ; orig: C - - - - - 0x00461E 01:860E: A9 FD     LDA #$FD
 b01_bra_8610_loop:  ; orig: b01_bra_8610_loop:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x004620 01:8610: 18        CLC
-    ADD.B  #$03,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004621 01:8611: 69 03     ADC #$03
+    ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x004621 01:8611: 69 03     ADC #$03
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x004623 01:8613: 88        DEY
     BPL     b01_bra_8610_loop             ; BPL  ; orig: C - - - - - 0x004624 01:8614: 10 FA     BPL b01_bra_8610_loop
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x004626 01:8616: A8        TAY
@@ -610,10 +622,10 @@ b01_bra_8619_loop:  ; orig: b01_bra_8619_loop:
     MOVEA.L #ram_0000_t3A,A0
     MOVE.B  D0,(A0,D1.L)
 
-    MOVEA.L #$FF6ABA,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x004633 01:8623: B9 BA 6A  LDA ram_6A7E_map_dat
-    MOVE.B  (A0,D2.L),D0  ; ^
-    MOVEA.L #$FF0430,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x004636 01:8626: 9D 30 04  STA ram_042B_enemy +
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF6ABA,A0  ; FIX v378: LDA $6ABA,Y base
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x004633 01:8623: B9 BA 6A  LDA ram_6A7E_map_dat
+    MOVEA.L #$FF0430,A0  ; FIX v378: STA $0430,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x004636 01:8626: 9D 30 04  STA ram_042B_enemy +
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x004639 01:8629: C8        INY
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x00463A 01:862A: E8        INX
     CMPI.B  #$03,D1  ; orig: C - - - - - 0x00463B 01:862B: E0 03     CPX #$03
@@ -624,7 +636,7 @@ b01_bra_8619_loop:  ; orig: b01_bra_8619_loop:
     ROXL.B  #1,D0           ; ROL A (uses X flag)  ; orig: C - - - - - 0x004643 01:8633: 2A        ROL
     OR.B    ram_0000_t3A,D0  ; orig: C - - - - - 0x004644 01:8634: 05 00     ORA ram_0000_t3A
     MOVE.B  D0,ram_0000_t3A  ; orig: C - - - - - 0x004646 01:8636: 85 00     STA ram_0000_t3A
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004648 01:8638: A5 02     LDA ram_0000_t3A + $
+    MOVE.B  $FF0002,D0  ; FIX v378: LDA $02  ; orig: C - - - - - 0x004648 01:8638: A5 02  LDA ram_0000_t3A + $
 
 ; / 10
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x00464A 01:863A: 4A        LSR
@@ -633,7 +645,7 @@ b01_bra_8619_loop:  ; orig: b01_bra_8619_loop:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x00464D 01:863D: 4A        LSR
     OR.B    ram_0000_t3A,D0  ; orig: C - - - - - 0x00464E 01:863E: 05 00     ORA ram_0000_t3A
     MOVE.B  D0,ram_0000_t3A  ; orig: C - - - - - 0x004650 01:8640: 85 00     STA ram_0000_t3A
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004652 01:8642: A5 01     LDA ram_0000_t3A + $
+    MOVE.B  $FF0001,D0  ; FIX v378: LDA $01  ; orig: C - - - - - 0x004652 01:8642: A5 01  LDA ram_0000_t3A + $
 
 ; / 04
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x004654 01:8644: 4A        LSR
@@ -660,33 +672,33 @@ b01_bra_8662_loop:  ; orig: b01_bra_8662_loop:
     MOVEA.L #tbl_85B8,A0
     MOVE.B  (A0,D1.L),D0
 
-    MOVEA.L #$FF046C,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x004675 01:8665: 99 6C 04  STA ram_046B_enemy +
-    MOVE.B  D0,(A0,D2.L)  ; ^
+    MOVEA.L #$FF046C,A0  ; FIX v378: STA $046C,Y base
+    MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x004675 01:8665: 99 6C 04  STA ram_046B_enemy +
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x004678 01:8668: CA        DEX
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x004679 01:8669: 88        DEY
     BPL     b01_bra_8662_loop             ; BPL  ; orig: C - - - - - 0x00467A 01:866A: 10 F6     BPL b01_bra_8662_loop
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00467C 01:866C: A5 1A     LDA ram_indiv_random
+    MOVE.B  $FF001A,D0  ; FIX v378: LDA $1A  ; orig: C - - - - - 0x00467C 01:866C: A5 1A  LDA ram_indiv_random
     ANDI.B  #$01,D0  ; orig: C - - - - - 0x00467E 01:866E: 29 01     AND #$01
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x004680 01:8670: A8        TAY
     MOVEA.L #tbl_85B6,A0
     MOVE.B  (A0,D2.L),D0
 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004684 01:8674: 8D 6F 04  STA ram_046B_enemy +
+    MOVE.B  D0,$FF046F  ; FIX v378: STA $046F  ; orig: C - - - - - 0x004684 01:8674: 8D 6F 04  STA ram_046B_enemy +
     MOVE.B  #$0A,D0  ; orig: C - - - - - 0x004687 01:8677: A9 0A     LDA #$0A
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004689 01:8679: 8D 70 04  STA ram_046B_enemy +
+    MOVE.B  D0,$FF0470  ; FIX v378: STA $0470  ; orig: C - - - - - 0x004689 01:8679: 8D 70 04  STA ram_046B_enemy +
     MOVE.B  #$14,D2  ; orig: C - - - - - 0x00468C 01:867C: A0 14     LDY #$14
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00468E 01:867E: A5 1A     LDA ram_indiv_random
+    MOVE.B  $FF001A,D0  ; FIX v378: LDA $1A  ; orig: C - - - - - 0x00468E 01:867E: A5 1A  LDA ram_indiv_random
     ANDI.B  #$02,D0  ; orig: C - - - - - 0x004690 01:8680: 29 02     AND #$02
     BEQ     b01_bra_8686             ; BEQ  ; orig: C - - - - - 0x004692 01:8682: F0 02     BEQ b01_bra_8686
     MOVE.B  #$32,D2  ; orig: C - - - - - 0x004694 01:8684: A0 32     LDY #$32
 b01_bra_8686:  ; orig: b01_bra_8686:
-    ; (empty translation for STY)  ; orig: C - - - - - 0x004696 01:8686: 8C 71 04  STY ram_046B_enemy +
+    MOVE.B  D2,$FF0471  ; FIX v378: STY $0471  ; orig: C - - - - - 0x004696 01:8686: 8C 71 04  STY ram_046B_enemy +
     MOVE.B  #$02,D1  ; orig: C - - - - - 0x004699 01:8689: A2 02     LDX #$02
 b01_bra_868B_loop:  ; orig: b01_bra_868B_loop:
-    MOVEA.L #$FF046C,A0  ; Fix X: ; (empty translation for LDY)  ; orig: C - - - - - 0x00469B 01:868B: BC 6C 04  LDY ram_046B_enemy +
-    MOVE.B  (A0,D1.L),D2  ; ^
-    MOVEA.L #$FF046F,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x00469E 01:868E: B9 6F 04  LDA ram_046B_enemy +
-    MOVE.B  (A0,D2.L),D0  ; ^
+    MOVEA.L #$FF046C,A0  ; FIX v378: LDY $046C,X base
+    MOVE.B  (A0,D1.L),D2  ; orig: C - - - - - 0x00469B 01:868B: BC 6C 04  LDY ram_046B_enemy +
+    MOVEA.L #$FF046F,A0  ; FIX v378: LDA $046F,Y base
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x00469E 01:868E: B9 6F 04  LDA ram_046B_enemy +
     MOVEA.L #ram_0448,A0
     MOVE.B  D0,(A0,D1.L)
 
@@ -695,8 +707,8 @@ b01_bra_868B_loop:  ; orig: b01_bra_868B_loop:
 b01_bra_8697:  ; orig: b01_bra_8697:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0046A7 01:8697: A9 00     LDA #$00
     MOVE.B  D0,ram_0416  ; orig: C - - - - - 0x0046A9 01:8699: 8D 16 04  STA ram_0416
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0046AC 01:869C: AD 14 88  LDA tbl_8812_ppu_lo 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0046AF 01:869F: 8D 5F 04  STA ram_045E_enemy +
+    MOVE.B  $FF8814,D0  ; FIX v378: LDA $8814  ; orig: C - - - - - 0x0046AC 01:869C: AD 14 88  LDA tbl_8812_ppu_lo
+    MOVE.B  D0,$FF045F  ; FIX v378: STA $045F  ; orig: C - - - - - 0x0046AF 01:869F: 8D 5F 04  STA ram_045E_enemy +
     RTS                     ; RTS  ; orig: C - - - - - 0x0046B2 01:86A2: 60        RTS
 
 
@@ -707,56 +719,57 @@ sub_86A3_spawn_old_man:  ; orig: sub_86A3_spawn_old_man:
     MOVEA.L #ram_pos_X_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
-    MOVEA.L #$FF0084,A0  ; Fix X: ; (empty translation for STY)  ; orig: C - - - - - 0x0046B5 01:86A5: 94 84     STY ram_pos_Y_enemy,
-    MOVE.B  D2,(A0,D1.L)  ; ^
+    MOVEA.L #$FF0084,A0  ; FIX v378: STY $84,X base
+    MOVE.B  D2,(A0,D1.L)  ; orig: C - - - - - 0x0046B5 01:86A5: 94 84  STY ram_pos_Y_enemy,
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0046B7 01:86A7: A9 00     LDA #$00
-    MOVEA.L #$FF0485,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0046B9 01:86A9: 9D 85 04  STA ram_hp_ememy - $
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF0485,A0  ; FIX v378: STA $0485,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x0046B9 01:86A9: 9D 85 04  STA ram_hp_ememy - $
     MOVE.B  #$81,D0  ; orig: C - - - - - 0x0046BC 01:86AC: A9 81     LDA #con_04C0_01 + c
-    MOVEA.L #$FF04BF,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0046BE 01:86AE: 9D BF 04  STA ram_attr_enemy -
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF04BF,A0  ; FIX v378: STA $04BF,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x0046BE 01:86AE: 9D BF 04  STA ram_attr_enemy -
     MOVE.B  #$40,D0  ; orig: C - - - - - 0x0046C1 01:86B1: A9 40     LDA #con_obj_state_f
     MOVE.B  D0,ram_state_link  ; orig: C - - - - - 0x0046C3 01:86B3: 85 AC     STA ram_state_link
     MOVE.B  #con_obj_id_40,D0  ; orig: C - - - - - 0x0046C5 01:86B5: A9 40     LDA #con_obj_id_40
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0046C7 01:86B7: 8D 51 03  STA ram_obj_id_enemy
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0046CA 01:86BA: 8D 52 03  STA ram_obj_id_enemy
+    MOVE.B  D0,$FF0351  ; FIX v378: STA $0351  ; orig: C - - - - - 0x0046C7 01:86B7: 8D 51 03  STA ram_obj_id_enemy
+    MOVE.B  D0,$FF0352  ; FIX v378: STA $0352  ; orig: C - - - - - 0x0046CA 01:86BA: 8D 52 03  STA ram_obj_id_enemy
     MOVE.B  #$48,D0  ; orig: C - - - - - 0x0046CD 01:86BD: A9 48     LDA #$48
-    MOVEA.L #$FF0071,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0046CF 01:86BF: 95 71     STA ram_pos_X_enemy
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF0071,A0  ; FIX v378: STA $71,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x0046CF 01:86BF: 95 71  STA ram_pos_X_enemy
     MOVE.B  #$A8,D0  ; orig: C - - - - - 0x0046D1 01:86C1: A9 A8     LDA #$A8
-    MOVEA.L #$FF0072,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0046D3 01:86C3: 95 72     STA ram_pos_X_enemy
-    MOVE.B  D0,(A0,D1.L)  ; ^
-    MOVEA.L #$FF0085,A0  ; Fix X: ; (empty translation for STY)  ; orig: C - - - - - 0x0046D5 01:86C5: 94 85     STY ram_pos_Y_enemy
-    MOVE.B  D2,(A0,D1.L)  ; ^
-    MOVEA.L #$FF0086,A0  ; Fix X: ; (empty translation for STY)  ; orig: C - - - - - 0x0046D7 01:86C7: 94 86     STY ram_pos_Y_enemy
-    MOVE.B  D2,(A0,D1.L)  ; ^
+    MOVEA.L #$FF0072,A0  ; FIX v378: STA $72,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x0046D3 01:86C3: 95 72  STA ram_pos_X_enemy
+    MOVEA.L #$FF0085,A0  ; FIX v378: STY $85,X base
+    MOVE.B  D2,(A0,D1.L)  ; orig: C - - - - - 0x0046D5 01:86C5: 94 85  STY ram_pos_Y_enemy
+    MOVEA.L #$FF0086,A0  ; FIX v378: STY $86,X base
+    MOVE.B  D2,(A0,D1.L)  ; orig: C - - - - - 0x0046D7 01:86C7: 94 86  STY ram_pos_Y_enemy
     RTS                     ; RTS  ; orig: C - - - - - 0x0046D9 01:86C9: 60        RTS
 
 
 
 tbl_86CA:  ; orig: tbl_86CA:
-    ; [DIRECTIVE] .BYTE $22  -- needs manual handling  ; orig: - D 0 - - - 0x0046DA 01:86CA: 22        .byte $22   ; 00
-    ; [DIRECTIVE] .BYTE $C8  -- needs manual handling  ; orig: - D 0 - - - 0x0046DB 01:86CB: C8        .byte $C8   ; 01
-    ; [DIRECTIVE] .BYTE $0D  -- needs manual handling  ; orig: - D 0 - - - 0x0046DC 01:86CC: 0D        .byte $0D   ; 02
-    ; [DIRECTIVE] .BYTE $21  -- needs manual handling  ; orig: - D 0 - - - 0x0046DD 01:86CD: 21        .byte $21   ; 03
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046DE 01:86CE: 24        .byte $24   ; 04
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046DF 01:86CF: 24        .byte $24   ; 05
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E0 01:86D0: 24        .byte $24   ; 06
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E1 01:86D1: 24        .byte $24   ; 07
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E2 01:86D2: 24        .byte $24   ; 08
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E3 01:86D3: 24        .byte $24   ; 09
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E4 01:86D4: 24        .byte $24   ; 0A
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E5 01:86D5: 24        .byte $24   ; 0B
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E6 01:86D6: 24        .byte $24   ; 0C
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E7 01:86D7: 24        .byte $24   ; 0D
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E8 01:86D8: 24        .byte $24   ; 0E
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x0046E9 01:86D9: 24        .byte $24   ; 0F
-    ; [DIRECTIVE] .BYTE $FF  -- needs manual handling  ; orig: - D 0 - - - 0x0046EA 01:86DA: FF        .byte $FF   ; 10
+    DC.B $22  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046DA 01:86CA: 22        .byte $22   ; 00
+    DC.B $C8  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046DB 01:86CB: C8        .byte $C8   ; 01
+    DC.B $0D  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046DC 01:86CC: 0D        .byte $0D   ; 02
+    DC.B $21  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046DD 01:86CD: 21        .byte $21   ; 03
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046DE 01:86CE: 24        .byte $24   ; 04
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046DF 01:86CF: 24        .byte $24   ; 05
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E0 01:86D0: 24        .byte $24   ; 06
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E1 01:86D1: 24        .byte $24   ; 07
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E2 01:86D2: 24        .byte $24   ; 08
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E3 01:86D3: 24        .byte $24   ; 09
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E4 01:86D4: 24        .byte $24   ; 0A
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E5 01:86D5: 24        .byte $24   ; 0B
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E6 01:86D6: 24        .byte $24   ; 0C
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E7 01:86D7: 24        .byte $24   ; 0D
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E8 01:86D8: 24        .byte $24   ; 0E
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046E9 01:86D9: 24        .byte $24   ; 0F
+    DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - - - 0x0046EA 01:86DA: FF        .byte $FF   ; 10
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
 loc_0x0046EB:  ; orig: loc_0x0046EB:
-    ; (empty translation for LDA)  ; orig: C D 0 - - - 0x0046EB 01:86DB: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C D 0 - - - 0x0046EB 01:86DB: A5 AD  LDA ram_state_obj +
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x0046ED 01:86DD: C9 04     CMP #$04
     BNE     b01_bra_86E7             ; BNE  ; orig: C - - - - - 0x0046EF 01:86DF: D0 06     BNE b01_bra_86E7
     MOVE.B  ram_frm_cnt,D0  ; orig: C - - - - - 0x0046F1 01:86E1: A5 15     LDA ram_frm_cnt
@@ -792,17 +805,17 @@ b01_bra_870F:  ; orig: b01_bra_870F:
 b01_bra_871C:  ; orig: b01_bra_871C:
     BSR     sub_8749             ; JSR -> BSR  ; orig: C - - - - - 0x00472C 01:871C: 20 49 87  JSR sub_8749
 b01_bra_871F:  ; orig: b01_bra_871F:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00472F 01:871F: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C - - - - - 0x00472F 01:871F: A5 AD  LDA ram_state_obj +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x004731 01:8721: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_029_878B_00  -- needs manual handling  ; orig: - D 0 - I - 0x004734 01:8724: 8B 87     .word ofs_029_878B_0
-    ; [DIRECTIVE] .WORD ofs_029_8815_01  -- needs manual handling  ; orig: - D 0 - I - 0x004736 01:8726: 15 88     .word ofs_029_8815_0
-    ; [DIRECTIVE] .WORD ofs_029_887A_02  -- needs manual handling  ; orig: - D 0 - I - 0x004738 01:8728: 7A 88     .word ofs_029_887A_0
-    ; [DIRECTIVE] .WORD ofs_029_89F7_03  -- needs manual handling  ; orig: - D 0 - I - 0x00473A 01:872A: F7 89     .word ofs_029_89F7_0
-    ; [DIRECTIVE] .WORD ofs_029_8933_04  -- needs manual handling  ; orig: - D 0 - I - 0x00473C 01:872C: 33 89     .word ofs_029_8933_0
-    ; [DIRECTIVE] .WORD ofs_029_8941_05  -- needs manual handling  ; orig: - D 0 - I - 0x00473E 01:872E: 41 89     .word ofs_029_8941_0
-    ; [DIRECTIVE] .WORD ofs_029_89F7_06  -- needs manual handling  ; orig: - - - - - - 0x004740 01:8730: F7 89     .word ofs_029_89F7_0
-    ; [DIRECTIVE] .WORD ofs_029_8815_07  -- needs manual handling  ; orig: - - - - - - 0x004742 01:8732: 15 88     .word ofs_029_8815_0
-    ; [DIRECTIVE] .WORD ofs_029_89F6_08_RTS  -- needs manual handling  ; orig: - D 0 - I - 0x004744 01:8734: F6 89     .word ofs_029_89F6_0
+    DC.L ofs_029_878B_00  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8815_01  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_887A_02  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_89F7_03  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8933_04  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8941_05  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_89F7_06  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8815_07  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_89F6_08_RTS  ; FIX v448: dispatch table (was .WORD)
 
 
 
@@ -812,7 +825,7 @@ sub_8736:  ; orig: sub_8736:
 ; A = 00
     MOVE.B  ram_obj_id_enemy,D2  ; orig: C - - - - - 0x004749 01:8739: AC 50 03  LDY ram_obj_id_enemy
     CMPI.B  #$7B,D2  ; orig: C - - - - - 0x00474C 01:873C: C0 7B     CPY #$7B
-    BCS     b01_bra_8743             ; BCS  ; orig: C - - - - - 0x00474E 01:873E: B0 03     BCS b01_bra_8743
+    BCC     b01_bra_8743             ; BCS  ; orig: C - - - - - 0x00474E 01:873E: B0 03     BCS b01_bra_8743
     JMP     loc_bat_77DB  ; orig: C - - - - - 0x004750 01:8740: 4C DB 77  JMP loc_bat_77DB
 b01_bra_8743:  ; orig: b01_bra_8743:
     JMP     loc_bat_77DF  ; orig: C - - - - - 0x004753 01:8743: 4C DF 77  JMP loc_bat_77DF
@@ -820,9 +833,10 @@ b01_bra_8743:  ; orig: b01_bra_8743:
 
 
 tbl_8746:  ; orig: tbl_8746:
-    ; [DIRECTIVE] .BYTE $58  -- needs manual handling  ; orig: - D 0 - - - 0x004756 01:8746: 58        .byte $58   ; 00
-    ; [DIRECTIVE] .BYTE $78  -- needs manual handling  ; orig: - D 0 - - - 0x004757 01:8747: 78        .byte $78   ; 01
-    ; [DIRECTIVE] .BYTE $98  -- needs manual handling  ; orig: - D 0 - - - 0x004758 01:8748: 98        .byte $98   ; 02
+    DC.B $58  ; data (was .BYTE) ; orig: - D 0 - - - 0x004756 01:8746: 58        .byte $58   ; 00
+    DC.B $78  ; data (was .BYTE) ; orig: - D 0 - - - 0x004757 01:8747: 78        .byte $78   ; 01
+    DC.B $98  ; data (was .BYTE) ; orig: - D 0 - - - 0x004758 01:8748: 98        .byte $98   ; 02
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -877,18 +891,18 @@ sub_8792:  ; orig: sub_8792:
     BSR     sub_8801             ; JSR -> BSR  ; orig: C - - - - - 0x0047A2 01:8792: 20 01 88  JSR sub_8801
     MOVE.B  #$21,D0  ; orig: C - - - - - 0x0047A5 01:8795: A9 21     LDA #$21
 sub_8797:  ; orig: sub_8797:
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0047A7 01:8797: 8D 05 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,$FF0305  ; FIX v378: STA $0305  ; orig: C - - - - - 0x0047A7 01:8797: 8D 05 03  STA ram_0302_ppu_buf
     MOVE.B  #$00,D1  ; orig: C - - - - - 0x0047AA 01:879A: A2 00     LDX #$00
-    ; (empty translation for STX)  ; orig: C - - - - - 0x0047AC 01:879C: 8E 2E 04  STX ram_042B_enemy +
-    ; (empty translation for STX)  ; orig: C - - - - - 0x0047AF 01:879F: 8E 2F 04  STX ram_042B_enemy +
+    MOVE.B  D1,$FF042E  ; FIX v378: STX $042E  ; orig: C - - - - - 0x0047AC 01:879C: 8E 2E 04  STX ram_042B_enemy +
+    MOVE.B  D1,$FF042F  ; FIX v378: STX $042F  ; orig: C - - - - - 0x0047AF 01:879F: 8E 2F 04  STX ram_042B_enemy +
 b01_bra_87A2_loop:  ; orig: b01_bra_87A2_loop:
-    MOVEA.L #$FF0430,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x0047B2 01:87A2: BD 30 04  LDA ram_042B_enemy +
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF0430,A0  ; FIX v378: LDA $0430,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x0047B2 01:87A2: BD 30 04  LDA ram_042B_enemy +
     BNE     b01_bra_87B2             ; BNE  ; orig: C - - - - - 0x0047B5 01:87A5: D0 0B     BNE b01_bra_87B2
     MOVE.B  #$24,D1  ; orig: C - - - - - 0x0047B7 01:87A7: A2 24     LDX #$24
     MOVE.B  D1,ram_0001_t04_decimal  ; orig: C - - - - - 0x0047B9 01:87A9: 86 01     STX ram_0001_t04_dec
-    ; (empty translation for STX)  ; orig: C - - - - - 0x0047BB 01:87AB: 86 02     STX ram_0001_t04_dec
-    ; (empty translation for STX)  ; orig: C - - - - - 0x0047BD 01:87AD: 86 03     STX ram_0001_t04_dec
+    MOVE.B  D1,$FF0002  ; FIX v378: STX $02  ; orig: C - - - - - 0x0047BB 01:87AB: 86 02  STX ram_0001_t04_dec
+    MOVE.B  D1,$FF0003  ; FIX v378: STX $03  ; orig: C - - - - - 0x0047BD 01:87AD: 86 03  STX ram_0001_t04_dec
     JMP     loc_87BF  ; orig: C - - - - - 0x0047BF 01:87AF: 4C BF 87  JMP loc_87BF
 b01_bra_87B2:  ; orig: b01_bra_87B2:
     BSR     sub_bat_6E55_convert_to_decimal             ; JSR -> BSR  ; orig: C - - - - - 0x0047C2 01:87B2: 20 55 6E  JSR sub_bat_6E55_con
@@ -900,28 +914,28 @@ b01_bra_87B2:  ; orig: b01_bra_87B2:
 b01_bra_87BF:  ; orig: b01_bra_87BF:
 loc_87BF:  ; orig: loc_87BF:
     MOVE.B  D1,ram_0004_t12  ; orig: C D 0 - - - 0x0047CF 01:87BF: 86 04     STX ram_0004_t12
-    ; (empty translation for LDY)  ; orig: C - - - - - 0x0047D1 01:87C1: AC 2F 04  LDY ram_042B_enemy +
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0047D4 01:87C4: A5 02     LDA ram_0001_t04_dec
+    MOVE.B  $FF042F,D2  ; FIX v378: LDY $042F  ; orig: C - - - - - 0x0047D1 01:87C1: AC 2F 04  LDY ram_042B_enemy +
+    MOVE.B  $FF0002,D0  ; FIX v378: LDA $02  ; orig: C - - - - - 0x0047D4 01:87C4: A5 02  LDA ram_0001_t04_dec
     BSR     sub_87F7             ; JSR -> BSR  ; orig: C - - - - - 0x0047D6 01:87C6: 20 F7 87  JSR sub_87F7
-    MOVEA.L #$FF0308,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0047D9 01:87C9: 99 08 03  STA ram_0302_ppu_buf
-    MOVE.B  D0,(A0,D2.L)  ; ^
+    MOVEA.L #$FF0308,A0  ; FIX v378: STA $0308,Y base
+    MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x0047D9 01:87C9: 99 08 03  STA ram_0302_ppu_buf
     MOVE.B  ram_0001_t04_decimal,D0  ; orig: C - - - - - 0x0047DC 01:87CC: A5 01     LDA ram_0001_t04_dec
     BSR     sub_87F7             ; JSR -> BSR  ; orig: C - - - - - 0x0047DE 01:87CE: 20 F7 87  JSR sub_87F7
-    MOVEA.L #$FF0307,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0047E1 01:87D1: 99 07 03  STA ram_0302_ppu_buf
-    MOVE.B  D0,(A0,D2.L)  ; ^
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0047E4 01:87D4: A5 03     LDA ram_0001_t04_dec
-    MOVEA.L #$FF0309,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0047E6 01:87D6: 99 09 03  STA ram_0302_ppu_buf
-    MOVE.B  D0,(A0,D2.L)  ; ^
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x0047E9 01:87D9: AD 2F 04  LDA ram_042B_enemy +
+    MOVEA.L #$FF0307,A0  ; FIX v378: STA $0307,Y base
+    MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x0047E1 01:87D1: 99 07 03  STA ram_0302_ppu_buf
+    MOVE.B  $FF0003,D0  ; FIX v378: LDA $03  ; orig: C - - - - - 0x0047E4 01:87D4: A5 03  LDA ram_0001_t04_dec
+    MOVEA.L #$FF0309,A0  ; FIX v378: STA $0309,Y base
+    MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x0047E6 01:87D6: 99 09 03  STA ram_0302_ppu_buf
+    MOVE.B  $FF042F,D0  ; FIX v378: LDA $042F  ; orig: C - - - - - 0x0047E9 01:87D9: AD 2F 04  LDA ram_042B_enemy +
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x0047EC 01:87DC: 18        CLC
-    ADD.B  #$04,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x0047ED 01:87DD: 69 04     ADC #$04
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0047EF 01:87DF: 8D 2F 04  STA ram_042B_enemy +
-    ; (empty translation for INC)  ; orig: C - - - - - 0x0047F2 01:87E2: EE 2E 04  INC ram_042B_enemy +
-    ; (empty translation for LDX)  ; orig: C - - - - - 0x0047F5 01:87E5: AE 2E 04  LDX ram_042B_enemy +
+    ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0047ED 01:87DD: 69 04     ADC #$04
+    MOVE.B  D0,$FF042F  ; FIX v378: STA $042F  ; orig: C - - - - - 0x0047EF 01:87DF: 8D 2F 04  STA ram_042B_enemy +
+    ADDQ.B  #1,$FF042E  ; FIX v378: INC $042E  ; orig: C - - - - - 0x0047F2 01:87E2: EE 2E 04  INC ram_042B_enemy +
+    MOVE.B  $FF042E,D1  ; FIX v378: LDX $042E  ; orig: C - - - - - 0x0047F5 01:87E5: AE 2E 04  LDX ram_042B_enemy +
     CMPI.B  #$03,D1  ; orig: C - - - - - 0x0047F8 01:87E8: E0 03     CPX #$03
     BNE     b01_bra_87A2_loop             ; BNE  ; orig: C - - - - - 0x0047FA 01:87EA: D0 B6     BNE b01_bra_87A2_loop
     MOVE.B  #$0A,D0  ; orig: C - - - - - 0x0047FC 01:87EC: A9 0A     LDA #$0A
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0047FE 01:87EE: 85 29     STA ram_timer_enemy 
+    MOVE.B  D0,$FF0029  ; FIX v378: STA $29  ; orig: C - - - - - 0x0047FE 01:87EE: 85 29  STA ram_timer_enemy
     BNE     b01_bra_87F4             ; BNE  ; orig: C - - - - - 0x004800 01:87F0: D0 02     BNE b01_bra_87F4    ; jm
 sub_87F2:
 ; A = 1E
@@ -931,7 +945,7 @@ loc_87F2:
 b01_bra_87F4:  ; orig: b01_bra_87F4:
 
 ; when you pick up a sword at the cave
-    ; (empty translation for INC)  ; orig: C - - - - - 0x004804 01:87F4: E6 AD     INC ram_state_obj + 
+    ADDQ.B  #1,$FF00AD  ; FIX v378: INC $AD  ; orig: C - - - - - 0x004804 01:87F4: E6 AD     INC ram_state_obj +
     RTS                     ; RTS  ; orig: C - - - - - 0x004806 01:87F6: 60        RTS
 
 
@@ -975,17 +989,19 @@ b01_bra_8803_loop:  ; orig: b01_bra_8803_loop:
 
 
 tbl_880D_ppu_data:  ; orig: tbl_880D_ppu_data:
-    ; !! UNKNOWN: .DBYT $21A4  ; orig: - D 0 - - - 0x00481D 01:880D: 21 A4     .dbyt $21A4 ; ppu ad
-    ; [DIRECTIVE] .BYTE $01  -- needs manual handling  ; orig: - D 0 - - - 0x00481F 01:880F: 01        .byte $01   ; counte
-    ; [DIRECTIVE] .BYTE $24  -- needs manual handling  ; orig: - D 0 - - - 0x004820 01:8810: 24        .byte $24   ;
-    ; [DIRECTIVE] .BYTE $FF  -- needs manual handling  ; orig: - D 0 - - - 0x004821 01:8811: FF        .byte $FF   ; close 
+    DC.B $21,$A4  ; data (was .DBYT $21A4) ; orig: - D 0 - - - 0x00481D 01:880D: 21 A4     .dbyt $21A4 ; ppu ad
+    DC.B $01  ; data (was .BYTE) ; orig: - D 0 - - - 0x00481F 01:880F: 01        .byte $01   ; counte
+    DC.B $24  ; data (was .BYTE) ; orig: - D 0 - - - 0x004820 01:8810: 24        .byte $24   ;
+    DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - - - 0x004821 01:8811: FF        .byte $FF   ; close 
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
 tbl_8812_ppu_lo:  ; orig: tbl_8812_ppu_lo:
-    ; [DIRECTIVE] .BYTE $C4  -- needs manual handling  ; orig: - D 0 - - - 0x004822 01:8812: C4        .byte $C4   ; 00
-    ; [DIRECTIVE] .BYTE $E4  -- needs manual handling  ; orig: - - - - - - 0x004823 01:8813: E4        .byte $E4   ; 01
-    ; [DIRECTIVE] .BYTE $A4  -- needs manual handling  ; orig: - D 0 - - - 0x004824 01:8814: A4        .byte $A4   ; 02
+    DC.B $C4  ; data (was .BYTE) ; orig: - D 0 - - - 0x004822 01:8812: C4        .byte $C4   ; 00
+    DC.B $E4  ; data (was .BYTE) ; orig: - - - - - - 0x004823 01:8813: E4        .byte $E4   ; 01
+    DC.B $A4  ; data (was .BYTE) ; orig: - D 0 - - - 0x004824 01:8814: A4        .byte $A4   ; 02
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -995,10 +1011,10 @@ ofs_026_8815_00:  ; orig: ofs_026_8815_00:
     BSR     sub_0x01F22B             ; JSR -> BSR  ; orig: C - - J - - 0x004825 01:8815: 20 1B F2  JSR sub_0x01F22B
 
 ; bzk optimize, code is similar to 0x00A9A8
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004828 01:8818: A5 29     LDA ram_timer_enemy 
+    MOVE.B  $FF0029,D0  ; FIX v378: LDA $29  ; orig: C - - - - - 0x004828 01:8818: A5 29  LDA ram_timer_enemy
     BNE     b01_bra_8879_RTS             ; BNE  ; orig: C - - - - - 0x00482A 01:881A: D0 5D     BNE b01_bra_8879_RTS
     MOVE.B  #$06,D0  ; orig: C - - - - - 0x00482C 01:881C: A9 06     LDA #$06
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00482E 01:881E: 85 29     STA ram_timer_enemy 
+    MOVE.B  D0,$FF0029  ; FIX v378: STA $29  ; orig: C - - - - - 0x00482E 01:881E: 85 29  STA ram_timer_enemy
     MOVE.B  #$04,D2  ; orig: C - - - - - 0x004830 01:8820: A0 04     LDY #$04
 b01_bra_8822_loop:  ; orig: b01_bra_8822_loop:
     MOVEA.L #tbl_880D_ppu_data,A0
@@ -1010,9 +1026,9 @@ b01_bra_8822_loop:  ; orig: b01_bra_8822_loop:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x004838 01:8828: 88        DEY
     BPL     b01_bra_8822_loop             ; BPL  ; orig: C - - - - - 0x004839 01:8829: 10 F7     BPL b01_bra_8822_loop
 b01_bra_882B_loop:  ; orig: b01_bra_882B_loop:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00483B 01:882B: AD 5F 04  LDA ram_045E_enemy +
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00483E 01:882E: 8D 03 03  STA ram_0302_ppu_buf
-    ; (empty translation for INC)  ; orig: C - - - - - 0x004841 01:8831: EE 5F 04  INC ram_045E_enemy +
+    MOVE.B  $FF045F,D0  ; FIX v378: LDA $045F  ; orig: C - - - - - 0x00483B 01:882B: AD 5F 04  LDA ram_045E_enemy +
+    MOVE.B  D0,$FF0303  ; FIX v378: STA $0303  ; orig: C - - - - - 0x00483E 01:882E: 8D 03 03  STA ram_0302_ppu_buf
+    ADDQ.B  #1,$FF045F  ; FIX v378: INC $045F  ; orig: C - - - - - 0x004841 01:8831: EE 5F 04  INC ram_045E_enemy +
     MOVE.B  ram_message,D2  ; orig: C - - - - - 0x004844 01:8834: AC 15 04  LDY ram_message
     MOVEA.L #tbl_8000_text_messages,A0
     MOVE.B  (A0,D2.L),D0
@@ -1022,7 +1038,7 @@ b01_bra_882B_loop:  ; orig: b01_bra_882B_loop:
     MOVEA.L #tbl_8000_text_messages,A0
     MOVE.B  (A0,D2.L),D0
 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004850 01:8840: 85 01     STA ram_0000_t02_tex
+    MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x004850 01:8840: 85 01  STA ram_0000_t02_tex
     MOVE.B  ram_0416,D2  ; orig: C - - - - - 0x004852 01:8842: AC 16 04  LDY ram_0416
     ADDQ.B  #1,ram_0416  ; orig: C - - - - - 0x004855 01:8845: EE 16 04  INC ram_0416
     MOVEA.L #ram_0000_t02_text_messages_data,A0
@@ -1039,7 +1055,7 @@ b01_bra_882B_loop:  ; orig: b01_bra_882B_loop:
 
 ; bzk optimize, is it necessary to update message pointers in a loop?
     BEQ     b01_bra_882B_loop             ; BEQ  ; orig: C - - - - - 0x00485E 01:884E: F0 DB     BEQ b01_bra_882B_loop
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004860 01:8850: 8D 05 03  STA ram_0302_ppu_buf
+    MOVE.B  D0,$FF0305  ; FIX v378: STA $0305  ; orig: C - - - - - 0x004860 01:8850: 8D 05 03  STA ram_0302_ppu_buf
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x004863 01:8853: A9 10     LDA #con_sfx_4_rupee
     MOVE.B  D0,ram_sfx_4  ; orig: C - - - - - 0x004865 01:8855: 8D 04 06  STA ram_sfx_4
     MOVEA.L #ram_0000_t02_text_messages_data,A0
@@ -1064,10 +1080,10 @@ b01_bra_886A:  ; orig: b01_bra_886A:
     MOVEA.L #tbl_8812_ppu_lo,A0
     MOVE.B  (A0,D2.L),D0
 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00487D 01:886D: 8D 5F 04  STA ram_045E_enemy +
+    MOVE.B  D0,$FF045F  ; FIX v378: STA $045F  ; orig: C - - - - - 0x00487D 01:886D: 8D 5F 04  STA ram_045E_enemy +
     CMPI.B  #$02,D2  ; orig: C - - - - - 0x004880 01:8870: C0 02     CPY #$02
     BNE     b01_bra_8879_RTS             ; BNE  ; orig: C - - - - - 0x004882 01:8872: D0 05     BNE b01_bra_8879_RTS
-    ; (empty translation for INC)  ; orig: C - - - - - 0x004884 01:8874: E6 AD     INC ram_state_obj + 
+    ADDQ.B  #1,$FF00AD  ; FIX v378: INC $AD  ; orig: C - - - - - 0x004884 01:8874: E6 AD     INC ram_state_obj +
     BSR     sub_85F4_unfreeze_link             ; JSR -> BSR  ; orig: C - - - - - 0x004886 01:8876: 20 F4 85  JSR sub_85F4_unfreez
 b01_bra_8879_RTS:  ; orig: b01_bra_8879_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x004889 01:8879: 60        RTS
@@ -1079,13 +1095,13 @@ ofs_029_887A_02:  ; orig: ofs_029_887A_02:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x00488D 01:887D: 4A        LSR
     BCS     b01_bra_8898             ; BCS  ; orig: C - - - - - 0x00488E 01:887E: B0 18     BCS b01_bra_8898
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x004890 01:8880: A9 08     LDA #$08
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004892 01:8882: 85 AD     STA ram_state_obj + 
+    MOVE.B  D0,$FF00AD  ; FIX v378: STA $AD  ; orig: C - - - - - 0x004892 01:8882: 85 AD  STA ram_state_obj +
     MOVE.B  ram_obj_id_enemy,D0  ; orig: C - - - - - 0x004894 01:8884: AD 50 03  LDA ram_obj_id_enemy
     CMPI.B  #con_obj_id_71,D0  ; orig: C - - - - - 0x004897 01:8887: C9 71     CMP #con_obj_id_71
     BNE     b01_bra_8897_RTS             ; BNE  ; orig: C - - - - - 0x004899 01:8889: D0 0C     BNE b01_bra_8897_RTS
     MOVE.B  ram_rupees_sbc,D0  ; orig: - - - - - - 0x00489B 01:888B: AD 7E 06  LDA ram_rupees_sbc
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: - - - - - - 0x00489E 01:888E: 18        CLC
-    ADD.B  #$14,D0       ; ADC imm (uses X flag for carry)  ; orig: - - - - - - 0x00489F 01:888F: 69 14     ADC #$14
+    ADDI.B  #$14,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - - - - - - 0x00489F 01:888F: 69 14     ADC #$14
     MOVE.B  D0,ram_rupees_sbc  ; orig: - - - - - - 0x0048A1 01:8891: 8D 7E 06  STA ram_rupees_sbc
 
 ; bzk optimize, JMP
@@ -1113,13 +1129,13 @@ b01_bra_889F_loop:  ; orig: b01_bra_889F_loop:
     SUB.B  #$98,D0       ; SBC imm  ; orig: C - - - - - 0x0048C2 01:88B2: E9 98     SBC #$98
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0048C4 01:88B4: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$06,D0  ; orig: C - - - - - 0x0048C7 01:88B7: C9 06     CMP #$06
-    BCC     b01_bra_88BF             ; BCC  ; orig: C - - - - - 0x0048C9 01:88B9: 90 04     BCC b01_bra_88BF
+    BCS     b01_bra_88BF             ; BCC  ; orig: C - - - - - 0x0048C9 01:88B9: 90 04     BCC b01_bra_88BF
 b01_bra_88BB:  ; orig: b01_bra_88BB:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0048CB 01:88BB: CA        DEX
     BPL     b01_bra_889F_loop             ; BPL  ; orig: C - - - - - 0x0048CC 01:88BC: 10 E1     BPL b01_bra_889F_loop
     RTS                     ; RTS  ; orig: C - - - - - 0x0048CE 01:88BE: 60        RTS
 b01_bra_88BF:  ; orig: b01_bra_88BF:
-    ; (empty translation for STX)  ; orig: C - - - - - 0x0048CF 01:88BF: 8E 38 04  STX ram_0437_enemy +
+    MOVE.B  D1,$FF0438  ; FIX v378: STX $0438  ; orig: C - - - - - 0x0048CF 01:88BF: 8E 38 04  STX ram_0437_enemy +
     MOVE.B  ram_0413,D0  ; orig: C - - - - - 0x0048D2 01:88C2: AD 13 04  LDA ram_0413
     ANDI.B  #$30,D0  ; orig: C - - - - - 0x0048D5 01:88C5: 29 30     AND #$30
     BEQ     b01_bra_88E0             ; BEQ  ; orig: C - - - - - 0x0048D7 01:88C7: F0 17     BEQ b01_bra_88E0
@@ -1128,12 +1144,12 @@ b01_bra_88BF:  ; orig: b01_bra_88BF:
     MOVE.B  ram_item_rupees,D0  ; orig: - - - - - - 0x0048DD 01:88CD: AD 6D 06  LDA ram_item_rupees
     ; !! CMP ram_042B_enemy + $04,X - needs manual review  ; orig: - - - - - - 0x0048E0 01:88D0: DD 30 04  CMP ram_042B_enemy +
     BCC     b01_bra_8932_RTS             ; BCC  ; orig: - - - - - - 0x0048E3 01:88D3: 90 5D     BCC b01_bra_8932_RTS
-    MOVEA.L #$FF0430,A0  ; Fix X: ; (empty translation for LDA)  ; orig: - - - - - - 0x0048E5 01:88D5: BD 30 04  LDA ram_042B_enemy +
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF0430,A0  ; FIX v378: LDA $0430,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: - - - - - - 0x0048E5 01:88D5: BD 30 04  LDA ram_042B_enemy +
     BSR     sub_89DE             ; JSR -> BSR  ; orig: - - - - - - 0x0048E8 01:88D8: 20 DE 89  JSR sub_89DE
 b01_bra_88DB:  ; orig: b01_bra_88DB:
     MOVE.B  #$05,D0  ; orig: C - - - - - 0x0048EB 01:88DB: A9 05     LDA #$05
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0048ED 01:88DD: 85 AD     STA ram_state_obj + 
+    MOVE.B  D0,$FF00AD  ; FIX v378: STA $AD  ; orig: C - - - - - 0x0048ED 01:88DD: 85 AD  STA ram_state_obj +
     RTS                     ; RTS  ; orig: C - - - - - 0x0048EF 01:88DF: 60        RTS
 b01_bra_88E0:  ; orig: b01_bra_88E0:
     MOVE.B  ram_0413,D0  ; orig: C - - - - - 0x0048F0 01:88E0: AD 13 04  LDA ram_0413
@@ -1142,8 +1158,8 @@ b01_bra_88E0:  ; orig: b01_bra_88E0:
     MOVE.B  ram_item_rupees,D0  ; orig: C - - - - - 0x0048F7 01:88E7: AD 6D 06  LDA ram_item_rupees
     ; !! CMP ram_042B_enemy + $04,X - needs manual review  ; orig: C - - - - - 0x0048FA 01:88EA: DD 30 04  CMP ram_042B_enemy +
     BCC     b01_bra_8932_RTS             ; BCC  ; orig: C - - - - - 0x0048FD 01:88ED: 90 43     BCC b01_bra_8932_RTS
-    MOVEA.L #$FF0430,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x0048FF 01:88EF: BD 30 04  LDA ram_042B_enemy +
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF0430,A0  ; FIX v378: LDA $0430,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x0048FF 01:88EF: BD 30 04  LDA ram_042B_enemy +
     BSR     sub_89DE             ; JSR -> BSR  ; orig: C - - - - - 0x004902 01:88F2: 20 DE 89  JSR sub_89DE
 b01_bra_88F5:  ; orig: b01_bra_88F5:
     MOVE.B  ram_0413,D0  ; orig: C - - - - - 0x004905 01:88F5: AD 13 04  LDA ram_0413
@@ -1175,7 +1191,7 @@ b01_bra_890F:  ; orig: b01_bra_890F:
     MOVE.B  #con_ppu_buf_1E,D0  ; orig: C - - - - - 0x004931 01:8921: A9 1E     LDA #con_ppu_buf_1E
     BSR     sub_87F2             ; JSR -> BSR  ; orig: C - - - - - 0x004933 01:8923: 20 F2 87  JSR sub_87F2
     MOVE.B  #$40,D0  ; orig: C - - - - - 0x004936 01:8926: A9 40     LDA #$40
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004938 01:8928: 85 29     STA ram_timer_enemy 
+    MOVE.B  D0,$FF0029  ; FIX v378: STA $29  ; orig: C - - - - - 0x004938 01:8928: 85 29  STA ram_timer_enemy
 sub_892A:  ; orig: sub_892A:
     MOVE.B  ram_0413,D0  ; orig: C - - - - - 0x00493A 01:892A: AD 13 04  LDA ram_0413
     ANDI.B  #$F7,D0  ; orig: C - - - - - 0x00493D 01:892D: 29 F7     AND #$F7
@@ -1186,7 +1202,7 @@ b01_bra_8932_RTS:  ; orig: b01_bra_8932_RTS:
 
 
 ofs_029_8933_04:  ; orig: ofs_029_8933_04:
-    ; (empty translation for LDA)  ; orig: C - - J - - 0x004943 01:8933: A5 29     LDA ram_timer_enemy 
+    MOVE.B  $FF0029,D0  ; FIX v378: LDA $29  ; orig: C - - J - - 0x004943 01:8933: A5 29  LDA ram_timer_enemy
     BNE     b01_bra_893A_RTS             ; BNE  ; orig: C - - - - - 0x004945 01:8935: D0 03     BNE b01_bra_893A_RTS
     MOVE.B  D0,ram_obj_id_enemy  ; orig: C - - - - - 0x004947 01:8937: 8D 50 03  STA ram_obj_id_enemy
 b01_bra_893A_RTS:  ; orig: b01_bra_893A_RTS:
@@ -1195,12 +1211,12 @@ b01_bra_893A_RTS:  ; orig: b01_bra_893A_RTS:
 
 
 tbl_893B:  ; orig: tbl_893B:
-    ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - - - - - - 0x00494B 01:893B: 14        .byte $14   ;
-    ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - - - - - - 0x00494C 01:893C: 14        .byte $14   ;
-    ; [DIRECTIVE] .BYTE $16  -- needs manual handling  ; orig: - - - - - - 0x00494D 01:893D: 16        .byte $16   ;
-    ; [DIRECTIVE] .BYTE $14  -- needs manual handling  ; orig: - - - - - - 0x00494E 01:893E: 14        .byte $14   ;
-    ; [DIRECTIVE] .BYTE $18  -- needs manual handling  ; orig: - - - - - - 0x00494F 01:893F: 18        .byte $18   ;
-    ; [DIRECTIVE] .BYTE $1A  -- needs manual handling  ; orig: - - - - - - 0x004950 01:8940: 1A        .byte $1A   ;
+    DC.B $14  ; data (was .BYTE) ; orig: - - - - - - 0x00494B 01:893B: 14        .byte $14   ;
+    DC.B $14  ; data (was .BYTE) ; orig: - - - - - - 0x00494C 01:893C: 14        .byte $14   ;
+    DC.B $16  ; data (was .BYTE) ; orig: - - - - - - 0x00494D 01:893D: 16        .byte $16   ;
+    DC.B $14  ; data (was .BYTE) ; orig: - - - - - - 0x00494E 01:893E: 14        .byte $14   ;
+    DC.B $18  ; data (was .BYTE) ; orig: - - - - - - 0x00494F 01:893F: 18        .byte $18   ;
+    DC.B $1A  ; data (was .BYTE) ; orig: - - - - - - 0x004950 01:8940: 1A        .byte $1A   ;
 
 
 
@@ -1221,8 +1237,8 @@ b01_bra_8953:  ; orig: b01_bra_8953:
     MOVE.B  (A0,D2.L),D0
 
     MOVE.B  D0,ram_0415  ; orig: - - - - - - 0x00496B 01:895B: 8D 15 04  STA ram_0415
-    ; (empty translation for LDA)  ; orig: - - - - - - 0x00496E 01:895E: AD 14 88  LDA tbl_8812_ppu_lo 
-    ; (empty translation for STA)  ; orig: - - - - - - 0x004971 01:8961: 8D 5F 04  STA ram_045E_enemy +
+    MOVE.B  $FF8814,D0  ; FIX v378: LDA $8814  ; orig: - - - - - - 0x00496E 01:895E: AD 14 88  LDA tbl_8812_ppu_lo
+    MOVE.B  D0,$FF045F  ; FIX v378: STA $045F  ; orig: - - - - - - 0x004971 01:8961: 8D 5F 04  STA ram_045E_enemy +
     MOVE.B  #$00,D0  ; orig: - - - - - - 0x004974 01:8964: A9 00     LDA #$00
     MOVE.B  D0,ram_0416  ; orig: - - - - - - 0x004976 01:8966: 8D 16 04  STA ram_0416
     BSR     sub_892A             ; JSR -> BSR  ; orig: - - - - - - 0x004979 01:8969: 20 2A 89  JSR sub_892A
@@ -1231,7 +1247,7 @@ b01_bra_8953:  ; orig: b01_bra_8953:
 b01_bra_8971:  ; orig: b01_bra_8971:
     MOVE.B  ram_obj_id_enemy,D0  ; orig: C - - - - - 0x004981 01:8971: AD 50 03  LDA ram_obj_id_enemy
     CMPI.B  #$7B,D0  ; orig: C - - - - - 0x004984 01:8974: C9 7B     CMP #$7B
-    BCC     b01_bra_8992             ; BCC  ; orig: C - - - - - 0x004986 01:8976: 90 1A     BCC b01_bra_8992
+    BCS     b01_bra_8992             ; BCC  ; orig: C - - - - - 0x004986 01:8976: 90 1A     BCC b01_bra_8992
     BSR     sub_8801             ; JSR -> BSR  ; orig: C - - - - - 0x004988 01:8978: 20 01 88  JSR sub_8801
     MOVE.B  #$24,D0  ; orig: C - - - - - 0x00498B 01:897B: A9 24     LDA #$24
     BSR     sub_8797             ; JSR -> BSR  ; orig: C - - - - - 0x00498D 01:897D: 20 97 87  JSR sub_8797
@@ -1239,13 +1255,13 @@ b01_bra_8971:  ; orig: b01_bra_8971:
     MOVE.B  D0,ram_sfx_4  ; orig: C - - - - - 0x004992 01:8982: 8D 04 06  STA ram_sfx_4
     BSR     sub_bat_730C_set_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x004995 01:8985: 20 0C 73  JSR sub_bat_730C_set
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x004998 01:8988: A9 08     LDA #$08
-    ; (empty translation for STA)  ; orig: C - - - - - 0x00499A 01:898A: 85 AD     STA ram_state_obj + 
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x00499C 01:898C: AD 31 04  LDA ram_042B_enemy +
+    MOVE.B  D0,$FF00AD  ; FIX v378: STA $AD  ; orig: C - - - - - 0x00499A 01:898A: 85 AD  STA ram_state_obj +
+    MOVE.B  $FF0431,D0  ; FIX v378: LDA $0431  ; orig: C - - - - - 0x00499C 01:898C: AD 31 04  LDA ram_042B_enemy +
     JMP     loc_89D6  ; orig: C - - - - - 0x00499F 01:898F: 4C D6 89  JMP loc_89D6
 b01_bra_8992:  ; orig: b01_bra_8992:
     MOVE.B  ram_item_rupees,D0  ; orig: C - - - - - 0x0049A2 01:8992: AD 6D 06  LDA ram_item_rupees
     CMPI.B  #$0A,D0  ; orig: C - - - - - 0x0049A5 01:8995: C9 0A     CMP #$0A
-    BCC     b01_bra_893A_RTS             ; BCC  ; orig: C - - - - - 0x0049A7 01:8997: 90 A1     BCC b01_bra_893A_RTS
+    BCS     b01_bra_893A_RTS             ; BCC  ; orig: C - - - - - 0x0049A7 01:8997: 90 A1     BCC b01_bra_893A_RTS
     MOVE.B  #con_sfx_4_pick_up_item,D0  ; orig: C - - - - - 0x0049A9 01:8999: A9 08     LDA #con_sfx_4_pick_
     MOVE.B  D0,ram_sfx_4  ; orig: C - - - - - 0x0049AB 01:899B: 8D 04 06  STA ram_sfx_4
     MOVE.B  #$02,D2  ; orig: C - - - - - 0x0049AE 01:899E: A0 02     LDY #$02
@@ -1253,13 +1269,13 @@ b01_bra_89A0_loop:  ; orig: b01_bra_89A0_loop:
     MOVEA.L #ram_0448,A0
     MOVE.B  (A0,D2.L),D0
 
-    MOVEA.L #$FF0430,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0049B3 01:89A3: 99 30 04  STA ram_042B_enemy +
-    MOVE.B  D0,(A0,D2.L)  ; ^
+    MOVEA.L #$FF0430,A0  ; FIX v378: STA $0430,Y base
+    MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x0049B3 01:89A3: 99 30 04  STA ram_042B_enemy +
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0049B6 01:89A6: 88        DEY
     BPL     b01_bra_89A0_loop             ; BPL  ; orig: C - - - - - 0x0049B7 01:89A7: 10 F7     BPL b01_bra_89A0_loop
     BSR     sub_8792             ; JSR -> BSR  ; orig: C - - - - - 0x0049B9 01:89A9: 20 92 87  JSR sub_8792
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x0049BC 01:89AC: A9 08     LDA #$08
-    ; (empty translation for STA)  ; orig: C - - - - - 0x0049BE 01:89AE: 85 AD     STA ram_state_obj + 
+    MOVE.B  D0,$FF00AD  ; FIX v378: STA $AD  ; orig: C - - - - - 0x0049BE 01:89AE: 85 AD  STA ram_state_obj +
     MOVE.B  #$01,D2  ; orig: C - - - - - 0x0049C0 01:89B0: A0 01     LDY #$01
     MOVE.B  ram_0448,D0  ; orig: C - - - - - 0x0049C2 01:89B2: AD 48 04  LDA ram_0448
     BSR     sub_89E6             ; JSR -> BSR  ; orig: C - - - - - 0x0049C5 01:89B5: 20 E6 89  JSR sub_89E6
@@ -1269,7 +1285,7 @@ b01_bra_89A0_loop:  ; orig: b01_bra_89A0_loop:
     MOVE.B  #$09,D2  ; orig: C - - - - - 0x0049D0 01:89C0: A0 09     LDY #$09
     MOVE.B  ram_044A,D0  ; orig: C - - - - - 0x0049D2 01:89C2: AD 4A 04  LDA ram_044A
     BSR     sub_89E6             ; JSR -> BSR  ; orig: C - - - - - 0x0049D5 01:89C5: 20 E6 89  JSR sub_89E6
-    ; (empty translation for LDX)  ; orig: C - - - - - 0x0049D8 01:89C8: AE 38 04  LDX ram_0437_enemy +
+    MOVE.B  $FF0438,D1  ; FIX v378: LDX $0438  ; orig: C - - - - - 0x0049D8 01:89C8: AE 38 04  LDX ram_0437_enemy +
     MOVEA.L #ram_0448,A0
     MOVE.B  (A0,D1.L),D0
 
@@ -1305,8 +1321,8 @@ sub_89E6:  ; orig: sub_89E6:
     MOVE.B  #$62,D1  ; orig: C - - - - - 0x004A00 01:89F0: A2 62     LDX #$62
 b01_bra_89F2:  ; orig: b01_bra_89F2:
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x004A02 01:89F2: 8A        TXA
-    MOVEA.L #$FF0306,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x004A03 01:89F3: 99 06 03  STA ram_0302_ppu_buf
-    MOVE.B  D0,(A0,D2.L)  ; ^
+    MOVEA.L #$FF0306,A0  ; FIX v378: STA $0306,Y base
+    MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x004A03 01:89F3: 99 06 03  STA ram_0302_ppu_buf
 ofs_029_89F6_08_RTS:  ; orig: ofs_029_89F6_08_RTS:
     RTS                     ; RTS  ; orig: C - - J - - 0x004A06 01:89F6: 60        RTS
 
@@ -1321,32 +1337,32 @@ ofs_026_89F7_02:  ; orig: ofs_026_89F7_02:
 
 
 loc_0x004A0C:  ; orig: loc_0x004A0C:
-    ; (empty translation for LDA)  ; orig: C D 0 - - - 0x004A0C 01:89FC: AD 14 88  LDA tbl_8812_ppu_lo 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004A0F 01:89FF: 8D 5F 04  STA ram_045E_enemy +
+    MOVE.B  $FF8814,D0  ; FIX v378: LDA $8814  ; orig: C D 0 - - - 0x004A0C 01:89FC: AD 14 88  LDA tbl_8812_ppu_lo
+    MOVE.B  D0,$FF045F  ; FIX v378: STA $045F  ; orig: C - - - - - 0x004A0F 01:89FF: 8D 5F 04  STA ram_045E_enemy +
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x004A12 01:8A02: A5 10     LDA ram_dungeon_leve
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x004A14 01:8A04: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_025_8CAD_00_RTS  -- needs manual handling  ; orig: - - - - - - 0x004A17 01:8A07: AD 8C     .word ofs_025_8CAD_0
-    ; [DIRECTIVE] .WORD ofs_025_8A23_01  -- needs manual handling  ; orig: - - - - - - 0x004A19 01:8A09: 23 8A     .word ofs_025_8A23_0
-    ; [DIRECTIVE] .WORD ofs_025_8A23_02  -- needs manual handling  ; orig: - - - - - - 0x004A1B 01:8A0B: 23 8A     .word ofs_025_8A23_0
-    ; [DIRECTIVE] .WORD ofs_025_8A69_03  -- needs manual handling  ; orig: - - - - - - 0x004A1D 01:8A0D: 69 8A     .word ofs_025_8A69_0
-    ; [DIRECTIVE] .WORD ofs_025_8A69_04  -- needs manual handling  ; orig: - - - - - - 0x004A1F 01:8A0F: 69 8A     .word ofs_025_8A69_0
-    ; [DIRECTIVE] .WORD ofs_025_8A23_05  -- needs manual handling  ; orig: - D 0 - I - 0x004A21 01:8A11: 23 8A     .word ofs_025_8A23_0
-    ; [DIRECTIVE] .WORD ofs_025_8A69_06  -- needs manual handling  ; orig: - - - - - - 0x004A23 01:8A13: 69 8A     .word ofs_025_8A69_0
-    ; [DIRECTIVE] .WORD ofs_025_8A23_07  -- needs manual handling  ; orig: - D 0 - I - 0x004A25 01:8A15: 23 8A     .word ofs_025_8A23_0
-    ; [DIRECTIVE] .WORD ofs_025_8A69_08  -- needs manual handling  ; orig: - - - - - - 0x004A27 01:8A17: 69 8A     .word ofs_025_8A69_0
-    ; [DIRECTIVE] .WORD ofs_025_8A84_09  -- needs manual handling  ; orig: - D 0 - I - 0x004A29 01:8A19: 84 8A     .word ofs_025_8A84_0
+    DC.L ofs_025_8CAD_00_RTS  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A23_01  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A23_02  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A69_03  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A69_04  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A23_05  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A69_06  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A23_07  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A69_08  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_025_8A84_09  ; FIX v448: dispatch table (was .WORD)
 
 
 
 tbl_8A1B:  ; orig: tbl_8A1B:
-    ; [DIRECTIVE] .BYTE $28  -- needs manual handling  ; orig: - - - - - - 0x004A2B 01:8A1B: 28        .byte $28   ; 4B
-    ; [DIRECTIVE] .BYTE $26  -- needs manual handling  ; orig: - - - - - - 0x004A2C 01:8A1C: 26        .byte $26   ; 4E
-    ; [DIRECTIVE] .BYTE $2E  -- needs manual handling  ; orig: - - - - - - 0x004A2D 01:8A1D: 2E        .byte $2E   ; 4F
-    ; [DIRECTIVE] .BYTE $30  -- needs manual handling  ; orig: - - - - - - 0x004A2E 01:8A1E: 30        .byte $30   ; 50
-    ; [DIRECTIVE] .BYTE $32  -- needs manual handling  ; orig: - D 0 - - - 0x004A2F 01:8A1F: 32        .byte $32   ; 51
-    ; [DIRECTIVE] .BYTE $3E  -- needs manual handling  ; orig: - - - - - - 0x004A30 01:8A20: 3E        .byte $3E   ; 52
-    ; [DIRECTIVE] .BYTE $3E  -- needs manual handling  ; orig: - - - - - - 0x004A31 01:8A21: 3E        .byte $3E   ; 53
-    ; [DIRECTIVE] .BYTE $34  -- needs manual handling  ; orig: - - - - - - 0x004A32 01:8A22: 34        .byte $34   ; 54
+    DC.B $28  ; data (was .BYTE) ; orig: - - - - - - 0x004A2B 01:8A1B: 28        .byte $28   ; 4B
+    DC.B $26  ; data (was .BYTE) ; orig: - - - - - - 0x004A2C 01:8A1C: 26        .byte $26   ; 4E
+    DC.B $2E  ; data (was .BYTE) ; orig: - - - - - - 0x004A2D 01:8A1D: 2E        .byte $2E   ; 4F
+    DC.B $30  ; data (was .BYTE) ; orig: - - - - - - 0x004A2E 01:8A1E: 30        .byte $30   ; 50
+    DC.B $32  ; data (was .BYTE) ; orig: - D 0 - - - 0x004A2F 01:8A1F: 32        .byte $32   ; 51
+    DC.B $3E  ; data (was .BYTE) ; orig: - - - - - - 0x004A30 01:8A20: 3E        .byte $3E   ; 52
+    DC.B $3E  ; data (was .BYTE) ; orig: - - - - - - 0x004A31 01:8A21: 3E        .byte $3E   ; 53
+    DC.B $34  ; data (was .BYTE) ; orig: - - - - - - 0x004A32 01:8A22: 34        .byte $34   ; 54
 
 
 
@@ -1357,8 +1373,8 @@ ofs_025_8A23_07:  ; orig: ofs_025_8A23_07:
     MOVE.B  #$78,D0  ; orig: C - - J - - 0x004A33 01:8A23: A9 78     LDA #$78    ; pos X
     MOVE.B  #$80,D2  ; orig: C - - - - - 0x004A35 01:8A25: A0 80     LDY #$80    ; pos Y
     BSR     sub_86A3_spawn_old_man             ; JSR -> BSR  ; orig: C - - - - - 0x004A37 01:8A27: 20 A3 86  JSR sub_86A3_spawn_o
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x004A3A 01:8A2A: BD 4F 03  LDA ram_obj_id_enemy
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: LDA $034F,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x004A3A 01:8A2A: BD 4F 03  LDA ram_obj_id_enemy
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x004A3D 01:8A2D: 38        SEC
     SUB.B  #$4B,D0       ; SBC imm  ; orig: C - - - - - 0x004A3E 01:8A2E: E9 4B     SBC #$4B
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x004A40 01:8A30: A8        TAY
@@ -1379,8 +1395,8 @@ loc_0x004A50:  ; orig: loc_0x004A50:
     BSR     sub_86A3_spawn_old_man             ; JSR -> BSR  ; orig: C - - - - - 0x004A54 01:8A44: 20 A3 86  JSR sub_86A3_spawn_o
     MOVE.B  #$36,D0  ; orig: C - - - - - 0x004A57 01:8A47: A9 36     LDA #$36
     MOVE.B  D0,ram_0415  ; orig: C - - - - - 0x004A59 01:8A49: 8D 15 04  STA ram_0415
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004A5C 01:8A4C: AD 14 88  LDA tbl_8812_ppu_lo 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004A5F 01:8A4F: 8D 5F 04  STA ram_045E_enemy +
+    MOVE.B  $FF8814,D0  ; FIX v378: LDA $8814  ; orig: C - - - - - 0x004A5C 01:8A4C: AD 14 88  LDA tbl_8812_ppu_lo
+    MOVE.B  D0,$FF045F  ; FIX v378: STA $045F  ; orig: C - - - - - 0x004A5F 01:8A4F: 8D 5F 04  STA ram_045E_enemy +
 b01_bra_8A52:  ; orig: b01_bra_8A52:
     BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x004A62 01:8A52: 20 14 73  JSR sub_bat_7314_che
     BEQ     b01_bra_8A5E             ; BEQ  ; orig: C - - - - - 0x004A65 01:8A55: F0 07     BEQ b01_bra_8A5E
@@ -1393,14 +1409,14 @@ b01_bra_8A5E:  ; orig: b01_bra_8A5E:
 
 
 tbl_8A61:  ; orig: tbl_8A61:
-    ; [DIRECTIVE] .BYTE $2A  -- needs manual handling  ; orig: - - - - - - 0x004A71 01:8A61: 2A        .byte $2A   ; 4B
-    ; [DIRECTIVE] .BYTE $38  -- needs manual handling  ; orig: - - - - - - 0x004A72 01:8A62: 38        .byte $38   ; 4E
-    ; [DIRECTIVE] .BYTE $3A  -- needs manual handling  ; orig: - - - - - - 0x004A73 01:8A63: 3A        .byte $3A   ; 4F
-    ; [DIRECTIVE] .BYTE $2C  -- needs manual handling  ; orig: - - - - - - 0x004A74 01:8A64: 2C        .byte $2C   ; 50
-    ; [DIRECTIVE] .BYTE $40  -- needs manual handling  ; orig: - - - - - - 0x004A75 01:8A65: 40        .byte $40   ; 51
-    ; [DIRECTIVE] .BYTE $42  -- needs manual handling  ; orig: - - - - - - 0x004A76 01:8A66: 42        .byte $42   ; 52
-    ; [DIRECTIVE] .BYTE $42  -- needs manual handling  ; orig: - - - - - - 0x004A77 01:8A67: 42        .byte $42   ; 53
-    ; [DIRECTIVE] .BYTE $3C  -- needs manual handling  ; orig: - - - - - - 0x004A78 01:8A68: 3C        .byte $3C   ; 54
+    DC.B $2A  ; data (was .BYTE) ; orig: - - - - - - 0x004A71 01:8A61: 2A        .byte $2A   ; 4B
+    DC.B $38  ; data (was .BYTE) ; orig: - - - - - - 0x004A72 01:8A62: 38        .byte $38   ; 4E
+    DC.B $3A  ; data (was .BYTE) ; orig: - - - - - - 0x004A73 01:8A63: 3A        .byte $3A   ; 4F
+    DC.B $2C  ; data (was .BYTE) ; orig: - - - - - - 0x004A74 01:8A64: 2C        .byte $2C   ; 50
+    DC.B $40  ; data (was .BYTE) ; orig: - - - - - - 0x004A75 01:8A65: 40        .byte $40   ; 51
+    DC.B $42  ; data (was .BYTE) ; orig: - - - - - - 0x004A76 01:8A66: 42        .byte $42   ; 52
+    DC.B $42  ; data (was .BYTE) ; orig: - - - - - - 0x004A77 01:8A67: 42        .byte $42   ; 53
+    DC.B $3C  ; data (was .BYTE) ; orig: - - - - - - 0x004A78 01:8A68: 3C        .byte $3C   ; 54
 
 
 
@@ -1411,8 +1427,8 @@ ofs_025_8A69_08:  ; orig: ofs_025_8A69_08:
     MOVE.B  #$78,D0  ; orig: - - - - - - 0x004A79 01:8A69: A9 78     LDA #$78    ; pos X
     MOVE.B  #$80,D2  ; orig: - - - - - - 0x004A7B 01:8A6B: A0 80     LDY #$80    ; pos Y
     BSR     sub_86A3_spawn_old_man             ; JSR -> BSR  ; orig: - - - - - - 0x004A7D 01:8A6D: 20 A3 86  JSR sub_86A3_spawn_o
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for LDA)  ; orig: - - - - - - 0x004A80 01:8A70: BD 4F 03  LDA ram_obj_id_enemy
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: LDA $034F,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: - - - - - - 0x004A80 01:8A70: BD 4F 03  LDA ram_obj_id_enemy
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: - - - - - - 0x004A83 01:8A73: 38        SEC
     SUB.B  #$4B,D0       ; SBC imm  ; orig: - - - - - - 0x004A84 01:8A74: E9 4B     SBC #$4B
     MOVE.B  D0,D2           ; TAY  ; orig: - - - - - - 0x004A86 01:8A76: A8        TAY
@@ -1425,10 +1441,10 @@ ofs_025_8A69_08:  ; orig: ofs_025_8A69_08:
 
 
 tbl_8A80:  ; orig: tbl_8A80:
-    ; [DIRECTIVE] .BYTE $44  -- needs manual handling  ; orig: - D 0 - - - 0x004A90 01:8A80: 44        .byte $44   ; 4B
-    ; [DIRECTIVE] .BYTE $46  -- needs manual handling  ; orig: - - - - - - 0x004A91 01:8A81: 46        .byte $46   ; 4E
-    ; [DIRECTIVE] .BYTE $48  -- needs manual handling  ; orig: - D 0 - - - 0x004A92 01:8A82: 48        .byte $48   ; 4F
-    ; [DIRECTIVE] .BYTE $4A  -- needs manual handling  ; orig: - - - - - - 0x004A93 01:8A83: 4A        .byte $4A   ; 50
+    DC.B $44  ; data (was .BYTE) ; orig: - D 0 - - - 0x004A90 01:8A80: 44        .byte $44   ; 4B
+    DC.B $46  ; data (was .BYTE) ; orig: - - - - - - 0x004A91 01:8A81: 46        .byte $46   ; 4E
+    DC.B $48  ; data (was .BYTE) ; orig: - D 0 - - - 0x004A92 01:8A82: 48        .byte $48   ; 4F
+    DC.B $4A  ; data (was .BYTE) ; orig: - - - - - - 0x004A93 01:8A83: 4A        .byte $4A   ; 50
 
 
 
@@ -1437,8 +1453,8 @@ ofs_025_8A84_09:  ; orig: ofs_025_8A84_09:
     MOVE.B  #$80,D2  ; orig: C - - - - - 0x004A96 01:8A86: A0 80     LDY #$80    ; pos Y
     BSR     sub_86A3_spawn_old_man             ; JSR -> BSR  ; orig: C - - - - - 0x004A98 01:8A88: 20 A3 86  JSR sub_86A3_spawn_o
     BSR     sub_8AD3             ; JSR -> BSR  ; orig: C - - - - - 0x004A9B 01:8A8B: 20 D3 8A  JSR sub_8AD3
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x004A9E 01:8A8E: BD 4F 03  LDA ram_obj_id_enemy
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: LDA $034F,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x004A9E 01:8A8E: BD 4F 03  LDA ram_obj_id_enemy
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x004AA1 01:8A91: 48        PHA
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x004AA2 01:8A92: 38        SEC
     SUB.B  #$4B,D0       ; SBC imm  ; orig: C - - - - - 0x004AA3 01:8A93: E9 4B     SBC #$4B
@@ -1471,8 +1487,8 @@ loc_0x004AC4:  ; orig: loc_0x004AC4:
     BSR     sub_86A3_spawn_old_man             ; JSR -> BSR  ; orig: C - - - - - 0x004AC8 01:8AB8: 20 A3 86  JSR sub_86A3_spawn_o
     MOVE.B  #$24,D0  ; orig: C - - - - - 0x004ACB 01:8ABB: A9 24     LDA #$24
     MOVE.B  D0,ram_0415  ; orig: C - - - - - 0x004ACD 01:8ABD: 8D 15 04  STA ram_0415
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004AD0 01:8AC0: AD 14 88  LDA tbl_8812_ppu_lo 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004AD3 01:8AC3: 8D 5F 04  STA ram_045E_enemy +
+    MOVE.B  $FF8814,D0  ; FIX v378: LDA $8814  ; orig: C - - - - - 0x004AD0 01:8AC0: AD 14 88  LDA tbl_8812_ppu_lo
+    MOVE.B  D0,$FF045F  ; FIX v378: STA $045F  ; orig: C - - - - - 0x004AD3 01:8AC3: 8D 5F 04  STA ram_045E_enemy +
     BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x004AD6 01:8AC6: 20 14 73  JSR sub_bat_7314_che
     BEQ     b01_bra_8AD3             ; BEQ  ; orig: C - - - - - 0x004AD9 01:8AC9: F0 08     BEQ b01_bra_8AD3
     MOVE.B  #$00,D0  ; orig: - - - - - - 0x004ADB 01:8ACB: A9 00     LDA #$00    ; con_ob
@@ -1491,7 +1507,7 @@ sub_8AD3:  ; orig: sub_8AD3:
 loc_0x004AE9:  ; orig: loc_0x004AE9:
     MOVE.B  ram_dungeon_level,D0  ; orig: C D 0 - - - 0x004AE9 01:8AD9: A5 10     LDA ram_dungeon_leve
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x004AEB 01:8ADB: C9 03     CMP #$03
-    BCC     b01_bra_8AE7             ; BCC  ; orig: C - - - - - 0x004AED 01:8ADD: 90 08     BCC b01_bra_8AE7
+    BCS     b01_bra_8AE7             ; BCC  ; orig: C - - - - - 0x004AED 01:8ADD: 90 08     BCC b01_bra_8AE7
     CMPI.B  #$05,D0  ; orig: C - - - - - 0x004AEF 01:8ADF: C9 05     CMP #$05
     BEQ     b01_bra_8AE7             ; BEQ  ; orig: C - - - - - 0x004AF1 01:8AE1: F0 04     BEQ b01_bra_8AE7
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x004AF3 01:8AE3: C9 07     CMP #$07
@@ -1500,18 +1516,18 @@ b01_bra_8AE7:  ; orig: b01_bra_8AE7:
     JMP     loc_8B11  ; orig: C - - - - - 0x004AF7 01:8AE7: 4C 11 8B  JMP loc_8B11
 b01_bra_8AEA_07:  ; orig: b01_bra_8AEA_07:
     BSR     sub_8B9D             ; JSR -> BSR  ; orig: C - - - - - 0x004AFA 01:8AEA: 20 9D 8B  JSR sub_8B9D
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004AFD 01:8AED: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C - - - - - 0x004AFD 01:8AED: A5 AD  LDA ram_state_obj +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x004AFF 01:8AEF: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_029_8AF8_00  -- needs manual handling  ; orig: - D 0 - I - 0x004B02 01:8AF2: F8 8A     .word ofs_029_8AF8_0
-    ; [DIRECTIVE] .WORD ofs_029_8815_01  -- needs manual handling  ; orig: - D 0 - I - 0x004B04 01:8AF4: 15 88     .word ofs_029_8815_0
-    ; [DIRECTIVE] .WORD ofs_029_8AFF_02_RTS  -- needs manual handling  ; orig: - D 0 - I - 0x004B06 01:8AF6: FF 8A     .word ofs_029_8AFF_0
+    DC.L ofs_029_8AF8_00  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8815_01  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8AFF_02_RTS  ; FIX v448: dispatch table (was .WORD)
 
 
 
 ofs_029_8AF8_00:  ; orig: ofs_029_8AF8_00:
     MOVE.B  #$00,D0  ; orig: C - - J - - 0x004B08 01:8AF8: A9 00     LDA #$00
     MOVE.B  D0,ram_0416  ; orig: C - - - - - 0x004B0A 01:8AFA: 8D 16 04  STA ram_0416
-    ; (empty translation for INC)  ; orig: C - - - - - 0x004B0D 01:8AFD: E6 AD     INC ram_state_obj + 
+    ADDQ.B  #1,$FF00AD  ; FIX v378: INC $AD  ; orig: C - - - - - 0x004B0D 01:8AFD: E6 AD     INC ram_state_obj +
 ofs_029_8AFF_02_RTS:  ; orig: ofs_029_8AFF_02_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x004B0F 01:8AFF: 60        RTS
 
@@ -1519,18 +1535,18 @@ ofs_029_8AFF_02_RTS:  ; orig: ofs_029_8AFF_02_RTS:
 
 sub_8B00:  ; orig: sub_8B00:
     BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x004B10 01:8B00: 20 D0 79  JSR sub_bat_79D0
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004B13 01:8B03: AD 06 04  LDA ram_0405_enemy +
+    MOVE.B  $FF0406,D0  ; FIX v378: LDA $0406  ; orig: C - - - - - 0x004B13 01:8B03: AD 06 04  LDA ram_0405_enemy +
     BEQ     b01_bra_8B10_RTS             ; BEQ  ; orig: C - - - - - 0x004B16 01:8B06: F0 08     BEQ b01_bra_8B10_RTS
     MOVE.B  D0,ram_04CC_flag  ; orig: C - - - - - 0x004B18 01:8B08: 8D CC 04  STA ram_04CC_flag
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x004B1B 01:8B0B: A9 00     LDA #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004B1D 01:8B0D: 8D 06 04  STA ram_0405_enemy +
+    MOVE.B  D0,$FF0406  ; FIX v378: STA $0406  ; orig: C - - - - - 0x004B1D 01:8B0D: 8D 06 04  STA ram_0405_enemy +
 b01_bra_8B10_RTS:  ; orig: b01_bra_8B10_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x004B20 01:8B10: 60        RTS
 
 
 
 loc_8B11:  ; orig: loc_8B11:
-    ; (empty translation for LDA)  ; orig: C D 0 - - - 0x004B21 01:8B11: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C D 0 - - - 0x004B21 01:8B11: A5 AD  LDA ram_state_obj +
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x004B23 01:8B13: C9 04     CMP #$04
     BNE     b01_bra_8B1D             ; BNE  ; orig: C - - - - - 0x004B25 01:8B15: D0 06     BNE b01_bra_8B1D
     MOVE.B  ram_frm_cnt,D0  ; orig: C - - - - - 0x004B27 01:8B17: A5 15     LDA ram_frm_cnt
@@ -1549,13 +1565,13 @@ b01_bra_8B1D:  ; orig: b01_bra_8B1D:
     MOVE.B  #$13,D1  ; orig: C - - - - - 0x004B41 01:8B31: A2 13     LDX #$13
     BSR     sub_0x01E71E             ; JSR -> BSR  ; orig: C - - - - - 0x004B43 01:8B33: 20 0E E7  JSR sub_0x01E71E
 b01_bra_8B36:  ; orig: b01_bra_8B36:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004B46 01:8B36: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C - - - - - 0x004B46 01:8B36: A5 AD  LDA ram_state_obj +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x004B48 01:8B38: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_029_8B45_00  -- needs manual handling  ; orig: - D 0 - I - 0x004B4B 01:8B3B: 45 8B     .word ofs_029_8B45_0
-    ; [DIRECTIVE] .WORD ofs_029_8815_01  -- needs manual handling  ; orig: - D 0 - I - 0x004B4D 01:8B3D: 15 88     .word ofs_029_8815_0
-    ; [DIRECTIVE] .WORD ofs_029_8B57_02_buy_max_bombs_upgrade  -- needs manual handling  ; orig: - D 0 - I - 0x004B4F 01:8B3F: 57 8B     .word ofs_029_8B57_0
-    ; [DIRECTIVE] .WORD ofs_029_89F7_03  -- needs manual handling  ; orig: - D 0 - I - 0x004B51 01:8B41: F7 89     .word ofs_029_89F7_0
-    ; [DIRECTIVE] .WORD ofs_029_8B95_04  -- needs manual handling  ; orig: - D 0 - I - 0x004B53 01:8B43: 95 8B     .word ofs_029_8B95_0
+    DC.L ofs_029_8B45_00  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8815_01  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8B57_02_buy_max_bombs_upgrade  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_89F7_03  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8B95_04  ; FIX v448: dispatch table (was .WORD)
 
 
 
@@ -1567,8 +1583,8 @@ ofs_029_8B45_00:  ; orig: ofs_029_8B45_00:
     MOVE.B  D0,ram_ppu_load_index  ; orig: C - - - - - 0x004B5E 01:8B4E: 85 14     STA ram_ppu_load_ind
 b01_bra_8B50:  ; orig: b01_bra_8B50:
     MOVE.B  #$0A,D0  ; orig: C - - - - - 0x004B60 01:8B50: A9 0A     LDA #$0A
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004B62 01:8B52: 85 29     STA ram_timer_enemy 
-    ; (empty translation for INC)  ; orig: C - - - - - 0x004B64 01:8B54: E6 AD     INC ram_state_obj + 
+    MOVE.B  D0,$FF0029  ; FIX v378: STA $29  ; orig: C - - - - - 0x004B62 01:8B52: 85 29  STA ram_timer_enemy
+    ADDQ.B  #1,$FF00AD  ; FIX v378: INC $AD  ; orig: C - - - - - 0x004B64 01:8B54: E6 AD     INC ram_state_obj +
     RTS                     ; RTS  ; orig: C - - - - - 0x004B66 01:8B56: 60        RTS
 
 
@@ -1585,7 +1601,7 @@ ofs_029_8B57_02_buy_max_bombs_upgrade:  ; orig: ofs_029_8B57_02_buy_max_bombs_up
     SUB.B  #$98,D0       ; SBC imm  ; orig: C - - - - - 0x004B77 01:8B67: E9 98     SBC #$98
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x004B79 01:8B69: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$06,D0  ; orig: C - - - - - 0x004B7C 01:8B6C: C9 06     CMP #$06
-    BCC     b01_bra_8B71             ; BCC  ; orig: C - - - - - 0x004B7E 01:8B6E: 90 01     BCC b01_bra_8B71
+    BCS     b01_bra_8B71             ; BCC  ; orig: C - - - - - 0x004B7E 01:8B6E: 90 01     BCC b01_bra_8B71
 b01_bra_8B70_RTS:  ; orig: b01_bra_8B70_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x004B80 01:8B70: 60        RTS
 b01_bra_8B71:  ; orig: b01_bra_8B71:
@@ -1605,7 +1621,7 @@ b01_bra_8B7A:  ; orig: b01_bra_8B7A:
     MOVE.B  D0,ram_sfx_4  ; orig: C - - - - - 0x004B93 01:8B83: 8D 04 06  STA ram_sfx_4
     MOVE.B  ram_item_max_bombs,D0  ; orig: C - - - - - 0x004B96 01:8B86: AD 7C 06  LDA ram_item_max_bom
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x004B99 01:8B89: 18        CLC
-    ADD.B  #$04,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004B9A 01:8B8A: 69 04     ADC #$04
+    ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x004B9A 01:8B8A: 69 04     ADC #$04
     MOVE.B  D0,ram_item_max_bombs  ; orig: C - - - - - 0x004B9C 01:8B8C: 8D 7C 06  STA ram_item_max_bom
     MOVE.B  D0,ram_item_bombs  ; orig: C - - - - - 0x004B9F 01:8B8F: 8D 58 06  STA ram_item_bombs
     JMP     b01_loc_8C8D  ; orig: C - - - - - 0x004BA2 01:8B92: 4C 8D 8C  JMP b01_loc_8C8D
@@ -1613,7 +1629,7 @@ b01_bra_8B7A:  ; orig: b01_bra_8B7A:
 
 
 ofs_029_8B95_04:  ; orig: ofs_029_8B95_04:
-    ; (empty translation for LDA)  ; orig: C - - J - - 0x004BA5 01:8B95: A5 29     LDA ram_timer_enemy 
+    MOVE.B  $FF0029,D0  ; FIX v378: LDA $29  ; orig: C - - J - - 0x004BA5 01:8B95: A5 29  LDA ram_timer_enemy
     BNE     b01_bra_8B9C_RTS             ; BNE  ; orig: C - - - - - 0x004BA7 01:8B97: D0 03     BNE b01_bra_8B9C_RTS
     MOVE.B  D0,ram_obj_id_enemy  ; orig: C - - - - - 0x004BA9 01:8B99: 8D 50 03  STA ram_obj_id_enemy
 b01_bra_8B9C_RTS:  ; orig: b01_bra_8B9C_RTS:
@@ -1631,7 +1647,7 @@ sub_8B9D:  ; orig: sub_8B9D:
 
 
 loc_0x004BB6:  ; orig: loc_0x004BB6:
-    ; (empty translation for LDA)  ; orig: C D 0 - - - 0x004BB6 01:8BA6: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C D 0 - - - 0x004BB6 01:8BA6: A5 AD  LDA ram_state_obj +
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x004BB8 01:8BA8: C9 04     CMP #$04
     BNE     b01_bra_8BB2             ; BNE  ; orig: C - - - - - 0x004BBA 01:8BAA: D0 06     BNE b01_bra_8BB2
     MOVE.B  ram_frm_cnt,D0  ; orig: C - - - - - 0x004BBC 01:8BAC: A5 15     LDA ram_frm_cnt
@@ -1641,25 +1657,25 @@ b01_bra_8BB2:  ; orig: b01_bra_8BB2:
     BSR     sub_8B9D             ; JSR -> BSR  ; orig: C - - - - - 0x004BC2 01:8BB2: 20 9D 8B  JSR sub_8B9D
     BSR     sub_8BCB             ; JSR -> BSR  ; orig: C - - - - - 0x004BC5 01:8BB5: 20 CB 8B  JSR sub_8BCB
 b01_bra_8BB8:  ; orig: b01_bra_8BB8:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004BC8 01:8BB8: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C - - - - - 0x004BC8 01:8BB8: A5 AD  LDA ram_state_obj +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x004BCA 01:8BBA: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_029_8BE6_00  -- needs manual handling  ; orig: - D 0 - I - 0x004BCD 01:8BBD: E6 8B     .word ofs_029_8BE6_0
-    ; [DIRECTIVE] .WORD ofs_029_8815_01  -- needs manual handling  ; orig: - D 0 - I - 0x004BCF 01:8BBF: 15 88     .word ofs_029_8815_0
-    ; [DIRECTIVE] .WORD ofs_029_8BEF_02  -- needs manual handling  ; orig: - D 0 - I - 0x004BD1 01:8BC1: EF 8B     .word ofs_029_8BEF_0
-    ; [DIRECTIVE] .WORD ofs_029_89F7_03  -- needs manual handling  ; orig: - D 0 - I - 0x004BD3 01:8BC3: F7 89     .word ofs_029_89F7_0
-    ; [DIRECTIVE] .WORD ofs_029_8B95_04  -- needs manual handling  ; orig: - D 0 - I - 0x004BD5 01:8BC5: 95 8B     .word ofs_029_8B95_0
+    DC.L ofs_029_8BE6_00  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8815_01  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8BEF_02  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_89F7_03  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_029_8B95_04  ; FIX v448: dispatch table (was .WORD)
 
 
 
 tbl_8BC7:  ; orig: tbl_8BC7:
-    ; [DIRECTIVE] .BYTE $58  -- needs manual handling  ; orig: - D 0 - - - 0x004BD7 01:8BC7: 58        .byte $58   ; 00
-    ; [DIRECTIVE] .BYTE $98  -- needs manual handling  ; orig: - D 0 - - - 0x004BD8 01:8BC8: 98        .byte $98   ; 01
+    DC.B $58  ; data (was .BYTE) ; orig: - D 0 - - - 0x004BD7 01:8BC7: 58        .byte $58   ; 00
+    DC.B $98  ; data (was .BYTE) ; orig: - D 0 - - - 0x004BD8 01:8BC8: 98        .byte $98   ; 01
 
 
 
 tbl_8BC9_drop_id:  ; orig: tbl_8BC9_drop_id:
-    ; [DIRECTIVE] .BYTE con_drop_id_1A  -- needs manual handling  ; orig: - D 0 - - - 0x004BD9 01:8BC9: 1A        .byte con_drop_id_1A
-    ; [DIRECTIVE] .BYTE con_drop_id_18  -- needs manual handling  ; orig: - D 0 - - - 0x004BDA 01:8BCA: 18        .byte con_drop_id_18
+    DC.B $1A  ; data (was .BYTE con_drop_id_1A)
+    DC.B $18  ; data (was .BYTE con_drop_id_18)
 
 
 
@@ -1689,7 +1705,7 @@ b01_bra_8BCD_loop:  ; orig: b01_bra_8BCD_loop:
 
 ofs_029_8BE6_00:  ; orig: ofs_029_8BE6_00:
     MOVE.B  #$0A,D0  ; orig: C - - J - - 0x004BF6 01:8BE6: A9 0A     LDA #$0A
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004BF8 01:8BE8: 85 29     STA ram_timer_enemy 
+    MOVE.B  D0,$FF0029  ; FIX v378: STA $29  ; orig: C - - - - - 0x004BF8 01:8BE8: 85 29  STA ram_timer_enemy
     MOVE.B  #con_ppu_buf_76,D0  ; orig: C - - - - - 0x004BFA 01:8BEA: A9 76     LDA #con_ppu_buf_76
     JMP     loc_87F2  ; orig: C - - - - - 0x004BFC 01:8BEC: 4C F2 87  JMP loc_87F2
 
@@ -1708,7 +1724,7 @@ b01_bra_8BF1_loop:  ; orig: b01_bra_8BF1_loop:
     SUB.B  #$98,D0       ; SBC imm  ; orig: C - - - - - 0x004C0B 01:8BFB: E9 98     SBC #$98
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x004C0D 01:8BFD: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$06,D0  ; orig: C - - - - - 0x004C10 01:8C00: C9 06     CMP #$06
-    BCC     b01_bra_8C08             ; BCC  ; orig: C - - - - - 0x004C12 01:8C02: 90 04     BCC b01_bra_8C08
+    BCS     b01_bra_8C08             ; BCC  ; orig: C - - - - - 0x004C12 01:8C02: 90 04     BCC b01_bra_8C08
 b01_bra_8C04:  ; orig: b01_bra_8C04:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x004C14 01:8C04: CA        DEX
     BPL     b01_bra_8BF1_loop             ; BPL  ; orig: C - - - - - 0x004C15 01:8C05: 10 EA     BPL b01_bra_8BF1_loop
@@ -1732,10 +1748,10 @@ b01_bra_8C1F:  ; orig: b01_bra_8C1F:
     MOVE.B  ram_item_hearts,D0  ; orig: C - - - - - 0x004C2F 01:8C1F: AD 6F 06  LDA ram_item_hearts
     ANDI.B  #$F0,D0  ; orig: C - - - - - 0x004C32 01:8C22: 29 F0     AND #$F0
     CMPI.B  #$30,D0  ; orig: C - - - - - 0x004C34 01:8C24: C9 30     CMP #$30
-    BCS     b01_bra_8C33             ; BCS  ; orig: C - - - - - 0x004C36 01:8C26: B0 0B     BCS b01_bra_8C33
+    BCC     b01_bra_8C33             ; BCS  ; orig: C - - - - - 0x004C36 01:8C26: B0 0B     BCS b01_bra_8C33
     MOVE.B  D0,ram_item_hearts  ; orig: - - - - - - 0x004C38 01:8C28: 8D 6F 06  STA ram_item_hearts
     MOVE.B  #$00,D0  ; orig: - - - - - - 0x004C3B 01:8C2B: A9 00     LDA #$00
-    ; (empty translation for STA)  ; orig: - - - - - - 0x004C3D 01:8C2D: 8D 70 06  STA ram_item_hearts 
+    MOVE.B  D0,$FF0670  ; FIX v378: STA $0670  ; orig: - - - - - - 0x004C3D 01:8C2D: 8D 70 06  STA ram_item_hearts
     JMP     loc_8C4D  ; orig: - - - - - - 0x004C40 01:8C30: 4C 4D 8C  JMP loc_8C4D
 b01_bra_8C33:  ; orig: b01_bra_8C33:
     MOVE.B  ram_item_hearts,D0  ; orig: C - - - - - 0x004C43 01:8C33: AD 6F 06  LDA ram_item_hearts
@@ -1763,7 +1779,7 @@ loc_8C4D:  ; orig: loc_8C4D:
 
 
 loc_0x004C6A:  ; orig: loc_0x004C6A:
-    ; (empty translation for LDA)  ; orig: C D 0 - - - 0x004C6A 01:8C5A: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C D 0 - - - 0x004C6A 01:8C5A: A5 AD  LDA ram_state_obj +
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x004C6C 01:8C5C: C9 03     CMP #$03
     BNE     b01_bra_8C66             ; BNE  ; orig: C - - - - - 0x004C6E 01:8C5E: D0 06     BNE b01_bra_8C66
     MOVE.B  ram_frm_cnt,D0  ; orig: C - - - - - 0x004C70 01:8C60: A5 15     LDA ram_frm_cnt
@@ -1776,12 +1792,12 @@ b01_bra_8C66:  ; orig: b01_bra_8C66:
 ; A = 00
     BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x004C7C 01:8C6C: 20 DF 77  JSR sub_bat_77DF
 b01_bra_8C6F:  ; orig: b01_bra_8C6F:
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004C7F 01:8C6F: A5 AD     LDA ram_state_obj + 
+    MOVE.B  $FF00AD,D0  ; FIX v378: LDA $AD  ; orig: C - - - - - 0x004C7F 01:8C6F: A5 AD  LDA ram_state_obj +
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x004C81 01:8C71: 20 E2 E5  JSR sub_0x01E5F2_jum
-    ; [DIRECTIVE] .WORD ofs_026_8815_00  -- needs manual handling  ; orig: - D 0 - I - 0x004C84 01:8C74: 15 88     .word ofs_026_8815_0
-    ; [DIRECTIVE] .WORD ofs_026_8C7C_01  -- needs manual handling  ; orig: - D 0 - I - 0x004C86 01:8C76: 7C 8C     .word ofs_026_8C7C_0
-    ; [DIRECTIVE] .WORD ofs_026_89F7_02  -- needs manual handling  ; orig: - D 0 - I - 0x004C88 01:8C78: F7 89     .word ofs_026_89F7_0
-    ; [DIRECTIVE] .WORD ofs_026_8C99_03  -- needs manual handling  ; orig: - D 0 - I - 0x004C8A 01:8C7A: 99 8C     .word ofs_026_8C99_0
+    DC.L ofs_026_8815_00  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_026_8C7C_01  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_026_89F7_02  ; FIX v448: dispatch table (was .WORD)
+    DC.L ofs_026_8C99_03  ; FIX v448: dispatch table (was .WORD)
 
 
 
@@ -1799,7 +1815,7 @@ ofs_026_8C7C_01:  ; orig: ofs_026_8C7C_01:
 b01_loc_8C8D:  ; orig: b01_loc_8C8D:
     BSR     sub_bat_730C_set_map_bit4             ; JSR -> BSR  ; orig: C D 0 - - - 0x004C9D 01:8C8D: 20 0C 73  JSR sub_bat_730C_set
     MOVE.B  #$40,D0  ; orig: C - - - - - 0x004CA0 01:8C90: A9 40     LDA #$40
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004CA2 01:8C92: 85 29     STA ram_timer_enemy 
+    MOVE.B  D0,$FF0029  ; FIX v378: STA $29  ; orig: C - - - - - 0x004CA2 01:8C92: 85 29  STA ram_timer_enemy
     MOVE.B  #con_ppu_buf_1E,D0  ; orig: C - - - - - 0x004CA4 01:8C94: A9 1E     LDA #con_ppu_buf_1E
     JMP     loc_87F2  ; orig: C - - - - - 0x004CA6 01:8C96: 4C F2 87  JMP loc_87F2
 
@@ -1807,7 +1823,7 @@ b01_loc_8C8D:  ; orig: b01_loc_8C8D:
 
 ofs_026_8C99_03:  ; orig: ofs_026_8C99_03:
     BSR     sub_0x01F233             ; JSR -> BSR  ; orig: C - - J - - 0x004CA9 01:8C99: 20 23 F2  JSR sub_0x01F233
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004CAC 01:8C9C: A5 29     LDA ram_timer_enemy 
+    MOVE.B  $FF0029,D0  ; FIX v378: LDA $29  ; orig: C - - - - - 0x004CAC 01:8C9C: A5 29  LDA ram_timer_enemy
     BNE     b01_bra_8CAD_RTS             ; BNE  ; orig: C - - - - - 0x004CAE 01:8C9E: D0 0D     BNE b01_bra_8CAD_RTS
 
 ; A = 00
@@ -1825,12 +1841,12 @@ ofs_025_8CAD_00_RTS:  ; orig: ofs_025_8CAD_00_RTS:
 
 
 ; bzk garbage
-    ; [DIRECTIVE] .BYTE $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x004CBE 01:8CAE: FF        .byte $FF, $FF   ;
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x004CC0 01:8CB0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x004CD0 01:8CC0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x004CE0 01:8CD0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x004CF0 01:8CE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x004D00 01:8CF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x004CBE 01:8CAE: FF        .byte $FF, $FF   ;
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x004CC0 01:8CB0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x004CD0 01:8CC0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x004CE0 01:8CD0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x004CF0 01:8CE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x004D00 01:8CF0: FF        .byte $FF, $FF, $FF,
 
 
 
@@ -1838,12 +1854,12 @@ sub_0x004D10_copy_code_data_to_battery:  ; orig: sub_0x004D10_copy_code_data_to_
     RTS                     ; bzk skip: battery SRAM copy broken (high-byte STA empty → infinite loop); Genesis has no NES-style battery RAM
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x004D10 01:8D00: A9 00     LDA #$00
     MOVE.B  D0,ram_0000_t04_asm_export_data_1  ; orig: C - - - - - 0x004D12 01:8D02: 85 00     STA ram_0000_t04_asm
-    MOVE.B  #$02,D0  ; orig: C - - - - - 0x004D14 01:8D04: A9 A5     LDA #$02
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004D16 01:8D06: 85 01     STA ram_0000_t04_asm
-    MOVE.B  #$00,D0  ; orig: C - - - - - 0x004D18 01:8D08: A9 90     LDA #$00
+    MOVE.B  #$A5,D0  ; orig: C - - - - - 0x004D14 01:8D04: A9 A5     LDA #$A5
+    MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x004D16 01:8D06: 85 01  STA ram_0000_t04_asm
+    MOVE.B  #$90,D0  ; orig: C - - - - - 0x004D18 01:8D08: A9 90     LDA #$90
     MOVE.B  D0,ram_0002_t01_asm_export_data_2  ; orig: C - - - - - 0x004D1A 01:8D0A: 85 02     STA ram_0002_t01_asm
-    MOVE.B  #$02,D0  ; orig: C - - - - - 0x004D1C 01:8D0C: A9 6C     LDA #$02
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004D1E 01:8D0E: 85 03     STA ram_0002_t01_asm
+    MOVE.B  #$6C,D0  ; orig: C - - - - - 0x004D1C 01:8D0C: A9 6C     LDA #$6C
+    MOVE.B  D0,$FF0003  ; FIX v378: STA $03  ; orig: C - - - - - 0x004D1E 01:8D0E: 85 03  STA ram_0002_t01_asm
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x004D20 01:8D10: A0 00     LDY #$00
 b01_bra_8D12_loop:  ; orig: b01_bra_8D12_loop:
     MOVEA.L #ram_0000_t04_asm_export_data_1,A0
@@ -1868,16 +1884,18 @@ b01_bra_8D12_loop:  ; orig: b01_bra_8D12_loop:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x004D28 01:8D18: 18        CLC
     ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004D29 01:8D19: 69 01     ADC #$01
     MOVE.B  D0,ram_0000_t04_asm_export_data_1  ; orig: C - - - - - 0x004D2B 01:8D1B: 85 00     STA ram_0000_t04_asm
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004D2D 01:8D1D: A5 01     LDA ram_0000_t04_asm
-    ADD.B  #$00,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004D2F 01:8D1F: 69 00     ADC #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004D31 01:8D21: 85 01     STA ram_0000_t04_asm
+    MOVE.B  $FF0001,D0  ; FIX v378: LDA $01  ; orig: C - - - - - 0x004D2D 01:8D1D: A5 01  LDA ram_0000_t04_asm
+    MOVEQ   #0,D3             ; FIX: ADC #$00 = add carry only
+    ADDX.B  D3,D0             ; D0 += 0 + X_flag  ; orig: ADC #$00
+    MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x004D31 01:8D21: 85 01  STA ram_0000_t04_asm
     MOVE.B  ram_0002_t01_asm_export_data_2,D0  ; orig: C - - - - - 0x004D33 01:8D23: A5 02     LDA ram_0002_t01_asm
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x004D35 01:8D25: 18        CLC
     ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004D36 01:8D26: 69 01     ADC #$01
     MOVE.B  D0,ram_0002_t01_asm_export_data_2  ; orig: C - - - - - 0x004D38 01:8D28: 85 02     STA ram_0002_t01_asm
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004D3A 01:8D2A: A5 03     LDA ram_0002_t01_asm
-    ADD.B  #$00,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004D3C 01:8D2C: 69 00     ADC #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004D3E 01:8D2E: 85 03     STA ram_0002_t01_asm
+    MOVE.B  $FF0003,D0  ; FIX v378: LDA $03  ; orig: C - - - - - 0x004D3A 01:8D2A: A5 03  LDA ram_0002_t01_asm
+    MOVEQ   #0,D3             ; FIX: ADC #$00 = add carry only
+    ADDX.B  D3,D0             ; D0 += 0 + X_flag  ; orig: ADC #$00
+    MOVE.B  D0,$FF0003  ; FIX v378: STA $03  ; orig: C - - - - - 0x004D3E 01:8D2E: 85 03  STA ram_0002_t01_asm
     CMPI.B  #$7F,D0  ; orig: C - - - - - 0x004D40 01:8D30: C9 7F     CMP #$7F
     BNE     b01_bra_8D12_loop             ; BNE  ; orig: C - - - - - 0x004D42 01:8D32: D0 DE     BNE b01_bra_8D12_loop
     MOVE.B  ram_0002_t01_asm_export_data_2,D0  ; orig: C - - - - - 0x004D44 01:8D34: A5 02     LDA ram_0002_t01_asm
@@ -1890,20 +1908,20 @@ b01_bra_8D12_loop:  ; orig: b01_bra_8D12_loop:
 
 
 tbl_8D3B_tiles:  ; orig: tbl_8D3B_tiles:
-    ; [DIRECTIVE] .WORD tbl_8DB4___0700_0FFF  -- needs manual handling  ; orig: - D 0 - - - 0x004D4B 01:8D3B: B4 8D     .word tbl_8DB4___070
-    ; [DIRECTIVE] .WORD tbl_96B4___1700_1F1F  -- needs manual handling  ; orig: - D 0 - - - 0x004D4D 01:8D3D: B4 96     .word tbl_96B4___170
+    DC.B $B4,$8D  ; data (was .WORD tbl_8DB4___0700_0FFF)
+    DC.B $B4,$96  ; data (was .WORD tbl_96B4___1700_1F1F)
 
 
 
 tbl_8D3F_counter:  ; orig: tbl_8D3F_counter:
-    ; !! UNKNOWN: .DBYT $0900  ; orig: - D 0 - - - 0x004D4F 01:8D3F: 09 00     .dbyt $0900 ; 900 by
-    ; !! UNKNOWN: .DBYT $0820  ; orig: - D 0 - - - 0x004D51 01:8D41: 08 20     .dbyt $0820 ; 820 by
+    DC.B $09,$00  ; data (was .DBYT $0900) ; orig: - D 0 - - - 0x004D4F 01:8D3F: 09 00     .dbyt $0900 ; 900 by
+    DC.B $08,$20  ; data (was .DBYT $0820) ; orig: - D 0 - - - 0x004D51 01:8D41: 08 20     .dbyt $0820 ; 820 by
 
 
 
 tbl_8D43_ppu:  ; orig: tbl_8D43_ppu:
-    ; !! UNKNOWN: .DBYT $0700  ; orig: - D 0 - - - 0x004D53 01:8D43: 07 00     .dbyt $0700 ; 0700-0
-    ; !! UNKNOWN: .DBYT $1700  ; orig: - D 0 - - - 0x004D55 01:8D45: 17 00     .dbyt $1700 ; 1700-1
+    DC.B $07,$00  ; data (was .DBYT $0700) ; orig: - D 0 - - - 0x004D53 01:8D43: 07 00     .dbyt $0700 ; 0700-0
+    DC.B $17,$00  ; data (was .DBYT $1700) ; orig: - D 0 - - - 0x004D55 01:8D45: 17 00     .dbyt $1700 ; 1700-1
 
 
 
@@ -1948,7 +1966,7 @@ b01_bra_8D4D_loop:  ; orig: b01_bra_8D4D_loop:
     MOVEA.L #tbl_8D3B_tiles,A0
     MOVE.B  (A0,D1.L),D0
 
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004D76 01:8D66: 85 01     STA ram_0000_t01_til
+    MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x004D76 01:8D66: 85 01  STA ram_0000_t01_til
     MOVEA.L #tbl_8D3F_counter,A0
     MOVE.B  (A0,D1.L),D0
 
@@ -1990,15 +2008,17 @@ b01_bra_8D89_loop:  ; orig: b01_bra_8D89_loop:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x004DA0 01:8D90: 18        CLC
     ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004DA1 01:8D91: 69 01     ADC #$01
     MOVE.B  D0,ram_0000_t01_tiles_data  ; orig: C - - - - - 0x004DA3 01:8D93: 85 00     STA ram_0000_t01_til
-    ; (empty translation for LDA)  ; orig: C - - - - - 0x004DA5 01:8D95: A5 01     LDA ram_0000_t01_til
-    ADD.B  #$00,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x004DA7 01:8D97: 69 00     ADC #$00
-    ; (empty translation for STA)  ; orig: C - - - - - 0x004DA9 01:8D99: 85 01     STA ram_0000_t01_til
+    MOVE.B  $FF0001,D0  ; FIX v378: LDA $01  ; orig: C - - - - - 0x004DA5 01:8D95: A5 01  LDA ram_0000_t01_til
+    MOVEQ   #0,D3             ; FIX: ADC #$00 = add carry only
+    ADDX.B  D3,D0             ; D0 += 0 + X_flag  ; orig: ADC #$00
+    MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x004DA9 01:8D99: 85 01  STA ram_0000_t01_til
     MOVE.B  ram_0003_t03_data_counter_lo,D0  ; orig: C - - - - - 0x004DAB 01:8D9B: A5 03     LDA ram_0003_t03_dat
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x004DAD 01:8D9D: 38        SEC
     SUB.B  #$01,D0       ; SBC imm  ; orig: C - - - - - 0x004DAE 01:8D9E: E9 01     SBC #$01
     MOVE.B  D0,ram_0003_t03_data_counter_lo  ; orig: C - - - - - 0x004DB0 01:8DA0: 85 03     STA ram_0003_t03_dat
     MOVE.B  ram_0002_t20_data_counter_hi,D0  ; orig: C - - - - - 0x004DB2 01:8DA2: A5 02     LDA ram_0002_t20_dat
-    SUB.B  #$00,D0       ; SBC imm  ; orig: C - - - - - 0x004DB4 01:8DA4: E9 00     SBC #$00
+    MOVEQ   #0,D3             ; FIX: SBC #$00 = subtract borrow from low byte
+    SUBX.B  D3,D0             ; D0 -= 0 + X_flag  ; orig: SBC #$00
     MOVE.B  D0,ram_0002_t20_data_counter_hi  ; orig: C - - - - - 0x004DB6 01:8DA6: 85 02     STA ram_0002_t20_dat
 
 ; bzk optimize, useless LDA
@@ -2026,25 +2046,25 @@ tbl_96B4___1700_1F1F:  ; orig: tbl_96B4___1700_1F1F:
 
 
 ; bzk garbage
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005EE4 01:9ED4: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005EF0 01:9EE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F00 01:9EF0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F10 01:9F00: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F20 01:9F10: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F30 01:9F20: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F40 01:9F30: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F50 01:9F40: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F60 01:9F50: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F70 01:9F60: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F80 01:9F70: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005F90 01:9F80: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005FA0 01:9F90: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005FB0 01:9FA0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005FC0 01:9FB0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005FD0 01:9FC0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005FE0 01:9FD0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x005FF0 01:9FE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006000 01:9FF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005EE4 01:9ED4: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005EF0 01:9EE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F00 01:9EF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F10 01:9F00: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F20 01:9F10: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F30 01:9F20: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F40 01:9F30: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F50 01:9F40: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F60 01:9F50: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F70 01:9F60: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F80 01:9F70: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005F90 01:9F80: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005FA0 01:9F90: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005FB0 01:9FA0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005FC0 01:9FB0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005FD0 01:9FC0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005FE0 01:9FD0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x005FF0 01:9FE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006000 01:9FF0: FF        .byte $FF, $FF, $FF,
 
 
 
@@ -2060,21 +2080,21 @@ loc_A002:  ; orig: loc_A002:
     MOVE.B  D0,(A0,D1.L)
 
     MOVE.B  #con_obj_id_2E,D0  ; orig: C - - - - - 0x00601A 01:A00A: A9 2E     LDA #con_obj_id_2E
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x00601C 01:A00C: 9D 4F 03  STA ram_obj_id_enemy
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: STA $034F,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x00601C 01:A00C: 9D 4F 03  STA ram_obj_id_enemy
     RTS                     ; RTS  ; orig: C - - - - - 0x00601F 01:A00F: 60        RTS
 
 
 
 tbl_A010:  ; orig: tbl_A010:
-    ; [DIRECTIVE] .BYTE $36  -- needs manual handling  ; orig: - - - - - - 0x006020 01:A010: 36        .byte $36   ; 00
-    ; [DIRECTIVE] .BYTE $3B  -- needs manual handling  ; orig: - - - - - - 0x006021 01:A011: 3B        .byte $3B   ; 01
-    ; [DIRECTIVE] .BYTE $73  -- needs manual handling  ; orig: - D 1 - - - 0x006022 01:A012: 73        .byte $73   ; 02
-    ; [DIRECTIVE] .BYTE $44  -- needs manual handling  ; orig: - - - - - - 0x006023 01:A013: 44        .byte $44   ; 03
-    ; [DIRECTIVE] .BYTE $0A  -- needs manual handling  ; orig: - - - - - - 0x006024 01:A014: 0A        .byte $0A   ; 04
-    ; [DIRECTIVE] .BYTE $21  -- needs manual handling  ; orig: - - - - - - 0x006025 01:A015: 21        .byte $21   ; 05
-    ; [DIRECTIVE] .BYTE $41  -- needs manual handling  ; orig: - D 1 - - - 0x006026 01:A016: 41        .byte $41   ; 06
-    ; [DIRECTIVE] .BYTE $6C  -- needs manual handling  ; orig: - - - - - - 0x006027 01:A017: 6C        .byte $6C   ; 07
+    DC.B $36  ; data (was .BYTE) ; orig: - - - - - - 0x006020 01:A010: 36        .byte $36   ; 00
+    DC.B $3B  ; data (was .BYTE) ; orig: - - - - - - 0x006021 01:A011: 3B        .byte $3B   ; 01
+    DC.B $73  ; data (was .BYTE) ; orig: - D 1 - - - 0x006022 01:A012: 73        .byte $73   ; 02
+    DC.B $44  ; data (was .BYTE) ; orig: - - - - - - 0x006023 01:A013: 44        .byte $44   ; 03
+    DC.B $0A  ; data (was .BYTE) ; orig: - - - - - - 0x006024 01:A014: 0A        .byte $0A   ; 04
+    DC.B $21  ; data (was .BYTE) ; orig: - - - - - - 0x006025 01:A015: 21        .byte $21   ; 05
+    DC.B $41  ; data (was .BYTE) ; orig: - D 1 - - - 0x006026 01:A016: 41        .byte $41   ; 06
+    DC.B $6C  ; data (was .BYTE) ; orig: - - - - - - 0x006027 01:A017: 6C        .byte $6C   ; 07
 
 
 
@@ -2084,7 +2104,9 @@ loc_0x006028:  ; orig: loc_0x006028:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x00602C 01:A01C: A8        TAY
     MOVE.B  #$02,D0  ; orig: C - - - - - 0x00602D 01:A01D: A9 02     LDA #$02
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x00602F 01:A01F: 18        CLC
-    ; !! ADC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x006030 01:A020: 75 70     ADC ram_pos_X_enemy,
+    MOVEA.L #ram_pos_X_enemy,A0
+    ADD.B  (A0,D1.L),D0
+
     MOVEA.L #ram_pos_X_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
@@ -2100,8 +2122,8 @@ loc_0x006028:  ; orig: loc_0x006028:
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x006046 01:A036: 0A        ASL ; -> 00
     MOVE.B  D0,ram_state_link  ; orig: C - - - - - 0x006047 01:A037: 85 AC     STA ram_state_link  
     MOVE.B  D0,ram_0522_flag  ; orig: C - - - - - 0x006049 01:A039: 8D 22 05  STA ram_0522_flag
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x00604C 01:A03C: 9D 4F 03  STA ram_obj_id_enemy
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: STA $034F,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x00604C 01:A03C: 9D 4F 03  STA ram_obj_id_enemy
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x00604F 01:A03F: 8A        TXA
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x006050 01:A040: 48        PHA
     BSR     sub_bat_71DE_draw_dot_on_minimap             ; JSR -> BSR  ; orig: C - - - - - 0x006051 01:A041: 20 DE 71  JSR sub_bat_71DE_dra
@@ -2121,8 +2143,8 @@ b01_bra_A049:  ; orig: b01_bra_A049:
     MOVE.B  #$40,D0  ; orig: C - - - - - 0x00606B 01:A05B: A9 40     LDA #con_obj_state_f
     MOVE.B  D0,ram_state_link  ; orig: C - - - - - 0x00606D 01:A05D: 85 AC     STA ram_state_link
     MOVE.B  #$F8,D0  ; orig: C - - - - - 0x00606F 01:A05F: A9 F8     LDA #$F8
-    ; (empty translation for STA)  ; orig: C - - - - - 0x006071 01:A061: 8D 48 02  STA ram_spr_Y + $48
-    ; (empty translation for STA)  ; orig: C - - - - - 0x006074 01:A064: 8D 4C 02  STA ram_spr_Y + $4C
+    MOVE.B  D0,$FF0248  ; FIX v378: STA $0248  ; orig: C - - - - - 0x006071 01:A061: 8D 48 02  STA ram_spr_Y + $48
+    MOVE.B  D0,$FF024C  ; FIX v378: STA $024C  ; orig: C - - - - - 0x006074 01:A064: 8D 4C 02  STA ram_spr_Y + $4C
     MOVE.B  ram_0523,D0  ; orig: C - - - - - 0x006077 01:A067: AD 23 05  LDA ram_0523
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x00607A 01:A06A: 29 07     AND #$07
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x00607C 01:A06C: A8        TAY
@@ -2136,7 +2158,7 @@ b01_bra_A075:  ; orig: b01_bra_A075:
     MOVE.B  (A0,D1.L),D0
 
     CMPI.B  #$F0,D0  ; orig: C - - - - - 0x006087 01:A077: C9 F0     CMP #$F0
-    BCC     b01_bra_A08A             ; BCC  ; orig: C - - - - - 0x006089 01:A079: 90 0F     BCC b01_bra_A08A
+    BCS     b01_bra_A08A             ; BCC  ; orig: C - - - - - 0x006089 01:A079: 90 0F     BCC b01_bra_A08A
     BSR     sub_A08D_destroy_object             ; JSR -> BSR  ; orig: C - - - - - 0x00608B 01:A07B: 20 8D A0  JSR sub_A08D_destroy
     MOVE.B  ram_0522_flag,D0  ; orig: C - - - - - 0x00608E 01:A07E: AD 22 05  LDA ram_0522_flag
     BEQ     b01_bra_A08A             ; BEQ  ; orig: C - - - - - 0x006091 01:A081: F0 07     BEQ b01_bra_A08A
@@ -2157,8 +2179,8 @@ sub_A08D_destroy_object:  ; orig: sub_A08D_destroy_object:
 
 ; X = 0B
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x00609D 01:A08D: A9 00     LDA #$00    ; con_ob
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x00609F 01:A08F: 9D 4F 03  STA ram_obj_id_enemy
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: STA $034F,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x00609F 01:A08F: 9D 4F 03  STA ram_obj_id_enemy
     MOVEA.L #ram_00C0_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
@@ -2202,7 +2224,8 @@ b01_bra_A0BC_loop:  ; orig: b01_bra_A0BC_loop:
 loc_A0BC_loop:  ; orig: loc_A0BC_loop:
     MOVE.B  ram_item_triforce_pieces,D0  ; orig: C - - - - - 0x0060CC 01:A0BC: AD 71 06  LDA ram_item_triforc
     BEQ     b01_bra_A104_RTS             ; BEQ  ; orig: C - - - - - 0x0060CF 01:A0BF: F0 43     BEQ b01_bra_A104_RTS
-    BTST    D0,ram_0000_t6E_triforce_piece  ; BIT abs  ; orig: C - - - - - 0x0060D1 01:A0C1: 24 00     BIT ram_0000_t6E_tri
+    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
+    AND.B   ram_0000_t6E_triforce_piece,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x0060D1 01:A0C1: 24 00     BIT ram_0000_t6E_tri
     BNE     b01_bra_A0E0             ; BNE  ; orig: C - - - - - 0x0060D3 01:A0C3: D0 1B     BNE b01_bra_A0E0
     BSR     sub_A0F5             ; JSR -> BSR  ; orig: - - - - - - 0x0060D5 01:A0C5: 20 F5 A0  JSR sub_A0F5
     MOVE.B  ram_dir_link,D0  ; orig: - - - - - - 0x0060D8 01:A0C8: A5 98     LDA ram_dir_link
@@ -2211,22 +2234,30 @@ loc_A0BC_loop:  ; orig: loc_A0BC_loop:
     MOVE.B  (ram_0000_t6E_triforce_piece).l,D3
     ASL.B  #1,D3
     MOVE.B  D3,(ram_0000_t6E_triforce_piece).l  ; orig: - - - - - - 0x0060DE 01:A0CE: 06 00     ASL ram_0000_t6E_tri
+    MOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)
+    NEGX.B  D3                ; C = X = original shift carry
 
     BCC     b01_bra_A0BC_loop             ; BCC  ; orig: - - - - - - 0x0060E0 01:A0D0: 90 EA     BCC b01_bra_A0BC_loop
     MOVE.B  (ram_0000_t6E_triforce_piece).l,D3
     ROXL.B  #1,D3
     MOVE.B  D3,(ram_0000_t6E_triforce_piece).l  ; orig: - - - - - - 0x0060E2 01:A0D2: 26 00     ROL ram_0000_t6E_tri
+    MOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)
+    NEGX.B  D3                ; C = X = original shift carry
 
     JMP     loc_A0BC_loop  ; orig: - - - - - - 0x0060E4 01:A0D4: 4C BC A0  JMP loc_A0BC_loop
 b01_bra_A0D7:  ; orig: b01_bra_A0D7:
     MOVE.B  (ram_0000_t6E_triforce_piece).l,D3
     LSR.B  #1,D3
     MOVE.B  D3,(ram_0000_t6E_triforce_piece).l  ; orig: - - - - - - 0x0060E7 01:A0D7: 46 00     LSR ram_0000_t6E_tri
+    MOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)
+    NEGX.B  D3                ; C = X = original shift carry
 
     BCC     b01_bra_A0BC_loop             ; BCC  ; orig: - - - - - - 0x0060E9 01:A0D9: 90 E1     BCC b01_bra_A0BC_loop
     MOVE.B  (ram_0000_t6E_triforce_piece).l,D3
     ROXR.B  #1,D3
     MOVE.B  D3,(ram_0000_t6E_triforce_piece).l  ; orig: - - - - - - 0x0060EB 01:A0DB: 66 00     ROR ram_0000_t6E_tri
+    MOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)
+    NEGX.B  D3                ; C = X = original shift carry
 
     JMP     loc_A0BC_loop  ; orig: - - - - - - 0x0060ED 01:A0DD: 4C BC A0  JMP loc_A0BC_loop
 b01_bra_A0E0:  ; orig: b01_bra_A0E0:
@@ -2267,14 +2298,14 @@ loc_A105:  ; orig: loc_A105:
 
 
 tbl_A119:  ; orig: tbl_A119:
-    ; [DIRECTIVE] .BYTE $8D  -- needs manual handling  ; orig: - - - - - - 0x006129 01:A119: 8D        .byte $8D   ; 00
-    ; [DIRECTIVE] .BYTE $AD  -- needs manual handling  ; orig: - - - - - - 0x00612A 01:A11A: AD        .byte $AD   ; 01
-    ; [DIRECTIVE] .BYTE $8D  -- needs manual handling  ; orig: - D 1 - - - 0x00612B 01:A11B: 8D        .byte $8D   ; 02
-    ; [DIRECTIVE] .BYTE $8D  -- needs manual handling  ; orig: - - - - - - 0x00612C 01:A11C: 8D        .byte $8D   ; 03
-    ; [DIRECTIVE] .BYTE $AD  -- needs manual handling  ; orig: - - - - - - 0x00612D 01:A11D: AD        .byte $AD   ; 04
-    ; [DIRECTIVE] .BYTE $8D  -- needs manual handling  ; orig: - - - - - - 0x00612E 01:A11E: 8D        .byte $8D   ; 05
-    ; [DIRECTIVE] .BYTE $AD  -- needs manual handling  ; orig: - D 1 - - - 0x00612F 01:A11F: AD        .byte $AD   ; 06
-    ; [DIRECTIVE] .BYTE $5D  -- needs manual handling  ; orig: - - - - - - 0x006130 01:A120: 5D        .byte $5D   ; 07
+    DC.B $8D  ; data (was .BYTE) ; orig: - - - - - - 0x006129 01:A119: 8D        .byte $8D   ; 00
+    DC.B $AD  ; data (was .BYTE) ; orig: - - - - - - 0x00612A 01:A11A: AD        .byte $AD   ; 01
+    DC.B $8D  ; data (was .BYTE) ; orig: - D 1 - - - 0x00612B 01:A11B: 8D        .byte $8D   ; 02
+    DC.B $8D  ; data (was .BYTE) ; orig: - - - - - - 0x00612C 01:A11C: 8D        .byte $8D   ; 03
+    DC.B $AD  ; data (was .BYTE) ; orig: - - - - - - 0x00612D 01:A11D: AD        .byte $AD   ; 04
+    DC.B $8D  ; data (was .BYTE) ; orig: - - - - - - 0x00612E 01:A11E: 8D        .byte $8D   ; 05
+    DC.B $AD  ; data (was .BYTE) ; orig: - D 1 - - - 0x00612F 01:A11F: AD        .byte $AD   ; 06
+    DC.B $5D  ; data (was .BYTE) ; orig: - - - - - - 0x006130 01:A120: 5D        .byte $5D   ; 07
 
 
 
@@ -2300,8 +2331,8 @@ b01_bra_A13B:  ; orig: b01_bra_A13B:
 sub_0x00614E:  ; orig: sub_0x00614E:
     MOVE.B  #$0C,D1  ; orig: C - - - - - 0x00614E 01:A13E: A2 0C     LDX #$0C
 b01_bra_A140_loop:  ; orig: b01_bra_A140_loop:
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x006150 01:A140: BD 4F 03  LDA ram_obj_id_enemy
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: LDA $034F,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x006150 01:A140: BD 4F 03  LDA ram_obj_id_enemy
     CMPI.B  #con_obj_id_68,D0  ; orig: C - - - - - 0x006153 01:A143: C9 68     CMP #con_obj_id_68
     BEQ     b01_bra_A153             ; BEQ  ; orig: C - - - - - 0x006155 01:A145: F0 0C     BEQ b01_bra_A153
     CMPI.B  #con_obj_id_62,D0  ; orig: C - - - - - 0x006157 01:A147: C9 62     CMP #con_obj_id_62
@@ -2318,18 +2349,22 @@ b01_bra_A153:  ; orig: b01_bra_A153:
     BNE     b01_bra_A178             ; BNE  ; orig: C - - - - - 0x006167 01:A157: D0 1F     BNE b01_bra_A178
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x006169 01:A159: A5 70     LDA ram_pos_X_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x00616B 01:A15B: 38        SEC
-    ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x00616C 01:A15C: F5 70     SBC ram_pos_X_enemy,
+    MOVEA.L #ram_pos_X_enemy,A0
+    SUB.B  (A0,D1.L),D0
+
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x00616E 01:A15E: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$10,D0  ; orig: C - - - - - 0x006171 01:A161: C9 10     CMP #$10
-    BCS     b01_bra_A178             ; BCS  ; orig: C - - - - - 0x006173 01:A163: B0 13     BCS b01_bra_A178
+    BCC     b01_bra_A178             ; BCS  ; orig: C - - - - - 0x006173 01:A163: B0 13     BCS b01_bra_A178
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x006175 01:A165: A5 84     LDA ram_pos_Y_link
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x006177 01:A167: 18        CLC
-    ADD.B  #$03,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x006178 01:A168: 69 03     ADC #$03
+    ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x006178 01:A168: 69 03     ADC #$03
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x00617A 01:A16A: 38        SEC
-    ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x00617B 01:A16B: F5 84     SBC ram_pos_Y_enemy,
+    MOVEA.L #ram_pos_Y_enemy,A0
+    SUB.B  (A0,D1.L),D0
+
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x00617D 01:A16D: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$10,D0  ; orig: C - - - - - 0x006180 01:A170: C9 10     CMP #$10
-    BCS     b01_bra_A178             ; BCS  ; orig: C - - - - - 0x006182 01:A172: B0 04     BCS b01_bra_A178
+    BCC     b01_bra_A178             ; BCS  ; orig: C - - - - - 0x006182 01:A172: B0 04     BCS b01_bra_A178
     MOVE.B  #con_dir_00,D0  ; orig: C - - - - - 0x006184 01:A174: A9 00     LDA #con_dir_00
     MOVE.B  D0,ram_000F_t01_direction  ; orig: C - - - - - 0x006186 01:A176: 85 0F     STA ram_000F_t01_dir
 b01_bra_A178:  ; orig: b01_bra_A178:
@@ -2349,7 +2384,7 @@ sub_0x00618C:  ; orig: sub_0x00618C:
     BEQ     b01_bra_A196             ; BEQ  ; orig: C - - - - - 0x006199 01:A189: F0 0B     BEQ b01_bra_A196
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x00619B 01:A18B: 29 07     AND #$07
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x00619D 01:A18D: C9 04     CMP #$04
-    BCC     b01_bra_A193             ; BCC  ; orig: C - - - - - 0x00619F 01:A18F: 90 02     BCC b01_bra_A193
+    BCS     b01_bra_A193             ; BCC  ; orig: C - - - - - 0x00619F 01:A18F: 90 02     BCC b01_bra_A193
     MOVE.B  #con_ppu_buf_78,D2  ; orig: C - - - - - 0x0061A1 01:A191: A0 78     LDY #con_ppu_buf_78
 b01_bra_A193:  ; orig: b01_bra_A193:
     MOVE.B  D2,ram_ppu_load_index  ; orig: C - - - - - 0x0061A3 01:A193: 84 14     STY ram_ppu_load_ind
@@ -2384,27 +2419,28 @@ loc_0x0061C1:  ; orig: loc_0x0061C1:
 
 
 tbl_A1BD:  ; orig: tbl_A1BD:
-    ; [DIRECTIVE] .BYTE $3F  -- needs manual handling  ; orig: - D 1 - - - 0x0061CD 01:A1BD: 3F        .byte $3F   ; 00
-    ; [DIRECTIVE] .BYTE $1C  -- needs manual handling  ; orig: - D 1 - - - 0x0061CE 01:A1BE: 1C        .byte $1C   ; 01
-    ; [DIRECTIVE] .BYTE $04  -- needs manual handling  ; orig: - D 1 - - - 0x0061CF 01:A1BF: 04        .byte $04   ; 02
-    ; [DIRECTIVE] .BYTE $0F  -- needs manual handling  ; orig: - D 1 - - - 0x0061D0 01:A1C0: 0F        .byte $0F   ; 03
-    ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - D 1 - - - 0x0061D1 01:A1C1: 07        .byte $07   ; 04
-    ; [DIRECTIVE] .BYTE $17  -- needs manual handling  ; orig: - D 1 - - - 0x0061D2 01:A1C2: 17        .byte $17   ; 05
-    ; [DIRECTIVE] .BYTE $27  -- needs manual handling  ; orig: - D 1 - - - 0x0061D3 01:A1C3: 27        .byte $27   ; 06
-    ; [DIRECTIVE] .BYTE $FF  -- needs manual handling  ; orig: - D 1 - - - 0x0061D4 01:A1C4: FF        .byte $FF   ; 07
+    DC.B $3F  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061CD 01:A1BD: 3F        .byte $3F   ; 00
+    DC.B $1C  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061CE 01:A1BE: 1C        .byte $1C   ; 01
+    DC.B $04  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061CF 01:A1BF: 04        .byte $04   ; 02
+    DC.B $0F  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061D0 01:A1C0: 0F        .byte $0F   ; 03
+    DC.B $07  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061D1 01:A1C1: 07        .byte $07   ; 04
+    DC.B $17  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061D2 01:A1C2: 17        .byte $17   ; 05
+    DC.B $27  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061D3 01:A1C3: 27        .byte $27   ; 06
+    DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061D4 01:A1C4: FF        .byte $FF   ; 07
 
 
 
 tbl_A1C5:  ; orig: tbl_A1C5:
-    ; [DIRECTIVE] .BYTE $07  -- needs manual handling  ; orig: - - - - - - 0x0061D5 01:A1C5: 07        .byte $07   ; 00
-    ; [DIRECTIVE] .BYTE $17  -- needs manual handling  ; orig: - - - - - - 0x0061D6 01:A1C6: 17        .byte $17   ; 01
-    ; [DIRECTIVE] .BYTE $30  -- needs manual handling  ; orig: - - - - - - 0x0061D7 01:A1C7: 30        .byte $30   ; 02
-    ; [DIRECTIVE] .BYTE $16  -- needs manual handling  ; orig: - - - - - - 0x0061D8 01:A1C8: 16        .byte $16   ; 03
-    ; [DIRECTIVE] .BYTE $2C  -- needs manual handling  ; orig: - - - - - - 0x0061D9 01:A1C9: 2C        .byte $2C   ; 04
-    ; [DIRECTIVE] .BYTE $3C  -- needs manual handling  ; orig: - - - - - - 0x0061DA 01:A1CA: 3C        .byte $3C   ; 05
-    ; [DIRECTIVE] .BYTE $27  -- needs manual handling  ; orig: - D 1 - - - 0x0061DB 01:A1CB: 27        .byte $27   ; 06
-    ; [DIRECTIVE] .BYTE $06  -- needs manual handling  ; orig: - D 1 - - - 0x0061DC 01:A1CC: 06        .byte $06   ; 07
-    ; [DIRECTIVE] .BYTE $16  -- needs manual handling  ; orig: - D 1 - - - 0x0061DD 01:A1CD: 16        .byte $16   ; 08
+    DC.B $07  ; data (was .BYTE) ; orig: - - - - - - 0x0061D5 01:A1C5: 07        .byte $07   ; 00
+    DC.B $17  ; data (was .BYTE) ; orig: - - - - - - 0x0061D6 01:A1C6: 17        .byte $17   ; 01
+    DC.B $30  ; data (was .BYTE) ; orig: - - - - - - 0x0061D7 01:A1C7: 30        .byte $30   ; 02
+    DC.B $16  ; data (was .BYTE) ; orig: - - - - - - 0x0061D8 01:A1C8: 16        .byte $16   ; 03
+    DC.B $2C  ; data (was .BYTE) ; orig: - - - - - - 0x0061D9 01:A1C9: 2C        .byte $2C   ; 04
+    DC.B $3C  ; data (was .BYTE) ; orig: - - - - - - 0x0061DA 01:A1CA: 3C        .byte $3C   ; 05
+    DC.B $27  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061DB 01:A1CB: 27        .byte $27   ; 06
+    DC.B $06  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061DC 01:A1CC: 06        .byte $06   ; 07
+    DC.B $16  ; data (was .BYTE) ; orig: - D 1 - - - 0x0061DD 01:A1CD: 16        .byte $16   ; 08
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -2446,8 +2482,8 @@ b01_bra_A1F2_loop:  ; orig: b01_bra_A1F2_loop:
     MOVEA.L #tbl_A1C5,A0
     MOVE.B  (A0,D2.L),D0
 
-    MOVEA.L #$FF0306,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x006205 01:A1F5: 9D 06 03  STA ram_0302_ppu_buf
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF0306,A0  ; FIX v378: STA $0306,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x006205 01:A1F5: 9D 06 03  STA ram_0302_ppu_buf
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x006208 01:A1F8: 88        DEY
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x006209 01:A1F9: CA        DEX
     BPL     b01_bra_A1F2_loop             ; BPL  ; orig: C - - - - - 0x00620A 01:A1FA: 10 F6     BPL b01_bra_A1F2_loop
@@ -2478,18 +2514,18 @@ b01_bra_A21A_RTS:  ; orig: b01_bra_A21A_RTS:
 
 
 tbl_A21B_pos_X:  ; orig: tbl_A21B_pos_X:
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 1 - - - 0x00622B 01:A21B: 00        .byte $00   ; 00
-    ; [DIRECTIVE] .BYTE $00  -- needs manual handling  ; orig: - D 1 - - - 0x00622C 01:A21C: 00        .byte $00   ; 01
-    ; [DIRECTIVE] .BYTE $F0  -- needs manual handling  ; orig: - D 1 - - - 0x00622D 01:A21D: F0        .byte $F0   ; 02
-    ; [DIRECTIVE] .BYTE $10  -- needs manual handling  ; orig: - D 1 - - - 0x00622E 01:A21E: 10        .byte $10   ; 03
+    DC.B $00  ; data (was .BYTE) ; orig: - D 1 - - - 0x00622B 01:A21B: 00        .byte $00   ; 00
+    DC.B $00  ; data (was .BYTE) ; orig: - D 1 - - - 0x00622C 01:A21C: 00        .byte $00   ; 01
+    DC.B $F0  ; data (was .BYTE) ; orig: - D 1 - - - 0x00622D 01:A21D: F0        .byte $F0   ; 02
+    DC.B $10  ; data (was .BYTE) ; orig: - D 1 - - - 0x00622E 01:A21E: 10        .byte $10   ; 03
 
 
 
 tbl_A21F_pos_Y:  ; orig: tbl_A21F_pos_Y:
-    ; [DIRECTIVE] .BYTE $FB  -- needs manual handling  ; orig: - D 1 - - - 0x00622F 01:A21F: FB        .byte $FB   ; 00
-    ; [DIRECTIVE] .BYTE $13  -- needs manual handling  ; orig: - D 1 - - - 0x006230 01:A220: 13        .byte $13   ; 01
-    ; [DIRECTIVE] .BYTE $03  -- needs manual handling  ; orig: - D 1 - - - 0x006231 01:A221: 03        .byte $03   ; 02
-    ; [DIRECTIVE] .BYTE $03  -- needs manual handling  ; orig: - D 1 - - - 0x006232 01:A222: 03        .byte $03   ; 03
+    DC.B $FB  ; data (was .BYTE) ; orig: - D 1 - - - 0x00622F 01:A21F: FB        .byte $FB   ; 00
+    DC.B $13  ; data (was .BYTE) ; orig: - D 1 - - - 0x006230 01:A220: 13        .byte $13   ; 01
+    DC.B $03  ; data (was .BYTE) ; orig: - D 1 - - - 0x006231 01:A221: 03        .byte $03   ; 02
+    DC.B $03  ; data (was .BYTE) ; orig: - D 1 - - - 0x006232 01:A222: 03        .byte $03   ; 03
 
 
 
@@ -2524,9 +2560,9 @@ b01_bra_A23E:  ; orig: b01_bra_A23E:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x006264 01:A254: A8        TAY
     MOVE.B  ram_0000_t3C_copy_pos_X_link,D0  ; orig: C - - - - - 0x006265 01:A255: A5 00     LDA ram_0000_t3C_cop
     CMPI.B  #$02,D2  ; orig: C - - - - - 0x006267 01:A257: C0 02     CPY #$02
-    BCS     b01_bra_A25E             ; BCS  ; orig: C - - - - - 0x006269 01:A259: B0 03     BCS b01_bra_A25E
+    BCC     b01_bra_A25E             ; BCS  ; orig: C - - - - - 0x006269 01:A259: B0 03     BCS b01_bra_A25E
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x00626B 01:A25B: 18        CLC
-    ADD.B  #$08,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x00626C 01:A25C: 69 08     ADC #$08
+    ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x00626C 01:A25C: 69 08     ADC #$08
 b01_bra_A25E:  ; orig: b01_bra_A25E:
     ANDI.B  #$F0,D0  ; orig: C - - - - - 0x00626E 01:A25E: 29 F0     AND #$F0
     MOVE.B  D0,ram_0000_t3C_copy_pos_X_link  ; orig: C - - - - - 0x006270 01:A260: 85 00     STA ram_0000_t3C_cop
@@ -2537,7 +2573,7 @@ b01_bra_A265:  ; orig: b01_bra_A265:
     BCS     b01_bra_A271             ; BCS  ; orig: C - - - - - 0x006278 01:A268: B0 07     BCS b01_bra_A271
     MOVE.B  ram_0001_t02_copy_pos_Y_link,D0  ; orig: C - - - - - 0x00627A 01:A26A: A5 01     LDA ram_0001_t02_cop
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x00627C 01:A26C: 18        CLC
-    ADD.B  #$08,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x00627D 01:A26D: 69 08     ADC #$08
+    ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x00627D 01:A26D: 69 08     ADC #$08
     MOVE.B  D0,ram_0001_t02_copy_pos_Y_link  ; orig: C - - - - - 0x00627F 01:A26F: 85 01     STA ram_0001_t02_cop
 b01_bra_A271:  ; orig: b01_bra_A271:
 loc_A271:  ; orig: loc_A271:
@@ -2548,13 +2584,17 @@ loc_A271:  ; orig: loc_A271:
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x00628A 01:A27A: 20 13 70  JSR sub_bat_7013_get
     MOVE.B  ram_0000_t3C_copy_pos_X_link,D0  ; orig: C - - - - - 0x00628D 01:A27D: A5 00     LDA ram_0000_t3C_cop
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x00628F 01:A27F: 18        CLC
-    ; !! ADC tbl_A21B_pos_X,Y - complex mode, manual review needed  ; orig: C - - - - - 0x006290 01:A280: 79 1B A2  ADC tbl_A21B_pos_X,Y
+    MOVEA.L #tbl_A21B_pos_X,A0
+    ADD.B  (A0,D2.L),D0
+
     MOVEA.L #ram_pos_X_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
     MOVE.B  ram_0001_t02_copy_pos_Y_link,D0  ; orig: C - - - - - 0x006295 01:A285: A5 01     LDA ram_0001_t02_cop
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x006297 01:A287: 18        CLC
-    ; !! ADC tbl_A21F_pos_Y,Y - complex mode, manual review needed  ; orig: C - - - - - 0x006298 01:A288: 79 1F A2  ADC tbl_A21F_pos_Y,Y
+    MOVEA.L #tbl_A21F_pos_Y,A0
+    ADD.B  (A0,D2.L),D0
+
     MOVEA.L #ram_pos_Y_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
@@ -2581,8 +2621,8 @@ b01_bra_A296_loop:  ; orig: b01_bra_A296_loop:
     CMP.B  (A0,D1.L),D0
 
     BNE     b01_bra_A2B4             ; BNE  ; orig: C - - - - - 0x0062B6 01:A2A6: D0 0C     BNE b01_bra_A2B4
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x0062B8 01:A2A8: B9 4F 03  LDA ram_obj_id_enemy
-    MOVE.B  (A0,D2.L),D0  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: LDA $034F,Y base
+    MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x0062B8 01:A2A8: B9 4F 03  LDA ram_obj_id_enemy
     BNE     b01_bra_A2CB             ; BNE  ; orig: C - - - - - 0x0062BB 01:A2AB: D0 1E     BNE b01_bra_A2CB    ; if
     MOVEA.L #ram_0492_enemy,A0
     MOVE.B  (A0,D2.L),D0
@@ -2596,11 +2636,11 @@ b01_bra_A2B7:  ; orig: b01_bra_A2B7:
     MOVE.B  #con_obj_id_1E,D0  ; orig: C - - - - - 0x0062C7 01:A2B7: A9 1E     LDA #con_obj_id_1E
     MOVE.B  ram_0002_t21,D2  ; orig: C - - - - - 0x0062C9 01:A2B9: A4 02     LDY ram_0002_t21
     CMPI.B  #$C0,D2  ; orig: C - - - - - 0x0062CB 01:A2BB: C0 C0     CPY #$C0
-    BCS     b01_bra_A2C1             ; BCS  ; orig: C - - - - - 0x0062CD 01:A2BD: B0 02     BCS b01_bra_A2C1
+    BCC     b01_bra_A2C1             ; BCS  ; orig: C - - - - - 0x0062CD 01:A2BD: B0 02     BCS b01_bra_A2C1
     MOVE.B  #con_obj_id_22,D0  ; orig: C - - - - - 0x0062CF 01:A2BF: A9 22     LDA #con_obj_id_22
 b01_bra_A2C1:  ; orig: b01_bra_A2C1:
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x0062D1 01:A2C1: 9D 4F 03  STA ram_obj_id_enemy
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: STA $034F,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x0062D1 01:A2C1: 9D 4F 03  STA ram_obj_id_enemy
     BSR     sub_0x01FEEA             ; JSR -> BSR  ; orig: C - - - - - 0x0062D4 01:A2C4: 20 DA FE  JSR sub_0x01FEEA
     MOVE.B  #$3F,D0  ; orig: C - - - - - 0x0062D7 01:A2C7: A9 3F     LDA #$3F
     MOVEA.L #ram_timer_enemy,A0
@@ -2613,49 +2653,49 @@ b01_bra_A2CB:  ; orig: b01_bra_A2CB:
 
 
 tbl_A2CE:  ; orig: tbl_A2CE:
-    ; [DIRECTIVE] .BYTE $78  -- needs manual handling  ; orig: - D 1 - - - 0x0062DE 01:A2CE: 78        .byte $78   ; 01
-    ; [DIRECTIVE] .BYTE $70  -- needs manual handling  ; orig: - D 1 - - - 0x0062DF 01:A2CF: 70        .byte $70   ; 02
-    ; [DIRECTIVE] .BYTE $80  -- needs manual handling  ; orig: - D 1 - - - 0x0062E0 01:A2D0: 80        .byte $80   ; 03
-    ; [DIRECTIVE] .BYTE $60  -- needs manual handling  ; orig: - D 1 - - - 0x0062E1 01:A2D1: 60        .byte $60   ; 04
-    ; [DIRECTIVE] .BYTE $70  -- needs manual handling  ; orig: - D 1 - - - 0x0062E2 01:A2D2: 70        .byte $70   ; 05
-    ; [DIRECTIVE] .BYTE $80  -- needs manual handling  ; orig: - D 1 - - - 0x0062E3 01:A2D3: 80        .byte $80   ; 06
-    ; [DIRECTIVE] .BYTE $90  -- needs manual handling  ; orig: - D 1 - - - 0x0062E4 01:A2D4: 90        .byte $90   ; 07
-    ; [DIRECTIVE] .BYTE $70  -- needs manual handling  ; orig: - D 1 - - - 0x0062E5 01:A2D5: 70        .byte $70   ; 08
-    ; [DIRECTIVE] .BYTE $80  -- needs manual handling  ; orig: - D 1 - - - 0x0062E6 01:A2D6: 80        .byte $80   ; 09
-    ; [DIRECTIVE] .BYTE $78  -- needs manual handling  ; orig: - D 1 - - - 0x0062E7 01:A2D7: 78        .byte $78   ; 0A
+    DC.B $78  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062DE 01:A2CE: 78        .byte $78   ; 01
+    DC.B $70  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062DF 01:A2CF: 70        .byte $70   ; 02
+    DC.B $80  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E0 01:A2D0: 80        .byte $80   ; 03
+    DC.B $60  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E1 01:A2D1: 60        .byte $60   ; 04
+    DC.B $70  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E2 01:A2D2: 70        .byte $70   ; 05
+    DC.B $80  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E3 01:A2D3: 80        .byte $80   ; 06
+    DC.B $90  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E4 01:A2D4: 90        .byte $90   ; 07
+    DC.B $70  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E5 01:A2D5: 70        .byte $70   ; 08
+    DC.B $80  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E6 01:A2D6: 80        .byte $80   ; 09
+    DC.B $78  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E7 01:A2D7: 78        .byte $78   ; 0A
 
 
 
 tbl_A2D8:  ; orig: tbl_A2D8:
-    ; [DIRECTIVE] .BYTE $70  -- needs manual handling  ; orig: - D 1 - - - 0x0062E8 01:A2D8: 70        .byte $70   ; 01
-    ; [DIRECTIVE] .BYTE $80  -- needs manual handling  ; orig: - D 1 - - - 0x0062E9 01:A2D9: 80        .byte $80   ; 02
-    ; [DIRECTIVE] .BYTE $80  -- needs manual handling  ; orig: - D 1 - - - 0x0062EA 01:A2DA: 80        .byte $80   ; 03
-    ; [DIRECTIVE] .BYTE $90  -- needs manual handling  ; orig: - D 1 - - - 0x0062EB 01:A2DB: 90        .byte $90   ; 04
-    ; [DIRECTIVE] .BYTE $90  -- needs manual handling  ; orig: - D 1 - - - 0x0062EC 01:A2DC: 90        .byte $90   ; 05
-    ; [DIRECTIVE] .BYTE $90  -- needs manual handling  ; orig: - D 1 - - - 0x0062ED 01:A2DD: 90        .byte $90   ; 06
-    ; [DIRECTIVE] .BYTE $90  -- needs manual handling  ; orig: - D 1 - - - 0x0062EE 01:A2DE: 90        .byte $90   ; 07
-    ; [DIRECTIVE] .BYTE $A0  -- needs manual handling  ; orig: - D 1 - - - 0x0062EF 01:A2DF: A0        .byte $A0   ; 08
-    ; [DIRECTIVE] .BYTE $A0  -- needs manual handling  ; orig: - D 1 - - - 0x0062F0 01:A2E0: A0        .byte $A0   ; 09
-    ; [DIRECTIVE] .BYTE $B0  -- needs manual handling  ; orig: - D 1 - - - 0x0062F1 01:A2E1: B0        .byte $B0   ; 0A
+    DC.B $70  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E8 01:A2D8: 70        .byte $70   ; 01
+    DC.B $80  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062E9 01:A2D9: 80        .byte $80   ; 02
+    DC.B $80  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062EA 01:A2DA: 80        .byte $80   ; 03
+    DC.B $90  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062EB 01:A2DB: 90        .byte $90   ; 04
+    DC.B $90  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062EC 01:A2DC: 90        .byte $90   ; 05
+    DC.B $90  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062ED 01:A2DD: 90        .byte $90   ; 06
+    DC.B $90  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062EE 01:A2DE: 90        .byte $90   ; 07
+    DC.B $A0  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062EF 01:A2DF: A0        .byte $A0   ; 08
+    DC.B $A0  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062F0 01:A2E0: A0        .byte $A0   ; 09
+    DC.B $B0  ; data (was .BYTE) ; orig: - D 1 - - - 0x0062F1 01:A2E1: B0        .byte $B0   ; 0A
 
 
 
 loc_0x0062F2:  ; orig: loc_0x0062F2:
-    MOVEA.L #$FF04BF,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C D 1 - - - 0x0062F2 01:A2E2: BD BF 04  LDA ram_attr_enemy -
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF04BF,A0  ; FIX v378: LDA $04BF,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C D 1 - - - 0x0062F2 01:A2E2: BD BF 04  LDA ram_attr_enemy -
     MOVE.B  D0,ram_0001_t20  ; orig: C - - - - - 0x0062F5 01:A2E5: 85 01     STA ram_0001_t20
     MOVE.B  #con_obj_id_35,D0  ; orig: C - - - - - 0x0062F7 01:A2E7: A9 35     LDA #con_obj_id_35
     MOVE.B  D0,ram_0000_t39  ; orig: C - - - - - 0x0062F9 01:A2E9: 85 00     STA ram_0000_t39
     MOVE.B  #$0A,D1  ; orig: C - - - - - 0x0062FB 01:A2EB: A2 0A     LDX #$0A
 b01_bra_A2ED_loop:  ; orig: b01_bra_A2ED_loop:
     BSR     sub_A2FE             ; JSR -> BSR  ; orig: C - - - - - 0x0062FD 01:A2ED: 20 FE A2  JSR sub_A2FE
-    MOVEA.L #$FFA2CD,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x006300 01:A2F0: BD CD A2  LDA tbl_A2CE - $01,X
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FFA2CD,A0  ; FIX v378: LDA $A2CD,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x006300 01:A2F0: BD CD A2  LDA tbl_A2CE - $01,X
     MOVEA.L #ram_pos_X_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
-    MOVEA.L #$FFA2D7,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C - - - - - 0x006305 01:A2F5: BD D7 A2  LDA tbl_A2D8 - $01,X
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FFA2D7,A0  ; FIX v378: LDA $A2D7,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x006305 01:A2F5: BD D7 A2  LDA tbl_A2D8 - $01,X
     MOVEA.L #ram_pos_Y_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
@@ -2667,42 +2707,42 @@ b01_bra_A2ED_loop:  ; orig: b01_bra_A2ED_loop:
 
 sub_A2FE:  ; orig: sub_A2FE:
     MOVE.B  ram_0000_t39,D0  ; orig: C - - - - - 0x00630E 01:A2FE: A5 00     LDA ram_0000_t39
-    MOVEA.L #$FF034F,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x006310 01:A300: 9D 4F 03  STA ram_obj_id_enemy
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF034F,A0  ; FIX v378: STA $034F,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x006310 01:A300: 9D 4F 03  STA ram_obj_id_enemy
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x006313 01:A303: A9 00     LDA #$00
     MOVEA.L #ram_0492_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
     MOVE.B  ram_0001_t20,D0  ; orig: C - - - - - 0x006318 01:A308: A5 01     LDA ram_0001_t20
-    MOVEA.L #$FF04BF,A0  ; Fix X: ; (empty translation for STA)  ; orig: C - - - - - 0x00631A 01:A30A: 9D BF 04  STA ram_attr_enemy -
-    MOVE.B  D0,(A0,D1.L)  ; ^
+    MOVEA.L #$FF04BF,A0  ; FIX v378: STA $04BF,X base
+    MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x00631A 01:A30A: 9D BF 04  STA ram_attr_enemy -
     RTS                     ; RTS  ; orig: C - - - - - 0x00631D 01:A30D: 60        RTS
 
 
 
 tbl_A30E:  ; orig: tbl_A30E:
-    ; [DIRECTIVE] .BYTE $20  -- needs manual handling  ; orig: - D 1 - - - 0x00631E 01:A30E: 20        .byte $20   ; 00
-    ; [DIRECTIVE] .BYTE $20  -- needs manual handling  ; orig: - D 1 - - - 0x00631F 01:A30F: 20        .byte $20   ; 01
-    ; [DIRECTIVE] .BYTE $D0  -- needs manual handling  ; orig: - D 1 - - - 0x006320 01:A310: D0        .byte $D0   ; 02
-    ; [DIRECTIVE] .BYTE $D0  -- needs manual handling  ; orig: - D 1 - - - 0x006321 01:A311: D0        .byte $D0   ; 03
-    ; [DIRECTIVE] .BYTE $40  -- needs manual handling  ; orig: - D 1 - - - 0x006322 01:A312: 40        .byte $40   ; 04
-    ; [DIRECTIVE] .BYTE $B0  -- needs manual handling  ; orig: - D 1 - - - 0x006323 01:A313: B0        .byte $B0   ; 05
+    DC.B $20  ; data (was .BYTE) ; orig: - D 1 - - - 0x00631E 01:A30E: 20        .byte $20   ; 00
+    DC.B $20  ; data (was .BYTE) ; orig: - D 1 - - - 0x00631F 01:A30F: 20        .byte $20   ; 01
+    DC.B $D0  ; data (was .BYTE) ; orig: - D 1 - - - 0x006320 01:A310: D0        .byte $D0   ; 02
+    DC.B $D0  ; data (was .BYTE) ; orig: - D 1 - - - 0x006321 01:A311: D0        .byte $D0   ; 03
+    DC.B $40  ; data (was .BYTE) ; orig: - D 1 - - - 0x006322 01:A312: 40        .byte $40   ; 04
+    DC.B $B0  ; data (was .BYTE) ; orig: - D 1 - - - 0x006323 01:A313: B0        .byte $B0   ; 05
 
 
 
 tbl_A314:  ; orig: tbl_A314:
-    ; [DIRECTIVE] .BYTE $5D  -- needs manual handling  ; orig: - D 1 - - - 0x006324 01:A314: 5D        .byte $5D   ; 00
-    ; [DIRECTIVE] .BYTE $BD  -- needs manual handling  ; orig: - D 1 - - - 0x006325 01:A315: BD        .byte $BD   ; 01
-    ; [DIRECTIVE] .BYTE $5D  -- needs manual handling  ; orig: - D 1 - - - 0x006326 01:A316: 5D        .byte $5D   ; 02
-    ; [DIRECTIVE] .BYTE $BD  -- needs manual handling  ; orig: - D 1 - - - 0x006327 01:A317: BD        .byte $BD   ; 03
-    ; [DIRECTIVE] .BYTE $8D  -- needs manual handling  ; orig: - D 1 - - - 0x006328 01:A318: 8D        .byte $8D   ; 04
-    ; [DIRECTIVE] .BYTE $8D  -- needs manual handling  ; orig: - D 1 - - - 0x006329 01:A319: 8D        .byte $8D   ; 05
+    DC.B $5D  ; data (was .BYTE) ; orig: - D 1 - - - 0x006324 01:A314: 5D        .byte $5D   ; 00
+    DC.B $BD  ; data (was .BYTE) ; orig: - D 1 - - - 0x006325 01:A315: BD        .byte $BD   ; 01
+    DC.B $5D  ; data (was .BYTE) ; orig: - D 1 - - - 0x006326 01:A316: 5D        .byte $5D   ; 02
+    DC.B $BD  ; data (was .BYTE) ; orig: - D 1 - - - 0x006327 01:A317: BD        .byte $BD   ; 03
+    DC.B $8D  ; data (was .BYTE) ; orig: - D 1 - - - 0x006328 01:A318: 8D        .byte $8D   ; 04
+    DC.B $8D  ; data (was .BYTE) ; orig: - D 1 - - - 0x006329 01:A319: 8D        .byte $8D   ; 05
 
 
 
 loc_0x00632A:  ; orig: loc_0x00632A:
-    MOVEA.L #$FF04BF,A0  ; Fix X: ; (empty translation for LDA)  ; orig: C D 1 - - - 0x00632A 01:A31A: BD BF 04  LDA ram_attr_enemy -
-    MOVE.B  (A0,D1.L),D0  ; ^
+    MOVEA.L #$FF04BF,A0  ; FIX v378: LDA $04BF,X base
+    MOVE.B  (A0,D1.L),D0  ; orig: C D 1 - - - 0x00632A 01:A31A: BD BF 04  LDA ram_attr_enemy -
     MOVE.B  D0,ram_0001_t20  ; orig: C - - - - - 0x00632D 01:A31D: 85 01     STA ram_0001_t20
     MOVE.B  #$05,D2  ; orig: C - - - - - 0x00632F 01:A31F: A0 05     LDY #$05
     MOVE.B  #con_obj_id_49,D0  ; orig: C - - - - - 0x006331 01:A321: A9 49     LDA #con_obj_id_49
@@ -2738,12 +2778,12 @@ b01_bra_A32C_loop:  ; orig: b01_bra_A32C_loop:
 
 
 tbl_A344_direction:  ; orig: tbl_A344_direction:
-    ; [DIRECTIVE] .BYTE con_dir__DR  -- needs manual handling  ; orig: - D 1 - - - 0x006354 01:A344: 05        .byte con_dir__DR   
-    ; [DIRECTIVE] .BYTE con_dir__UR  -- needs manual handling  ; orig: - D 1 - - - 0x006355 01:A345: 09        .byte con_dir__UR   
-    ; [DIRECTIVE] .BYTE con_dir__DL  -- needs manual handling  ; orig: - D 1 - - - 0x006356 01:A346: 06        .byte con_dir__DL   
-    ; [DIRECTIVE] .BYTE con_dir__UL  -- needs manual handling  ; orig: - D 1 - - - 0x006357 01:A347: 0A        .byte con_dir__UL   
-    ; [DIRECTIVE] .BYTE con_dir_Right  -- needs manual handling  ; orig: - D 1 - - - 0x006358 01:A348: 01        .byte con_dir_Right 
-    ; [DIRECTIVE] .BYTE con_dir_Left  -- needs manual handling  ; orig: - D 1 - - - 0x006359 01:A349: 02        .byte con_dir_Left  
+    DC.B $05  ; data (was .BYTE con_dir__DR)
+    DC.B $09  ; data (was .BYTE con_dir__UR)
+    DC.B $06  ; data (was .BYTE con_dir__DL)
+    DC.B $0A  ; data (was .BYTE con_dir__UL)
+    DC.B $01  ; data (was .BYTE con_dir_Right)
+    DC.B $02  ; data (was .BYTE con_dir_Left)
 
 
 
@@ -2754,10 +2794,12 @@ loc_0x00635A:  ; orig: loc_0x00635A:
     BNE     b01_bra_A399             ; BNE  ; orig: C - - - - - 0x00635C 01:A34C: D0 4B     BNE b01_bra_A399
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x00635E 01:A34E: A5 84     LDA ram_pos_Y_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x006360 01:A350: 38        SEC
-    ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x006361 01:A351: F5 84     SBC ram_pos_Y_enemy,
+    MOVEA.L #ram_pos_Y_enemy,A0
+    SUB.B  (A0,D1.L),D0
+
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006363 01:A353: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$0E,D0  ; orig: C - - - - - 0x006366 01:A356: C9 0E     CMP #$0E
-    BCS     b01_bra_A37D             ; BCS  ; orig: C - - - - - 0x006368 01:A358: B0 23     BCS b01_bra_A37D
+    BCC     b01_bra_A37D             ; BCS  ; orig: C - - - - - 0x006368 01:A358: B0 23     BCS b01_bra_A37D
     MOVE.B  #$01,D2  ; orig: C - - - - - 0x00636A 01:A35A: A0 01     LDY #$01
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x00636C 01:A35C: A5 70     LDA ram_pos_X_link
     MOVEA.L #ram_pos_X_enemy,A0
@@ -2780,8 +2822,8 @@ b01_bra_A368_loop:  ; orig: b01_bra_A368_loop:
 
     ; !! AND tbl_A344_direction - $01,X - needs manual review  ; orig: C - - - - - 0x00637E 01:A36E: 3D 43 A3  AND tbl_A344_directi
     BEQ     b01_bra_A37A             ; BEQ  ; orig: C - - - - - 0x006381 01:A371: F0 07     BEQ b01_bra_A37A
-    MOVEA.L #$FF00AC,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x006383 01:A373: F6 AC     INC ram_state_obj,X
-    ADDQ.B  #1,(A0,D1.L)  ; ^
+    MOVEA.L #$FF00AC,A0  ; FIX v378: INC $AC,X base
+    ADDQ.B  #1,(A0,D1.L)  ; orig: C - - - - - 0x006383 01:A373: F6 AC     INC ram_state_obj,X
     MOVE.B  #$70,D0  ; orig: C - - - - - 0x006385 01:A375: A9 70     LDA #$70
     MOVEA.L #ram_03BC_obj,A0
     MOVE.B  D0,(A0,D1.L)
@@ -2791,10 +2833,12 @@ b01_bra_A37A:  ; orig: b01_bra_A37A:
 b01_bra_A37D:  ; orig: b01_bra_A37D:
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x00638D 01:A37D: A5 70     LDA ram_pos_X_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x00638F 01:A37F: 38        SEC
-    ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x006390 01:A380: F5 70     SBC ram_pos_X_enemy,
+    MOVEA.L #ram_pos_X_enemy,A0
+    SUB.B  (A0,D1.L),D0
+
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006392 01:A382: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$0E,D0  ; orig: C - - - - - 0x006395 01:A385: C9 0E     CMP #$0E
-    BCS     b01_bra_A37A             ; BCS  ; orig: C - - - - - 0x006397 01:A387: B0 F1     BCS b01_bra_A37A
+    BCC     b01_bra_A37A             ; BCS  ; orig: C - - - - - 0x006397 01:A387: B0 F1     BCS b01_bra_A37A
     MOVE.B  #$04,D2  ; orig: C - - - - - 0x006399 01:A389: A0 04     LDY #$04
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x00639B 01:A38B: A5 84     LDA ram_pos_Y_link
     MOVEA.L #ram_pos_Y_enemy,A0
@@ -2852,7 +2896,7 @@ b01_bra_A3BF:  ; orig: b01_bra_A3BF:
 
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0063D9 01:A3C9: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$05,D0  ; orig: C - - - - - 0x0063DC 01:A3CC: C9 05     CMP #$05
-    BCS     b01_bra_A3DE             ; BCS  ; orig: C - - - - - 0x0063DE 01:A3CE: B0 0E     BCS b01_bra_A3DE
+    BCC     b01_bra_A3DE             ; BCS  ; orig: C - - - - - 0x0063DE 01:A3CE: B0 0E     BCS b01_bra_A3DE
     MOVEA.L #ram_dir_enemy,A0
     MOVE.B  (A0,D1.L),D0
 
@@ -2864,8 +2908,8 @@ b01_bra_A3BF:  ; orig: b01_bra_A3BF:
     MOVEA.L #ram_03BC_obj,A0
     MOVE.B  D0,(A0,D1.L)
 
-    MOVEA.L #$FF00AC,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x0063EC 01:A3DC: F6 AC     INC ram_state_obj,X
-    ADDQ.B  #1,(A0,D1.L)  ; ^
+    MOVEA.L #$FF00AC,A0  ; FIX v378: INC $AC,X base
+    ADDQ.B  #1,(A0,D1.L)  ; orig: C - - - - - 0x0063EC 01:A3DC: F6 AC     INC ram_state_obj,X
 b01_bra_A3DE:  ; orig: b01_bra_A3DE:
     JMP     loc_A3EB  ; orig: C - - - - - 0x0063EE 01:A3DE: 4C EB A3  JMP loc_A3EB
 b01_bra_A3E1:  ; orig: b01_bra_A3E1:
@@ -2891,16 +2935,20 @@ loc_0x0063FE:  ; orig: loc_0x0063FE:
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0063FF 01:A3EF: 48        PHA
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x006400 01:A3F0: A5 84     LDA ram_pos_Y_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x006402 01:A3F2: 38        SEC
-    ; !! SBC ram_pos_Y_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x006403 01:A3F3: F5 84     SBC ram_pos_Y_enemy,
+    MOVEA.L #ram_pos_Y_enemy,A0
+    SUB.B  (A0,D1.L),D0
+
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006405 01:A3F5: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$09,D0  ; orig: C - - - - - 0x006408 01:A3F8: C9 09     CMP #$09
-    BCS     b01_bra_A416             ; BCS  ; orig: C - - - - - 0x00640A 01:A3FA: B0 1A     BCS b01_bra_A416
+    BCC     b01_bra_A416             ; BCS  ; orig: C - - - - - 0x00640A 01:A3FA: B0 1A     BCS b01_bra_A416
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x00640C 01:A3FC: A5 70     LDA ram_pos_X_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x00640E 01:A3FE: 38        SEC
-    ; !! SBC ram_pos_X_enemy,X - complex mode, manual review needed  ; orig: C - - - - - 0x00640F 01:A3FF: F5 70     SBC ram_pos_X_enemy,
+    MOVEA.L #ram_pos_X_enemy,A0
+    SUB.B  (A0,D1.L),D0
+
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006411 01:A401: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$09,D0  ; orig: C - - - - - 0x006414 01:A404: C9 09     CMP #$09
-    BCS     b01_bra_A416             ; BCS  ; orig: C - - - - - 0x006416 01:A406: B0 0E     BCS b01_bra_A416
+    BCC     b01_bra_A416             ; BCS  ; orig: C - - - - - 0x006416 01:A406: B0 0E     BCS b01_bra_A416
     BSR     sub_bat_74A3_increase_rupees_and_add_sfx             ; JSR -> BSR  ; orig: C - - - - - 0x006418 01:A408: 20 A3 74  JSR sub_bat_74A3_inc
     BSR     sub_0x01FEC1_destroy_object             ; JSR -> BSR  ; orig: C - - - - - 0x00641B 01:A40B: 20 B1 FE  JSR sub_0x01FEC1_des
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x00641E 01:A40E: A9 00     LDA #$00
@@ -2921,20 +2969,21 @@ loc_A420:  ; orig: loc_A420:
 
 
 ; bzk garbage
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006433 01:A423: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006440 01:A430: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006450 01:A440: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006460 01:A450: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006470 01:A460: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006480 01:A470: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006490 01:A480: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0064A0 01:A490: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0064B0 01:A4A0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0064C0 01:A4B0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0064D0 01:A4C0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0064E0 01:A4D0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0064F0 01:A4E0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x006500 01:A4F0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006433 01:A423: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006440 01:A430: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006450 01:A440: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006460 01:A450: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006470 01:A460: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006480 01:A470: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006490 01:A480: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0064A0 01:A490: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0064B0 01:A4A0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0064C0 01:A4B0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0064D0 01:A4C0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0064E0 01:A4D0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0064F0 01:A4E0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x006500 01:A4F0: FF        .byte $FF, $FF, $FF,
+    EVEN  ; FIX: alignment after odd-byte data
 
 
 
@@ -2950,132 +2999,132 @@ ofs_A500_bank_s2_asm_export:  ; orig: ofs_A500_bank_s2_asm_export:
 
 
 ; bzk garbage
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007780 01:B770: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007790 01:B780: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0077A0 01:B790: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0077B0 01:B7A0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0077C0 01:B7B0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0077D0 01:B7C0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0077E0 01:B7D0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0077F0 01:B7E0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007800 01:B7F0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007810 01:B800: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007820 01:B810: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007830 01:B820: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007840 01:B830: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007850 01:B840: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007860 01:B850: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007870 01:B860: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007880 01:B870: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007890 01:B880: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0078A0 01:B890: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0078B0 01:B8A0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0078C0 01:B8B0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0078D0 01:B8C0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0078E0 01:B8D0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0078F0 01:B8E0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007900 01:B8F0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007910 01:B900: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007920 01:B910: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007930 01:B920: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007940 01:B930: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007950 01:B940: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007960 01:B950: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007970 01:B960: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007980 01:B970: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007990 01:B980: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0079A0 01:B990: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0079B0 01:B9A0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0079C0 01:B9B0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0079D0 01:B9C0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0079E0 01:B9D0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x0079F0 01:B9E0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A00 01:B9F0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A10 01:BA00: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A20 01:BA10: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A30 01:BA20: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A40 01:BA30: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A50 01:BA40: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A60 01:BA50: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A70 01:BA60: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A80 01:BA70: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007A90 01:BA80: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007AA0 01:BA90: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007AB0 01:BAA0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007AC0 01:BAB0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007AD0 01:BAC0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007AE0 01:BAD0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007AF0 01:BAE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B00 01:BAF0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B10 01:BB00: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B20 01:BB10: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B30 01:BB20: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B40 01:BB30: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B50 01:BB40: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B60 01:BB50: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B70 01:BB60: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B80 01:BB70: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007B90 01:BB80: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007BA0 01:BB90: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007BB0 01:BBA0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007BC0 01:BBB0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007BD0 01:BBC0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007BE0 01:BBD0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007BF0 01:BBE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C00 01:BBF0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C10 01:BC00: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C20 01:BC10: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C30 01:BC20: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C40 01:BC30: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C50 01:BC40: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C60 01:BC50: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C70 01:BC60: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C80 01:BC70: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007C90 01:BC80: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007CA0 01:BC90: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007CB0 01:BCA0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007CC0 01:BCB0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007CD0 01:BCC0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007CE0 01:BCD0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007CF0 01:BCE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D00 01:BCF0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D10 01:BD00: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D20 01:BD10: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D30 01:BD20: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D40 01:BD30: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D50 01:BD40: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D60 01:BD50: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D70 01:BD60: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D80 01:BD70: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007D90 01:BD80: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007DA0 01:BD90: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007DB0 01:BDA0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007DC0 01:BDB0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007DD0 01:BDC0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007DE0 01:BDD0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007DF0 01:BDE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E00 01:BDF0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E10 01:BE00: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E20 01:BE10: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E30 01:BE20: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E40 01:BE30: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E50 01:BE40: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E60 01:BE50: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E70 01:BE60: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E80 01:BE70: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007E90 01:BE80: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007EA0 01:BE90: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007EB0 01:BEA0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007EC0 01:BEB0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007ED0 01:BEC0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007EE0 01:BED0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007EF0 01:BEE0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007F00 01:BEF0: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007F10 01:BF00: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007F20 01:BF10: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007F30 01:BF20: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007F40 01:BF30: FF        .byte $FF, $FF, $FF,
-    ; [DIRECTIVE] .BYTE $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF  -- needs manual handling  ; orig: - - - - - - 0x007F50 01:BF40: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007780 01:B770: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007790 01:B780: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0077A0 01:B790: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0077B0 01:B7A0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0077C0 01:B7B0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0077D0 01:B7C0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0077E0 01:B7D0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0077F0 01:B7E0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007800 01:B7F0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007810 01:B800: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007820 01:B810: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007830 01:B820: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007840 01:B830: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007850 01:B840: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007860 01:B850: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007870 01:B860: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007880 01:B870: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007890 01:B880: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0078A0 01:B890: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0078B0 01:B8A0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0078C0 01:B8B0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0078D0 01:B8C0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0078E0 01:B8D0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0078F0 01:B8E0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007900 01:B8F0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007910 01:B900: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007920 01:B910: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007930 01:B920: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007940 01:B930: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007950 01:B940: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007960 01:B950: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007970 01:B960: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007980 01:B970: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007990 01:B980: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0079A0 01:B990: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0079B0 01:B9A0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0079C0 01:B9B0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0079D0 01:B9C0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0079E0 01:B9D0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0079F0 01:B9E0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A00 01:B9F0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A10 01:BA00: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A20 01:BA10: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A30 01:BA20: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A40 01:BA30: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A50 01:BA40: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A60 01:BA50: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A70 01:BA60: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A80 01:BA70: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007A90 01:BA80: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007AA0 01:BA90: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007AB0 01:BAA0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007AC0 01:BAB0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007AD0 01:BAC0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007AE0 01:BAD0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007AF0 01:BAE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B00 01:BAF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B10 01:BB00: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B20 01:BB10: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B30 01:BB20: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B40 01:BB30: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B50 01:BB40: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B60 01:BB50: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B70 01:BB60: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B80 01:BB70: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007B90 01:BB80: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007BA0 01:BB90: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007BB0 01:BBA0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007BC0 01:BBB0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007BD0 01:BBC0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007BE0 01:BBD0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007BF0 01:BBE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C00 01:BBF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C10 01:BC00: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C20 01:BC10: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C30 01:BC20: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C40 01:BC30: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C50 01:BC40: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C60 01:BC50: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C70 01:BC60: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C80 01:BC70: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007C90 01:BC80: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007CA0 01:BC90: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007CB0 01:BCA0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007CC0 01:BCB0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007CD0 01:BCC0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007CE0 01:BCD0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007CF0 01:BCE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D00 01:BCF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D10 01:BD00: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D20 01:BD10: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D30 01:BD20: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D40 01:BD30: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D50 01:BD40: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D60 01:BD50: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D70 01:BD60: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D80 01:BD70: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007D90 01:BD80: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007DA0 01:BD90: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007DB0 01:BDA0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007DC0 01:BDB0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007DD0 01:BDC0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007DE0 01:BDD0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007DF0 01:BDE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E00 01:BDF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E10 01:BE00: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E20 01:BE10: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E30 01:BE20: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E40 01:BE30: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E50 01:BE40: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E60 01:BE50: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E70 01:BE60: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E80 01:BE70: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007E90 01:BE80: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007EA0 01:BE90: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007EB0 01:BEA0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007EC0 01:BEB0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007ED0 01:BEC0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007EE0 01:BED0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007EF0 01:BEE0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007F00 01:BEF0: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007F10 01:BF00: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007F20 01:BF10: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007F30 01:BF20: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007F40 01:BF30: FF        .byte $FF, $FF, $FF,
+    DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x007F50 01:BF40: FF        .byte $FF, $FF, $FF,
 
 
 
@@ -3090,9 +3139,9 @@ ofs_A500_bank_s2_asm_export:  ; orig: ofs_A500_bank_s2_asm_export:
 
 
     ; [DIRECTIVE] .SEGMENT "VECTORS_01"  -- needs manual handling  ; orig: .segment "VECTORS_01"
-    ; [DIRECTIVE] .WORD vec_0x01E494_NMI  -- needs manual handling  ; orig: - - - - - - 0x00800A 01:BFFA: 84 E4     .word vec_0x01E494_N
-    ; [DIRECTIVE] .WORD vec_inc_0x003F60_RESET  -- needs manual handling  ; orig: - - - - - - 0x00800C 01:BFFC: 50 BF     .word vec_inc_0x003F
-    ; [DIRECTIVE] .WORD $BFF0  -- needs manual handling  ; orig: - - - - - - 0x00800E 01:BFFE: F0 BF     .word $BFF0 ; this g
+    DC.B $84,$E4  ; data (was .WORD vec_0x01E494_NMI)
+    DC.B $50,$BF  ; data (was .WORD vec_inc_0x003F60_RESET)
+    DC.B $F0,$BF  ; data (was .WORD $BFF0)
 
 ; ── Translation Stats ──
 ; Translated:  1153

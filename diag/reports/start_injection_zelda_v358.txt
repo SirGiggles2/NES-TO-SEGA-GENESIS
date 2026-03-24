@@ -1,0 +1,23 @@
+=== AUTOSTART FULL PATH TEST zelda_v358 ===
+Max frames: 3600 (~60s)
+Output: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\start_injection_zelda_v358.txt
+Goal: script 0 (title) -> 1 (slot select) -> 5+ (gameplay)
+
+Frame | Script | Sub | BtnPress | Notes
+-----------------------------------------------------------------
+  300 |      0 |   0 | 0x00     | heartbeat
+  600 |      0 |   0 | 0x00     | heartbeat
+  900 |      0 |   0 | 0x00     | heartbeat
+ 1200 |      0 |   0 | 0x00     | heartbeat
+ 1500 |      0 |   0 | 0x00     | heartbeat
+ 1800 |      0 |   0 | 0x00     | heartbeat
+ 2100 |      0 |   0 | 0x00     | heartbeat
+ 2400 |      0 |   0 | 0x00     | heartbeat
+ 2700 |      0 |   0 | 0x00     | heartbeat
+ 3000 |      0 |   0 | 0x00     | heartbeat
+ 3300 |      0 |   0 | 0x00     | heartbeat
+ 3600 |      0 |   0 | 0x00     | heartbeat
+
+=== SUMMARY ===
+Final: script=0 subscript=0
+Total frames: 3600

@@ -1,0 +1,45 @@
+=== GAMEPLAY PROBE zelda_v403 ===
+Waiting for script>=5, then capturing gameplay state and screenshots.
+
+state frame=1 script=0 sub=0 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,00,00]
+state frame=491 script=0 sub=1 ready=1 ppu=0x12 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=3B hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=502 script=0 sub=2 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=3B hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=506 script=1 sub=0 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=509 script=1 sub=2 ready=0 ppu=0x12 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=600 script=1 sub=2 ready=0 ppu=0x12 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=877 script=1 sub=3 ready=0 ppu=0x14 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=879 script=1 sub=5 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=880 script=1 sub=6 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=881 script=1 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=882 script=1 sub=1 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=888 script=2 sub=0 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=899 script=3 sub=0 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=900 script=3 sub=1 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=1200 script=3 sub=1 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1268 script=3 sub=2 ready=0 ppu=0x18 map=77 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1270 script=3 sub=3 ready=0 ppu=0x18 map=77 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1272 script=3 sub=5 ready=0 ppu=0x00 map=77 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1273 script=3 sub=6 ready=0 ppu=0x0E map=77 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1274 script=3 sub=7 ready=0 ppu=0x44 map=77 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1275 script=3 sub=8 ready=0 ppu=0x0C map=77 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1278 script=3 sub=0 ready=1 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+state frame=1358 script=4 sub=0 ready=0 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=5 spr1=00 mmc=[00,00,FF,00]
+state frame=1360 script=5 sub=0 ready=0 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=FF msg=00 quest=00 hearts=00 pause=0 trans=0 timer=3 spr1=48 mmc=[00,00,FF,00]
+
+*** GAMEPLAY ENTRY ***
+entry frame=1360 script=5 sub=0 ready=0 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=FF msg=00 quest=00 hearts=00 pause=0 trans=0 timer=3 spr1=48 mmc=[00,00,FF,00]
+screenshot: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_entry_f1360.png
+screenshot: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_f1390.png
+f+30 frame=1390 script=5 sub=0 ready=1 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=1 spr1=B8 mmc=[00,00,FF,00]
+screenshot: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_f1480.png
+f+120 frame=1480 script=5 sub=0 ready=1 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=1 spr1=B8 mmc=[00,00,FF,00]
+screenshot: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_f1600.png
+f+240 frame=1600 script=5 sub=0 ready=1 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=1 spr1=B8 mmc=[00,00,FF,00]
+
+=== SUMMARY ===
+final frame=1600 script=5 sub=0 ready=1 ppu=0x00 map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=1 spr1=B8 mmc=[00,00,FF,00]
+gameplay_entry_frame=1360
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_entry_f1360.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_f1390.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_f1480.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v403_gameplay_f1600.png

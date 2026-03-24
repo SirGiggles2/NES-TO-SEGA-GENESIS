@@ -1,0 +1,222 @@
+[1/4] Regenerating VDP bank files...
+=======================================================
+  VDP PATCH REPORT
+=======================================================
+
+FILE: bank_00_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_00_gen68k_vdp.asm
+
+FILE: bank_01_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_01_gen68k_vdp.asm
+
+FILE: bank_02_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_02_gen68k_vdp.asm
+
+FILE: bank_03_gen68k.asm
+  PPU stubs replaced: 3
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_03_gen68k_vdp.asm
+
+FILE: bank_04_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_04_gen68k_vdp.asm
+
+FILE: bank_05_gen68k.asm
+  PPU stubs replaced: 12
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_05_gen68k_vdp.asm
+
+FILE: bank_06_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_06_gen68k_vdp.asm
+
+FILE: bank_FF_gen68k.asm
+  PPU stubs replaced: 32
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_FF_gen68k_vdp.asm
+
+FILE: bank___BF50_BFF9_gen68k.asm
+  PPU stubs replaced: 3
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank___BF50_BFF9_gen68k_vdp.asm
+
+FILE: bank_s1_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_s1_gen68k_vdp.asm
+
+FILE: bank_s2_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_s2_gen68k_vdp.asm
+
+=======================================================
+TOTAL PPU stubs replaced: 58
+TOTAL unhandled:          0
+
+Next: build with vdp_layer.asm included!
+      assemble with: asmx or vasm (68000 mode)
+[2/4] Cleaning translated syntax...
+=================================================================
+  SYNTAX FIX REPORT
+=================================================================
+  bank_00_gen68k_vdp.asm                             fixed=  29  labels prefixed=222
+  bank_01_gen68k_vdp.asm                             fixed= 155  labels prefixed=304
+  bank_02_gen68k_vdp.asm                             fixed= 425  labels prefixed=522
+  bank_03_gen68k_vdp.asm                             fixed=  20  labels prefixed=6
+  bank_04_gen68k_vdp.asm                             fixed=1272  labels prefixed=1416
+  bank_05_gen68k_vdp.asm                             fixed= 453  labels prefixed=1075
+  bank_06_gen68k_vdp.asm                             fixed=6254  labels prefixed=181
+  bank_FF_gen68k_vdp.asm                             fixed= 442  labels prefixed=815
+  bank___BF50_BFF9_gen68k_vdp.asm                    fixed=   2  labels prefixed=4
+  bank_s1_gen68k_vdp.asm                             fixed=   0  labels prefixed=0
+  bank_s2_gen68k_vdp.asm                             fixed= 241  labels prefixed=481
+
+  Total lines fixed:         9293
+  Total labels prefixed:     5026
+
+=================================================================
+  PRE-SCAN: REMAINING SUSPECT PATTERNS
+=================================================================
+
+  FILE: bank_00_gen68k_vdp.asm (10 hits)
+    line 3217 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x00183B 00:982B: 8D 15 40  STA ($00FF8011).l
+    line 3219 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001840 00:9830: 8D 15 40  STA ($00FF8011).l
+    line 3223 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8012).l  ; orig: C - - - - - 0x001847 00:9837: 8D 17 40  STA ($00FF8012).l
+    line 3445 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001938 00:9928: 8D 15 40  STA ($00FF8011).l
+    line 3966 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BB6 00:9BA6: 8D 15 40  STA ($00FF8011).l
+    line 3979 [large displacement >4 hex digits]
+                 MOVE.B  D1,($00FF8010).l  ; orig: C - - - - - 0x001BC7 00:9BB7: 8E 11 40  STX ($00FF8010).l
+    line 4004 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BF5 00:9BE5: 8D 15 40  STA ($00FF8011).l
+    line 4006 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BFA 00:9BEA: 8D 15 40  STA ($00FF8011).l
+    line 4426 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001D5B 00:9D4B: 8D 15 40  STA ($00FF8011).l
+    line 4428 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001D60 00:9D50: 8D 15 40  STA ($00FF8011).l
+
+  FILE: bank_02_gen68k_vdp.asm (30 hits)
+    line  179 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x009018 02:9008: AD 2D 04  LDA ram_042B_enemy +
+    line  188 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x009024 02:9014: AD 2D 04  LDA ram_042B_enemy +
+    line  388 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x0090E4 02:90D4: AD 2D 04  LDA ram_042B_enemy +
+    line  396 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x0090EE 02:90DE: AD 2D 04  LDA ram_042B_enemy +
+    line 1247 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C D 0 - - - 0x0094FA 02:94EA: EE 2D 04  INC ram_042B_enemy +
+    line 1290 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF042E).l  ; orig: C - - - - - 0x009537 02:9527: 8D 2E 04  STA ram_042B_enemy +
+    line 1291 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF042F).l  ; orig: C - - - - - 0x00953A 02:952A: 8D 2F 04  STA ram_042B_enemy +
+    line 1389 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF042D).l  ; orig: C - - - - - 0x0095B6 02:95A6: 8D 2D 04  STA ram_042B_enemy +
+    line 1433 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x0095F8 02:95E8: EE 2D 04  INC ram_042B_enemy +
+    line 1447 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x009604 02:95F4: EE 2D 04  INC ram_042B_enemy +
+    line 1485 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x00964B 02:963B: EE 2D 04  INC ram_042B_enemy +
+    line 1513 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0304).l  ; orig: C - - - - - 0x009679 02:9669: 8D 04 03  STA ram_0302_ppu_buf
+    line 1517 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0303).l  ; orig: C - - - - - 0x009685 02:9675: 8D 03 03  STA ram_0302_ppu_buf
+    line 1549 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042E).l,D0  ; orig: C - - - - - 0x0096C1 02:96B1: AD 2E 04  LDA ram_042B_enemy +
+    line 1590 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042E).l  ; orig: C - - - - - 0x0096E3 02:96D3: EE 2E 04  INC ram_042B_enemy +
+    line 1606 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0325).l  ; orig: C - - - - - 0x0096FA 02:96EA: 8D 25 03  STA ram_0302_ppu_buf
+    line 1608 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0326).l  ; orig: C - - - - - 0x009700 02:96F0  STA ram_0302_ppu_buf
+    line 1610 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0327).l  ; orig: C - - - - - 0x009705 02:96F5  STA ram_0302_ppu_buf
+    line 1612 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0328).l  ; orig: C - - - - - 0x00970A 02:96FA  STA ram_0302_ppu_buf
+    line 1614 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0329).l  ; orig: C - - - - - 0x00970F 02:96FF  STA ram_0302_ppu_buf
+
+  FILE: bank_04_gen68k_vdp.asm (2 hits)
+    line  843 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0240).l  ; orig: - - - - - - 0x01029C 04:828C: 8D 40 02  STA ram_spr_Y + $40
+    line  844 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0244).l  ; orig: - - - - - - 0x01029F 04:828F: 8D 44 02  STA ram_spr_Y + $44
+
+  FILE: bank_05_gen68k_vdp.asm (3 hits)
+    line 5208 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$EE,D0  ; orig: C - - - - - 0x0164A1 05:A491: C9 EE     CMP #< ( tbl_9FA0_ti
+    line 6263 [#>/#< with non-literal (unresolved)]
+                 MOVE.B  #$1A,D0  ; orig: C D 1 - - - 0x0168EE 05:A8DE: A9 1A     LDA #< (ram_6530 - $
+    line 6265 [#>/#< with non-literal (unresolved)]
+                 MOVE.B  #$65,D0  ; orig: C - - - - - 0x0168F2 05:A8E2: A9 65     LDA #> (ram_6530 - $
+
+  FILE: bank_06_gen68k_vdp.asm (6 hits)
+    line  164 [large displacement >4 hex digits]
+                 LEA     ($FF687E).l,A0
+    line  174 [large displacement >4 hex digits]
+                 LEA     ($FF6B7E).l,A0
+    line  265 [large displacement >4 hex digits]
+                 LEA     ($FF0000).l,A0
+    line  307 [large displacement >4 hex digits]
+                 LEA     ($FF67F0).l,A1
+    line 7069 [large displacement >4 hex digits]
+                 CMPI.B  #$3F,($FF6B7E).l
+    line 7071 [large displacement >4 hex digits]
+                 LEA     ($FF6B7E).l,A1
+
+  FILE: bank_FF_gen68k_vdp.asm (6 hits)
+    line  185 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8010).l  ; orig: C - - - - - 0x01E470 07:E460: 8D 11 40  STA ($00FF8010).l
+    line  187 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x01E475 07:E465: 8D 15 40  STA ($00FF8011).l
+    line 1138 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$F0,D0  ; orig: C - - - - - 0x01E8FB 07:E8EB: C9 F0     CMP #< (ram_6530 + $
+    line 1141 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$67,D0  ; orig: C - - - - - 0x01E901 07:E8F1: C9 67     CMP #> (ram_6530 + $
+    line 1419 [large displacement >4 hex digits]
+                 MOVE.B  D0,($FF6B92).l  ; FIX v401: restore tunic color write to ram_6B7E_palette_buffer+$14
+    line 1837 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x01EC56 07:EC46: 8D 15 40  STA ($00FF8011).l
+
+  FILE: bank_s2_gen68k_vdp.asm (3 hits)
+    line  468 [ADDX instruction]
+                 ADD.B   #$0E,D0       ; FIX v362: ADDX has no immediate form; CLC+ADC #n = ADD.B #n,Dn  ; orig: 
+    line  502 [#>/#< with non-literal (unresolved)]
+                 MOVE.B  #$7F,D0  ; FIX v361: was #< ram_067F ? fix_syntax.py resolved to $00; correct low byte o
+    line  504 [#>/#< with non-literal (unresolved)]
+                 MOVE.B  #$06,D0  ; FIX v361: was #> ram_067F ? fix_syntax.py resolved to $02; correct high byte 
+
+  Total suspect lines: 60
+
+  All done! Run build.bat now.
+[3/4] Assembling Genesis ROM...
+vasm 2.0e (c) in 2002-2026 Volker Barthelmann
+vasm M68k/CPU32/ColdFire cpu backend 2.8 (c) 2002-2025 Frank Wille
+vasm motorola syntax module 3.19d (c) 2002-2025 Frank Wille
+vasm binary output module 2.3e (c) 2002-2025 Volker Barthelmann and Frank Wille
+
+org0001:0(acrwx1):	         256 bytes
+org0002:100(acrwx1):	         246 bytes
+org0003:200(acrwx2):	      164656 bytes
+[4/4] Fixing checksum...
+  Checksum: $6BC3
+  ROM size: 165168 bytes (161 KB)
+  Written:  C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v437.md
+
+Build complete: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v437.md
+Listing: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\build\zelda_v437.lst

@@ -1,0 +1,38 @@
+=== AUTOSTART FULL PATH TEST zelda_v370 ===
+Max frames: 3600 (~60s)
+Output: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\start_injection_zelda_v370.txt
+Goal: script 0 (title) -> 1 (slot select) -> 5+ (gameplay)
+
+Frame | Script | Sub | BtnPress | Notes
+-----------------------------------------------------------------
+  300 |      0 |   0 | 0x00     | heartbeat
+  490 |      0 |   1 | 0x00     | SUBSCRIPT 0->1
+  500 |      0 |   2 | 0x00     | SUBSCRIPT 1->2
+  505 |      1 |   0 | 0x00     | SCRIPT CHANGE 0->1
+  510 |      1 |   2 | 0x00     | SUBSCRIPT 0->2
+  600 |      1 |   2 | 0x00     | heartbeat
+  878 |      1 |   3 | 0x00     | SUBSCRIPT 2->3
+  880 |      1 |   5 | 0x00     | SUBSCRIPT 3->5
+  881 |      1 |   6 | 0x00     | SUBSCRIPT 5->6
+  882 |      1 |   0 | 0x00     | SUBSCRIPT 6->0
+  883 |      1 |   1 | 0x00     | SUBSCRIPT 0->1
+  888 |      2 |   0 | 0x00     | SCRIPT CHANGE 1->2
+  889 |      2 |   1 | 0x00     | SUBSCRIPT 0->1
+  890 |      2 |   0 | 0x00     | SUBSCRIPT 1->0
+  891 |      3 |   0 | 0x00     | SCRIPT CHANGE 2->3
+  892 |      3 |   1 | 0x00     | SUBSCRIPT 0->1
+  900 |      3 |   1 | 0x00     | heartbeat
+ 1200 |      3 |   1 | 0x00     | heartbeat
+ 1260 |      3 |   2 | 0x00     | SUBSCRIPT 1->2
+ 1500 |      3 |   2 | 0x00     | heartbeat
+ 1800 |      3 |   2 | 0x00     | heartbeat
+ 2100 |      3 |   2 | 0x00     | heartbeat
+ 2400 |      3 |   2 | 0x00     | heartbeat
+ 2700 |      3 |   2 | 0x00     | heartbeat
+ 3000 |      3 |   2 | 0x00     | heartbeat
+ 3300 |      3 |   2 | 0x00     | heartbeat
+ 3600 |      3 |   2 | 0x00     | heartbeat
+
+=== SUMMARY ===
+Final: script=3 subscript=2
+Total frames: 3600

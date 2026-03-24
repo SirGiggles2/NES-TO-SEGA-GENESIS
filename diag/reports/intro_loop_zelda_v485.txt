@@ -1,0 +1,52 @@
+=== INTRO LOOP PROBE: zelda_v485 ===
+f=00000 frm=  0 rdy=0 ad=0 ph=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 042E=00 0419=00 nmi=1 cfr=0
+f=00054 frm=  0 rdy=0 ad=0 ph=2 timer=  0 sy=$00 2000=$00 5C=0 0415=0 042E=00 0419=00 nmi=6 cfr=0
+f=00097 frm=  0 rdy=0 ad=0 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10 cfr=0
+f=00143 frm=  3 rdy=0 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=13 cfr=9
+f=00144 frm=  4 rdy=0 ad=0 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=14 cfr=0
+handler_2 active at f=150 frm=5 nmi=15
+f=00150 frm=  5 rdy=1 ad=0 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=15 cfr=0
+f=00210 frm= 56 rdy=1 ad=0 ph=0 timer= 25 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=65 cfr=0
+f=00260 frm=106 rdy=1 ad=0 ph=0 timer= 50 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=115 cfr=0
+f=00310 frm=156 rdy=1 ad=0 ph=0 timer= 75 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=165 cfr=0
+f=00360 frm=206 rdy=1 ad=0 ph=0 timer=100 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=215 cfr=0
+f=00410 frm=  0 rdy=1 ad=0 ph=0 timer=125 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=265 cfr=0
+f=00460 frm= 50 rdy=1 ad=0 ph=0 timer=150 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=315 cfr=0
+f=00510 frm=100 rdy=1 ad=0 ph=0 timer=175 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=365 cfr=0
+f=00560 frm=150 rdy=1 ad=0 ph=0 timer=200 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=415 cfr=0
+f=00610 frm=200 rdy=1 ad=0 ph=0 timer=225 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=465 cfr=0
+f=00660 frm=250 rdy=1 ad=0 ph=0 timer=250 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=515 cfr=0
+f=00671 frm=  5 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=526 cfr=0
+f=00721 frm= 55 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=576 cfr=0
+f=00771 frm=105 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=626 cfr=0
+f=00821 frm=155 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=676 cfr=0
+f=00871 frm=205 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=726 cfr=0
+f=00921 frm=255 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=776 cfr=0
+f=00971 frm= 49 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=826 cfr=0
+f=01021 frm= 99 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=876 cfr=0
+f=01071 frm=149 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=926 cfr=0
+f=01106 frm=184 rdy=0 ad=1 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=961 cfr=0
+f=01116 frm=185 rdy=0 ad=1 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=962 cfr=9
+f=01117 frm=186 rdy=0 ad=1 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=963 cfr=0
+f=01123 frm=187 rdy=1 ad=1 ph=0 timer=  0 sy=$10 2000=$B2 5C=1 0415=0 042E=00 0419=00 nmi=964 cfr=0
+f=01183 frm=238 rdy=1 ad=1 ph=0 timer=  0 sy=$29 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1014 cfr=0
+f=01233 frm= 32 rdy=1 ad=1 ph=0 timer=  0 sy=$42 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1064 cfr=0
+f=01283 frm= 82 rdy=1 ad=1 ph=0 timer=  0 sy=$5B 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1114 cfr=0
+f=01333 frm=132 rdy=1 ad=1 ph=0 timer=  0 sy=$74 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1164 cfr=0
+f=01383 frm=182 rdy=1 ad=1 ph=0 timer=  0 sy=$8D 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1214 cfr=0
+f=01433 frm=232 rdy=1 ad=1 ph=0 timer=  0 sy=$A6 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1264 cfr=0
+f=01483 frm= 26 rdy=1 ad=1 ph=0 timer=  0 sy=$BF 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1314 cfr=0
+f=01533 frm= 76 rdy=1 ad=1 ph=0 timer=  0 sy=$D8 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1364 cfr=0
+f=01583 frm=126 rdy=1 ad=1 ph=0 timer=  0 sy=$01 2000=$B0 5C=0 0415=1 042E=00 0419=00 nmi=1414 cfr=0
+f=01596 frm=139 rdy=1 ad=1 ph=1 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1427 cfr=0
+f=01646 frm=189 rdy=1 ad=1 ph=1 timer= 50 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1477 cfr=0
+f=01696 frm=239 rdy=1 ad=1 ph=1 timer=100 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1527 cfr=0
+f=01746 frm= 33 rdy=1 ad=1 ph=1 timer=150 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1577 cfr=0
+f=01796 frm= 83 rdy=1 ad=1 ph=1 timer=200 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1627 cfr=0
+f=01846 frm=133 rdy=1 ad=1 ph=1 timer=250 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1677 cfr=0
+f=01852 frm=139 rdy=1 ad=1 ph=2 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1683 cfr=0
+*** FREEZE at f=1878 frm=155 nmi=1699 PC=00DCBE ***
+  ram_042E=$00 ram_0419=$00 ptr=$0000
+
+=== FINAL: f=12000 nmi=1699 frm=155 frozen=true ===
+=== PROBE COMPLETE ===

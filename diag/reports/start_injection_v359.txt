@@ -1,0 +1,41 @@
+=== START BUTTON INJECTION TEST v359 ===
+Inject frame: 800  Max frames: 1500
+Output: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\start_injection_v359.txt
+Watching: ram_btn_press=$FF00F8 | ram_script=$FF0012 | ram_subscript=$FF0013
+
+Frame | Script | Sub | BtnPress | Notes
+-----------------------------------------------------------------
+  100 |      0 |   0 | 0x00     | pre
+  157 |      1 |   0 | 0x00     | SCRIPT CHANGE 0->1
+  200 |      1 |   0 | 0x00     | pre
+  300 |      1 |   0 | 0x00     | pre
+  400 |      1 |   0 | 0x00     | pre
+  500 |      1 |   0 | 0x00     | pre
+  600 |      1 |   0 | 0x00     | pre
+  700 |      1 |   0 | 0x00     | pre
+  800 |      1 |   0 | 0x10     | *** INJECT START
+  805 |      1 |   0 | 0x00     | 
+  810 |      1 |   0 | 0x00     | 
+  815 |      1 |   0 | 0x00     | 
+  820 |      1 |   0 | 0x00     | 
+  825 |      1 |   0 | 0x00     | 
+  830 |      1 |   0 | 0x00     | 
+  835 |      1 |   0 | 0x00     | 
+  840 |      1 |   0 | 0x00     | 
+  845 |      1 |   0 | 0x00     | 
+  850 |      1 |   0 | 0x00     | 
+  855 |      1 |   0 | 0x00     | 
+  860 |      1 |   0 | 0x00     | 
+  865 |      1 |   0 | 0x00     | 
+  870 |      1 |   0 | 0x00     | 
+  875 |      1 |   0 | 0x00     | 
+  880 |      1 |   0 | 0x00     | 
+  885 |      1 |   0 | 0x00     | 
+  890 |      1 |   0 | 0x00     | 
+  895 |      1 |   0 | 0x00     | 
+  900 |      1 |   0 | 0x00     | 
+
+Game advanced past title. Stopping early.
+
+=== SUMMARY ===
+SUCCESS: Script changed at frame 157 (-643 frames after injection)

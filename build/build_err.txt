@@ -1,0 +1,2560 @@
+
+warning 2047 in line 169 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0174BC_check_battery_integrity             ; JSR -> BSR  ; orig: C - - - - - 0x01E459 07:E449: 20 AC B4  JSR sub_0x0174BC_che
+
+warning 2047 in line 170 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0174F8_clear_memory             ; JSR -> BSR  ; orig: C - - - - - 0x01E45C 07:E44C: 20 E8 B4  JSR sub_0x0174F8_cle
+
+warning 2047 in line 245 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01A090_write_buffer_to_ppu             ; JSR -> BSR  ; orig: C - - - - - 0x01E4D1 07:E4C1: 20 80 A0  JSR sub_0x01A090_wri
+
+warning 2047 in line 273 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014531             ; JSR -> BSR  ; orig: C - - - - - 0x01E4F7 07:E4E7: 20 21 85  JSR sub_0x014531
+
+warning 2047 in line 625 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0175FB             ; JSR -> BSR  ; orig: C - - - - - 0x01E692 07:E682: 20 EB B5  JSR sub_0x0175FB
+
+warning 2047 in line 642 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x016406             ; JSR -> BSR  ; orig: C - - - - - 0x01E6AC 07:E69C: 20 F6 A3  JSR sub_0x016406
+
+warning 2047 in line 738 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x01E6FA 07:E6EA: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 901 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01782C             ; JSR -> BSR  ; orig: C - - - - - 0x01E7BF 07:E7AF: 20 1C B8  JSR sub_0x01782C
+
+warning 2047 in line 930 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0177D8             ; JSR -> BSR  ; orig: C - - - - - 0x01E7E4 07:E7D4: 20 C8 B7  JSR sub_0x0177D8
+
+warning 2047 in line 974 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x01E82C 07:E81C: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 983 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_792C             ; JSR -> BSR  ; orig: C - - - - - 0x01E83D 07:E82D: 20 2C 79  JSR sub_bat_792C
+
+warning 2047 in line 1040 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7570             ; JSR -> BSR  ; orig: C - - - - - 0x01E87E 07:E86E: 20 70 75  JSR sub_bat_7570
+
+warning 2047 in line 1099 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x016BD4             ; JSR -> BSR  ; orig: C - - - - - 0x01E8D7 07:E8C7: 20 C4 AB  JSR sub_0x016BD4
+
+warning 2047 in line 1123 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x016C17_set_block_address_pointer             ; JSR -> BSR  ; orig: C - - - - - 0x01E8ED 07:E8DD: 20 07 AC  JSR sub_0x016C17_set
+
+warning 2047 in line 1136 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7274_inc_0000_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x01E8F6 07:E8E6: 20 74 72  JSR sub_bat_7274_inc
+
+warning 2047 in line 1166 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01809C             ; JSR -> BSR  ; orig: C - - - - - 0x01E919 07:E909: 20 8C 80  JSR sub_0x01809C
+
+warning 2047 in line 1279 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x00C054_fill_ppu_with_tiles_3             ; JSR -> BSR  ; orig: C - - - - - 0x01E99E 07:E98E: 20 44 80  JSR sub_0x00C054_fil
+
+warning 2047 in line 1295 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0142B8             ; JSR -> BSR  ; orig: C - - - - - 0x01E9B6 07:E9A6: 20 A8 82  JSR sub_0x0142B8
+
+warning 2047 in line 1431 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_71DE_draw_dot_on_minimap             ; JSR -> BSR  ; orig: C - - - - - 0x01EA50 07:EA40: 20 DE 71  JSR sub_bat_71DE_dra
+
+warning 2047 in line 1435 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014939             ; JSR -> BSR  ; orig: C - - - - - 0x01EA5B 07:EA4B: 20 29 89  JSR sub_0x014939
+
+warning 2047 in line 1529 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01706E             ; JSR -> BSR  ; orig: C - - - - - 0x01EAE0 07:EAD0: 20 5E B0  JSR sub_0x01706E
+
+warning 2047 in line 1536 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7512             ; JSR -> BSR  ; orig: C - - - - - 0x01EAEA 07:EADA: 20 12 75  JSR sub_bat_7512
+
+warning 2047 in line 1542 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01784A             ; JSR -> BSR  ; orig: C - - - - - 0x01EAF2 07:EAE2: 20 3A B8  JSR sub_0x01784A
+
+warning 2047 in line 1577 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x015338             ; JSR -> BSR  ; orig: C - - - - - 0x01EB2C 07:EB1C: 20 28 93  JSR sub_0x015338
+
+warning 2047 in line 1627 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01442E_screen_transition_handlers             ; JSR -> BSR  ; orig: C - - - - - 0x01EB77 07:EB67: 20 1E 84  JSR sub_0x01442E_scr
+
+warning 2047 in line 1684 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x018119             ; JSR -> BSR  ; orig: C - - - - - 0x01EBAE 07:EB9E: 20 09 81  JSR sub_0x018119
+
+warning 2047 in line 1703 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7248_curtain_movement_handler             ; JSR -> BSR  ; orig: C - - J - - 0x01EBBA 07:EBAA: 20 48 72  JSR sub_bat_7248_cur
+
+warning 2047 in line 1786 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014BB8             ; JSR -> BSR  ; orig: C - - - - - 0x01EC18 07:EC08: 20 A8 8B  JSR sub_0x014BB8
+
+warning 2047 in line 1843 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x017569_disable_greyscale             ; JSR -> BSR  ; orig: C - - - - - 0x01EC62 07:EC52: 20 59 B5  JSR sub_0x017569_dis
+
+warning 2047 in line 1846 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6E1D             ; JSR -> BSR  ; orig: C - - - - - 0x01EC68 07:EC58: 20 1D 6E  JSR sub_bat_6E1D
+
+warning 2047 in line 1854 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x017569_disable_greyscale             ; JSR -> BSR  ; orig: C - - - - - 0x01EC7B 07:EC6B: 20 59 B5  JSR sub_0x017569_dis
+
+warning 2047 in line 1934 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_77D4             ; JSR -> BSR  ; orig: C - - - - - 0x01ED15 07:ED05: 20 D4 77  JSR sub_bat_77D4
+
+warning 2047 in line 1937 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x01ED1B 07:ED0B: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 1956 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x010660             ; JSR -> BSR  ; orig: C - - - - - 0x01ED40 07:ED30: 20 50 86  JSR sub_0x010660
+
+warning 2047 in line 1960 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014BCC             ; JSR -> BSR  ; orig: C - - - - - 0x01ED4B 07:ED3B: 20 BC 8B  JSR sub_0x014BCC
+
+warning 2047 in line 1961 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014ABD             ; JSR -> BSR  ; orig: C - - - - - 0x01ED4E 07:ED3E: 20 AD 8A  JSR sub_0x014ABD
+
+warning 2047 in line 1962 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x016603             ; JSR -> BSR  ; orig: C - - - - - 0x01ED51 07:ED41: 20 F3 A5  JSR sub_0x016603
+
+warning 2047 in line 1981 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6D80_set_sfx_3             ; JSR -> BSR  ; orig: C - - - - - 0x01ED6F 07:ED5F: 20 80 6D  JSR sub_bat_6D80_set
+
+warning 2047 in line 1985 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0106F0_try_spawning_zora_in_water             ; JSR -> BSR  ; orig: C - - - - - 0x01ED77 07:ED67: 20 E0 86  JSR sub_0x0106F0_try
+
+warning 2047 in line 2001 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7328             ; JSR -> BSR  ; orig: C - - - - - 0x01ED93 07:ED83: 20 28 73  JSR sub_bat_7328
+
+warning 2047 in line 2008 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0171F6             ; JSR -> BSR  ; orig: C - - - - - 0x01ED9E 07:ED8E: 20 E6 B1  JSR sub_0x0171F6
+
+warning 2047 in line 2034 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0172AA             ; JSR -> BSR  ; orig: C - - - - - 0x01EDCF 07:EDBF: 20 9A B2  JSR sub_0x0172AA
+
+warning 2047 in line 2046 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6EFB             ; JSR -> BSR  ; orig: C - - - - - 0x01EDE2 07:EDD2: 20 FB 6E  JSR sub_bat_6EFB
+
+warning 2047 in line 2311 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: - - - - - - 0x01EEE5 07:EED5: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2359 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FB6             ; JSR -> BSR  ; orig: C - - - - - 0x01EF19 07:EF09: 20 B6 6F  JSR sub_bat_6FB6
+
+warning 2047 in line 2369 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6E46             ; JSR -> BSR  ; orig: C - - - - - 0x01EF2D 07:EF1D: 20 46 6E  JSR sub_bat_6E46
+
+warning 2047 in line 2561 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F009 07:EFF9: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2599 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6E46             ; JSR -> BSR  ; orig: C - - - - - 0x01F048 07:F038: 20 46 6E  JSR sub_bat_6E46
+
+warning 2047 in line 2613 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014EE7             ; JSR -> BSR  ; orig: C - - - - - 0x01F062 07:F052: 20 D7 8E  JSR sub_0x014EE7
+
+warning 2047 in line 2625 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FB8             ; JSR -> BSR  ; orig: C - - - - - 0x01F073 07:F063: 20 B8 6F  JSR sub_bat_6FB8
+
+warning 2047 in line 2638 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01518C             ; JSR -> BSR  ; orig: C - - - - - 0x01F089 07:F079: 20 7C 91  JSR sub_0x01518C
+
+warning 2047 in line 2646 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014F8B             ; JSR -> BSR  ; orig: C - - - - - 0x01F09A 07:F08A: 20 7B 8F  JSR sub_0x014F8B
+
+warning 2047 in line 2676 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FE8             ; JSR -> BSR  ; orig: C - - - - - 0x01F0C7 07:F0B7: 20 E8 6F  JSR sub_bat_6FE8
+
+warning 2047 in line 2687 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FC1             ; JSR -> BSR  ; orig: C - - - - - 0x01F0D1 07:F0C1: 20 C1 6F  JSR sub_bat_6FC1
+
+warning 2047 in line 2697 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FC1             ; JSR -> BSR  ; orig: C - - - - - 0x01F0DB 07:F0CB: 20 C1 6F  JSR sub_bat_6FC1
+
+warning 2047 in line 2707 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FE8             ; JSR -> BSR  ; orig: C - - - - - 0x01F0E5 07:F0D5: 20 E8 6F  JSR sub_bat_6FE8
+
+warning 2047 in line 2828 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F178 07:F168: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2862 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FB8             ; JSR -> BSR  ; orig: C - - - - - 0x01F1A8 07:F198: 20 B8 6F  JSR sub_bat_6FB8
+
+warning 2047 in line 2929 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F1E2 07:F1D2: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2960 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6FB8             ; JSR -> BSR  ; orig: C - - - - - 0x01F205 07:F1F5: 20 B8 6F  JSR sub_bat_6FB8
+
+warning 2047 in line 3142 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F2D1 07:F2C1: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3178 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x017404             ; JSR -> BSR  ; orig: C - - - - - 0x01F304 07:F2F4: 20 F4 B3  JSR sub_0x017404
+
+warning 2047 in line 3209 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_77E7             ; JSR -> BSR  ; orig: C - - - - - 0x01F332 07:F322: 20 E7 77  JSR sub_bat_77E7
+
+warning 2047 in line 3289 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7027             ; JSR -> BSR  ; orig: C - - - - - 0x01F390 07:F380: 20 27 70  JSR sub_bat_7027
+
+warning 2047 in line 3315 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F3B3 07:F3A3: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3319 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x01F3BD 07:F3AD: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 3361 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_714F_candle             ; JSR -> BSR  ; orig: - - - - - - 0x01F3FA 07:F3EA: 20 4F 71  JSR sub_bat_714F_can
+
+warning 2047 in line 3433 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x01F448 07:F438: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 3482 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7915             ; JSR -> BSR  ; orig: C - - - - - 0x01F482 07:F472: 20 15 79  JSR sub_bat_7915
+
+warning 2047 in line 3699 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7027             ; JSR -> BSR  ; orig: C - - - - - 0x01F546 07:F536: 20 27 70  JSR sub_bat_7027
+
+warning 2047 in line 3712 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7027             ; JSR -> BSR  ; orig: C - - - - - 0x01F556 07:F546: 20 27 70  JSR sub_bat_7027
+
+warning 2047 in line 3763 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F597 07:F587: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3829 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x010356             ; JSR -> BSR  ; orig: C - - - - - 0x01F5ED 07:F5DD: 20 46 83  JSR sub_0x010356
+
+warning 2047 in line 3865 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F619 07:F609: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3917 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_704A             ; JSR -> BSR  ; orig: C - - - - - 0x01F65D 07:F64D: 20 4A 70  JSR sub_bat_704A
+
+warning 2047 in line 3964 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_706F             ; JSR -> BSR  ; orig: C - - - - - 0x01F6A3 07:F693: 20 6F 70  JSR sub_bat_706F
+
+warning 2047 in line 3968 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_70AB             ; JSR -> BSR  ; orig: C - - - - - 0x01F6A9 07:F699: 20 AB 70  JSR sub_bat_70AB
+
+warning 2047 in line 3982 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_70AB             ; JSR -> BSR  ; orig: C - - - - - 0x01F6BC 07:F6AC: 20 AB 70  JSR sub_bat_70AB
+
+warning 2047 in line 4009 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6E10             ; JSR -> BSR  ; orig: C - - - - - 0x01F6E0 07:F6D0: 20 10 6E  JSR sub_bat_6E10
+
+warning 2047 in line 4014 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - - - - 0x01F6E7 07:F6D7: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 4104 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x01F748 07:F738: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4224 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F7BF 07:F7AF: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 4257 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01F7E7 07:F7D7: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 4277 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C D 3 - - - 0x01F802 07:F7F2: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4293 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7915             ; JSR -> BSR  ; orig: C - - - - - 0x01F81B 07:F80B: 20 15 79  JSR sub_bat_7915
+
+warning 2047 in line 4318 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_711F             ; JSR -> BSR  ; orig: C - - - - - 0x01F83E 07:F82E: 20 1F 71  JSR sub_bat_711F
+
+warning 2047 in line 4391 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6D7C_set_sfx_1             ; JSR -> BSR  ; orig: C - - - - - 0x01F88F 07:F87F: 20 7C 6D  JSR sub_bat_6D7C_set
+
+warning 2047 in line 4419 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x01F8B4 07:F8A4: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 4441 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x0131CE             ; JSR -> BSR  ; orig: C - - - - - 0x01F8D0 07:F8C0: 20 BE B1  JSR sub_0x0131CE
+
+warning 2047 in line 4448 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7986             ; JSR -> BSR  ; orig: C - - - - - 0x01F8DD 07:F8CD: 20 86 79  JSR sub_bat_7986
+
+warning 2047 in line 4452 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_77E6             ; JSR -> BSR  ; orig: C - - - - - 0x01F8E6 07:F8D6: 20 E6 77  JSR sub_bat_77E6
+
+warning 2047 in line 4465 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7DFB             ; JSR -> BSR  ; orig: C - - - - - 0x01F904 07:F8F4: 20 FB 7D  JSR sub_bat_7DFB
+
+warning 2047 in line 4470 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7E26             ; JSR -> BSR  ; orig: C - - - - - 0x01F90F 07:F8FF: 20 26 7E  JSR sub_bat_7E26
+
+warning 2047 in line 4579 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_6D80_set_sfx_3             ; JSR -> BSR  ; orig: C - - - - - 0x01F962 07:F952: 20 80 6D  JSR sub_bat_6D80_set
+
+warning 2047 in line 4609 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x01F989 07:F979: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 4617 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x01F996 07:F986: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 4630 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x016406             ; JSR -> BSR  ; orig: C - - - - - 0x01F9AF 07:F99F: 20 F6 A3  JSR sub_0x016406
+
+warning 2047 in line 4655 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_71BB             ; JSR -> BSR  ; orig: C - - - - - 0x01F9CF 07:F9BF: 20 BB 71  JSR sub_bat_71BB
+
+warning 2047 in line 4763 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x01FA41 07:FA31: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4765 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_bat_7915             ; JSR -> BSR  ; orig: C - - - - - 0x01FA46 07:FA36: 20 15 79  JSR sub_bat_7915
+
+warning 2047 in line 5317 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x01307A_drop_selection             ; JSR -> BSR  ; orig: C - - - - - 0x01FCE4 07:FCD4: 20 6A B0  JSR sub_0x01307A_dro
+
+warning 2047 in line 5355 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x015034             ; JSR -> BSR  ; orig: C - - - - - 0x01FD1F 07:FD0F: 20 24 90  JSR sub_0x015034
+
+warning 2047 in line 5382 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x014A23             ; JSR -> BSR  ; orig: C - - - - - 0x01FD42 07:FD32: 20 13 8A  JSR sub_0x014A23
+
+warning 2047 in line 5416 of "banks\generated_vdp\bank_FF_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 567 of "main.asm"
+>    BSR     sub_0x013010             ; JSR -> BSR  ; orig: C - - - - - 0x01FD74 07:FD64: 20 00 B0  JSR sub_0x013010
+
+warning 2047 in line 572 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x0045FA 01:85EA: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 894 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_6E55_convert_to_decimal             ; JSR -> BSR  ; orig: C - - - - - 0x0047C2 01:87B2: 20 55 6E  JSR sub_bat_6E55_con
+
+warning 2047 in line 1092 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_730C_set_map_bit4             ; JSR -> BSR  ; orig: - - - - - - 0x0048A4 01:8894: 20 0C 73  JSR sub_bat_730C_set
+
+warning 2047 in line 1114 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0048C4 01:88B4: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 1163 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_730C_set_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x00491F 01:890F: 20 0C 73  JSR sub_bat_730C_set
+
+warning 2047 in line 1174 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7370             ; JSR -> BSR  ; orig: C - - - - - 0x00492E 01:891E: 20 70 73  JSR sub_bat_7370
+
+warning 2047 in line 1240 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_730C_set_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x004995 01:8985: 20 0C 73  JSR sub_bat_730C_set
+
+warning 2047 in line 1385 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x004A62 01:8A52: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 1476 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x004AD6 01:8AC6: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 1521 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x004B10 01:8B00: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 1586 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x004B79 01:8B69: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 1709 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x004C0D 01:8BFD: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 1777 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x004C7C 01:8C6C: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 1800 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_730C_set_map_bit4             ; JSR -> BSR  ; orig: C D 0 - - - 0x004C9D 01:8C8D: 20 0C 73  JSR sub_bat_730C_set
+
+warning 2047 in line 2100 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_71DE_draw_dot_on_minimap             ; JSR -> BSR  ; orig: C - - - - - 0x006051 01:A041: 20 DE 71  JSR sub_bat_71DE_dra
+
+warning 2047 in line 2105 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - - - - 0x006059 01:A049: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 2255 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x00611E 01:A10E: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 2308 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x00616E 01:A15E: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2316 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x00617D 01:A16D: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2441 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: - - - - - - 0x00621C 01:A20C: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 2514 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x00628A 01:A27A: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2724 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006363 01:A353: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2761 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006392 01:A382: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2792 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - - - - 0x0063BA 01:A3AA: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 2819 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0063D9 01:A3C9: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2825 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x0063E2 01:A3D2: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2861 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006405 01:A3F5: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2867 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x006411 01:A401: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2870 of "banks\generated_vdp\bank_01_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 570 of "main.asm"
+>    BSR     sub_bat_74A3_increase_rupees_and_add_sfx             ; JSR -> BSR  ; orig: C - - - - - 0x006418 01:A408: 20 A3 74  JSR sub_bat_74A3_inc
+
+warning 2047 in line 236 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 241 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6EE9             ; JSR -> BSR  ; orig: C - - - - - 0x009058 02:9048: 20 E9 6E  JSR sub_bat_6EE9
+
+warning 2047 in line 258 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x009074 02:9064: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 277 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x009084 02:9074: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 281 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00908E 02:907E: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 377 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 1246 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 1318 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 1391 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 1446 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 1589 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 1797 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_7986             ; JSR -> BSR  ; orig: C - - - - - 0x0097EB 02:97DB: 20 86 79  JSR sub_bat_7986
+
+warning 2047 in line 2617 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - - - - 0x009E28 02:9E18: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 2620 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - - - - 0x009E2F 02:9E1F: 20 6D E4  JSR sub_0x01E47D_cle
+
+warning 2047 in line 2992 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A00E 02:9FFE: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 3394 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C D 1 - - - 0x00A29A 02:A28A: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 3396 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A29F 02:A28F: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 3409 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - J - - 0x00A2B0 02:A2A0: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 3436 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A2DD 02:A2CD: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 3463 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A306 02:A2F6: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 3704 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A3A7 02:A397: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 4016 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A493 02:A483: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 4048 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6DB7_clear_special_metatile_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A4B3 02:A4A3: 20 B7 6D  JSR sub_bat_6DB7_cle
+
+warning 2047 in line 4052 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - - - - 0x00A4BC 02:A4AC: 20 6D E4  JSR sub_0x01E47D_cle
+
+warning 2047 in line 4144 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6E79             ; JSR -> BSR  ; orig: C - - - - - 0x00A526 02:A516: 20 79 6E  JSR sub_bat_6E79
+
+warning 2047 in line 4171 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6E55_convert_to_decimal             ; JSR -> BSR  ; orig: C - - - - - 0x00A546 02:A536: 20 55 6E  JSR sub_bat_6E55_con
+
+warning 2047 in line 4250 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 4252 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A5A3 02:A593: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 4319 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - - - - 0x00A5FB 02:A5EB: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 4329 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - - - - 0x00A60E 02:A5FE: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 4330 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A611 02:A601: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 4398 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x00A652 02:A642: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4415 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_7885             ; JSR -> BSR  ; orig: C - - - - - 0x00A674 02:A664: 20 85 78  JSR sub_bat_7885
+
+warning 2047 in line 4481 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A6BF 02:A6AF: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 4492 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A6D1 02:A6C1: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 4687 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6FD1_prepare_save_slot_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x00A78D 02:A77D: 20 F1 6D  JSR sub_bat_6FD1_pre
+
+warning 2047 in line 4995 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00A912 02:A902: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 5010 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - - - - 0x00A926 02:A916: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 5011 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01F241             ; JSR -> BSR  ; orig: C - - - - - 0x00A929 02:A919: 20 31 F2  JSR sub_0x01F241
+
+warning 2047 in line 5022 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_7240_curtain_movement_handler             ; JSR -> BSR  ; orig: C - - - - - 0x00A93A 02:A92A: 20 40 72  JSR sub_bat_7240_cur
+
+warning 2047 in line 5101 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01F241             ; JSR -> BSR  ; orig: C - - - - - 0x00A9A5 02:A995: 20 31 F2  JSR sub_0x01F241
+
+warning 2047 in line 5181 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6EE9             ; JSR -> BSR  ; orig: C - - - - - 0x00AA09 02:A9F9: 20 E9 6E  JSR sub_bat_6EE9
+
+warning 2047 in line 5190 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6C90             ; JSR -> BSR  ; orig: C - - - - - 0x00AA14 02:AA04: 20 90 6C  JSR sub_bat_6C90
+
+warning 2047 in line 5203 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x00AA22 02:AA12: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 5221 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - J - - 0x00AA33 02:AA23: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 5273 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x00AA82 02:AA72: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 5280 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_792C             ; JSR -> BSR  ; orig: C - - - - - 0x00AA93 02:AA83: 20 2C 79  JSR sub_bat_792C
+
+warning 2047 in line 5283 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E71E             ; JSR -> BSR  ; orig: C - - - - - 0x00AA9A 02:AA8A: 20 0E E7  JSR sub_0x01E71E
+
+warning 2047 in line 5287 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x00AAA3 02:AA93: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 5298 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E71E             ; JSR -> BSR  ; orig: C - - - - - 0x00AAB5 02:AAA5: 20 0E E7  JSR sub_0x01E71E
+
+warning 2047 in line 5307 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - - - - 0x00AABD 02:AAAD: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 5324 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 5406 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - J - - 0x00AB8F 02:AB7F: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 5417 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E71E             ; JSR -> BSR  ; orig: C - - - - - 0x00AB9E 02:AB8E: 20 0E E7  JSR sub_0x01E71E
+
+warning 2047 in line 5428 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x00ABB5 02:ABA5: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 5431 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - - - - 0x00ABBC 02:ABAC: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 5432 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - - - - 0x00ABBF 02:ABAF: 20 6D E4  JSR sub_0x01E47D_cle
+
+warning 2047 in line 5433 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6EE9             ; JSR -> BSR  ; orig: C - - - - - 0x00ABC2 02:ABB2: 20 E9 6E  JSR sub_bat_6EE9
+
+warning 51 in line 5690 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": instruction has been auto-aligned
+	included from line 571 of "main.asm"
+>    MOVE.B  #$1F,D2  ; orig: C - - - - - 0x00AE23 02:AE13: A0 1F     LDY #$1F
+
+warning 2047 in line 5844 of "banks\generated_vdp\bank_02_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 571 of "main.asm"
+>    BSR     sub_bat_6E55_convert_to_decimal             ; JSR -> BSR  ; orig: C - - - - - 0x00AEDF 02:AECF: 20 55 6E  JSR sub_bat_6E55_con
+
+warning 2047 in line 94 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 95 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - - - - 0x00C054 03:8044: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 96 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     PPU_READ_2002
+
+warning 2047 in line 153 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     PPU_FLUSH_TILE_RANGE_TO_VRAM
+
+warning 2047 in line 156 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     PPU_FLUSH_TILE_RANGE_TO_VRAM
+
+warning 2047 in line 329 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 335 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 348 of "banks\generated_vdp\bank_03_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 572 of "main.asm"
+>    BSR     PPU_WRITE_2007
+
+warning 2047 in line 343 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - J - - 0x01005F 04:804F: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 345 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x010064 04:8054: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 350 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA5F             ; JSR -> BSR  ; orig: C - - - - - 0x01006B 04:805B: 20 4F FA  JSR sub_0x01FA5F
+
+warning 2047 in line 409 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EFE0             ; JSR -> BSR  ; orig: C - - - - - 0x0100AC 04:809C: 20 D0 EF  JSR sub_0x01EFE0
+
+warning 2047 in line 532 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EFE0             ; JSR -> BSR  ; orig: C - - - - - 0x010134 04:8124: 20 D0 EF  JSR sub_0x01EFE0
+
+warning 2047 in line 734 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01020B 04:81FB: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 771 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7021_EOR_FF             ; JSR -> BSR  ; orig: C - - - - - 0x01023F 04:822F: 20 21 70  JSR sub_bat_7021_EOR
+
+warning 2047 in line 795 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x010260 04:8250: 20 62 E8  JSR sub_0x01E872_bom
+
+warning 2047 in line 797 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x010263 04:8253: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 816 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x010277 04:8267: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 830 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x010291 04:8281: 20 62 E8  JSR sub_0x01E872_bom
+
+warning 2047 in line 875 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FECB_search_for_free_object             ; JSR -> BSR  ; orig: C - - - - - 0x0102C1 04:82B1: 20 BB FE  JSR sub_0x01FECB_sea
+
+warning 2047 in line 882 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEC3_create_object             ; JSR -> BSR  ; orig: C - - - - - 0x0102CC 04:82BC: 20 B3 FE  JSR sub_0x01FEC3_cre
+
+warning 2047 in line 957 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE0A_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x0102FE 04:82EE: 20 FA ED  JSR sub_0x01EE0A_fin
+
+warning 2047 in line 961 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6FB8             ; JSR -> BSR  ; orig: C - - - - - 0x010306 04:82F6: 20 B8 6F  JSR sub_bat_6FB8
+
+warning 2047 in line 963 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x01030B 04:82FB: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 982 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x01032A 04:831A: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 1001 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x010343 04:8333: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 1026 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x01035F 04:834F: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 1062 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - - - - 0x010386 04:8376: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 1125 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_704A             ; JSR -> BSR  ; orig: C - - - - - 0x0103B3 04:83A3: 20 4A 70  JSR sub_bat_704A
+
+warning 2047 in line 1139 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_706F             ; JSR -> BSR  ; orig: C - - - - - 0x0103C6 04:83B6: 20 6F 70  JSR sub_bat_706F
+
+warning 2047 in line 1168 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6FB6             ; JSR -> BSR  ; orig: C - - - - - 0x0103E2 04:83D2: 20 B6 6F  JSR sub_bat_6FB6
+
+warning 2047 in line 1217 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x01041E 04:840E: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 1321 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C D 0 - - - 0x010464 04:8454: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 1324 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - - - - 0x01046C 04:845C: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 1344 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x010486 04:8476: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 1345 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA82             ; JSR -> BSR  ; orig: C - - - - - 0x010489 04:8479: 20 72 FA  JSR sub_0x01FA82
+
+warning 2047 in line 1370 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x01049F 04:848F: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 1376 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x0104A8 04:8498: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 1377 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x0104AB 04:849B: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 1386 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0104B4 04:84A4: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 1429 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x0104E1 04:84D1: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 1449 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0104F3 04:84E3: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 1486 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEC1_destroy_object             ; JSR -> BSR  ; orig: C - - - - - 0x01050C 04:84FC: 20 B1 FE  JSR sub_0x01FEC1_des
+
+warning 2047 in line 1614 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x010586 04:8576: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 1622 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x010594 04:8584: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 1624 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x010598 04:8588: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 1766 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE0A_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x01061C 04:860C: 20 FA ED  JSR sub_0x01EE0A_fin
+
+warning 2047 in line 1770 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6FB8             ; JSR -> BSR  ; orig: C - - - - - 0x010624 04:8614: 20 B8 6F  JSR sub_bat_6FB8
+
+warning 2047 in line 1773 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x01062A 04:861A: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 1861 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x010667 04:8657: 20 5A E8  JSR sub_0x01E86A_get
+
+warning 2047 in line 1874 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FECB_search_for_free_object             ; JSR -> BSR  ; orig: C - - - - - 0x010677 04:8667: 20 BB FE  JSR sub_0x01FECB_sea
+
+warning 2047 in line 1918 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x0106B1 04:86A1: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 1991 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FECB_search_for_free_object             ; JSR -> BSR  ; orig: C - - - - - 0x0106FE 04:86EE: 20 BB FE  JSR sub_0x01FECB_sea
+
+warning 2047 in line 2027 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x01072B 04:871B: 20 F4 ED  JSR sub_0x01EE04_fin
+
+warning 2047 in line 2067 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEE6             ; JSR -> BSR  ; orig: C - - - - - 0x01074C 04:873C: 20 D6 FE  JSR sub_0x01FEE6
+
+warning 2047 in line 2111 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEE6             ; JSR -> BSR  ; orig: C - - - - - 0x010762 04:8752: 20 D6 FE  JSR sub_0x01FEE6
+
+warning 2047 in line 2157 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F865_clear_enemy_state             ; JSR -> BSR  ; orig: C - - - - - 0x010777 04:8767: 20 55 F8  JSR sub_0x01F865_cle
+
+warning 2047 in line 2176 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEE6             ; JSR -> BSR  ; orig: C - - J - - 0x010785 04:8775: 20 D6 FE  JSR sub_0x01FEE6
+
+warning 2047 in line 2414 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F529             ; JSR -> BSR  ; orig: C D 0 - - - 0x010879 04:8869: 20 19 F5  JSR sub_0x01F529
+
+warning 2047 in line 2445 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FECB_search_for_free_object             ; JSR -> BSR  ; orig: C - - - - - 0x0108A1 04:8891: 20 BB FE  JSR sub_0x01FECB_sea
+
+warning 2047 in line 2450 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEC3_create_object             ; JSR -> BSR  ; orig: C - - - - - 0x0108AD 04:889D: 20 B3 FE  JSR sub_0x01FEC3_cre
+
+warning 2047 in line 2703 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0109AB 04:899B: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2706 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F865_clear_enemy_state             ; JSR -> BSR  ; orig: C - - - - - 0x0109B2 04:89A2: 20 55 F8  JSR sub_0x01F865_cle
+
+warning 2047 in line 2735 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C D 0 - - - 0x0109DB 04:89CB: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 2755 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x0109F3 04:89E3: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 2763 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x0109FE 04:89EE: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 2964 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C D 0 - - - 0x010AB6 04:8AA6: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 2991 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x010ADA 04:8ACA: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 3010 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x010AF4 04:8AE4: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 3081 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F1E0             ; JSR -> BSR  ; orig: C - - - - - 0x010B35 04:8B25: 20 D0 F1  JSR sub_0x01F1E0
+
+warning 2047 in line 3160 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x010B94 04:8B84: 20 F4 ED  JSR sub_0x01EE04_fin
+
+warning 2047 in line 3171 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F1E0             ; JSR -> BSR  ; orig: C - - - - - 0x010BAA 04:8B9A: 20 D0 F1  JSR sub_0x01F1E0
+
+warning 2047 in line 3182 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEC8             ; JSR -> BSR  ; orig: C - - - - - 0x010BB7 04:8BA7: 20 B8 EE  JSR sub_0x01EEC8
+
+warning 2047 in line 3192 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE0A_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x010BC8 04:8BB8: 20 FA ED  JSR sub_0x01EE0A_fin
+
+warning 2047 in line 3195 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6FB8             ; JSR -> BSR  ; orig: C - - - - - 0x010BD0 04:8BC0: 20 B8 6F  JSR sub_bat_6FB8
+
+warning 2047 in line 3197 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x010BD5 04:8BC5: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 3299 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x010C33 04:8C23: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 3342 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x010C6E 04:8C5E: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 3347 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C D 0 - - - 0x010C75 04:8C65: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 3362 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x010C83 04:8C73: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 3387 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x010C9D 04:8C8D: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 3418 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x010CBC 04:8CAC: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 3499 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x010D08 04:8CF8: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 3518 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x010D26 04:8D16: 20 62 E8  JSR sub_0x01E872_bom
+
+warning 2047 in line 3561 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEE6             ; JSR -> BSR  ; orig: - - - - - - 0x010D5A 04:8D4A: 20 D6 FE  JSR sub_0x01FEE6
+
+warning 2047 in line 3594 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x010D79 04:8D69: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 3606 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x010D88 04:8D78: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 3611 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x010D8F 04:8D7F: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 3672 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F223             ; JSR -> BSR  ; orig: - - - - - - 0x010DE6 04:8DD6: 20 13 F2  JSR sub_0x01F223
+
+warning 2047 in line 3749 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7986             ; JSR -> BSR  ; orig: - - - - - - 0x010E3E 04:8E2E: 20 86 79  JSR sub_bat_7986
+
+warning 2047 in line 3750 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: - - - - - - 0x010E41 04:8E31: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 3754 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: - - - - - - 0x010E47 04:8E37: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 3836 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x010E9E 04:8E8E: 20 62 E8  JSR sub_0x01E872_bom
+
+warning 2047 in line 3844 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x010EA6 04:8E96: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 3845 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x010EA9 04:8E99: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 3849 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x010EAE 04:8E9E: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 3864 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E6D6_set_map_bit5             ; JSR -> BSR  ; orig: C - - - - - 0x010EC4 04:8EB4: 20 C6 E6  JSR sub_0x01E6D6_set
+
+warning 2047 in line 3878 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x010EDD 04:8ECD: 20 62 E8  JSR sub_0x01E872_bom
+
+warning 2047 in line 3884 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_718C             ; JSR -> BSR  ; orig: C - - - - - 0x010EE7 04:8ED7: 20 8C 71  JSR sub_bat_718C
+
+warning 2047 in line 3894 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x010EF2 04:8EE2: 20 62 E8  JSR sub_0x01E872_bom
+
+warning 2047 in line 3975 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x010F47 04:8F37: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 4012 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7A2D             ; JSR -> BSR  ; orig: C - - - - - 0x010F5F 04:8F4F: 20 2D 7A  JSR sub_bat_7A2D
+
+warning 2047 in line 4128 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F192             ; JSR -> BSR  ; orig: C - - - - - 0x010FD1 04:8FC1: 20 82 F1  JSR sub_0x01F192
+
+warning 2047 in line 4150 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F223             ; JSR -> BSR  ; orig: C - - - - - 0x010FF0 04:8FE0: 20 13 F2  JSR sub_0x01F223
+
+warning 2047 in line 4153 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA5F             ; JSR -> BSR  ; orig: C - - - - - 0x010FF5 04:8FE5: 20 4F FA  JSR sub_0x01FA5F
+
+warning 2047 in line 4172 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: - - - - - - 0x01100A 04:8FFA: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 4185 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: - - - - - - 0x011018 04:9008: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 4222 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEC8             ; JSR -> BSR  ; orig: C - - - - - 0x01103C 04:902C: 20 B8 EE  JSR sub_0x01EEC8
+
+warning 2047 in line 4232 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C D 0 - - - 0x01104F 04:903F: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 4237 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x011057 04:9047: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 4253 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01106A 04:905A: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 4510 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEC8             ; JSR -> BSR  ; orig: C - - - - - 0x011191 04:9181: 20 B8 EE  JSR sub_0x01EEC8
+
+warning 2047 in line 4521 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x0111A2 04:9192: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 4575 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x0111E8 04:91D8: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 4591 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x011202 04:91F2: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 4631 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F223             ; JSR -> BSR  ; orig: - - - - - - 0x011235 04:9225: 20 13 F2  JSR sub_0x01F223
+
+warning 2047 in line 4632 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6EFB             ; JSR -> BSR  ; orig: - - - - - - 0x011238 04:9228: 20 FB 6E  JSR sub_bat_6EFB
+
+warning 2047 in line 4649 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x011254 04:9244: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 4658 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x011261 04:9251: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4663 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x01126C 04:925C: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4811 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EFE0             ; JSR -> BSR  ; orig: C - - - - - 0x0112F3 04:92E3: 20 D0 EF  JSR sub_0x01EFE0
+
+warning 2047 in line 4837 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F1EF             ; JSR -> BSR  ; orig: C - - - - - 0x011311 04:9301: 20 DF F1  JSR sub_0x01F1EF
+
+warning 2047 in line 4861 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x01132F 04:931F: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 4885 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x011349 04:9339: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 4893 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x011355 04:9345: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4903 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x011363 04:9353: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 4908 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x011369 04:9359: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 4914 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x011374 04:9364: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 4939 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x01138C 04:937C: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 5196 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7991             ; JSR -> BSR  ; orig: C - - - - - 0x0114BD 04:94AD: 20 91 79  JSR sub_bat_7991
+
+warning 2047 in line 5205 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x0114C6 04:94B6: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 5262 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEEA             ; JSR -> BSR  ; orig: C - - - - - 0x01150E 04:94FE: 20 DA FE  JSR sub_0x01FEEA
+
+warning 2047 in line 5272 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x011515 04:9505: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 5521 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x01162B 04:961B: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 5558 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x011652 04:9642: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 5635 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0116A1 04:9691: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 5837 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x01175A 04:974A: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 5859 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x011777 04:9767: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 5865 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x011782 04:9772: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 5894 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x0117A4 04:9794: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 6204 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0118CF 04:98BF: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 6272 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x011913 04:9903: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 6342 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEB6             ; JSR -> BSR  ; orig: C - - J - - 0x011962 04:9952: 20 A6 FE  JSR sub_0x01FEB6
+
+warning 2047 in line 6347 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F865_clear_enemy_state             ; JSR -> BSR  ; orig: C - - J - - 0x011968 04:9958: 20 55 F8  JSR sub_0x01F865_cle
+
+warning 2047 in line 6399 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x01199F 04:998F: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 6409 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7A2D             ; JSR -> BSR  ; orig: C - - - - - 0x0119AD 04:999D: 20 2D 7A  JSR sub_bat_7A2D
+
+warning 2047 in line 6689 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C D 0 - - - 0x011AD3 04:9AC3: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 6704 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: - - - - - - 0x011AE8 04:9AD8: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 6707 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x011AEE 04:9ADE: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 6735 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x011B0D 04:9AFD: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 6780 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x011B4B 04:9B3B: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 6782 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x011B50 04:9B40: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 6783 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA82             ; JSR -> BSR  ; orig: C - - - - - 0x011B53 04:9B43: 20 72 FA  JSR sub_0x01FA82
+
+warning 2047 in line 6801 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x011B60 04:9B50: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 6807 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x011B69 04:9B59: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 6834 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x011B86 04:9B76: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 7012 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x011C38 04:9C28: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 7016 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x011C3E 04:9C2E: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 7023 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x011C46 04:9C36: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 7151 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE20_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x011CC0 04:9CB0: 20 10 EE  JSR sub_0x01EE20_fin
+
+warning 2047 in line 7210 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x011CF7 04:9CE7: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 7214 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x011CFD 04:9CED: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 7215 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x011D00 04:9CF0: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 7273 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: - - - - - - 0x011D4E 04:9D3E: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 7278 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: - - - - - - 0x011D57 04:9D47: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 7306 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEC1_destroy_object             ; JSR -> BSR  ; orig: C - - - - - 0x011D79 04:9D69: 20 B1 FE  JSR sub_0x01FEC1_des
+
+warning 2047 in line 7311 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FECB_search_for_free_object             ; JSR -> BSR  ; orig: C - - - - - 0x011D80 04:9D70: 20 BB FE  JSR sub_0x01FECB_sea
+
+warning 2047 in line 7329 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x011D94 04:9D84: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 7369 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x011DC0 04:9DB0: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 7389 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x011DD1 04:9DC1: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 7407 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x011DE3 04:9DD3: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 7817 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x011F5B 04:9F4B: 20 F4 ED  JSR sub_0x01EE04_fin
+
+warning 2047 in line 7927 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x011FCE 04:9FBE: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 8074 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7A2D             ; JSR -> BSR  ; orig: C - - - - - 0x012055 04:A045: 20 2D 7A  JSR sub_bat_7A2D
+
+warning 2047 in line 8080 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7C9D             ; JSR -> BSR  ; orig: C - - - - - 0x01205F 04:A04F: 20 9D 7C  JSR sub_bat_7C9D
+
+warning 2047 in line 8082 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7CDC             ; JSR -> BSR  ; orig: C - - - - - 0x012064 04:A054: 20 DC 7C  JSR sub_bat_7CDC
+
+warning 2047 in line 8084 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7CDC             ; JSR -> BSR  ; orig: C - - - - - 0x012069 04:A059: 20 DC 7C  JSR sub_bat_7CDC
+
+warning 2047 in line 8086 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7D29             ; JSR -> BSR  ; orig: C - - - - - 0x01206E 04:A05E: 20 29 7D  JSR sub_bat_7D29
+
+warning 2047 in line 8088 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - - - - 0x012071 04:A061: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 8098 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x01207C 04:A06C: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 8467 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x01223B 04:A22B: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 8488 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEF4             ; JSR -> BSR  ; orig: C - - - - - 0x012255 04:A245: 20 E4 EE  JSR sub_0x01EEF4
+
+warning 2047 in line 8656 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C D 1 - - - 0x0122FF 04:A2EF: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 8663 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7988_set_spr_A             ; JSR -> BSR  ; orig: C - - - - - 0x01230A 04:A2FA: 20 88 79  JSR sub_bat_7988_set
+
+warning 2047 in line 8868 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x0123F4 04:A3E4: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 8871 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x0123FB 04:A3EB: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 8873 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x012400 04:A3F0: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 8889 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA82             ; JSR -> BSR  ; orig: C - - - - - 0x012419 04:A409: 20 72 FA  JSR sub_0x01FA82
+
+warning 2047 in line 8922 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x01243E 04:A42E: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 8971 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7C54             ; JSR -> BSR  ; orig: C - - - - - 0x01247B 04:A46B: 20 54 7C  JSR sub_bat_7C54
+
+warning 2047 in line 9004 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x0124A6 04:A496: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 9008 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x0124AC 04:A49C: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 9009 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x0124AF 04:A49F: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 9010 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEEA             ; JSR -> BSR  ; orig: C - - - - - 0x0124B2 04:A4A2: 20 DA FE  JSR sub_0x01FEEA
+
+warning 2047 in line 9011 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEF6             ; JSR -> BSR  ; orig: C - - - - - 0x0124B5 04:A4A5: 20 E6 EE  JSR sub_0x01EEF6
+
+warning 2047 in line 9023 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0124BF 04:A4AF: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 9275 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7021_EOR_FF             ; JSR -> BSR  ; orig: C - - - - - 0x01258D 04:A57D: 20 21 70  JSR sub_bat_7021_EOR
+
+warning 2047 in line 9280 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7021_EOR_FF             ; JSR -> BSR  ; orig: C - - - - - 0x012592 04:A582: 20 21 70  JSR sub_bat_7021_EOR
+
+warning 2047 in line 9283 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x012598 04:A588: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 9289 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0125A5 04:A595: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 9302 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0125B5 04:A5A5: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 9324 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0125D1 04:A5C1: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 9437 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x01265A 04:A64A: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 9450 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x01266E 04:A65E: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 9464 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x012682 04:A672: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 9576 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79A5             ; JSR -> BSR  ; orig: C - - - - - 0x0126EF 04:A6DF: 20 A5 79  JSR sub_bat_79A5
+
+warning 2047 in line 9593 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_798D             ; JSR -> BSR  ; orig: C - - - - - 0x012707 04:A6F7: 20 8D 79  JSR sub_bat_798D
+
+warning 2047 in line 9601 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x012715 04:A705: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 9609 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEF4             ; JSR -> BSR  ; orig: C - - - - - 0x012725 04:A715: 20 E4 EE  JSR sub_0x01EEF4
+
+warning 2047 in line 9684 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEEA             ; JSR -> BSR  ; orig: C - - - - - 0x012791 04:A781: 20 DA FE  JSR sub_0x01FEEA
+
+warning 2047 in line 9692 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7512             ; JSR -> BSR  ; orig: C - - - - - 0x01279C 04:A78C: 20 12 75  JSR sub_bat_7512
+
+warning 2047 in line 9872 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6E36_increase_counter_00_27             ; JSR -> BSR  ; orig: C - - - - - 0x012891 04:A881: 20 36 6E  JSR sub_bat_6E36_inc
+
+warning 2047 in line 10054 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6D7C_set_sfx_1             ; JSR -> BSR  ; orig: C - - - - - 0x012991 04:A981: 20 7C 6D  JSR sub_bat_6D7C_set
+
+warning 2047 in line 10066 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79CA             ; JSR -> BSR  ; orig: C - - J - - 0x012997 04:A987: 20 CA 79  JSR sub_bat_79CA
+
+warning 2047 in line 10097 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01F239             ; JSR -> BSR  ; orig: C - - - - - 0x0129C8 04:A9B8: 20 29 F2  JSR sub_0x01F239
+
+warning 2047 in line 10128 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x0129ED 04:A9DD: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 10185 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7991             ; JSR -> BSR  ; orig: C - - - - - 0x012A2D 04:AA1D: 20 91 79  JSR sub_bat_7991
+
+warning 2047 in line 10194 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x012A36 04:AA26: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 10203 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEF4             ; JSR -> BSR  ; orig: C - - - - - 0x012A41 04:AA31: 20 E4 EE  JSR sub_0x01EEF4
+
+warning 2047 in line 10334 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6FB8             ; JSR -> BSR  ; orig: C - - - - - 0x012AEC 04:AADC: 20 B8 6F  JSR sub_bat_6FB8
+
+warning 2047 in line 10350 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EE0A_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x012B01 04:AAF1: 20 FA ED  JSR sub_0x01EE0A_fin
+
+warning 2047 in line 10508 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x012B99 04:AB89: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 10513 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7AA7             ; JSR -> BSR  ; orig: C - - - - - 0x012BA5 04:AB95: 20 A7 7A  JSR sub_bat_7AA7
+
+warning 2047 in line 10541 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x012BC1 04:ABB1: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 10712 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_79D0             ; JSR -> BSR  ; orig: C - - - - - 0x012C75 04:AC65: 20 D0 79  JSR sub_bat_79D0
+
+warning 2047 in line 10726 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7986             ; JSR -> BSR  ; orig: C - - - - - 0x012C81 04:AC71: 20 86 79  JSR sub_bat_7986
+
+warning 2047 in line 10727 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FA99             ; JSR -> BSR  ; orig: C - - - - - 0x012C84 04:AC74: 20 89 FA  JSR sub_0x01FA99
+
+warning 2047 in line 10743 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x012C90 04:AC80: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 11037 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DB             ; JSR -> BSR  ; orig: C - - - - - 0x012DF1 04:ADE1: 20 DB 77  JSR sub_bat_77DB
+
+warning 2047 in line 11099 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x012E61 04:AE51: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 11107 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7991             ; JSR -> BSR  ; orig: C - - - - - 0x012E70 04:AE60: 20 91 79  JSR sub_bat_7991
+
+warning 2047 in line 11276 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_77DF             ; JSR -> BSR  ; orig: C - - - - - 0x012EEB 04:AEDB: 20 DF 77  JSR sub_bat_77DF
+
+warning 2047 in line 11309 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7AC5             ; JSR -> BSR  ; orig: C - - - - - 0x012F11 04:AF01: 20 C5 7A  JSR sub_bat_7AC5
+
+warning 2047 in line 11320 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7D29             ; JSR -> BSR  ; orig: C - - - - - 0x012F1E 04:AF0E: 20 29 7D  JSR sub_bat_7D29
+
+warning 2047 in line 11342 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEEA             ; JSR -> BSR  ; orig: C - - - - - 0x012F3C 04:AF2C: 20 DA FE  JSR sub_0x01FEEA
+
+warning 2047 in line 11345 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7C96             ; JSR -> BSR  ; orig: C - - - - - 0x012F3F 04:AF2F: 20 96 7C  JSR sub_bat_7C96
+
+warning 2047 in line 11364 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7D5F             ; JSR -> BSR  ; orig: C - - - - - 0x012F57 04:AF47: 20 5F 7D  JSR sub_bat_7D5F
+
+warning 2047 in line 11455 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x012FAF 04:AF9F: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 11464 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x012FBB 04:AFAB: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 11775 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E71E             ; JSR -> BSR  ; orig: C - - - - - 0x01311F 04:B10F: 20 0E E7  JSR sub_0x01E71E
+
+warning 2047 in line 11815 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_733F             ; JSR -> BSR  ; orig: C - - - - - 0x013158 04:B148: 20 3F 73  JSR sub_bat_733F
+
+warning 2047 in line 11837 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01EEF6             ; JSR -> BSR  ; orig: C - - - - - 0x013174 04:B164: 20 E6 EE  JSR sub_0x01EEF6
+
+warning 2047 in line 11891 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FECB_search_for_free_object             ; JSR -> BSR  ; orig: C D 1 - - - 0x013190 04:B180: 20 BB FE  JSR sub_0x01FECB_sea
+
+warning 2047 in line 11912 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FEC3_create_object             ; JSR -> BSR  ; orig: C - - - - - 0x0131A9 04:B199: 20 B3 FE  JSR sub_0x01FEC3_cre
+
+warning 2047 in line 11953 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0131D1 04:B1C1: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 11983 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_74B7             ; JSR -> BSR  ; orig: C - - J - - 0x0131F4 04:B1E4: 20 B7 74  JSR sub_bat_74B7
+
+warning 2047 in line 12046 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x013233 04:B223: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 12047 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_7986             ; JSR -> BSR  ; orig: C - - - - - 0x013236 04:B226: 20 86 79  JSR sub_bat_7986
+
+warning 2047 in line 12064 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x013248 04:B238: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 12222 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6F29             ; JSR -> BSR  ; orig: C - - - - - 0x0132E1 04:B2D1: 20 29 6F  JSR sub_bat_6F29
+
+warning 2047 in line 12227 of "banks\generated_vdp\bank_04_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 573 of "main.asm"
+>    BSR     sub_bat_6F73             ; JSR -> BSR  ; orig: C - - - - - 0x0132EB 04:B2DB: 20 73 6F  JSR sub_bat_6F73
+
+warning 2047 in line 120 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01401C 05:800C: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 134 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x014031 05:8021: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 150 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - J - - 0x014048 05:8038: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 151 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_71DE_draw_dot_on_minimap             ; JSR -> BSR  ; orig: C - - - - - 0x01404B 05:803B: 20 DE 71  JSR sub_bat_71DE_dra
+
+warning 2047 in line 152 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E689             ; JSR -> BSR  ; orig: C - - - - - 0x01404E 05:803E: 20 79 E6  JSR sub_0x01E689
+
+warning 2047 in line 251 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7021_EOR_FF             ; JSR -> BSR  ; orig: C - - - - - 0x0140BD 05:80AD: 20 21 70  JSR sub_bat_7021_EOR
+
+warning 2047 in line 291 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x0140F2 05:80E2: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 308 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - - - - 0x014111 05:8101: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 333 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7512             ; JSR -> BSR  ; orig: C - - - - - 0x014135 05:8125: 20 12 75  JSR sub_bat_7512
+
+warning 2047 in line 656 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0142BA 05:82AA: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 668 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA4D             ; JSR -> BSR  ; orig: C - - J - - 0x0142CB 05:82BB: 20 3D EA  JSR sub_0x01EA4D
+
+warning 2047 in line 669 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01F248             ; JSR -> BSR  ; orig: C - - - - - 0x0142CE 05:82BE: 20 38 F2  JSR sub_0x01F248
+
+warning 2047 in line 675 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E69F             ; JSR -> BSR  ; orig: C - - - - - 0x0142DD 05:82CD: 20 8F E6  JSR sub_0x01E69F
+
+warning 2047 in line 824 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_74B7             ; JSR -> BSR  ; orig: C - - J - - 0x0143AE 05:839E: 20 B7 74  JSR sub_bat_74B7
+
+warning 2047 in line 832 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_6C90             ; JSR -> BSR  ; orig: C - - - - - 0x0143BA 05:83AA: 20 90 6C  JSR sub_bat_6C90
+
+warning 2047 in line 957 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x014436 05:8426: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 1163 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x014531 05:8521: AD 02 20  LDA $2002
+
+warning 2047 in line 1166 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x014538 05:8528: AD 02 20  LDA $2002
+
+warning 2047 in line 1204 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x014569 05:8559: AD 02 20  LDA $2002
+
+warning 2047 in line 1208 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 1210 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 1211 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_READ_2007  ; read VRAM data → D0  ; was: C - - - - - 0x014576 05:8566: AD 07 20  LDA $2007
+
+warning 2047 in line 1212 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_READ_2007  ; read VRAM data → D0  ; was: C - - - - - 0x014579 05:8569: AD 07 20  LDA $2007
+
+warning 2047 in line 1228 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_WRITE_2000
+
+warning 2047 in line 1231 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_WRITE_2005
+
+warning 2047 in line 1234 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_WRITE_2005
+
+warning 2047 in line 1246 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_WRITE_2000
+
+warning 2047 in line 1265 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - J - - 0x014610 05:8600: 20 25 E6  JSR sub_0x01E635_dis
+
+warning 2047 in line 1269 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - - - - 0x01461A 05:860A: 20 6D E4  JSR sub_0x01E47D_cle
+
+warning 2047 in line 1270 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA3B_set_tunic_color             ; JSR -> BSR  ; orig: C - - - - - 0x01461D 05:860D: 20 2B EA  JSR sub_0x01EA3B_set
+
+warning 2047 in line 1282 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - J - - 0x01462A 05:861A: 20 6D E4  JSR sub_0x01E47D_cle
+
+warning 2047 in line 1295 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x01463A 05:862A: 20 F4 ED  JSR sub_0x01EE04_fin
+
+warning 2047 in line 1778 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7021_EOR_FF             ; JSR -> BSR  ; orig: C - - - - - 0x0147B0 05:87A0: 20 21 70  JSR sub_bat_7021_EOR
+
+warning 2047 in line 1796 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_74B7             ; JSR -> BSR  ; orig: C - - - - - 0x0147C9 05:87B9: 20 B7 74  JSR sub_bat_74B7
+
+warning 2047 in line 1810 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA4D             ; JSR -> BSR  ; orig: C - - - - - 0x0147D6 05:87C6: 20 3D EA  JSR sub_0x01EA4D
+
+warning 2047 in line 1811 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA61             ; JSR -> BSR  ; orig: C - - - - - 0x0147D9 05:87C9: 20 51 EA  JSR sub_0x01EA61
+
+warning 2047 in line 1814 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E618_clear_memory             ; JSR -> BSR  ; orig: C - - - - - 0x0147E0 05:87D0: 20 08 E6  JSR sub_0x01E618_cle
+
+warning 2047 in line 1868 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014834 05:8824: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 1915 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EEF4             ; JSR -> BSR  ; orig: C - - - - - 0x014877 05:8867: 20 E4 EE  JSR sub_0x01EEF4
+
+warning 2047 in line 2056 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_71DE_draw_dot_on_minimap             ; JSR -> BSR  ; orig: C - - - - - 0x014923 05:8913: 20 DE 71  JSR sub_bat_71DE_dra
+
+warning 2047 in line 2064 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EAE3             ; JSR -> BSR  ; orig: C - - - - - 0x014936 05:8926: 20 D3 EA  JSR sub_0x01EAE3
+
+warning 2047 in line 2067 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_6E40_clear_counter_00_27             ; JSR -> BSR  ; orig: C - - - - - 0x014939 05:8929: 20 40 6E  JSR sub_bat_6E40_cle
+
+warning 2047 in line 2073 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01F248             ; JSR -> BSR  ; orig: C - - - - - 0x014946 05:8936: 20 38 F2  JSR sub_0x01F248
+
+warning 2047 in line 2102 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_6DB7_clear_special_metatile_addresses             ; JSR -> BSR  ; orig: C - - - - - 0x014970 05:8960: 20 B7 6D  JSR sub_bat_6DB7_cle
+
+warning 2047 in line 2253 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x014A16 05:8A06: 20 F4 ED  JSR sub_0x01EE04_fin
+
+warning 2047 in line 2265 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x014A28 05:8A18: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2271 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x014A34 05:8A24: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 2287 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01FEA8_decrease_invincibility_timer             ; JSR -> BSR  ; orig: C - - - - - 0x014A41 05:8A31: 20 98 FE  JSR sub_0x01FEA8_dec
+
+warning 2047 in line 2288 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01F24C             ; JSR -> BSR  ; orig: C - - - - - 0x014A44 05:8A34: 20 3C F2  JSR sub_0x01F24C
+
+warning 2047 in line 2291 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - - - - 0x014A4B 05:8A3B: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 2292 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E689             ; JSR -> BSR  ; orig: C - - - - - 0x014A4E 05:8A3E: 20 79 E6  JSR sub_0x01E689
+
+warning 2047 in line 2294 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E79A             ; JSR -> BSR  ; orig: C - - - - - 0x014A54 05:8A44: 20 8A E7  JSR sub_0x01E79A
+
+warning 2047 in line 2299 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_6D00_update_hud_info             ; JSR -> BSR  ; orig: C - - - - - 0x014A61 05:8A51: 20 00 6D  JSR sub_bat_6D00_upd
+
+warning 2047 in line 2309 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x014A74 05:8A64: 20 5A E8  JSR sub_0x01E86A_get
+
+warning 2047 in line 2345 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x014AA7 05:8A97: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 2363 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x014AB0 05:8AA0: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 2535 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA61             ; JSR -> BSR  ; orig: C - - - - - 0x014B73 05:8B63: 20 51 EA  JSR sub_0x01EA61
+
+warning 2047 in line 2547 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x014B8C 05:8B7C: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 2574 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x014BB5 05:8BA5: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 2577 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01F24C             ; JSR -> BSR  ; orig: C - - - - - 0x014BB8 05:8BA8: 20 3C F2  JSR sub_0x01F24C
+
+warning 2047 in line 2604 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x014BE8 05:8BD8: 20 14 73  JSR sub_bat_7314_che
+
+warning 2047 in line 2617 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x014BF7 05:8BE7: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 2719 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E872_bomb_blasts_breakable_wall             ; JSR -> BSR  ; orig: C - - - - - 0x014C7A 05:8C6A: 20 62 E8  JSR sub_0x01E872_bom
+
+warning 2047 in line 2743 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x014C8F 05:8C7F: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 2850 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_74B7             ; JSR -> BSR  ; orig: C D 0 - - - 0x014D0B 05:8CFB: 20 B7 74  JSR sub_bat_74B7
+
+warning 2047 in line 2918 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x014D77 05:8D67: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 2954 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014D9E 05:8D8E: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2956 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014DA3 05:8D93: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 2977 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014DC7 05:8DB7: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3069 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x014E33 05:8E23: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 3105 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_711B             ; JSR -> BSR  ; orig: C - - - - - 0x014E66 05:8E56: 20 1B 71  JSR sub_bat_711B
+
+warning 2047 in line 3142 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_6D80_set_sfx_3             ; JSR -> BSR  ; orig: C - - - - - 0x014E97 05:8E87: 20 80 6D  JSR sub_bat_6D80_set
+
+warning 2047 in line 3154 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7116             ; JSR -> BSR  ; orig: C - - - - - 0x014EA6 05:8E96: 20 16 71  JSR sub_bat_7116
+
+warning 2047 in line 3284 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_6E46             ; JSR -> BSR  ; orig: C - - - - - 0x014F2D 05:8F1D: 20 46 6E  JSR sub_bat_6E46
+
+warning 2047 in line 3325 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6D6_set_map_bit5             ; JSR -> BSR  ; orig: C - - - - - 0x014F6A 05:8F5A: 20 C6 E6  JSR sub_0x01E6D6_set
+
+warning 2047 in line 3341 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01F171             ; JSR -> BSR  ; orig: C - - - - - 0x014F83 05:8F73: 20 61 F1  JSR sub_0x01F171
+
+warning 2047 in line 3383 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C D 0 - - - 0x014FB8 05:8FA8: 20 1F 70  JSR sub_bat_701F_EOR
+
+warning 2047 in line 3404 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01FEC1_destroy_object             ; JSR -> BSR  ; orig: C - - - - - 0x014FD5 05:8FC5: 20 B1 FE  JSR sub_0x01FEC1_des
+
+warning 2047 in line 3430 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014FF2 05:8FE2: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3444 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EE0A_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x01500F 05:8FFF: 20 FA ED  JSR sub_0x01EE0A_fin
+
+warning 2047 in line 3456 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: C - - - - - 0x015024 05:9014: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 3459 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_790C             ; JSR -> BSR  ; orig: C - - - - - 0x01502B 05:901B: 20 0C 79  JSR sub_bat_790C
+
+warning 2047 in line 3506 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01506C 05:905C: 20 76 72  JSR sub_bat_7276_inc
+
+warning 2047 in line 3545 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x015092 05:9082: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 3562 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x0150A9 05:9099: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 3585 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x0150CA 05:90BA: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 3611 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x0150DA 05:90CA: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 3635 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C D 0 - - - 0x0150F5 05:90E5: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 3688 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01511C 05:910C: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 3734 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x015161 05:9151: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3811 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x0151B7 05:91A7: 20 13 70  JSR sub_bat_7013_get
+
+warning 2047 in line 3903 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x015232 05:9222: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 4002 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x0152AF 05:929F: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 4058 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x0152E7 05:92D7: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 4131 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x015338 05:9328: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 5125 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7298_dec_0004_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x01644C 05:A43C: 20 98 72  JSR sub_bat_7298_dec
+
+warning 2047 in line 5199 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7282_inc_0002_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016494 05:A484: 20 82 72  JSR sub_bat_7282_inc
+
+warning 2047 in line 5203 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_728E_inc_0004_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01649B 05:A48B: 20 8E 72  JSR sub_bat_728E_inc
+
+warning 2047 in line 5205 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7274_inc_0000_pointer_by_01             ; JSR -> BSR  ; orig: C D 1 - - - 0x01649E 05:A48E: 20 74 72  JSR sub_bat_7274_inc
+
+warning 2047 in line 5267 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7298_dec_0004_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x0164CE 05:A4BE: 20 98 72  JSR sub_bat_7298_dec
+
+warning 2047 in line 5268 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7280_inc_0002_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x0164D1 05:A4C1: 20 80 72  JSR sub_bat_7280_inc
+
+warning 51 in line 5355 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": instruction has been auto-aligned
+	included from line 574 of "main.asm"
+>    MOVE.B  #$03,D1  ; orig: C D 1 - - - 0x016506 05:A4F6: A2 03     LDX #$03
+
+warning 2047 in line 5435 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01657E 05:A56E: 20 76 72  JSR sub_bat_7276_inc
+
+warning 2047 in line 5437 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7282_inc_0002_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016583 05:A573: 20 82 72  JSR sub_bat_7282_inc
+
+warning 2047 in line 5471 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7280_inc_0002_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x016598 05:A588: 20 80 72  JSR sub_bat_7280_inc
+
+warning 2047 in line 5475 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01659E 05:A58E: 20 76 72  JSR sub_bat_7276_inc
+
+warning 2047 in line 5482 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_bat_7274_inc_0000_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x0165AB 05:A59B: 20 74 72  JSR sub_bat_7274_inc
+
+warning 2047 in line 5821 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C D 1 - - - 0x016730 05:A720: 20 5A E8  JSR sub_0x01E86A_get
+
+warning 2047 in line 6088 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x016807 05:A7F7: 20 5A E8  JSR sub_0x01E86A_get
+
+warning 2047 in line 6153 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E8E8             ; JSR -> BSR  ; orig: C - - - - - 0x016858 05:A848: 20 D8 E8  JSR sub_0x01E8E8
+
+warning 2047 in line 6164 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E827             ; JSR -> BSR  ; orig: C - - - - - 0x01686B 05:A85B: 20 17 E8  JSR sub_0x01E827
+
+warning 2047 in line 6166 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x016870 05:A860: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 6203 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01ED99             ; JSR -> BSR  ; orig: C - - J - - 0x01689F 05:A88F: 20 89 ED  JSR sub_0x01ED99
+
+warning 2047 in line 6229 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - - - - 0x0168BF 05:A8AF: 20 F7 E5  JSR sub_0x01E607_hid
+
+warning 2047 in line 6234 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     PPU_WRITE_2000
+
+warning 2047 in line 6253 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E8E8             ; JSR -> BSR  ; orig: C - - - - - 0x0168DF 05:A8CF: 20 D8 E8  JSR sub_0x01E8E8
+
+warning 2047 in line 6890 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x016B78 05:AB68: 20 5A E8  JSR sub_0x01E86A_get
+
+warning 2047 in line 6901 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C D 1 - - - 0x016B83 05:AB73: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 51 in line 7272 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": instruction has been auto-aligned
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA61             ; JSR -> BSR  ; orig: C - - J - - 0x01708A 05:B07A: 20 51 EA  JSR sub_0x01EA61
+
+warning 2047 in line 7272 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA61             ; JSR -> BSR  ; orig: C - - J - - 0x01708A 05:B07A: 20 51 EA  JSR sub_0x01EA61
+
+warning 2047 in line 7273 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EA4D             ; JSR -> BSR  ; orig: C - - - - - 0x01708D 05:B07D: 20 3D EA  JSR sub_0x01EA4D
+
+warning 2047 in line 7280 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01F248             ; JSR -> BSR  ; orig: C - - - - - 0x017097 05:B087: 20 38 F2  JSR sub_0x01F248
+
+warning 2047 in line 7307 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EAED             ; JSR -> BSR  ; orig: C - - - - - 0x0170C3 05:B0B3: 20 DD EA  JSR sub_0x01EAED
+
+warning 2047 in line 7377 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01710E 05:B0FE: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 7536 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: C - - - - - 0x01719E 05:B18E: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 7586 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EDB0             ; JSR -> BSR  ; orig: C - - - - - 0x0171E2 05:B1D2: 20 A0 ED  JSR sub_0x01EDB0
+
+warning 2047 in line 7791 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EE0A_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x0172F5 05:B2E5: 20 FA ED  JSR sub_0x01EE0A_fin
+
+warning 2047 in line 7990 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x01742B 05:B41B: 20 F4 ED  JSR sub_0x01EE04_fin
+
+warning 2047 in line 8157 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E618_clear_memory             ; JSR -> BSR  ; orig: C - - - - - 0x0174FC 05:B4EC: 20 08 E6  JSR sub_0x01E618_cle
+
+warning 2047 in line 8231 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x01753E 05:B52E: 20 5A E8  JSR sub_0x01E86A_get
+
+warning 2047 in line 8250 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C D 1 - - - 0x017557 05:B547: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 8423 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x01761A 05:B60A: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 8477 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x01765C 05:B64C: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 8511 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x01767C 05:B66C: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 8612 of "banks\generated_vdp\bank_05_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 574 of "main.asm"
+>    BSR     sub_0x01E745             ; JSR -> BSR  ; orig: C - - - - - 0x0176CF 05:B6BF: 20 35 E7  JSR sub_0x01E745
+
+warning 2047 in line 106 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x018050 06:8040: 20 E2 E5  JSR sub_0x01E5F2_jum
+
+warning 2047 in line 153 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 156 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 6755 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_PPU_EVENT
+
+warning 2047 in line 6761 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 6764 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 6768 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 6793 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 6805 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 6819 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_PPU_EVENT
+
+warning 2047 in line 6829 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2000
+
+warning 2047 in line 6851 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_PPU_EVENT
+
+warning 2047 in line 6867 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2007
+
+warning 2047 in line 6881 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_PPU_EVENT
+
+warning 2047 in line 6883 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 6885 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 6886 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 6887 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 6905 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_PPU_EVENT
+
+warning 2047 in line 6908 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x01A106 06:A0F6: AE 02 20  LDX $2002
+
+warning 2047 in line 7030 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_PPU_EVENT
+
+warning 2047 in line 7032 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7043 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7059 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7104 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7117 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7127 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7137 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7147 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7160 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7165 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7175 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7185 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7195 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7205 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7242 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     TRACE_MARK
+
+warning 2047 in line 7248 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_READ_2002
+
+warning 2047 in line 7257 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 7262 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 7278 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2000
+
+warning 2047 in line 7294 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2007
+
+warning 2047 in line 7307 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2007
+
+warning 2047 in line 7318 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 7322 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 7325 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 7328 of "banks\generated_vdp\bank_06_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 575 of "main.asm"
+>    BSR     PPU_WRITE_2006
+
+warning 2047 in line 378 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x0147D6             ; JSR -> BSR  ; orig: - D 1 - I - 0x00660C 01:6D8C: 20 C6 87  JSR sub_0x0147D6
+
+warning 2047 in line 386 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01F24C             ; JSR -> BSR  ; orig: - D 1 - I - 0x00661E 01:6D9E: 20 3C F2  JSR sub_0x01F24C
+
+warning 2047 in line 387 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01EADB             ; JSR -> BSR  ; orig: - D 1 - I - 0x006621 01:6DA1: 20 CB EA  JSR sub_0x01EADB
+
+warning 2047 in line 1060 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01F09D             ; JSR -> BSR  ; orig: - D 1 - I - 0x0068B5 01:7035: 20 8D F0  JSR sub_0x01F09D
+
+warning 2047 in line 1614 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_inc_0x003FBC_prg_bankswitch             ; JSR -> BSR  ; orig: - D 1 - I - 0x006AD8 01:7258: 20 AC BF  JSR sub_inc_0x003FBC
+
+warning 2047 in line 1616 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_inc_0x003FA8_set_control_register             ; JSR -> BSR  ; orig: - D 1 - I - 0x006ADD 01:725D: 20 98 BF  JSR sub_inc_0x003FA8
+
+warning 2047 in line 1820 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: - D 1 - I - 0x006B8C 01:730C: 20 CE E6  JSR sub_0x01E6DE_get
+
+warning 2047 in line 2060 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: - D 1 - I - 0x006CC3 01:7443: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 2109 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_inc_0x003FBC_prg_bankswitch             ; JSR -> BSR  ; orig: - D 1 - I - 0x006CFE 01:747E: 20 AC BF  JSR sub_inc_0x003FBC
+
+warning 2047 in line 3252 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01FA5F             ; JSR -> BSR  ; orig: - D 1 - I - 0x007054 01:77D4: 20 4F FA  JSR sub_0x01FA5F
+
+warning 2047 in line 3742 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01FAA3             ; JSR -> BSR  ; orig: - D 1 - I - 0x00724A 01:79CA: 20 93 FA  JSR sub_0x01FAA3
+
+warning 2047 in line 4124 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: - D 1 - I - 0x007431 01:7BB1: 20 A3 EB  JSR sub_0x01EBB3_cle
+
+warning 2047 in line 4285 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01FEB6             ; JSR -> BSR  ; orig: - D 1 - I - 0x00750F 01:7C8F: 20 A6 FE  JSR sub_0x01FEB6
+
+warning 2047 in line 4291 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01EEF6             ; JSR -> BSR  ; orig: - D 1 - I - 0x007516 01:7C96: 20 E6 EE  JSR sub_0x01EEF6
+
+warning 2047 in line 4335 of "banks\generated_vdp\bank_s2_gen68k_vdp.asm": branch out of range changed to jmp
+	included from line 577 of "main.asm"
+>    BSR     sub_0x01F3E4             ; JSR -> BSR  ; orig: - D 1 - I - 0x007556 01:7CD6: 20 D4 F3  JSR sub_0x01F3E4

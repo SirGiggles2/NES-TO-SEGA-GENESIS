@@ -1,0 +1,22 @@
+=== GAMEPLAY STATE v379 ===
+
+heartbeat frame=1 script=0 sub=0 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00
+heartbeat frame=300 script=0 sub=0 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00
+heartbeat frame=600 script=1 sub=2 ready=0 ppu=0x12 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=FF pause=0 trans=0 timer=0 spr1=00
+heartbeat frame=900 script=3 sub=1 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00
+heartbeat frame=1200 script=3 sub=1 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00
+
+*** GAMEPLAY ENTRY ***
+entry frame=1347 script=5 sub=0 ready=0 ppu=0x00 map=00 next=00 x=78 y=00 dir=08 enemy_cnt=0 room_item=FF msg=00 quest=00 hearts=00 pause=0 trans=0 timer=3 spr1=48
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\v379_entry_f1347.png
+f+30 frame=1377 script=5 sub=0 ready=1 ppu=0x00 map=00 next=00 x=78 y=05 dir=0F enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=0C
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\v379_f30_f1377.png
+f+120 frame=1467 script=5 sub=0 ready=1 ppu=0x00 map=00 next=00 x=78 y=05 dir=0F enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=0C
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\v379_f120_f1467.png
+heartbeat frame=1500 script=5 sub=0 ready=1 ppu=0x00 map=00 next=00 x=78 y=05 dir=0F enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=0C
+f+240 frame=1587 script=5 sub=0 ready=1 ppu=0x00 map=00 next=00 x=78 y=05 dir=0F enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=0C
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\v379_f240_f1587.png
+
+=== SUMMARY ===
+final frame=1587 script=5 sub=0 ready=1 ppu=0x00 map=00 next=00 x=78 y=05 dir=0F enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=0C
+gameplay_entry_frame=1347
