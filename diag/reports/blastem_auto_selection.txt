@@ -1,6 +1,6 @@
 === Frame Selection (blastem_cap -> blastem) ===
-title_settled: blastem_cap_00090.png idx=90 nz=7531 window=[56,198] mad=14.25 nz_penalty=0.857 score=31.39 -> blastem_title_settled.png
-fade_mid: blastem_cap_00210.png idx=210 nz=7510 window=[142,255] mad=14.29 nz_penalty=0.586 score=26.01 -> blastem_fade_mid.png
-scroll_start_visible: blastem_cap_00339.png idx=339 nz=7531 window=[198,340] mad=9.37 nz_penalty=0.072 score=10.80 -> blastem_scroll_start_visible.png
-scroll_mid: blastem_cap_00418.png idx=418 nz=7481 window=[255,426] mad=9.23 nz_penalty=0.029 score=9.81 -> blastem_scroll_mid.png
-scroll_end: blastem_cap_00457.png idx=457 nz=7478 window=[340,539] mad=9.23 nz_penalty=0.024 score=9.71 -> blastem_scroll_end.png
+title_settled: blastem_cap_00136.png idx=136 nz=7524 window=[56,198] mad=23.84 nz_penalty=0.495 score=33.74 -> blastem_title_settled.png
+fade_mid: blastem_cap_00179.png idx=179 nz=7517 window=[142,255] mad=14.30 nz_penalty=0.586 score=26.01 -> blastem_fade_mid.png
+scroll_start_visible: blastem_cap_00235.png idx=235 nz=7545 window=[198,340] mad=9.42 nz_penalty=0.070 score=10.82 -> blastem_scroll_start_visible.png
+scroll_mid: blastem_cap_00414.png idx=414 nz=7474 window=[255,426] mad=9.22 nz_penalty=0.028 score=9.78 -> blastem_scroll_mid.png
+scroll_end: blastem_cap_00444.png idx=444 nz=7464 window=[340,539] mad=9.22 nz_penalty=0.022 score=9.66 -> blastem_scroll_end.png

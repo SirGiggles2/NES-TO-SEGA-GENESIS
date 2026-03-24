@@ -4161,6 +4161,35 @@ Genesis-only follow-up passes (v499, v500):
     avoiding over-constraining early scroll visibility.
   - v500 is currently better than v498/v499 on combined transition+parity.
 
+Dot-flicker build pack (v516-v518):
+- User asked for multiple quick builds to isolate persistent top-dot flicker.
+- v516 (`$51CD`): backdrop tile pattern changed from `$FFFF` to `$0000`.
+  - Hypothesis: opaque backdrop-tile pixels in untouched cells contribute speckle.
+- v517 (`$FFB0`): v516 + `TITLE_SCREEN_COLOR_BALANCE` disabled (`rts`).
+  - Hypothesis: title tint adjustment path may introduce frame-to-frame CRAM noise.
+- v518 (`$3E20`): v517 + manual-phase OAM suppression removed (normal OAM path).
+  - Hypothesis: OAM suppression itself may interact badly with final manual display.
+- `run_blastem_auto_capture.ps1` currently points to `build/zelda_v518.md`.
+
+Post-fade activity alignment pass (v522):
+- User requested matching NES intro activity window (`nes_intro_cap_00091` to `000599`).
+- Restored normal title/manual nametable update cadence by removing title-script
+  forced defer in `PPU_WRITE_NAMETABLE_BYTE` (writes now follow normal PPUMASK
+  immediate path instead of always deferring to full redraw).
+- Build: `build/zelda_v522.md` (checksum `$C8C9`).
+- `run_blastem_auto_capture.ps1` updated to `zelda_v522.md`.
+
+Deep post-fade transition hypothesis + fix (v523):
+- Hypothesis:
+  - Deferring `$2005` scroll application to once-per-VBlank can flatten/mis-time
+    the title->manual transition if game code performs multiple scroll writes in
+    a frame (NES latch semantics rely on write-time effects).
+- Fix:
+  - Restored immediate VDP scroll writes in `PPU_WRITE_2005` for both X/Y paths.
+  - Removed VBlank-only scroll latch application call from `VDP_VBLANK_HANDLER`.
+- Build: `build/zelda_v523.md` (checksum `$826E`).
+- `run_blastem_auto_capture.ps1` updated to `zelda_v523.md`.
+
 Additional micro-pass (v501) and rollback:
 - v501 tested a tiny extra phase-2 blackout (`ram_042D==2 && scroll_Y<$02`).
 - Outcome:
@@ -4169,3 +4198,20 @@ Additional micro-pass (v501) and rollback:
 - Decision:
   - reverted to v500 fade-only blackout logic as active baseline,
   - `run_blastem_auto_capture.ps1` restored to `zelda_v500.md`.
+
+Scroll source-of-truth fix (v502):
+- Root cause addressed:
+  - black-gap/display gating was keyed to `RAM_SCROLL_Y` (game state counter),
+    while actual render scroll comes from PPU/VDP scroll writes.
+- Implementation:
+  - in `VDP_APPLY_TITLE_BLACK_GAP_DISPLAY` (`src/bridge/vdp_layer.asm`),
+    switched phase-2 gating from `RAM_SCROLL_Y` to `PPUSCROLL_Y`.
+  - kept phase-1 fade blackout behavior.
+  - this prevents pre-scroll content from being revealed as static background
+    before the scroll path is actually active.
+- Build:
+  - `build/zelda_v502.md` (checksum `$E227`)
+- BlastEm gate snapshot:
+  - overall `92.7` (`gap_to_100=7.3`)
+  - `scroll_start_visible=96.8`
+  - transition logic now uses applied scroll state (correct causal path).

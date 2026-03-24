@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 
 $BLASTEM = "D:\Emulation\Sega\Genesis\blastem-win64-0.6.3-pre-884de5ef1263\blastem.exe"
 $PROJECT = "C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS"
-$ROM     = "$PROJECT\build\zelda_v500.md"
+$ROM     = "$PROJECT\build\zelda_v526.md"
 $REPORTS = "$PROJECT\diag\reports"
 
 if (-not (Test-Path $BLASTEM)) { throw "BlastEm not found: $BLASTEM" }

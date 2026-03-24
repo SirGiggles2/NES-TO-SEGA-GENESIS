@@ -1,0 +1,8 @@
+=== DOT DIAGNOSTIC ===
+manual_frame_window: first=84 last=5047 samples=46
+top_sprite_frames_nonzero: 0
+max_top_sprites_in_frame: 0
+palette_change_frames: 3
+midframe_nt_write_counter: 0
+RESULT oam_leak=false cram_oscillation=false midframe_nt_writes=false
+=== DOT DIAGNOSTIC COMPLETE ===

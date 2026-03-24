@@ -7,7 +7,7 @@ Reset on start: false
 Reset kind: rebootcore
 Reset result: none
 Reset settle frames: 0
-Frames: 0-424
+Frames: 0-180
 Max wait before Start: 600
 Post-Start capture frames: 180
 Max total frames: 900
@@ -15,13 +15,13 @@ Trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\o
 Menu trace: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\oracle_menu_current_nes.csv
 
 Menu milestones:
-  script1 first frame: 250
-  nonzero subscript first frame: 244
-  ppu_load_index=$14 first frame: 255
+  script1 first frame: never
+  nonzero subscript first frame: 0
+  ppu_load_index=$14 first frame: never
   cur_save_slot nonzero first frame: 0
   ram_041F nonzero first frame: 0
-  ram_0421 nonzero first frame: 32
-  ram_0423 nonzero first frame: 32
+  ram_0421 nonzero first frame: 0
+  ram_0423 nonzero first frame: 0
   sprite index active first frame: 0
 
 Manual Start Detection:
@@ -33,9 +33,9 @@ Manual Start Detection:
 
 Internal Start Capture:
   enabled: true
-  detected frame: 244
+  detected frame: 0
   detected source: nes_btn_press_hold
-  post-end frame: 424
+  post-end frame: 180
 
 Auto-Start:
   enabled: false
@@ -46,64 +46,77 @@ Auto-Start:
   stop frame: never
 
 First changes:
-  ram_0000_t49     frame 3
-  ram_0002_t17     frame 5
-  ram_0003_t18     frame 5
-  ram_0004_t18     frame 3
-  game_mode        never changed
-  screen_ready     frame 31
-  ram_script       frame 250
-  ram_subscript    frame 244
-  ppu_load_index   frame 3
-  ram_frm_cnt      frame 3
-  cur_save_slot    frame 3
-  rendering_flag   frame 3
-  ram_004D         frame 3
-  ram_next_script  never changed
-  ram_005C         frame 3
-  se_ptr_lo        frame 3
-  se_ptr_hi        frame 3
-  ram_006C_se      frame 3
-  ram_00F6         frame 3
-  btn_press        frame 244
-  btn_hold         frame 244
-  scroll_y         frame 3
-  scroll_x         frame 3
-  ram_for_2001     frame 3
-  ram_for_2000     frame 3
-  ram_0415         frame 3
-  ram_041A         frame 32
-  ram_041F         frame 3
-  ram_0421         frame 32
-  ram_0423         frame 32
-  spr_index_1      frame 260
-  spr_index_2      frame 3
-  ram_042D         frame 3
-  ram_042E         frame 3
-  ram_0528         frame 244
-  ram_05F1         frame 32
-  ram_05F4         frame 3
-  ram_05F5         frame 3
-  ram_music        frame 31
-  ram_music_busy   frame 32
-  ram_060A         frame 32
-  ram_060B         frame 32
-  ram_060C         frame 3
-  ram_060D         frame 3
-  ram_0611         frame 32
-  ram_0612         frame 32
-  ram_0613         frame 32
-  ram_0616         frame 3
-  ram_0617         frame 3
-  ram_0619         frame 32
-  ram_061B         frame 32
-  ppu_buf_status   frame 5
-  ppu_buf_index    frame 30
-  ppu_buf_0        frame 3
-  ppu_buf_1        frame 32
-  ppu_buf_2        frame 3
-  ppu_buf_3        frame 3
-  ppu_buf_4        frame 3
-  ppu_buf_5        frame 3
-  ppu_buf_6        frame 30
-  ppu_buf_7        frame 30
+  ram_0000_t49     frame 1
+  ram_0000_t41     frame 1
+  ram_0000_t42     frame 1
+  ram_0002_t17     frame 1
+  ram_0003_t18     frame 1
+  ram_0004_t18     frame 1
+  game_mode        frame 1
+  screen_ready     frame 1
+  ram_script       frame 1
+  ram_subscript    frame 1
+  ppu_load_index   frame 1
+  ram_frm_cnt      frame 1
+  cur_save_slot    frame 1
+  rendering_flag   frame 1
+  ram_004D         frame 1
+  ram_next_script  frame 1
+  ram_005C         frame 1
+  se_ptr_lo        frame 1
+  se_ptr_hi        frame 1
+  ram_006C_se      frame 1
+  ram_00F6         frame 1
+  btn_press        frame 3
+  btn_hold         frame 3
+  scroll_y         frame 1
+  scroll_x         frame 1
+  ram_for_2001     frame 1
+  ram_for_2000     frame 1
+  ram_0415         frame 1
+  ram_041A         frame 1
+  ram_041F         frame 1
+  ram_0421         frame 1
+  ram_0423         frame 1
+  spr_index_1      frame 1
+  spr_index_2      frame 1
+  ram_042D         frame 1
+  ram_042E         frame 1
+  ram_00E7         frame 1
+  ram_map_location frame 1
+  ram_next_map_location frame 1
+  ram_0528         frame 1
+  ram_05F1         frame 1
+  ram_05F4         frame 1
+  ram_05F5         frame 1
+  ram_music        frame 1
+  ram_music_busy   frame 1
+  ram_060A         frame 1
+  ram_060B         frame 1
+  ram_060C         frame 1
+  ram_060D         frame 1
+  ram_0611         frame 1
+  ram_0612         frame 1
+  ram_0613         frame 1
+  ram_0616         frame 1
+  ram_0617         frame 1
+  ram_0619         frame 1
+  ram_061B         frame 1
+  ppu_buf_status   frame 1
+  ppu_buf_index    frame 1
+  ppu_buf_0        frame 28
+  ppu_buf_1        frame 1
+  ppu_buf_2        frame 1
+  ppu_buf_3        frame 1
+  ppu_buf_4        frame 1
+  ppu_buf_5        frame 1
+  ppu_buf_6        frame 1
+  ppu_buf_7        frame 1
+  pal_sh_00        frame 1
+  pal_sh_01        frame 1
+  pal_sh_02        frame 1
+  pal_sh_03        frame 1
+  pal_sh_04        frame 1
+  pal_sh_05        frame 1
+  pal_sh_06        frame 1
+  pal_sh_07        frame 1

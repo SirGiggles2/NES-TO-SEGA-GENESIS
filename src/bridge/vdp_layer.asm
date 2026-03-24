@@ -46,6 +46,9 @@ PPUDATA_BUFFER  EQU $FFFFEF0C
 PPU_LAST_PLANE_ADDR EQU $FFFFEF10
 PPU_PLANE_CACHE_VALID EQU $FFFFEF12
 PPU_FULL_REDRAW_PENDING EQU $FFFFEF13
+PPU_TITLE_CHR_FLUSH_DONE EQU $FFFFEF14
+VDP_IN_VBLANK_FLAG EQU $FFFFEF15
+PPU_MIDFRAME_NT_WRITES EQU $FFFFEF16
 
 RAM_FOR_2001    EQU $FFFF00FE
 RAM_FOR_2000    EQU $FFFF00FF
@@ -53,6 +56,7 @@ RAM_SCROLL_Y    EQU $FFFF00FC
 RAM_SCROLL_X    EQU $FFFF00FD
 PLANE_A_MAP_BASE EQU $C000
 PLANE_B_MAP_BASE EQU $E000
+WINDOW_MAP_BASE  EQU $3800
 PPU_NT_SHADOW   EQU $00FF8200
 PPU_PAL_SHADOW  EQU $00FF9200
 PPU_CHR_SHADOW  EQU $00FFC000
@@ -99,6 +103,9 @@ VDP_INIT:
     clr.w   (PPU_LAST_PLANE_ADDR).l
     clr.b   (PPU_PLANE_CACHE_VALID).l
     clr.b   (PPU_FULL_REDRAW_PENDING).l
+    clr.b   (PPU_TITLE_CHR_FLUSH_DONE).l
+    clr.b   (VDP_IN_VBLANK_FLAG).l
+    clr.w   (PPU_MIDFRAME_NT_WRITES).l
     bsr     PPU_CLEAR_SHADOWS
 
     move.b  #$5C,(VDP_REG1_SHADOW).l  ; V30 mode + display on + DMA
@@ -310,6 +317,7 @@ PPU_READ_2007:
 
 VDP_VBLANK_HANDLER:
     movem.l D0-D7/A0-A6,-(A7)
+    move.b  #1,(VDP_IN_VBLANK_FLAG).l
     move.w  ($C00004),D0
     move.w  #$0201,D0
     bsr     TRACE_MARK
@@ -325,30 +333,15 @@ VDP_VBLANK_HANDLER:
     bsr     VDP_OAM_DMA_TRANSFER
     move.w  #$0203,D0
     bsr     TRACE_MARK
-
+    clr.b   (VDP_IN_VBLANK_FLAG).l
     movem.l (A7)+,D0-D7/A0-A6
     rte
 
 VDP_APPLY_TITLE_BLACK_GAP_DISPLAY:
-    ; Preserve NES PPUMASK intent, but force display off during the expected
-    ; title->manual black gap (fade and early scroll lead-in).
+    ; Preserve NES PPUMASK intent only.
     move.b  (VDP_REG1_SHADOW).l,D3
     move.b  (PPUMASK_SHADOW).l,D4
     andi.b  #$18,D4
-    beq     .display_off
-
-    cmpi.b  #con_script_title_screen,(ram_script).l
-    bne     .display_on
-    tst.b   ($00FF042C).l
-    bne     .display_on
-
-    move.b  ($00FF042D).l,D4
-    cmpi.b  #$01,D4
-    beq     .display_off
-    ; Keep blackout during fade phase only; do not extend into active scroll.
-    cmpi.b  #$02,D4
-    bhs     .display_on
-    cmpi.b  #$01,D4
     beq     .display_off
 
 .display_on:
@@ -374,6 +367,23 @@ VDP_OAM_DMA_TRANSFER:
     move.b  (A1)+,D4
     move.b  (A1)+,D5
     move.b  (A1)+,D6
+    ; NES hides sprites when Y is in the $EF-$FF range. If not handled
+    ; explicitly, those entries can leak as flicker in the upper playfield.
+    cmpi.b  #$EF,D3
+    blo     .spr_visible
+    move.w  #$0000,($C00000)      ; Y = offscreen on Genesis
+    move.w  D7,D0
+    beq     .spr_hidden_last
+    neg.w   D0
+    addi.w  #64,D0
+.spr_hidden_last:
+    move.w  D0,($C00000)          ; link
+    move.w  #$0000,($C00000)      ; attr/tile
+    move.w  #$0000,($C00000)      ; X = offscreen
+    dbra    D7,.sprite_loop
+    bsr     PPU_INVALIDATE_PLANE_CACHE
+    rts
+.spr_visible:
     move.w  D3,D0
     addi.w  #128,D0
     andi.w  #$01FF,D0
@@ -447,12 +457,28 @@ VDP_INIT_NES_BACKDROP:
 .tile_loop:
     move.w  #$FFFF,($C00000)
     dbra    D7,.tile_loop
+    ; Fill Plane A with stable backdrop tile so untouched cells do not inherit
+    ; changing CHR tile 0 data (which manifests as random dots).
+    move.w  #PLANE_A_MAP_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  #2047,D7
+.plane_a_loop:
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    dbra    D7,.plane_a_loop
     move.w  #PLANE_B_MAP_BASE,D0
     bsr     VDP_SET_VRAM_WRITE_ADDR
     move.w  #2047,D7
 .plane_loop:
     move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
     dbra    D7,.plane_loop
+    ; Window plane can become visible during frontend/title timing.
+    ; Fill it with the same backdrop tile to prevent dotted garbage speckle.
+    move.w  #WINDOW_MAP_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  #2047,D7
+.window_loop:
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    dbra    D7,.window_loop
     movem.l (A7)+,D0/D7
     rts
 
@@ -790,6 +816,13 @@ PPU_NORMALIZE_NAMETABLE_ADDR:
     blo     .done
     subi.w  #$1000,D4
 .done:
+    ; Title/manual scroll needs two nametable pages active so content can
+    ; pass through as motion instead of sticking as a static background.
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .mirror_1k
+    andi.w  #$07FF,D4
+    rts
+.mirror_1k:
     andi.w  #PPU_NT_MIRROR_MASK,D4
     rts
 
@@ -807,9 +840,17 @@ PPU_WRITE_NAMETABLE_BYTE:
     andi.w  #$03FF,D5
     cmpi.w  #$03C0,D5
     bhs     .attribute
+    tst.b   (VDP_IN_VBLANK_FLAG).l
+    bne     .nt_write_vblank
+    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
+.nt_write_vblank:
     bsr     PPU_RENDER_NAMETABLE_CELL
     bra     .done
 .attribute:
+    tst.b   (VDP_IN_VBLANK_FLAG).l
+    bne     .attr_write_vblank
+    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
+.attr_write_vblank:
     bsr     PPU_RENDER_ATTRIBUTE_BLOCK
     bra     .done
 .defer_redraw:
@@ -890,9 +931,27 @@ PPU_FLUSH_CHR_SHADOW_TO_VRAM:
     rts
 
 PPU_FLUSH_TITLE_CHR_TO_VRAM:
-    ; Title correctness > micro-optimization:
-    ; flush full CHR so any title nametable tile id has valid pattern data.
+    ; Reduce title/manual VRAM churn:
+    ; - During title hold (phase 0), do a one-time full CHR flush.
+    ; - Outside that window, throttle full flushes to every 4th frame.
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .throttled_flush
+    tst.b   ($00FF042C).l
+    bne     .throttled_flush
+    tst.b   ($00FF042D).l
+    bne     .throttled_flush
+    tst.b   (PPU_TITLE_CHR_FLUSH_DONE).l
+    bne     .done
     bsr     PPU_FLUSH_CHR_SHADOW_TO_VRAM
+    move.b  #1,(PPU_TITLE_CHR_FLUSH_DONE).l
+    rts
+.throttled_flush:
+    clr.b   (PPU_TITLE_CHR_FLUSH_DONE).l
+    move.b  (ram_frm_cnt).l,D0
+    andi.b  #$03,D0
+    bne     .done
+    bsr     PPU_FLUSH_CHR_SHADOW_TO_VRAM
+.done:
     rts
 
 PPU_FLUSH_TILE_RANGE_TO_VRAM:
