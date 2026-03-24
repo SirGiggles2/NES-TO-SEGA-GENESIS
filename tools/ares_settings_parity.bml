@@ -1,0 +1,52 @@
+Video
+  Driver: OpenGL 3.2
+  Shader: None
+  Multiplier: 2
+  Output: Scale
+  AspectCorrectionMode: Standard
+  AdaptiveSizing: false
+  AutoCentering: true
+  Luminance: 1.0
+  Saturation: 1.0
+  Gamma: 1.0
+  ColorBleed: false
+  ColorEmulation: false
+  DeepBlackBoost: false
+  InterframeBlending: false
+  Overscan: false
+  PixelAccuracy: true
+  Quality: SD
+  Supersampling: false
+Audio
+  Driver: WASAPI
+  Device: Default
+  Frequency: 48000
+  Latency: 0
+  Exclusive: false
+  Blocking: true
+  Dynamic: false
+  Mute: false
+  Volume: 1.0
+  Balance: 0.0
+Input
+  Driver: SDL
+  Defocus: Continue
+Boot
+  Fast: false
+  Debugger: false
+  AwaitGDBClient: false
+  Prefer: NTSC-U
+General
+  ShowStatusBar: false
+  Rewind: false
+  RunAhead: false
+  AutoSaveMemory: true
+  HomebrewMode: false
+  ForceInterpreter: false
+  NoFilePrompt: true
+Paths
+  Screenshots: C:/Users/Jake Diggity/Documents/GitHub/NES-TO-SEGA-GENESIS/diag/reports
+MegaDrive
+  TMSS: false
+  Visible: true
+  Path: C:/Users/Jake Diggity/Documents/GitHub/NES-TO-SEGA-GENESIS/build/

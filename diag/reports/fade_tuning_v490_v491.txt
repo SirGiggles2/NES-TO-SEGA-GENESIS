@@ -1,0 +1,38 @@
+=== Fade Tuning Experiment: v490 vs v491 ===
+Date: 2026-03-24
+
+Goal:
+- Tune intro fade cadence toward NES oracle feel.
+
+Change attempted in v490:
+- File: src/banks/generated/bank_02_gen68k.asm
+- Table: tbl_9B69 (phase-1 fade delay table)
+- Modification:
+  - replaced two long `$C0` hold values with `$08`.
+
+Observed result (v490):
+- Intro/fade transition advanced too early.
+- In intro probe, transition into demo path occurred around nmi ~594,
+  far earlier than NES oracle transition window (~953-956).
+- This moved timing away from oracle, not toward it.
+
+Action:
+- Reverted tbl_9B69 to original values and rebuilt v491.
+
+Validation (v491):
+- Intro probe output: diag/reports/intro_loop_zelda_v491.txt
+- Transition returned to previous window:
+  - fade/title -> transition occurs around nmi ~962-965 in v491.
+- This is closer to oracle timing window and matches pre-v490 behavior.
+
+Conclusion:
+- v490 fade-table shortening is rejected (regression in cadence).
+- v491 restored baseline is accepted.
+
+Recommended next fade work (safe path):
+1) Keep tbl_9B69 baseline intact.
+2) Tune fade *visual curve* via palette step table (tbl_9969_logo_blackout_palette)
+   instead of coarse duration table changes.
+3) Improve comparison tooling:
+   - use phase-aware screenshot triggers (ad/ph + rdy transitions)
+   - avoid fixed `nmi>600` heuristic for "fade mid".

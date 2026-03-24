@@ -1,0 +1,24 @@
+=== TITLE PERFECTION REPORT ===
+
+Best NES title candidate: nes_ss_title_nmi700.png (score=89.4, MAD=27.02)
+Candidate pool: 5 total, 4 valid (non-black)
+Best NES fade candidate: nes_ss_fade_nmi930.png (score=95.3, MAD=12.00)
+Best NES visible-scroll candidate: nes_ss_scroll_visible_sy30.png (score=98.9, MAD=2.79)
+
+Checkpoint scores:
+- title(best): score=89.4 MAD=27.02 RMSE=45.66 ref_nz=14897 ref_mean=21.38 cur_nz=53069 cur_mean=11.99
+- fade_mid(best): score=95.3 MAD=12.00 RMSE=19.78 ref_nz=0 ref_mean=0.00 cur_nz=53066 cur_mean=12.00
+- scroll_start: score=100.0 MAD=0.00 RMSE=0.00 ref_nz=0 ref_mean=0.00 cur_nz=0 cur_mean=0.00
+- scroll_start_visible(best): score=98.9 MAD=2.79 RMSE=13.21 ref_nz=675 ref_mean=0.92 cur_nz=10614 cur_mean=1.90
+- scroll_mid: score=96.3 MAD=9.54 RMSE=42.21 ref_nz=2904 ref_mean=7.82 cur_nz=9793 cur_mean=1.82
+- scroll_end: score=91.4 MAD=21.94 RMSE=68.83 ref_nz=6794 ref_mean=20.63 cur_nz=9819 cur_mean=1.82
+
+Sanity checks:
+- title(best): OK
+- fade_mid(best): INVALID REF (all-black frame)
+- scroll_start: INVALID REF (all-black frame)
+- scroll_start_visible(best): SUSPECT REF (near-black frame)
+- scroll_mid: OK
+- scroll_end: OK
+
+Overall score (valid checkpoints only): 92.4

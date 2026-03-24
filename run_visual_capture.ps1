@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 $BIZHAWK    = "D:\Emulation\BizHawk-2.11-win-x64\EmuHawk.exe"
 $PROJECT    = "C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS"
 $SCRIPT     = "$PROJECT\diag\scripts\zelda_visual_capture.lua"
-$RomPath    = "$PROJECT\build\zelda_v489.md"
+$RomPath    = "$PROJECT\build\zelda_v495.md"
 $OutputPath = "$PROJECT\diag\reports\visual_capture.txt"
 if (Test-Path $OutputPath) { Remove-Item $OutputPath }
 $BizArgs = ('"{0}" --lua="{1}"' -f $RomPath, $SCRIPT)
@@ -18,10 +18,13 @@ while (-not $proc.HasExited) {
         $reader.Close()
         $fs.Close()
         if ($content -match 'PROBE COMPLETE') {
-            $null = $proc.CloseMainWindow()
-            Start-Sleep -Seconds 3
             $proc.Refresh()
-            if (-not $proc.HasExited) { Stop-Process -Id $proc.Id -Force }
+            if (-not $proc.HasExited) {
+                $null = $proc.CloseMainWindow()
+                Start-Sleep -Seconds 3
+                $proc.Refresh()
+                if (-not $proc.HasExited) { Stop-Process -Id $proc.Id -Force }
+            }
             break
         }
     }

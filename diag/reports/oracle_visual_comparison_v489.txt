@@ -1,0 +1,67 @@
+=== ORACLE VISUAL COMPARISON (NES vs GENESIS v489) ===
+Date: 2026-03-24
+
+Sources:
+- NES state/timing log: diag/reports/nes_intro_loop_nes_original.txt
+- NES screenshots:
+  - diag/reports/nes_ss_title.png
+  - diag/reports/nes_ss_fade_mid.png
+  - diag/reports/nes_ss_scroll_start.png
+  - diag/reports/nes_ss_scroll_mid.png
+  - diag/reports/nes_ss_scroll_end.png
+- Genesis v489 state/timing log: diag/reports/intro_loop_zelda_v489.txt
+- Genesis v489 capture log: diag/reports/visual_capture.txt
+- Genesis screenshots:
+  - diag/reports/ss_title.png
+  - diag/reports/ss_fade_mid.png
+  - diag/reports/ss_ad1_ph0.png
+  - diag/reports/ss_ad1_ph1.png
+  - diag/reports/ss_ad1_ph2.png
+  - diag/reports/ss_phase2_f1.png
+  - diag/reports/ss_phase2_f300.png
+  - diag/reports/ss_phase2_f600.png
+
+Checkpoint mapping:
+1) Title stable
+- NES: nmi=100, sy=00, 2000=B0 (nes_ss_title.png)
+- GEN: title screenshot at nmi=100 (ss_title.png), ad0/ph0 stable in intro_loop log
+- Result: PASS (functional state aligns)
+
+2) Fade midpoint
+- NES: first fade window at nmi=953 with rdy=0 (nes_ss_fade_mid.png)
+- GEN: fade midpoint captured at nmi=601 (ss_fade_mid.png), ad0/ph1
+- Result: PARTIAL (fade exists; timing window differs significantly)
+
+3) Scroll start
+- NES: nmi=956, ppu=02, sy=10, 2000=B0 (nes_ss_scroll_start.png)
+- GEN: ad1/ph0 begins around nmi=961; sy starts at 10 and 2000 transitions as expected
+- Result: PASS
+
+4) Scroll mid
+- NES: nmi=1148, sy=70, 2000=B2 (nes_ss_scroll_mid.png)
+- GEN: equivalent scroll progression present; sy traverses through 70-range with 2000=B2 in intro_loop log
+- Result: PASS (behavioral), PARTIAL (exact cadence differs)
+
+5) Scroll near-end
+- NES: nmi=1340, sy=D0, 2000=B2 (nes_ss_scroll_end.png)
+- GEN: sy reaches D0-range during scroll phase before wrap/phase advance
+- Result: PASS (behavioral), PARTIAL (phase duration compressed)
+
+6) Item/sprite visibility during intro demo
+- NES visual oracle: checkpoints captured, but no automated sprite-diff extraction in this pass
+- GEN evidence: OAM entries populated and changing in phase2 (`visual_capture.txt`, phase2 f1/f300/f600)
+- Result: PARTIAL
+- Notes: OAM activity is confirmed; visual fidelity of all intended sprites/items remains manual-review dependent.
+
+Timing parity summary:
+- NES fade transition occurs near nmi~953.
+- GEN fade transition occurs much earlier (nmi~526-601 window in capture, ad transition near ~961 into scroll path).
+- Scroll/demo phase durations remain non-oracle in feel despite correct state progression.
+- Result: PARTIAL / NOT PARITY
+
+Overall verdict:
+- Functional intro-loop parity: PASS
+- Visual/timing fidelity parity: PARTIAL
+- Remaining priority:
+  1) tune fade cadence/curve to match oracle timing feel
+  2) run explicit sprite-visibility checklist at phase2 checkpoints (manual per-screenshot validation)

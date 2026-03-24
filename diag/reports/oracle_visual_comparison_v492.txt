@@ -1,0 +1,49 @@
+=== ORACLE VISUAL COMPARISON (NES vs GENESIS v492) ===
+Date: 2026-03-24
+
+Sources:
+- NES screenshots:
+  - diag/reports/nes_ss_title.png
+  - diag/reports/nes_ss_fade_mid.png
+  - diag/reports/nes_ss_scroll_start.png
+  - diag/reports/nes_ss_scroll_mid.png
+  - diag/reports/nes_ss_scroll_end.png
+- Genesis v492 screenshots:
+  - diag/reports/ss_title.png
+  - diag/reports/ss_fade_mid.png
+  - diag/reports/ss_ad1_ph0.png
+  - diag/reports/ss_phase2_f300.png
+  - diag/reports/ss_phase2_f600.png
+- Timing log:
+  - diag/reports/intro_loop_zelda_v492.txt
+- Visual capture log:
+  - diag/reports/visual_capture.txt
+- Numeric image metrics:
+  - diag/reports/oracle_visual_metrics_v492.txt
+
+Timing/state checkpoints (v492):
+- title stable: nmi=100
+- fade starts (ad0/ph1): nmi=527
+- fade midpoint screenshot: nmi=562 (fade_step=$07)
+- scroll start (ad1/ph0): nmi=962 (sy moves to $10 at nmi=965)
+- scroll phase continues and wraps as expected; no freeze through 12k-frame probe
+
+Checkpoint metrics (MAD-based score, higher is better):
+- title:       score=91.9
+- fade_mid:    score=97.2
+- scroll_start score=100.0
+- scroll_mid:  score=96.0
+- scroll_end:  score=91.2
+
+Interpretation:
+- Functional loop parity remains strong: PASS
+  - title -> fade -> scroll -> return cycle repeats and no freeze regression.
+- Mid/late intro visual parity remains close at mapped checkpoints.
+- Title score improved sharply after retuning the NES title checkpoint to a late pre-fade settled frame.
+- Sprite path fix in v492 is structurally in place (sprite VRAM copy uploads + sprite tile offset mapping).
+  - OAM is populated and active in phase2 snapshots.
+
+Recommended next micro-pass:
+1) Add a title-specific checkpoint matcher (capture first fully settled title frame after ad resets),
+2) score again against `nes_ss_title.png`,
+3) only then tune title palette/nametable timing if mismatch persists.

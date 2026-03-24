@@ -1,0 +1,23 @@
+=== NES VISUAL CAPTURE ===
+domain=System Bus
+SCREENSHOT: title_candidate nmi=100 target=100 f=122 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: title_candidate nmi=300 target=300 f=322 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: title_candidate nmi=500 target=500 f=522 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: title_candidate nmi=700 target=700 f=722 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: title_candidate nmi=850 target=850 f=872 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: title nmi=850 f=872 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: fade_candidate nmi=930 target=930 f=952 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: fade_candidate nmi=945 target=945 f=967 rdy=1 ppu=00 2000=B0 sy=00
+SCREENSHOT: fade_mid nmi=953 f=975 rdy=0 ppu=00 2000=B0 sy=00
+SCREENSHOT: scroll_start nmi=956 f=978 rdy=1 ppu=02 2000=B0 sy=10
+SCREENSHOT: fade_candidate nmi=960 target=960 f=982 rdy=1 ppu=00 2000=B2 sy=12
+SCREENSHOT: scroll_visible_candidate nmi=972 sy_target=18 f=994 rdy=1 ppu=00 2000=B2 sy=18
+SCREENSHOT: fade_candidate nmi=975 target=975 f=997 rdy=1 ppu=00 2000=B2 sy=19
+SCREENSHOT: scroll_start_visible nmi=988 f=1010 rdy=1 ppu=00 2000=B2 sy=20
+SCREENSHOT: scroll_visible_candidate nmi=988 sy_target=20 f=1010 rdy=1 ppu=00 2000=B2 sy=20
+SCREENSHOT: scroll_visible_candidate nmi=1004 sy_target=28 f=1026 rdy=1 ppu=00 2000=B2 sy=28
+SCREENSHOT: scroll_visible_candidate nmi=1020 sy_target=30 f=1042 rdy=1 ppu=00 2000=B2 sy=30
+SCREENSHOT: scroll_visible_candidate nmi=1036 sy_target=38 f=1058 rdy=1 ppu=00 2000=B2 sy=38
+SCREENSHOT: scroll_mid nmi=1148 f=1170 rdy=1 ppu=00 2000=B2 sy=70
+SCREENSHOT: scroll_end nmi=1340 f=1362 rdy=1 ppu=00 2000=B2 sy=D0
+=== NES VISUAL CAPTURE COMPLETE ===

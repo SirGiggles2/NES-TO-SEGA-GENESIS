@@ -3675,3 +3675,497 @@ Remaining tasks:
   - Systemic register width audit (MOVE.B → Dn.L/W indexing throughout codebase)
 
 Your turn next AI
+
+Post-v486 reconciliation pass (2026-03-24, from "Read THIS cursor.txt"):
+- Purpose:
+  - Reconcile the long Cursor transcript claims against current repository state.
+  - Separate confirmed code/artifact state from unverified runtime outcomes.
+
+Confirmed in repo (code/artifacts exist):
+1. Build artifacts:
+   - `build/zelda_v487.md`
+   - `build/zelda_v488.md`
+   - `build/zelda_v489.md`
+2. Scroll writeback fix remains present in bridge:
+   - `src/bridge/vdp_layer.asm`
+   - `PPU_WRITE_2005` includes comments about v482 and no longer writes to `RAM_SCROLL_X/Y` during PPU $2005 handling.
+3. File-select/table and intro text pointer work is present in source:
+   - `src/banks/generated/bank_02_gen68k.asm`
+   - `tbl_94AD_demo_manual_text` uses label-based pointer bytes (not raw NES $92xx constants).
+   - ROM pointer reads in intro text path include explicit zero-extension (`ANDI.L #$0000FFFF`) and direct ROM address use.
+4. Fade-path edits are present in source:
+   - `src/banks/generated/bank_02_gen68k.asm`
+   - direct reference to `tbl_9969_logo_blackout_palette` exists in code path.
+   - `ram_0301_buffer_index` staging/protection writes are present in fade-related routines.
+5. Joypad bridge path is present in translated FF bank:
+   - `src/banks/generated/bank_FF_gen68k.asm`
+   - `sub_E62D_read_joysticks` calls `READ_JOYPAD` and derives hold/press from mirrored pad state.
+6. Bridge contains partial/ongoing sprite-palette architecture edits:
+   - `src/bridge/vdp_layer.asm`
+   - symbols such as `SPRITE_TILE_VRAM_BASE` and `SPRITE_TILE_INDEX_OFS` exist.
+   - OAM/palette code includes corresponding references.
+
+Not confirmed from local artifacts (treat as unverified until re-probed):
+1. Claimed visual outcomes for v487-v489 (fade quality, sprite/item visibility, "looks fantastic").
+2. Claimed probe/report outputs tied to v487/v488/v489.
+   - Current repo has intro-loop report files through `v486`.
+   - No v487/v488/v489 `.txt` diagnostics were found during this reconciliation pass.
+3. Claimed screenshot sets with `ss_*` naming in the transcript are not currently present in tracked workspace paths checked.
+
+Current trustworthy baseline after reconciliation:
+- Code-level: includes all verified v482-v486 era fixes plus additional v487-v489-era source edits listed above.
+- Evidence-level: the last strongly evidenced intro-loop milestone remains the v486 report set.
+
+Recommended immediate next actions (evidence-first):
+1. Re-run canonical probes on latest ROM (`v489`) and save outputs to `diag/reports`:
+   - intro loop probe
+   - palette/fade probe
+   - visual capture
+2. Record exact output filenames in this handoff section.
+3. Only then promote v489 visual claims from "unverified" to "verified".
+
+Reconciliation follow-up executed (2026-03-24): v489 probes run and logged
+- Ran:
+  - `run_intro_loop_v484.ps1` after setting `diag/scripts/zelda_intro_loop_v484.lua` ROM tag to `zelda_v489`
+  - `run_palette_debug.ps1`
+  - `run_visual_capture.ps1`
+
+New/updated artifacts confirmed:
+- `diag/reports/intro_loop_zelda_v489.txt`
+- `diag/reports/palette_debug.txt`
+- `diag/reports/visual_capture.txt`
+- screenshots present under `diag/reports/ss_*.png` including:
+  - `ss_title.png`
+  - `ss_fade_mid.png`
+  - `ss_ad1_ph0.png`
+  - `ss_ad1_ph2.png`
+  - `ss_phase2_f1.png`
+  - `ss_phase2_f300.png`
+  - `ss_phase2_f600.png`
+
+What is now verified for v489:
+1. Intro loop progression stability:
+   - `intro_loop_zelda_v489.txt` ends with:
+     - `FINAL ... frozen=false`
+     - `nmi=11737` over 12000 frames
+   - multiple full title/fade/scroll/demo cycles are observed without NMI freeze.
+2. Fade path updates are active:
+   - `palette_debug.txt` shows darkened palette values during fade (`NMI=700` block), then restored/phase palettes later.
+3. Scroll path is active:
+   - intro-loop log shows `scroll_Y` changing through expected ranges and nametable bit transitions (`$B0/$B2`) during scroll phases.
+4. OAM is active during intro/demo:
+   - `visual_capture.txt` phase-2 dumps show non-empty sprite entries with dynamic values (e.g. changing `Spr00` Y/tile at later phase-2 checkpoints).
+
+Still uncertain / needs targeted validation:
+1. "Items/sprites do not show up" remains partially unresolved as a quality/fidelity claim.
+   - OAM activity is confirmed, but this does not guarantee all intended sprites are visibly correct at all times.
+2. `visual_capture.txt` contains a palette-shadow print label that appears stale/misleading in that script output context.
+   - Use `palette_debug.txt` as the authoritative palette-shadow probe for v489.
+3. Scroll/fade "looks right" is subjective and still needs side-by-side oracle screenshot comparison before declaring parity.
+
+Oracle side-by-side comparison pass completed (NES original vs v489)
+- Oracle source:
+  - `diag/reports/nes_intro_loop_nes_original.txt`
+- Genesis source:
+  - `diag/reports/intro_loop_zelda_v489.txt`
+
+Comparison criteria and outcomes:
+1. Core state machine shape (script/subscript model)
+   - Criteria: intro loop should remain in `script=0`, `sub=0` for both runs.
+   - Result: PASS
+   - Notes:
+     - NES log remains `scr=0 sub=00` throughout observed interval.
+     - v489 log remains `scr=0` and uses internal phase vars (ad/ph) without script migration.
+
+2. Title -> fade -> intro-scroll -> title cycle repeats
+   - Criteria: repeated transitions through title phase, fade phase, long scroll, then return.
+   - Result: PASS (functional)
+   - Notes:
+     - v489 shows repeated transitions through ad/ph states and returns to title phases multiple times.
+     - No freeze observed in v489 over the 12k-frame probe.
+
+3. NMI stability / freeze check
+   - Criteria: no mid-loop hang; frame/NMI counters continue.
+   - Result: PASS
+   - Notes:
+     - `intro_loop_zelda_v489.txt` ends with `frozen=false`.
+
+4. Scroll activation and nametable bit toggling
+   - Criteria: during intro scroll, `scroll_Y` advances and `$2000` toggles between `$B0/$B2`.
+   - Result: PASS
+   - Notes:
+     - Verified in both logs.
+
+5. Timing parity (oracle-like duration)
+   - Criteria: rough phase durations should be close to NES oracle behavior.
+   - Result: PARTIAL / FAIL (not yet parity)
+   - Notes:
+     - NES scroll phase appears much longer in oracle run.
+     - v489 scroll/fade phases are functioning but compressed relative to oracle durations.
+     - This aligns with user feedback that scroll/fade "feel off" even when functional.
+
+6. Intro item/sprite visual parity
+   - Criteria: intended intro items/sprites are clearly visible and comparable to oracle.
+   - Result: UNRESOLVED
+   - Notes:
+     - v489 OAM activity is confirmed (`visual_capture.txt` shows populated sprite entries).
+     - OAM presence alone is not proof of correct visibility/fidelity.
+     - Requires explicit side-by-side image checks at matched phase checkpoints.
+
+Updated truth statement:
+- v489 intro loop is now functionally stable and cycles correctly.
+- Visual parity is not yet proven.
+- Remaining high-priority gap is fidelity (timing feel + sprite/item visibility quality), not basic progression.
+
+Matched-frame checklist artifacts added (2026-03-24):
+- Oracle visual comparison report:
+  - `diag/reports/oracle_visual_comparison_v489.txt`
+- NES checkpoint screenshots:
+  - `diag/reports/nes_ss_title.png`
+  - `diag/reports/nes_ss_fade_mid.png`
+  - `diag/reports/nes_ss_scroll_start.png`
+  - `diag/reports/nes_ss_scroll_mid.png`
+  - `diag/reports/nes_ss_scroll_end.png`
+- Genesis checkpoint screenshots already captured in:
+  - `diag/reports/ss_*.png`
+
+Checklist outcome snapshot:
+- Functional checkpoints: mostly PASS
+- Visual/timing parity: PARTIAL (fade/scroll cadence still off)
+- Item/sprite visibility: PARTIAL (OAM active, full visual parity still manual-review pending)
+
+Fade-cadence tuning experiment (v490) and rollback (v491):
+- Experiment doc:
+  - `diag/reports/fade_tuning_v490_v491.txt`
+- v490 change:
+  - shortened two long delay entries in `tbl_9B69` (bank 02 fade handler path).
+- v490 outcome:
+  - transition moved too early (~nmi 594), farther from NES oracle transition window.
+  - treated as regression for cadence parity.
+- v491 action:
+  - reverted `tbl_9B69` to original values and rebuilt.
+  - probe confirms restored transition timing (~nmi 962-965), consistent with pre-v490.
+- Decision:
+  - reject v490 fade-delay shortening.
+  - keep v491 baseline.
+
+Sprite visibility experiment (v492):
+- Build artifact:
+  - `build/zelda_v492.md`
+- Hypothesis:
+  - recent sprite-palette routing work added `SPRITE_TILE_INDEX_OFS` in OAM transfer,
+    but CHR flush was still only uploading BG-encoded tile data.
+  - this can cause sprite tiles to reference a VRAM region that was never populated
+    with sprite-encoded pixels (colors 4-7), matching "items missing" symptoms.
+- Code change (`src/bridge/vdp_layer.asm`):
+  - `PPU_FLUSH_CHR_SHADOW_TO_VRAM` now writes a second full tile copy to
+    `SPRITE_TILE_VRAM_BASE` using `PPU_SPRITE_PIXEL_PAIR_TABLE`.
+  - `PPU_FLUSH_TILE_RANGE_TO_VRAM` now mirrors each updated tile range to the same
+    sprite VRAM bank with sprite pixel encoding.
+- Validation run:
+  - `run_visual_capture.ps1` updated to `zelda_v492.md` and executed.
+  - report: `diag/reports/visual_capture.txt` (PROBE COMPLETE, no freeze regression).
+- Current status:
+  - functional intro loop remains healthy under v492.
+  - this was a structural fix for sprite tile source data; final visual parity still
+    needs side-by-side screenshot review against NES checkpoints.
+
+Oracle checkpoint pass for v492 (data-driven):
+- Added/updated artifacts:
+  - `diag/reports/intro_loop_zelda_v492.txt`
+  - `diag/reports/oracle_visual_metrics_v492.txt`
+  - `diag/reports/oracle_visual_comparison_v492.txt`
+  - `diag/reports/diff_v492_*.png`
+- Probe result:
+  - `v492` runs full intro loop with no freeze (`frozen=false` at 12k-frame probe).
+  - key transitions remain stable:
+    - ad0/ph1 at nmi~527
+    - ad1/ph0 at nmi~962
+    - scroll begins (`sy=$10`) immediately after at nmi~965
+- Visual metric snapshot (NES vs v492 mapped checkpoints):
+  - title: 46.4
+  - fade_mid: 97.2
+  - scroll_start: 100.0
+  - scroll_mid: 96.0
+  - scroll_end: 91.2
+- Capture script refinement:
+  - `diag/scripts/zelda_visual_capture.lua` no longer uses a fixed NMI threshold for
+    fade-mid. It now captures when `ram_0437` fade step reaches midpoint (`>= $07`).
+  - Added `ss_title_settled.png` capture (`ad0/ph0` with title timer >= 200) for
+    stable title-frame comparisons.
+  - Updated settled-title capture to the latest pre-fade title frame
+    (`ad0/ph0`, timer >= 250) for tighter oracle matching.
+- NES oracle refinement:
+  - `diag/scripts/zelda_nes_visual_capture.lua` title checkpoint now captures a
+    settled late-title window (`rdy=1`, `ppu_load=00`, `scroll_y=00`, nmi 850-940)
+    instead of early fixed-NMI capture.
+- Resulting title parity update:
+  - title score improved from prior 46.4 (bad checkpoint pairing) to 91.9 under the
+    refined oracle mapping.
+
+Title-perfection pass updates (v493 cycle):
+- Oracle/capture workflow updates:
+  - `diag/scripts/zelda_nes_visual_capture.lua`
+    - added title candidate captures at NMI targets: 100, 300, 500, 700, 850
+    - keeps canonical `nes_ss_title.png` as late-settled title capture
+  - `diag/scripts/zelda_visual_capture.lua`
+    - added title nametable telemetry:
+      - `NT row0`
+      - `NT non-$24 count`
+      - same metrics for settled-title capture
+    - fade midpoint still keyed to `ram_0437` step (>= $07)
+- New diagnostic findings:
+  - v492/v493 Genesis title captures are non-empty and stable; they are not blank frames.
+  - v493 title telemetry confirms nametable population during title:
+    - `NT non-$24 count: 571` (settled title also 571)
+  - This rules out "empty nametable" as primary title mismatch cause.
+- Rendering-path hardening applied:
+  - `src/bridge/vdp_layer.asm`
+  - `PPU_FLUSH_TITLE_CHR_TO_VRAM` changed from partial range upload to full CHR flush
+    via `PPU_FLUSH_CHR_SHADOW_TO_VRAM` to eliminate missing-title-tile-range risk.
+- Build/test artifacts:
+  - built `build/zelda_v493.md` (checksum `$C0C2`)
+  - `run_visual_capture.ps1` retargeted to `zelda_v493.md`
+  - v493 visual capture completed with no intro-loop freeze regression.
+- Current interpretation after v493:
+  - title mismatch is now likely in title PPU-load/index path fidelity
+    (`ram_ppu_load_index`/bank-side title data flow), not simple palette timing
+    or missing CHR tile uploads.
+
+Optimal path workflow implemented (automation + checkpoint hygiene):
+- Added automated scorer:
+  - `tools/title_perfection_report.py`
+  - Responsibilities:
+    1) auto-select best NES title candidate (`nes_ss_title_nmi*.png`) against current Genesis title frame
+    2) compute checkpoint metrics (MAD/RMSE/score)
+    3) run capture sanity checks (`nz_pixels`, mean luminance) and flag invalid frames
+    4) output canonical report: `diag/reports/title_perfection_report.txt`
+- Key finding from automation:
+  - Original `scroll_start` checkpoint is all-black on both sides and can produce misleading
+    perfect scores.
+  - Added visible scroll-start checkpoints to both capture scripts:
+    - NES: `nes_ss_scroll_start_visible.png` at first `scroll_y >= $20`
+    - Genesis: `ss_scroll_start_visible.png` at first `scroll_y >= $20` in phase2
+- Updated scripts:
+  - `diag/scripts/zelda_nes_visual_capture.lua`
+  - `diag/scripts/zelda_visual_capture.lua`
+  - `tools/title_perfection_report.py` now includes `scroll_start_visible` metric.
+- Latest automated result snapshot:
+  - `title(best)`: 91.9
+  - `fade_mid`: 97.1
+  - `scroll_start_visible`: 99.0
+  - `scroll_mid`: 96.0
+  - `scroll_end`: 91.2
+  - `scroll_start`: explicitly flagged INVALID (all-black frame) by sanity checks
+
+Further automation hardening (latest):
+- `tools/title_perfection_report.py` now:
+  - separates reference vs current frame sanity metrics (`ref_nz/ref_mean`, `cur_nz/cur_mean`)
+  - auto-filters black/near-black NES title candidates when selecting the best title oracle
+  - computes `Overall score (valid checkpoints only)` to prevent invalid checkpoints from
+    inflating parity claims
+- `diag/scripts/zelda_nes_visual_capture.lua` now captures candidate windows for:
+  - fade (`nes_ss_fade_nmi930/945/960/975.png`)
+  - visible scroll start (`nes_ss_scroll_visible_sy18/20/28/30/38.png`)
+- Current known limitation:
+  - NES capture still produces black/near-black frames for some fade/start checkpoints.
+  - Report explicitly marks these as invalid/suspect so they are excluded from overall scoring.
+- Latest report status (`diag/reports/title_perfection_report.txt`):
+  - best visible title candidate currently: `nes_ss_title_nmi700.png`
+  - valid-checkpoint overall score: `91.4`
+  - most actionable remaining gaps: `title(best)` and `scroll_end`
+
+v494 targeted title color-balance experiment:
+- Change:
+  - `src/bridge/vdp_layer.asm`
+  - Added `TITLE_SCREEN_COLOR_BALANCE` and applied it only when
+    `ram_script == con_script_title_screen` in frontend palette sync path.
+  - Adjustment intent:
+    - reduce red cast, slightly lift green/blue for title-only CRAM writes.
+- Build/capture:
+  - built `build/zelda_v494.md` (checksum `$7E50`)
+  - updated `run_visual_capture.ps1` to v494 and captured fresh checkpoints.
+- Measured outcome (`tools/title_perfection_report.py`):
+  - `title(best)` improved from `87.0` -> `89.4`
+  - valid-checkpoint overall score improved from `91.4` -> `92.4`
+  - `scroll_end` improved slightly (`91.2` -> `91.4`)
+- Tradeoff observed:
+  - fade metric dropped (`97.1` -> `95.3`) because title-only tinting persists into
+    part of the title-to-fade path.
+- Current status:
+  - title parity improved but still not at target perfection.
+  - next best step is narrower timing/phase gating for title tint (title-hold only),
+    so title gain is kept without fade regression.
+
+Cross-emulator normalization setup (BlastEm):
+- Created user config override:
+  - `C:\Users\Jake Diggity\AppData\Local\blastem\blastem.cfg`
+- Purpose:
+  - make BlastEm visual output more neutral/consistent for parity checks vs Ares/BizHawk.
+- Key settings applied:
+  - `scaling nearest` (remove linear filtering blur)
+  - `integer_scaling on`
+  - `scanlines off`
+  - `vsync off`
+  - NTSC/PAL overscan all `0` (no hidden crop)
+  - screenshot output path set to:
+    `diag/reports` in the project
+- Workflow note:
+  - Use BizHawk for Lua/state/timing diagnostics.
+  - Use BlastEm (and Ares) with normalized settings for visual palette truth checks.
+
+Cross-emulator normalization setup (Ares):
+- Added dedicated parity settings file:
+  - `tools/ares_settings_parity.bml`
+- Added launcher script:
+  - `run_ares_parity.ps1`
+- Parity profile goals:
+  - no shader pipeline (`Shader: None`)
+  - no color processing (`ColorEmulation: false`, `InterframeBlending: false`)
+  - neutral luminance/saturation/gamma (`1.0`)
+  - no overscan crop (`Overscan: false`)
+  - screenshots directed to `diag/reports`
+- Usage:
+  - run `run_ares_parity.ps1` to open current ROM (`zelda_v495.md`) with parity profile
+  - capture screenshots with Ares screenshot hotkey and compare against BlastEm/BizHawk checkpoints
+
+Title perfection operations added:
+- Capture checklist:
+  - `diag/reports/TITLE_CAPTURE_CHECKLIST.md`
+  - defines required Ares/BlastEm checkpoint filenames and timing targets
+- Cross-emulator gate scorer:
+  - `tools/title_perfection_gate.py`
+  - output: `diag/reports/title_perfection_gate.txt`
+  - reports per-checkpoint scores for BizHawk/Ares/BlastEm and computes
+    `gap_to_100` from valid checkpoints only
+- Protocol doc:
+  - `docs/TITLE_PERFECTION_PROTOCOL.md`
+  - codifies strict iteration loop and done criteria for absolute title parity
+- Current gate snapshot:
+  - BizHawk overall (valid checkpoints): `93.8` (`gap_to_100 = 6.2`)
+  - Ares/BlastEm: pending captures (files missing until manual screenshots added)
+
+Automated external-emulator capture pipeline (implemented):
+- New generic capture utility:
+  - `tools/window_capture_burst.ps1`
+  - Launches emulator, forces window foreground, captures client-area frames on interval.
+- New auto-selector:
+  - `tools/select_checkpoint_frames.py`
+  - Chooses best frames for each checkpoint from burst captures.
+  - Uses checkpoint-specific time windows to avoid selecting the same frame for all phases.
+- New one-command runners:
+  - `run_blastem_auto_capture.ps1`
+  - `run_ares_auto_capture.ps1`
+  - Each runner:
+    1) captures ~95s frame burst
+    2) auto-selects and writes:
+       - `<emu>_title_settled.png`
+       - `<emu>_fade_mid.png`
+       - `<emu>_scroll_start_visible.png`
+       - `<emu>_scroll_mid.png`
+       - `<emu>_scroll_end.png`
+- Ares parity profile tweak:
+  - `tools/ares_settings_parity.bml`
+  - set `Input/Defocus: Continue` to prevent pause-on-defocus during auto-capture.
+- Latest gate after full automation:
+  - BizHawk overall: `93.8` (`gap_to_100=6.2`)
+  - Ares overall: `87.6` (`gap_to_100=12.4`)
+  - BlastEm overall: `90.5` (`gap_to_100=9.5`)
+
+BlastEm-only focus update:
+- User requested single-visual-emulator flow; BlastEm selected for visual truth checks.
+- Gate hardening:
+  - `tools/title_perfection_gate.py` now requires at least 500 non-zero pixels for
+    both ref and current frames to count a checkpoint as valid.
+- Selector hardening:
+  - `tools/select_checkpoint_frames.py` now rejects near-empty candidates (`nz < 500`)
+    before matching by MAD.
+- Result after hardened reselection:
+  - BlastEm overall improved from noisy `90.5` to stable `92.9`
+  - BlastEm gap to 100 now: `7.1`
+
+Auto-capture robustness fix:
+- Symptom observed:
+  - Ares popup: `Failed to open C:\Users\Jake for reading`
+- Root cause:
+  - CLI arguments containing spaces were split during process launch.
+- Fix:
+  - `tools/window_capture_burst.ps1` now builds a quoted argument line,
+    explicitly wrapping whitespace args in quotes before `Start-Process`.
+- Impact:
+  - Paths like `C:\Users\Jake Diggity\...` and system names like `Mega Drive`
+    now pass through correctly to emulator CLIs.
+- Interpretation:
+  - intro behavior and most mapped visual checkpoints are close.
+  - largest remaining mismatch is title checkpoint parity (capture/timing/composition),
+    now the highest-ROI target for "intro perfection" pass.
+
+Latest iteration (v496 -> v497 A/B, BlastEm-focused):
+- Built `build/zelda_v496.md` from a narrowed title-hold palette tweak:
+  - `TITLE_SCREEN_COLOR_BALANCE` now:
+    - skips pure/near-black colors (`$0000` and `<= $0101` low-mask),
+    - reduces red by 1 step (was 2),
+    - keeps mild green/blue lift.
+- BlastEm auto-capture + gate (`v496`):
+  - `title_settled`: `91.0` (was `90.7`)
+  - BlastEm overall: `93.0` (`gap_to_100=7.0`)
+- Additional tooling hardening:
+  - `tools/select_checkpoint_frames.py` now uses an `nz` mismatch penalty in
+    frame selection (`score = MAD + nz_penalty*20`) to reduce dark/empty-frame picks.
+- A/B sanity check against "no title tint" hypothesis:
+  - Built `build/zelda_v497.md` with `TITLE_SCREEN_COLOR_BALANCE` temporarily disabled.
+  - BlastEm gate on v497 regressed:
+    - `title_settled`: `90.1`
+    - overall: `92.8` (`gap_to_100=7.2`)
+  - Conclusion: fully removing title tint is not better than the v496 tuned variant.
+- Current best known BlastEm path remains v496-class behavior.
+
+Scroll-transition correction pass (v498):
+- User-visible issue targeted:
+  - after title fade, expected short black screen before manual/info scroll.
+- Implementation:
+  - added `VDP_APPLY_TITLE_BLACK_GAP_DISPLAY` in `src/bridge/vdp_layer.asm`.
+  - called once per `VDP_VBLANK_HANDLER` after NMI.
+  - policy:
+    - during title script (`ram_script==con_script_title_screen`, non-auto lane),
+    - force display OFF for phase `ram_042D==1` (fade),
+    - and keep display OFF in early phase `>=2` while `ram_scroll_Y < $20`,
+    - otherwise follow normal PPUMASK display intent.
+- Build:
+  - `build/zelda_v498.md` (checksum `$F31D`).
+- BlastEm capture/gate snapshot (`v498`):
+  - visual transition now includes enforced black gap before visible scroll window.
+  - metrics tradeoff: title checkpoint dropped (`title_settled 91.0 -> 89.7`);
+    BlastEm overall `93.0 -> 92.7` (gap `7.0 -> 7.3`).
+- Interpretation:
+  - transition behavior is closer to expected sequencing;
+  - next step is narrowing the black-gap gating window to retain this behavior
+    while recovering title-settled parity.
+
+Genesis-only follow-up passes (v499, v500):
+- v499 experiment:
+  - narrowed phase-2 blackout threshold from `scroll_Y < $20` to `< $08`.
+  - Result: transition still black-first, but parity regressed slightly:
+    - BlastEm overall `92.6` (`gap_to_100=7.4`)
+    - `title_settled=89.7`
+- v500 experiment (current best):
+  - tightened rule further to blackout on fade phase only (`ram_042D==1`);
+    no forced blackout during active phase-2 scroll.
+  - Build: `build/zelda_v500.md` (checksum `$BB5C`).
+  - BlastEm gate:
+    - `title_settled=91.5`
+    - `scroll_start_visible=96.8`
+    - overall `93.1` (`gap_to_100=6.9`)
+- Interpretation:
+  - fade-only blackout keeps the expected post-title dark transition while
+    avoiding over-constraining early scroll visibility.
+  - v500 is currently better than v498/v499 on combined transition+parity.
+
+Additional micro-pass (v501) and rollback:
+- v501 tested a tiny extra phase-2 blackout (`ram_042D==2 && scroll_Y<$02`).
+- Outcome:
+  - BlastEm overall regressed to `92.7` (gap `7.3`),
+  - `title_settled` dropped to `89.7`.
+- Decision:
+  - reverted to v500 fade-only blackout logic as active baseline,
+  - `run_blastem_auto_capture.ps1` restored to `zelda_v500.md`.

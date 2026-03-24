@@ -1,0 +1,274 @@
+=== INTRO LOOP PROBE: zelda_v489 ===
+f=00000 frm=  0 rdy=0 ad=0 ph=0 timer=  0 sy=$00 2000=$00 5C=0 0415=0 042E=00 0419=00 nmi=1 cfr=0
+f=00054 frm=  0 rdy=0 ad=0 ph=2 timer=  0 sy=$00 2000=$00 5C=0 0415=0 042E=00 0419=00 nmi=6 cfr=0
+f=00097 frm=  0 rdy=0 ad=0 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10 cfr=0
+f=00143 frm=  3 rdy=0 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=13 cfr=9
+f=00144 frm=  4 rdy=0 ad=0 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=14 cfr=0
+handler_2 active at f=150 frm=5 nmi=15
+f=00150 frm=  5 rdy=1 ad=0 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=15 cfr=0
+f=00210 frm= 56 rdy=1 ad=0 ph=0 timer= 25 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=65 cfr=0
+f=00260 frm=106 rdy=1 ad=0 ph=0 timer= 50 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=115 cfr=0
+f=00310 frm=156 rdy=1 ad=0 ph=0 timer= 75 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=165 cfr=0
+f=00360 frm=206 rdy=1 ad=0 ph=0 timer=100 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=215 cfr=0
+f=00410 frm=  0 rdy=1 ad=0 ph=0 timer=125 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=265 cfr=0
+f=00460 frm= 50 rdy=1 ad=0 ph=0 timer=150 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=315 cfr=0
+f=00510 frm=100 rdy=1 ad=0 ph=0 timer=175 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=365 cfr=0
+f=00560 frm=150 rdy=1 ad=0 ph=0 timer=200 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=415 cfr=0
+f=00610 frm=200 rdy=1 ad=0 ph=0 timer=225 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=465 cfr=0
+f=00660 frm=250 rdy=1 ad=0 ph=0 timer=250 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=515 cfr=0
+f=00671 frm=  5 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=526 cfr=0
+f=00721 frm= 55 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=576 cfr=0
+f=00771 frm=105 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=626 cfr=0
+f=00821 frm=155 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=676 cfr=0
+f=00871 frm=205 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=726 cfr=0
+f=00921 frm=255 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=776 cfr=0
+f=00971 frm= 49 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=826 cfr=0
+f=01021 frm= 99 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=876 cfr=0
+f=01071 frm=149 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=926 cfr=0
+f=01106 frm=184 rdy=0 ad=1 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=961 cfr=0
+f=01116 frm=185 rdy=0 ad=1 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=962 cfr=9
+f=01117 frm=186 rdy=0 ad=1 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=963 cfr=0
+f=01123 frm=187 rdy=1 ad=1 ph=0 timer=  0 sy=$10 2000=$B2 5C=1 0415=0 042E=00 0419=00 nmi=964 cfr=0
+f=01183 frm=238 rdy=1 ad=1 ph=0 timer=  0 sy=$29 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1014 cfr=0
+f=01233 frm= 32 rdy=1 ad=1 ph=0 timer=  0 sy=$42 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1064 cfr=0
+f=01283 frm= 82 rdy=1 ad=1 ph=0 timer=  0 sy=$5B 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1114 cfr=0
+f=01333 frm=132 rdy=1 ad=1 ph=0 timer=  0 sy=$74 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1164 cfr=0
+f=01383 frm=182 rdy=1 ad=1 ph=0 timer=  0 sy=$8D 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1214 cfr=0
+f=01433 frm=232 rdy=1 ad=1 ph=0 timer=  0 sy=$A6 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1264 cfr=0
+f=01483 frm= 26 rdy=1 ad=1 ph=0 timer=  0 sy=$BF 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1314 cfr=0
+f=01533 frm= 76 rdy=1 ad=1 ph=0 timer=  0 sy=$D8 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=1364 cfr=0
+f=01583 frm=126 rdy=1 ad=1 ph=0 timer=  0 sy=$01 2000=$B0 5C=0 0415=1 042E=00 0419=00 nmi=1414 cfr=0
+f=01596 frm=139 rdy=1 ad=1 ph=1 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1427 cfr=0
+f=01646 frm=189 rdy=1 ad=1 ph=1 timer= 50 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1477 cfr=0
+f=01696 frm=239 rdy=1 ad=1 ph=1 timer=100 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1527 cfr=0
+f=01746 frm= 33 rdy=1 ad=1 ph=1 timer=150 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1577 cfr=0
+f=01796 frm= 83 rdy=1 ad=1 ph=1 timer=200 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1627 cfr=0
+f=01846 frm=133 rdy=1 ad=1 ph=1 timer=250 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1677 cfr=0
+f=01852 frm=139 rdy=1 ad=1 ph=2 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=1683 cfr=0
+f=01902 frm=189 rdy=1 ad=1 ph=2 timer=  0 sy=$21 2000=$B0 5C=0 0415=0 042E=01 0419=03 nmi=1733 cfr=0
+f=01952 frm=239 rdy=1 ad=1 ph=2 timer=  0 sy=$3A 2000=$B0 5C=0 0415=0 042E=01 0419=06 nmi=1783 cfr=0
+f=02002 frm= 33 rdy=1 ad=1 ph=2 timer=  0 sy=$53 2000=$B0 5C=0 0415=0 042E=01 0419=09 nmi=1833 cfr=0
+f=02052 frm= 83 rdy=1 ad=1 ph=2 timer=  0 sy=$6C 2000=$B0 5C=0 0415=0 042E=03 0419=0C nmi=1883 cfr=0
+f=02102 frm=133 rdy=1 ad=1 ph=2 timer=  0 sy=$85 2000=$B0 5C=0 0415=0 042E=03 0419=0F nmi=1933 cfr=0
+f=02152 frm=183 rdy=1 ad=1 ph=2 timer=  0 sy=$9E 2000=$B0 5C=0 0415=0 042E=04 0419=12 nmi=1983 cfr=0
+f=02202 frm=233 rdy=1 ad=1 ph=2 timer=  0 sy=$B7 2000=$B0 5C=0 0415=0 042E=04 0419=15 nmi=2033 cfr=0
+f=02252 frm= 27 rdy=1 ad=1 ph=2 timer=  0 sy=$D0 2000=$B0 5C=0 0415=0 042E=04 0419=19 nmi=2083 cfr=0
+f=02302 frm= 77 rdy=1 ad=1 ph=2 timer=  0 sy=$E9 2000=$B0 5C=0 0415=0 042E=05 0419=1C nmi=2133 cfr=0
+f=02352 frm=127 rdy=1 ad=1 ph=2 timer=  0 sy=$12 2000=$B2 5C=0 0415=0 042E=05 0419=1F nmi=2183 cfr=0
+f=02402 frm=177 rdy=1 ad=1 ph=2 timer=  0 sy=$2B 2000=$B2 5C=0 0415=1 042E=06 0419=22 nmi=2233 cfr=0
+f=02452 frm=227 rdy=1 ad=1 ph=2 timer=  0 sy=$44 2000=$B2 5C=0 0415=1 042E=06 0419=25 nmi=2283 cfr=0
+f=02502 frm= 21 rdy=1 ad=1 ph=2 timer=  0 sy=$5D 2000=$B2 5C=0 0415=1 042E=06 0419=28 nmi=2333 cfr=0
+f=02552 frm= 71 rdy=1 ad=1 ph=2 timer=  0 sy=$76 2000=$B2 5C=0 0415=1 042E=07 0419=2B nmi=2383 cfr=0
+f=02602 frm=121 rdy=1 ad=1 ph=2 timer=  0 sy=$8F 2000=$B2 5C=0 0415=1 042E=07 0419=2E nmi=2433 cfr=0
+f=02652 frm=171 rdy=1 ad=1 ph=2 timer=  0 sy=$A8 2000=$B2 5C=0 0415=1 042E=08 0419=32 nmi=2483 cfr=0
+f=02702 frm=221 rdy=1 ad=1 ph=2 timer=  0 sy=$C1 2000=$B2 5C=0 0415=1 042E=09 0419=35 nmi=2533 cfr=0
+f=02752 frm= 15 rdy=1 ad=1 ph=2 timer=  0 sy=$DA 2000=$B2 5C=0 0415=1 042E=09 0419=38 nmi=2583 cfr=0
+f=02802 frm= 65 rdy=1 ad=1 ph=2 timer=  0 sy=$03 2000=$B0 5C=0 0415=1 042E=0B 0419=3B nmi=2633 cfr=0
+f=02852 frm=115 rdy=1 ad=1 ph=2 timer=  0 sy=$1C 2000=$B0 5C=0 0415=1 042E=0B 0419=3E nmi=2683 cfr=0
+f=02902 frm=165 rdy=1 ad=1 ph=2 timer=  0 sy=$35 2000=$B0 5C=0 0415=2 042E=0B 0419=41 nmi=2733 cfr=0
+f=02952 frm=215 rdy=1 ad=1 ph=2 timer=  0 sy=$4E 2000=$B0 5C=0 0415=2 042E=0D 0419=44 nmi=2783 cfr=0
+f=03002 frm=  9 rdy=1 ad=1 ph=2 timer=  0 sy=$67 2000=$B0 5C=0 0415=2 042E=0D 0419=47 nmi=2833 cfr=0
+f=03052 frm= 59 rdy=1 ad=1 ph=2 timer=  0 sy=$80 2000=$B0 5C=0 0415=2 042E=0E 0419=4B nmi=2883 cfr=0
+f=03102 frm=109 rdy=1 ad=1 ph=2 timer=  0 sy=$99 2000=$B0 5C=0 0415=2 042E=0E 0419=4E nmi=2933 cfr=0
+f=03152 frm=159 rdy=1 ad=1 ph=2 timer=  0 sy=$B2 2000=$B0 5C=0 0415=2 042E=0E 0419=51 nmi=2983 cfr=0
+f=03202 frm=209 rdy=1 ad=1 ph=2 timer=  0 sy=$CB 2000=$B0 5C=0 0415=2 042E=10 0419=54 nmi=3033 cfr=0
+f=03252 frm=  3 rdy=1 ad=1 ph=2 timer=  0 sy=$E4 2000=$B0 5C=0 0415=2 042E=10 0419=57 nmi=3083 cfr=0
+f=03302 frm= 53 rdy=1 ad=1 ph=2 timer=  0 sy=$0D 2000=$B2 5C=0 0415=2 042E=11 0419=5A nmi=3133 cfr=0
+f=03352 frm=103 rdy=1 ad=1 ph=2 timer=  0 sy=$26 2000=$B2 5C=0 0415=2 042E=12 0419=5D nmi=3183 cfr=0
+f=03402 frm=153 rdy=1 ad=1 ph=2 timer=  0 sy=$3F 2000=$B2 5C=0 0415=3 042E=12 0419=60 nmi=3233 cfr=0
+f=03452 frm=203 rdy=1 ad=1 ph=2 timer=  0 sy=$58 2000=$B2 5C=0 0415=3 042E=14 0419=64 nmi=3283 cfr=0
+f=03502 frm=253 rdy=1 ad=1 ph=2 timer=  0 sy=$71 2000=$B2 5C=0 0415=3 042E=14 0419=67 nmi=3333 cfr=0
+f=03552 frm= 47 rdy=1 ad=1 ph=2 timer=  0 sy=$8A 2000=$B2 5C=0 0415=3 042E=15 0419=6A nmi=3383 cfr=0
+f=03602 frm= 97 rdy=1 ad=1 ph=2 timer=  0 sy=$A3 2000=$B2 5C=0 0415=3 042E=16 0419=6D nmi=3433 cfr=0
+f=03652 frm=147 rdy=1 ad=1 ph=2 timer=  0 sy=$BC 2000=$B2 5C=0 0415=3 042E=16 0419=70 nmi=3483 cfr=0
+f=03702 frm=197 rdy=1 ad=1 ph=2 timer=  0 sy=$D5 2000=$B2 5C=0 0415=3 042E=17 0419=73 nmi=3533 cfr=0
+f=03752 frm=247 rdy=1 ad=1 ph=2 timer=  0 sy=$EE 2000=$B2 5C=0 0415=3 042E=17 0419=76 nmi=3583 cfr=0
+f=03802 frm= 41 rdy=1 ad=1 ph=2 timer=  0 sy=$17 2000=$B0 5C=0 0415=3 042E=17 0419=79 nmi=3633 cfr=0
+f=03852 frm= 91 rdy=1 ad=1 ph=2 timer=  0 sy=$30 2000=$B0 5C=0 0415=3 042E=19 0419=7D nmi=3683 cfr=0
+f=03902 frm=141 rdy=1 ad=1 ph=2 timer=  0 sy=$49 2000=$B0 5C=0 0415=4 042E=19 0419=80 nmi=3733 cfr=0
+f=03952 frm=191 rdy=1 ad=1 ph=2 timer=  0 sy=$62 2000=$B0 5C=0 0415=4 042E=1B 0419=83 nmi=3783 cfr=0
+f=04002 frm=241 rdy=1 ad=1 ph=2 timer=  0 sy=$7B 2000=$B0 5C=0 0415=4 042E=1B 0419=86 nmi=3833 cfr=0
+f=04052 frm= 35 rdy=1 ad=1 ph=2 timer=  0 sy=$94 2000=$B0 5C=0 0415=4 042E=1B 0419=89 nmi=3883 cfr=0
+f=04102 frm= 85 rdy=1 ad=1 ph=2 timer=  0 sy=$AD 2000=$B0 5C=0 0415=4 042E=1C 0419=8C nmi=3933 cfr=0
+f=04152 frm=135 rdy=1 ad=1 ph=2 timer=  0 sy=$C6 2000=$B0 5C=0 0415=4 042E=1C 0419=8F nmi=3983 cfr=0
+f=04202 frm=185 rdy=1 ad=1 ph=2 timer=  0 sy=$DF 2000=$B0 5C=0 0415=4 042E=1C 0419=92 nmi=4033 cfr=0
+f=04252 frm=235 rdy=1 ad=1 ph=2 timer=  0 sy=$08 2000=$B2 5C=0 0415=4 042E=1D 0419=96 nmi=4083 cfr=0
+f=04302 frm= 29 rdy=1 ad=1 ph=2 timer=  0 sy=$21 2000=$B2 5C=0 0415=4 042E=1D 0419=99 nmi=4133 cfr=0
+f=04352 frm= 79 rdy=1 ad=1 ph=2 timer=  0 sy=$3A 2000=$B2 5C=0 0415=4 042E=1D 0419=9C nmi=4183 cfr=0
+f=04402 frm=129 rdy=1 ad=1 ph=2 timer=  0 sy=$53 2000=$B2 5C=0 0415=4 042E=1D 0419=9F nmi=4233 cfr=0
+f=04452 frm=179 rdy=1 ad=1 ph=2 timer=  0 sy=$6C 2000=$B2 5C=0 0415=5 042E=1D 0419=A2 nmi=4283 cfr=0
+f=04502 frm=229 rdy=1 ad=1 ph=2 timer=  0 sy=$85 2000=$B2 5C=0 0415=5 042E=1D 0419=A5 nmi=4333 cfr=0
+f=04552 frm= 23 rdy=1 ad=1 ph=2 timer=  0 sy=$9E 2000=$B2 5C=0 0415=5 042E=1D 0419=A8 nmi=4383 cfr=0
+f=04602 frm= 73 rdy=1 ad=1 ph=2 timer=  0 sy=$B7 2000=$B2 5C=0 0415=5 042E=1D 0419=AB nmi=4433 cfr=0
+f=04652 frm=123 rdy=1 ad=1 ph=2 timer=  0 sy=$D0 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4483 cfr=0
+f=04668 frm=139 rdy=1 ad=1 ph=3 timer=  0 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4499 cfr=0
+f=04718 frm=189 rdy=1 ad=1 ph=3 timer= 50 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4549 cfr=0
+f=04768 frm=239 rdy=1 ad=1 ph=3 timer=100 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4599 cfr=0
+f=04818 frm= 33 rdy=1 ad=1 ph=3 timer=150 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4649 cfr=0
+f=04868 frm= 83 rdy=1 ad=1 ph=3 timer=200 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4699 cfr=0
+f=04918 frm=133 rdy=1 ad=1 ph=3 timer=250 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4749 cfr=0
+f=04924 frm=139 rdy=1 ad=1 ph=4 timer=  0 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4755 cfr=0
+f=04974 frm=189 rdy=1 ad=1 ph=4 timer= 50 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4805 cfr=0
+f=04981 frm=196 rdy=0 ad=0 ph=0 timer=  0 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=4812 cfr=0
+f=04991 frm=197 rdy=0 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=5 042E=1D 0419=AF nmi=4813 cfr=9
+f=04992 frm=198 rdy=0 ad=0 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=4814 cfr=0
+f=04998 frm=199 rdy=1 ad=0 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=4815 cfr=0
+f=05057 frm=250 rdy=1 ad=0 ph=0 timer= 25 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=4865 cfr=0
+f=05107 frm= 44 rdy=1 ad=0 ph=0 timer= 50 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=4915 cfr=0
+f=05157 frm= 94 rdy=1 ad=0 ph=0 timer= 75 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=4965 cfr=0
+f=05207 frm=144 rdy=1 ad=0 ph=0 timer=100 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5015 cfr=0
+f=05257 frm=194 rdy=1 ad=0 ph=0 timer=125 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5065 cfr=0
+f=05307 frm=244 rdy=1 ad=0 ph=0 timer=150 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5115 cfr=0
+f=05357 frm= 38 rdy=1 ad=0 ph=0 timer=175 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5165 cfr=0
+f=05407 frm= 88 rdy=1 ad=0 ph=0 timer=200 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5215 cfr=0
+f=05457 frm=138 rdy=1 ad=0 ph=0 timer=225 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5265 cfr=0
+f=05507 frm=188 rdy=1 ad=0 ph=0 timer=250 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5315 cfr=0
+f=05518 frm=199 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5326 cfr=0
+f=05519 frm=200 rdy=0 ad=1 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5327 cfr=0
+f=05529 frm=201 rdy=0 ad=1 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5328 cfr=9
+f=05530 frm=202 rdy=0 ad=1 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5329 cfr=0
+f=05536 frm=203 rdy=1 ad=1 ph=0 timer=  0 sy=$10 2000=$B2 5C=1 0415=0 042E=00 0419=00 nmi=5330 cfr=0
+f=05596 frm=254 rdy=1 ad=1 ph=0 timer=  0 sy=$29 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5380 cfr=0
+f=05646 frm= 48 rdy=1 ad=1 ph=0 timer=  0 sy=$42 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5430 cfr=0
+f=05696 frm= 98 rdy=1 ad=1 ph=0 timer=  0 sy=$5B 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5480 cfr=0
+f=05746 frm=148 rdy=1 ad=1 ph=0 timer=  0 sy=$74 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5530 cfr=0
+f=05796 frm=198 rdy=1 ad=1 ph=0 timer=  0 sy=$8D 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5580 cfr=0
+f=05846 frm=248 rdy=1 ad=1 ph=0 timer=  0 sy=$A6 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5630 cfr=0
+f=05896 frm= 42 rdy=1 ad=1 ph=0 timer=  0 sy=$BF 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5680 cfr=0
+f=05946 frm= 92 rdy=1 ad=1 ph=0 timer=  0 sy=$D8 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=5730 cfr=0
+f=05996 frm=142 rdy=1 ad=1 ph=0 timer=  0 sy=$01 2000=$B0 5C=0 0415=1 042E=00 0419=00 nmi=5780 cfr=0
+f=06009 frm=155 rdy=1 ad=1 ph=1 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5793 cfr=0
+f=06059 frm=205 rdy=1 ad=1 ph=1 timer= 50 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5843 cfr=0
+f=06109 frm=255 rdy=1 ad=1 ph=1 timer=100 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5893 cfr=0
+f=06159 frm= 49 rdy=1 ad=1 ph=1 timer=150 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5943 cfr=0
+f=06209 frm= 99 rdy=1 ad=1 ph=1 timer=200 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=5993 cfr=0
+f=06259 frm=149 rdy=1 ad=1 ph=1 timer=250 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=6043 cfr=0
+f=06265 frm=155 rdy=1 ad=1 ph=2 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=6049 cfr=0
+f=06315 frm=205 rdy=1 ad=1 ph=2 timer=  0 sy=$21 2000=$B0 5C=0 0415=0 042E=01 0419=03 nmi=6099 cfr=0
+f=06365 frm=255 rdy=1 ad=1 ph=2 timer=  0 sy=$3A 2000=$B0 5C=0 0415=0 042E=01 0419=06 nmi=6149 cfr=0
+f=06415 frm= 49 rdy=1 ad=1 ph=2 timer=  0 sy=$53 2000=$B0 5C=0 0415=0 042E=01 0419=09 nmi=6199 cfr=0
+f=06465 frm= 99 rdy=1 ad=1 ph=2 timer=  0 sy=$6C 2000=$B0 5C=0 0415=0 042E=03 0419=0C nmi=6249 cfr=0
+f=06515 frm=149 rdy=1 ad=1 ph=2 timer=  0 sy=$85 2000=$B0 5C=0 0415=0 042E=03 0419=0F nmi=6299 cfr=0
+f=06565 frm=199 rdy=1 ad=1 ph=2 timer=  0 sy=$9E 2000=$B0 5C=0 0415=0 042E=04 0419=12 nmi=6349 cfr=0
+f=06615 frm=249 rdy=1 ad=1 ph=2 timer=  0 sy=$B7 2000=$B0 5C=0 0415=0 042E=04 0419=15 nmi=6399 cfr=0
+f=06665 frm= 43 rdy=1 ad=1 ph=2 timer=  0 sy=$D0 2000=$B0 5C=0 0415=0 042E=04 0419=19 nmi=6449 cfr=0
+f=06715 frm= 93 rdy=1 ad=1 ph=2 timer=  0 sy=$E9 2000=$B0 5C=0 0415=0 042E=05 0419=1C nmi=6499 cfr=0
+f=06765 frm=143 rdy=1 ad=1 ph=2 timer=  0 sy=$12 2000=$B2 5C=0 0415=0 042E=05 0419=1F nmi=6549 cfr=0
+f=06815 frm=193 rdy=1 ad=1 ph=2 timer=  0 sy=$2B 2000=$B2 5C=0 0415=1 042E=06 0419=22 nmi=6599 cfr=0
+f=06865 frm=243 rdy=1 ad=1 ph=2 timer=  0 sy=$44 2000=$B2 5C=0 0415=1 042E=06 0419=25 nmi=6649 cfr=0
+f=06915 frm= 37 rdy=1 ad=1 ph=2 timer=  0 sy=$5D 2000=$B2 5C=0 0415=1 042E=06 0419=28 nmi=6699 cfr=0
+f=06965 frm= 87 rdy=1 ad=1 ph=2 timer=  0 sy=$76 2000=$B2 5C=0 0415=1 042E=07 0419=2B nmi=6749 cfr=0
+f=07015 frm=137 rdy=1 ad=1 ph=2 timer=  0 sy=$8F 2000=$B2 5C=0 0415=1 042E=07 0419=2E nmi=6799 cfr=0
+f=07065 frm=187 rdy=1 ad=1 ph=2 timer=  0 sy=$A8 2000=$B2 5C=0 0415=1 042E=08 0419=32 nmi=6849 cfr=0
+f=07115 frm=237 rdy=1 ad=1 ph=2 timer=  0 sy=$C1 2000=$B2 5C=0 0415=1 042E=09 0419=35 nmi=6899 cfr=0
+f=07165 frm= 31 rdy=1 ad=1 ph=2 timer=  0 sy=$DA 2000=$B2 5C=0 0415=1 042E=09 0419=38 nmi=6949 cfr=0
+f=07215 frm= 81 rdy=1 ad=1 ph=2 timer=  0 sy=$03 2000=$B0 5C=0 0415=1 042E=0B 0419=3B nmi=6999 cfr=0
+f=07265 frm=131 rdy=1 ad=1 ph=2 timer=  0 sy=$1C 2000=$B0 5C=0 0415=1 042E=0B 0419=3E nmi=7049 cfr=0
+f=07315 frm=181 rdy=1 ad=1 ph=2 timer=  0 sy=$35 2000=$B0 5C=0 0415=2 042E=0B 0419=41 nmi=7099 cfr=0
+f=07365 frm=231 rdy=1 ad=1 ph=2 timer=  0 sy=$4E 2000=$B0 5C=0 0415=2 042E=0D 0419=44 nmi=7149 cfr=0
+f=07415 frm= 25 rdy=1 ad=1 ph=2 timer=  0 sy=$67 2000=$B0 5C=0 0415=2 042E=0D 0419=47 nmi=7199 cfr=0
+f=07465 frm= 75 rdy=1 ad=1 ph=2 timer=  0 sy=$80 2000=$B0 5C=0 0415=2 042E=0E 0419=4B nmi=7249 cfr=0
+f=07515 frm=125 rdy=1 ad=1 ph=2 timer=  0 sy=$99 2000=$B0 5C=0 0415=2 042E=0E 0419=4E nmi=7299 cfr=0
+f=07565 frm=175 rdy=1 ad=1 ph=2 timer=  0 sy=$B2 2000=$B0 5C=0 0415=2 042E=0E 0419=51 nmi=7349 cfr=0
+f=07615 frm=225 rdy=1 ad=1 ph=2 timer=  0 sy=$CB 2000=$B0 5C=0 0415=2 042E=10 0419=54 nmi=7399 cfr=0
+f=07665 frm= 19 rdy=1 ad=1 ph=2 timer=  0 sy=$E4 2000=$B0 5C=0 0415=2 042E=10 0419=57 nmi=7449 cfr=0
+f=07715 frm= 69 rdy=1 ad=1 ph=2 timer=  0 sy=$0D 2000=$B2 5C=0 0415=2 042E=11 0419=5A nmi=7499 cfr=0
+f=07765 frm=119 rdy=1 ad=1 ph=2 timer=  0 sy=$26 2000=$B2 5C=0 0415=2 042E=12 0419=5D nmi=7549 cfr=0
+f=07815 frm=169 rdy=1 ad=1 ph=2 timer=  0 sy=$3F 2000=$B2 5C=0 0415=3 042E=12 0419=60 nmi=7599 cfr=0
+f=07865 frm=219 rdy=1 ad=1 ph=2 timer=  0 sy=$58 2000=$B2 5C=0 0415=3 042E=14 0419=64 nmi=7649 cfr=0
+f=07915 frm= 13 rdy=1 ad=1 ph=2 timer=  0 sy=$71 2000=$B2 5C=0 0415=3 042E=14 0419=67 nmi=7699 cfr=0
+f=07965 frm= 63 rdy=1 ad=1 ph=2 timer=  0 sy=$8A 2000=$B2 5C=0 0415=3 042E=15 0419=6A nmi=7749 cfr=0
+f=08015 frm=113 rdy=1 ad=1 ph=2 timer=  0 sy=$A3 2000=$B2 5C=0 0415=3 042E=16 0419=6D nmi=7799 cfr=0
+f=08065 frm=163 rdy=1 ad=1 ph=2 timer=  0 sy=$BC 2000=$B2 5C=0 0415=3 042E=16 0419=70 nmi=7849 cfr=0
+f=08115 frm=213 rdy=1 ad=1 ph=2 timer=  0 sy=$D5 2000=$B2 5C=0 0415=3 042E=17 0419=73 nmi=7899 cfr=0
+f=08165 frm=  7 rdy=1 ad=1 ph=2 timer=  0 sy=$EE 2000=$B2 5C=0 0415=3 042E=17 0419=76 nmi=7949 cfr=0
+f=08215 frm= 57 rdy=1 ad=1 ph=2 timer=  0 sy=$17 2000=$B0 5C=0 0415=3 042E=17 0419=79 nmi=7999 cfr=0
+f=08265 frm=107 rdy=1 ad=1 ph=2 timer=  0 sy=$30 2000=$B0 5C=0 0415=3 042E=19 0419=7D nmi=8049 cfr=0
+f=08315 frm=157 rdy=1 ad=1 ph=2 timer=  0 sy=$49 2000=$B0 5C=0 0415=4 042E=19 0419=80 nmi=8099 cfr=0
+f=08365 frm=207 rdy=1 ad=1 ph=2 timer=  0 sy=$62 2000=$B0 5C=0 0415=4 042E=1B 0419=83 nmi=8149 cfr=0
+f=08415 frm=  1 rdy=1 ad=1 ph=2 timer=  0 sy=$7B 2000=$B0 5C=0 0415=4 042E=1B 0419=86 nmi=8199 cfr=0
+f=08465 frm= 51 rdy=1 ad=1 ph=2 timer=  0 sy=$94 2000=$B0 5C=0 0415=4 042E=1B 0419=89 nmi=8249 cfr=0
+f=08515 frm=101 rdy=1 ad=1 ph=2 timer=  0 sy=$AD 2000=$B0 5C=0 0415=4 042E=1C 0419=8C nmi=8299 cfr=0
+f=08565 frm=151 rdy=1 ad=1 ph=2 timer=  0 sy=$C6 2000=$B0 5C=0 0415=4 042E=1C 0419=8F nmi=8349 cfr=0
+f=08615 frm=201 rdy=1 ad=1 ph=2 timer=  0 sy=$DF 2000=$B0 5C=0 0415=4 042E=1C 0419=92 nmi=8399 cfr=0
+f=08665 frm=251 rdy=1 ad=1 ph=2 timer=  0 sy=$08 2000=$B2 5C=0 0415=4 042E=1D 0419=96 nmi=8449 cfr=0
+f=08715 frm= 45 rdy=1 ad=1 ph=2 timer=  0 sy=$21 2000=$B2 5C=0 0415=4 042E=1D 0419=99 nmi=8499 cfr=0
+f=08765 frm= 95 rdy=1 ad=1 ph=2 timer=  0 sy=$3A 2000=$B2 5C=0 0415=4 042E=1D 0419=9C nmi=8549 cfr=0
+f=08815 frm=145 rdy=1 ad=1 ph=2 timer=  0 sy=$53 2000=$B2 5C=0 0415=4 042E=1D 0419=9F nmi=8599 cfr=0
+f=08865 frm=195 rdy=1 ad=1 ph=2 timer=  0 sy=$6C 2000=$B2 5C=0 0415=5 042E=1D 0419=A2 nmi=8649 cfr=0
+f=08915 frm=245 rdy=1 ad=1 ph=2 timer=  0 sy=$85 2000=$B2 5C=0 0415=5 042E=1D 0419=A5 nmi=8699 cfr=0
+f=08965 frm= 39 rdy=1 ad=1 ph=2 timer=  0 sy=$9E 2000=$B2 5C=0 0415=5 042E=1D 0419=A8 nmi=8749 cfr=0
+f=09015 frm= 89 rdy=1 ad=1 ph=2 timer=  0 sy=$B7 2000=$B2 5C=0 0415=5 042E=1D 0419=AB nmi=8799 cfr=0
+f=09065 frm=139 rdy=1 ad=1 ph=2 timer=  0 sy=$D0 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=8849 cfr=0
+f=09081 frm=155 rdy=1 ad=1 ph=3 timer=  0 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=8865 cfr=0
+f=09131 frm=205 rdy=1 ad=1 ph=3 timer= 50 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=8915 cfr=0
+f=09181 frm=255 rdy=1 ad=1 ph=3 timer=100 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=8965 cfr=0
+f=09231 frm= 49 rdy=1 ad=1 ph=3 timer=150 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=9015 cfr=0
+f=09281 frm= 99 rdy=1 ad=1 ph=3 timer=200 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=9065 cfr=0
+f=09331 frm=149 rdy=1 ad=1 ph=3 timer=250 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=9115 cfr=0
+f=09337 frm=155 rdy=1 ad=1 ph=4 timer=  0 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=9121 cfr=0
+f=09387 frm=205 rdy=1 ad=1 ph=4 timer= 50 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=9171 cfr=0
+f=09394 frm=212 rdy=0 ad=0 ph=0 timer=  0 sy=$D7 2000=$B2 5C=0 0415=5 042E=1D 0419=AF nmi=9178 cfr=0
+f=09404 frm=213 rdy=0 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=5 042E=1D 0419=AF nmi=9179 cfr=9
+f=09405 frm=214 rdy=0 ad=0 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9180 cfr=0
+f=09411 frm=215 rdy=1 ad=0 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9181 cfr=0
+f=09470 frm= 10 rdy=1 ad=0 ph=0 timer= 25 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9231 cfr=0
+f=09520 frm= 60 rdy=1 ad=0 ph=0 timer= 50 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9281 cfr=0
+f=09570 frm=110 rdy=1 ad=0 ph=0 timer= 75 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9331 cfr=0
+f=09620 frm=160 rdy=1 ad=0 ph=0 timer=100 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9381 cfr=0
+f=09670 frm=210 rdy=1 ad=0 ph=0 timer=125 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9431 cfr=0
+f=09720 frm=  4 rdy=1 ad=0 ph=0 timer=150 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9481 cfr=0
+f=09770 frm= 54 rdy=1 ad=0 ph=0 timer=175 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9531 cfr=0
+f=09820 frm=104 rdy=1 ad=0 ph=0 timer=200 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9581 cfr=0
+f=09870 frm=154 rdy=1 ad=0 ph=0 timer=225 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9631 cfr=0
+f=09920 frm=204 rdy=1 ad=0 ph=0 timer=250 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9681 cfr=0
+f=09931 frm=215 rdy=1 ad=0 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9692 cfr=0
+f=09932 frm=216 rdy=0 ad=1 ph=0 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9693 cfr=0
+f=09942 frm=217 rdy=0 ad=1 ph=1 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9694 cfr=9
+f=09943 frm=218 rdy=0 ad=1 ph=2 timer=  0 sy=$00 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=9695 cfr=0
+f=09949 frm=219 rdy=1 ad=1 ph=0 timer=  0 sy=$10 2000=$B2 5C=1 0415=0 042E=00 0419=00 nmi=9696 cfr=0
+f=10009 frm= 14 rdy=1 ad=1 ph=0 timer=  0 sy=$29 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=9746 cfr=0
+f=10059 frm= 64 rdy=1 ad=1 ph=0 timer=  0 sy=$42 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=9796 cfr=0
+f=10109 frm=114 rdy=1 ad=1 ph=0 timer=  0 sy=$5B 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=9846 cfr=0
+f=10159 frm=164 rdy=1 ad=1 ph=0 timer=  0 sy=$74 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=9896 cfr=0
+f=10209 frm=214 rdy=1 ad=1 ph=0 timer=  0 sy=$8D 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=9946 cfr=0
+f=10259 frm=  8 rdy=1 ad=1 ph=0 timer=  0 sy=$A6 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=9996 cfr=0
+f=10309 frm= 58 rdy=1 ad=1 ph=0 timer=  0 sy=$BF 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=10046 cfr=0
+f=10359 frm=108 rdy=1 ad=1 ph=0 timer=  0 sy=$D8 2000=$B2 5C=0 0415=0 042E=00 0419=00 nmi=10096 cfr=0
+f=10409 frm=158 rdy=1 ad=1 ph=0 timer=  0 sy=$01 2000=$B0 5C=0 0415=1 042E=00 0419=00 nmi=10146 cfr=0
+f=10422 frm=171 rdy=1 ad=1 ph=1 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10159 cfr=0
+f=10472 frm=221 rdy=1 ad=1 ph=1 timer= 50 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10209 cfr=0
+f=10522 frm= 15 rdy=1 ad=1 ph=1 timer=100 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10259 cfr=0
+f=10572 frm= 65 rdy=1 ad=1 ph=1 timer=150 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10309 cfr=0
+f=10622 frm=115 rdy=1 ad=1 ph=1 timer=200 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10359 cfr=0
+f=10672 frm=165 rdy=1 ad=1 ph=1 timer=250 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10409 cfr=0
+f=10678 frm=171 rdy=1 ad=1 ph=2 timer=  0 sy=$08 2000=$B0 5C=0 0415=0 042E=00 0419=00 nmi=10415 cfr=0
+f=10728 frm=221 rdy=1 ad=1 ph=2 timer=  0 sy=$21 2000=$B0 5C=0 0415=0 042E=01 0419=03 nmi=10465 cfr=0
+f=10778 frm= 15 rdy=1 ad=1 ph=2 timer=  0 sy=$3A 2000=$B0 5C=0 0415=0 042E=01 0419=06 nmi=10515 cfr=0
+f=10828 frm= 65 rdy=1 ad=1 ph=2 timer=  0 sy=$53 2000=$B0 5C=0 0415=0 042E=01 0419=09 nmi=10565 cfr=0
+f=10878 frm=115 rdy=1 ad=1 ph=2 timer=  0 sy=$6C 2000=$B0 5C=0 0415=0 042E=03 0419=0C nmi=10615 cfr=0
+f=10928 frm=165 rdy=1 ad=1 ph=2 timer=  0 sy=$85 2000=$B0 5C=0 0415=0 042E=03 0419=0F nmi=10665 cfr=0
+f=10978 frm=215 rdy=1 ad=1 ph=2 timer=  0 sy=$9E 2000=$B0 5C=0 0415=0 042E=04 0419=12 nmi=10715 cfr=0
+f=11028 frm=  9 rdy=1 ad=1 ph=2 timer=  0 sy=$B7 2000=$B0 5C=0 0415=0 042E=04 0419=15 nmi=10765 cfr=0
+f=11078 frm= 59 rdy=1 ad=1 ph=2 timer=  0 sy=$D0 2000=$B0 5C=0 0415=0 042E=04 0419=19 nmi=10815 cfr=0
+f=11128 frm=109 rdy=1 ad=1 ph=2 timer=  0 sy=$E9 2000=$B0 5C=0 0415=0 042E=05 0419=1C nmi=10865 cfr=0
+f=11178 frm=159 rdy=1 ad=1 ph=2 timer=  0 sy=$12 2000=$B2 5C=0 0415=0 042E=05 0419=1F nmi=10915 cfr=0
+f=11228 frm=209 rdy=1 ad=1 ph=2 timer=  0 sy=$2B 2000=$B2 5C=0 0415=1 042E=06 0419=22 nmi=10965 cfr=0
+f=11278 frm=  3 rdy=1 ad=1 ph=2 timer=  0 sy=$44 2000=$B2 5C=0 0415=1 042E=06 0419=25 nmi=11015 cfr=0
+f=11328 frm= 53 rdy=1 ad=1 ph=2 timer=  0 sy=$5D 2000=$B2 5C=0 0415=1 042E=06 0419=28 nmi=11065 cfr=0
+f=11378 frm=103 rdy=1 ad=1 ph=2 timer=  0 sy=$76 2000=$B2 5C=0 0415=1 042E=07 0419=2B nmi=11115 cfr=0
+f=11428 frm=153 rdy=1 ad=1 ph=2 timer=  0 sy=$8F 2000=$B2 5C=0 0415=1 042E=07 0419=2E nmi=11165 cfr=0
+f=11478 frm=203 rdy=1 ad=1 ph=2 timer=  0 sy=$A8 2000=$B2 5C=0 0415=1 042E=08 0419=32 nmi=11215 cfr=0
+f=11528 frm=253 rdy=1 ad=1 ph=2 timer=  0 sy=$C1 2000=$B2 5C=0 0415=1 042E=09 0419=35 nmi=11265 cfr=0
+f=11578 frm= 47 rdy=1 ad=1 ph=2 timer=  0 sy=$DA 2000=$B2 5C=0 0415=1 042E=09 0419=38 nmi=11315 cfr=0
+f=11628 frm= 97 rdy=1 ad=1 ph=2 timer=  0 sy=$03 2000=$B0 5C=0 0415=1 042E=0B 0419=3B nmi=11365 cfr=0
+f=11678 frm=147 rdy=1 ad=1 ph=2 timer=  0 sy=$1C 2000=$B0 5C=0 0415=1 042E=0B 0419=3E nmi=11415 cfr=0
+f=11728 frm=197 rdy=1 ad=1 ph=2 timer=  0 sy=$35 2000=$B0 5C=0 0415=2 042E=0B 0419=41 nmi=11465 cfr=0
+f=11778 frm=247 rdy=1 ad=1 ph=2 timer=  0 sy=$4E 2000=$B0 5C=0 0415=2 042E=0D 0419=44 nmi=11515 cfr=0
+f=11828 frm= 41 rdy=1 ad=1 ph=2 timer=  0 sy=$67 2000=$B0 5C=0 0415=2 042E=0D 0419=47 nmi=11565 cfr=0
+f=11878 frm= 91 rdy=1 ad=1 ph=2 timer=  0 sy=$80 2000=$B0 5C=0 0415=2 042E=0E 0419=4B nmi=11615 cfr=0
+f=11928 frm=141 rdy=1 ad=1 ph=2 timer=  0 sy=$99 2000=$B0 5C=0 0415=2 042E=0E 0419=4E nmi=11665 cfr=0
+f=11978 frm=191 rdy=1 ad=1 ph=2 timer=  0 sy=$B2 2000=$B0 5C=0 0415=2 042E=0E 0419=51 nmi=11715 cfr=0
+
+=== FINAL: f=12000 nmi=11737 frm=213 frozen=false ===
+=== PROBE COMPLETE ===

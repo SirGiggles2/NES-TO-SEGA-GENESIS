@@ -1,0 +1,6 @@
+=== ORACLE VISUAL METRICS (NES vs GEN v492, retuned checkpoints) ===
+title: MAD=20.62 RMSE=26.08 score=91.9
+fade_mid: MAD=7.11 RMSE=14.95 score=97.2
+scroll_start: MAD=0.00 RMSE=0.00 score=100.0
+scroll_mid: MAD=10.11 RMSE=42.32 score=96.0
+scroll_end: MAD=22.35 RMSE=68.63 score=91.2

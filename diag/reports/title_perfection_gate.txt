@@ -1,0 +1,36 @@
+=== TITLE PERFECTION GATE ===
+
+## title_settled
+- ref: `nes_ss_title_nmi700.png`
+- bizhawk: OK score=89.4 MAD=27.03 RMSE=45.68 ref_nz=14897 cur_nz=53093
+- ares: OK score=72.4 MAD=70.29 RMSE=84.90 ref_nz=14897 cur_nz=57344
+- blastem: OK score=89.7 MAD=26.32 RMSE=54.87 ref_nz=14897 cur_nz=7587
+
+## fade_mid
+- ref: `nes_ss_fade_nmi930.png`
+- bizhawk: INVALID score=97.1 MAD=7.47 RMSE=15.31 ref_nz=0 cur_nz=18248
+- ares: INVALID score=96.1 MAD=10.00 RMSE=10.00 ref_nz=0 cur_nz=57344
+- blastem: INVALID score=97.2 MAD=7.15 RMSE=30.47 ref_nz=0 cur_nz=7567
+
+## scroll_start_visible
+- ref: `nes_ss_scroll_visible_sy30.png`
+- bizhawk: OK score=98.6 MAD=3.47 RMSE=14.03 ref_nz=675 cur_nz=8112
+- ares: OK score=95.8 MAD=10.71 RMSE=14.52 ref_nz=675 cur_nz=57344
+- blastem: OK score=96.8 MAD=8.07 RMSE=32.54 ref_nz=675 cur_nz=7587
+
+## scroll_mid
+- ref: `nes_ss_scroll_mid.png`
+- bizhawk: OK score=96.0 MAD=10.11 RMSE=42.32 ref_nz=2904 cur_nz=7290
+- ares: OK score=93.4 MAD=16.91 RMSE=41.07 ref_nz=2904 cur_nz=57344
+- blastem: OK score=94.3 MAD=14.65 RMSE=51.09 ref_nz=2904 cur_nz=7561
+
+## scroll_end
+- ref: `nes_ss_scroll_end.png`
+- bizhawk: OK score=91.2 MAD=22.35 RMSE=68.63 ref_nz=6794 cur_nz=7317
+- ares: OK score=88.8 MAD=28.47 RMSE=66.95 ref_nz=6794 cur_nz=57344
+- blastem: OK score=90.0 MAD=25.60 RMSE=72.30 ref_nz=6794 cur_nz=7557
+
+## Overall
+- bizhawk: overall=93.8 -> gap_to_100=6.2
+- ares: overall=87.6 -> gap_to_100=12.4
+- blastem: overall=92.7 -> gap_to_100=7.3

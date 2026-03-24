@@ -1,0 +1,6 @@
+=== Frame Selection (ares_cap -> ares) ===
+title_settled: ares_cap_00080.png idx=80 window=[35,123] mad=58.49 -> ares_title_settled.png
+fade_mid: ares_cap_00143.png idx=143 window=[88,158] mad=12.18 -> ares_fade_mid.png
+scroll_start_visible: ares_cap_00143.png idx=143 window=[123,211] mad=10.27 -> ares_scroll_start_visible.png
+scroll_mid: ares_cap_00262.png idx=262 window=[158,264] mad=10.32 -> ares_scroll_mid.png
+scroll_end: ares_cap_00262.png idx=262 window=[211,335] mad=10.32 -> ares_scroll_end.png

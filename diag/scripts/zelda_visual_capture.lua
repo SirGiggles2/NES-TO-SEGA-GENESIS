@@ -29,6 +29,7 @@ for frame = 0, 6000 do
     local rdy = r8(0xFF0011)
     local phase = r8(0xFF042D)
     local auto_demo = r8(0xFF042C)
+    local title_timer = r8(0xFF041A)
     local scroll_Y = r8(0xFF00FC)
     local scroll_X = r8(0xFF00FD)
 
@@ -54,6 +55,13 @@ for frame = 0, 6000 do
     if auto_demo == 1 and phase == 2 then
         phase2_frame_count = phase2_frame_count + 1
 
+        if scroll_Y >= 0x20 and not screenshots_taken["scroll_start_visible"] then
+            screenshots_taken["scroll_start_visible"] = true
+            local ss_path = OUT_DIR .. "ss_scroll_start_visible.png"
+            client.screenshot(ss_path)
+            log(string.format("SCREENSHOT: scroll_start_visible f=%d nmi=%d sy=$%02X sx=$%02X", frame, nmi_count, scroll_Y, scroll_X))
+        end
+
         -- Take screenshots every 500 NMI ticks during phase 2
         if phase2_frame_count == 1 or phase2_frame_count == 100 or phase2_frame_count == 300 or phase2_frame_count == 600 then
             local ss_path = OUT_DIR .. "ss_phase2_f" .. phase2_frame_count .. ".png"
@@ -72,11 +80,11 @@ for frame = 0, 6000 do
             end
 
             -- Dump palette shadow (first 32 bytes)
-            log("  Palette shadow ($FF0300? or PPU_PAL_SHADOW):")
-            -- Try reading from common palette shadow locations
+            -- PPU_PAL_SHADOW lives at $FF9200 in this port.
+            log("  Palette shadow ($FF9200 PPU_PAL_SHADOW):")
             local pal_s = "    "
             for i = 0, 31 do
-                pal_s = pal_s .. string.format("%02X ", r8(0xFF8000 + i))
+                pal_s = pal_s .. string.format("%02X ", r8(0xFF9200 + i))
             end
             log(pal_s)
 
@@ -103,15 +111,46 @@ for frame = 0, 6000 do
         log("  Palette shadow:")
         local pal_s = "    "
         for i = 0, 31 do
-            pal_s = pal_s .. string.format("%02X ", r8(0xFF8000 + i))
+            pal_s = pal_s .. string.format("%02X ", r8(0xFF9200 + i))
         end
         log(pal_s)
+        local nt_s = "    "
+        local nt_non24 = 0
+        for i = 0, 959 do
+            if r8(0xFF8200 + i) ~= 0x24 then nt_non24 = nt_non24 + 1 end
+        end
+        for i = 0, 31 do
+            nt_s = nt_s .. string.format("%02X ", r8(0xFF8200 + i))
+        end
+        log("  NT row0:")
+        log(nt_s)
+        log(string.format("  NT non-$24 count: %d", nt_non24))
     end
 
-    if auto_demo == 0 and phase == 1 and nmi_count > 600 and not screenshots_taken["fade_mid"] then
+    -- Capture a "settled" title frame near the end of title hold to improve
+    -- oracle matching (nmi-locked captures can be too early/transition-heavy).
+    if auto_demo == 0 and phase == 0 and title_timer >= 250 and not screenshots_taken["title_settled"] then
+        screenshots_taken["title_settled"] = true
+        client.screenshot(OUT_DIR .. "ss_title_settled.png")
+        log(string.format("TITLE SETTLED SCREENSHOT at nmi=%d timer=%d", nmi_count, title_timer))
+        local nt_s = "    "
+        local nt_non24 = 0
+        for i = 0, 959 do
+            if r8(0xFF8200 + i) ~= 0x24 then nt_non24 = nt_non24 + 1 end
+        end
+        for i = 0, 31 do
+            nt_s = nt_s .. string.format("%02X ", r8(0xFF8200 + i))
+        end
+        log("  NT row0 (settled):")
+        log(nt_s)
+        log(string.format("  NT non-$24 count (settled): %d", nt_non24))
+    end
+
+    local fade_step = r8(0xFF0437)
+    if auto_demo == 0 and phase == 1 and fade_step >= 0x07 and not screenshots_taken["fade_mid"] then
         screenshots_taken["fade_mid"] = true
         client.screenshot(OUT_DIR .. "ss_fade_mid.png")
-        log("FADE MID SCREENSHOT at nmi=" .. nmi_count)
+        log(string.format("FADE MID SCREENSHOT at nmi=%d fade_step=$%02X", nmi_count, fade_step))
     end
 
     prev_phase = phase

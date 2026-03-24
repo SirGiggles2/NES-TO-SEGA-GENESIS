@@ -1,7 +1,7 @@
 -- zelda_intro_loop_v484.lua
 -- Tests v484 ROM (D2 register width fix): check intro loop cycles
 
-local ROM_VERSION = "zelda_v486"
+local ROM_VERSION = "zelda_v492"
 local MAX_FRAMES = 12000
 
 local OUT_DIR  = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"

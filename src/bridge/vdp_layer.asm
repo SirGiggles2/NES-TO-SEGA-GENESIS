@@ -320,6 +320,7 @@ VDP_VBLANK_HANDLER:
     move.w  #$0202,D0
     bsr     TRACE_MARK
     bsr     vec_0x01E494_NMI
+    bsr     VDP_APPLY_TITLE_BLACK_GAP_DISPLAY
     bsr     PPU_SYNC_PALETTE_SHADOW_TO_CRAM
     bsr     VDP_OAM_DMA_TRANSFER
     move.w  #$0203,D0
@@ -327,6 +328,42 @@ VDP_VBLANK_HANDLER:
 
     movem.l (A7)+,D0-D7/A0-A6
     rte
+
+VDP_APPLY_TITLE_BLACK_GAP_DISPLAY:
+    ; Preserve NES PPUMASK intent, but force display off during the expected
+    ; title->manual black gap (fade and early scroll lead-in).
+    move.b  (VDP_REG1_SHADOW).l,D3
+    move.b  (PPUMASK_SHADOW).l,D4
+    andi.b  #$18,D4
+    beq     .display_off
+
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .display_on
+    tst.b   ($00FF042C).l
+    bne     .display_on
+
+    move.b  ($00FF042D).l,D4
+    cmpi.b  #$01,D4
+    beq     .display_off
+    ; Keep blackout during fade phase only; do not extend into active scroll.
+    cmpi.b  #$02,D4
+    bhs     .display_on
+    cmpi.b  #$01,D4
+    beq     .display_off
+
+.display_on:
+    ori.b   #$40,D3
+    bra     .apply
+
+.display_off:
+    andi.b  #$BF,D3
+
+.apply:
+    move.b  D3,(VDP_REG1_SHADOW).l
+    move.w  #$8100,D4
+    or.b    D3,D4
+    move.w  D4,($C00004)
+    rts
 
 VDP_OAM_DMA_TRANSFER:
     move.l  #$58000003,($C00004)
@@ -539,6 +576,14 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
     moveq   #0,D0
     move.b  (A0,D4.w),D0
     bsr     FRONTEND_PAL_LOOKUP
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .fe_bg_no_title_balance
+    tst.b   ($00FF042C).l                 ; auto-demo/phase group: title hold is 0
+    bne     .fe_bg_no_title_balance
+    tst.b   ($00FF042D).l                 ; title sub-phase: hold is 0, fade is 1+
+    bne     .fe_bg_no_title_balance
+    bsr     TITLE_SCREEN_COLOR_BALANCE
+.fe_bg_no_title_balance:
     move.w  D0,($C00000)
     addq.w  #1,D3
     cmpi.w  #4,D3
@@ -560,6 +605,14 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
     moveq   #0,D0
     move.b  (A0,D4.w),D0
     bsr     FRONTEND_PAL_LOOKUP
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .fe_sp_no_title_balance
+    tst.b   ($00FF042C).l
+    bne     .fe_sp_no_title_balance
+    tst.b   ($00FF042D).l
+    bne     .fe_sp_no_title_balance
+    bsr     TITLE_SCREEN_COLOR_BALANCE
+.fe_sp_no_title_balance:
     move.w  D0,($C00000)
     addq.w  #1,D3
     cmpi.w  #4,D3
@@ -572,6 +625,14 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
     moveq   #0,D0
     move.b  (A0),D0
     bsr     FRONTEND_PAL_LOOKUP
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .fe_bd_no_title_balance
+    tst.b   ($00FF042C).l
+    bne     .fe_bd_no_title_balance
+    tst.b   ($00FF042D).l
+    bne     .fe_bd_no_title_balance
+    bsr     TITLE_SCREEN_COLOR_BALANCE
+.fe_bd_no_title_balance:
     bsr     VDP_SYNC_NES_BACKDROP_COLOR
     movem.l (A7)+,D0-D5/A0
     rts
@@ -590,6 +651,38 @@ FRONTEND_PAL_LOOKUP:
     lsl.w   #1,D0
     lea     CORRECT_NES_PALETTE(PC),A1
     move.w  (A1,D0.w),D0
+    rts
+
+; Title-only palette balancing:
+; reduce red cast and slightly lift green/blue to better match NES capture.
+TITLE_SCREEN_COLOR_BALANCE:
+    ; Do not alter pure/near-black entries; background tinting hurts parity.
+    tst.w   D0
+    beq     .done
+    move.w  D0,D6
+    andi.w  #$0F0F,D6
+    cmpi.w  #$0101,D6
+    bls     .done
+
+    move.w  D0,D6
+    andi.w  #$000F,D6
+    cmpi.w  #$0001,D6
+    blo     .r_ok
+    subi.w  #$0001,D0
+.r_ok:
+    move.w  D0,D6
+    andi.w  #$00F0,D6
+    cmpi.w  #$00E0,D6
+    bhs     .g_ok
+    addi.w  #$0010,D0
+.g_ok:
+    move.w  D0,D6
+    andi.w  #$0F00,D6
+    cmpi.w  #$0E00,D6
+    bhs     .b_ok
+    addi.w  #$0100,D0
+.b_ok:
+.done:
     rts
 
 ; Accurate NES 2C02 NTSC palette → Genesis $0BGR (3-bit per channel)
@@ -772,21 +865,34 @@ PPU_FLUSH_CHR_SHADOW_TO_VRAM:
     dbra    D6,.row_loop
     lea     16(A0),A0
     dbra    D7,.tile_loop
+    ; Keep a sprite-encoded tile copy in a separate VRAM bank so
+    ; sprite palettes can use colors 4-7 without affecting BG tiles.
+    move.w  #SPRITE_TILE_VRAM_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    lea     (PPU_CHR_SHADOW).l,A0
+    lea     PPU_SPRITE_PIXEL_PAIR_TABLE(pc),A3
+    move.w  #511,D7
+.sprite_tile_loop:
+    movea.l A0,A1
+    lea     8(A0),A2
+    moveq   #7,D6
+.sprite_row_loop:
+    moveq   #0,D0
+    moveq   #0,D1
+    move.b  (A1)+,D0
+    move.b  (A2)+,D1
+    bsr     PPU_BUILD_GENESIS_ROW
+    move.l  D2,(VDP_DATA)
+    dbra    D6,.sprite_row_loop
+    lea     16(A0),A0
+    dbra    D7,.sprite_tile_loop
     movem.l (A7)+,D0-D7/A0-A3
     rts
 
 PPU_FLUSH_TITLE_CHR_TO_VRAM:
-    movem.l D0-D7/A0-A3,-(A7)
-    moveq   #0,D0
-    move.w  #112,D1
-    bsr     PPU_FLUSH_TILE_RANGE_TO_VRAM
-    move.w  #256,D0
-    move.w  #112,D1
-    bsr     PPU_FLUSH_TILE_RANGE_TO_VRAM
-    move.w  #498,D0
-    move.w  #14,D1
-    bsr     PPU_FLUSH_TILE_RANGE_TO_VRAM
-    movem.l (A7)+,D0-D7/A0-A3
+    ; Title correctness > micro-optimization:
+    ; flush full CHR so any title nametable tile id has valid pattern data.
+    bsr     PPU_FLUSH_CHR_SHADOW_TO_VRAM
     rts
 
 PPU_FLUSH_TILE_RANGE_TO_VRAM:
@@ -818,6 +924,31 @@ PPU_FLUSH_TILE_RANGE_TO_VRAM:
     dbra    D6,.row_loop
     lea     16(A0),A0
     dbra    D7,.tile_loop
+    ; Also refresh sprite tile copies for the same CHR range.
+    move.w  D2,D0
+    addi.w  #SPRITE_TILE_VRAM_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  D2,D3
+    lsr.w   #1,D3
+    lea     (PPU_CHR_SHADOW).l,A0
+    adda.w  D3,A0
+    lea     PPU_SPRITE_PIXEL_PAIR_TABLE(pc),A3
+    move.w  D1,D7
+    subq.w  #1,D7
+.sprite_tile_loop:
+    movea.l A0,A1
+    lea     8(A0),A2
+    moveq   #7,D6
+.sprite_row_loop:
+    moveq   #0,D0
+    moveq   #0,D1
+    move.b  (A1)+,D0
+    move.b  (A2)+,D1
+    bsr     PPU_BUILD_GENESIS_ROW
+    move.l  D2,(VDP_DATA)
+    dbra    D6,.sprite_row_loop
+    lea     16(A0),A0
+    dbra    D7,.sprite_tile_loop
 .done:
     rts
 
