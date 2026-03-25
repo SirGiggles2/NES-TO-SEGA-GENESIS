@@ -49,6 +49,7 @@ PPU_FULL_REDRAW_PENDING EQU $FFFFEF13
 PPU_TITLE_CHR_FLUSH_DONE EQU $FFFFEF14
 VDP_IN_VBLANK_FLAG EQU $FFFFEF15
 PPU_MIDFRAME_NT_WRITES EQU $FFFFEF16
+PPU_MIRROR_MODE EQU $FFFFEF17
 
 RAM_FOR_2001    EQU $FFFF00FE
 RAM_FOR_2000    EQU $FFFF00FF
@@ -107,6 +108,7 @@ VDP_INIT:
     clr.b   (PPU_TITLE_CHR_FLUSH_DONE).l
     clr.b   (VDP_IN_VBLANK_FLAG).l
     clr.w   (PPU_MIDFRAME_NT_WRITES).l
+    move.b  #$0C,(PPU_MIRROR_MODE).l ; default MMC1 reset control value
     bsr     PPU_CLEAR_SHADOWS
 
     move.b  #$14,(VDP_REG1_SHADOW).l  ; Keep display off until PPUMASK enables rendering
@@ -330,6 +332,14 @@ VDP_VBLANK_HANDLER:
     bsr     TRACE_MARK
     bsr     vec_0x01E494_NMI
     bsr     VDP_APPLY_TITLE_BLACK_GAP_DISPLAY
+    move.b  (PPUMASK_SHADOW).l,D0
+    andi.b  #$18,D0
+    beq     .skip_nt_flush
+    tst.b   (PPU_FULL_REDRAW_PENDING).l
+    beq     .skip_nt_flush
+    bsr     PPU_FLUSH_VISIBLE_NAMETABLE
+.skip_nt_flush:
+    bsr     PPU_FLUSH_TITLE_CHR_TO_VRAM
     bsr     PPU_SYNC_PALETTE_SHADOW_TO_CRAM
     bsr     VDP_OAM_DMA_TRANSFER
     bsr     SAVE_SYNC_VBLANK_TICK
@@ -710,33 +720,7 @@ FRONTEND_PAL_LOOKUP:
 ; Title-only palette balancing:
 ; reduce red cast and slightly lift green/blue to better match NES capture.
 TITLE_SCREEN_COLOR_BALANCE:
-    ; Do not alter pure/near-black entries; background tinting hurts parity.
-    tst.w   D0
-    beq     .done
-    move.w  D0,D6
-    andi.w  #$0F0F,D6
-    cmpi.w  #$0101,D6
-    bls     .done
-
-    move.w  D0,D6
-    andi.w  #$000F,D6
-    cmpi.w  #$0001,D6
-    blo     .r_ok
-    subi.w  #$0001,D0
-.r_ok:
-    move.w  D0,D6
-    andi.w  #$00F0,D6
-    cmpi.w  #$00E0,D6
-    bhs     .g_ok
-    addi.w  #$0010,D0
-.g_ok:
-    move.w  D0,D6
-    andi.w  #$0F00,D6
-    cmpi.w  #$0E00,D6
-    bhs     .b_ok
-    addi.w  #$0100,D0
-.b_ok:
-.done:
+    ; Keep frontend/title palette as raw NES mapping for parity.
     rts
 
 ; Accurate NES 2C02 NTSC palette → Genesis $0BGR (3-bit per channel)
@@ -844,9 +828,37 @@ PPU_NORMALIZE_NAMETABLE_ADDR:
     blo     .done
     subi.w  #$1000,D4
 .done:
-    ; Debug test: force strict 1KB NES mirroring in all scripts.
-    ; This removes title-specific 2KB mapping that may leak stale columns.
-    andi.w  #PPU_NT_MIRROR_MASK,D4
+    ; Dynamic mirroring from MMC1 control bits 1:0 in dedicated shadow:
+    ; 00 = one-screen lower, 01 = one-screen upper,
+    ; 10 = vertical, 11 = horizontal.
+    moveq   #0,D5
+    move.b  (PPU_MIRROR_MODE).l,D5
+    andi.w  #$0003,D5
+    cmpi.w  #$0002,D5
+    beq     .vertical
+    cmpi.w  #$0003,D5
+    beq     .horizontal
+    tst.w   D5
+    bne     .one_screen_upper
+.one_screen_lower:
+    andi.w  #$03FF,D4
+    rts
+.one_screen_upper:
+    andi.w  #$03FF,D4
+    ori.w   #$0400,D4
+    rts
+.vertical:
+    move.w  D4,D5
+    andi.w  #$0400,D5
+    andi.w  #$03FF,D4
+    or.w    D5,D4
+    rts
+.horizontal:
+    move.w  D4,D5
+    andi.w  #$0800,D5
+    lsr.w   #1,D5
+    andi.w  #$03FF,D4
+    or.w    D5,D4
     rts
 
 PPU_WRITE_NAMETABLE_BYTE:
@@ -958,6 +970,9 @@ PPU_FLUSH_CHR_SHADOW_TO_VRAM:
     rts
 
 PPU_FLUSH_TITLE_CHR_TO_VRAM:
+    ; Hardware safety: only commit bulk CHR writes during VBlank.
+    tst.b   (VDP_IN_VBLANK_FLAG).l
+    beq     .done
     ; Reduce title/manual VRAM churn:
     ; - During title hold (phase 0), do a one-time full CHR flush.
     ; - Outside that window, throttle full flushes to every 4th frame.
@@ -1163,21 +1178,36 @@ PPU_RENDER_NAMETABLE_CELL:
     moveq   #0,D2
     move.b  (A0,D4.w),D2
 .ppuctrl_bg_select:
-    move.b  (ram_script).l,D0
-    cmpi.b  #con_script_register,D0
-    beq     .check_ppuctrl_bg_select
-    cmpi.b  #con_script_elimination,D0
-    beq     .check_ppuctrl_bg_select
-    cmpi.b  #con_script_final_credits,D0
-    beq     .check_ppuctrl_bg_select
-    cmpi.b  #$03,D0
-    bcs     .check_ppuctrl_bg_select
-    tst.b   (ram_dungeon_level).l
-    beq     .tile_base_done
-.check_ppuctrl_bg_select:
+    ; Apply MMC1 CHR banking for background tile fetch.
+    moveq   #0,D0
+    move.b  (PPU_MIRROR_MODE).l,D0
+    btst    #4,D0
+    bne     .chr_4k_mode
+
+.chr_8k_mode:
+    moveq   #0,D3
+    move.b  (ROM_$A000).l,D3
+    andi.w  #$001E,D3
+    lsl.w   #8,D3
+    add.w   D3,D2
     btst    #4,(PPUCTRL_SHADOW).l
     beq     .tile_base_done
     addi.w  #$0100,D2
+    bra     .tile_base_done
+
+.chr_4k_mode:
+    btst    #4,(PPUCTRL_SHADOW).l
+    bne     .chr_4k_bg_hi
+    moveq   #0,D3
+    move.b  (ROM_$A000).l,D3
+    bra     .chr_4k_have_bank
+.chr_4k_bg_hi:
+    moveq   #0,D3
+    move.b  (ROM_$C000).l,D3
+.chr_4k_have_bank:
+    andi.w  #$001F,D3
+    lsl.w   #8,D3
+    add.w   D3,D2
 .tile_base_done:
 
     move.w  D5,D3

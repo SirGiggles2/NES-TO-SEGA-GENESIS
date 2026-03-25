@@ -3047,6 +3047,28 @@ What changed in understanding:
 - That meant the title-to-file-select engine path was probably not broken.
 - The failure was in the probe tooling semantics, not the title logic.
 
+Root cause found:
+- The file-select probes were writing directly to:
+  - `ram_btn_press = $FF00F8`
+  - `ram_btn_hold = $FF00FA`
+- That is wrong for this codebase.
+- In the Genesis port, the real input path is:
+  1. `READ_JOYPAD` in `src/main.asm` reads Genesis input or `JOYPAD_OVERRIDE_P1`
+  2. it writes raw NES-format hold state to `$FF00F0`
+  3. `sub_E62D_read_joysticks` / `sub_E640_read_player_input` in:
+     - `src/banks/generated_vdp/bank_FF_gen68k_vdp.asm`
+     derives `ram_btn_press` and `ram_btn_hold`
+- So the probes were clobbering post-processed input state instead of only driving the controller source.
+
+Files fixed in this pass:
+- `diag/scripts/zelda_file_select_probe.lua`
+- `diag/scripts/zelda_file_select_state_probe.lua`
+- `diag/scripts/zelda_file_select_nav_probe.lua`
+
+Exact probe fix:
+- Removed direct writes to `ADDR_BTN_PRESS` and `ADDR_BTN_HOLD`
+- Probes now only drive:
+  - `ADDR_JOY_OVERRIDE = $FFEE90`
   - `ADDR_JOY_ENABLE = $FFEE91`
 - Optional BizHawk `joypad.set(...)` calls remain as secondary help, but the authoritative path is now the same path the ROM actually uses.
 
