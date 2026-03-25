@@ -1,0 +1,24 @@
+=== POST TITLE PARITY GATE ===
+ROM: zelda_v410
+
+Primary report: file_select_probe_zelda_v410.txt
+
+File-select gate: PASS
+- PASS: file select entered at frame 800
+- PASS: final state is stable file select (ready=1 script=1 sub=0 ppu=0)
+- PASS: stable_count=90 meets threshold 90
+- PASS: final slot matches expected cursor slot 3
+- PASS: active table matches canonical value [00,00,00,01,01]
+- WARN: legacy autostart probe: title-ready milestone was not logged in this report format
+- WARN: legacy autostart probe: no deliberate Start pulse was expected in this report format
+- WARN: legacy autostart probe: title exit was implied by file-select entry, not logged directly
+
+Start/gameplay lane: MISSING
+- WARN: no start-path report provided; gameplay progression not scored
+
+Overall: PASS_WITHOUT_GAMEPLAY_PROOF
+
+Canonical expectations:
+- slot=3
+- active=[00,00,00,01,01]
+- min_stable_count=90

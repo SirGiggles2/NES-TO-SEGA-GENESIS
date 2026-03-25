@@ -1,0 +1,24 @@
+=== POST TITLE PARITY GATE ===
+ROM: zelda_v436
+
+Primary report: file_select_state_probe_zelda_v436.txt
+
+File-select gate: PASS
+- PASS: title reached ready state at frames 290,583
+- PASS: probe attempted Start pulse at frame 603
+- PASS: title exit detected at frame 627
+- PASS: file select entered at frame 644
+- PASS: final state is stable file select (ready=1 script=1 sub=0 ppu=0)
+- PASS: stable_count=90 meets threshold 90
+- PASS: final slot matches expected cursor slot 3
+- PASS: active table matches canonical value [00,00,00,01,01]
+
+Start/gameplay lane: MISSING
+- WARN: no start-path report provided; gameplay progression not scored
+
+Overall: PASS_WITHOUT_GAMEPLAY_PROOF
+
+Canonical expectations:
+- slot=3
+- active=[00,00,00,01,01]
+- min_stable_count=90

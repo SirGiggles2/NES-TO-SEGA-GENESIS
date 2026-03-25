@@ -1,0 +1,94 @@
+=== JOY OVERRIDE START INJECTION TEST ===
+Rom: zelda_v540
+Start injection frame: 229
+Start hold frames: 2
+Max frames: 2000
+
+Frame | Script | Sub | PPULoad | Slot | PPUCtrl | PPUMask | VRAMAddr | Ready | Notes
+----------------------------------------------------------------------------------------------------
+  10 |      0 |   0 |       0 |    0 | 0x00 | 0x00 | 0x0000 |     0 | 
+  20 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x0000 |     0 | 
+  30 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x0010 |     0 | 
+  40 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x201F |     0 | 
+  50 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x201F |     0 | 
+  60 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x201F |     0 | 
+  70 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x201F |     0 | 
+  80 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x2000 |     0 | 
+  90 |      0 |   0 |       0 |    0 | 0x80 | 0x1E | 0x3F00 |     0 | 
+ 100 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x0000 |     0 | 
+ 110 |      0 |   0 |       0 |    0 | 0x80 | 0x00 | 0x0010 |     0 | 
+ 120 |      0 |   0 |       0 |    0 | 0x80 | 0x1E | 0x0303 |     0 | 
+ 130 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x0000 |     0 | 
+ 140 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x0010 |     0 | 
+ 150 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x201F |     0 | 
+ 160 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x201F |     0 | 
+ 170 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x201F |     0 | 
+ 180 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x201F |     0 | 
+ 190 |      0 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x2000 |     0 | 
+ 200 |      0 |   0 |       0 |    0 | 0xB0 | 0x1E | 0x3F00 |     0 | 
+ 210 |      0 |   0 |       0 |    0 | 0xB0 | 0x1E | 0x0303 |     0 | 
+ 220 |      0 |   0 |       0 |    0 | 0xB0 | 0x1E | 0x0303 |     0 | 
+*** FRAME 229: INJECTED START BUTTON VIA 0xFFEE90/0xFFEE91
+
+ 230 |      0 |   1 |      18 |    0 | 0xB0 | 0x00 | 0x0303 |     0 | 
+ 231 |      0 |   1 |       0 |    0 | 0xB0 | 0x00 | 0x0303 |     0 | 
+ 232 |      0 |   1 |       0 |    0 | 0xB0 | 0x00 | 0x0303 |     0 | 
+ 233 |      0 |   1 |       0 |    1 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 234 |      0 |   1 |       0 |    1 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 235 |      0 |   1 |       0 |    2 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 236 |      0 |   1 |       0 |    2 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 237 |      0 |   1 |       0 |    2 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 238 |      0 |   2 |       0 |    2 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 239 |      0 |   2 |       0 |    2 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 240 |      0 |   2 |       0 |    1 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 241 |      0 |   2 |       0 |    0 | 0xB0 | 0x00 | 0x0303 |     0 | 
+ 242 |      0 |   2 |       0 |    0 | 0xB0 | 0x00 | 0x0303 |     0 | 
+ 243 |      1 |   0 |       0 |    0 | 0xB0 | 0x00 | 0x0303 |     0 | 
+ 244 |      1 |   0 |       0 |    1 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 245 |      1 |   0 |       0 |    2 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 246 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2000 |     0 | [GAME RUNNING]
+ 247 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2000 |     0 | [GAME RUNNING]
+ 248 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2000 |     0 | [GAME RUNNING]
+ 249 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2000 |     0 | [GAME RUNNING]
+ 250 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2000 |     0 | [GAME RUNNING]
+ 251 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2800 |     0 | [GAME RUNNING]
+ 252 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2800 |     0 | [GAME RUNNING]
+ 253 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2800 |     0 | [GAME RUNNING]
+ 254 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2800 |     0 | [GAME RUNNING]
+ 255 |      1 |   2 |      18 |    0 | 0xB0 | 0x00 | 0x2AC0 |     0 | [GAME RUNNING]
+ 256 |      1 |   3 |      20 |    0 | 0xB0 | 0x00 | 0x0303 |     0 | [GAME RUNNING]
+ 257 |      1 |   3 |      20 |    0 | 0xB0 | 0x00 | 0x2324 |     0 | [GAME RUNNING]
+ 258 |      1 |   5 |       0 |    2 | 0xB0 | 0x00 | 0x0303 |     0 | [GAME RUNNING]
+ 259 |      1 |   6 |       0 |    3 | 0xB0 | 0x00 | 0x0303 |     0 | [GAME RUNNING]
+ 260 |      1 |   0 |       0 |    3 | 0xB0 | 0x00 | 0x0303 |     0 | [SLOT SELECTED]
+ 261 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 262 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 263 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 264 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 265 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 266 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 267 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 268 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 269 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 270 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 271 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 272 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 273 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 274 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 275 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 276 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 277 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 278 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 280 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 290 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 300 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 310 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 320 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+ 330 |      1 |   0 |       0 |    3 | 0xB0 | 0x1E | 0x0303 |     0 | [SLOT SELECTED]
+
+*** GAME ADVANCED PAST TITLE SCREEN ***
+Final frame: 330, script=1, subscript=0, slot=3
+
+=== TEST COMPLETE ===
+Advanced: true
+Final frame: 330

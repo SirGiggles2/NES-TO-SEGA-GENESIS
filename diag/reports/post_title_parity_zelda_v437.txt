@@ -1,0 +1,26 @@
+=== POST TITLE PARITY GATE ===
+ROM: zelda_v437
+
+Primary report: file_select_state_probe_zelda_v437.txt
+
+File-select gate: FAIL
+- PASS: title reached ready state at frames 290,583
+- PASS: probe attempted Start pulse at frame 603
+- FAIL: title never exited after Start pulse
+- FAIL: file select entry was never logged
+- FAIL: final state is not stable file select (ready=1 script=0 sub=0 ppu=0)
+- FAIL: stable_count=0 below threshold 90
+- FAIL: final slot 0 does not match expected 3
+- FAIL: active table [23,13,C1,00,FF] does not match canonical [00,00,00,01,01]
+- WARN: joypad API did not verify the Start pulse; this run depended on RAM-only injection or unavailable joypad.set
+- WARN: stable_start_frame missing from report
+
+Start/gameplay lane: MISSING
+- WARN: no start-path report provided; gameplay progression not scored
+
+Overall: FAIL
+
+Canonical expectations:
+- slot=3
+- active=[00,00,00,01,01]
+- min_stable_count=90

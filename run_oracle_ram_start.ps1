@@ -1,28 +1,43 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-Run v358 with direct RAM Start injection to test post-title gameplay path
+Run v358 with controller override Start injection to test post-title gameplay path
 - Boots normally to title/guide screen
-- Injects $10 (Start bit) directly into ram_btn_press ($FF00F8)
+- Injects Start via joy override path ($FFEE90/$FFEE91)
 - Monitors whether game advances past title into slot/file-select
 - Captures comprehensive diagnostics including frame-by-frame state
 .PARAMETER Rom
 ROM name (default: zelda_v358)
 .PARAMETER Frames
 Max frames to run (default: 2000)
+.PARAMETER StartFrame
+Frame to begin Start injection (default: 900)
+.PARAMETER HoldFrames
+How many frames to hold Start active (default: 1)
 #>
 param(
     [string]$Rom = "zelda_v358",
-    [int]$Frames = 2000
+    [int]$Frames = 2000,
+    [int]$StartFrame = 900,
+    [int]$HoldFrames = 1,
+    [string]$BizHawkPath = "D:\Emulation\BizHawk-2.11-win-x64\EmuHawk.exe"
 )
 
-$RomPath = ".\zelda\$Rom.md"
+$RomPath = ".\build\$Rom.md"
+$ReportName = "oracle_ram_start_zelda_${Rom}_f${StartFrame}_h${HoldFrames}.txt"
+$ReportPath = (Join-Path (Resolve-Path ".").Path "diag\reports\$ReportName").Replace('\','/')
 $LuaScript = @"
 -- zelda_oracle_ram_start.lua
--- Direct RAM injection of Start button to test post-title path
+-- Controller-override Start injection to test post-title path
 
-local FRAME_START_INJECT = 900  -- inject Start after guide screen stabilizes
+local FRAME_START_INJECT = $StartFrame  -- inject Start after guide screen stabilizes
+local START_HOLD_FRAMES = $HoldFrames
 local FRAME_MAX = $Frames
+local ADDR_JOY_OVERRIDE = 0xFFEE90
+local ADDR_JOY_ENABLE = 0xFFEE91
+local BTN_START = 0x10
+
+memory.usememorydomain("M68K BUS")
 
 local function frame_advance()
     emu.frameadvance()
@@ -36,9 +51,21 @@ local function write_ram(addr, val)
     memory.write_u8(addr, val)
 end
 
+local function release_input_override()
+    write_ram(ADDR_JOY_OVERRIDE, 0)
+    write_ram(ADDR_JOY_ENABLE, 0)
+end
+
 local function inject_start_button()
-    -- Inject Start bit ($10) into ram_btn_press ($FF00F8)
-    write_ram(0xFF00F8, 0x10)
+    -- Inject Start through joy override path used by active input probes
+    write_ram(ADDR_JOY_OVERRIDE, BTN_START)
+    write_ram(ADDR_JOY_ENABLE, 1)
+
+    local jp = rawget(_G, "joypad")
+    if type(jp) == "table" and type(jp.set) == "function" then
+        pcall(jp.set, { Start = true }, 1)
+        pcall(jp.set, { ["P1 Start"] = true })
+    end
 end
 
 local function read_ppu_state()
@@ -58,7 +85,7 @@ local function read_game_state()
     local ram_script = read_ram(0xFF0012)
     local ram_subscript = read_ram(0xFF0013)
     local ram_ppu_load_index = read_ram(0xFF0014)
-    local cur_save_slot = read_ram(0xFFEB16)
+    local cur_save_slot = read_ram(0xFF0016)
     local frame_counter = read_ram(0xFF00FD)
 
     return {
@@ -70,7 +97,7 @@ local function read_game_state()
     }
 end
 
-local log_file = io.open("diag/reports/oracle_ram_start_zelda_" .. "$Rom" .. ".txt", "w")
+local log_file = io.open("$ReportPath", "w")
 local function log(msg)
     if log_file then
         log_file:write(msg .. "\n")
@@ -78,9 +105,10 @@ local function log(msg)
     end
 end
 
-log("=== RAM DIRECT START INJECTION TEST ===")
+log("=== JOY OVERRIDE START INJECTION TEST ===")
 log("Rom: $Rom")
 log("Start injection frame: " .. FRAME_START_INJECT)
+log("Start hold frames: " .. START_HOLD_FRAMES)
 log("Max frames: " .. FRAME_MAX)
 log("")
 log("Frame | Script | Sub | PPULoad | Slot | PPUCtrl | PPUMask | VRAMAddr | Ready | Notes")
@@ -88,17 +116,22 @@ log(string.rep("-", 100))
 
 local frame = 0
 local start_injected = false
+local advanced = false
 
 while frame < FRAME_MAX do
     frame_advance()
     frame = frame + 1
 
     -- Inject Start button at target frame
-    if frame == FRAME_START_INJECT and not start_injected then
+    if frame >= FRAME_START_INJECT and frame < (FRAME_START_INJECT + START_HOLD_FRAMES) then
+        if not start_injected then
+            log(string.format("*** FRAME %d: INJECTED START BUTTON VIA 0xFFEE90/0xFFEE91", frame))
+            log("")
+            start_injected = true
+        end
         inject_start_button()
-        start_injected = true
-        log(string.format("*** FRAME %d: INJECTED START BUTTON INTO \$FF00F8", frame))
-        log("")
+    elseif start_injected and frame == (FRAME_START_INJECT + START_HOLD_FRAMES) then
+        release_input_override()
     end
 
     local game = read_game_state()
@@ -125,11 +158,12 @@ while frame < FRAME_MAX do
 
     -- Stop if game advanced significantly
     if start_injected and frame > FRAME_START_INJECT + 100 then
-        if game.script > 2 or game.cur_save_slot > 0 then
+        if game.script >= 1 or game.subscript >= 1 or game.cur_save_slot > 0 then
             log("")
             log("*** GAME ADVANCED PAST TITLE SCREEN ***")
             log(string.format("Final frame: %d, script=%d, subscript=%d, slot=%d",
                 frame, game.script, game.subscript, game.cur_save_slot))
+            advanced = true
             break
         end
     end
@@ -137,25 +171,39 @@ end
 
 log("")
 log("=== TEST COMPLETE ===")
+log("Advanced: " .. tostring(advanced))
 log("Final frame: " .. frame)
+release_input_override()
 if log_file then
     log_file:close()
 end
+client.exitCode = 0
+client.exit()
 "@
 
 # Write Lua script
 $LuaScript | Out-File -FilePath "diag\scripts\zelda_oracle_ram_start.lua" -Encoding UTF8
 
-Write-Host "Running $Rom with direct RAM Start injection..."
+Write-Host "Running $Rom with joy override Start injection..."
 Write-Host "Lua script written to diag\scripts\zelda_oracle_ram_start.lua"
 
 # Run BizHawk with the Lua script
-$BizHawkPath = ".\BizHawk\EmuHawk.exe"
+if (-not (Test-Path $BizHawkPath)) {
+    $LocalBizHawkPath = ".\BizHawk\EmuHawk.exe"
+    if (Test-Path $LocalBizHawkPath) {
+        $BizHawkPath = $LocalBizHawkPath
+    }
+}
+
 if (Test-Path $BizHawkPath) {
-    & $BizHawkPath --lua=diag\scripts\zelda_oracle_ram_start.lua "$RomPath" 2>&1 | Tee-Object -FilePath "diag\reports\oracle_bizhawk_output_ram_start.txt"
+    $BizArgs = @(
+        $RomPath,
+        "--lua=diag\scripts\zelda_oracle_ram_start.lua"
+    )
+    & $BizHawkPath @BizArgs 2>&1 | Tee-Object -FilePath "diag\reports\oracle_bizhawk_output_ram_start.txt"
 } else {
-    Write-Error "BizHawk not found at $BizHawkPath"
+    Write-Error "BizHawk not found at $BizHawkPath (or local fallback .\\BizHawk\\EmuHawk.exe)"
     exit 1
 }
 
-Write-Host "Test complete. Check diag\reports\oracle_ram_start_zelda_$Rom.txt"
+Write-Host "Test complete. Check diag\reports\$ReportName"

@@ -1,0 +1,14 @@
+=== GAMEPLAY PARITY GATE ===
+ROM: zelda_v526
+
+Primary report: gameplay_probe_zelda_v526.txt
+
+Gameplay Gate 1: FAIL
+- PASS: gameplay entry logged in gameplay_probe_zelda_v526.txt
+- PASS: final script is gameplay lane (script=14)
+- PASS: captured 2 gameplay screenshot markers
+- FAIL: stability window after gameplay entry is only 30 frames
+
+Definition:
+- Gate 1 targets file-select -> first stable gameplay lane (script >= 5).
+- Passing this gate means gameplay entry is proven, not full gameplay perfection.

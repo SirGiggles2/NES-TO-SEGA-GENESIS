@@ -127,8 +127,8 @@
     ; SRAM support (Zelda uses battery-backed SRAM for saves!)
     DC.B    "RA"                        ; SRAM identifier
     DC.W    $F820                       ; SRAM type flags
-    DC.L    $00200000                   ; SRAM start address
-    DC.L    $00200001                   ; SRAM end address (2 bytes = 3 save slots)
+    DC.L    $00200001                   ; SRAM start address (odd-byte SRAM window)
+    DC.L    $0020FFFF                   ; SRAM end address (compatibility range)
 
     ; Modem support (none)
     DC.B    "            "              ; 12 bytes
@@ -158,6 +158,7 @@ CRASH_REGS      EQU $FFEE40
 CRASH_AUX       EQU $FFEE80
 JOYPAD_OVERRIDE_P1 EQU $FFEE90
 JOYPAD_OVERRIDE_ENABLE EQU $FFEE91
+SAVE_AUTOSAVE_COUNTER EQU $FFEE92
 TRACE_LAST      EQU $FFF000
 TRACE_SEQ       EQU $FFF002
 TRACE_RING      EQU $FFF010
@@ -309,14 +310,19 @@ GENESIS_RESET:
     bne     .wait_z80
     ; Z80 is now halted, we own the bus
 
-    ; ?"??"? Clear Genesis RAM ($FF0000-$FFFFFF) ?"??"?
-    ; This replaces the NES ClearRAM routine
-    ; NOTE: Must happen BEFORE VDP_INIT so shadow registers are not wiped
+    ; Enable cartridge SRAM window (required by many flashcarts/hardware mappers).
+    move.b  #$01,($A130F1)
+
+     ; ???"??"? Clear full Genesis RAM ($FF0000-$FFFFFF) ???"??"?
+     ; Deterministic cold boot: wipe all 64KB, then VDP_INIT re-initializes shadow regs.
     movea.l #$FF0000,A0
-    move.w  #$3BFF,D0               ; 15360 longs = 60KB (stops before VDP shadow regs at $FFEF00)
+     move.w  #$3FFF,D0               ; 16384 longs = 64KB
 .clear_ram:
     clr.l   (A0)+
     dbra    D0,.clear_ram
+
+    ; Restore battery-backed save area into emulated NES RAM ($6000-$7FFF).
+    bsr     SAVE_SYNC_LOAD_FROM_SRAM
 
     ; ?"??"? Initialize VDP (after RAM clear so shadow regs survive) ?"??"?
     bsr     VDP_INIT
@@ -329,6 +335,7 @@ GENESIS_RESET:
 
     ; ?"??"? Initialize joypad ?"??"?
     bsr     JOYPAD_INIT
+    clr.b   (SAVE_AUTOSAVE_COUNTER).l
     clr.w   (TRACE_SEQ).l
     clr.w   (TRACE_LAST).l
     clr.w   (TRACE_SEQ_EVT_COUNT).l
@@ -404,6 +411,37 @@ TRACE_PPU_EVENT:
     move.l  (TRACE_PPU_PTR_RES).l,12(A0,D4.w)
     addq.w  #1,(TRACE_PPU_EVT_COUNT).l
     movem.l (A7)+,D4/A0
+    rts
+
+SAVE_SYNC_LOAD_FROM_SRAM:
+    move.b  #$01,($A130F1)
+    movea.l #$00200000,A0
+    movea.l #$FF6000,A1
+    move.w  #(8192/4)-1,D0
+.load_loop:
+    move.l  (A0)+,(A1)+
+    dbra    D0,.load_loop
+    rts
+
+SAVE_SYNC_FLUSH_TO_SRAM:
+    move.b  #$01,($A130F1)
+    movea.l #$FF6000,A0
+    movea.l #$00200000,A1
+    move.w  #(8192/4)-1,D0
+.flush_loop:
+    move.l  (A0)+,(A1)+
+    dbra    D0,.flush_loop
+    rts
+
+SAVE_SYNC_VBLANK_TICK:
+    cmpi.b  #con_script_save_menu,(ram_script).l
+    beq     .flush_now
+    addq.b  #1,(SAVE_AUTOSAVE_COUNTER).l
+    bne     .done
+    ; Every 256 frames, flush save RAM to cartridge SRAM.
+.flush_now:
+    bsr     SAVE_SYNC_FLUSH_TO_SRAM
+.done:
     rts
 
 JOYPAD_INIT:

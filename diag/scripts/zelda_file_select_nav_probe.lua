@@ -67,8 +67,6 @@ end
 local function clear_ram_buttons()
     memory.write_u8(ADDR_JOY_OVERRIDE, 0)
     memory.write_u8(ADDR_JOY_ENABLE, 0)
-    memory.write_u8(ADDR_BTN_PRESS, 0)
-    memory.write_u8(ADDR_BTN_HOLD, 0)
 end
 
 local START_KEYS  = { "Start", "P1 Start", "P1 RetroPad Start", "1 Start" }
@@ -189,8 +187,6 @@ local function apply_buttons(start_pressed, down_pressed, up_pressed)
 
     memory.write_u8(ADDR_JOY_OVERRIDE, pressed_mask)
     memory.write_u8(ADDR_JOY_ENABLE, pressed_mask ~= 0 and 1 or 0)
-    memory.write_u8(ADDR_BTN_PRESS, pressed_mask)
-    memory.write_u8(ADDR_BTN_HOLD, pressed_mask)
 
     if type(jp) ~= "table" or type(jp.set) ~= "function" then
         return pressed_mask ~= 0, "ram injection fallback"

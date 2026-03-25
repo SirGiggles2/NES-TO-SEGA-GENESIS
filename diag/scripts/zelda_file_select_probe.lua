@@ -134,8 +134,6 @@ local function apply_start(start_pressed)
 
     memory.write_u8(ADDR_JOY_OVERRIDE, pressed_mask)
     memory.write_u8(ADDR_JOY_ENABLE, pressed_mask ~= 0 and 1 or 0)
-    memory.write_u8(ADDR_BTN_PRESS, pressed_mask)
-    memory.write_u8(ADDR_BTN_HOLD, pressed_mask)
 
     if type(jp) ~= "table" or type(jp.set) ~= "function" then
         return pressed_mask ~= 0, "ram injection fallback"

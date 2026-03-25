@@ -68,11 +68,12 @@ NES_BACKDROP_TILE_VRAM  EQU $8000
 SPRITE_TILE_VRAM_BASE   EQU $4000
 SPRITE_TILE_INDEX_OFS   EQU $0200
 NES_BACKDROP_CRAM_INDEX EQU $000F
+DEBUG_VISUAL_ENABLE     EQU 0
 
 
 VDP_INIT:
     move.w  #$8000,($C00004)
-    move.w  #$813C,($C00004)    ; V30 mode (240 lines) to match NES resolution
+    move.w  #$8134,($C00004)    ; Standard NTSC 224-line mode, display off during init
     move.w  #$8230,($C00004)
     move.w  #$8307,($C00004)
     move.w  #$8407,($C00004)
@@ -108,8 +109,8 @@ VDP_INIT:
     clr.w   (PPU_MIDFRAME_NT_WRITES).l
     bsr     PPU_CLEAR_SHADOWS
 
-    move.b  #$5C,(VDP_REG1_SHADOW).l  ; V30 mode + display on + DMA
-    move.w  #$815C,($C00004)
+    move.b  #$14,(VDP_REG1_SHADOW).l  ; Keep display off until PPUMASK enables rendering
+    move.w  #$8114,($C00004)
     rts
 
 PPU_WRITE_2000:
@@ -331,6 +332,8 @@ VDP_VBLANK_HANDLER:
     bsr     VDP_APPLY_TITLE_BLACK_GAP_DISPLAY
     bsr     PPU_SYNC_PALETTE_SHADOW_TO_CRAM
     bsr     VDP_OAM_DMA_TRANSFER
+    bsr     SAVE_SYNC_VBLANK_TICK
+    bsr     VDP_DEBUG_VISUAL_PULSE
     move.w  #$0203,D0
     bsr     TRACE_MARK
     clr.b   (VDP_IN_VBLANK_FLAG).l
@@ -356,6 +359,31 @@ VDP_APPLY_TITLE_BLACK_GAP_DISPLAY:
     move.w  #$8100,D4
     or.b    D3,D4
     move.w  D4,($C00004)
+    rts
+
+VDP_DEBUG_VISUAL_PULSE:
+    moveq   #0,D0
+    move.b  #DEBUG_VISUAL_ENABLE,D0
+    beq     .done
+
+    ; Visible heartbeat for hardware capture: title alternates red/blue,
+    ; non-title forces green so state transitions are obvious.
+    move.b  (ram_script).l,D2
+    cmpi.b  #con_script_title_screen,D2
+    bne     .non_title
+    move.b  (ram_frm_cnt).l,D0
+    andi.b  #$10,D0
+    beq     .title_blue
+    move.w  #$0E00,D0
+    bra     .write
+.title_blue:
+    move.w  #$000E,D0
+    bra     .write
+.non_title:
+    move.w  #$00E0,D0
+.write:
+    bsr     VDP_SYNC_NES_BACKDROP_COLOR
+.done:
     rts
 
 VDP_OAM_DMA_TRANSFER:
@@ -432,7 +460,7 @@ VDP_OAM_DMA_TRANSFER:
 VDP_CLEAR_VRAM:
     move.l  #$40000000,($C00004)
     move.w  #$8F02,($C00004)
-    move.w  #16383,D7
+    move.w  #32767,D7               ; 32768 words = 65536 bytes = full 64KB VRAM
 .clear_loop:
     move.w  #0,($C00000)
     dbra    D7,.clear_loop
@@ -816,13 +844,8 @@ PPU_NORMALIZE_NAMETABLE_ADDR:
     blo     .done
     subi.w  #$1000,D4
 .done:
-    ; Title/manual scroll needs two nametable pages active so content can
-    ; pass through as motion instead of sticking as a static background.
-    cmpi.b  #con_script_title_screen,(ram_script).l
-    bne     .mirror_1k
-    andi.w  #$07FF,D4
-    rts
-.mirror_1k:
+    ; Debug test: force strict 1KB NES mirroring in all scripts.
+    ; This removes title-specific 2KB mapping that may leak stale columns.
     andi.w  #PPU_NT_MIRROR_MASK,D4
     rts
 
@@ -841,17 +864,21 @@ PPU_WRITE_NAMETABLE_BYTE:
     cmpi.w  #$03C0,D5
     bhs     .attribute
     tst.b   (VDP_IN_VBLANK_FLAG).l
-    bne     .nt_write_vblank
-    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
-.nt_write_vblank:
+    beq     .defer_nt_write
     bsr     PPU_RENDER_NAMETABLE_CELL
+    bra     .done
+.defer_nt_write:
+    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
+    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
     bra     .done
 .attribute:
     tst.b   (VDP_IN_VBLANK_FLAG).l
-    bne     .attr_write_vblank
-    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
-.attr_write_vblank:
+    beq     .defer_attr_write
     bsr     PPU_RENDER_ATTRIBUTE_BLOCK
+    bra     .done
+.defer_attr_write:
+    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
+    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
     bra     .done
 .defer_redraw:
     move.b  #1,(PPU_FULL_REDRAW_PENDING).l

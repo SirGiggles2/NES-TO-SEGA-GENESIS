@@ -3033,6 +3033,65 @@ Updated estimates:
 - Engine progression: ~100%
 - Frontend/menu usability: ~90% (palette fix landed but buffer routing still missing)
 - Music/audio: ~24% (not started this session)
+
+ADDENDUM: 2026-03-24 - v526 truthful post-title probe fix and current baseline
+===============================================================================
+
+This addendum supersedes the earlier v437-era conclusion that the truthful build could not leave title under scripted Start injection.
+
+Current truthful live baseline:
+- `build/zelda_v526.md`
+
+What changed in understanding:
+- User confirmed the live ROM can enter file select when pressing the real controller button manually.
+- That meant the title-to-file-select engine path was probably not broken.
+- The failure was in the probe tooling semantics, not the title logic.
+
+  - `ADDR_JOY_ENABLE = $FFEE91`
+- Optional BizHawk `joypad.set(...)` calls remain as secondary help, but the authoritative path is now the same path the ROM actually uses.
+
+Live validation on truthful `v526` after the fix:
+- `powershell -ExecutionPolicy Bypass -File .\run_file_select_probe.ps1 -Rom zelda_v526`
+- `powershell -ExecutionPolicy Bypass -File .\run_file_select_state_probe.ps1 -Rom zelda_v526`
+- `powershell -ExecutionPolicy Bypass -File .\run_post_title_parity_gate.ps1 -Rom zelda_v526`
+
+New truthful result:
+- `diag/reports/file_select_probe_zelda_v526.txt`
+- `diag/reports/file_select_state_probe_zelda_v526.txt`
+- `diag/reports/post_title_parity_zelda_v526.txt`
+- screenshot:
+  - `diag/reports/screens/zelda_v526_file_select_probe_f294.png`
+  - `diag/reports/screens/zelda_v526_file_select_state_f294.png`
+
+Observed post-title path on `v526`:
+- title ready frames: `97`, `156`
+- deliberate Start pulse issued at frame `175`
+- title exits at frame `187`
+- file select entered at frame `205`
+- final stable state at frame `294`:
+  - `ready=1`
+  - `script=1`
+  - `sub=0`
+  - `ppu=0`
+  - `slot=3`
+  - `active=[00,00,00,01,01]`
+  - `stable_count=90`
+
+Gate result:
+- `PASS_WITHOUT_GAMEPLAY_PROOF`
+- Interpretation:
+  - truthful title -> file-select progression is now proven by the corrected probe tooling
+  - gameplay progression still needs its own gate / oracle proof
+
+Important repo truth after this pass:
+- Do NOT keep using the stale statement that truthful Start automation is broken.
+- That statement was an artifact of bad probe writes to derived input RAM.
+- As of `v526`, truthful post-title entry into file select is live and repeatable under the fixed probes.
+
+Recommended next actions from the new truthful baseline:
+1. Treat `v526` as the current truthful post-title baseline, not `v437`.
+2. Build the next gate for file-select usability and gameplay entry.
+3. Keep controller probes constrained to the controller source path (`JOYPAD_OVERRIDE_*` / `READ_JOYPAD`), never direct writes to `ram_btn_press` or `ram_btn_hold`.
 - Visual fidelity: ~88% (CORRECT_NES_PALETTE approach is solid, needs buffer routing to fully work)
 - Overall ROM: ~88% (slight regression from git checkout incident, recovery in progress)
 
