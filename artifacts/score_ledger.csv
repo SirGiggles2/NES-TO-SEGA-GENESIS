@@ -1,0 +1,6 @@
+version,date,static_score,notes
+597,2025-01-01,0,baseline - joypad fix - file select functional
+598,2025-01-01,0,REGRESSION - D3 clobber in PPU_WRITE_NAMETABLE_BYTE
+599,2026-03-25,105,D3 fix + guards + H40 overflow clear; smoke PASS; frontend PASS to script14; gameplay probe reaches script5 via register flow
+600,2026-03-25,105,build sanity PASS; smoke PASS; frontend PASS to script14; gameplay probe reaches script5 (entry frame 893); regression gate PASS; gameplay soak x3 PASS
+601,2026-03-25,105,build + runtime gate wrapper PASS; smoke PASS; frontend PASS to script14; gameplay probe reaches script5 (entry frame 893); regression gate PASS

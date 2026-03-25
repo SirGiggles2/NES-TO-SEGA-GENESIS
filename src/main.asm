@@ -454,12 +454,19 @@ JOYPAD_INIT:
 ; Returns NES-format button byte in D0:
 ;   bit 7=A(NES), 6=B, 5=Select, 4=Start, 3=Up, 2=Down, 1=Left, 0=Right
 ;
-; Genesis button mapping to NES:
-;   Genesis START ??' NES START
-;   Genesis A     ??' NES A
-;   Genesis B     ??' NES B
-;   Genesis C     ??' NES A (second button)
-;   D-pad         ??' D-pad (direct)
+; Genesis 3-button pad hardware (active low):
+;   TH=1 (strobe high) reads into D1:
+;     bit 5 = C,  bit 4 = B,  bits 3-0 = Up/Down/Left/Right
+;     bit 6 = A (active low)
+;   TH=0 (strobe low) reads into D2:
+;     bit 5 = Start,  bit 4 = A,  bits 3-2 = 0/0, bits 1-0 = Up/Down
+;
+; Mapping:
+;   Genesis A     -> NES A      (bit 7)
+;   Genesis B     -> NES B      (bit 6)
+;   Genesis C     -> NES Select (bit 5)
+;   Genesis Start -> NES Start  (bit 4)
+;   D-pad         -> D-pad      (direct)
 ; ?.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.??.?
 READ_JOYPAD:
     tst.b   (JOYPAD_OVERRIDE_ENABLE).l
@@ -492,26 +499,26 @@ READ_JOYPAD:
     eori.b  #$0F,D3                 ; invert (Genesis is active low)
     or.b    D3,D0
 
-    ; Start button: Genesis D1 bit 5
-    btst    #5,D1
+    ; Start button: Genesis D2 bit 5 (TH=0 read)
+    btst    #5,D2
     bne     .no_start               ; active low - not pressed if bit set
     bset    #4,D0                   ; NES Start = bit 4
 .no_start:
 
-    ; A button: Genesis D1 bit 6 ??' NES A = bit 7
+    ; A button: Genesis D1 bit 6 (TH=1 read) -> NES A = bit 7
     btst    #6,D1
     bne     .no_a
     bset    #7,D0
 .no_a:
 
-    ; B button: Genesis D2 bit 4 ??' NES B = bit 6
-    btst    #4,D2
+    ; B button: Genesis D1 bit 4 (TH=1 read) -> NES B = bit 6
+    btst    #4,D1
     bne     .no_b
     bset    #6,D0
 .no_b:
 
-    ; Select: Genesis has no Select - map to C button (D1 bit 4)
-    btst    #4,D1
+    ; C button: Genesis D1 bit 5 (TH=1 read) -> NES Select = bit 5
+    btst    #5,D1
     bne     .no_select
     bset    #5,D0
 .no_select:

@@ -504,35 +504,36 @@ bra_E5FB_loop:  ; orig: bra_E5FB_loop:
 sub_0x01E618_clear_memory:  ; orig: sub_0x01E618_clear_memory:
 
 ; in
-
-; A = hi address
-
-; Y = highest lo address for A
-
-; bzk optimize, move to bank 05
-    MOVE.B  D0,(ram_0000_t06_data+1+$FF0000).l  ; FIXED: STA ram_0000_t06_data+1 (hi-addr param)
-    MOVE.B  #$00,D0  ; orig: C - - - - - 0x01E61A 07:E60A: A9 00     LDA #$00
-    MOVE.B  D0,(ram_0000_t06_data+$FF0000).l  ; orig: C - - - - - 0x01E61C 07:E60C: 85 00     STA ram_0000_t06_dat
+; D0.B = hi address page
+; D2.B = highest lo address for first page (Y)
+; Clears NES RAM from (D0<<8)+D2 down to $0300
+; REWRITE: NES STA (zp),Y uses little-endian pointer; 68K MOVEA.W is big-endian.
+; Original MOVEA.W read $00,$05 as $0005 instead of $0500, clearing zero page.
+    MOVE.B  D0,(ram_0000_t06_data+1+$FF0000).l  ; store hi page byte
+    MOVE.B  #$00,(ram_0000_t06_data+$FF0000).l   ; store lo = 0
+    ANDI.W  #$00FF,D2         ; clean D2.W high byte for indexed addressing
 bra_E60E_loop:  ; orig: bra_E60E_loop:
-    MOVE.B  #$00,D0  ; orig: C - - - - - 0x01E61E 07:E60E: A9 00     LDA #$00
-    MOVEA.L #$FF0000,A0
-    ADDA.L  #ram_0000_t06_data,A0
-    MOVEA.W (A0),A1
-    ADDA.L  #$FF0000,A1
-    MOVE.B  D0,(A1,D2.W)  ; orig: C - - - - - 0x01E620 07:E610: 91 00     STA (ram_0000_t06_da
-    SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01E622 07:E612: 88        DEY
-    CMPI.B  #$FF,D2  ; orig: C - - - - - 0x01E623 07:E613: C0 FF     CPY #$FF
-    BNE     bra_E60E_loop             ; BNE  ; orig: C - - - - - 0x01E625 07:E615: D0 F7     BNE bra_E60E_loop
-    SUBQ.B  #1,(ram_0000_t06_data+1+$FF0000).l  ; FIXED: DEC ram_0000_t06_data+1
-    MOVE.B  (ram_0000_t06_data+1+$FF0000).l,D0  ; FIXED: LDA ram_0000_t06_data+1
-    CMPI.B  #$03,D0  ; orig: C - - - - - 0x01E62B 07:E61B: C9 03     CMP #$03
-    BCC     bra_E60E_loop             ; BCS  ; orig: C - - - - - 0x01E62D 07:E61D: B0 EF     BCS bra_E60E_loop
+    ; Read NES little-endian pointer: lo at +0, hi at +1
+    MOVEQ   #0,D0
+    MOVE.B  (ram_0000_t06_data+1+$FF0000).l,D0   ; hi byte
+    LSL.W   #8,D0
+    MOVE.B  (ram_0000_t06_data+$FF0000).l,D0     ; lo byte
+    LEA     ($FF0000).l,A1
+    ADDA.W  D0,A1             ; A1 = $FF0000 + (hi<<8|lo)
+    CLR.B   (A1,D2.W)         ; orig: STA (ram_0000_t06_data),Y
+    SUBQ.B  #1,D2           ; DEY
+    CMPI.B  #$FF,D2          ; CPY #$FF
+    BNE     bra_E60E_loop
+    SUBQ.B  #1,(ram_0000_t06_data+1+$FF0000).l  ; DEC hi page
+    MOVE.B  (ram_0000_t06_data+1+$FF0000).l,D0  ; LDA hi page
+    CMPI.B  #$03,D0
+    BCC     bra_E60E_loop             ; BCS: loop while page >= 3
     TST.B   ram_0301_buffer_index
     BNE     bra_E621_keep_live_buffer
-    MOVE.B  #$FF,D0  ; orig: C - - - - - 0x01E62F 07:E61F: A9 FF     LDA #$FF
-    MOVE.B  D0,ram_0302_ppu_buffer  ; orig: C - - - - - 0x01E631 07:E621: 8D 02 03  STA ram_0302_ppu_buf
+    MOVE.B  #$FF,D0
+    MOVE.B  D0,ram_0302_ppu_buffer
 bra_E621_keep_live_buffer:
-    RTS                     ; RTS  ; orig: C - - - - - 0x01E634 07:E624: 60        RTS
+    RTS
 
 
 

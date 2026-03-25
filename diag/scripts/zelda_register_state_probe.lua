@@ -15,6 +15,8 @@ local ADDR_SCRIPT       = 0xFF0012
 local ADDR_SUBSCRIPT    = 0xFF0013
 local ADDR_PPU_LOAD     = 0xFF0014
 local ADDR_CUR_SLOT     = 0xFF0016
+local ADDR_JOY_OVERRIDE = 0xFFEE90
+local ADDR_JOY_ENABLE   = 0xFFEE91
 local ADDR_TRACE_LAST   = 0xFFF000
 local ADDR_TRACE_SEQ    = 0xFFF002
 local ADDR_PPUCTRL      = 0xFFEF00
@@ -37,12 +39,17 @@ local ADDR_0423         = 0xFF0423
 local ADDR_0425         = 0xFF0425
 local ADDR_0426         = 0xFF0426
 local PLANE_A_MAP_BASE  = 0xC000
+local BTN_START         = 0x10
 
 memory.usememorydomain("M68K BUS")
 
 local frame_num = 0
 local register_entry = nil
 local ready_stable = 0
+local phase = "wait_title_ready"
+local phase_frame = nil
+local hold_start_title = false
+local hold_start_file_select = false
 
 local function ensure_dirs()
     os.execute('if not exist "' .. OUT_DIR .. '" mkdir "' .. OUT_DIR .. '"')
@@ -64,6 +71,39 @@ local function shot(name)
     local full = SHOT_DIR .. name
     client.screenshot(full)
     log("screenshot=" .. full)
+end
+
+local function joypad_targets(start_pressed)
+    return {
+        { payload = { Start = start_pressed, C = false, A = false, B = false, Mode = false }, device = 1 },
+        { payload = { ["P1 Start"] = start_pressed, ["P1 C"] = false, ["P1 A"] = false, ["P1 B"] = false, ["P1 Mode"] = false }, device = nil },
+        { payload = { Start = start_pressed }, device = 1 },
+        { payload = { ["P1 Start"] = start_pressed }, device = nil },
+    }
+end
+
+local function apply_start(start_pressed)
+    local jp = rawget(_G, "joypad")
+    local pressed_mask = start_pressed and BTN_START or 0
+
+    memory.write_u8(ADDR_JOY_OVERRIDE, pressed_mask)
+    memory.write_u8(ADDR_JOY_ENABLE, pressed_mask ~= 0 and 1 or 0)
+
+    if type(jp) ~= "table" or type(jp.set) ~= "function" then
+        return
+    end
+
+    for _, target in ipairs(joypad_targets(start_pressed)) do
+        local ok
+        if target.device == nil then
+            ok = pcall(jp.set, target.payload)
+        else
+            ok = pcall(jp.set, target.payload, target.device)
+        end
+        if ok then
+            return
+        end
+    end
 end
 
 local function read_u8(addr)
@@ -238,14 +278,57 @@ end
 log("=== REGISTER STATE PROBE " .. ROM_VERSION .. " ===")
 
 while frame_num < MAX_FRAMES do
+    if hold_start_title or hold_start_file_select then
+        apply_start(true)
+    else
+        apply_start(false)
+    end
+
     emu.frameadvance()
     frame_num = frame_num + 1
 
     local s = read_state()
 
+    if phase == "wait_title_ready" then
+        if s.script == 0 and s.sub == 0 and s.ready == 1 and s.ppu == 0 then
+            if phase_frame == nil then
+                phase_frame = frame_num
+                log("title_ready_frame=" .. frame_num)
+            elseif frame_num >= phase_frame + 20 then
+                hold_start_title = true
+                phase = "wait_title_exit"
+                log("action=hold_start_title frame=" .. frame_num)
+            end
+        else
+            phase_frame = nil
+        end
+    elseif phase == "wait_title_exit" then
+        if s.script ~= 0 then
+            hold_start_title = false
+            phase = "wait_file_select"
+            log("title_exit_detected frame=" .. frame_num)
+        end
+    elseif phase == "wait_file_select" then
+        if s.script == 1 and s.sub == 0 and s.ready == 1 and s.ppu == 0 then
+            if phase_frame == nil then
+                phase_frame = frame_num
+                log("file_select_ready_frame=" .. frame_num)
+            elseif frame_num >= phase_frame + 20 then
+                hold_start_file_select = true
+                phase = "wait_register"
+                log("action=hold_start_file_select frame=" .. frame_num)
+            end
+        end
+    elseif phase == "wait_register" then
+        if s.script == 14 then
+            hold_start_file_select = false
+            phase = "settle_register"
+            log("register_entered frame=" .. frame_num)
+        end
+    end
+
     if register_entry == nil and s.script == 14 then
         register_entry = frame_num
-        log("register_entered frame=" .. frame_num)
     end
 
     if register_entry ~= nil then

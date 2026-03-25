@@ -20,6 +20,10 @@ if (-not (Test-Path $BIZHAWK)) { throw "EmuHawk.exe not found: $BIZHAWK" }
 if (-not (Test-Path $RomPath))  { throw "ROM not found: $RomPath" }
 if (Test-Path $LOCK_PATH)       { throw "Probe already running. Remove $LOCK_PATH if stale." }
 
+if (Test-Path $OutputPath) {
+    [System.IO.File]::Delete($OutputPath)
+}
+
 New-Item -ItemType File -Path $LOCK_PATH | Out-Null
 $OriginalLua = [System.IO.File]::ReadAllText($SCRIPT)
 $UpdatedLua  = $OriginalLua -replace 'local ROM_VERSION\s*=.*', "local ROM_VERSION = `"$BaseName`""

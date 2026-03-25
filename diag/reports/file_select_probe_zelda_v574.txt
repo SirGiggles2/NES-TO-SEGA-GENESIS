@@ -1,0 +1,46 @@
+=== FILE SELECT PROBE zelda_v574 ===
+Goal: capture the first stable file-select state with a deliberate title Start pulse.
+
+state frame=1 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0000,0000]
+state frame=17 ready=0 script=0 sub=0 ppu=0x10 slot=0 active=[00,00,00,00,00] trace=[02C0,0014]
+state frame=77 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,006B]
+heartbeat frame=120 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0421,00A1]
+state frame=160 ready=1 script=0 sub=0 ppu=0x10 slot=0 active=[00,00,00,00,00] trace=[02C0,00D3]
+state frame=204 ready=1 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[02B0,0126]
+title_ready_frame=204
+state frame=211 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0203,014B]
+state frame=212 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0403,015E]
+heartbeat frame=240 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0203,018D]
+state frame=302 ready=1 script=0 sub=0 ppu=0x10 slot=0 active=[00,00,00,01,01] trace=[02C0,01DB]
+state frame=346 ready=1 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[02B0,022E]
+title_ready_frame=346
+heartbeat frame=360 ready=1 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0202,02B1]
+action=hold_start_title frame=365 input_ok=true joypad_keys=ram injection fallback
+state frame=366 ready=1 script=0 sub=1 ppu=0x12 slot=0 active=[00,00,00,01,01] trace=[0203,02E7]
+state frame=367 ready=1 script=0 sub=1 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0318,02FC]
+state frame=369 ready=1 script=0 sub=1 ppu=0x00 slot=1 active=[00,00,00,01,01] trace=[0318,02FC]
+state frame=371 ready=1 script=0 sub=1 ppu=0x00 slot=2 active=[00,00,00,01,01] trace=[0318,02FC]
+state frame=375 ready=1 script=0 sub=2 ppu=0x00 slot=2 active=[00,00,00,01,01] trace=[0318,030C]
+state frame=377 ready=1 script=0 sub=2 ppu=0x00 slot=1 active=[00,00,00,01,01] trace=[0318,030C]
+state frame=378 ready=1 script=0 sub=2 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0318,030C]
+state frame=379 ready=0 script=1 sub=0 ppu=0x00 slot=0 active=[00,00,00,01,01] trace=[0436,030D]
+title_exit_detected frame=379
+state frame=381 ready=0 script=1 sub=0 ppu=0x00 slot=1 active=[00,00,00,01,01] trace=[0318,0320]
+state frame=382 ready=0 script=1 sub=1 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0318,0320]
+state frame=383 ready=0 script=1 sub=2 ppu=0x12 slot=0 active=[00,00,00,01,01] trace=[0403,0335]
+state frame=438 ready=0 script=1 sub=3 ppu=0x14 slot=0 active=[00,00,00,01,01] trace=[0203,0358]
+state frame=440 ready=0 script=1 sub=4 ppu=0x00 slot=1 active=[00,00,00,01,01] trace=[02B0,038D]
+state frame=446 ready=0 script=1 sub=5 ppu=0x00 slot=2 active=[00,00,00,01,01] trace=[0203,03A1]
+state frame=447 ready=0 script=1 sub=6 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0318,03B3]
+heartbeat frame=480 ready=0 script=1 sub=6 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0318,03B3]
+state frame=485 ready=1 script=1 sub=0 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0203,03C7]
+file_select_entered frame=485
+stable frame=485 ready=1 script=1 sub=0 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0203,03C7]
+stable frame=514 ready=1 script=1 sub=0 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0318,03F8]
+stable frame=574 ready=1 script=1 sub=0 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0203,0469]
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v574_file_select_probe_f574.png
+
+=== SUMMARY ===
+final frame=574 ready=1 script=1 sub=0 ppu=0x00 slot=3 active=[00,00,00,01,01] trace=[0203,0469]
+stable_count=90
+stable_start_frame=485

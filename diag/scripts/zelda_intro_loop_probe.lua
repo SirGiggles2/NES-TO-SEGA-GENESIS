@@ -2,7 +2,7 @@
 -- Watches the natural intro loop: title screen → fade → intro scroll → title
 -- No button injection — just observes the state machine.
 
-local ROM_VERSION = "zelda_v479"
+local ROM_VERSION = "zelda_v578"
 local MAX_FRAMES = 12000  -- ~80 NMI frames, enough for full intro cycle
 
 local OUT_DIR  = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"

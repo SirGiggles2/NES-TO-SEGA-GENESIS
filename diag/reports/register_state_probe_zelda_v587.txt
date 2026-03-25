@@ -1,0 +1,4 @@
+=== REGISTER STATE PROBE zelda_v587 ===
+
+=== SUMMARY ===
+final frame=1600 ready=0 script=0 sub=0 ppu=00 slot=0

@@ -229,39 +229,45 @@ sub_80D7_copy_bat_table_to_bat:  ; orig: sub_80D7_copy_bat_table_to_bat:
 ; ram_0004_t08_max_addr_lo
 
 ; ram_0005_t01_max_addr_hi
-    RTS                     ; bzk skip: battery table copy broken (high-byte STA empty → infinite loop); no NES battery RAM on Genesis
-    MOVE.B  #$00,D2  ; orig: C - - - - - 0x0180E7 06:80D7: A0 00     LDY #$00
-loc_80D9_loop:  ; orig: loc_80D9_loop:
-    MOVEA.W ($FF0000+ram_0000_t09_copy_data_from).l,A1  ; LDA (zp),Y
-    MOVE.B  ($FF0000,A1,D2.W),D0  ; orig: C D 0 - - - 0x0180E9 06:80D9: B1 00     LDA (ram_0000_t09_co
-    MOVEA.W ($FF0000+ram_0002_t06_copy_data_into).l,A1  ; STA (zp),Y
-    MOVE.B  D0,($FF0000,A1,D2.W)  ; orig: C - - - - - 0x0180EB 06:80DB: 91 02     STA (ram_0002_t06_co
-    MOVE.B  ram_0002_t06_copy_data_into,D0  ; orig: C - - - - - 0x0180ED 06:80DD: A5 02     LDA ram_0002_t06_cop
-    CMP.B   ram_0004_t08_max_addr_lo,D0  ; orig: C - - - - - 0x0180EF 06:80DF: C5 04     CMP ram_0004_t08_max
-    BNE     bra_80EC_not_finished             ; BNE  ; orig: C - - - - - 0x0180F1 06:80E1: D0 09     BNE bra_80EC_not_fin
-    MOVE.B  $FF0003,D0  ; FIX v378: LDA $03  ; orig: C - - - - - 0x0180F3 06:80E3: A5 03  LDA ram_0002_t06_cop
-    CMP.B   ram_0005_t01_max_addr_hi,D0  ; orig: C - - - - - 0x0180F5 06:80E5: C5 05     CMP ram_0005_t01_max
-    BNE     bra_80EC_not_finished             ; BNE  ; orig: C - - - - - 0x0180F7 06:80E7: D0 03     BNE bra_80EC_not_fin
-    ADDQ.B  #1,ram_subscript  ; orig: C - - - - - 0x0180F9 06:80E9: E6 13     INC ram_subscript
-    RTS                     ; RTS  ; orig: C - - - - - 0x0180FB 06:80EB: 60        RTS
-bra_80EC_not_finished:  ; orig: bra_80EC_not_finished:
 
-; bzk optimize, INC lo + BNE check + INC hi if needed
-    MOVE.B  ram_0002_t06_copy_data_into,D0  ; orig: C - - - - - 0x0180FC 06:80EC: A5 02     LDA ram_0002_t06_cop
-    ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x0180FE 06:80EE: 18        CLC
-    ADDX.B  #< $0001,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x0180FF 06:80EF: 69 01     ADC #< $0001
-    MOVE.B  D0,ram_0002_t06_copy_data_into  ; orig: C - - - - - 0x018101 06:80F1: 85 02     STA ram_0002_t06_cop
-    MOVE.B  $FF0003,D0  ; FIX v378: LDA $03  ; orig: C - - - - - 0x018103 06:80F3: A5 03  LDA ram_0002_t06_cop
-    ADDX.B  #> $0001,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x018105 06:80F5: 69 00     ADC #> $0001
-    MOVE.B  D0,$FF0003  ; FIX v378: STA $03  ; orig: C - - - - - 0x018107 06:80F7: 85 03  STA ram_0002_t06_cop
-    MOVE.B  ram_0000_t09_copy_data_from,D0  ; orig: C - - - - - 0x018109 06:80F9: A5 00     LDA ram_0000_t09_cop
-    ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01810B 06:80FB: 18        CLC
-    ADDX.B  #< $0001,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x01810C 06:80FC: 69 01     ADC #< $0001
-    MOVE.B  D0,ram_0000_t09_copy_data_from  ; orig: C - - - - - 0x01810E 06:80FE: 85 00     STA ram_0000_t09_cop
-    MOVE.B  $FF0001,D0  ; FIX v378: LDA $01  ; orig: C - - - - - 0x018110 06:8100: A5 01  LDA ram_0000_t09_cop
-    ADDX.B  #> $0001,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x018112 06:8102: 69 00     ADC #> $0001
-    MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x018114 06:8104: 85 01  STA ram_0000_t09_cop
-    JMP     loc_80D9_loop  ; orig: C - - - - - 0x018116 06:8106: 4C D9 80  JMP loc_80D9_loop
+; FIX v590: Rewrite battery table copy.
+; Original NES used indirect pointers (LDA (zp),Y / STA (zp),Y) to copy data
+; from ROM bank 06 addresses ($8000+) into NES RAM ($6000-$7FFF).
+; On Genesis, ROM is at assembled label addresses, not at $FF8000+.
+; This rewrite correctly reads from ROM using tbl_8000_1st_quest as bank 06 base.
+
+    ; Build source address from ZP $00/$01 (little-endian NES pointer)
+    MOVEQ   #0,D5
+    MOVE.B  $FF0001,D5               ; high byte of NES source addr
+    LSL.W   #8,D5
+    MOVE.B  $FF0000,D5               ; low byte → D5.W = NES addr (e.g., $8400)
+    SUBI.W  #$8000,D5                ; offset within bank 06
+    LEA     tbl_8000_1st_quest,A0
+    ADDA.W  D5,A0                    ; A0 = Genesis ROM source
+
+    ; Build dest address from ZP $02/$03
+    MOVEQ   #0,D5
+    MOVE.B  $FF0003,D5               ; high byte of NES dest addr
+    LSL.W   #8,D5
+    MOVE.B  $FF0002,D5               ; low byte → D5.W = NES addr (e.g., $687E)
+    LEA     $FF0000.l,A1
+    ADDA.W  D5,A1                    ; A1 = Genesis RAM dest
+
+    ; Build max address from ZP $04/$05
+    MOVEQ   #0,D5
+    MOVE.B  ram_0005_t01_max_addr_hi,D5
+    LSL.W   #8,D5
+    MOVE.B  ram_0004_t08_max_addr_lo,D5
+    LEA     $FF0000.l,A3
+    ADDA.W  D5,A3                    ; A3 = Genesis RAM max address
+
+b06_bat_copy_loop:
+    MOVE.B  (A0)+,(A1)+
+    CMPA.L  A3,A1
+    BNE     b06_bat_copy_loop
+
+    ADDQ.B  #1,ram_subscript
+    RTS
 
 
 
@@ -6859,6 +6865,8 @@ sub_b06_select_ppu_buffer_ptr:
     BEQ     bra_b06_ppu_buf_08
     CMPI.B  #$0A,D1
     BEQ     bra_b06_ppu_buf_0a
+    CMPI.B  #con_ppu_buf_16,D1
+    BEQ     bra_b06_ppu_buf_16
     CMPI.B  #$20,D1
     BEQ     bra_b06_ppu_buf_20
     CMPI.B  #$22,D1
@@ -6987,6 +6995,9 @@ bra_b06_ppu_buf_continue_enabled:
     RTS
 bra_b06_ppu_buf_14:
     LEA     ppu_buf_14_real(PC),A1
+    RTS
+bra_b06_ppu_buf_16:
+    LEA     _off000_A183_16(PC),A1
     RTS
 bra_b06_ppu_buf_08:
     LEA     ppu_buf_08_real(PC),A1

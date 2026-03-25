@@ -1,0 +1,38 @@
+=== GAMEPLAY PROBE zelda_v574 ===
+Waiting for script>=5, then capturing gameplay state and screenshots.
+
+state frame=1 script=0 sub=0 ready=0 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,00,00]
+heartbeat frame=600 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=1200 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=1800 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=2400 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=3000 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=3600 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=4200 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=4800 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=5400 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=6000 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=6600 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=7200 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=7800 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=8400 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=9000 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=9600 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=10200 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=10800 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=11400 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=12000 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=12600 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=13200 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=13800 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=14400 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00]
+heartbeat frame=15000 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=A4 mmc=[00,00,FF,00]
+heartbeat frame=15600 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=B4 mmc=[00,00,FF,00]
+heartbeat frame=16200 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=98 mmc=[00,00,FF,00]
+heartbeat frame=16800 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=68 mmc=[00,00,FF,00]
+heartbeat frame=17400 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=68 mmc=[00,00,FF,00]
+heartbeat frame=18000 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=01 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=D0 mmc=[00,00,FF,00]
+
+=== SUMMARY ===
+final frame=18000 script=0 sub=0 ready=1 ppu=0x00 map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=01 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=D0 mmc=[00,00,FF,00]
+gameplay_entry_frame=nil

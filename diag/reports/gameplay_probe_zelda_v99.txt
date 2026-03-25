@@ -1,0 +1,65 @@
+=== GAMEPLAY PROBE zelda_v99 ===
+Driving title -> file select -> branch and capturing gameplay if reached.
+
+script_write_watch=UNAVAILABLE (event.onmemorywrite not supported)
+state frame=1 script=0 sub=0 ready=0 ppu=0x00 slot=0 active=[00,00,00,00,00] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,00,00] phase=wait_title_ready
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v99_title_ready_f42.png
+title_ready_frame=42
+action=hold_start_title frame=62
+heartbeat frame=120 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=240 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=360 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=480 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=600 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=720 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=840 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=960 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1080 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1200 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1320 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1440 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1560 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1680 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1800 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=1920 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2040 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2160 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2280 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2400 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2520 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2640 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2760 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=2880 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3000 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3120 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3240 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3360 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3480 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3600 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3720 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3840 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=3960 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4080 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4200 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4320 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4440 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4560 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4680 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4800 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=4920 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5040 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5160 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5280 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5400 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5520 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5640 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5760 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=5880 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+heartbeat frame=6000 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+
+=== SUMMARY ===
+final frame=6000 script=0 sub=0 ready=1 ppu=0x00 slot=0 active=[C0,00,FF,03,29] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=28 hearts=23 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+final_phase=wait_title_exit
+branch_script=nil
+gameplay_entry_frame=nil
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v99_title_ready_f42.png

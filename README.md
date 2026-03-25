@@ -101,6 +101,14 @@ The build process:
 3. assemble with `vasm`
 4. produce `.md` Genesis ROM
 
+For the fast validation path after a new build, run:
+
+
+run_build_and_gate.ps1
+
+
+That command builds the next ROM version, computes its static score, then runs the full runtime gate automatically.
+
 ---
 
 # Runtime Debugging
@@ -125,6 +133,54 @@ Which records:
 - CPU program counter
 - engine state
 - VRAM / CRAM activity
+
+---
+
+# Automated Runtime Gate
+
+Run the full automated runtime validation for a built ROM:
+
+
+run_runtime_gate.ps1 -Rom zelda_v600
+
+
+If `-Rom` is omitted, the script auto-selects the latest `build/zelda_v*.md` ROM.
+
+The runtime gate performs, in order:
+
+- smoke test
+- frontend probe
+- gameplay probe
+- `tools/regression_gate.py --require-gameplay`
+
+To validate an existing ROM without rebuilding, use:
+
+
+run_build_and_gate.ps1 -SkipBuild -Rom zelda_v600
+
+The wrapper fails on the first broken stage and reuses the same generated reports under:
+
+
+diag/reports/
+
+Both wrappers print per-stage elapsed time and total runtime to make bottlenecks obvious during rapid iteration.
+
+`run_build_and_gate.ps1` now also runs `tools/accuracy_tracker.py`, which computes a combined runtime+static accuracy score and writes/updates:
+
+
+artifacts/accuracy_ledger.csv
+
+The tracker can fail the run when a new version regresses versus the previous ledger entry (score drops or gameplay entry frame drifts slower beyond tolerance), so progress toward parity stays monotonic by default.
+
+The tracker now also:
+
+- scores transition timing parity (`title_ready_frame`, `file_select_ready_frame`, `branch_frame`, `gameplay_entry_frame`) against a known-good reference,
+- applies weighted penalties for fallback recovery actions (`action=recover_with_select`),
+- reports the next milestone target from the schedule in:
+
+
+docs/ACCURACY_MILESTONES.md
+
 
 ---
 

@@ -2,31 +2,41 @@
 max_frames=12000 (no button injection)
 
 f=00000 scr=0 sub=00 rdy=0 ppu=00 frm=  0 F5=00 F6=00 e3=00 2001=00 sx=00 sy=00 <<< CHANGED
-f=00500 scr=0 sub=00 rdy=0 ppu=00 frm=  1 F5=00 F6=00 e3=00 2001=00 sx=00 sy=00
-f=00751 scr=0 sub=00 rdy=1 ppu=10 frm=  5 F5=5A F6=A5 e3=00 2001=00 sx=00 sy=00 <<< CHANGED
-f=01000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=01500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=02000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=02500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=03000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=03500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=04000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=04500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=05000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=05500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=06000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=06500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=07000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=07500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=08000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=08500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=09000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=09500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=10000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=10500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=11000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=11500 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
-f=12000 scr=0 sub=00 rdy=1 ppu=00 frm=244 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
+f=00151 scr=0 sub=00 rdy=1 ppu=10 frm=  3 F5=5A F6=A5 e3=00 2001=00 sx=00 sy=00 <<< CHANGED
+f=00500 scr=0 sub=00 rdy=1 ppu=00 frm= 44 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
+f=01000 scr=0 sub=00 rdy=1 ppu=00 frm=251 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
+f=01187 scr=0 sub=00 rdy=0 ppu=00 frm=182 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00 <<< CHANGED
+f=01206 scr=0 sub=00 rdy=1 ppu=02 frm=185 F5=5A F6=A5 e3=00 2001=00 sx=10 sy=00 <<< CHANGED
+f=01500 scr=0 sub=00 rdy=1 ppu=00 frm=213 F5=5A F6=A5 e3=00 2001=1E sx=9E sy=00
+f=02000 scr=0 sub=00 rdy=1 ppu=00 frm=201 F5=5A F6=A5 e3=00 2001=1E sx=28 sy=00
+f=02500 scr=0 sub=00 rdy=1 ppu=00 frm=189 F5=5A F6=A5 e3=00 2001=1E sx=32 sy=00
+f=03000 scr=0 sub=00 rdy=1 ppu=00 frm=177 F5=5A F6=A5 e3=00 2001=1E sx=3C sy=00
+f=03500 scr=0 sub=00 rdy=1 ppu=00 frm=165 F5=5A F6=A5 e3=00 2001=1E sx=46 sy=00
+f=04000 scr=0 sub=00 rdy=1 ppu=00 frm=153 F5=5A F6=A5 e3=00 2001=1E sx=50 sy=00
+f=04500 scr=0 sub=00 rdy=1 ppu=00 frm=141 F5=5A F6=A5 e3=00 2001=1E sx=5A sy=00
+f=05000 scr=0 sub=00 rdy=1 ppu=00 frm=129 F5=5A F6=A5 e3=00 2001=1E sx=D7 sy=00
+f=05065 scr=0 sub=00 rdy=0 ppu=10 frm=194 F5=5A F6=A5 e3=00 2001=1E sx=D7 sy=00 <<< CHANGED
+f=05104 scr=0 sub=00 rdy=1 ppu=10 frm=197 F5=5A F6=A5 e3=00 2001=00 sx=00 sy=00 <<< CHANGED
+f=05500 scr=0 sub=00 rdy=1 ppu=00 frm= 71 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
+f=05627 scr=0 sub=00 rdy=0 ppu=00 frm=198 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00 <<< CHANGED
+f=05646 scr=0 sub=00 rdy=1 ppu=02 frm=201 F5=5A F6=A5 e3=00 2001=00 sx=10 sy=00 <<< CHANGED
+f=06000 scr=0 sub=00 rdy=1 ppu=00 frm= 33 F5=5A F6=A5 e3=00 2001=1E sx=BC sy=00
+f=06500 scr=0 sub=00 rdy=1 ppu=00 frm= 21 F5=5A F6=A5 e3=00 2001=1E sx=46 sy=00
+f=07000 scr=0 sub=00 rdy=1 ppu=00 frm=  9 F5=5A F6=A5 e3=00 2001=1E sx=50 sy=00
+f=07500 scr=0 sub=00 rdy=1 ppu=00 frm=253 F5=5A F6=A5 e3=00 2001=1E sx=5A sy=00
+f=08000 scr=0 sub=00 rdy=1 ppu=00 frm=241 F5=5A F6=A5 e3=00 2001=1E sx=64 sy=00
+f=08500 scr=0 sub=00 rdy=1 ppu=00 frm=229 F5=5A F6=A5 e3=00 2001=1E sx=6E sy=00
+f=09000 scr=0 sub=00 rdy=1 ppu=00 frm=217 F5=5A F6=A5 e3=00 2001=1E sx=78 sy=00
+f=09500 scr=0 sub=00 rdy=1 ppu=00 frm=205 F5=5A F6=A5 e3=00 2001=1E sx=D7 sy=00
+f=09505 scr=0 sub=00 rdy=0 ppu=10 frm=210 F5=5A F6=A5 e3=00 2001=1E sx=D7 sy=00 <<< CHANGED
+f=09544 scr=0 sub=00 rdy=1 ppu=10 frm=213 F5=5A F6=A5 e3=00 2001=00 sx=00 sy=00 <<< CHANGED
+f=10000 scr=0 sub=00 rdy=1 ppu=00 frm=147 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00
+f=10067 scr=0 sub=00 rdy=0 ppu=00 frm=214 F5=5A F6=A5 e3=00 2001=1E sx=00 sy=00 <<< CHANGED
+f=10086 scr=0 sub=00 rdy=1 ppu=02 frm=217 F5=5A F6=A5 e3=00 2001=00 sx=10 sy=00 <<< CHANGED
+f=10500 scr=0 sub=00 rdy=1 ppu=00 frm=109 F5=5A F6=A5 e3=00 2001=1E sx=DA sy=00
+f=11000 scr=0 sub=00 rdy=1 ppu=00 frm= 97 F5=5A F6=A5 e3=00 2001=1E sx=64 sy=00
+f=11500 scr=0 sub=00 rdy=1 ppu=00 frm= 85 F5=5A F6=A5 e3=00 2001=1E sx=6E sy=00
+f=12000 scr=0 sub=00 rdy=1 ppu=00 frm= 73 F5=5A F6=A5 e3=00 2001=1E sx=78 sy=00
 
 === INTRO LOOP PROBE COMPLETE ===
 Total cycles observed: 0

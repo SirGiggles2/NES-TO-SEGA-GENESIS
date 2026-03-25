@@ -1826,11 +1826,15 @@ b05_bra_87C6:
 ; bzk
 sub_87C6:  ; orig: sub_87C6:
 sub_0x0147D6:  ; orig: sub_0x0147D6:
+    MOVE.B  #$01,($FFEE80).l  ; CANARY: entering sub_87C6
     BSR     sub_0x01EA4D             ; JSR -> BSR  ; orig: C - - - - - 0x0147D6 05:87C6: 20 3D EA  JSR sub_0x01EA4D
+    MOVE.B  #$02,($FFEE80).l  ; CANARY: after sub_0x01EA4D
     BSR     sub_0x01EA61             ; JSR -> BSR  ; orig: C - - - - - 0x0147D9 05:87C9: 20 51 EA  JSR sub_0x01EA61
+    MOVE.B  #$03,($FFEE80).l  ; CANARY: after sub_0x01EA61
     MOVE.B  #$05,D0  ; orig: C - - - - - 0x0147DC 05:87CC: A9 05     LDA #$05
     MOVE.B  #$1F,D2  ; orig: C - - - - - 0x0147DE 05:87CE: A0 1F     LDY #$1F
     BSR     sub_0x01E618_clear_memory             ; JSR -> BSR  ; orig: C - - - - - 0x0147E0 05:87D0: 20 08 E6  JSR sub_0x01E618_cle
+    MOVE.B  #$04,($FFEE80).l  ; CANARY: after clear_memory
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0147E3 05:87D3: A9 00     LDA #$00
     MOVE.B  D0,ram_0054_timer  ; orig: C - - - - - 0x0147E5 05:87D5: 85 54     STA ram_0054_timer
 
@@ -1842,6 +1846,7 @@ sub_0x0147D6:  ; orig: sub_0x0147D6:
 
     MOVE.B  D0,ram_04CD_map_data_byte  ; orig: C - - - - - 0x0147EE 05:87DE: 8D CD 04  STA ram_04CD_map_dat
     BSR     sub_B0B6             ; JSR -> BSR  ; orig: C - - - - - 0x0147F1 05:87E1: 20 B6 B0  JSR sub_B0B6
+    MOVE.B  #$05,($FFEE80).l  ; CANARY: after sub_B0B6
     MOVE.B  ram_005A,D0  ; orig: C - - - - - 0x0147F4 05:87E4: A5 5A     LDA ram_005A
     BEQ     b05_bra_8820             ; BEQ  ; orig: C - - - - - 0x0147F6 05:87E6: F0 38     BEQ b05_bra_8820
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x0147F8 05:87E8: A5 10     LDA ram_dungeon_leve
@@ -1883,6 +1888,7 @@ b05_bra_8815:  ; orig: b05_bra_8815:
     MOVE.B  D0,ram_0053  ; orig: C - - - - - 0x01482B 05:881B: 85 53     STA ram_0053
     JMP     loc_8859  ; orig: C - - - - - 0x01482D 05:881D: 4C 59 88  JMP loc_8859
 b05_bra_8820:  ; orig: b05_bra_8820:
+    MOVE.B  #$06,($FFEE80).l  ; CANARY: took b05_bra_8820 (ram_005A==0)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014830 05:8820: A5 98     LDA ram_dir_link
     MOVE.B  D0,ram_0053  ; orig: C - - - - - 0x014832 05:8822: 85 53     STA ram_0053
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014834 05:8824: 20 13 70  JSR sub_bat_7013_get

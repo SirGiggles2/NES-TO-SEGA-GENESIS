@@ -50,6 +50,10 @@ PPU_TITLE_CHR_FLUSH_DONE EQU $FFFFEF14
 VDP_IN_VBLANK_FLAG EQU $FFFFEF15
 PPU_MIDFRAME_NT_WRITES EQU $FFFFEF16
 PPU_MIRROR_MODE EQU $FFFFEF17
+PPU_INDEX_ACTIVE_SHADOW EQU $FFFFEF18
+PPU_TITLE_FALLBACK_USED EQU $FFFFEF19
+PPU_TITLE_REDRAW_DONE EQU $FFFFEF1A
+PPU_CHR_DIRTY_FLAG EQU $FFFFEF1B
 
 RAM_FOR_2001    EQU $FFFF00FE
 RAM_FOR_2000    EQU $FFFF00FF
@@ -108,6 +112,10 @@ VDP_INIT:
     clr.b   (PPU_TITLE_CHR_FLUSH_DONE).l
     clr.b   (VDP_IN_VBLANK_FLAG).l
     clr.w   (PPU_MIDFRAME_NT_WRITES).l
+    move.b  #$FF,(PPU_INDEX_ACTIVE_SHADOW).l
+    clr.b   (PPU_TITLE_FALLBACK_USED).l
+    clr.b   (PPU_TITLE_REDRAW_DONE).l
+    clr.b   (PPU_CHR_DIRTY_FLAG).l
     move.b  #$0C,(PPU_MIRROR_MODE).l ; default MMC1 reset control value
     bsr     PPU_CLEAR_SHADOWS
 
@@ -268,6 +276,15 @@ PPU_WRITE_2007:
     move.b  D0,(A0,D4.w)
     bsr     NES_PAL_TO_BGR555
     move.w  D0,D5
+    ; Explicitly route palette writes to CRAM entry D4.
+    ; Writing to VDP data without setting CRAM address can corrupt VRAM
+    ; if the previous VDP address latch targets nametable/pattern data.
+    move.l  D4,-(A7)
+    lsl.w   #1,D4
+    swap    D4
+    ori.l   #$C0000000,D4
+    move.l  D4,($C00004)
+    move.l  (A7)+,D4
     move.w  D5,($C00000)
     tst.w   D4
     bne     .palette_done
@@ -331,10 +348,8 @@ VDP_VBLANK_HANDLER:
     move.w  #$0202,D0
     bsr     TRACE_MARK
     bsr     vec_0x01E494_NMI
+    bsr     PPU_HANDLE_INDEXED_BUFFERS
     bsr     VDP_APPLY_TITLE_BLACK_GAP_DISPLAY
-    move.b  (PPUMASK_SHADOW).l,D0
-    andi.b  #$18,D0
-    beq     .skip_nt_flush
     tst.b   (PPU_FULL_REDRAW_PENDING).l
     beq     .skip_nt_flush
     bsr     PPU_FLUSH_VISIBLE_NAMETABLE
@@ -349,6 +364,70 @@ VDP_VBLANK_HANDLER:
     clr.b   (VDP_IN_VBLANK_FLAG).l
     movem.l (A7)+,D0-D7/A0-A6
     rte
+
+PPU_HANDLE_INDEXED_BUFFERS:
+    ; Bridge-side indexed buffer handling.
+    ; - bounded fallback: queue title buffer once if title hold missed it.
+    ; - redraw once per title entry when index 10 first appears.
+    movem.l D0-D2,-(A7)
+
+    ; Reset per-entry guards when not in title hold.
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .reset_title_guards
+    tst.b   ($00FF042C).l
+    bne     .reset_title_guards
+    bra     .maybe_fallback
+
+.reset_title_guards:
+    clr.b   (PPU_TITLE_FALLBACK_USED).l
+    clr.b   (PPU_TITLE_REDRAW_DONE).l
+
+.maybe_fallback:
+    ; One-shot fallback only inside title hold.
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .read_index
+    tst.b   ($00FF042C).l
+    bne     .read_index
+    tst.b   (PPU_TITLE_FALLBACK_USED).l
+    bne     .read_index
+    tst.b   (ram_ppu_load_index).l
+    bne     .read_index
+    move.b  #con_ppu_buf_title_screen,(ram_ppu_load_index).l
+    move.b  #1,(PPU_TITLE_FALLBACK_USED).l
+    move.w  #$02AF,D0
+    bsr     TRACE_MARK
+
+.read_index:
+    move.b  (ram_ppu_load_index).l,D0
+    move.b  (PPU_INDEX_ACTIVE_SHADOW).l,D1
+    cmp.b   D1,D0
+    beq     .done
+    move.b  D0,(PPU_INDEX_ACTIVE_SHADOW).l
+    moveq   #0,D1
+    move.b  D0,D1
+    addi.w  #$02B0,D1
+    move.w  D1,D0
+    bsr     TRACE_MARK
+    move.b  (ram_ppu_load_index).l,D0
+
+    ; Redraw gate only for first index-10 transition per title entry.
+    cmpi.b  #con_ppu_buf_title_screen,D0
+    beq     .mark_redraw
+    bra     .done
+
+.mark_redraw:
+    tst.b   (PPU_TITLE_REDRAW_DONE).l
+    bne     .done
+    ; Initialize title palette shadow when index $10 first detected
+    bsr     INIT_TITLE_PALETTE_SHADOW
+    ; Force full nametable redraw — game's own $2007 writes populate the shadow correctly
+    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
+    move.b  #1,(PPU_TITLE_REDRAW_DONE).l
+    bra     .done
+
+.done:
+    movem.l (A7)+,D0-D2
+    rts
 
 VDP_APPLY_TITLE_BLACK_GAP_DISPLAY:
     ; Preserve NES PPUMASK intent only.
@@ -405,6 +484,7 @@ VDP_OAM_DMA_TRANSFER:
     move.b  (A1)+,D4
     move.b  (A1)+,D5
     move.b  (A1)+,D6
+    ; GUARD: Sprite Y-hiding — DO NOT REMOVE
     ; NES hides sprites when Y is in the $EF-$FF range. If not handled
     ; explicitly, those entries can leak as flicker in the upper playfield.
     cmpi.b  #$EF,D3
@@ -778,6 +858,52 @@ PPU_INVALIDATE_PLANE_CACHE:
     clr.b   (PPU_PLANE_CACHE_VALID).l
     rts
 
+INIT_TITLE_PALETTE_SHADOW:
+    ; Load title screen palette data into PPU_PAL_SHADOW
+    ; Title palettes: 8 palettes × 4 colors each = 32 bytes
+    ; Palette data from NES bank_02:954F (tbl_954F_demo_manual_palette)
+    lea     (PPU_PAL_SHADOW).l,A0
+    ; Palette 0: $0F, $30, $30, $30
+    move.b  #$0F,(A0)+
+    move.b  #$30,(A0)+
+    move.b  #$30,(A0)+
+    move.b  #$30,(A0)+
+    ; Palette 1: $0F, $21, $30, $30
+    move.b  #$0F,(A0)+
+    move.b  #$21,(A0)+
+    move.b  #$30,(A0)+
+    move.b  #$30,(A0)+
+    ; Palette 2: $0F, $16, $30, $30  move.b  #$0F,(A0)+
+    move.b  #$16,(A0)+
+    move.b  #$30,(A0)+
+    move.b  #$30,(A0)+
+    ; Palette 3: $0F, $29, $1A, $09
+    move.b  #$0F,(A0)+
+    move.b  #$29,(A0)+
+    move.b  #$1A,(A0)+
+    move.b  #$09,(A0)+
+    ; Palette 4: $0F, $29, $37, $17
+    move.b  #$0F,(A0)+
+    move.b  #$29,(A0)+
+    move.b  #$37,(A0)+
+    move.b  #$17,(A0)+
+    ; Palette 5: $0F, $02, $22, $30
+    move.b  #$0F,(A0)+
+    move.b  #$02,(A0)+
+    move.b  #$22,(A0)+
+    move.b  #$30,(A0)+
+    ; Palette 6: $0F, $16, $27, $30
+    move.b  #$0F,(A0)+
+    move.b  #$16,(A0)+
+    move.b  #$27,(A0)+
+    move.b  #$30,(A0)+
+    ; Palette 7: $0F, $0B, $1B, $2B
+    move.b  #$0F,(A0)+
+    move.b  #$0B,(A0)+
+    move.b  #$1B,(A0)+
+    move.b  #$2B,(A0)+
+    rts
+
 PPU_FLUSH_VISIBLE_NAMETABLE:
     clr.b   (PPU_FULL_REDRAW_PENDING).l
     bsr     PPU_INVALIDATE_PLANE_CACHE
@@ -794,6 +920,30 @@ PPU_FLUSH_VISIBLE_NAMETABLE:
     addq.w  #1,D4
     dbra    D6,.col_loop
     dbra    D7,.row_loop
+    ; GUARD: H40 overflow clear — DO NOT REMOVE
+    ; H40 mode shows 40 tile columns but NES only uses 32.
+    ; Clear columns 32-39 for all 32 plane rows to prevent stale
+    ; tile data from previous screens bleeding into the right side.
+    movem.l D0-D1/D7,-(A7)
+    moveq   #0,D1
+    move.w  #31,D7
+.clear_overflow_row:
+    move.w  D1,D0
+    lsl.w   #7,D0              ; row * 128 (64 tiles * 2 bytes)
+    addi.w  #64,D0             ; column 32 * 2
+    addi.w  #PLANE_A_MAP_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+    addq.w  #1,D1
+    dbra    D7,.clear_overflow_row
+    movem.l (A7)+,D0-D1/D7
     rts
 
 PPU_NORMALIZE_PALETTE_INDEX:
@@ -862,6 +1012,25 @@ PPU_NORMALIZE_NAMETABLE_ADDR:
     rts
 
 PPU_WRITE_NAMETABLE_BYTE:
+    ; GUARD: Frontend artifact cleanup — DO NOT REMOVE
+    ; Intercept stale tile 00/08 during file-select, register, elimination.
+    ; LIVE: D0=tile byte, D3=VRAM address — DO NOT CLOBBER D3
+    move.b  (ram_script).l,D5
+    cmpi.b  #$01,D5
+    beq     .check_artifact_tile
+    cmpi.b  #con_script_register,D5
+    beq     .check_artifact_tile
+    cmpi.b  #con_script_elimination,D5
+    beq     .check_artifact_tile
+    bra     .write_normally
+.check_artifact_tile:
+    cmpi.b  #$00,D0
+    beq     .file_select_replace
+    cmpi.b  #$08,D0
+    bne     .write_normally
+.file_select_replace:
+    move.b  #$24,D0
+.write_normally:
     bsr     PPU_NORMALIZE_NAMETABLE_ADDR
     lea     (PPU_NT_SHADOW).l,A0
     cmp.b   (A0,D4.w),D0
@@ -922,7 +1091,11 @@ PPU_WRITE_PATTERN_BYTE:
     move.w  D3,D4
     andi.w  #$1FFF,D4
     lea     (PPU_CHR_SHADOW).l,A0
+    cmp.b   (A0,D4.w),D0
+    beq     .done
     move.b  D0,(A0,D4.w)
+    move.b  #1,(PPU_CHR_DIRTY_FLAG).l
+.done:
     rts
 
 PPU_FLUSH_CHR_SHADOW_TO_VRAM:
@@ -966,6 +1139,7 @@ PPU_FLUSH_CHR_SHADOW_TO_VRAM:
     dbra    D6,.sprite_row_loop
     lea     16(A0),A0
     dbra    D7,.sprite_tile_loop
+    clr.b   (PPU_CHR_DIRTY_FLAG).l
     movem.l (A7)+,D0-D7/A0-A3
     rts
 
@@ -984,11 +1158,15 @@ PPU_FLUSH_TITLE_CHR_TO_VRAM:
     bne     .throttled_flush
     tst.b   (PPU_TITLE_CHR_FLUSH_DONE).l
     bne     .done
+    tst.b   (PPU_CHR_DIRTY_FLAG).l
+    beq     .done
     bsr     PPU_FLUSH_CHR_SHADOW_TO_VRAM
     move.b  #1,(PPU_TITLE_CHR_FLUSH_DONE).l
     rts
 .throttled_flush:
     clr.b   (PPU_TITLE_CHR_FLUSH_DONE).l
+    tst.b   (PPU_CHR_DIRTY_FLAG).l
+    beq     .done
     move.b  (ram_frm_cnt).l,D0
     andi.b  #$03,D0
     bne     .done
@@ -1115,8 +1293,10 @@ PPU_PIXEL_PAIR_TABLE:
     dc.b    $00,$01,$10,$11,$02,$03,$12,$13
     dc.b    $20,$21,$30,$31,$22,$23,$32,$33
 
+; GUARD: v490 sprite pixel pair table — DO NOT MODIFY
 ; FIX v490: Sprite pixel pair table — non-zero pixels shifted +4
-; So sprite tiles use palette colors 4-7 instead of 0-3
+; So sprite tiles use palette colors 4-7 instead of 0-3.
+; Interdependent with SPRITE_TILE_INDEX_OFS and palette split logic.
 PPU_SPRITE_PIXEL_PAIR_TABLE:
     dc.b    $00,$05,$50,$55,$06,$07,$56,$57
     dc.b    $60,$65,$70,$75,$66,$67,$76,$77
@@ -1178,6 +1358,19 @@ PPU_RENDER_NAMETABLE_CELL:
     moveq   #0,D2
     move.b  (A0,D4.w),D2
 .ppuctrl_bg_select:
+    ; Frontend/title/register/file-select paths should use direct NT tile IDs.
+    ; Applying MMC1 CHR bank offsets here can generate incorrect tile numbers
+    ; during fades/transitions when mapper registers are transient.
+    move.b  (ram_script).l,D0
+    cmpi.b  #con_script_title_screen,D0
+    beq     .frontend_tile_base
+    cmpi.b  #con_script_register,D0
+    beq     .frontend_tile_base
+    cmpi.b  #con_script_elimination,D0
+    beq     .frontend_tile_base
+    cmpi.b  #con_script_final_credits,D0
+    beq     .frontend_tile_base
+
     ; Apply MMC1 CHR banking for background tile fetch.
     moveq   #0,D0
     move.b  (PPU_MIRROR_MODE).l,D0
@@ -1208,6 +1401,14 @@ PPU_RENDER_NAMETABLE_CELL:
     andi.w  #$001F,D3
     lsl.w   #8,D3
     add.w   D3,D2
+    bra     .tile_base_done
+
+.frontend_tile_base:
+    tst.w   D2
+    beq     .tile_base_done
+    btst    #4,(PPUCTRL_SHADOW).l
+    beq     .tile_base_done
+    addi.w  #$0100,D2
 .tile_base_done:
 
     move.w  D5,D3
@@ -1289,3 +1490,9 @@ NES_PALETTE_DATA:
     DC.W $08CC, $08EC, $0AEA, $0CEA, $0ECA, $0000, $0000, $0000
 
 
+
+; ===================================================================
+; NES ZELDA TITLE SCREEN BUFFER (Index $10)
+; Extracted from NES ROM - contains complete PPU nametable+attributes
+; Structure: PPU_ADDR(2 LE) + LEN_CMD(1, $20) + DATA(32) ... repeat ... $FF
+; ===================================================================

@@ -3,7 +3,7 @@
 -- title -> file select -> register/name-entry or gameplay branch
 -- ROM_VERSION is patched by run_frontend_probe.ps1 before launch.
 
-local ROM_VERSION = "zelda_v405"
+local ROM_VERSION = "zelda_v599"
 local MAX_FRAMES  = 2400
 
 local OUT_DIR   = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
@@ -39,6 +39,7 @@ local shots = {}
 local phase = "wait_title_ready"
 local phase_frame = nil
 local start_hold_until = nil
+local hold_start_file_select = false
 local title_shot = false
 local file_shot = false
 local branch_shot = false
@@ -124,12 +125,6 @@ local function apply_buttons(start_pressed, select_pressed)
     memory.write_u8(ADDR_JOY_OVERRIDE, pressed_mask)
     memory.write_u8(ADDR_JOY_ENABLE, pressed_mask ~= 0 and 1 or 0)
 
-    -- BizHawk Genesis joypad injection is inconsistent in this project setup.
-    -- Mirror the requested state into the game's own input override + button bytes
-    -- so the probe stays deterministic even when joypad.set is ignored.
-    memory.write_u8(ADDR_BTN_PRESS, pressed_mask)
-    memory.write_u8(ADDR_BTN_HOLD, pressed_mask)
-
     if type(jp) ~= "table" or type(jp.set) ~= "function" then
         return pressed_mask ~= 0
     end
@@ -161,8 +156,6 @@ end
 local function clear_buttons()
     memory.write_u8(ADDR_JOY_OVERRIDE, 0)
     memory.write_u8(ADDR_JOY_ENABLE, 0)
-    memory.write_u8(ADDR_BTN_PRESS, 0)
-    memory.write_u8(ADDR_BTN_HOLD, 0)
     apply_buttons(false, false)
 end
 
@@ -172,7 +165,9 @@ log("Validating title -> file select -> name-entry/gameplay branch with ROM auto
 log("")
 
 while frame_num < MAX_FRAMES do
-    if start_hold_until ~= nil and frame_num <= start_hold_until then
+    if hold_start_file_select then
+        apply_buttons(true, false)
+    elseif start_hold_until ~= nil and frame_num <= start_hold_until then
         apply_buttons(true, false)
     else
         clear_buttons()
@@ -208,16 +203,26 @@ while frame_num < MAX_FRAMES do
             if not title_shot then
                 shot(ROM_VERSION .. "_title_ready_f" .. frame_num .. ".png")
                 title_shot = true
-                phase_frame = frame_num
                 log("title_ready_frame=" .. frame_num)
-            elseif frame_num >= phase_frame + 20 then
-                press_start_for(6)
-                phase = "wait_file_select"
+            end
+
+            if phase_frame == nil then
                 phase_frame = frame_num
-                log("action=press_start_title frame=" .. frame_num)
+            elseif frame_num >= phase_frame + 19 then
+                press_start_for(120)
+                phase = "wait_title_exit"
+                phase_frame = frame_num
+                log("action=hold_start_title frame=" .. frame_num)
             end
         else
             phase_frame = nil
+        end
+    elseif phase == "wait_title_exit" then
+        if s.script ~= 0 then
+            start_hold_until = nil
+            phase = "wait_file_select"
+            phase_frame = frame_num
+            log("title_exit_detected frame=" .. frame_num)
         end
     elseif phase == "wait_file_select" then
         if s.script == 1 and s.ready == 1 and s.ppu == 0 then
@@ -236,15 +241,16 @@ while frame_num < MAX_FRAMES do
                     phase_frame = frame_num
                     log("action=press_select_to_seek_register frame=" .. frame_num .. " attempt=" .. select_attempts)
                 elseif frame_num >= phase_frame + 8 then
-                    press_start_for(2)
+                    hold_start_file_select = true
                     phase = "wait_branch"
                     phase_frame = frame_num
-                    log("action=press_start_file_select frame=" .. frame_num)
+                    log("action=hold_start_file_select frame=" .. frame_num)
                 end
             end
         end
     elseif phase == "wait_branch" then
         if s.script ~= 1 then
+            hold_start_file_select = false
             if not branch_shot then
                 shot(ROM_VERSION .. "_frontend_branch_f" .. frame_num .. ".png")
                 branch_shot = true
@@ -253,12 +259,10 @@ while frame_num < MAX_FRAMES do
             if s.script >= 5 or s.script == 0x0D or s.script == 0x0E or s.script == 0x0F then
                 break
             end
-        elseif frame_num >= phase_frame + 180 and select_attempts < 6 then
-            pulse_select()
-            select_attempts = select_attempts + 1
-            phase = "wait_file_select"
-            phase_frame = frame_num
-            log("action=recover_with_select frame=" .. frame_num .. " attempt=" .. select_attempts)
+        elseif frame_num >= phase_frame + 180 then
+            hold_start_file_select = false
+            log("branch_timeout_frame=" .. frame_num)
+            break
         end
     end
 

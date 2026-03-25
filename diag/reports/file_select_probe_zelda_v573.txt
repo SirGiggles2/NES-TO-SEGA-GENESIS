@@ -1,0 +1,21 @@
+=== FILE SELECT PROBE zelda_v573 ===
+Goal: capture the first stable file-select state with a deliberate title Start pulse.
+
+state frame=1 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0000,0000]
+state frame=17 ready=0 script=0 sub=0 ppu=0x10 slot=0 active=[00,00,00,00,00] trace=[02C0,0014]
+state frame=77 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,006B]
+heartbeat frame=120 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0421,00A1]
+heartbeat frame=240 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,0313]
+heartbeat frame=360 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,0693]
+heartbeat frame=480 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,0A11]
+heartbeat frame=600 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,0D91]
+heartbeat frame=720 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,110F]
+heartbeat frame=840 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,148F]
+heartbeat frame=960 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,180F]
+heartbeat frame=1080 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,1B8F]
+heartbeat frame=1200 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,1F0D]
+heartbeat frame=1320 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,228D]
+
+=== SUMMARY ===
+final frame=1400 ready=0 script=0 sub=0 ppu=0x00 slot=0 active=[00,00,00,00,00] trace=[0403,24E1]
+stable_count=0
