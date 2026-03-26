@@ -1,0 +1,58 @@
+=== NES GAMEPLAY VISUAL CAPTURE ===
+domain=System Bus
+Capturing first fully loaded gameplay screen (entry + 120 frames).
+joypad_state_startup=unavailable
+input_hook_mode=event.oninputpoll
+input_apply_ok frame=0 mask=00 target=start_select_a_device1 key=nil states=unavailable
+state frame=1 script=0 sub=0 ready=0 ppu=FF frm=FF slot=255 btn_press=00 btn_hold=00 spr=[00,FF]
+state frame=2 script=0 sub=0 ready=0 ppu=00 frm=00 slot=0 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=30 script=0 sub=0 ready=1 ppu=10 frm=06 slot=0 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=31 script=0 sub=0 ready=1 ppu=00 frm=07 slot=0 btn_press=00 btn_hold=00 spr=[00,00]
+title_ready_frame=31
+action=hold_start_title frame=51
+input_probe frame=51 mask=10 applied=true states=unavailable
+state frame=52 script=0 sub=1 ready=1 ppu=12 frm=1C slot=0 btn_press=10 btn_hold=10 spr=[00,00]
+title_exit_frame=52
+state frame=52 script=0 sub=1 ready=1 ppu=12 frm=1C slot=0 btn_press=10 btn_hold=10 spr=[00,00]
+state frame=53 script=0 sub=1 ready=1 ppu=00 frm=1D slot=1 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=55 script=0 sub=2 ready=1 ppu=00 frm=1D slot=3 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=57 script=1 sub=0 ready=0 ppu=00 frm=1E slot=0 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=60 script=1 sub=1 ready=0 ppu=00 frm=1F slot=3 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=61 script=1 sub=2 ready=0 ppu=12 frm=20 slot=0 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=62 script=1 sub=3 ready=0 ppu=14 frm=21 slot=0 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=63 script=1 sub=4 ready=0 ppu=00 frm=22 slot=1 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=64 script=1 sub=5 ready=0 ppu=00 frm=23 slot=2 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=65 script=1 sub=6 ready=0 ppu=00 frm=24 slot=3 btn_press=00 btn_hold=00 spr=[00,00]
+state frame=66 script=1 sub=0 ready=1 ppu=00 frm=25 slot=0 btn_press=00 btn_hold=00 spr=[00,00]
+file_select_ready_frame=66
+action=hold_start_file_select frame=86
+state frame=87 script=1 sub=1 ready=1 ppu=00 frm=3A slot=0 btn_press=10 btn_hold=10 spr=[20,24]
+state frame=88 script=2 sub=0 ready=0 ppu=00 frm=3B slot=0 btn_press=00 btn_hold=10 spr=[20,24]
+branch_frame=88 branch_script=2
+input_state frame=89 script=2 sub=0 ready=0 ppu=00 frm=3C slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=105 script=2 sub=1 ready=0 ppu=00 frm=3C slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=106 script=2 sub=0 ready=1 ppu=00 frm=3D slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=107 script=3 sub=0 ready=0 ppu=00 frm=3E slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=108 script=3 sub=1 ready=0 ppu=00 frm=3F slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=109 script=3 sub=2 ready=0 ppu=18 frm=40 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=110 script=3 sub=3 ready=0 ppu=18 frm=41 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=111 script=3 sub=4 ready=0 ppu=00 frm=42 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=112 script=3 sub=5 ready=0 ppu=00 frm=43 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=113 script=3 sub=6 ready=0 ppu=0E frm=44 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=114 script=3 sub=7 ready=0 ppu=44 frm=45 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=115 script=3 sub=8 ready=0 ppu=00 frm=46 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=118 script=3 sub=0 ready=1 ppu=00 frm=47 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+heartbeat frame=120 script=3 sub=0 ready=1 ppu=00 frm=49 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=194 script=4 sub=0 ready=0 ppu=00 frm=93 slot=0 btn_press=00 btn_hold=00 spr=[20,24]
+state frame=195 script=4 sub=0 ready=1 ppu=00 frm=94 slot=0 btn_press=00 btn_hold=00 spr=[48,4C]
+state frame=196 script=5 sub=0 ready=0 ppu=00 frm=95 slot=0 btn_press=00 btn_hold=00 spr=[48,4C]
+gameplay_entry_after_other_frame=196
+state frame=197 script=5 sub=0 ready=1 ppu=7A frm=96 slot=0 btn_press=00 btn_hold=00 spr=[48,4C]
+state frame=198 script=5 sub=0 ready=1 ppu=00 frm=97 slot=0 btn_press=00 btn_hold=00 spr=[48,4C]
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\ss_gameplay_nes.png
+capture_state frame=316 script=5 sub=0 ready=1 ppu=00 frm=0D slot=0 btn_press=00 btn_hold=00 spr=[48,4C]
+final_phase=capture_gameplay
+branch_script=2
+gameplay_entry_frame=196
+final_frame=316
+=== NES GAMEPLAY VISUAL CAPTURE COMPLETE ===

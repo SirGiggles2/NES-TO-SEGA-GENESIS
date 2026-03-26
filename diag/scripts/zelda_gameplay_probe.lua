@@ -136,9 +136,9 @@ local function shot(name)
 end
 
 local function joypad_targets(mask)
-    local start_pressed = bit.band(mask, BTN_START) ~= 0
-    local select_pressed = bit.band(mask, BTN_SELECT) ~= 0
-    local a_pressed = bit.band(mask, BTN_A) ~= 0
+    local start_pressed = (mask & BTN_START) ~= 0
+    local select_pressed = (mask & BTN_SELECT) ~= 0
+    local a_pressed = (mask & BTN_A) ~= 0
     -- Genesis 3-button pad mapping:
     --   Start -> NES Start (0x10)
     --   C     -> NES Select (0x20)
