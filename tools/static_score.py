@@ -133,9 +133,17 @@ def check_ppu_stubs(sources):
 RE_DCB = re.compile(r'^\s+DC\.B\s+(.+)', re.IGNORECASE)
 RE_EVEN = re.compile(r'^\s+EVEN\b', re.IGNORECASE)
 RE_LABEL = re.compile(r'^[A-Za-z_]\w*\s*:', re.IGNORECASE)
+RE_DATA_DIRECTIVE = re.compile(r'^\s+(DC\.[BWL]|INCBIN)\b', re.IGNORECASE)
 
 def check_alignment(sources):
-    """Detect DC.B sequences with odd byte count not followed by EVEN."""
+    """Detect DC.B sequences with odd byte count not followed by EVEN.
+
+    Only counts cases where an odd-byte DC.B run is followed by executable
+    code (instruction or label), NOT by more data directives.  Inserting EVEN
+    inside a multi-group data table (groups separated by blank lines or
+    comments) would corrupt indexed table access — those intra-table gaps are
+    intentional and must not be flagged as alignment violations.
+    """
     count = 0
     locations = []
     for path in sources:
@@ -162,9 +170,12 @@ def check_alignment(sources):
                           lines[j].strip().startswith(';')):
                         j += 1
                     if j < len(lines) and not RE_EVEN.match(lines[j]):
-                        # Not followed by EVEN — possible alignment issue
-                        # But only flag if next line is code (label or instruction)
-                        if j < len(lines) and (RE_LABEL.match(lines[j]) or
+                        # Skip if followed by more data — intra-table gaps are not
+                        # execution-path hazards and must not be flagged.
+                        if RE_DATA_DIRECTIVE.match(lines[j]):
+                            pass  # not a hazard: next content is data, not code
+                        # Only flag if next content is code (label or instruction)
+                        elif (RE_LABEL.match(lines[j]) or
                               lines[j].strip()[:1] not in ('', ';')):
                             count += 1
                             if len(locations) < 5:

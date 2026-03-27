@@ -1198,10 +1198,13 @@ sub_bat_70AB:  ; orig: sub_bat_70AB:
     ANDI.B  #$F0,D0  ; orig: - D 1 - I - 0x006930 01:70B0: 29 F0     AND #$F0
     CMPI.B  #$40,D0  ; orig: - D 1 - I - 0x006932 01:70B2: C9 40     CMP #$40
     BNE     bS2_bra_70C2_RTS             ; BNE  ; orig: - D 1 - I - 0x006934 01:70B4: D0 0C     BNE bS2_bra_70C2_RTS
-    MOVEA.L #$FF03BC,A0  ; Fix X: ; (empty translation for LSR)  ; orig: - D 1 - I - 0x006936 01:70B6: 5E BC 03  LSR ram_03BC_obj,X
-    MOVE.B  (A0,D1.L),D3  ; ^ load
-    LSR.B   #1,D3  ; ^ lsr
-    MOVE.B  D3,(A0,D1.L)  ; ^ store
+    MOVEA.L #ram_03BC_obj,A0
+    MOVE.B  (A0,D1.L),D0
+
+    LSR.B   #1,D0                   ; LSR abs,X shift
+    MOVEA.L #ram_03BC_obj,A0
+    MOVE.B  D0,(A0,D1.L)
+
     MOVEA.L #$FF0380,A0  ; FIX v378: DEC $0380,X base
     SUBQ.B  #1,(A0,D1.L)  ; orig: - D 1 - I - 0x006939 01:70B9: DE 80 03  DEC ram_0380_enemy,X
     BNE     bS2_bra_70C2_RTS             ; BNE  ; orig: - D 1 - I - 0x00693C 01:70BC: D0 04     BNE bS2_bra_70C2_RTS
@@ -2892,6 +2895,7 @@ tbl_7613:  ; orig: tbl_7613:
 
 ;
     DC.B $B1  ; data (was .BYTE) ; orig: - D 1 - I - 0x006F5E 01:76DE: B1        .byte $B1   ; CB
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -3226,6 +3230,7 @@ tbl_76DF_spr_A:  ; orig: tbl_76DF_spr_A:
 
 ;
     DC.B $03  ; data (was .BYTE) ; orig: - D 1 - I - 0x00702A 01:77AA: 03        .byte $03   ; CB
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -4834,6 +4839,7 @@ bS2_bra_7EE0_RTS:  ; orig: bS2_bra_7EE0_RTS:
     DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x00776F 01:7EEF: FF        .byte $FF, $FF, $FF,
     DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x007777 01:7EF7: FF        .byte $FF, $FF, $FF,
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x00777F 01:7EFF: FF        .byte $FF   ;
+    EVEN  ; auto: odd DC.B run alignment
 
 
 

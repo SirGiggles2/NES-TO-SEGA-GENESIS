@@ -64,3 +64,7 @@ After Gate 1 is green, build Gate 2 for interaction parity:
 - deterministic movement check,
 - deterministic action check,
 - room transition check.
+
+Protocol:
+
+- `docs/GAMEPLAY_INTERACTION_PROTOCOL.md`

@@ -1,0 +1,22 @@
+=== ROM TITLE BLACKBOX ===
+system_id=gen
+rom_name=smb blackbox
+out_path=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\smb_blackbox_gen_title_blackbox.txt
+shot_path=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\smb_blackbox_gen_title_blackbox.png
+memory_domains=Z80 RAM,MD CART,CRAM,VSRAM,VRAM,M68K BUS,Waterbox PageData
+client.buffer=292x224 client.screen=584x448
+frame=1
+frame=60
+frame=120
+frame=180
+frame=240
+frame=300
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\smb_blackbox_gen_title_blackbox.png
+client.buffer=256x224 client.screen=584x448
+mode=genesis
+cram[00-0F]=0000 00E8 00A0 0000 0000 0000 0000 0000 0EAA 024C 02AE 0066 0000 0000 0000 0000
+cram[10-1F]=0000 0CCE 004A 0000 0000 0000 0000 0000 0000 00A0 0EEE 02AE 0000 0000 0000 0000
+cram[20-2F]=0000 0EEE 0EC6 0000 0000 0000 0000 0000 0000 024C 0EEE 02AE 0000 0000 0000 0000
+cram[30-3F]=0000 004A 004A 0000 0000 0000 0000 0000 0000 0000 0CCE 004A 0000 0000 0000 0000
+vsram[00-0F]=0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
+=== ROM TITLE BLACKBOX COMPLETE ===

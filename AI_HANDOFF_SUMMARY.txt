@@ -1,6 +1,43 @@
 NES-TO-SEGA-GENESIS AI Handoff Summary
 Date: 2026-03-12
 
+LATEST ADDENDUM (2026-03-26)
+- Runtime baseline moved to zelda_v659.
+- zelda_v659 evidence:
+  - smoke passes: pass=true, pass_ready=true, ready_count=802, final_frm_cnt=207
+  - full build+runtime gate passes
+  - frontend reaches branch_script=14 at frame 269
+  - gameplay entry occurs at frame 561
+  - accuracy_score=168, status=PASS
+- zelda_v658 remains the startup regression reference:
+  - smoke fails: pass=false, pass_ready=false, ready_count=0, final_frm_cnt=0
+
+What /chuckle means on this handoff (4-step protocol)
+1) Identify real problem
+  - Not just title timing symptoms; invariant is that the bank-6 `$0302` direct-buffer path must only parse a well-formed PPU header or the `$FF` terminator.
+2) Research what exists
+  - Generic indexed writer already exists in translated bank code; bridge title fallback/debug behavior are partial workarounds; the legacy `$0302` path still sits behind table index `00`.
+3) Build structural fix
+  - Added bank-6 direct-buffer header validation so stale `$0302` garbage self-heals to `$FF` before the legacy parser consumes it.
+4) Make system verify itself
+  - Added build-time regression signature to tools/check_vdp_title_regressions.py so this clobber pattern fails fast if reintroduced.
+  - Added tools/check_ppu_buffer_safety.py to build/build.bat so the bank-6 `$0302` validation hook is required on every new ROM build.
+
+Operational guidance
+- Treat zelda_v659 as the known-good runtime baseline right now.
+- Treat zelda_v658 as a regression candidate to debug, not a replacement baseline.
+- Preserve zelda_v659 readiness and treat v658 as the stale-`$0302` regression repro if the issue resurfaces.
+
+RESUME HERE (30 SECONDS)
+- Use zelda_v659 as baseline (smoke + frontend + gameplay + ledger PASS).
+- Treat zelda_v658 as regression candidate (ready_count=0).
+- Last winning change touched bank-6 direct-buffer validation in src/banks/generated/bank_06_gen68k.asm.
+- Guards now exist in tools/check_vdp_title_regressions.py and tools/check_ppu_buffer_safety.py.
+- First checks to run:
+  1) .\run_build_and_gate.ps1 -SkipBuild -Rom "zelda_v659"
+  2) .\run_build_and_gate.ps1 -SkipBuild -Rom "zelda_v658"
+  3) compare diag/reports/smoke_test_zelda_v659.json vs diag/reports/smoke_test_zelda_v658.json
+
 Project goal
 - Port Zelda 1 from NES to Sega Genesis while preserving the original game logic as much as possible.
 - The project translates 6502 bank code into 68000 assembly, then emulates the NES PPU contract on top of the Genesis VDP.

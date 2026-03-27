@@ -1,0 +1,264 @@
+=== TRANSITION TRACE: zelda_v614 ===
+inject_frame=850 inject_duration=300
+
+f=0000 scr=0 sub=0 rdy=0 ppu=00 0528=00 F4=00 F5=00 F6=00 joy=00 press=00 hold=00 rend=0 2000=00 2001=00 pause=0/0 trans=0 frm=0 crash=0000/0000/00000000 <<< CHANGED
+f=0100 scr=0 sub=0 rdy=0 ppu=00 0528=00 F4=01 F5=5A F6=00 joy=00 press=00 hold=00 rend=0 2000=80 2001=00 pause=0/0 trans=0 frm=2 crash=0000/0000/00000000
+f=0122 scr=0 sub=0 rdy=1 ppu=10 0528=00 F4=00 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=6 crash=0000/0000/00000000 <<< CHANGED
+f=0135 scr=0 sub=0 rdy=0 ppu=00 0528=00 F4=00 F5=00 F6=00 joy=00 press=00 hold=00 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=0 crash=0000/0000/00000000 <<< CHANGED !!! READY CLEARED
+f=0200 scr=0 sub=0 rdy=0 ppu=00 0528=00 F4=01 F5=5A F6=00 joy=00 press=00 hold=00 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=2 crash=0000/0000/00000000
+f=0259 scr=0 sub=0 rdy=1 ppu=10 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=6 crash=0000/0000/00000000 <<< CHANGED
+f=0300 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=7 crash=0000/0000/00000000
+f=0400 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=98 crash=0000/0000/00000000
+f=0500 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=198 crash=0000/0000/00000000
+f=0600 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=42 crash=0000/0000/00000000
+f=0700 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=142 crash=0000/0000/00000000
+f=0800 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=242 crash=0000/0000/00000000
+f=0845 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0846 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0847 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0848 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0849 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+>>> INJECTING START at frame 850
+f=0850 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0851 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0852 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0853 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0854 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0855 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0856 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0857 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0858 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0859 scr=0 sub=0 rdy=1 ppu=00 0528=00 F4=01 F5=5A F6=A5 joy=00 press=00 hold=00 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=8 crash=0000/0000/00000000
+f=0860 scr=0 sub=1 rdy=1 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=10 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=9 crash=0000/0000/00000000 <<< CHANGED
+f=0861 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0862 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0863 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0864 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0865 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0866 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0867 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0868 scr=0 sub=1 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=10 crash=0000/0000/00000000
+f=0869 scr=0 sub=2 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=11 crash=0000/0000/00000000 <<< CHANGED
+f=0870 scr=0 sub=2 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=11 crash=0000/0000/00000000
+f=0871 scr=0 sub=2 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=11 crash=0000/0000/00000000
+f=0872 scr=0 sub=2 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=11 crash=0000/0000/00000000
+f=0873 scr=1 sub=0 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=11 crash=0000/0000/00000000 <<< CHANGED !!! SUB DECREASED from 2 to 0 !!! READY CLEARED
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0874 scr=1 sub=0 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=12 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0875 scr=1 sub=0 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=12 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0876 scr=1 sub=1 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=12 crash=0000/0000/00000000 <<< CHANGED
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0877 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000 <<< CHANGED
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0878 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0879 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0880 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0881 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0882 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0883 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0884 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0885 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0886 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0887 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0888 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0889 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0890 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0891 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0892 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0893 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0894 scr=1 sub=2 rdy=0 ppu=12 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0895 scr=1 sub=2 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=13 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0896 scr=1 sub=3 rdy=0 ppu=14 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B4 2001=00 pause=0/0 trans=0 frm=14 crash=0000/0000/00000000 <<< CHANGED
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0897 scr=1 sub=4 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=15 crash=0000/0000/00000000 <<< CHANGED
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0898 scr=1 sub=4 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=15 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0899 scr=1 sub=4 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=15 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0900 scr=1 sub=4 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=15 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0901 scr=1 sub=4 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=15 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0902 scr=1 sub=4 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=15 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0903 scr=1 sub=4 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=15 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0904 scr=1 sub=5 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=16 crash=0000/0000/00000000 <<< CHANGED
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0905 scr=1 sub=6 rdy=0 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=17 crash=0000/0000/00000000 <<< CHANGED
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0906 scr=1 sub=0 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=00 pause=0/0 trans=0 frm=18 crash=0000/0000/00000000 <<< CHANGED !!! SUB DECREASED from 6 to 0
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0907 scr=1 sub=0 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=19 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0908 scr=1 sub=0 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=20 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0909 scr=1 sub=0 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=21 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=0910 scr=1 sub=0 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=22 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+f=1000 scr=1 sub=0 rdy=1 ppu=00 0528=5A F4=01 F5=5A F6=10 joy=10 press=00 hold=10 rend=0 2000=B0 2001=1E pause=0/0 trans=0 frm=112 crash=0000/0000/00000000
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+=== SUCCESS: script advanced to 1 (slot selection) ===
+
+=== TRACE COMPLETE ===

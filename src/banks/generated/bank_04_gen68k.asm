@@ -644,13 +644,13 @@ bra_8232:  ; orig: bra_8232:
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x010246 04:8236: AD F8 03  LDA ram_03F8_link
     CMP.B   tbl_81F3(D2.L),D0  ; orig: C - - - - - 0x010249 04:8239: D9 F3 81  CMP tbl_81F3,Y
     BNE     bra_825D             ; BNE  ; orig: C - - - - - 0x01024C 04:823C: D0 1F     BNE bra_825D
-    MOVEA.L #ram_0412,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x01024E 04:823E: FE 12 04  INC ram_0412,X
+    MOVEA.L #ram_0412,A0  ; Fix X: INC ram_0412,X  ; orig: C - - - - - 0x01024E 04:823E: FE 12 04  INC ram_0412,X
     ADDQ.B  #1,(A0,D1.L)  ; ^
     MOVE.B  ram_0412(D1.L),D2  ; LDY abs,X  ; orig: C - - - - - 0x010251 04:8241: BC 12 04  LDY ram_0412,X
     CMPI.B  #$10,D2  ; orig: C - - - - - 0x010254 04:8244: C0 10     CPY #$10    ; timer 
     BCS     bra_8262_RTS             ; BCC  ; orig: C - - - - - 0x010256 04:8246: 90 1A     BCC bra_8262_RTS
     MOVE.B  D0,ram_dir_enemy(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x010258 04:8248: 95 98     STA ram_dir_enemy,X
-    MOVEA.L #ram_state_obj,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x01025A 04:824A: F6 AC     INC ram_state_obj,X
+    MOVEA.L #ram_state_obj,A0  ; Fix X: INC ram_state_obj,X  ; orig: C - - - - - 0x01025A 04:824A: F6 AC     INC ram_state_obj,X
     ADDQ.B  #1,(A0,D1.L)  ; ^
     ADDQ.B  #1,ram_00F7_flag  ; orig: C - - - - - 0x01025C 04:824C: E6 F7     INC ram_00F7_flag
     MOVE.B  #$74,D0  ; orig: C - - - - - 0x01025E 04:824E: A9 74     LDA #$74
@@ -4008,7 +4008,9 @@ bra_930E:  ; orig: bra_930E:
     CMP.B   ram_pos_Y_enemy(D1.L),D0  ; orig: C - - - - - 0x01133C 04:932C: D5 84     CMP ram_pos_Y_enemy,
     BCS     bra_9332             ; BCC  ; orig: C - - - - - 0x01133E 04:932E: 90 02     BCC bra_9332
 bra_9330:  ; orig: bra_9330:
-    ; (empty translation for LSR)  ; orig: C - - - - - 0x011340 04:9330: 56 98     LSR ram_dir_enemy,X
+    MOVE.B  ram_dir_enemy(D1.L),D0  ; LSR abs,X load  ; orig: C - - - - - 0x011340 04:9330: 56 98     LSR ram_dir_enemy,X
+    LSR.B   #1,D0                   ; LSR abs,X shift
+    MOVE.B  D0,ram_dir_enemy(D1.L)  ; LSR abs,X store
 bra_9332:  ; orig: bra_9332:
     MOVE.B  #$60,D0  ; orig: C - - - - - 0x011342 04:9332: A9 60     LDA #$60
     MOVE.B  D0,ram_03BC_obj(D1.L)  ; STA abs,X  ; orig: C - - - - - 0x011344 04:9334: 9D BC 03  STA ram_03BC_obj,X

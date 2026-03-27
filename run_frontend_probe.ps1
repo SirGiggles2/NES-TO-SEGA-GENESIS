@@ -8,6 +8,7 @@ $BIZHAWK    = "D:\Emulation\BizHawk-2.11-win-x64\EmuHawk.exe"
 $PROJECT    = "C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS"
 $BUILD_DIR  = "$PROJECT\build"
 $SCRIPT     = "$PROJECT\diag\scripts\zelda_frontend_probe.lua"
+$TEMP_SCRIPT = "$PROJECT\diag\scripts\zelda_frontend_probe.runtime.lua"
 $LOCK_PATH  = "$PROJECT\diag\scripts\zelda_frontend_probe.lock"
 $SEND_ME    = "$PROJECT\diag\reports\Files I Want"
 $REPORTS    = "$PROJECT\diag\reports"
@@ -18,24 +19,25 @@ $OutputPath = "$REPORTS\frontend_probe_$BaseName.txt"
 
 if (-not (Test-Path $BIZHAWK)) { throw "EmuHawk.exe not found: $BIZHAWK" }
 if (-not (Test-Path $RomPath))  { throw "ROM not found: $RomPath" }
+if (-not (Test-Path $SCRIPT))   { throw "Probe Lua not found: $SCRIPT" }
 if (Test-Path $LOCK_PATH)       { throw "Probe already running. Remove $LOCK_PATH if stale." }
 
 if (Test-Path $OutputPath) {
     [System.IO.File]::Delete($OutputPath)
 }
 
-New-Item -ItemType File -Path $LOCK_PATH | Out-Null
-$OriginalLua = [System.IO.File]::ReadAllText($SCRIPT)
-$UpdatedLua  = $OriginalLua -replace 'local ROM_VERSION\s*=.*', "local ROM_VERSION = `"$BaseName`""
-[System.IO.File]::WriteAllText($SCRIPT, $UpdatedLua)
-
 try {
+    New-Item -ItemType File -Path $LOCK_PATH | Out-Null
+    $OriginalLua = [System.IO.File]::ReadAllText($SCRIPT)
+    $UpdatedLua  = $OriginalLua -replace 'local ROM_VERSION\s*=.*', "local ROM_VERSION = `"$BaseName`""
+    [System.IO.File]::WriteAllText($TEMP_SCRIPT, $UpdatedLua)
+
     Write-Host "=== FRONTEND PROBE ===" -ForegroundColor Cyan
     Write-Host "ROM:    $BaseName"
     Write-Host "Output: $OutputPath"
     Write-Host ""
 
-    $BizArgs = ('"{0}" --lua="{1}"' -f $RomPath, $SCRIPT)
+    $BizArgs = ('"{0}" --lua="{1}"' -f $RomPath, $TEMP_SCRIPT)
     $proc = Start-Process -FilePath $BIZHAWK -ArgumentList $BizArgs -PassThru
     $deadline = (Get-Date).AddMinutes(15)
 
@@ -74,6 +76,6 @@ try {
     }
 }
 finally {
-    [System.IO.File]::WriteAllText($SCRIPT, $OriginalLua)
+    if (Test-Path $TEMP_SCRIPT) { Remove-Item $TEMP_SCRIPT -Force }
     if (Test-Path $LOCK_PATH) { Remove-Item $LOCK_PATH -Force }
 }

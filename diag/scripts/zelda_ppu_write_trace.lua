@@ -19,8 +19,11 @@ local TRACE_PPU_ROM_REC_CTRL = 0xFFF0B8
 local TRACE_PPU_ROM_REC_DATA = 0xFFF0BA
 local PLANE_A_MAP_BASE = 0xC000
 local PLANE_A_MAP_END = 0xDFFF
-local CHR_FOCUS_TILE_START = 0x00E1
-local CHR_FOCUS_TILE_END = 0x00E3
+local CHR_FOCUS_TILE_START = 0x0025
+local CHR_FOCUS_TILE_END = 0x0025
+local PPUADDR_HI = 0xFFEF02
+local PPUADDR_LO = 0xFFEF03
+local PPUADDR_LATCH = 0xFFEF04
 
 local function get_rom_label()
     local label = TRACE_HINT
@@ -59,7 +62,7 @@ local chr_focus_file = assert(io.open(chr_focus_path, "w"))
 local done_path = OUT_DIR .. "ppu_writes_" .. rom_label .. ".done"
 
 write_row(out_file, {
-    "frame", "kind", "addr", "value", "pc", "trace_last", "trace_seq",
+    "frame", "kind", "addr", "value", "pc", "ret_pc", "ret2_pc", "trace_last", "trace_seq",
     "ppu_buf_index", "ppu_buf_0", "ppu_buf_1", "ppu_buf_2", "ppu_buf_3", "ppu_buf_4", "ppu_buf_5",
     "screen_ready", "ram_script", "ram_subscript", "ppu_load_index",
     "d0", "d1", "d2", "d3", "d4", "d5", "d6", "d7", "a0", "a1", "a2", "a3", "a7", "sr"
@@ -76,7 +79,7 @@ write_row(chr_dirty_file, {
 })
 
 write_row(chr_focus_file, {
-    "frame", "pc", "trace_last", "trace_seq", "addr", "tile_index", "byte_in_tile",
+    "frame", "pc", "ret_pc", "ret2_pc", "trace_last", "trace_seq", "addr", "tile_index", "byte_in_tile",
     "value", "vram_addr_curr", "ppu_buf_index", "ppu_buf_0", "ppu_buf_1", "ppu_buf_2",
     "ppu_buf_3", "ppu_buf_4", "ppu_buf_5", "trace_ppu_ptr_raw", "trace_ppu_ptr_res",
     "trace_ppu_evt_arg0", "trace_ppu_evt_arg1", "trace_ppu_evt_arg2", "trace_ppu_rom_hi",
@@ -87,12 +90,17 @@ write_row(chr_focus_file, {
 memory.usememorydomain("M68K BUS")
 
 local function log_write(kind, addr, value)
+    local a7 = reg("M68K A7")
+    local ret_pc = memory.read_u32_be(a7) or 0
+    local ret2_pc = memory.read_u32_be(a7 + 36) or 0
     write_row(out_file, {
         tostring(emu.framecount()),
         kind,
         hex(addr, 6),
         hex(value, kind == "vdp_ctrl" and 4 or 2),
         hex(reg("M68K PC"), 6),
+        hex(ret_pc, 8),
+        hex(ret2_pc, 8),
         hex(memory.read_u16_be(0xFFF000), 4),
         hex(memory.read_u16_be(0xFFF002), 4),
         hex(memory.read_u8(0xFF0301), 2),
@@ -118,7 +126,7 @@ local function log_write(kind, addr, value)
         hex(reg("M68K A1"), 8),
         hex(reg("M68K A2"), 8),
         hex(reg("M68K A3"), 8),
-        hex(reg("M68K A7"), 8),
+        hex(a7, 8),
         hex(reg("M68K SR"), 4),
     })
 end
@@ -204,6 +212,8 @@ local function log_chr_focus_write(addr, value)
     write_row(chr_focus_file, {
         tostring(emu.framecount()),
         hex(reg("M68K PC"), 6),
+        hex(memory.read_u32_be(reg("M68K A7")) or 0, 8),
+        hex(memory.read_u32_be((reg("M68K A7") or 0) + 36) or 0, 8),
         hex(memory.read_u16_be(0xFFF000), 4),
         hex(memory.read_u16_be(0xFFF002), 4),
         hex(addr, 6),
@@ -262,6 +272,26 @@ end, 0xFF0303)
 event.onmemorywrite(function(_, value)
     log_write("ppu_buf", 0xFF0304, value or memory.read_u8(0xFF0304))
 end, 0xFF0304)
+
+event.onmemorywrite(function(_, value)
+    log_write("ppu_addr_hi", PPUADDR_HI, value or memory.read_u8(PPUADDR_HI))
+end, PPUADDR_HI)
+
+event.onmemorywrite(function(_, value)
+    log_write("ppu_addr_lo", PPUADDR_LO, value or memory.read_u8(PPUADDR_LO))
+end, PPUADDR_LO)
+
+event.onmemorywrite(function(_, value)
+    log_write("ppu_latch", PPUADDR_LATCH, value or memory.read_u8(PPUADDR_LATCH))
+end, PPUADDR_LATCH)
+
+event.onmemorywrite(function(_, value)
+    log_write("ppu_vram_hi", VRAM_ADDR_CURR, value or memory.read_u8(VRAM_ADDR_CURR))
+end, VRAM_ADDR_CURR)
+
+event.onmemorywrite(function(_, value)
+    log_write("ppu_vram_lo", VRAM_ADDR_CURR + 1, value or memory.read_u8(VRAM_ADDR_CURR + 1))
+end, VRAM_ADDR_CURR + 1)
 
 event.onmemorywrite(function(_, value)
     local word = value or memory.read_u16_be(0xC00000)

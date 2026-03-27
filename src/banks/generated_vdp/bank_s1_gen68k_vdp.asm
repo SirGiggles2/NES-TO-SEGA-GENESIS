@@ -87,6 +87,7 @@ _off000_bat_67F0_12:  ; orig: _off000_bat_67F0_12:
 ; ram_6810
     DC.B $0F,$15,$27,$30  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D07 06:680F: 0F        .byte $0F, $15, $27,
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D0B 06:6813: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -104,6 +105,7 @@ _off000_bat_6814_06:  ; orig: _off000_bat_6814_06:
 ; ram_6817
     DC.B $0F,$0F,$0F,$0F  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D0F 06:6817: 0F        .byte $0F, $0F, $0F,
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D13 06:681B: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -165,6 +167,7 @@ _off000_bat_6847_52:  ; orig: _off000_bat_6847_52:
     DC.B $EE  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D45 06:684D: EE        .byte $EE   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D46 06:684E: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -184,6 +187,7 @@ _off000_bat_684F_54:  ; orig: _off000_bat_684F_54:
     DC.B $EE  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D4F 06:6857: EE        .byte $EE   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D50 06:6858: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -205,6 +209,7 @@ _off000_bat_6859_56:  ; orig: _off000_bat_6859_56:
     DC.B $EE  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D5B 06:6863: EE        .byte $EE   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D5C 06:6864: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -228,6 +233,7 @@ _off000_bat_6865_58:  ; orig: _off000_bat_6865_58:
     DC.B $EE  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D69 06:6871: EE        .byte $EE   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D6A 06:6872: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -240,6 +246,7 @@ _off000_bat_6873_5C_triforce_text:  ; orig: _off000_bat_6873_5C_triforce_text:
     DC.B $2B,$AC  ; data (was .DBYT $2BAC) ; orig: - D 0 - I - 0x019D6B 06:6873: 2B        .dbyt $2BAC ;
     DC.B $00+$00+$08  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D6D 06:6875: 08        .byte $00 + $00 + $0
     DC.B $1D,$1B,$12,$0F,$18,$1B,$0C,$0E  ; data (was .BYTE) ; orig: - D 0 - I - 0x019D6E 06:6876: 1D        .byte $1D, $1B, $12,
+    EVEN  ; auto: odd DC.B run alignment
 
 ; bzk warning, no end token
 

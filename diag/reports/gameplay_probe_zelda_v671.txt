@@ -1,0 +1,86 @@
+=== GAMEPLAY PROBE zelda_v671 ===
+Driving title -> file select -> branch and capturing gameplay if reached.
+
+script_write_watch=UNAVAILABLE (event.onmemorywrite not supported)
+state frame=1 script=0 sub=0 ready=0 ppu=0x00 slot=0 active=[00,00,00,00,00] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,00,00] phase=wait_title_ready
+heartbeat frame=120 script=0 sub=0 ready=1 ppu=0x10 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_ready
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_title_ready_f143.png
+title_ready_frame=143
+action=hold_start_title frame=163
+state frame=164 script=0 sub=1 ready=1 ppu=0x12 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+state frame=173 script=0 sub=2 ready=1 ppu=0x00 slot=2 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+state frame=177 script=1 sub=0 ready=0 ppu=0x00 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_title_exit
+title_exit_detected frame=177
+state frame=180 script=1 sub=1 ready=0 ppu=0x00 slot=3 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+state frame=181 script=1 sub=2 ready=0 ppu=0x12 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+state frame=237 script=1 sub=3 ready=0 ppu=0x14 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+state frame=239 script=1 sub=4 ready=0 ppu=0x00 slot=1 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+heartbeat frame=240 script=1 sub=4 ready=0 ppu=0x00 slot=1 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+state frame=246 script=1 sub=5 ready=0 ppu=0x00 slot=2 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+state frame=247 script=1 sub=6 ready=0 ppu=0x00 slot=3 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+state frame=248 script=1 sub=0 ready=1 ppu=0x00 slot=3 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=00 mmc=[00,00,FF,00] phase=wait_file_select
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_file_select_ready_f248.png
+file_select_ready_frame=248
+action=hold_start_file_select frame=268
+state frame=269 script=1 sub=1 ready=1 ppu=0x00 slot=3 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_branch
+state frame=270 script=14 sub=0 ready=0 ppu=0x00 slot=3 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_branch
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_branch_f270.png
+branch_frame=270 branch_script=14
+non_gameplay_branch_detected=14 -> continue driving register flow
+state frame=287 script=14 sub=1 ready=0 ppu=0x00 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=293 script=14 sub=3 ready=0 ppu=0x16 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=295 script=14 sub=4 ready=0 ppu=0x12 slot=0 active=[00,00,00,01,01] map=00 next=00 x=00 y=00 dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+action=register_sequence_begin frame=300
+heartbeat frame=360 script=14 sub=4 ready=1 ppu=0x00 slot=3 active=[00,00,00,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=367 script=0 sub=1 ready=1 ppu=0x10 slot=0 active=[00,00,00,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=396 script=0 sub=2 ready=1 ppu=0x00 slot=3 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=397 script=1 sub=0 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=400 script=1 sub=2 ready=0 ppu=0x12 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=419 script=1 sub=3 ready=0 ppu=0x14 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=420 script=1 sub=4 ready=0 ppu=0x00 slot=1 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=427 script=1 sub=5 ready=0 ppu=0x00 slot=2 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=428 script=1 sub=6 ready=0 ppu=0x00 slot=3 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+state frame=429 script=1 sub=0 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_register_resolution
+returned_to_file_select_frame=429 action=resume_hold_start_file_select
+state frame=430 script=1 sub=1 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=00 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_branch
+state frame=431 script=2 sub=0 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_branch
+branch_frame=431 branch_script=2
+other_branch_detected=2 -> continue observing for gameplay
+state frame=432 script=2 sub=1 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=433 script=2 sub=0 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=434 script=3 sub=0 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=435 script=3 sub=1 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=00 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=453 script=3 sub=2 ready=0 ppu=0x18 slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=454 script=3 sub=3 ready=0 ppu=0x18 slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=455 script=3 sub=4 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=456 script=3 sub=5 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=463 script=3 sub=6 ready=0 ppu=0x0E slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=469 script=3 sub=7 ready=0 ppu=0x44 slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=476 script=3 sub=8 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+heartbeat frame=480 script=3 sub=8 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=70 y=CF dir=00 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=483 script=3 sub=0 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=5 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=558 script=4 sub=0 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=0 room_item=00 msg=00 quest=00 hearts=22 pause=0 trans=0 timer=5 spr1=20 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+state frame=560 script=5 sub=0 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=1 room_item=FF msg=00 quest=00 hearts=22 pause=0 trans=0 timer=3 spr1=48 mmc=[00,00,FF,00] phase=wait_gameplay_after_other
+
+*** GAMEPLAY ENTRY (AFTER OTHER BRANCH) ***
+entry frame=560 script=5 sub=0 ready=0 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=1 room_item=FF msg=00 quest=00 hearts=22 pause=0 trans=0 timer=3 spr1=48 mmc=[00,00,FF,00] phase=capture_gameplay
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_entry_after_other_f560.png
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_f590.png
+f+30 frame=590 script=5 sub=0 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=1 room_item=FF msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=E4 mmc=[00,00,FF,00] phase=capture_gameplay
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_f680.png
+f+120 frame=680 script=5 sub=0 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=1 room_item=FF msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=F0 mmc=[00,00,FF,00] phase=capture_gameplay
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_f800.png
+f+240 frame=800 script=5 sub=0 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=1 room_item=FF msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=F0 mmc=[00,00,FF,00] phase=capture_gameplay
+
+=== SUMMARY ===
+final frame=800 script=5 sub=0 ready=1 ppu=0x00 slot=0 active=[01,01,01,01,01] map=77 next=00 x=78 y=8D dir=08 enemy_cnt=1 room_item=FF msg=00 quest=00 hearts=22 pause=0 trans=0 timer=0 spr1=F0 mmc=[00,00,FF,00] phase=capture_gameplay
+final_phase=capture_gameplay
+branch_script=2
+gameplay_entry_frame=560
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_title_ready_f143.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_file_select_ready_f248.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_branch_f270.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_entry_after_other_f560.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_f590.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_f680.png
+captured=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v671_gameplay_f800.png

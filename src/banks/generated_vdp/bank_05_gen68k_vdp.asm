@@ -4461,9 +4461,7 @@ _off006_0x015BE8_00:  ; orig: _off006_0x015BE8_00:
     DC.B $DB,$5B,$1B,$4E,$4E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C0E 05:9BFE: DB        .byte $DB, $5B, $1B,
     DC.B $DB  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C15 05:9C05: DB        .byte $DB   ; 07
     DC.B $CE,$4E,$4E,$4E,$0E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C15 05:9C05: DB        .byte $CE, $4E, $4E,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; auto: odd DC.B run alignment
 
 _off006_0x015C1D_10:  ; orig: _off006_0x015C1D_10:
     DC.B $9B,$0C,$4E,$4E,$4E,$0E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C1D 05:9C0D: 9B        .byte $9B, $0C, $4E,
@@ -4476,9 +4474,7 @@ _off006_0x015C1D_10:  ; orig: _off006_0x015C1D_10:
     DC.B $D9,$4E,$4E,$4E,$0E,$59  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C41 05:9C31: D9        .byte $D9, $4E, $4E,
     DC.B $8E,$4E,$4E  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C47 05:9C37: 8E        .byte $8E, $4E, $4E 
     DC.B $CE,$4E,$4E,$0E  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C4A 05:9C3A: CE        .byte $CE, $4E, $4E,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; auto: odd DC.B run alignment
 
 _off006_0x015C4E_20:  ; orig: _off006_0x015C4E_20:
     DC.B $D9,$59,$0E,$4E,$4E,$4E  ; data (was .BYTE) ; orig: - D 0 - I - 0x015C4E 05:9C3E: D9        .byte $D9, $59, $0E,
@@ -4545,9 +4541,7 @@ _off006_0x015D42_60:  ; orig: _off006_0x015D42_60:
     DC.B $DB,$0E,$1E,$20,$4E,$4E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015D66 05:9D56: DB        .byte $DB, $0E, $1E,
     DC.B $DB,$0E,$21,$24,$4E,$4E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015D6E 05:9D5E: DB        .byte $DB, $0E, $21,
     DC.B $DB,$0E,$22,$0C,$4E,$4E,$4A  ; data (was .BYTE) ; orig: - D 0 - I - 0x015D76 05:9D66: DB        .byte $DB, $0E, $22,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; auto: odd DC.B run alignment
 
 _off006_0x015D7D_70:  ; orig: _off006_0x015D7D_70:
     DC.B $DB,$0E,$23,$25,$4E,$4E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015D7D 05:9D6D: DB        .byte $DB, $0E, $23,
@@ -4559,9 +4553,7 @@ _off006_0x015D7D_70:  ; orig: _off006_0x015D7D_70:
     DC.B $D9,$4E,$4E,$4E,$4E,$0E  ; data (was .BYTE) ; orig: - D 0 - I - 0x015DA6 05:9D96: D9        .byte $D9, $4E, $4E,
     DC.B $DB,$4E,$19,$0E,$19,$4E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015DAC 05:9D9C: DB        .byte $DB, $4E, $19,
     DC.B $DB,$5B,$5B,$45  ; data (was .BYTE) ; orig: - D 0 - I - 0x015DB4 05:9DA4: DB        .byte $DB, $5B, $5B,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; auto: odd DC.B run alignment
 
 _off006_0x015DB8_80:  ; orig: _off006_0x015DB8_80:
     DC.B $C5,$05,$5B,$5B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015DB8 05:9DA8: C5        .byte $C5, $05, $5B,
@@ -4586,9 +4578,7 @@ _off006_0x015DF6_90:  ; orig: _off006_0x015DF6_90:
     DC.B $C5,$05,$1B,$0C,$4E,$0E,$4A,$0A  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E23 05:9E13: C5        .byte $C5, $05, $1B,
     DC.B $DB,$1B,$35,$4E,$06,$45  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E2B 05:9E1B: DB        .byte $DB, $1B, $35,
     DC.B $C5,$4E,$4E,$4E,$0E,$45  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E31 05:9E21: C5        .byte $C5, $4E, $4E,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; auto: odd DC.B run alignment
 
 _off006_0x015E37_A0:  ; orig: _off006_0x015E37_A0:
     DC.B $DB,$5B,$34,$4E,$4E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E37 05:9E27: DB        .byte $DB, $5B, $34,
@@ -4601,9 +4591,7 @@ _off006_0x015E37_A0:  ; orig: _off006_0x015E37_A0:
     DC.B $DB,$5B,$35,$0E,$33,$5B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E6A 05:9E5A: DB        .byte $DB, $5B, $35,
     DC.B $DB,$34,$4E,$4E,$0E,$32  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E70 05:9E60: DB        .byte $DB, $34, $4E,
     DC.B $DB,$35,$4E,$4E,$0E,$33  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E76 05:9E66: DB        .byte $DB, $35, $4E,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; auto: odd DC.B run alignment
 
 _off006_0x015E7C_B0:  ; orig: _off006_0x015E7C_B0:
     DC.B $DB,$5B,$07,$4E,$4E,$4E  ; data (was .BYTE) ; orig: - D 0 - I - 0x015E7C 05:9E6C: DB        .byte $DB, $5B, $07,
@@ -4615,9 +4603,7 @@ _off006_0x015E7C_B0:  ; orig: _off006_0x015E7C_B0:
     DC.B $CA,$4E,$4E,$4E,$0E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015EA4 05:9E94: CA        .byte $CA, $4E, $4E,
     DC.B $DB,$4E,$2C,$0E,$2C,$4E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015EAB 05:9E9B: DB        .byte $DB, $4E, $2C,
     DC.B $CA,$4A,$4E,$06,$45,$45  ; data (was .BYTE) ; orig: - D 0 - I - 0x015EB3 05:9EA3: CA        .byte $CA, $4A, $4E,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; auto: odd DC.B run alignment
 
 _off006_0x015EB9_C0:  ; orig: _off006_0x015EB9_C0:
     DC.B $9B,$35,$4E,$0E,$13,$4E,$0E,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015EB9 05:9EA9: 9B        .byte $9B, $35, $4E,
@@ -4669,9 +4655,7 @@ _off006_0x015F65_F0:  ; orig: _off006_0x015F65_F0:
     DC.B $C5,$45,$07,$4E,$28,$59,$19  ; data (was .BYTE) ; orig: - D 0 - I - 0x015F97 05:9F87: C5        .byte $C5, $45, $07,
     DC.B $DB,$4D,$4D,$12,$4D,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015F9E 05:9F8E: DB        .byte $DB, $4D, $4D,
     DC.B $DB,$77,$77,$77,$37,$1A,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x015FA5 05:9F95: DB        .byte $DB, $77, $77,
-    EVEN  ; FIX: alignment after odd-byte data
-
-
+    EVEN  ; FIX v637: keep final alignment before pointer tables
 
 tbl_9F9C:  ; orig: tbl_9F9C:
 
@@ -6367,12 +6351,25 @@ ofs_023_A8AB_04:  ; orig: ofs_023_A8AB_04:
 
 
 b05_bra_A8BE_overworld:  ; orig: b05_bra_A8BE_overworld:
+    MOVE.W  #$3510,D0
+    BSR     TRACE_MARK
     BSR     sub_A9F4             ; JSR -> BSR  ; orig: C - - - - - 0x0168CE 05:A8BE: 20 F4 A9  JSR sub_A9F4
     JMP     loc_AB73  ; orig: C - - - - - 0x0168D1 05:A8C1: 4C 73 AB  JMP loc_AB73
 
 
 
 sub_A8C4:  ; orig: sub_A8C4:
+; FIX v637: Copy bank 05 ROM data tables ($9418-$9F9F) into RAM mirror
+; so indirect pointer reads (LDA ($02),Y etc.) find the correct data.
+; The NES reads these from PRG-ROM at $8000-$BFFF; Genesis needs them at $FF8000+.
+    MOVEM.L D3/A0-A1,-(A7)
+    LEA     tbl_9418,A0                              ; ROM source
+    MOVEA.L #$00FF9418,A1                            ; RAM mirror destination
+    MOVE.W  #((tbl_9FA0_tiles_id-tbl_9418)/2-1),D3  ; word count
+.copy_b05_rom_to_ram:
+    MOVE.W  (A0)+,(A1)+
+    DBF     D3,.copy_b05_rom_to_ram
+    MOVEM.L (A7)+,D3/A0-A1
     BSR     sub_AB30_prepare_columns_table             ; JSR -> BSR  ; orig: C - - - - - 0x0168D4 05:A8C4: 20 30 AB  JSR sub_AB30_prepare
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x0168D7 05:A8C7: A5 10     LDA ram_dungeon_leve
     BEQ     b05_bra_A8BE_overworld             ; BEQ  ; orig: C - - - - - 0x0168D9 05:A8C9: F0 F3     BEQ bra_A8BE_overwor
@@ -6648,6 +6645,8 @@ tbl_A9B4_custom_metatiles:  ; orig: tbl_A9B4_custom_metatiles:
 
 
 sub_A9F4:  ; orig: sub_A9F4:
+    MOVE.W  #$3513,D0
+    BSR     TRACE_MARK
     MOVE.B  tbl_9F9C,D0  ; orig: C - - - - - 0x016A04 05:A9F4: AD 9C 9F  LDA tbl_9F9C
     MOVE.B  D0,ram_0002_t09_data  ; orig: C - - - - - 0x016A07 05:A9F7: 85 02     STA ram_0002_t09_dat
     MOVE.B  $FF9F9D,D0  ; FIX v378: LDA $9F9D  ; orig: C - - - - - 0x016A09 05:A9F9: AD 9D 9F  LDA tbl_9F9C + $01
@@ -6684,14 +6683,20 @@ sub_A9F4:  ; orig: sub_A9F4:
     MOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)
     NEGX.B  D3                ; C = X = original shift carry
 
-    MOVE.B  ram_0002_t09_data,D3
-    ADD.B   D3,D0  ; orig: C - - - - - 0x016A21 05:AA11: 65 02     ADC ram_0002_t09_dat
+    MOVE.B  ram_0002_t09_data,D3  ; FIX v602: stage low byte for ADC
+    MOVE.B  D3,D3
+    ADD.B   D3,D0  ; FIX v602: ADC ram_0002_t09_data
 
     MOVE.B  D0,ram_0002_t09_data  ; orig: C - - - - - 0x016A23 05:AA13: 85 02     STA ram_0002_t09_dat
     MOVE.B  ram_0006_t14,D0  ; orig: C - - - - - 0x016A25 05:AA15: A5 06     LDA ram_0006_t14
-    ; !! ADC ram_0002_t09_data + $01 - complex mode, manual review needed  ; orig: C - - - - - 0x016A27 05:AA17: 65 03     ADC ram_0002_t09_dat
+    MOVE.B  $FF0003,D3  ; FIX v602: stage high byte for ADC
+    MOVE.B  D3,D3
+    ADD.B   D3,D0  ; FIX v602: ADC ram_0002_t09_data + $01
+
     MOVE.B  D0,$FF0003  ; FIX v378: STA $03  ; orig: C - - - - - 0x016A29 05:AA19: 85 03  STA ram_0002_t09_dat
 loc_AA1B_draw_special_screen:  ; orig: loc_AA1B_draw_special_screen:
+    MOVE.W  #$3514,D0
+    BSR     TRACE_MARK
 
 ; in
 
@@ -6705,16 +6710,19 @@ loc_AA1B_draw_special_screen:  ; orig: loc_AA1B_draw_special_screen:
     MOVE.B  D0,ram_000C_t09  ; orig: C - - - - - 0x016A3A 05:AA2A: 85 0C     STA ram_000C_t09
     MOVE.B  D0,ram_0006_t06_special_metatile_pos_X  ; orig: C - - - - - 0x016A3C 05:AA2C: 85 06     STA ram_0006_t06_spe
 loc_AA2E_loop:  ; orig: loc_AA2E_loop:
+    MOVE.W  #$3515,D0
+    BSR     TRACE_MARK
     MOVE.B  ram_0006_t06_special_metatile_pos_X,D2  ; orig: C D 1 - - - 0x016A3E 05:AA2E: A4 06     LDY ram_0006_t06_spe
     MOVEA.L #ram_0002_t09_data,A0
+    MOVEQ   #0,D5
     MOVE.W  (A0),D5
     ROL.W   #8,D5
-    MOVEA.W D5,A1
+    ANDI.L  #$0000FFFF,D5
+    MOVEA.L D5,A1
 
     MOVEA.L A1,A0
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
-
     ANDI.B  #$F0,D0  ; orig: C - - - - - 0x016A42 05:AA32: 29 F0     AND #$F0
 
 ; / 08
@@ -6722,36 +6730,52 @@ loc_AA2E_loop:  ; orig: loc_AA2E_loop:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x016A45 05:AA35: 4A        LSR
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x016A46 05:AA36: 4A        LSR
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x016A47 05:AA37: AA        TAX
+    MOVE.B  D1,D3
+    ANDI.W  #$00FF,D3
     MOVEA.L #tbl_bat_6827_columns,A0
     MOVE.B  (A0,D1.L),D0
 
     MOVE.B  D0,ram_0004_t07_columns_data  ; orig: C - - - - - 0x016A4B 05:AA3B: 85 04     STA ram_0004_t07_col
-    MOVEA.L #$FF6828,A0  ; FIX v378: LDA $6828,X base
-    MOVE.B  (A0,D1.L),D0  ; orig: C - - - - - 0x016A4D 05:AA3D: BD 28 68  LDA tbl_bat_6827_col
+    MOVEA.L #$FF6828,A0  ; Restore v609 startup behavior: gameplay entry expects the live RAM high byte here
+    MOVE.B  (A0,D1.L),D0
     MOVE.B  D0,$FF0005  ; FIX v378: STA $05  ; orig: C - - - - - 0x016A50 05:AA40: 85 05  STA ram_0004_t07_col
     MOVEA.L #ram_0002_t09_data,A0
+    MOVEQ   #0,D5
     MOVE.W  (A0),D5
     ROL.W   #8,D5
-    MOVEA.W D5,A1
+    ANDI.L  #$0000FFFF,D5
+    MOVEA.L D5,A1
 
     MOVEA.L A1,A0
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
-
     ANDI.B  #$0F,D0  ; orig: C - - - - - 0x016A54 05:AA44: 29 0F     AND #$0F
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x016A56 05:AA46: AA        TAX
+    ANDI.W  #$00FF,D1
+    LSL.W   #8,D3
     MOVE.B  #$FF,D2  ; orig: C - - - - - 0x016A57 05:AA47: A0 FF     LDY #$FF
 b05_bra_AA49_loop:  ; orig: b05_bra_AA49_loop:
+    MOVE.W  #$3516,D0
+    BSR     TRACE_MARK
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x016A59 05:AA49: C8        INY
+    ANDI.W  #$00FF,D2
     MOVEA.L #ram_0004_t07_columns_data,A0
+    MOVEQ   #0,D5
     MOVE.W  (A0),D5
     ROL.W   #8,D5
-    MOVEA.W D5,A1
-
-    MOVEA.L A1,A0
+    MOVE.W  D5,(TRACE_SEQ_PTR_RAW).l
+    ANDI.L  #$0000FFFF,D5
+    MOVEA.L D5,A0  ; Restore the direct FF0000 columns-stream path from the safer pre-v621 behavior
     ADDA.L  #$FF0000,A0
+    MOVE.L  A0,(TRACE_SEQ_PTR_RES).l
+    MOVE.W  D2,(TRACE_SEQ_INDEX).l
     MOVE.B  (A0,D2.W),D0
-
+    ANDI.W  #$00FF,D0
+    MOVE.W  D0,(TRACE_SEQ_BYTE).l
+    MOVE.W  D3,D4
+    OR.W    D1,D4
+    MOVE.W  D4,(TRACE_SEQ_SOURCE).l
+    TST.B   D0
     BPL     b05_bra_AA49_loop             ; BPL  ; orig: C - - - - - 0x016A5C 05:AA4C: 10 FB     BPL b05_bra_AA49_loop
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x016A5E 05:AA4E: CA        DEX
     BPL     b05_bra_AA49_loop             ; BPL  ; orig: C - - - - - 0x016A5F 05:AA4F: 10 F8     BPL b05_bra_AA49_loop
@@ -6760,16 +6784,17 @@ b05_bra_AA49_loop:  ; orig: b05_bra_AA49_loop:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x016A65 05:AA55: A9 00     LDA #$00
     MOVE.B  D0,ram_0007_t01_special_metatile_pos_Y  ; orig: C - - - - - 0x016A67 05:AA57: 85 07     STA ram_0007_t01_spe
 b05_bra_AA59_loop:  ; orig: b05_bra_AA59_loop:
+    MOVE.W  #$3517,D0
+    BSR     TRACE_MARK
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x016A69 05:AA59: A0 00     LDY #$00
     MOVEA.L #ram_0004_t07_columns_data,A0
+    MOVEQ   #0,D5
     MOVE.W  (A0),D5
     ROL.W   #8,D5
-    MOVEA.W D5,A1
-
-    MOVEA.L A1,A0
+    ANDI.L  #$0000FFFF,D5
+    MOVEA.L D5,A0  ; Restore the direct FF0000 columns-stream path from the safer pre-v621 behavior
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
-
     ANDI.B  #$3F,D0  ; orig: C - - - - - 0x016A6D 05:AA5D: 29 3F     AND #$3F
     MOVE.B  D0,ram_000D_t03  ; orig: C - - - - - 0x016A6F 05:AA5F: 85 0D     STA ram_000D_t03
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x016A71 05:AA61: AA        TAX
@@ -6779,14 +6804,15 @@ b05_bra_AA59_loop:  ; orig: b05_bra_AA59_loop:
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x016A75 05:AA65: 48        PHA
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x016A76 05:AA66: A4 EB     LDY ram_map_location
     MOVEA.L #ram_0008_t02_data,A0
+    MOVEQ   #0,D5
     MOVE.W  (A0),D5
     ROL.W   #8,D5
-    MOVEA.W D5,A1
+    ANDI.L  #$0000FFFF,D5
+    MOVEA.L D5,A1
 
     MOVEA.L A1,A0
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
-
     ANDI.B  #$80,D0  ; orig: C - - - - - 0x016A7A 05:AA6A: 29 80     AND #$80
     BEQ     b05_bra_AA88             ; BEQ  ; orig: C - - - - - 0x016A7C 05:AA6C: F0 1A     BEQ b05_bra_AA88
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016A7E 05:AA6E: 68        PLA
@@ -6815,14 +6841,13 @@ b05_bra_AA88:  ; orig: b05_bra_AA88:
     BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016AA3 05:AA93: 20 76 72  JSR sub_bat_7276_inc
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x016AA6 05:AA96: A0 00     LDY #$00
     MOVEA.L #ram_0004_t07_columns_data,A0
+    MOVEQ   #0,D5
     MOVE.W  (A0),D5
     ROL.W   #8,D5
-    MOVEA.W D5,A1
-
-    MOVEA.L A1,A0
+    ANDI.L  #$0000FFFF,D5
+    MOVEA.L D5,A0  ; Restore the direct FF0000 columns-stream path from the safer pre-v621 behavior
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
-
     ANDI.B  #$40,D0  ; orig: C - - - - - 0x016AAA 05:AA9A: 29 40     AND #$40
     BEQ     b05_bra_AAA4             ; BEQ  ; orig: C - - - - - 0x016AAC 05:AA9C: F0 06     BEQ b05_bra_AAA4
     MOVE.B  ram_000C_t09,D3
@@ -6894,6 +6919,8 @@ b05_bra_AAD0:  ; orig: b05_bra_AAD0:
     MOVE.B  D0,ram_052D_special_metatile_pos_Y  ; orig: C - - - - - 0x016AFC 05:AAEC: 8D 2D 05  STA ram_052D_special
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016AFF 05:AAEF: 68        PLA
 b05_bra_AAF0_RTS:  ; orig: b05_bra_AAF0_RTS:
+    MOVE.W  #$3518,D0
+    BSR     TRACE_MARK
     RTS                     ; RTS  ; orig: C - - - - - 0x016B00 05:AAF0: 60        RTS
 
 
@@ -7032,18 +7059,33 @@ b05_bra_AB0E_00_0F:  ; orig: b05_bra_AB0E_00_0F:
 
 
 sub_AB30_prepare_columns_table:  ; orig: sub_AB30_prepare_columns_table:
-    MOVE.B  tbl_9F9E_overworld,D0  ; orig: C - - - - - 0x016B40 05:AB30: AD 9E 9F  LDA tbl_9F9E_overwor
-    MOVE.B  $FF9F9F,D1  ; FIX v378: LDX $9F9F  ; orig: C - - - - - 0x016B43 05:AB33: AE 9F 9F  LDX tbl_9F9E_overwor
-    MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x016B46 05:AB36: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_AB3E             ; BEQ  ; orig: C - - - - - 0x016B48 05:AB38: F0 04     BEQ b05_bra_AB3E    ; if
-
-; if dungeon
-    MOVE.B  #$D4,D0  ; orig: C - - - - - 0x016B4A 05:AB3A: A9 D4     LDA #$D4
-    MOVE.B  #$A3,D1  ; orig: C - - - - - 0x016B4C 05:AB3C: A2 A3     LDX #$A3
 b05_bra_AB3E:  ; orig: b05_bra_AB3E:
+    MOVEA.L #tbl_bat_6827_columns,A0
+    MOVEA.L #ram_6827_tbl_bat_columns,A1
+    MOVEQ   #$1F,D3
+b05_bra_AB3E_copy_loop:
+    MOVE.B  (A0)+,(A1)+
+    DBF     D3,b05_bra_AB3E_copy_loop
+    MOVE.B  ram_dungeon_level,D2
+    BNE     b05_bra_AB3E_dungeon
+    MOVE.B  tbl_9F9E_overworld,D0
+    MOVE.B  $FF9F9F,D1
+    BRA     b05_bra_AB3E_store
+b05_bra_AB3E_dungeon:
+    MOVE.B  #$D4,D0  ; Original NES low byte for tbl_A3D4_dungeon
+    MOVE.B  #$A3,D1  ; Original NES high byte for tbl_A3D4_dungeon
+b05_bra_AB3E_store:
     MOVE.B  D0,ram_6827_tbl_bat_columns  ; orig: C - - - - - 0x016B4E 05:AB3E: 8D 27 68  STA ram_6827_tbl_bat
     MOVE.B  D1,$FF6828  ; FIX v378: STX $6828  ; orig: C - - - - - 0x016B51 05:AB41: 8E 28 68  STX ram_6827_tbl_bat
     RTS                     ; RTS  ; orig: C - - - - - 0x016B54 05:AB44: 60        RTS
+
+
+
+sub_b05_copy_block_to_ff:
+b05_bra_b05_copy_block_to_ff_loop:
+    MOVE.B  (A0)+,(A1)+
+    DBF     D4,b05_bra_b05_copy_block_to_ff_loop
+    RTS
 
 
 
@@ -7093,6 +7135,8 @@ ofs_040_AB62_03_draw_underground_room:  ; orig: ofs_040_AB62_03_draw_underground
 loc_AB73:  ; orig: loc_AB73:
 
 ; code for overworld only, not for dungeons
+    MOVE.W  #$3511,D0
+    BSR     TRACE_MARK
     BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C D 1 - - - 0x016B83 05:AB73: 20 CE E6  JSR sub_0x01E6DE_get
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x016B86 05:AB76: 0A        ASL
     BCS     b05_bra_ABBB_RTS             ; BCS  ; orig: C - - - - - 0x016B87 05:AB77: B0 42     BCS b05_bra_ABBB_RTS
@@ -7157,6 +7201,8 @@ b05_bra_ABB8:  ; orig: b05_bra_ABB8:
 ; bzk optimize, JMP
     BSR     sub_AAF1_unpack_and_write_2x2_block             ; JSR -> BSR  ; orig: C - - - - - 0x016BC8 05:ABB8: 20 F1 AA  JSR sub_AAF1_unpack_
 b05_bra_ABBB_RTS:  ; orig: b05_bra_ABBB_RTS:
+    MOVE.W  #$3512,D0
+    BSR     TRACE_MARK
     RTS                     ; RTS  ; orig: C - - - - - 0x016BCB 05:ABBB: 60        RTS
 b05_bra_ABBC:  ; orig: b05_bra_ABBC:
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x016BCC 05:ABBC: A9 10     LDA #$10
@@ -7401,7 +7447,11 @@ ofs_002_0x01703A_07_draw_level_text:  ; orig: ofs_002_0x01703A_07_draw_level_tex
 
 
 ofs_002_0x017046_08:  ; orig: ofs_002_0x017046_08:
+    MOVE.W  #$3500,D0
+    BSR     TRACE_MARK
     BSR     sub_A8C4             ; JSR -> BSR  ; orig: C - - J - - 0x017046 05:B036: 20 C4 A8  JSR sub_A8C4
+    MOVE.W  #$3501,D0
+    BSR     TRACE_MARK
     MOVE.B  #$10,D2  ; orig: C - - - - - 0x017049 05:B039: A0 10     LDY #$10
     MOVE.B  D2,ram_007C  ; orig: C - - - - - 0x01704B 05:B03B: 84 7C     STY ram_007C
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01704D 05:B03D: C8        INY ; 11
@@ -7414,6 +7464,8 @@ ofs_002_0x017046_08:  ; orig: ofs_002_0x017046_08:
     MOVE.B  D0,ram_pos_X_link  ; orig: C - - - - - 0x01705A 05:B04A: 85 70     STA ram_pos_X_link
     MOVE.B  ram_6BA6,D0  ; orig: C - - - - - 0x01705C 05:B04C: AD A6 6B  LDA ram_6BA6
     MOVE.B  D0,ram_pos_Y_link  ; orig: C - - - - - 0x01705F 05:B04F: 85 84     STA ram_pos_Y_link
+    MOVE.W  #$3502,D0
+    BSR     TRACE_MARK
     JMP     loc_bat_6C90  ; orig: C - - - - - 0x017061 05:B051: 4C 90 6C  JMP loc_bat_6C90
 
 
@@ -7433,6 +7485,7 @@ tbl_B054:  ; orig: tbl_B054:
     DC.B $5E  ; data (was .BYTE) ; orig: - D 1 - - - 0x01706B 05:B05B: 5E        .byte $5E   ; 02
     DC.B $BD  ; data (was .BYTE) ; orig: - D 1 - - - 0x01706C 05:B05C: BD        .byte $BD   ; 03
     DC.B $78  ; data (was .BYTE) ; orig: - D 1 - - - 0x01706D 05:B05D: 78        .byte $78   ; 04 min
+    EVEN  ; auto: odd DC.B run alignment
 
 
 

@@ -1,0 +1,57 @@
+=== PAD BRIDGE PROBE zelda_v613 ===
+Verifying controller bridge without JOYPAD override.
+heartbeat frame=120 action=idle ready=0 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+title_ready_frame=130
+heartbeat frame=240 action=idle ready=0 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+title_ready_frame=267
+action_begin=start expected=10 applied=true joypad_keys=Start
+press frame=288 action=start ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+press frame=289 action=start ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+press frame=290 action=start ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+release frame=291 action=start ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+action_begin=a expected=80 applied=true joypad_keys=A
+press frame=299 action=a ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+press frame=300 action=a ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+press frame=301 action=a ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+release frame=302 action=a ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+action_begin=b expected=40 applied=true joypad_keys=B
+press frame=310 action=b ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+press frame=311 action=b ready=1 script=0 sub=0 ppu=00 joy=40 btn=[40,40] trace=[00FF,00FF]
+press frame=312 action=b ready=1 script=0 sub=0 ppu=00 joy=40 btn=[00,40] trace=[00FF,00FF]
+release frame=313 action=b ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+action_begin=c_select expected=20 applied=true joypad_keys=C
+press frame=321 action=c_select ready=1 script=0 sub=0 ppu=00 joy=20 btn=[20,20] trace=[00FF,00FF]
+press frame=322 action=c_select ready=1 script=0 sub=0 ppu=00 joy=20 btn=[00,20] trace=[00FF,00FF]
+press frame=323 action=c_select ready=1 script=0 sub=0 ppu=00 joy=20 btn=[00,20] trace=[00FF,00FF]
+release frame=324 action=c_select ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+action_begin=up expected=08 applied=true joypad_keys=Up
+press frame=332 action=up ready=1 script=0 sub=0 ppu=00 joy=08 btn=[08,08] trace=[00FF,00FF]
+press frame=333 action=up ready=1 script=0 sub=0 ppu=00 joy=08 btn=[00,08] trace=[00FF,00FF]
+press frame=334 action=up ready=1 script=0 sub=0 ppu=00 joy=08 btn=[00,08] trace=[00FF,00FF]
+release frame=335 action=up ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+action_begin=down expected=04 applied=true joypad_keys=Down
+press frame=343 action=down ready=1 script=0 sub=0 ppu=00 joy=04 btn=[04,04] trace=[00FF,00FF]
+press frame=344 action=down ready=1 script=0 sub=0 ppu=00 joy=04 btn=[00,04] trace=[00FF,00FF]
+press frame=345 action=down ready=1 script=0 sub=0 ppu=00 joy=04 btn=[00,04] trace=[00FF,00FF]
+release frame=346 action=down ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+action_begin=left expected=02 applied=true joypad_keys=Left
+press frame=354 action=left ready=1 script=0 sub=0 ppu=00 joy=02 btn=[02,02] trace=[00FF,00FF]
+press frame=355 action=left ready=1 script=0 sub=0 ppu=00 joy=02 btn=[00,02] trace=[00FF,00FF]
+press frame=356 action=left ready=1 script=0 sub=0 ppu=00 joy=02 btn=[00,02] trace=[00FF,00FF]
+release frame=357 action=left ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+action_begin=right expected=01 applied=true joypad_keys=Right
+press frame=365 action=right ready=1 script=0 sub=0 ppu=00 joy=01 btn=[01,01] trace=[00FF,00FF]
+press frame=366 action=right ready=1 script=0 sub=0 ppu=00 joy=01 btn=[00,01] trace=[00FF,00FF]
+press frame=367 action=right ready=1 script=0 sub=0 ppu=00 joy=01 btn=[00,01] trace=[00FF,00FF]
+release frame=368 action=right ready=1 script=0 sub=0 ppu=00 joy=00 btn=[00,00] trace=[00FF,00FF]
+
+=== SUMMARY ===
+button=start expected=10 detected=false
+button=a expected=80 detected=false
+button=b expected=40 detected=true
+button=c_select expected=20 detected=true
+button=up expected=08 detected=true
+button=down expected=04 detected=true
+button=left expected=02 detected=true
+button=right expected=01 detected=true
+result=FAIL

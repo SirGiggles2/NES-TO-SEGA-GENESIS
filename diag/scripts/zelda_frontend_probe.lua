@@ -3,7 +3,7 @@
 -- title -> file select -> register/name-entry or gameplay branch
 -- ROM_VERSION is patched by run_frontend_probe.ps1 before launch.
 
-local ROM_VERSION = "zelda_v599"
+local ROM_VERSION = "zelda_v648"
 local MAX_FRAMES  = 2400
 
 local OUT_DIR   = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"

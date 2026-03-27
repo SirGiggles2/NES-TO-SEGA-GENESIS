@@ -832,6 +832,58 @@ def safe_console_text(text):
     return text.encode('ascii', 'replace').decode('ascii')
 
 
+_RE_DCB_POST = re.compile(r'^\s+DC\.B\s+(.+)', re.IGNORECASE)
+_RE_EVEN_POST = re.compile(r'^\s+EVEN\b', re.IGNORECASE)
+
+
+def insert_even_after_odd_dcb(lines):
+    """Post-processing pass: insert EVEN after odd-length DC.B runs — but ONLY
+    when the next meaningful content is code (instruction or label), not more
+    data directives.  Inserting EVEN inside a multi-group data table (groups
+    separated by blank lines / comments) corrupts indexed table access because
+    the pad byte shifts all subsequent records.  We are conservative: if the
+    next non-blank/non-comment line starts another data directive (DC.B, DC.W,
+    DC.L, INCBIN), we skip the insertion to preserve table integrity.
+    """
+    RE_DCB_L  = re.compile(r'^\s+DC\.B\s+',    re.IGNORECASE)
+    RE_DATA_L = re.compile(r'^\s+(DC\.[BWL]|INCBIN)\b', re.IGNORECASE)
+    RE_EVEN_L = re.compile(r'^\s+EVEN\b',       re.IGNORECASE)
+
+    result = []
+    i = 0
+    while i < len(lines):
+        if RE_DCB_L.match(lines[i]):
+            # Accumulate consecutive DC.B lines (no gaps)
+            byte_count = 0
+            while i < len(lines) and RE_DCB_L.match(lines[i]):
+                m = _RE_DCB_POST.match(lines[i])
+                operand = m.group(1).split(';')[0].strip()
+                tokens = [t.strip() for t in operand.split(',') if t.strip()]
+                byte_count += len(tokens)
+                result.append(lines[i])
+                i += 1
+            # Only consider inserting EVEN for odd-byte runs
+            if byte_count % 2 == 1:
+                # Look past blank / pure-comment lines
+                j = i
+                while j < len(lines) and (not lines[j].strip() or
+                      lines[j].strip().startswith(';')):
+                    j += 1
+                # Skip if followed by more data — would corrupt multi-group tables
+                if j < len(lines) and RE_DATA_L.match(lines[j]):
+                    pass  # unsafe: leave as-is
+                # Skip if EVEN already present
+                elif j < len(lines) and RE_EVEN_L.match(lines[j]):
+                    pass  # already aligned
+                else:
+                    # Safe: next content is code/label — insert alignment pad
+                    result.append('    EVEN  ; auto: odd DC.B run alignment\n')
+        else:
+            result.append(lines[i])
+            i += 1
+    return result
+
+
 def fix_file(filepath):
     global CURRENT_FILE
     CURRENT_FILE = filepath
@@ -850,6 +902,9 @@ def fix_file(filepath):
         if new_line != line:
             fix_count += 1
         fixed_lines.append(new_line)
+
+    # Step 3: insert EVEN after odd-length DC.B runs to fix word-alignment
+    fixed_lines = insert_even_after_odd_dcb(fixed_lines)
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.writelines(fixed_lines)

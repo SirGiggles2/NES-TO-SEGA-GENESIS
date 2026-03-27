@@ -457,7 +457,6 @@ JOYPAD_INIT:
 ; Genesis 3-button pad hardware (active low):
 ;   TH=1 (strobe high) reads into D1:
 ;     bit 5 = C,  bit 4 = B,  bits 3-0 = Up/Down/Left/Right
-;     bit 6 = A (active low)
 ;   TH=0 (strobe low) reads into D2:
 ;     bit 5 = Start,  bit 4 = A,  bits 3-2 = 0/0, bits 1-0 = Up/Down
 ;
@@ -492,12 +491,28 @@ READ_JOYPAD:
     ; Build NES-format byte in D0
     clr.b   D0
 
-    ; D-pad from D1 bits 0-3 (Up=3, Down=2, Left=1, Right=0)
+    ; D-pad from D1 bits 0-3 (bit0=Up, bit1=Down, bit2=Left, bit3=Right)
     move.b  D1,D3
     andi.b  #$0F,D3                 ; mask direction bits
-    ; NES: bit3=Up, bit2=Down, bit1=Left, bit0=Right (active low on Genesis)
     eori.b  #$0F,D3                 ; invert (Genesis is active low)
-    or.b    D3,D0
+
+    ; Remap Genesis nibble U/D/L/R -> NES nibble R/L/D/U.
+    btst    #0,D3
+    beq     .no_up
+    bset    #3,D0
+.no_up:
+    btst    #1,D3
+    beq     .no_down
+    bset    #2,D0
+.no_down:
+    btst    #2,D3
+    beq     .no_left
+    bset    #1,D0
+.no_left:
+    btst    #3,D3
+    beq     .no_right
+    bset    #0,D0
+.no_right:
 
     ; Start button: Genesis D2 bit 5 (TH=0 read)
     btst    #5,D2
@@ -505,8 +520,8 @@ READ_JOYPAD:
     bset    #4,D0                   ; NES Start = bit 4
 .no_start:
 
-    ; A button: Genesis D1 bit 6 (TH=1 read) -> NES A = bit 7
-    btst    #6,D1
+    ; A button: Genesis D2 bit 4 (TH=0 read) -> NES A = bit 7
+    btst    #4,D2
     bne     .no_a
     bset    #7,D0
 .no_a:

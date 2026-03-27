@@ -1,0 +1,23 @@
+=== GENESIS PIXEL PROBE ===
+rom=smb blackbox
+sample_frame=300
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\genesis_pixel_probe.png
+sky_bg xy=(16,16) visible=backdrop
+  plane_a cell_rc=(2,2) cell=0024 tile=024 pal=0 hflip=0 vflip=0 px=0 py=0 packed=00 color=0 cram_slot=00 cram=0000
+  plane_b cell_rc=(2,2) cell=C024 tile=024 pal=2 hflip=0 vflip=0 px=0 py=0 packed=00 color=0 cram_slot=20 cram=0000
+title_orange xy=(54,44) visible=plane_b
+  plane_a cell_rc=(5,6) cell=0024 tile=024 pal=0 hflip=0 vflip=0 px=6 py=4 packed=00 color=0 cram_slot=00 cram=0000
+  plane_b cell_rc=(5,6) cell=A0D2 tile=0D2 pal=1 hflip=0 vflip=0 px=6 py=4 packed=11 color=1 cram_slot=11 cram=0CCE
+title_white xy=(84,74) visible=plane_b
+  plane_a cell_rc=(9,10) cell=0024 tile=024 pal=0 hflip=0 vflip=0 px=4 py=2 packed=00 color=0 cram_slot=00 cram=0000
+  plane_b cell_rc=(9,10) cell=A042 tile=042 pal=1 hflip=0 vflip=0 px=4 py=2 packed=11 color=1 cram_slot=11 cram=0CCE
+menu_text xy=(126,154) visible=plane_b
+  plane_a cell_rc=(19,15) cell=0024 tile=024 pal=0 hflip=0 vflip=0 px=6 py=2 packed=00 color=0 cram_slot=00 cram=0000
+  plane_b cell_rc=(19,15) cell=C00A tile=00A pal=2 hflip=0 vflip=0 px=6 py=2 packed=10 color=1 cram_slot=21 cram=0EEE
+hill_green xy=(29,191) visible=plane_b
+  plane_a cell_rc=(23,3) cell=0024 tile=024 pal=0 hflip=0 vflip=0 px=5 py=7 packed=00 color=0 cram_slot=00 cram=0000
+  plane_b cell_rc=(23,3) cell=8034 tile=034 pal=0 hflip=0 vflip=0 px=5 py=7 packed=22 color=2 cram_slot=02 cram=00A0
+bush_green xy=(198,186) visible=plane_b
+  plane_a cell_rc=(23,24) cell=0024 tile=024 pal=0 hflip=0 vflip=0 px=6 py=2 packed=00 color=0 cram_slot=00 cram=0000
+  plane_b cell_rc=(23,24) cell=8036 tile=036 pal=0 hflip=0 vflip=0 px=6 py=2 packed=11 color=1 cram_slot=01 cram=00E8
+=== GENESIS PIXEL PROBE COMPLETE ===

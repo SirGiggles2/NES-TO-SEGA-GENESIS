@@ -797,7 +797,7 @@ b04_bra_8232:  ; orig: b04_bra_8232:
     CMP.B  (A0,D2.L),D0
 
     BNE     b04_bra_825D             ; BNE  ; orig: C - - - - - 0x01024C 04:823C: D0 1F     BNE b04_bra_825D
-    MOVEA.L #ram_0412,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x01024E 04:823E: FE 12 04  INC ram_0412,X
+    MOVEA.L #ram_0412,A0  ; Fix X: INC ram_0412,X  ; orig: C - - - - - 0x01024E 04:823E: FE 12 04  INC ram_0412,X
     ADDQ.B  #1,(A0,D1.L)  ; ^
     MOVEA.L #ram_0412,A0
     MOVE.B  (A0,D1.L),D2
@@ -807,7 +807,7 @@ b04_bra_8232:  ; orig: b04_bra_8232:
     MOVEA.L #ram_dir_enemy,A0
     MOVE.B  D0,(A0,D1.L)
 
-    MOVEA.L #ram_state_obj,A0  ; Fix X: ; (empty translation for INC)  ; orig: C - - - - - 0x01025A 04:824A: F6 AC     INC ram_state_obj,X
+    MOVEA.L #ram_state_obj,A0  ; Fix X: INC ram_state_obj,X  ; orig: C - - - - - 0x01025A 04:824A: F6 AC     INC ram_state_obj,X
     ADDQ.B  #1,(A0,D1.L)  ; ^
     ADDQ.B  #1,ram_00F7_flag  ; orig: C - - - - - 0x01025C 04:824C: E6 F7     INC ram_00F7_flag
     MOVE.B  #$74,D0  ; orig: C - - - - - 0x01025E 04:824E: A9 74     LDA #$74
@@ -4955,10 +4955,13 @@ b04_bra_930E:  ; orig: b04_bra_930E:
 
     BCS     b04_bra_9332             ; BCC  ; orig: C - - - - - 0x01133E 04:932E: 90 02     BCC b04_bra_9332
 b04_bra_9330:  ; orig: b04_bra_9330:
-    MOVEA.L #$FF0098,A0  ; Fix X: ; (empty translation for LSR)  ; orig: C - - - - - 0x011340 04:9330: 56 98     LSR ram_dir_enemy,X
-    MOVE.B  (A0,D1.L),D3  ; ^ load
-    LSR.B   #1,D3  ; ^ lsr
-    MOVE.B  D3,(A0,D1.L)  ; ^ store
+    MOVEA.L #ram_dir_enemy,A0
+    MOVE.B  (A0,D1.L),D0
+
+    LSR.B   #1,D0                   ; LSR abs,X shift
+    MOVEA.L #ram_dir_enemy,A0
+    MOVE.B  D0,(A0,D1.L)
+
 b04_bra_9332:  ; orig: b04_bra_9332:
     MOVE.B  #$60,D0  ; orig: C - - - - - 0x011342 04:9332: A9 60     LDA #$60
     MOVEA.L #ram_03BC_obj,A0

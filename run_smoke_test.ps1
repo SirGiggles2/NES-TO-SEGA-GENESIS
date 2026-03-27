@@ -8,6 +8,7 @@ $BIZHAWK    = "D:\Emulation\BizHawk-2.11-win-x64\EmuHawk.exe"
 $PROJECT    = "C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS"
 $BUILD_DIR  = "$PROJECT\build"
 $SCRIPT     = "$PROJECT\diag\scripts\zelda_smoke_test.lua"
+$TEMP_SCRIPT = "$PROJECT\diag\scripts\zelda_smoke_test.runtime.lua"
 $REPORTS    = "$PROJECT\diag\reports"
 
 $BaseName   = [System.IO.Path]::GetFileNameWithoutExtension($Rom)
@@ -16,11 +17,12 @@ $OutputPath = "$REPORTS\smoke_test_$BaseName.json"
 
 if (-not (Test-Path $BIZHAWK)) { throw "EmuHawk.exe not found: $BIZHAWK" }
 if (-not (Test-Path $RomPath))  { throw "ROM not found: $RomPath" }
+if (-not (Test-Path $SCRIPT))   { throw "Probe Lua not found: $SCRIPT" }
 
 # Patch ROM_VERSION into the Lua script
 $OriginalLua = [System.IO.File]::ReadAllText($SCRIPT)
 $UpdatedLua  = $OriginalLua -replace 'local ROM_VERSION\s*=.*', "local ROM_VERSION = `"$BaseName`""
-[System.IO.File]::WriteAllText($SCRIPT, $UpdatedLua)
+[System.IO.File]::WriteAllText($TEMP_SCRIPT, $UpdatedLua)
 
 try {
     # Remove stale output
@@ -31,7 +33,7 @@ try {
     Write-Host "Output: $OutputPath"
     Write-Host ""
 
-    $BizArgs = ('"{0}" --lua="{1}"' -f $RomPath, $SCRIPT)
+    $BizArgs = ('"{0}" --lua="{1}"' -f $RomPath, $TEMP_SCRIPT)
     $proc = Start-Process -FilePath $BIZHAWK -ArgumentList $BizArgs -PassThru
     $deadline = (Get-Date).AddMinutes(5)
 
@@ -74,5 +76,5 @@ try {
     }
 }
 finally {
-    [System.IO.File]::WriteAllText($SCRIPT, $OriginalLua)
+    if (Test-Path $TEMP_SCRIPT) { Remove-Item $TEMP_SCRIPT -Force }
 }

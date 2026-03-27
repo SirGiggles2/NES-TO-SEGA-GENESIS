@@ -1,0 +1,41 @@
+=== ROM TITLE BLACKBOX ===
+system_id=nes
+rom_name=Super Mario Bros.
+out_path=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\Super_Mario_Bros_nes_title_blackbox.txt
+shot_path=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\Super_Mario_Bros_nes_title_blackbox.png
+memory_domains=WRAM,CHR,CIRAM (nametables),PRG ROM,CHR VROM,PALRAM,OAM,System Bus
+client.buffer=256x224 client.screen=586x448
+frame=1
+frame=60
+frame=120
+frame=180
+frame=240
+frame=300
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\Super_Mario_Bros_nes_title_blackbox.png
+client.buffer=256x224 client.screen=586x448
+mode=nes
+ram_domain=System Bus
+cpu_ram_low[0000-000F]=00 4F D0 01 00 28 20 00 05 27 00 00 00 00 08 00
+cpu_ram_low[0010-001F]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[0020-002F]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[0030-003F]=00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[0040-004F]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[0050-005F]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[0060-006F]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 01
+cpu_ram_low[0070-007F]=01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[0080-008F]=00 00 00 00 00 00 28 60 60 60 60 60 00 00 00 00
+cpu_ram_low[0090-009F]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[00A0-00AF]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[00B0-00BF]=00 00 00 00 00 01 01 00 00 00 00 00 00 00 00 00
+cpu_ram_low[00C0-00CF]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 B0 E0
+cpu_ram_low[00D0-00DF]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+cpu_ram_low[00E0-00EF]=00 00 00 00 00 00 00 90 A6 01 9F 13 00 00 00 00
+cpu_ram_low[00F0-00FF]=00 00 00 00 00 00 00 00 00 00 00 80 00 00 00 00
+oam_shadow[0200-020F]=18 FF 23 58 B0 FC 00 28 B0 FC 00 30 B8 FC 00 28
+oam_shadow[0210-021F]=B8 FC 00 30 C0 3A 00 28 C0 37 00 30 C8 4F 00 28
+vram_buffer[0300-030F]=00 00 0C 04 0F 27 17 0F 00 00 00 00 00 00 00 00
+vram_buffer[0310-031F]=00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+palette_domain=PALRAM
+ppu_palette[0000-000F]=22 29 1A 0F 0F 36 17 0F 0F 30 21 0F 0F 27 17 0F
+ppu_palette[0010-001F]=00 16 27 18 00 1A 30 27 00 16 30 27 00 0F 36 17
+=== ROM TITLE BLACKBOX COMPLETE ===

@@ -1,0 +1,95 @@
+=== TITLE SPRITE PROBE zelda_v676 ===
+sample_frame=163 ready=1 script=0 sub=0 ppu=00 hold=20
+nes_oam_visible:
+  [00] y=77 tile=CA attr=C2 x=D0
+  [01] y=77 tile=CC attr=C2 x=C8
+  [02] y=77 tile=CA attr=82 x=28
+  [03] y=77 tile=CC attr=82 x=30
+  [04] y=27 tile=CA attr=42 x=D0
+  [05] y=27 tile=CC attr=42 x=C8
+  [06] y=27 tile=CA attr=02 x=28
+  [07] y=27 tile=CC attr=02 x=30
+  [08] y=57 tile=CE attr=02 x=74
+  [09] y=57 tile=D0 attr=02 x=7C
+  [10] y=31 tile=D2 attr=02 x=57
+  [11] y=4F tile=D2 attr=02 x=CC
+  [12] y=67 tile=D2 attr=02 x=7B
+  [13] y=83 tile=D2 attr=02 x=50
+  [14] y=31 tile=D4 attr=02 x=5F
+  [15] y=3F tile=D4 attr=02 x=24
+  [16] y=41 tile=D4 attr=02 x=64
+  [17] y=7B tile=D4 attr=02 x=90
+  [18] y=27 tile=D6 attr=02 x=50
+  [19] y=2B tile=D6 attr=02 x=A0
+  [20] y=4F tile=D6 attr=02 x=2C
+  [21] y=7B tile=D6 attr=02 x=BC
+  [22] y=67 tile=A0 attr=03 x=60
+  [23] y=67 tile=A0 attr=03 x=68
+  [24] y=67 tile=A0 attr=03 x=70
+  [25] y=67 tile=A0 attr=03 x=78
+  [26] y=67 tile=A0 attr=03 x=80
+  [27] y=67 tile=A0 attr=03 x=88
+  [28] y=D4 tile=C8 attr=00 x=68
+  [29] y=D4 tile=C6 attr=00 x=60
+  [30] y=D4 tile=C4 attr=00 x=58
+  [31] y=D4 tile=C2 attr=00 x=50
+  [32] y=B4 tile=B8 attr=00 x=68
+  [33] y=B4 tile=B6 attr=00 x=60
+  [34] y=B4 tile=B4 attr=00 x=58
+  [35] y=B4 tile=B2 attr=00 x=50
+  [36] y=C4 tile=C8 attr=00 x=68
+  [37] y=C4 tile=C6 attr=00 x=60
+  [38] y=C4 tile=C4 attr=00 x=58
+  [39] y=C4 tile=C2 attr=00 x=50
+  [60] y=A8 tile=A8 attr=00 x=68
+  [61] y=A8 tile=A6 attr=00 x=60
+  [62] y=A8 tile=A4 attr=00 x=58
+  [63] y=A8 tile=A2 attr=00 x=50
+nes_oam_visible_count=44
+genesis_sat_visible:
+  [00] y=0F7 x=150 link=01 size=0 attr=DACA tile=2CA pal=2 pri=1
+  [01] y=0F7 x=148 link=02 size=0 attr=DACC tile=2CC pal=2 pri=1
+  [02] y=0F7 x=0A8 link=03 size=0 attr=D2CA tile=2CA pal=2 pri=1
+  [03] y=0F7 x=0B0 link=04 size=0 attr=D2CC tile=2CC pal=2 pri=1
+  [04] y=0A7 x=150 link=05 size=0 attr=CACA tile=2CA pal=2 pri=1
+  [05] y=0A7 x=148 link=06 size=0 attr=CACC tile=2CC pal=2 pri=1
+  [06] y=0A7 x=0A8 link=07 size=0 attr=C2CA tile=2CA pal=2 pri=1
+  [07] y=0A7 x=0B0 link=08 size=0 attr=C2CC tile=2CC pal=2 pri=1
+  [08] y=0D7 x=0F4 link=09 size=0 attr=C2CE tile=2CE pal=2 pri=1
+  [09] y=0D7 x=0FC link=0A size=0 attr=C2D0 tile=2D0 pal=2 pri=1
+  [10] y=0B1 x=0D7 link=0B size=0 attr=C2D2 tile=2D2 pal=2 pri=1
+  [11] y=0CF x=14C link=0C size=0 attr=C2D2 tile=2D2 pal=2 pri=1
+  [12] y=0E7 x=0FB link=0D size=0 attr=C2D2 tile=2D2 pal=2 pri=1
+  [13] y=103 x=0D0 link=0E size=0 attr=C2D2 tile=2D2 pal=2 pri=1
+  [14] y=0B1 x=0DF link=0F size=0 attr=C2D4 tile=2D4 pal=2 pri=1
+  [15] y=0BF x=0A4 link=10 size=0 attr=C2D4 tile=2D4 pal=2 pri=1
+  [16] y=0C1 x=0E4 link=11 size=0 attr=C2D4 tile=2D4 pal=2 pri=1
+  [17] y=0FB x=110 link=12 size=0 attr=C2D4 tile=2D4 pal=2 pri=1
+  [18] y=0A7 x=0D0 link=13 size=0 attr=C2D6 tile=2D6 pal=2 pri=1
+  [19] y=0AB x=120 link=14 size=0 attr=C2D6 tile=2D6 pal=2 pri=1
+  [20] y=0CF x=0AC link=15 size=0 attr=C2D6 tile=2D6 pal=2 pri=1
+  [21] y=0FB x=13C link=16 size=0 attr=C2D6 tile=2D6 pal=2 pri=1
+  [22] y=0E7 x=0E0 link=17 size=0 attr=E2A0 tile=2A0 pal=3 pri=1
+  [23] y=0E7 x=0E8 link=18 size=0 attr=E2A0 tile=2A0 pal=3 pri=1
+  [24] y=0E7 x=0F0 link=19 size=0 attr=E2A0 tile=2A0 pal=3 pri=1
+  [25] y=0E7 x=0F8 link=1A size=0 attr=E2A0 tile=2A0 pal=3 pri=1
+  [26] y=0E7 x=100 link=1B size=0 attr=E2A0 tile=2A0 pal=3 pri=1
+  [27] y=0E7 x=108 link=1C size=0 attr=E2A0 tile=2A0 pal=3 pri=1
+  [28] y=154 x=0E8 link=1D size=0 attr=82C8 tile=2C8 pal=0 pri=1
+  [29] y=154 x=0E0 link=1E size=0 attr=82C6 tile=2C6 pal=0 pri=1
+  [30] y=154 x=0D8 link=1F size=0 attr=82C4 tile=2C4 pal=0 pri=1
+  [31] y=154 x=0D0 link=20 size=0 attr=82C2 tile=2C2 pal=0 pri=1
+  [32] y=134 x=0E8 link=21 size=0 attr=82B8 tile=2B8 pal=0 pri=1
+  [33] y=134 x=0E0 link=22 size=0 attr=82B6 tile=2B6 pal=0 pri=1
+  [34] y=134 x=0D8 link=23 size=0 attr=82B4 tile=2B4 pal=0 pri=1
+  [35] y=134 x=0D0 link=24 size=0 attr=82B2 tile=2B2 pal=0 pri=1
+  [36] y=144 x=0E8 link=25 size=0 attr=82C8 tile=2C8 pal=0 pri=1
+  [37] y=144 x=0E0 link=26 size=0 attr=82C6 tile=2C6 pal=0 pri=1
+  [38] y=144 x=0D8 link=27 size=0 attr=82C4 tile=2C4 pal=0 pri=1
+  [39] y=144 x=0D0 link=28 size=0 attr=82C2 tile=2C2 pal=0 pri=1
+  [60] y=128 x=0E8 link=3D size=0 attr=82A8 tile=2A8 pal=0 pri=1
+  [61] y=128 x=0E0 link=3E size=0 attr=82A6 tile=2A6 pal=0 pri=1
+  [62] y=128 x=0D8 link=3F size=0 attr=82A4 tile=2A4 pal=0 pri=1
+  [63] y=128 x=0D0 link=00 size=0 attr=82A2 tile=2A2 pal=0 pri=1
+genesis_sat_nonzero_count=44
+=== TITLE SPRITE PROBE COMPLETE ===

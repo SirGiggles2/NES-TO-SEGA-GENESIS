@@ -49,7 +49,9 @@ tbl_8006_counter:  ; orig: tbl_8006_counter:
 
 
 tbl_800C_ppu_ppu_addr:  ; orig: tbl_800C_ppu_ppu_addr:
-    DC.B    $00,$00,$00,$10,$20,$1F
+    ; The uploader writes these bytes directly to $2006 as hi then lo,
+    ; so preserve the original .DBYT byte order here.
+    DC.B    $00,$00,$10,$00,$1F,$20
 
 
 
@@ -104,13 +106,13 @@ sub_804F_write_to_ppu:  ; orig: sub_804F_write_to_ppu:
     MOVE.B  D0,D0  ; prep for PPU_WRITE_2006 (VRAM addr)  ; was: C - - - - - 0x00805F 02:804F: 8D 06 20  STA $2006
     BSR     PPU_WRITE_2006
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x008062 02:8052: A0 00     LDY #$00
-b02_bra_8054_loop:  ; orig: b02_bra_8054_loop:
     MOVEQ   #0,D5
     MOVE.B  ram_0001_t10,D5
     LSL.W   #8,D5
     MOVE.B  ram_0000_t10_tiles_data,D5
-    MOVEA.L #$00FF0000,A0
-    MOVE.B  (A0,D5.W),D0  ; orig: C - - - - - 0x008064 02:8054: B1 00     LDA (ram_0000_t10_ti
+    BSR     sub_808F_resolve_title_chr_ptr_real
+b02_bra_8054_loop:  ; orig: b02_bra_8054_loop:
+    MOVE.B  (A1)+,D0  ; ROM-backed title CHR pointers must resolve to the real bank data, not NES RAM shadow
     MOVE.B  D0,D0  ; prep for PPU_WRITE_2007 (VRAM data)  ; was: C - - - - - 0x008066 02:8056: 8D 07 20  STA $2007
     BSR     PPU_WRITE_2007
     ADDQ.W  #1,D5
@@ -131,6 +133,40 @@ b02_bra_8054_loop:  ; orig: b02_bra_8054_loop:
     BNE     b02_bra_8054_loop             ; BNE  ; orig: C - - - - - 0x008085 02:8075: D0 DD     BNE b02_bra_8054_loop
     ADDQ.B  #1,ram_051D  ; orig: C - - - - - 0x00808B 02:807B: EE 1D 05  INC ram_051D
     RTS                     ; RTS  ; orig: C - - - - - 0x00808E 02:807E: 60        RTS
+
+
+
+sub_808F_resolve_title_chr_ptr_real:
+    CMPI.W  #$877F,D5
+    BCS     b02_bra_808F_chr_first
+    CMPI.W  #$8E7F,D5
+    BCS     b02_bra_808F_chr_second
+    CMPI.W  #$8F5F,D5
+    BCS     b02_bra_808F_chr_third
+    MOVEA.L #$00FF0000,A1
+    ADDA.W  D5,A1
+    RTS
+
+b02_bra_808F_chr_first:
+    MOVEA.L #tbl_807F___0000_06FF,A1
+    MOVE.W  D5,D4
+    SUBI.W  #$807F,D4
+    ADDA.W  D4,A1
+    RTS
+
+b02_bra_808F_chr_second:
+    MOVEA.L #tbl_877F___1000_16FF,A1
+    MOVE.W  D5,D4
+    SUBI.W  #$877F,D4
+    ADDA.W  D4,A1
+    RTS
+
+b02_bra_808F_chr_third:
+    MOVEA.L #tbl_8E7F___1F20_1FFF,A1
+    MOVE.W  D5,D4
+    SUBI.W  #$8E7F,D4
+    ADDA.W  D4,A1
+    RTS
 
 
 
@@ -659,6 +695,7 @@ tbl_915E:  ; orig: tbl_915E:
     DC.B $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00  ; data (was .BYTE) ; orig: - - - - - - 0x009220 02:9210: 00        .byte $00, $00, $00,
     DC.B $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00  ; data (was .BYTE) ; orig: - - - - - - 0x009230 02:9220: 00        .byte $00, $00, $00,
     DC.B $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00  ; data (was .BYTE) ; orig: - - - - - - 0x009240 02:9230: 00        .byte $00, $00, $00,
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -773,6 +810,7 @@ _off002_929A_00_all_of_treasures:  ; orig: _off002_929A_00_all_of_treasures:
     DC.B $1B,$0E,$0A,$1C,$1E,$1B,$0E,$1C,$24,$E6,$E4,$E5,$E4,$E5,$E4,$E5  ; data (was .BYTE) ; orig: - D 0 - I - 0x0092BB 02:92AB: 1B        .byte $1B, $0E, $0A,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x0092CB 02:92BB: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -820,6 +858,7 @@ _off002_92D8_03_fairy___clock:  ; orig: _off002_92D8_03_fairy___clock:
     DC.B $24,$24,$24,$24,$0C,$15,$18,$0C,$14  ; data (was .BYTE) ; orig: - D 0 - I - 0x0092F2 02:92E2: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x0092FB 02:92EB: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -852,6 +891,7 @@ _off002_9301_07_sword___white:  ; orig: _off002_9301_07_sword___white:
     DC.B $24,$24,$24,$24,$20,$11,$12,$1D,$0E  ; data (was .BYTE) ; orig: - D 0 - I - 0x00931B 02:930B: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x009324 02:9314: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -882,6 +922,7 @@ _off002_931C_09_magical___magical:  ; orig: _off002_931C_09_magical___magical:
     DC.B $24,$24,$24,$16,$0A,$10,$12,$0C,$0A,$15  ; data (was .BYTE) ; orig: - D 0 - I - 0x009337 02:9327: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x009341 02:9331: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1012,6 +1053,7 @@ _off002_93AB_11_candle___candle:  ; orig: _off002_93AB_11_candle___candle:
     DC.B $24,$24,$24,$24,$0C,$0A,$17,$0D,$15,$0E  ; data (was .BYTE) ; orig: - D 0 - I - 0x0093C6 02:93B6: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x0093D0 02:93C0: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1044,6 +1086,7 @@ _off002_93D4_13_ring___ring:  ; orig: _off002_93D4_13_ring___ring:
     DC.B $24,$24,$24,$24,$24,$1B,$12,$17,$10  ; data (was .BYTE) ; orig: - D 0 - I - 0x0093EE 02:93DE: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x0093F7 02:93E7: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1059,6 +1102,7 @@ _off002_93E8_14_power___recorder:  ; orig: _off002_93E8_14_power___recorder:
     DC.B $24,$24,$24,$1B,$0E,$0C,$18,$1B,$0D,$0E,$1B  ; data (was .BYTE) ; orig: - D 0 - I - 0x009402 02:93F2: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x00940D 02:93FD: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1072,6 +1116,7 @@ _off002_93FE_15_bracelet:  ; orig: _off002_93FE_15_bracelet:
     DC.B $0B,$1B,$0A,$0C,$0E,$15,$0E,$1D  ; data (was .BYTE) ; orig: - D 0 - I - 0x00940F 02:93FF: 0B        .byte               
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x009417 02:9407: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1104,6 +1149,7 @@ _off002_941F_17_magical___book_of:  ; orig: _off002_941F_17_magical___book_of:
     DC.B $24,$24,$24,$0B,$18,$18,$14,$24,$18,$0F  ; data (was .BYTE) ; orig: - D 0 - I - 0x00943A 02:942A: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x009444 02:9434: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1136,6 +1182,7 @@ _off002_9448_19_key___magical:  ; orig: _off002_9448_19_key___magical:
     DC.B $24,$24,$24,$16,$0A,$10,$12,$0C,$0A,$15  ; data (was .BYTE) ; orig: - D 0 - I - 0x009461 02:9451: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x00946B 02:945B: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1166,6 +1213,7 @@ _off002_9461_1B_map___compass:  ; orig: _off002_9461_1B_map___compass:
     DC.B $24,$24,$24,$0C,$18,$16,$19,$0A,$1C,$1C  ; data (was .BYTE) ; orig: - D 0 - I - 0x00947A 02:946A: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x009484 02:9474: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1180,6 +1228,7 @@ _off002_9475_1C_triforce:  ; orig: _off002_9475_1C_triforce:
     DC.B $18,$1B,$0C,$0E  ; data (was .BYTE) ; orig: - D 0 - I - 0x00948A 02:947A: 18        .byte $18, $1B, $0C,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x00948E 02:947E: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1195,6 +1244,7 @@ _off002_947F_05_life_potion___2nd_potion:  ; orig: _off002_947F_05_life_potion__
     DC.B $24,$24,$02,$17,$0D,$24,$19,$18,$1D,$12,$18,$17  ; data (was .BYTE) ; orig: - D 0 - I - 0x00949C 02:948C: 24        .byte $24, $24, $02,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x0094A8 02:9498: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1210,6 +1260,7 @@ _off002_9499_06_letter___food:  ; orig: _off002_9499_06_letter___food:
     DC.B $24,$24,$24,$24,$0F,$18,$18,$0D  ; data (was .BYTE) ; orig: - D 0 - I - 0x0094B4 02:94A4: 24        .byte $24, $24, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - I - 0x0094BC 02:94AC: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1280,6 +1331,7 @@ tbl_94EE_logo_palette:  ; orig: tbl_94EE_logo_palette:
     DC.B $36,$30,$3B,$22  ; data (was .BYTE) ; orig: - D 0 - - - 0x00951D 02:950D: 36        .byte $36, $30, $3B,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - - - 0x009521 02:9511: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -1352,6 +1404,7 @@ tbl_954F_demo_manual_palette:  ; orig: tbl_954F_demo_manual_palette:
     DC.B $0F,$0B,$1B,$2B  ; data (was .BYTE) ; orig: - D 0 - - - 0x00957E 02:956E: 0F        .byte $0F, $0B, $1B,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - - - 0x009582 02:9572: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -2633,6 +2686,7 @@ tbl_9D7B:  ; orig: tbl_9D7B:
     DC.B $0A,$1D,$12,$18,$17,$24,$0E,$17,$0D  ; data (was .BYTE) ; orig: - D 0 - - - 0x009DB5 02:9DA5: 0A        .byte $0A, $1D, $12,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 0 - - - 0x009DBE 02:9DAE: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -2769,6 +2823,7 @@ tbl_9E02_pos_Y:  ; orig: tbl_9E02_pos_Y:
     DC.B $F0  ; data (was .BYTE) ; orig: - D 0 - - - 0x009E15 02:9E05: F0        .byte $F0   ;
     DC.B $77  ; data (was .BYTE) ; orig: - D 0 - - - 0x009E16 02:9E06: 77        .byte $77   ;
     DC.B $B7  ; data (was .BYTE) ; orig: - D 0 - - - 0x009E17 02:9E07: B7        .byte $B7   ;
+    EVEN  ; auto: odd DC.B run alignment
 
 
 

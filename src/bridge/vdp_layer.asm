@@ -85,7 +85,7 @@ VDP_INIT:
     move.w  #$856C,($C00004)
     move.w  #$8700,($C00004)
     move.w  #$8B00,($C00004)
-    move.w  #$8C81,($C00004)
+    move.w  #$8C00,($C00004)    ; H32 mode (256px wide), no shadow/highlight, no interlace
     move.w  #$8D2F,($C00004)
     move.w  #$8F02,($C00004)
     move.w  #$9001,($C00004)
@@ -341,10 +341,6 @@ VDP_VBLANK_HANDLER:
     move.w  ($C00004),D0
     move.w  #$0201,D0
     bsr     TRACE_MARK
-    tst.b   (ram_0301_buffer_index).l
-    bne     .keep_staged_ppu_buffer
-    move.b  #$FF,(ram_0302_ppu_buffer).l
-.keep_staged_ppu_buffer:
     move.w  #$0202,D0
     bsr     TRACE_MARK
     bsr     vec_0x01E494_NMI
@@ -418,10 +414,10 @@ PPU_HANDLE_INDEXED_BUFFERS:
 .mark_redraw:
     tst.b   (PPU_TITLE_REDRAW_DONE).l
     bne     .done
-    ; Initialize title palette shadow when index $10 first detected
+    ; Initialize title palette and dispatch the queued NES title buffer ($10).
+    ; This keeps title composition data-driven instead of relying on side effects.
     bsr     INIT_TITLE_PALETTE_SHADOW
-    ; Force full nametable redraw — game's own $2007 writes populate the shadow correctly
-    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
+    bsr     PPU_DISPATCH_TITLE_BUFFER
     move.b  #1,(PPU_TITLE_REDRAW_DONE).l
     bra     .done
 
@@ -630,6 +626,7 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
     moveq   #0,D5
 .gp_line_loop:
     ; Set CRAM write address for palette line D5, color 0
+    moveq   #0,D4
     move.w  D5,D4
     lsl.w   #5,D4              ; D4 = line * 32 (CRAM byte offset per line)
     swap    D4
@@ -680,6 +677,21 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
     addq.w  #1,D3
     cmpi.w  #4,D3
     bne     .gp_sp_loop
+    ; NES BG color 0 is opaque. Mirror the universal backdrop into
+    ; Genesis color 15 so BG tiles can use nibble $F instead of transparency.
+    moveq   #0,D0
+    move.b  (A0),D0
+    move.l  A0,-(A7)
+    bsr     NES_PAL_TO_BGR555
+    move.l  (A7)+,A0
+    moveq   #0,D4
+    move.w  D5,D4
+    lsl.w   #5,D4
+    addi.w  #30,D4
+    swap    D4
+    ori.l   #$C0000000,D4
+    move.l  D4,($C00004)
+    move.w  D0,($C00000)
     ; Next palette line
     addq.w  #1,D5
     cmpi.w  #4,D5
@@ -696,9 +708,15 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
 .sync_frontend_layout:
 ; FIX v490: Frontend palette sync — BG at colors 0-3, sprites at colors 4-7
     lea     (PPU_PAL_SHADOW).l,A0
+    lea     CORRECT_NES_PALETTE(PC),A1
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .fe_table_ready
+    lea     TITLE_SCREEN_NES_PALETTE(PC),A1
+.fe_table_ready:
     moveq   #0,D5
 .fe_line_loop:
     ; Set CRAM write address for palette line D5, color 0
+    moveq   #0,D4
     move.w  D5,D4
     lsl.w   #5,D4
     swap    D4
@@ -719,15 +737,7 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
 .fe_bg_have_idx:
     moveq   #0,D0
     move.b  (A0,D4.w),D0
-    bsr     FRONTEND_PAL_LOOKUP
-    cmpi.b  #con_script_title_screen,(ram_script).l
-    bne     .fe_bg_no_title_balance
-    tst.b   ($00FF042C).l                 ; auto-demo/phase group: title hold is 0
-    bne     .fe_bg_no_title_balance
-    tst.b   ($00FF042D).l                 ; title sub-phase: hold is 0, fade is 1+
-    bne     .fe_bg_no_title_balance
-    bsr     TITLE_SCREEN_COLOR_BALANCE
-.fe_bg_no_title_balance:
+    bsr     FRONTEND_PAL_LOOKUP_FROM_TABLE
     move.w  D0,($C00000)
     addq.w  #1,D3
     cmpi.w  #4,D3
@@ -748,19 +758,23 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
 .fe_sp_have_idx:
     moveq   #0,D0
     move.b  (A0,D4.w),D0
-    bsr     FRONTEND_PAL_LOOKUP
-    cmpi.b  #con_script_title_screen,(ram_script).l
-    bne     .fe_sp_no_title_balance
-    tst.b   ($00FF042C).l
-    bne     .fe_sp_no_title_balance
-    tst.b   ($00FF042D).l
-    bne     .fe_sp_no_title_balance
-    bsr     TITLE_SCREEN_COLOR_BALANCE
-.fe_sp_no_title_balance:
+    bsr     FRONTEND_PAL_LOOKUP_FROM_TABLE
     move.w  D0,($C00000)
     addq.w  #1,D3
     cmpi.w  #4,D3
     bne     .fe_sp_loop
+    ; Frontend/title BG uses the same opaque color-0 rule as gameplay.
+    moveq   #0,D0
+    move.b  (A0),D0
+    bsr     FRONTEND_PAL_LOOKUP_FROM_TABLE
+    moveq   #0,D4
+    move.w  D5,D4
+    lsl.w   #5,D4
+    addi.w  #30,D4
+    swap    D4
+    ori.l   #$C0000000,D4
+    move.l  D4,($C00004)
+    move.w  D0,($C00000)
     ; Next palette line
     addq.w  #1,D5
     cmpi.w  #4,D5
@@ -768,15 +782,7 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
     ; Sync NES backdrop color
     moveq   #0,D0
     move.b  (A0),D0
-    bsr     FRONTEND_PAL_LOOKUP
-    cmpi.b  #con_script_title_screen,(ram_script).l
-    bne     .fe_bd_no_title_balance
-    tst.b   ($00FF042C).l
-    bne     .fe_bd_no_title_balance
-    tst.b   ($00FF042D).l
-    bne     .fe_bd_no_title_balance
-    bsr     TITLE_SCREEN_COLOR_BALANCE
-.fe_bd_no_title_balance:
+    bsr     FRONTEND_PAL_LOOKUP_FROM_TABLE
     bsr     VDP_SYNC_NES_BACKDROP_COLOR
     movem.l (A7)+,D0-D5/A0
     rts
@@ -788,40 +794,65 @@ NES_PAL_TO_BGR555:
     move.w  (A0,D0.w),D0
     rts
 
-; FIX v446: Frontend-specific palette lookup using CORRECT NES palette
+; Frontend-specific hardware palette lookup
 ; Uses A1 internally — does NOT clobber A0 (critical for sync loops)
-FRONTEND_PAL_LOOKUP:
+FRONTEND_PAL_LOOKUP_FROM_TABLE:
     andi.w  #$3F,D0
     lsl.w   #1,D0
-    lea     CORRECT_NES_PALETTE(PC),A1
     move.w  (A1,D0.w),D0
     rts
 
-; Title-only palette balancing:
-; reduce red cast and slightly lift green/blue to better match NES capture.
-TITLE_SCREEN_COLOR_BALANCE:
-    ; Keep frontend/title palette as raw NES mapping for parity.
-    rts
+; Generic frontend palette lookup
+; Uses A1 internally â€” does NOT clobber A0 (critical for sync loops)
+FRONTEND_PAL_LOOKUP:
+    lea     CORRECT_NES_PALETTE(PC),A1
+    bra     FRONTEND_PAL_LOOKUP_FROM_TABLE
+
+; Runtime title balance removed in favor of the static frontend hardware
+; palette table below. Keeping lookup-only sync preserves v659-style timing.
 
 ; Accurate NES 2C02 NTSC palette → Genesis $0BGR (3-bit per channel)
-; Computed from standard NES 2C02 RGB values, rounded to nearest Genesis level
+; Lift each nonzero channel one 3-bit step until the top band to compensate
+; for darker BizHawk/console output without runtime title tint math.
 CORRECT_NES_PALETTE:
 ;   $00      $01      $02      $03      $04      $05      $06      $07
-    DC.W $0666, $0820, $0A02, $0A04, $0606, $0406, $0006, $0024
+    DC.W $0AAA, $0C60, $0E06, $0E08, $0A0A, $080A, $000A, $0068
 ;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
-    DC.W $0022, $0040, $0040, $0040, $0440, $0000, $0000, $0000
+    DC.W $0066, $0080, $0080, $0080, $0880, $0000, $0000, $0000
 ;   $10      $11      $12      $13      $14      $15      $16      $17
-    DC.W $0AAA, $0C62, $0E44, $0E26, $0C28, $062A, $022A, $0048
+    DC.W $0EEE, $0EA6, $0E88, $0E6A, $0E6C, $0A6E, $066E, $008C
 ;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
-    DC.W $0066, $0084, $0080, $0280, $0860, $0000, $0000, $0000
+    DC.W $00AA, $00C8, $00C0, $06C0, $0CA0, $0000, $0000, $0000
 ;   $20      $21      $22      $23      $24      $25      $26      $27
-    DC.W $0EEE, $0EA6, $0E88, $0E6A, $0E6E, $0C6E, $068E, $028C
+    DC.W $0EEE, $0EEA, $0ECC, $0EAE, $0EAE, $0EAE, $0ACE, $06CE
 ;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
-    DC.W $00AA, $00C8, $02C6, $08C4, $0CC4, $0444, $0000, $0000
+    DC.W $00EE, $00EC, $06EA, $0CE8, $0EE8, $0888, $0000, $0000
 ;   $30      $31      $32      $33      $34      $35      $36      $37
-    DC.W $0EEE, $0ECA, $0ECC, $0EAC, $0EAE, $0CAE, $0ACE, $0ACE
+    DC.W $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE
 ;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
-    DC.W $08CC, $08EC, $0AEA, $0CEA, $0ECA, $0000, $0000, $0000
+    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EEE, $0000, $0000, $0000
+
+; Title-only frontend palette calibrated from a standard NES RGB palette and
+; then nudged on the hottest Zelda title indices to match the darker hardware
+; path better. Shared SMB title indices were used as a hardware-first sanity
+; check so the title does not fall back into the olive/purple console look.
+TITLE_SCREEN_NES_PALETTE:
+;   $00      $01      $02      $03      $04      $05      $06      $07
+    DC.W $0888, $0E00, $0A00, $0A24, $0808, $020A, $002A, $0028
+;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
+    DC.W $0046, $0080, $0060, $0060, $0640, $0000, $0000, $0000
+;   $10      $11      $12      $13      $14      $15      $16      $17
+    DC.W $0AAA, $0E80, $0E60, $0E46, $0C0C, $060C, $004A, $02AE
+;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
+    DC.W $008A, $00A0, $00A0, $04A0, $0880, $0000, $0000, $0000
+;   $20      $21      $22      $23      $24      $25      $26      $27
+    DC.W $0EEE, $0EA4, $0EAA, $0E8A, $0E8E, $0A6E, $068E, $02AE
+;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
+    DC.W $00AE, $02EA, $06C6, $0AE6, $0CC0, $0888, $0000, $0000
+;   $30      $31      $32      $33      $34      $35      $36      $37
+    DC.W $0EEE, $0ECA, $0EAA, $0EAC, $0EAE, $0AAE, $0CCE, $0CCE
+;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
+    DC.W $08CE, $08EC, $0AEA, $0CEA, $0EE0, $0CCC, $0000, $0000
 
 PPU_CLEAR_SHADOWS:
     lea     (PPU_NT_SHADOW).l,A0
@@ -856,6 +887,55 @@ PPU_ADVANCE_VRAM_ADDR:
 
 PPU_INVALIDATE_PLANE_CACHE:
     clr.b   (PPU_PLANE_CACHE_VALID).l
+    rts
+
+PPU_DISPATCH_TITLE_BUFFER:
+    ; Parse NES PPU update buffer $10 and write it into bridge shadows.
+    ; Buffer format: lo, hi, len/cmd, <len bytes> ... $FF terminator.
+    movem.l D0-D7/A0-A1,-(A7)
+    lea     _off000_A869_10_title_screen,A0
+
+.block_loop:
+    moveq   #0,D0
+    move.b  (A0)+,D0
+    cmpi.b  #$FF,D0
+    beq     .done
+
+    moveq   #0,D1
+    move.b  (A0)+,D1
+    lsl.w   #8,D1
+    or.w    D0,D1
+
+    moveq   #0,D2
+    move.b  (A0)+,D2
+    andi.w  #$003F,D2
+    beq     .block_loop
+
+    move.w  D1,D3
+
+.byte_loop:
+    move.b  (A0)+,D0
+    move.w  D3,D4
+    andi.w  #$FF00,D4
+    cmpi.w  #$2000,D3
+    blo     .advance
+    cmpi.w  #$3F00,D3
+    bhs     .advance
+
+    bsr     PPU_NORMALIZE_NAMETABLE_ADDR
+    lea     (PPU_NT_SHADOW).l,A1
+    move.b  D0,(A1,D4.w)
+
+.advance:
+    addq.w  #1,D3
+    subq.w  #1,D2
+    bne     .byte_loop
+    bra     .block_loop
+
+.done:
+    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
+    bsr     PPU_INVALIDATE_PLANE_CACHE
+    movem.l (A7)+,D0-D7/A0-A1
     rts
 
 INIT_TITLE_PALETTE_SHADOW:
@@ -1289,9 +1369,12 @@ PPU_BUILD_GENESIS_ROW:
     move.b  (A3,D3.w),D2
     rts
 
+; NES background color 0 is the universal backdrop color, not transparency.
+; Encode BG zeroes as Genesis color $F and mirror the backdrop into color 15
+; of each BG palette line during CRAM sync.
 PPU_PIXEL_PAIR_TABLE:
-    dc.b    $00,$01,$10,$11,$02,$03,$12,$13
-    dc.b    $20,$21,$30,$31,$22,$23,$32,$33
+    dc.b    $FF,$F1,$1F,$11,$F2,$F3,$12,$13
+    dc.b    $2F,$21,$3F,$31,$22,$23,$32,$33
 
 ; GUARD: v490 sprite pixel pair table — DO NOT MODIFY
 ; FIX v490: Sprite pixel pair table — non-zero pixels shifted +4
@@ -1436,6 +1519,13 @@ PPU_RENDER_NAMETABLE_CELL:
     lsl.w   #8,D6
     lsl.w   #5,D6
     or.w    D2,D6
+    ; Hardware-first title guard: if any shadow/highlight state is active,
+    ; low-priority title cells can render dim on console/BizHawk. Force the
+    ; title plane cells to high priority so they present at full brightness.
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .tile_attr_ready
+    ori.w   #$8000,D6
+.tile_attr_ready:
 
     move.w  D5,D0
     andi.w  #$0001,D0

@@ -1,0 +1,22 @@
+=== ROM TITLE BLACKBOX ===
+system_id=gen
+rom_name=zelda v673
+out_path=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\zelda_v673_gen_title_blackbox.txt
+shot_path=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v673_gen_title_blackbox.png
+memory_domains=Z80 RAM,MD CART,CRAM,VSRAM,VRAM,M68K BUS,Waterbox PageData
+client.buffer=292x224 client.screen=584x448
+frame=1
+frame=60
+frame=120
+frame=180
+frame=240
+frame=300
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v673_gen_title_blackbox.png
+client.buffer=256x224 client.screen=584x448
+mode=genesis
+cram[00-0F]=0CCE 0000 0888 0AAA 0CCE 0EEE 0CEA 004A 0ACE 0040 0040 0040 0ACE 0000 0000 0CCE
+cram[10-1F]=0CCE 02AE 0028 0000 0CCE 02AE 02AE 0000 0066 0022 0080 00AA 0860 0EEE 0CEA 0E88
+cram[20-2F]=0CCE 0046 00A0 00AE 0CCE 0046 00A0 00AE 00AA 00C8 02C6 08C4 0CC4 0444 0000 0000
+cram[30-3F]=0CCE 0EEE 0CEA 0EAA 0CCE 0EEE 0CEA 0EAA 08CC 08EC 0AEA 0CEA 0ECA 0000 0000 0000
+vsram[00-0F]=0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000
+=== ROM TITLE BLACKBOX COMPLETE ===

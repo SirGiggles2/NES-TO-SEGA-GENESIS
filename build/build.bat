@@ -40,7 +40,7 @@ if exist "%ROOT%\build\zelda_v%VERPAD%.md" (
 set "OUT_ROM=%ROOT%\build\zelda_v%VERPAD%.md"
 set "OUT_LST=%ROOT%\build\zelda_v%VERPAD%.lst"
 
-echo [1/12] Regenerating VDP bank files...
+echo [1/15] Regenerating VDP bank files...
 pushd "%ROOT%\src\banks\generated" >nul
 "%PYTHON%" "%ROOT%\tools\patch_vdp.py"
 if errorlevel 1 (
@@ -49,7 +49,7 @@ if errorlevel 1 (
 )
 popd >nul
 
-echo [2/12] Cleaning translated syntax...
+echo [2/15] Cleaning translated syntax...
 pushd "%ROOT%\src\banks\generated_vdp" >nul
 "%PYTHON%" "%ROOT%\tools\fix_syntax.py"
 if errorlevel 1 (
@@ -58,31 +58,43 @@ if errorlevel 1 (
 )
 popd >nul
 
-echo [3/12] Fixing carry inversions (BCC/BCS after CMP)...
+echo [3/15] Fixing carry inversions (BCC/BCS after CMP)...
 "%PYTHON%" "%ROOT%\tools\fix_carry_inversions.py"
 if errorlevel 1 exit /b 1
 
-echo [4/12] Fixing ADC carry (immediate ADDX)...
+echo [4/15] Fixing ADC carry (immediate ADDX)...
 "%PYTHON%" "%ROOT%\tools\fix_adc_carry.py"
 if errorlevel 1 exit /b 1
 
-echo [5/12] Fixing 16-bit ADC carry chains...
+echo [5/15] Fixing 16-bit ADC carry chains...
 "%PYTHON%" "%ROOT%\tools\fix_adc_chain.py"
 if errorlevel 1 exit /b 1
 
-echo [6/12] Fixing 16-bit SBC borrow chains...
+echo [6/15] Fixing 16-bit SBC borrow chains...
 "%PYTHON%" "%ROOT%\tools\fix_sbc_chain.py"
 if errorlevel 1 exit /b 1
 
-echo [7/12] Fixing INC/DEC carry corruption...
+echo [7/15] Fixing INC/DEC carry corruption...
 "%PYTHON%" "%ROOT%\tools\fix_inc_carry_corruption.py"
 if errorlevel 1 exit /b 1
 
-echo [8/12] Fixing BIT instruction translation...
+echo [8/15] Fixing BIT instruction translation...
 "%PYTHON%" "%ROOT%\tools\fix_bit_instruction.py"
 if errorlevel 1 exit /b 1
 
-echo [9/12] Assembling Genesis ROM...
+echo [9/15] PPU buffer safety check...
+"%PYTHON%" "%ROOT%\tools\check_ppu_buffer_safety.py" --file "%ROOT%\src\banks\generated_vdp\bank_06_gen68k_vdp.asm"
+if errorlevel 1 exit /b 1
+
+echo [10/15] VDP title regression guard...
+"%PYTHON%" "%ROOT%\tools\check_vdp_title_regressions.py" --file "%ROOT%\src\bridge\vdp_layer.asm"
+if errorlevel 1 exit /b 1
+
+echo [11/15] Frontend palette calibration check...
+"%PYTHON%" "%ROOT%\tools\check_frontend_palette_calibration.py" --file "%ROOT%\src\bridge\vdp_layer.asm"
+if errorlevel 1 exit /b 1
+
+echo [12/15] Assembling Genesis ROM...
 pushd "%ROOT%\src" >nul
 "%ROOT%\build\toolchain\vasmm68k_mot.exe" -Fbin -m68000 -maxerrors=5000 -Iincludes -Ibridge -Ibanks\generated_vdp -I..\reference -L "%OUT_LST%" -o "%RAW_ROM%" main.asm
 if errorlevel 1 (
@@ -91,18 +103,18 @@ if errorlevel 1 (
 )
 popd >nul
 
-echo [10/12] Fixing checksum...
+echo [13/15] Fixing checksum...
 "%PYTHON%" "%ROOT%\tools\fix_checksum.py" "%RAW_ROM%" "%OUT_ROM%"
 if errorlevel 1 exit /b 1
 
-echo [11/12] Register safety check...
+echo [14/15] Register safety check...
 "%PYTHON%" "%ROOT%\tools\check_register_safety.py"
 if errorlevel 1 (
     echo WARNING: Register safety check found failures ^^!
     echo The ROM was still built, but review the issues above.
 )
 
-echo [12/12] Static score...
+echo [15/15] Static score...
 "%PYTHON%" "%ROOT%\tools\static_score.py" --lst "%OUT_LST%"
 
 echo.

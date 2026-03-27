@@ -83,6 +83,48 @@ tbl_802A_2nd_quest:  ; orig: tbl_802A_2nd_quest:
 
 
 
+tbl_8000_1st_quest_actual:
+    DC.L _off009_8400_00
+    DC.L _off009_8700_01
+    DC.L _off009_8700_02
+    DC.L _off009_8700_03
+    DC.L _off009_8700_04
+    DC.L _off009_8700_05
+    DC.L _off009_8700_06
+    DC.L _off009_8A00_07
+    DC.L _off009_8A00_08
+    DC.L _off009_8A00_09
+
+
+
+tbl_8014_actual:
+    DC.L _off010_9300_00
+    DC.L _off010_93FC_01
+    DC.L _off010_94F8_02
+    DC.L _off010_95F4_03
+    DC.L _off010_96F0_04
+    DC.L _off010_97EC_05
+    DC.L _off010_98E8_06
+    DC.L _off010_99E4_07
+    DC.L _off010_9AE0_08
+    DC.L _off010_9BDC_09
+
+
+
+tbl_802A_2nd_quest_actual:
+    DC.L _off011_8400_00
+    DC.L _off011_8D00_01
+    DC.L _off011_8D00_02
+    DC.L _off011_8D00_03
+    DC.L _off011_8D00_04
+    DC.L _off011_8D00_05
+    DC.L _off011_8D00_06
+    DC.L _off011_9000_07
+    DC.L _off011_9000_08
+    DC.L _off011_9000_09
+
+
+
 loc_0x01804E:  ; orig: loc_0x01804E:
     MOVE.B  ram_subscript,D0  ; orig: C D 0 - - - 0x01804E 06:803E: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x018050 06:8040: 20 E2 E5  JSR sub_0x01E5F2_jum
@@ -110,6 +152,12 @@ ofs_027_8047_00:  ; orig: ofs_027_8047_00:
     MOVEA.L #tbl_8000_1st_quest,A0
     MOVE.B  (A0,D1.L),D0
 
+    MOVEQ   #0,D3
+    MOVE.B  D1,D3
+    SUBQ.W  #1,D3
+    ADD.W   D3,D3
+    LEA     tbl_8000_1st_quest_actual(PC),A0
+    MOVEA.L (A0,D3.W),A0
     JMP     loc_8067  ; orig: C - - - - - 0x01806B 06:805B: 4C 67 80  JMP loc_8067
 b06_bra_805E_2nd_quest:  ; orig: b06_bra_805E_2nd_quest:
     MOVEA.L #tbl_802A_2nd_quest,A0
@@ -120,6 +168,12 @@ b06_bra_805E_2nd_quest:  ; orig: b06_bra_805E_2nd_quest:
     MOVEA.L #tbl_802A_2nd_quest,A0
     MOVE.B  (A0,D1.L),D0
 
+    MOVEQ   #0,D3
+    MOVE.B  D1,D3
+    SUBQ.W  #1,D3
+    ADD.W   D3,D3
+    LEA     tbl_802A_2nd_quest_actual(PC),A0
+    MOVEA.L (A0,D3.W),A0
 loc_8067:  ; orig: loc_8067:
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C D 0 - - - 0x018077 06:8067: 85 01  STA ram_0000_t09_cop
     BSR     sub_80A4_set_copy_range_687E_6B7D             ; JSR -> BSR  ; orig: C - - - - - 0x018079 06:8069: 20 A4 80  JSR sub_80A4_set_cop
@@ -142,6 +196,12 @@ ofs_027_8070_01:  ; orig: ofs_027_8070_01:
     MOVEA.L #tbl_8014,A0
     MOVE.B  (A0,D1.L),D0
 
+    MOVEQ   #0,D3
+    MOVE.B  D1,D3
+    SUBQ.W  #1,D3
+    ADD.W   D3,D3
+    LEA     tbl_8014_actual(PC),A0
+    MOVEA.L (A0,D3.W),A0
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x01808D 06:807D: 85 01  STA ram_0000_t09_cop
     BSR     sub_80B5_set_copy_range_6B7E_6C7D             ; JSR -> BSR  ; orig: C - - - - - 0x01808F 06:807F: 20 B5 80  JSR sub_80B5_set_cop
     BSR     sub_80D7_copy_bat_table_to_bat             ; JSR -> BSR  ; orig: C - - - - - 0x018092 06:8082: 20 D7 80  JSR sub_80D7_copy_ba
@@ -239,7 +299,7 @@ sub_80D7_copy_bat_table_to_bat:  ; orig: sub_80D7_copy_bat_table_to_bat:
 
 ; in
 
-; ram_0000_t09_copy_data_from
+; A0 = Genesis ROM source pointer resolved from the actual 68k labels
 
 ; ram_0002_t06_copy_data_into
 
@@ -247,20 +307,9 @@ sub_80D7_copy_bat_table_to_bat:  ; orig: sub_80D7_copy_bat_table_to_bat:
 
 ; ram_0005_t01_max_addr_hi
 
-; FIX v590: Rewrite battery table copy.
-; Original NES used indirect pointers (LDA (zp),Y / STA (zp),Y) to copy data
-; from ROM bank 06 addresses ($8000+) into NES RAM ($6000-$7FFF).
-; On Genesis, ROM is at assembled label addresses, not at $FF8000+.
-; This rewrite correctly reads from ROM using tbl_8000_1st_quest as bank 06 base.
-
-    ; Build source address from ZP $00/$01 (little-endian NES pointer)
-    MOVEQ   #0,D5
-    MOVE.B  $FF0001,D5               ; high byte of NES source addr
-    LSL.W   #8,D5
-    MOVE.B  $FF0000,D5               ; low byte → D5.W = NES addr (e.g., $8400)
-    SUBI.W  #$8000,D5                ; offset within bank 06
-    LEA     tbl_8000_1st_quest,A0
-    ADDA.W  D5,A0                    ; A0 = Genesis ROM source
+; FIX v638: bank 06 data is no longer safe to address via NES $8000-based
+; offsets because translated alignment padding shifts the assembled labels.
+; The call sites resolve the real source label before entering this routine.
 
     ; Build dest address from ZP $02/$03
     MOVEQ   #0,D5
@@ -1026,6 +1075,7 @@ tbl_83B6_data_size:  ; orig: tbl_83B6_data_size:
     DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0183E0 06:83D0: FF        .byte $FF, $FF, $FF,
     DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x0183F0 06:83E0: FF        .byte $FF, $FF, $FF,
     DC.B $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF  ; data (was .BYTE) ; orig: - - - - - - 0x018400 06:83F0: FF        .byte $FF, $FF, $FF,
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -6758,6 +6808,10 @@ b06_bra_b06_trace_request_ready:
 b06_bra_b06_ppu_legacy:
     MOVE.W  #$0442,D0
     BSR     TRACE_MARK
+    CMPI.W  #$0302,D5
+    BNE     b06_bra_b06_ppu_legacy_ptr_ready
+    BSR     sub_b06_sanitize_ram_0302_if_invalid
+b06_bra_b06_ppu_legacy_ptr_ready:
     MOVEA.L #tbl_A000_ppu_data,A0
     MOVE.B  (A0,D1.L),D0
 
@@ -6888,6 +6942,23 @@ b06_bra_A0EA_not_palette:  ; orig: b06_bra_A0EA_not_palette:
     BCC     b06_bra_b06_ppu_ptr_nocarry             ; no carry into high byte
     ADDQ.B  #1,ram_0000_t11_ppu_data+1         ; carry into high byte
 b06_bra_b06_ppu_ptr_nocarry:
+    ; Guard odd-byte buffers followed by EVEN padding. If we land on a 00
+    ; immediately after an FF terminator, rewind one byte so the next outer
+    ; read stops on the real terminator instead of drifting into the next blob.
+    MOVEQ   #$00,D5
+    MOVE.B  ram_0000_t11_ppu_data+1,D5
+    LSL.W   #8,D5
+    MOVE.B  ram_0000_t11_ppu_data,D5
+    MOVEA.W D5,A0
+    ADDA.L  #$FF0000,A0
+    TST.B   (A0)
+    BNE     b06_bra_b06_ppu_ptr_trace
+    CMPI.B  #$FF,-1(A0)
+    BNE     b06_bra_b06_ppu_ptr_trace
+    SUBQ.B  #1,ram_0000_t11_ppu_data
+    BCC     b06_bra_b06_ppu_ptr_trace
+    SUBQ.B  #1,ram_0000_t11_ppu_data+1
+b06_bra_b06_ppu_ptr_trace:
     MOVE.B  D2,(TRACE_PPU_EVT_ARG0).l
     MOVE.B  ram_0000_t11_ppu_data,D4
     MOVE.B  D4,(TRACE_PPU_EVT_ARG1).l
@@ -7021,6 +7092,28 @@ b06_cfg_ram_0302_direct:
 b06_cfg_ram_0302_alias_direct:
     DC.B    $00
     EVEN  ; FIX: alignment after odd-byte data
+
+sub_b06_sanitize_ram_0302_if_invalid:
+    ; Direct RAM buffers must begin with a valid PPU high byte ($20-$3F)
+    ; or the $FF terminator. Anything else is stale garbage and should
+    ; self-heal back to the terminator before the legacy parser touches it.
+    MOVE.B  ram_0302_ppu_buffer,D0
+    CMPI.B  #$FF,D0
+    BEQ     b06_bra_b06_ram_0302_header_ok
+    CMPI.B  #$20,D0
+    BCS     b06_bra_b06_ram_0302_header_invalid
+    CMPI.B  #$40,D0
+    BCS     b06_bra_b06_ram_0302_header_ok
+b06_bra_b06_ram_0302_header_invalid:
+    MOVE.W  #$0302,(TRACE_PPU_EVT_ARG0).l
+    ANDI.W  #$00FF,D0
+    MOVE.W  D0,(TRACE_PPU_EVT_ARG1).l
+    CLR.W   (TRACE_PPU_EVT_ARG2).l
+    MOVE.W  #$04AA,D0
+    BSR     TRACE_PPU_EVENT
+    MOVE.B  #$FF,ram_0302_ppu_buffer
+b06_bra_b06_ram_0302_header_ok:
+    RTS
 
 sub_b06_optional_legacy_fallback:
     MOVE.W  D1,(TRACE_PPU_EVT_ARG0).l
@@ -7754,6 +7847,7 @@ _off000_A202_36:  ; orig: _off000_A202_36:
     DC.B $0F,$16,$2C,$3C  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A215 06:A205: 0F        .byte $0F, $16, $2C,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A219 06:A209: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7814,6 +7908,7 @@ _off000_A22F_50:  ; orig: _off000_A22F_50:
     DC.B $ED,$EE  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A242 06:A232: ED        .byte $ED, $EE   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A244 06:A234: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7825,6 +7920,7 @@ _off000_A235_5A:  ; orig: _off000_A235_5A:
     DC.B $EB,$EF,$F1,$F1,$F1,$F1,$F1,$F1,$F1,$F1,$F0,$EC  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A248 06:A238: EB        .byte $EB, $EF, $F1,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A254 06:A244: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7836,6 +7932,7 @@ _off000_A245_20:  ; orig: _off000_A245_20:
     DC.B $0F,$30,$00,$12  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A258 06:A248: 0F        .byte $0F, $30, $00,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A25C 06:A24C: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7847,6 +7944,7 @@ _off000_A24D_22:  ; orig: _off000_A24D_22:
     DC.B $0F,$1A,$37,$12  ; data (was .BYTE) ; orig: - - - - - - 0x01A260 06:A250: 0F        .byte $0F, $1A, $37,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - - - - - - 0x01A264 06:A254: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7858,6 +7956,7 @@ _off000_A255_24:  ; orig: _off000_A255_24:
     DC.B $0F,$17,$37,$12  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A268 06:A258: 0F        .byte $0F, $17, $37,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A26C 06:A25C: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7870,6 +7969,7 @@ _off000_A25D_3E_cave_palette:  ; orig: _off000_A25D_3E_cave_palette:
     DC.B $0F,$07,$0F,$17  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A274 06:A264: 0F        .byte $0F, $07, $0F,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A278 06:A268: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7898,6 +7998,7 @@ _off000_A272_78:  ; orig: _off000_A272_78:
     DC.B $0F,$30,$30,$30  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A289 06:A279: 0F        .byte $0F, $30, $30,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A28D 06:A27D: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7909,6 +8010,7 @@ _off000_A27E_7A:  ; orig: _off000_A27E_7A:
     DC.B $0F,$0F,$1C,$16  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A291 06:A281: 0F        .byte $0F, $0F, $1C,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A295 06:A285: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7920,6 +8022,7 @@ _off000_A286_7C:  ; orig: _off000_A286_7C:
     DC.B $0F,$2A,$1A,$0C  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A299 06:A289: 0F        .byte $0F, $2A, $1A,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A29D 06:A28D: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7931,6 +8034,7 @@ _off000_A28E_08:  ; orig: _off000_A28E_08:
     DC.B $0F,$0A,$29,$30  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2A1 06:A291: 0F        .byte $0F, $0A, $29,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2A5 06:A295: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7942,6 +8046,7 @@ _off000_A296_0A:  ; orig: _off000_A296_0A:
     DC.B $0F,$17,$27,$30  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2A9 06:A299: 0F        .byte $0F, $17, $27,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2AD 06:A29D: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7953,6 +8058,7 @@ _off000_A29E_6C:  ; orig: _off000_A29E_6C:
     DC.B $62,$01,$00,$00  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2B1 06:A2A1: 62        .byte $62, $01, $00,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2B5 06:A2A5: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -7964,6 +8070,7 @@ _off000_A2A6_76:  ; orig: _off000_A2A6_76:
     DC.B $62,$01,$24,$24,$24,$24,$24,$62,$05,$00  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2B9 06:A2A9: 62        .byte $62, $01, $24,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A2C3 06:A2B3: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8063,6 +8170,7 @@ _off000_A323_32:  ; orig: _off000_A323_32:
     DC.B $6B  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A345 06:A335: 6B        .byte $6B   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A346 06:A336: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8098,6 +8206,7 @@ _off000_A348_38:  ; orig: _off000_A348_38:
     DC.B $6E,$6A,$6A,$6D  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A35B 06:A34B: 6E        .byte $6E, $6A, $6A,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A35F 06:A34F: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8109,6 +8218,7 @@ _off000_A350_3A:  ; orig: _off000_A350_3A:
     DC.B $1E,$1C,$0E,$24,$0B,$24,$0B,$1E,$1D,$1D,$18,$17  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A363 06:A353: 1E        .byte $1E, $1C, $0E,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A36F 06:A35F: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8132,6 +8242,7 @@ _off000_A360_3C:  ; orig: _off000_A360_3C:
     DC.B $6D  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A386 06:A376: 6D        .byte $6D   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A387 06:A377: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8151,6 +8262,7 @@ _off000_A378_40:  ; orig: _off000_A378_40:
     DC.B $F5,$F5,$FD,$F5,$F5,$FD,$F5,$F5,$FD,$F5,$F5,$F5,$FD,$F5,$F5,$F5  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A39B 06:A38B: F5        .byte $F5, $F5, $FD,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3AB 06:A39B: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8162,6 +8274,7 @@ _off000_A39C_42:  ; orig: _off000_A39C_42:
     DC.B $F5,$FE,$F5,$F5,$F5,$FE,$F5,$F5,$F5,$F5,$FE,$F5,$F5,$F5,$FE,$F5  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3AF 06:A39F: F5        .byte $F5, $FE, $F5,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3BF 06:A3AF: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8225,6 +8338,7 @@ _off000_A3C8_2C:  ; orig: _off000_A3C8_2C:
     DC.B $0F,$10,$30,$00  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3DB 06:A3CB: 0F        .byte $0F, $10, $30,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3DF 06:A3CF: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8244,6 +8358,7 @@ _off000_A3D0_46_game_over:  ; orig: _off000_A3D0_46_game_over:
     DC.B $24  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3F6 06:A3E6: 24        .byte $24   ;
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3F7 06:A3E7: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 
@@ -8257,6 +8372,7 @@ _off000_A3E8_5E:  ; orig: _off000_A3E8_5E:
     DC.B $0F,$17,$16,$26  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A3FF 06:A3EF: 0F        .byte $0F, $17, $16,
 
     DC.B $FF  ; data (was .BYTE) ; orig: - D 1 - I - 0x01A403 06:A3F3: FF        .byte $FF   ; end to
+    EVEN  ; auto: odd DC.B run alignment
 
 
 

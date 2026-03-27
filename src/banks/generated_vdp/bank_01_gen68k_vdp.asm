@@ -552,6 +552,7 @@ tbl_85B8:  ; orig: tbl_85B8:
     DC.B $01  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D7 01:85C7: 01        .byte $01   ;
     DC.B $00  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D8 01:85C8: 00        .byte $00   ;
     DC.B $02  ; data (was .BYTE) ; orig: - D 0 - - - 0x0045D9 01:85C9: 02        .byte $02   ;
+    EVEN  ; auto: odd DC.B run alignment
 
 
 

@@ -1,0 +1,63 @@
+=== GAMEPLAY VISUAL CAPTURE zelda_v647 ===
+Capturing first fully loaded gameplay screen (entry + 120 frames).
+state frame=1 script=0 sub=0 ready=0 ppu=00 slot=0 spr1=00
+title_ready_frame=84
+action=hold_start_title frame=180
+state frame=186 script=0 sub=1 ready=1 ppu=12 slot=0 spr1=00
+state frame=195 script=0 sub=2 ready=1 ppu=00 slot=2 spr1=00
+state frame=199 script=1 sub=0 ready=0 ppu=00 slot=0 spr1=00
+title_exit_frame=199
+state frame=199 script=1 sub=0 ready=0 ppu=00 slot=0 spr1=00
+state frame=203 script=1 sub=2 ready=0 ppu=12 slot=0 spr1=00
+state frame=259 script=1 sub=3 ready=0 ppu=14 slot=0 spr1=00
+state frame=261 script=1 sub=4 ready=0 ppu=00 slot=1 spr1=00
+state frame=268 script=1 sub=5 ready=0 ppu=00 slot=2 spr1=00
+state frame=269 script=1 sub=6 ready=0 ppu=00 slot=3 spr1=00
+state frame=307 script=1 sub=0 ready=1 ppu=00 slot=3 spr1=00
+file_select_ready_frame=307
+action=hold_start_file_select frame=327
+state frame=348 script=1 sub=1 ready=1 ppu=00 slot=3 spr1=20
+state frame=349 script=14 sub=0 ready=0 ppu=00 slot=3 spr1=20
+branch_frame=349 branch_script=14
+register_branch_frame=349
+state frame=366 script=14 sub=1 ready=0 ppu=00 slot=0 spr1=20
+state frame=372 script=14 sub=2 ready=0 ppu=00 slot=0 spr1=20
+state frame=410 script=14 sub=3 ready=0 ppu=16 slot=0 spr1=20
+state frame=412 script=14 sub=4 ready=0 ppu=12 slot=0 spr1=20
+action=register_sequence_begin frame=417
+state frame=532 script=0 sub=1 ready=1 ppu=10 slot=0 spr1=20
+state frame=560 script=0 sub=2 ready=1 ppu=00 slot=3 spr1=20
+state frame=561 script=1 sub=0 ready=0 ppu=00 slot=0 spr1=20
+state frame=564 script=1 sub=1 ready=0 ppu=00 slot=3 spr1=20
+state frame=565 script=1 sub=2 ready=0 ppu=12 slot=0 spr1=20
+state frame=584 script=1 sub=3 ready=0 ppu=14 slot=0 spr1=20
+state frame=585 script=1 sub=4 ready=0 ppu=00 slot=1 spr1=20
+state frame=592 script=1 sub=5 ready=0 ppu=00 slot=2 spr1=20
+state frame=593 script=1 sub=6 ready=0 ppu=00 slot=3 spr1=20
+state frame=594 script=1 sub=0 ready=1 ppu=00 slot=0 spr1=20
+returned_to_file_select_frame=594 action=resume_hold_start_file_select
+state frame=595 script=1 sub=1 ready=1 ppu=00 slot=0 spr1=20
+state frame=596 script=2 sub=0 ready=0 ppu=00 slot=0 spr1=20
+branch_frame=596 branch_script=2
+state frame=597 script=2 sub=1 ready=0 ppu=00 slot=0 spr1=20
+state frame=598 script=2 sub=0 ready=1 ppu=00 slot=0 spr1=20
+state frame=599 script=3 sub=0 ready=0 ppu=00 slot=0 spr1=20
+state frame=600 script=3 sub=1 ready=0 ppu=00 slot=0 spr1=20
+state frame=618 script=3 sub=2 ready=0 ppu=18 slot=0 spr1=20
+state frame=619 script=3 sub=3 ready=0 ppu=18 slot=0 spr1=20
+state frame=620 script=3 sub=4 ready=0 ppu=00 slot=0 spr1=20
+state frame=621 script=3 sub=5 ready=0 ppu=00 slot=0 spr1=20
+state frame=622 script=3 sub=6 ready=0 ppu=0E slot=0 spr1=20
+state frame=623 script=3 sub=7 ready=0 ppu=44 slot=0 spr1=20
+state frame=630 script=3 sub=8 ready=0 ppu=00 slot=0 spr1=20
+state frame=635 script=3 sub=0 ready=1 ppu=00 slot=0 spr1=20
+state frame=710 script=4 sub=0 ready=0 ppu=00 slot=0 spr1=20
+state frame=712 script=5 sub=0 ready=0 ppu=00 slot=0 spr1=48
+gameplay_entry_after_other_frame=712
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\ss_gameplay_genesis_zelda_v647.png
+capture_state frame=832 script=5 sub=0 ready=1 ppu=00 slot=0 spr1=F0
+final_phase=capture_gameplay
+branch_script=2
+gameplay_entry_frame=712
+final_frame=832
+=== GAMEPLAY VISUAL CAPTURE COMPLETE ===

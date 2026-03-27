@@ -46,7 +46,9 @@ tbl_8006_counter:  ; orig: tbl_8006_counter:
 
 
 tbl_800C_ppu_ppu_addr:  ; orig: tbl_800C_ppu_ppu_addr:
-    DC.B    $00,$00,$00,$10,$20,$1F
+    ; The uploader writes these bytes directly to $2006 as hi then lo,
+    ; so preserve the original .DBYT byte order here.
+    DC.B    $00,$00,$10,$00,$1F,$20
 
 
 
@@ -87,13 +89,13 @@ bra_8018_loop:  ; orig: bra_8018_loop:
 sub_804F_write_to_ppu:  ; orig: sub_804F_write_to_ppu:
     MOVE.B  D0,PPU_REG_$2006  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x00805F 02:804F: 8D 06 20  STA $2006
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x008062 02:8052: A0 00     LDY #$00
-bra_8054_loop:  ; orig: bra_8054_loop:
     MOVEQ   #0,D5
     MOVE.B  ram_0001_t10,D5
     LSL.W   #8,D5
     MOVE.B  ram_0000_t10_tiles_data,D5
-    MOVEA.L #$00FF0000,A0
-    MOVE.B  (A0,D5.W),D0  ; orig: C - - - - - 0x008064 02:8054: B1 00     LDA (ram_0000_t10_ti
+    BSR     sub_808F_resolve_title_chr_ptr_real
+bra_8054_loop:  ; orig: bra_8054_loop:
+    MOVE.B  (A1)+,D0  ; ROM-backed title CHR pointers must resolve to the real bank data, not NES RAM shadow
     MOVE.B  D0,PPU_REG_$2007  ; !! PPU REGISTER - NEEDS VDP TRANSLATION !!  ; orig: C - - - - - 0x008066 02:8056: 8D 07 20  STA $2007
     ADDQ.W  #1,D5
     MOVE.W  D5,D4
@@ -113,6 +115,40 @@ bra_8054_loop:  ; orig: bra_8054_loop:
     BNE     bra_8054_loop             ; BNE  ; orig: C - - - - - 0x008085 02:8075: D0 DD     BNE bra_8054_loop
     ADDQ.B  #1,ram_051D  ; orig: C - - - - - 0x00808B 02:807B: EE 1D 05  INC ram_051D
     RTS                     ; RTS  ; orig: C - - - - - 0x00808E 02:807E: 60        RTS
+
+
+
+sub_808F_resolve_title_chr_ptr_real:
+    CMPI.W  #$877F,D5
+    BCS     bra_808F_chr_first
+    CMPI.W  #$8E7F,D5
+    BCS     bra_808F_chr_second
+    CMPI.W  #$8F5F,D5
+    BCS     bra_808F_chr_third
+    MOVEA.L #$00FF0000,A1
+    ADDA.W  D5,A1
+    RTS
+
+bra_808F_chr_first:
+    MOVEA.L #tbl_807F___0000_06FF,A1
+    MOVE.W  D5,D4
+    SUBI.W  #$807F,D4
+    ADDA.W  D4,A1
+    RTS
+
+bra_808F_chr_second:
+    MOVEA.L #tbl_877F___1000_16FF,A1
+    MOVE.W  D5,D4
+    SUBI.W  #$877F,D4
+    ADDA.W  D4,A1
+    RTS
+
+bra_808F_chr_third:
+    MOVEA.L #tbl_8E7F___1F20_1FFF,A1
+    MOVE.W  D5,D4
+    SUBI.W  #$8E7F,D4
+    ADDA.W  D4,A1
+    RTS
 
 
 

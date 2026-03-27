@@ -1,0 +1,16 @@
+=== GAMEPLAY INTERACTION GATE ===
+ROM: zelda_v601
+Primary report: gameplay_interaction_probe_zelda_v601.txt
+
+Gameplay Gate 2: PASS_WITHOUT_ROOM_TRANSITION
+- PASS: gameplay entry reached at frame 893
+- PASS: gameplay lane became ready at frame 894
+- PASS: movement check passed (dx=11 dy=0)
+- PASS: pause/resume check passed (on=1007 off=1028)
+- WARN: room transition signal was detected but did not stabilize (direction=UP stable_count=0)
+- WARN: next_room_debug=extend gameplay_interaction_probe with room-buffer/write tracing around the detected transition window
+
+Definition:
+- Gate 2 proves deterministic gameplay interaction after Gate 1.
+- Full PASS requires movement, pause/resume, and a stable room transition.
+- PASS_WITHOUT_ROOM_TRANSITION means core input works, but transition parity is not yet proven.

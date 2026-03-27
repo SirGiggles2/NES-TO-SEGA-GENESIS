@@ -1,0 +1,28 @@
+=== TITLE VSRAM PROBE zelda_v651 ===
+frame=84 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+frame=120 script=0 sub=0 ready=0 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+frame=160 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v651_title_vsram_early_f160.png
+frame=180 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v651_title_vsram_mid_f180.png
+frame=200 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+nt frame=200 row=0 non24=0 first_col=-1
+nt frame=200 row=1 non24=0 first_col=-1
+nt frame=200 row=2 non24=3 first_col=1
+nt frame=200 row=3 non24=4 first_col=0
+nt frame=200 row=4 non24=4 first_col=0
+nt frame=200 row=5 non24=26 first_col=0
+nt frame=200 row=6 non24=6 first_col=0
+nt frame=200 row=7 non24=19 first_col=0
+nt frame=200 row=8 non24=23 first_col=0
+nt frame=200 row=9 non24=25 first_col=0
+nt frame=200 row=10 non24=26 first_col=0
+nt frame=200 row=11 non24=27 first_col=0
+nt frame=200 row=12 non24=13 first_col=0
+nt frame=200 row=13 non24=25 first_col=0
+nt frame=200 row=14 non24=13 first_col=0
+nt frame=200 row=15 non24=10 first_col=0
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v651_title_vsram_late_f200.png
+frame=240 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+frame=280 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+=== TITLE VSRAM PROBE COMPLETE ===

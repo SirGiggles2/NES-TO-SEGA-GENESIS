@@ -348,7 +348,15 @@ bra_E542:  ; orig: bra_E542:
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x01E565 07:E555: 38        SEC
 bra_E556:  ; orig: bra_E556:
 bra_E556_loop:  ; orig: bra_E556_loop:
-    ; (empty translation for ROR)  ; orig: C - - - - - 0x01E566 07:E556: 76 00     ROR ram_indiv_random
+    MOVEA.L #$FF0000,A0               ; base for ram_indiv_random,X
+    MOVE.B  (A0,D1.L),D0              ; load byte at X index
+    MOVE.W  SR,D3                     ; save SR (carry in bit 0 = old carry)
+    LSR.B   #1,D0                     ; shift right; C = old bit0 of byte
+    BTST    #0,D3                     ; was old carry set?
+    BEQ.S   ror_e556_done
+    BSET    #7,D0                     ; insert old carry as bit7
+ror_e556_done:
+    MOVE.B  D0,(A0,D1.L)              ; store ROR result  ; orig: C - - - - - 0x01E566 07:E556: 76 00     ROR ram_indiv_random,X
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01E568 07:E558: E8        INX
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01E569 07:E559: 88        DEY
     BNE     bra_E556_loop             ; BNE  ; orig: C - - - - - 0x01E56A 07:E55A: D0 FA     BNE bra_E556_loop

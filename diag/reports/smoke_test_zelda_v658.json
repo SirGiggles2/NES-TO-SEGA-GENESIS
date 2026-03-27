@@ -1,0 +1,11 @@
+{
+  "rom": "zelda_v658",
+  "frames": 901,
+  "pass": false,
+  "pass_vram": true,
+  "pass_ready": false,
+  "ready_count": 0,
+  "max_script": 0,
+  "script_changes": 0,
+  "final_frm_cnt": 0
+}

@@ -4,3 +4,59 @@ version,date,static_score,notes
 599,2026-03-25,105,D3 fix + guards + H40 overflow clear; smoke PASS; frontend PASS to script14; gameplay probe reaches script5 via register flow
 600,2026-03-25,105,build sanity PASS; smoke PASS; frontend PASS to script14; gameplay probe reaches script5 (entry frame 893); regression gate PASS; gameplay soak x3 PASS
 601,2026-03-25,105,build + runtime gate wrapper PASS; smoke PASS; frontend PASS to script14; gameplay probe reaches script5 (entry frame 893); regression gate PASS
+602,2026-03-25,105,movement PASS; pause PASS; room transition FAIL trace=3510; phase=transition_failed; debug trace baseline; script3/sub8 stall with trace 3510; accuracy_score regressed: 136 < 156
+603,2026-03-25,105,"movement PASS; pause PASS; room transition FAIL trace=3510; phase=transition_failed; ADC carry fix attempt; no movement on transition stall, trace 3510"
+604,2026-03-25,105,"movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; deeper sub_A9F4 tracing isolated AA49 loop, trace 3516"
+605,2026-03-25,105,"movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; pointer reconstruction transplant in sub_A9F4; no change, trace 3516"
+606,2026-03-25,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; AA49 telemetry instrumentation regressed interaction path; accuracy_score regressed: 122 < 136
+607,2026-03-25,105,movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; AA49 telemetry branch-flags restore via TST.B; interaction core recovered from v606 regression; room transition still stalls in AA49 loop
+608,2026-03-25,105,movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; AA49 telemetry width cleanup; seqdbg now zero-extended and confirms AA49 sampling 0x00 from ptr 0x07F6 while transition still stalls
+609,2026-03-25,105,movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; probe upgrade packed AA49 lookup index/repeat count and exposed live FF6827/FF6828 base bytes; confirmed overworld high byte was zero at stall
+610,2026-03-25,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; overworld columns-table high byte sourced from ROM; exposed the remaining mixed-source AA38/AA3D pointer load by regressing before gameplay; accuracy_score regressed: 122 < 136
+611,2026-03-25,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; v611: interaction path still regressed before gameplay while tracing the mixed-source overworld columns-table load; lost gameplay-entry baseline from v609 (entry=894)
+612,2026-03-25,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; joy bridge: Genesis A now responsive on console; interaction path still times out after other branch
+613,2026-03-25,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; joy bridge: D-pad remapped; pad bridge shows B/C plus all D-pad directions landing; interaction path still times out after other branch
+614,2026-03-25,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; v614: room-columns high-byte source fix plus D4-safe joypad remap; still stalled in script3/sub8 black-screen handoff; lost gameplay-entry baseline from v609 (entry=894)
+615,2026-03-25,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; v615: zero-extended room-load pointers in AA2E/AA49 block; still stalled in script3/sub8 black-screen handoff; lost gameplay-entry baseline from v609 (entry=894)
+617,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; v617: restored startup columns-table high-byte source from live RAM at AB30; gameplay, movement, and pause recovered after fixing the interaction probe release gap; room transition still fails in the AA49 loop"
+618,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; v618: reverted the v615 zero-extension experiment in the AA2E/AA49/AA59 room-load block; gameplay, movement, and pause still pass, but room transition remains stuck in the AA49 loop"
+619,2026-03-26,105,movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; full columns-table RAM copy; fixed garbage 07F6 -> ROM 9CF6 but sign-extended to FE9CF6
+620,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; zero-extension fix; 9CF6 resolves to FF9CF6, exposing remaining bank-05 ROM resolver bug"
+621,2026-03-26,105,movement PASS; pause PASS; room transition FAIL trace=0403; phase=transition_failed; bank-05 columns-stream resolver; AA49 resolves 9CF6 to 0001F690; transition advances to script17 sub2 with trans=1
+622,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=0403; phase=transition_failed; v622: late map commit experiment in bank FF did not improve BizHawk transition result; console reaches corrupted title, file select, and gameplay instead of pure black screen"
+623,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; v623: reverted the v621-v622 columns-stream resolver path in bank 05 and removed the v622 late map commit in bank FF; gameplay entry/pause/movement still pass, and the transition path recovers from canary 05/script17-sub2 back to the cleaner canary 06/script3-sub8 failure mode"
+624,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=0403; phase=transition_failed; v624: mirrored the bank-05 special-screen columns streams into FF9BD8-FFA3F5 RAM so FF9CF6-style pointers read real bytes without the runtime resolver; AA49 no longer sees zero data, but the transition falls back into the script17-sub2 / canary-05 failure mode and is not cleaner than v623"
+625,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=0403; phase=transition_failed; v625: segmented FF9xxx mirror restored 9BD8-side columns data and kept gameplay/movement/pause alive, but transition regressed to the dirtier script17-sub2/canary05 path; register cursor tile 0x25 still blank"
+626,2026-03-26,105,movement FAIL; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=timed_out_after_other_branch; v626: narrow 9418 special-screen mirror plus A9F4 high-byte hardcode regressed before gameplay entry and did not fix the blank register cursor tile 0x25; accuracy_score regressed: 122 < 129; lost gameplay-entry baseline from v625 (entry=917)
+627,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed; v627: reverted the failed v626 special-screen mirror experiment and recovered the cleaner gameplay-entry baseline; gameplay, movement, and pause are back on the script3-sub8/canary06 path, while the register cursor tile 0x25 remains blank"
+632,2026-03-26,105,"movement PASS; pause FAIL; room transition FAIL trace=3516; interaction core FAIL; phase=transition_failed; v632: corrected the bank_02 title PPU-address table byte order; removed later tile-25 re-clobbers and improved title/gameplay timing, but the frame-42 corruption remained and pause still failed; accuracy_score regressed: 121 < 129; title_ready_frame regressed: 185 > 150"
+633,2026-03-26,105,"movement PASS; pause PASS; room transition FAIL trace=0403; phase=transition_failed; v633: resolved bank_02 title CHR uploader ROM-backed pointers instead of reading FF0000 RAM shadow; frame-42 tile-25 corruption is gone, register cursor tile 0x25 is populated again, and gameplay entry improved while room transition still fails on canary-06/trace-0403; gameplay_entry_frame regressed: 706 > 686; gameplay-entry baseline regressed vs v632: 706 > 686"
+634,2026-03-26,105,movement PASS; pause PASS; room transition FAIL trace=0403; phase=transition_failed; v634: HARDWARE FIX — disable VDP display during VRAM write phase in VBlank handler and PPU_WRITE_2000 flush; fix PPU_WRITE_2005 Y-scroll to write VSRAM instead of VRAM $0000; emulator behavior unchanged; needs hardware retest
+635,2026-03-26,105,movement PASS; pause PASS; room transition FAIL trace=0403; phase=transition_failed
+636,2026-03-26,105,movement PASS; pause PASS; room transition FAIL trace=3516; phase=transition_failed
+639,2026-03-26,105,build + runtime gate wrapper PASS; smoke PASS; frontend PASS to script14; gameplay PASS to script5 (entry frame 626); regression gate PASS; room-transition fix verified in bank 06 actual-label copy path
+641,2026-03-26,110,phase=capture_gameplay
+644,2026-03-26,130,phase=capture_gameplay
+645,2026-03-26,130,phase=capture_gameplay; gameplay_entry_frame regressed: 712 > 621; gameplay-entry baseline regressed vs v644: 712 > 621
+646,2026-03-26,130,phase=capture_gameplay; branch_frame regressed: 340 > 326
+647,2026-03-26,130,phase=capture_gameplay
+650,2026-03-26,130,phase=capture_gameplay
+651,2026-03-26,130,phase=capture_gameplay
+652,2026-03-26,130,phase=capture_gameplay
+653,2026-03-26,130,phase=capture_gameplay
+654,2026-03-26,130,phase=capture_gameplay
+656,2026-03-26,130,phase=capture_gameplay; gameplay_entry_frame regressed: 686 > 606; file_select_ready_frame regressed: 322 > 304; branch_frame regressed: 344 > 326; gameplay-entry baseline regressed vs v654: 686 > 606
+657,2026-03-26,130,phase=capture_gameplay; title_ready_frame regressed: 143 > 104
+659,2026-03-26,130,phase=capture_gameplay
+660,2026-03-26,0,phase=capture_gameplay; accuracy_score regressed: 37 < 168; gameplay_entry_frame regressed: 639 > 591; file_select_ready_frame regressed: 356 > 267; branch_frame regressed: 378 > 289; gameplay-entry baseline regressed vs v659: 639 > 591
+661,2026-03-26,130,phase=capture_gameplay
+662,2026-03-26,0,phase=capture_gameplay; accuracy_score regressed: 37 < 167; gameplay_entry_frame regressed: 720 > 669; title_ready_frame regressed: 106 > 105; gameplay-entry baseline regressed vs v661: 720 > 669
+663,2026-03-26,0,phase=capture_gameplay; file_select_ready_frame regressed: 356 > 254; branch_frame regressed: 378 > 317
+666,2026-03-26,130,phase=capture_gameplay; gameplay_entry_frame regressed: 721 > 669; gameplay-entry baseline regressed vs v663: 721 > 669
+667,2026-03-26,130,phase=capture_gameplay; title_ready_frame regressed: 143 > 105
+668,2026-03-26,130,phase=capture_gameplay
+669,2026-03-26,130,phase=capture_gameplay
+670,2026-03-26,130,phase=capture_gameplay
+671,2026-03-26,130,phase=capture_gameplay; branch_frame regressed: 298 > 289
+672,2026-03-26,130,phase=capture_gameplay
+673,2026-03-26,130,phase=capture_gameplay

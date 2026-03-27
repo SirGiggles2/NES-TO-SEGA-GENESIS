@@ -1107,7 +1107,9 @@ sub_bat_70AB:  ; orig: sub_bat_70AB:
     ANDI.B  #$F0,D0  ; orig: - D 1 - I - 0x006930 01:70B0: 29 F0     AND #$F0
     CMPI.B  #$40,D0  ; orig: - D 1 - I - 0x006932 01:70B2: C9 40     CMP #$40
     BNE     bra_70C2_RTS             ; BNE  ; orig: - D 1 - I - 0x006934 01:70B4: D0 0C     BNE bra_70C2_RTS
-    ; (empty translation for LSR)  ; orig: - D 1 - I - 0x006936 01:70B6: 5E BC 03  LSR ram_03BC_obj,X
+    MOVE.B  ram_03BC_obj(D1.L),D0   ; LSR abs,X load  ; orig: - D 1 - I - 0x006936 01:70B6: 5E BC 03  LSR ram_03BC_obj,X
+    LSR.B   #1,D0                   ; LSR abs,X shift
+    MOVE.B  D0,ram_03BC_obj(D1.L)   ; LSR abs,X store
     MOVEA.L #$FF0380,A0  ; FIX v378: DEC $0380,X base
     SUBQ.B  #1,(A0,D1.L)  ; orig: - D 1 - I - 0x006939 01:70B9: DE 80 03  DEC ram_0380_enemy,X
     BNE     bra_70C2_RTS             ; BNE  ; orig: - D 1 - I - 0x00693C 01:70BC: D0 04     BNE bra_70C2_RTS

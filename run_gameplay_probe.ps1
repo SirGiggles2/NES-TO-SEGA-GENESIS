@@ -28,12 +28,12 @@ if (-not (Test-Path $RomPath))  { throw "ROM not found: $RomPath" }
 if (-not (Test-Path $SCRIPT))   { throw "Probe Lua not found: $SCRIPT" }
 if (Test-Path $LOCK_PATH)       { throw "Probe already running. Remove $LOCK_PATH if stale." }
 
-New-Item -ItemType File -Path $LOCK_PATH | Out-Null
-$OriginalLua = [System.IO.File]::ReadAllText($SCRIPT)
-$UpdatedLua  = $OriginalLua -replace 'local ROM_VERSION\s*=.*', "local ROM_VERSION = `"$BaseName`""
-[System.IO.File]::WriteAllText($TEMP_SCRIPT, $UpdatedLua)
-
 try {
+    New-Item -ItemType File -Path $LOCK_PATH | Out-Null
+    $OriginalLua = [System.IO.File]::ReadAllText($SCRIPT)
+    $UpdatedLua  = $OriginalLua -replace 'local ROM_VERSION\s*=.*', "local ROM_VERSION = `"$BaseName`""
+    [System.IO.File]::WriteAllText($TEMP_SCRIPT, $UpdatedLua)
+
     Write-Host "=== GAMEPLAY PROBE ===" -ForegroundColor Cyan
     Write-Host "ROM:    $BaseName"
     Write-Host "Output: $OutputPath"

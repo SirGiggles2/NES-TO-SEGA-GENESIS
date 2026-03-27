@@ -11,7 +11,8 @@ $BuildDir = Join-Path $ProjectRoot "build"
 $BuildScript = Join-Path $BuildDir "build.bat"
 $RuntimeGateScript = Join-Path $ProjectRoot "run_runtime_gate.ps1"
 $StaticScoreScript = Join-Path $ProjectRoot "tools\static_score.py"
-$AccuracyTrackerScript = Join-Path $ProjectRoot "tools\accuracy_tracker.py"
+$VdpTitleRegressionGuardScript = Join-Path $ProjectRoot "tools\check_vdp_title_regressions.py"
+$RecordProbeScript = Join-Path $ProjectRoot "tools\record_probe_result.py"
 $ReportsDir = Join-Path $ProjectRoot "diag\reports"
 
 function Get-LatestBuildArtifact([string]$Extension) {
@@ -147,6 +148,14 @@ if (-not $SkipBuild) {
 $TargetVersion = Get-VersionNumber $TargetRom
 $TargetListing = Join-Path $BuildDir ($TargetRom + ".lst")
 
+Invoke-Stage "VDP Title Guard" {
+    $python = Resolve-PythonCommand
+    & $python.command @($python.args + @($VdpTitleRegressionGuardScript, "--file", (Join-Path $ProjectRoot "src\bridge\vdp_layer.asm")))
+    if ($LASTEXITCODE -ne 0) {
+        throw "check_vdp_title_regressions.py failed with exit code $LASTEXITCODE"
+    }
+}
+
 Invoke-Stage "Static Score" {
     $script:StaticScore = Get-StaticScore $TargetListing
     Write-Host "ROM:             $TargetRom"
@@ -161,9 +170,9 @@ Invoke-Stage "Static Score" {
     }
 }
 
-Invoke-Stage "Accuracy Tracker" {
+Invoke-Stage "Ledger Recorder" {
     if ($null -eq $script:StaticScore) {
-        throw "Static score is missing before accuracy tracking"
+        throw "Static score is missing before ledger recording"
     }
 
     $python = Resolve-PythonCommand
@@ -171,18 +180,17 @@ Invoke-Stage "Accuracy Tracker" {
     $gameplayReport = Join-Path $ReportsDir ("gameplay_probe_" + $TargetRom + ".txt")
 
     $trackerArgs = @(
-        $AccuracyTrackerScript,
+        $RecordProbeScript,
         "--version", "$TargetVersion",
         "--static-score", "$script:StaticScore",
         "--frontend", $frontendReport,
         "--gameplay", $gameplayReport,
-        "--update-ledger",
         "--fail-on-regression"
     )
 
     & $python.command @($python.args + $trackerArgs)
     if ($LASTEXITCODE -ne 0) {
-        throw "accuracy_tracker.py reported a regression (exit code $LASTEXITCODE)"
+        throw "record_probe_result.py reported a regression or failure (exit code $LASTEXITCODE)"
     }
 }
 

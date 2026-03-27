@@ -80,6 +80,48 @@ tbl_802A_2nd_quest:  ; orig: tbl_802A_2nd_quest:
 
 
 
+tbl_8000_1st_quest_actual:
+    DC.L _off009_8400_00
+    DC.L _off009_8700_01
+    DC.L _off009_8700_02
+    DC.L _off009_8700_03
+    DC.L _off009_8700_04
+    DC.L _off009_8700_05
+    DC.L _off009_8700_06
+    DC.L _off009_8A00_07
+    DC.L _off009_8A00_08
+    DC.L _off009_8A00_09
+
+
+
+tbl_8014_actual:
+    DC.L _off010_9300_00
+    DC.L _off010_93FC_01
+    DC.L _off010_94F8_02
+    DC.L _off010_95F4_03
+    DC.L _off010_96F0_04
+    DC.L _off010_97EC_05
+    DC.L _off010_98E8_06
+    DC.L _off010_99E4_07
+    DC.L _off010_9AE0_08
+    DC.L _off010_9BDC_09
+
+
+
+tbl_802A_2nd_quest_actual:
+    DC.L _off011_8400_00
+    DC.L _off011_8D00_01
+    DC.L _off011_8D00_02
+    DC.L _off011_8D00_03
+    DC.L _off011_8D00_04
+    DC.L _off011_8D00_05
+    DC.L _off011_8D00_06
+    DC.L _off011_9000_07
+    DC.L _off011_9000_08
+    DC.L _off011_9000_09
+
+
+
 loc_0x01804E:  ; orig: loc_0x01804E:
     MOVE.B  ram_subscript,D0  ; orig: C D 0 - - - 0x01804E 06:803E: A5 13     LDA ram_subscript
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x018050 06:8040: 20 E2 E5  JSR sub_0x01E5F2_jum
@@ -101,12 +143,24 @@ ofs_027_8047_00:  ; orig: ofs_027_8047_00:
     MOVE.B  D0,ram_0000_t09_copy_data_from  ; orig: C - - - - - 0x018065 06:8055: 85 00     STA ram_0000_t09_cop
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x018067 06:8057: E8        INX
     MOVE.B  tbl_8000_1st_quest(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x018068 06:8058: BD 00 80  LDA tbl_8000_1st_que
+    MOVEQ   #0,D3
+    MOVE.B  D1,D3
+    SUBQ.W  #1,D3
+    ADD.W   D3,D3
+    LEA     tbl_8000_1st_quest_actual(PC),A0
+    MOVEA.L (A0,D3.W),A0
     JMP     loc_8067  ; orig: C - - - - - 0x01806B 06:805B: 4C 67 80  JMP loc_8067
 bra_805E_2nd_quest:  ; orig: bra_805E_2nd_quest:
     MOVE.B  tbl_802A_2nd_quest(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x01806E 06:805E: BD 2A 80  LDA tbl_802A_2nd_que
     MOVE.B  D0,ram_0000_t09_copy_data_from  ; orig: C - - - - - 0x018071 06:8061: 85 00     STA ram_0000_t09_cop
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x018073 06:8063: E8        INX
     MOVE.B  tbl_802A_2nd_quest(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x018074 06:8064: BD 2A 80  LDA tbl_802A_2nd_que
+    MOVEQ   #0,D3
+    MOVE.B  D1,D3
+    SUBQ.W  #1,D3
+    ADD.W   D3,D3
+    LEA     tbl_802A_2nd_quest_actual(PC),A0
+    MOVEA.L (A0,D3.W),A0
 loc_8067:  ; orig: loc_8067:
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C D 0 - - - 0x018077 06:8067: 85 01  STA ram_0000_t09_cop
     BSR     sub_80A4_set_copy_range_687E_6B7D             ; JSR -> BSR  ; orig: C - - - - - 0x018079 06:8069: 20 A4 80  JSR sub_80A4_set_cop
@@ -125,6 +179,12 @@ ofs_027_8070_01:  ; orig: ofs_027_8070_01:
     MOVE.B  D0,ram_0000_t09_copy_data_from  ; orig: C - - - - - 0x018087 06:8077: 85 00     STA ram_0000_t09_cop
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x018089 06:8079: E8        INX
     MOVE.B  tbl_8014(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x01808A 06:807A: BD 14 80  LDA tbl_8014,X
+    MOVEQ   #0,D3
+    MOVE.B  D1,D3
+    SUBQ.W  #1,D3
+    ADD.W   D3,D3
+    LEA     tbl_8014_actual(PC),A0
+    MOVEA.L (A0,D3.W),A0
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x01808D 06:807D: 85 01  STA ram_0000_t09_cop
     BSR     sub_80B5_set_copy_range_6B7E_6C7D             ; JSR -> BSR  ; orig: C - - - - - 0x01808F 06:807F: 20 B5 80  JSR sub_80B5_set_cop
     BSR     sub_80D7_copy_bat_table_to_bat             ; JSR -> BSR  ; orig: C - - - - - 0x018092 06:8082: 20 D7 80  JSR sub_80D7_copy_ba
@@ -222,7 +282,7 @@ sub_80D7_copy_bat_table_to_bat:  ; orig: sub_80D7_copy_bat_table_to_bat:
 
 ; in
 
-; ram_0000_t09_copy_data_from
+; A0 = Genesis ROM source pointer resolved from the actual 68k labels
 
 ; ram_0002_t06_copy_data_into
 
@@ -230,20 +290,9 @@ sub_80D7_copy_bat_table_to_bat:  ; orig: sub_80D7_copy_bat_table_to_bat:
 
 ; ram_0005_t01_max_addr_hi
 
-; FIX v590: Rewrite battery table copy.
-; Original NES used indirect pointers (LDA (zp),Y / STA (zp),Y) to copy data
-; from ROM bank 06 addresses ($8000+) into NES RAM ($6000-$7FFF).
-; On Genesis, ROM is at assembled label addresses, not at $FF8000+.
-; This rewrite correctly reads from ROM using tbl_8000_1st_quest as bank 06 base.
-
-    ; Build source address from ZP $00/$01 (little-endian NES pointer)
-    MOVEQ   #0,D5
-    MOVE.B  $FF0001,D5               ; high byte of NES source addr
-    LSL.W   #8,D5
-    MOVE.B  $FF0000,D5               ; low byte → D5.W = NES addr (e.g., $8400)
-    SUBI.W  #$8000,D5                ; offset within bank 06
-    LEA     tbl_8000_1st_quest,A0
-    ADDA.W  D5,A0                    ; A0 = Genesis ROM source
+; FIX v638: bank 06 data is no longer safe to address via NES $8000-based
+; offsets because translated alignment padding shifts the assembled labels.
+; The call sites resolve the real source label before entering this routine.
 
     ; Build dest address from ZP $02/$03
     MOVEQ   #0,D5
@@ -6722,6 +6771,10 @@ bra_b06_trace_request_ready:
 bra_b06_ppu_legacy:
     MOVE.W  #$0442,D0
     BSR     TRACE_MARK
+    CMPI.W  #$0302,D5
+    BNE     bra_b06_ppu_legacy_ptr_ready
+    BSR     sub_b06_sanitize_ram_0302_if_invalid
+bra_b06_ppu_legacy_ptr_ready:
     MOVE.B  tbl_A000_ppu_data(D1.L),D0  ; LDA abs,X  ; orig: C - - - - - 0x01A092 06:A082: BD 00 A0  LDA tbl_A000_ppu_dat
     MOVE.B  D0,ram_0000_t11_ppu_data  ; orig: C - - - - - 0x01A095 06:A085: 85 00     STA ram_0000_t11_ppu
     MOVEA.L #tbl_A000_ppu_data+1,A0  ; bzk fix: was empty translation for LDA $A001,X
@@ -6829,6 +6882,23 @@ bra_A0EA_not_palette:  ; orig: bra_A0EA_not_palette:
     BCC     bra_b06_ppu_ptr_nocarry             ; no carry into high byte
     ADDQ.B  #1,ram_0000_t11_ppu_data+1         ; carry into high byte
 bra_b06_ppu_ptr_nocarry:
+    ; Guard odd-byte buffers followed by EVEN padding. If we land on a 00
+    ; immediately after an FF terminator, rewind one byte so the next outer
+    ; read stops on the real terminator instead of drifting into the next blob.
+    MOVEQ   #$00,D5
+    MOVE.B  ram_0000_t11_ppu_data+1,D5
+    LSL.W   #8,D5
+    MOVE.B  ram_0000_t11_ppu_data,D5
+    MOVEA.W D5,A0
+    ADDA.L  #$FF0000,A0
+    TST.B   (A0)
+    BNE     bra_b06_ppu_ptr_trace
+    CMPI.B  #$FF,-1(A0)
+    BNE     bra_b06_ppu_ptr_trace
+    SUBQ.B  #1,ram_0000_t11_ppu_data
+    BCC     bra_b06_ppu_ptr_trace
+    SUBQ.B  #1,ram_0000_t11_ppu_data+1
+bra_b06_ppu_ptr_trace:
     MOVE.B  D2,(TRACE_PPU_EVT_ARG0).l
     MOVE.B  ram_0000_t11_ppu_data,D4
     MOVE.B  D4,(TRACE_PPU_EVT_ARG1).l
@@ -6955,6 +7025,28 @@ b06_cfg_ram_0302_direct:
 b06_cfg_ram_0302_alias_direct:
     DC.B    $00
     EVEN  ; FIX: alignment after odd-byte data
+
+sub_b06_sanitize_ram_0302_if_invalid:
+    ; Direct RAM buffers must begin with a valid PPU high byte ($20-$3F)
+    ; or the $FF terminator. Anything else is stale garbage and should
+    ; self-heal back to the terminator before the legacy parser touches it.
+    MOVE.B  ram_0302_ppu_buffer,D0
+    CMPI.B  #$FF,D0
+    BEQ     bra_b06_ram_0302_header_ok
+    CMPI.B  #$20,D0
+    BCS     bra_b06_ram_0302_header_invalid
+    CMPI.B  #$40,D0
+    BCS     bra_b06_ram_0302_header_ok
+bra_b06_ram_0302_header_invalid:
+    MOVE.W  #$0302,(TRACE_PPU_EVT_ARG0).l
+    ANDI.W  #$00FF,D0
+    MOVE.W  D0,(TRACE_PPU_EVT_ARG1).l
+    CLR.W   (TRACE_PPU_EVT_ARG2).l
+    MOVE.W  #$04AA,D0
+    BSR     TRACE_PPU_EVENT
+    MOVE.B  #$FF,ram_0302_ppu_buffer
+bra_b06_ram_0302_header_ok:
+    RTS
 
 sub_b06_optional_legacy_fallback:
     MOVE.W  D1,(TRACE_PPU_EVT_ARG0).l

@@ -1,4 +1,9 @@
+# RETIRED — DO NOT USE for visual verification.
+# blastem has palette-inaccurate output. Use BizHawk only:
+#   .\run_gameplay_visual_capture.ps1 -Rom zelda_v<N>
+
 $ErrorActionPreference = "Stop"
+throw "RETIRED: blastem is palette-inaccurate. Use run_gameplay_visual_capture.ps1 with BizHawk."
 
 $BLASTEM = "D:\Emulation\Sega\Genesis\blastem-win64-0.6.3-pre-884de5ef1263\blastem.exe"
 $PROJECT = "C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS"

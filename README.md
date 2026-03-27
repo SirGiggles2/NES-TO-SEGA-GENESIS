@@ -1,3 +1,5 @@
+# STATUS (2026-03-26): Runtime baseline is zelda_v659; zelda_v658 is the startup-readiness regression reference. See AI handoff details in [AI_HANDOFF.md](AI_HANDOFF.md) and [AI_HANDOFF_SUMMARY.txt](AI_HANDOFF_SUMMARY.txt).
+
 # Zelda NES → Sega Genesis / Mega Drive Port
 
 This project ports **The Legend of Zelda (NES)** to **Sega Genesis / Mega Drive** by preserving as much of the original game engine as possible.
