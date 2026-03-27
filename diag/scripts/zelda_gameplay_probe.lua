@@ -28,6 +28,7 @@ local ADDR_ENEMY_CNT         = 0xFF034E
 local ADDR_SPR_INDEX_1       = 0xFF0343
 local ADDR_JOY_OVERRIDE      = 0xFFEE90
 local ADDR_JOY_ENABLE        = 0xFFEE91
+local ADDR_PPU_PAL_SHADOW    = 0xFF9200
 local ADDR_SLOT_0            = 0xFF0633
 local ADDR_SLOT_1            = 0xFF0634
 local ADDR_SLOT_2            = 0xFF0635
@@ -72,6 +73,8 @@ local register_seq_frame = 0
 local title_shot = false
 local file_shot = false
 local branch_shot = false
+local gameplay_palette_dumped = false
+local gameplay_palette_dumped_f30 = false
 
 local prev_script = 0xFF
 local prev_sub = 0xFF
@@ -133,6 +136,39 @@ local function shot(name)
     client.screenshot(full)
     shots[#shots + 1] = full
     log("screenshot=" .. full)
+end
+
+local function hex(v, width)
+    return string.format("%0" .. tostring(width or 2) .. "X", v or 0)
+end
+
+local function dump_palette_shadow()
+    local bg = {}
+    local sp = {}
+    for i = 0, 15 do
+        bg[#bg + 1] = hex(memory.read_u8(ADDR_PPU_PAL_SHADOW + i), 2)
+        sp[#sp + 1] = hex(memory.read_u8(ADDR_PPU_PAL_SHADOW + 16 + i), 2)
+    end
+    log("pal_shadow_bg=" .. table.concat(bg, " "))
+    log("pal_shadow_sp=" .. table.concat(sp, " "))
+end
+
+local function dump_cram_words()
+    local ok = pcall(memory.usememorydomain, "CRAM")
+    if not ok then
+        log("cram_dump=UNAVAILABLE")
+        return
+    end
+
+    for first = 0, 31, 16 do
+        local parts = {}
+        for i = 0, 15 do
+            parts[#parts + 1] = hex(memory.read_u16_be((first + i) * 2), 4)
+        end
+        log(string.format("cram[%02X-%02X]=%s", first, first + 15, table.concat(parts, " ")))
+    end
+
+    memory.usememorydomain("M68K BUS")
 end
 
 local function joypad_targets(mask)
@@ -494,7 +530,18 @@ while frame_num < MAX_FRAMES do
         if (s.x ~= last_x or s.y ~= last_y) and delta <= 240 then
             log_state("move", s)
         end
+        if not gameplay_palette_dumped and delta >= 1 then
+            gameplay_palette_dumped = true
+            dump_palette_shadow()
+            dump_cram_words()
+        end
         if delta == 30 then
+            if not gameplay_palette_dumped_f30 then
+                gameplay_palette_dumped_f30 = true
+                log("palette_dump=f+30")
+                dump_palette_shadow()
+                dump_cram_words()
+            end
             shot(ROM_VERSION .. "_gameplay_f" .. frame_num .. ".png")
             log_state("f+30", s)
         elseif delta == 120 then

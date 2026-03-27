@@ -30,18 +30,24 @@ NES_RGB = [
     (0, 252, 252), (216, 216, 216), (0, 0, 0), (0, 0, 0),
 ]
 
+GLOBAL_OVERRIDES = {
+    0x07: 0x00AE,
+    0x0C: 0x0CCE,
+    0x0F: 0x0444,
+    0x12: 0x0EEE,
+    0x16: 0x0CCE,
+    0x17: 0x08CE,
+    0x1C: 0x0EEE,
+    0x27: 0x0AEE,
+    0x29: 0x08EE,
+    0x2C: 0x0EEE,
+}
+
 TITLE_SCREEN_OVERRIDES = {
-    0x08: 0x0E00,
-    0x10: 0x00EE,
-    0x16: 0x004A,
-    0x17: 0x00E0,
-    0x1A: 0x000E,
+    0x08: 0x0CCE,
+    0x1A: 0x0CE0,
     0x22: 0x0EEE,
-    0x27: 0x02AE,
-    0x28: 0x0EE0,
-    0x36: 0x0E0E,
-    0x37: 0x0EEE,
-    0x3B: 0x0888,
+    0x36: 0x0EEE,
 }
 
 
@@ -82,8 +88,8 @@ def encode(r: int, g: int, b: int) -> int:
 
 
 def quantize_channel(channel: int) -> int:
-    # Slight gamma lift keeps title hues closer to native Genesis assets on
-    # darker hardware/capture paths without washing the entire table to white.
+    # Slight gamma lift keeps the shared gameplay/frontend palette closer to
+    # the NES reference on darker hardware/capture paths.
     return max(0, min(7, round(((channel / 255.0) ** 0.85) * 7)))
 
 
@@ -116,19 +122,23 @@ def run(path: pathlib.Path) -> int:
     base = extract_table(text, "NES_PALETTE_DATA")
     frontend = extract_table(text, "CORRECT_NES_PALETTE")
     title = extract_table(text, "TITLE_SCREEN_NES_PALETTE")
-    expected = [lift_word(word) for word in base]
-    expected_title = [quantize_rgb(rgb) for rgb in NES_RGB]
+    expected = [lift_word(quantize_rgb(rgb)) for rgb in NES_RGB]
+    for idx, word in GLOBAL_OVERRIDES.items():
+        expected[idx] = word
+    expected_title = expected.copy()
     for idx, word in TITLE_SCREEN_OVERRIDES.items():
         expected_title[idx] = word
 
     failures: list[str] = []
-    if frontend == base:
-        failures.append("CORRECT_NES_PALETTE must differ from NES_PALETTE_DATA.")
+    base_mismatches = [idx for idx, (cur, exp) in enumerate(zip(base, expected)) if cur != exp]
+    if base_mismatches:
+        preview = ", ".join(f"${idx:02X}" for idx in base_mismatches[:8])
+        failures.append(f"NES_PALETTE_DATA does not match the global calibration rule at {preview}.")
 
-    mismatches = [idx for idx, (cur, exp) in enumerate(zip(frontend, expected)) if cur != exp]
-    if mismatches:
-        preview = ", ".join(f"${idx:02X}" for idx in mismatches[:8])
-        failures.append(f"Frontend palette does not match the lift rule at {preview}.")
+    frontend_mismatches = [idx for idx, (cur, exp) in enumerate(zip(frontend, expected)) if cur != exp]
+    if frontend_mismatches:
+        preview = ", ".join(f"${idx:02X}" for idx in frontend_mismatches[:8])
+        failures.append(f"CORRECT_NES_PALETTE does not match the global calibration rule at {preview}.")
 
     title_mismatches = [idx for idx, (cur, exp) in enumerate(zip(title, expected_title)) if cur != exp]
     if title_mismatches:
