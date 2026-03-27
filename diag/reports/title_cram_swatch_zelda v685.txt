@@ -1,0 +1,8 @@
+=== TITLE CRAM SWATCH zelda v685 ===
+sample_frame=199 ready=1 script=0 sub=0 ppu=00 hold=20
+swatch[red]=000E screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda v685_title_cram_swatch_red.png
+swatch[green]=00E0 screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda v685_title_cram_swatch_green.png
+swatch[blue]=0E00 screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda v685_title_cram_swatch_blue.png
+swatch[white]=0EEE screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda v685_title_cram_swatch_white.png
+swatch[mid]=0888 screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda v685_title_cram_swatch_mid.png
+=== TITLE CRAM SWATCH COMPLETE ===

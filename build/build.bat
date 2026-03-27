@@ -2,7 +2,7 @@
 setlocal EnableExtensions
 
 for %%I in ("%~dp0..") do set "ROOT=%%~fI"
-set "RAW_ROM=%ROOT%\build\zelda_raw.md"
+set "RAW_ROM="
 set "OUT_ROM="
 set "OUT_LST="
 set "PYTHON="
@@ -37,6 +37,7 @@ if exist "%ROOT%\build\zelda_v%VERPAD%.md" (
     set /a VER+=1
     goto ver_loop
 )
+set "RAW_ROM=%ROOT%\build\zelda_v%VERPAD%_raw.md"
 set "OUT_ROM=%ROOT%\build\zelda_v%VERPAD%.md"
 set "OUT_LST=%ROOT%\build\zelda_v%VERPAD%.lst"
 

@@ -1,0 +1,11 @@
+=== TITLE SPRITE HISTOGRAM zelda v688 ===
+sample_frame=163 rect=(24,8)-(231,183)
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\title_sprite_histogram_zelda v688.png
+sprite_pixels=0
+top_sprite_palette_lines:
+top_sprite_color_indices:
+top_sprite_cram_slots:
+top_sprite_cram_words:
+top_sprite_shadow_indices:
+top_sprite_nes_indices:
+=== TITLE SPRITE HISTOGRAM COMPLETE ===

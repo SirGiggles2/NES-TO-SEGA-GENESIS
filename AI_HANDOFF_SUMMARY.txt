@@ -1,42 +1,60 @@
 NES-TO-SEGA-GENESIS AI Handoff Summary
-Date: 2026-03-12
+Date: 2026-03-27
 
-LATEST ADDENDUM (2026-03-26)
-- Runtime baseline moved to zelda_v659.
-- zelda_v659 evidence:
-  - smoke passes: pass=true, pass_ready=true, ready_count=802, final_frm_cnt=207
-  - full build+runtime gate passes
-  - frontend reaches branch_script=14 at frame 269
-  - gameplay entry occurs at frame 561
-  - accuracy_score=168, status=PASS
-- zelda_v658 remains the startup regression reference:
-  - smoke fails: pass=false, pass_ready=false, ready_count=0, final_frm_cnt=0
+LATEST ADDENDUM (2026-03-27)
+- Current live title-work candidate is zelda_v689.
+- Last fully gated runtime baseline is zelda_v672.
+- Why zelda_v672 matters:
+  - it fixed the bad H32 register write by changing Reg 12 from `$8C80` to `$8C00`
+  - it returned console timing from the broken ~`19.20 kHz / 73.29 Hz` state to normal Genesis NTSC timing
+- Why zelda_v689 matters:
+  - it restores the full title composition path in source
+  - it keeps the correct H32 console mode
+  - it passes the current frontend probe and gameplay probe
+  - it is the candidate to resume title darkness work from
+- zelda_v689 evidence:
+  - title probe: diag/reports/title_palette_probe_zelda_v689.txt
+  - frontend probe: title_ready_frame=144, file_select_ready_frame=248, branch_frame=270
+  - gameplay probe: file_select_ready_frame=249, branch_frame=271, gameplay_entry_frame=565
+- Core diagnosis from the latest /chuckle:
+  - this is not best explained by dead CRAM writes
+  - this is not best explained by MMC1 bank switching
+  - sparse dark title builds were misleading because the visible layer mix had drifted
+  - the current work is on the title composition/palette path, with hardware first and BizHawk second
+- The current normal-build blocker is tooling drift, not runtime failure:
+  - tools/check_vdp_title_regressions.py still treats fullscreen window `#$9100/#$9200` as an automatic regression
+  - tools/check_frontend_palette_calibration.py still expects older title overrides instead of the current v689 table
 
 What /chuckle means on this handoff (4-step protocol)
 1) Identify real problem
-  - Not just title timing symptoms; invariant is that the bank-6 `$0302` direct-buffer path must only parse a well-formed PPU header or the `$FF` terminator.
+  - The remaining title darkness is now a hardware-facing composition/palette issue, not just a generic "colors are wrong" complaint.
 2) Research what exists
-  - Generic indexed writer already exists in translated bank code; bridge title fallback/debug behavior are partial workarounds; the legacy `$0302` path still sits behind table index `00`.
+  - Use the actual probes to separate sparse-title artifacts from the restored full-title path:
+    - diag/reports/title_sprite_histogram_zelda v685.txt
+    - diag/reports/title_bg_regions_zelda v688.txt
+    - diag/reports/title_palette_probe_zelda_v689.txt
 3) Build structural fix
-  - Added bank-6 direct-buffer header validation so stale `$0302` garbage self-heals to `$FF` before the legacy parser consumes it.
+  - Keep H32 `#$8C00`, restore fullscreen window/title priority, and tune the hot title indices in TITLE_SCREEN_NES_PALETTE.
 4) Make system verify itself
-  - Added build-time regression signature to tools/check_vdp_title_regressions.py so this clobber pattern fails fast if reintroduced.
-  - Added tools/check_ppu_buffer_safety.py to build/build.bat so the bank-6 `$0302` validation hook is required on every new ROM build.
+  - First repair the stale static guards, then go back through build.bat + the normal title/frontend/gameplay probes.
 
 Operational guidance
-- Treat zelda_v659 as the known-good runtime baseline right now.
-- Treat zelda_v658 as a regression candidate to debug, not a replacement baseline.
-- Preserve zelda_v659 readiness and treat v658 as the stale-`$0302` regression repro if the issue resurfaces.
+- Treat zelda_v672 as the last normal build+gate baseline.
+- Treat zelda_v689 as the live source state and best current visual/runtime candidate.
+- Do not chase MMC1 first; it is not the lead suspect.
+- Do not remove the fullscreen window/title-priority path unless new evidence disproves it.
 
 RESUME HERE (30 SECONDS)
-- Use zelda_v659 as baseline (smoke + frontend + gameplay + ledger PASS).
-- Treat zelda_v658 as regression candidate (ready_count=0).
-- Last winning change touched bank-6 direct-buffer validation in src/banks/generated/bank_06_gen68k.asm.
-- Guards now exist in tools/check_vdp_title_regressions.py and tools/check_ppu_buffer_safety.py.
-- First checks to run:
-  1) .\run_build_and_gate.ps1 -SkipBuild -Rom "zelda_v659"
-  2) .\run_build_and_gate.ps1 -SkipBuild -Rom "zelda_v658"
-  3) compare diag/reports/smoke_test_zelda_v659.json vs diag/reports/smoke_test_zelda_v658.json
+- Start from the current source state in src/bridge/vdp_layer.asm, which matches the v689 candidate.
+- Use zelda_v672 if you need the last fully gated rollback point.
+- First edits to make:
+  1) update tools/check_vdp_title_regressions.py so `#$9100/#$9200` is not rejected
+  2) update tools/check_frontend_palette_calibration.py so TITLE_SCREEN_OVERRIDES matches the live title table
+  3) run build\build.bat to produce the next normal ROM candidate
+- Then run:
+  1) .\run_title_palette_probe.ps1 -Rom zelda_v690
+  2) .\run_frontend_probe.ps1 -Rom zelda_v690
+  3) .\run_gameplay_probe.ps1 -Rom zelda_v690
 
 Project goal
 - Port Zelda 1 from NES to Sega Genesis while preserving the original game logic as much as possible.

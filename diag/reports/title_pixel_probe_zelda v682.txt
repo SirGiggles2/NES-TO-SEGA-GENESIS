@@ -1,0 +1,27 @@
+=== TITLE PIXEL PROBE zelda v682 ===
+sample_frame=163 ready=1 script=0 sub=0 ppu=00 hold=20
+plaque_bg xy=(120,20) visible=window
+  plane_a cell_rc=(2,15) cell=8124 tile=124 pal=0 hflip=0 vflip=0 px=0 py=4 packed=FF color=F cram_slot=0F cram=0CCE
+  plane_b cell_rc=(2,15) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=0 py=4 packed=FF color=F cram_slot=0F cram=0CCE
+  window  cell_rc=(2,15) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=0 py=4 packed=FF color=F cram_slot=0F cram=0CCE
+logo_dark xy=(110,60) visible=window
+  plane_a cell_rc=(7,13) cell=A176 tile=176 pal=1 hflip=0 vflip=0 px=6 py=4 packed=22 color=2 cram_slot=12 cram=0CCE
+  plane_b cell_rc=(7,13) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=6 py=4 packed=FF color=F cram_slot=0F cram=0CCE
+  window  cell_rc=(7,13) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=6 py=4 packed=FF color=F cram_slot=0F cram=0CCE
+logo_fill xy=(128,78) visible=window
+  plane_a cell_rc=(9,16) cell=A195 tile=195 pal=1 hflip=0 vflip=0 px=0 py=6 packed=22 color=2 cram_slot=12 cram=0CCE
+  plane_b cell_rc=(9,16) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=0 py=6 packed=FF color=F cram_slot=0F cram=0CCE
+  window  cell_rc=(9,16) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=0 py=6 packed=FF color=F cram_slot=0F cram=0CCE
+sword xy=(182,82) visible=window
+  plane_a cell_rc=(10,22) cell=A1AC tile=1AC pal=1 hflip=0 vflip=0 px=6 py=2 packed=11 color=1 cram_slot=11 cram=02AE
+  plane_b cell_rc=(10,22) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=6 py=2 packed=FF color=F cram_slot=0F cram=0CCE
+  window  cell_rc=(10,22) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=6 py=2 packed=FF color=F cram_slot=0F cram=0CCE
+vine xy=(56,31) visible=window
+  plane_a cell_rc=(3,7) cell=8124 tile=124 pal=0 hflip=0 vflip=0 px=0 py=7 packed=FF color=F cram_slot=0F cram=0CCE
+  plane_b cell_rc=(3,7) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=0 py=7 packed=FF color=F cram_slot=0F cram=0CCE
+  window  cell_rc=(3,7) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=0 py=7 packed=FF color=F cram_slot=0F cram=0CCE
+rock xy=(20,170) visible=window
+  plane_a cell_rc=(21,2) cell=81DE tile=1DE pal=0 hflip=0 vflip=0 px=4 py=2 packed=23 color=2 cram_slot=02 cram=0888
+  plane_b cell_rc=(21,2) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=4 py=2 packed=FF color=F cram_slot=0F cram=0CCE
+  window  cell_rc=(21,2) cell=0400 tile=400 pal=0 hflip=0 vflip=0 px=4 py=2 packed=FF color=F cram_slot=0F cram=0CCE
+=== TITLE PIXEL PROBE COMPLETE ===

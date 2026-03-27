@@ -1,8 +1,16 @@
 -- zelda_title_pixel_probe.lua
 -- Sample a few title-screen pixels and report which VRAM/CRAM entries they use.
 
-local ROM_VERSION = "zelda_v676"
 local MAX_FRAMES = 360
+
+local function get_rom_label()
+    local path = gameinfo.getromname() or "unknown"
+    local label = tostring(path):gsub("^.*[\\/]", "")
+    label = label:gsub("%.[Mm][Dd]$", "")
+    return label
+end
+
+local ROM_VERSION = get_rom_label()
 
 local OUT_DIR   = "C:\\Users\\Jake Diggity\\Documents\\GitHub\\NES-TO-SEGA-GENESIS\\diag\\reports\\"
 local OUT_PATH  = OUT_DIR .. "title_pixel_probe_" .. ROM_VERSION .. ".txt"
@@ -13,8 +21,8 @@ local ADDR_SUB       = 0xFF0013
 local ADDR_PPU_LOAD  = 0xFF0014
 local PLANE_A_MAP    = 0xC000
 local PLANE_B_MAP    = 0xE000
-local WINDOW_MAP     = 0x3800
-local SAT_BASE       = 0xD800
+local WINDOW_MAP     = 0xB000
+local SAT_BASE       = 0xBE00
 
 local SAMPLES = {
     { name = "plaque_bg",  x = 120, y = 20 },
@@ -48,12 +56,13 @@ local function with_domain(domain, fn)
     memory.usememorydomain("M68K BUS")
 end
 
-local function read_plane_sample(map_base, sample)
+local function read_plane_sample(map_base, sample, row_cells)
+    row_cells = row_cells or 64
     local result = nil
     with_domain("VRAM", function()
         local cell_row = math.floor(sample.y / 8)
         local cell_col = math.floor(sample.x / 8)
-        local cell_addr = map_base + (cell_row * 64 * 2) + (cell_col * 2)
+        local cell_addr = map_base + (cell_row * row_cells * 2) + (cell_col * 2)
         local cell = memory.read_u16_be(cell_addr) or 0
         local tile_index = bit.band(cell, 0x07FF)
         local hflip = bit.band(bit.rshift(cell, 11), 1)
@@ -181,9 +190,9 @@ local function read_sprite_sample(sample)
 end
 
 local function sample_pixel(sample)
-    local plane_a = read_plane_sample(PLANE_A_MAP, sample)
-    local plane_b = read_plane_sample(PLANE_B_MAP, sample)
-    local window = read_plane_sample(WINDOW_MAP, sample)
+    local plane_a = read_plane_sample(PLANE_A_MAP, sample, 64)
+    local plane_b = read_plane_sample(PLANE_B_MAP, sample, 64)
+    local window = read_plane_sample(WINDOW_MAP, sample, 32)
     local sprite = read_sprite_sample(sample)
 
     local visible = "backdrop"

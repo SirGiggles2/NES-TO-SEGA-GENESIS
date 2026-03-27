@@ -1,0 +1,4 @@
+=== TITLE SPRITE REGIONS zelda v688 ===
+sample_frame=163
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\title_sprite_regions_zelda v688.png
+=== TITLE SPRITE REGIONS COMPLETE ===

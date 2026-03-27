@@ -12,7 +12,7 @@ local ADDR_SCRIPT    = 0xFF0012
 local ADDR_SUB       = 0xFF0013
 local ADDR_PPU_LOAD  = 0xFF0014
 local NES_OAM_BASE   = 0xFF0200
-local SAT_BASE       = 0xD800
+local SAT_BASE       = 0xBE00
 
 local function log_open(path)
     os.execute('if not exist "' .. OUT_DIR .. '" mkdir "' .. OUT_DIR .. '"')

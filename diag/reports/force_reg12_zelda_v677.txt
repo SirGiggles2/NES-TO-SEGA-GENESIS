@@ -1,0 +1,4 @@
+=== FORCE REG12 zelda_v677 ===
+sample_frame=163 ready=1 script=0 sub=0 ppu=00 hold=20
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v677_force_reg12.png
+=== FORCE REG12 COMPLETE ===

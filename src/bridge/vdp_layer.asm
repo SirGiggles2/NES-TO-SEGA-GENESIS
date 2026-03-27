@@ -61,13 +61,17 @@ RAM_SCROLL_Y    EQU $FFFF00FC
 RAM_SCROLL_X    EQU $FFFF00FD
 PLANE_A_MAP_BASE EQU $C000
 PLANE_B_MAP_BASE EQU $E000
-WINDOW_MAP_BASE  EQU $3800
+WINDOW_MAP_BASE  EQU $B000
+HSCROLL_TABLE_BASE EQU $B800
+SPRITE_ATTR_BASE EQU $BE00
 PPU_NT_SHADOW   EQU $00FF8200
 PPU_PAL_SHADOW  EQU $00FF9200
 PPU_CHR_SHADOW  EQU $00FFC000
 PPU_NT_MIRROR_MASK EQU $03FF
 NES_BACKDROP_TILE_INDEX EQU $0400
 NES_BACKDROP_TILE_VRAM  EQU $8000
+WINDOW_BLANK_TILE_INDEX EQU $0401
+WINDOW_BLANK_TILE_VRAM  EQU $8020
 ; FIX v490: Sprite tile copies live at VRAM $4000-$7FFF (tiles 512-1023)
 ; These copies have pixel values shifted +4 so sprites use palette colors 4-7
 SPRITE_TILE_VRAM_BASE   EQU $4000
@@ -80,16 +84,16 @@ VDP_INIT:
     move.w  #$8000,($C00004)
     move.w  #$8134,($C00004)    ; Standard NTSC 224-line mode, display off during init
     move.w  #$8230,($C00004)
-    move.w  #$8307,($C00004)
+    move.w  #$832C,($C00004)    ; H32 window table at $B000 (2KB)
     move.w  #$8407,($C00004)
-    move.w  #$856C,($C00004)
+    move.w  #$855F,($C00004)    ; H32 sprite attribute table at $BE00 (512B)
     move.w  #$8700,($C00004)
     move.w  #$8B00,($C00004)
     move.w  #$8C00,($C00004)    ; H32 mode (256px wide), no shadow/highlight, no interlace
-    move.w  #$8D2F,($C00004)
+    move.w  #$8D2E,($C00004)    ; H32 h-scroll table at $B800 (1KB)
     move.w  #$8F02,($C00004)
     move.w  #$9001,($C00004)
-    move.w  #$9100,($C00004)
+    move.w  #$9100,($C00004)    ; Title composition currently relies on a fullscreen window field
     move.w  #$9200,($C00004)
 
     bsr     VDP_CLEAR_VRAM
@@ -192,7 +196,8 @@ PPU_WRITE_2005:
     ; modify the game's RAM shadow ($FD). Only the game code itself updates
     ; ram_scroll_X. The VDP layer must not clobber it.
     move.b  #1,(PPUSCROLL_LATCH).l
-    move.l  #$7C000002,($C00004)
+    move.w  #HSCROLL_TABLE_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
     moveq   #0,D3
     move.b  (PPUSCROLL_X).l,D3
     neg.w   D3
@@ -235,6 +240,7 @@ PPU_WRITE_2006:
     bsr     TRACE_MARK
     rts
 .palette_addr:
+    moveq   #0,D4
     move.w  D3,D4
     bsr     PPU_NORMALIZE_PALETTE_INDEX
     lsl.w   #1,D4
@@ -270,6 +276,7 @@ PPU_WRITE_2007:
     bsr     PPU_ADVANCE_VRAM_ADDR
     rts
 .palette_write:
+    moveq   #0,D4
     move.w  D3,D4
     bsr     PPU_NORMALIZE_PALETTE_INDEX
     lea     (PPU_PAL_SHADOW).l,A0
@@ -472,7 +479,27 @@ VDP_DEBUG_VISUAL_PULSE:
     rts
 
 VDP_OAM_DMA_TRANSFER:
-    move.l  #$58000003,($C00004)
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .dma_sprites
+    move.w  #SPRITE_ATTR_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  #63,D7
+.title_hide_loop:
+    move.w  #$0000,($C00000)
+    move.w  D7,D0
+    beq     .title_hide_last
+    neg.w   D0
+    addi.w  #64,D0
+.title_hide_last:
+    move.w  D0,($C00000)
+    move.w  #$0000,($C00000)
+    move.w  #$0000,($C00000)
+    dbra    D7,.title_hide_loop
+    bsr     PPU_INVALIDATE_PLANE_CACHE
+    rts
+.dma_sprites:
+    move.w  #SPRITE_ATTR_BASE,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
     movea.l #($FF0000+$0200),A1
     move.w  #63,D7
 .sprite_loop:
@@ -571,6 +598,15 @@ VDP_INIT_NES_BACKDROP:
 .tile_loop:
     move.w  #$FFFF,($C00000)
     dbra    D7,.tile_loop
+    ; Reserve a transparent tile for the window plane. If the window becomes
+    ; visible, it should disappear rather than laying a solid backdrop over
+    ; the frontend/title.
+    move.w  #WINDOW_BLANK_TILE_VRAM,D0
+    bsr     VDP_SET_VRAM_WRITE_ADDR
+    move.w  #15,D7
+.window_blank_loop:
+    move.w  #0,($C00000)
+    dbra    D7,.window_blank_loop
     ; Fill Plane A with stable backdrop tile so untouched cells do not inherit
     ; changing CHR tile 0 data (which manifests as random dots).
     move.w  #PLANE_A_MAP_BASE,D0
@@ -585,11 +621,10 @@ VDP_INIT_NES_BACKDROP:
 .plane_loop:
     move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
     dbra    D7,.plane_loop
-    ; Window plane can become visible during frontend/title timing.
-    ; Fill it with the same backdrop tile to prevent dotted garbage speckle.
+    ; Title currently composes against a solid window field.
     move.w  #WINDOW_MAP_BASE,D0
     bsr     VDP_SET_VRAM_WRITE_ADDR
-    move.w  #2047,D7
+    move.w  #1023,D7
 .window_loop:
     move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
     dbra    D7,.window_loop
@@ -598,6 +633,7 @@ VDP_INIT_NES_BACKDROP:
 
 VDP_SYNC_NES_BACKDROP_COLOR:
     move.w  D0,D1
+    moveq   #0,D4
     move.w  #NES_BACKDROP_CRAM_INDEX,D4
     lsl.w   #1,D4
     swap    D4
@@ -840,19 +876,19 @@ TITLE_SCREEN_NES_PALETTE:
 ;   $00      $01      $02      $03      $04      $05      $06      $07
     DC.W $0888, $0E00, $0A00, $0A24, $0808, $020A, $002A, $0028
 ;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
-    DC.W $0046, $0080, $0060, $0060, $0640, $0000, $0000, $0000
+    DC.W $08CE, $0080, $0060, $0060, $0640, $0000, $0000, $0000
 ;   $10      $11      $12      $13      $14      $15      $16      $17
     DC.W $0AAA, $0E80, $0E60, $0E46, $0C0C, $060C, $004A, $02AE
 ;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
-    DC.W $008A, $00A0, $00A0, $04A0, $0880, $0000, $0000, $0000
+    DC.W $008A, $00A0, $08E0, $04A0, $0880, $0000, $0000, $0000
 ;   $20      $21      $22      $23      $24      $25      $26      $27
-    DC.W $0EEE, $0EA4, $0EAA, $0E8A, $0E8E, $0A6E, $068E, $02AE
+    DC.W $0EEE, $0EA4, $0ECC, $0E8A, $0E8E, $0A6E, $068E, $02AE
 ;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
-    DC.W $00AE, $02EA, $06C6, $0AE6, $0CC0, $0888, $0000, $0000
+    DC.W $00EE, $02EA, $06C6, $0AE6, $0CC0, $0888, $0000, $0000
 ;   $30      $31      $32      $33      $34      $35      $36      $37
-    DC.W $0EEE, $0ECA, $0EAA, $0EAC, $0EAE, $0AAE, $0CCE, $0CCE
+    DC.W $0EEE, $0ECA, $0EAA, $0EAC, $0EAE, $0AAE, $0CCE, $0EEE
 ;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
-    DC.W $08CE, $08EC, $0AEA, $0CEA, $0EE0, $0CCC, $0000, $0000
+    DC.W $08CE, $08EC, $0AEA, $0EEE, $0EE0, $0CCC, $0000, $0000
 
 PPU_CLEAR_SHADOWS:
     lea     (PPU_NT_SHADOW).l,A0
@@ -1519,13 +1555,10 @@ PPU_RENDER_NAMETABLE_CELL:
     lsl.w   #8,D6
     lsl.w   #5,D6
     or.w    D2,D6
-    ; Hardware-first title guard: if any shadow/highlight state is active,
-    ; low-priority title cells can render dim on console/BizHawk. Force the
-    ; title plane cells to high priority so they present at full brightness.
     cmpi.b  #con_script_title_screen,(ram_script).l
-    bne     .tile_attr_ready
+    bne     .title_priority_done
     ori.w   #$8000,D6
-.tile_attr_ready:
+.title_priority_done:
 
     move.w  D5,D0
     andi.w  #$0001,D0

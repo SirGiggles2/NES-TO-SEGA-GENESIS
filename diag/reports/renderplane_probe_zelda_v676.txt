@@ -1,0 +1,15 @@
+=== RENDERPLANE PROBE zelda_v676 ===
+sample_frame=163 ready=1 script=0 sub=0 ppu=00 hold=20
+call[mask_1111_table]=err:NLua.Exceptions.LuaScriptException: [string "main"]:48: Invalid arguments to method call: 39538176
+call[mask_1111_args]=ok
+screenshot[all_on]=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v676_renderplane_all_on.png
+call[mask_1000_table]=ok
+screenshot[p1_only]=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v676_renderplane_p1_only.png
+call[mask_0100_table]=ok
+screenshot[p2_only]=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v676_renderplane_p2_only.png
+call[mask_0010_table]=ok
+screenshot[p3_only]=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v676_renderplane_p3_only.png
+call[mask_0001_table]=ok
+screenshot[p4_only]=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v676_renderplane_p4_only.png
+call[mask_1111_table]=ok
+=== RENDERPLANE PROBE COMPLETE ===

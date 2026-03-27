@@ -1,0 +1,3 @@
+=== VDP REG TRACE zelda_v677 ===
+event.on_bus_write unavailable
+=== VDP REG TRACE COMPLETE ===

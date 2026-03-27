@@ -1,32 +1,42 @@
 # AI HANDOFF - NES Zelda 1 to Sega Genesis Port
 
-**Date:** 2026-03-26
+**Date:** 2026-03-27
 **Branch:** `new-start`
-**Current ROM Version:** `zelda_v659` (latest built candidate)
-**Best Stable Runtime Baseline:** `zelda_v659`
-**Status:** `v659` fixes the v658 startup-readiness stall via bank-6 direct-buffer validation and passes the full build+runtime gate
+**Current ROM Version:** `zelda_v689` (manual candidate built outside `build\build.bat`)
+**Best Fully Gated Runtime Baseline:** `zelda_v672`
+**Best Current Visual/Runtime Candidate:** `zelda_v689`
+**Status:** H32 console timing is fixed via Reg 12 `#$8C00`, the full title composition path is restored in source, and `v689` passes the frontend/gameplay probes. The remaining blocker is that the normal build+gate flow is out of sync with the verified title path and still trips stale static guards in `tools/check_vdp_title_regressions.py` and `tools/check_frontend_palette_calibration.py`.
 
 ---
 
 ## Resume Here (30 Seconds)
 
-- Baseline to trust now: `zelda_v659`
-	- smoke pass in `diag/reports/smoke_test_zelda_v659.json`
-	- full gate pass in `diag/reports/frontend_probe_zelda_v659.txt` and `diag/reports/gameplay_probe_zelda_v659.txt`
-- Latest regression candidate: `zelda_v658`
-	- smoke fail in `diag/reports/smoke_test_zelda_v658.json`
-	- failure shape: `pass_ready=false`, `ready_count=0`, `final_frm_cnt=0`
-- Last structural change:
-	- added `sub_b06_sanitize_ram_0302_if_invalid` in `src/banks/generated/bank_06_gen68k.asm`
-	- added build-time guard `tools/check_ppu_buffer_safety.py` in `build/build.bat`
+- Trust `zelda_v672` when you need the last normal build+gate baseline.
+	- it fixed the bad H32 timing write (`#$8C80` -> `#$8C00`)
+	- it returned hardware timing from the broken ~`19.20 kHz / 73.29 Hz` state to normal Genesis NTSC timing
+- Continue title work from the live `v689` source state in `src/bridge/vdp_layer.asm`.
+	- title probe: `diag/reports/title_palette_probe_zelda_v689.txt`
+	- frontend probe: `diag/reports/frontend_probe_zelda_v689.txt`
+	- gameplay probe: `diag/reports/gameplay_probe_zelda_v689.txt`
+- The source facts that matter now:
+	- `VDP_INIT` is in H32 with `move.w  #$8C00,($C00004)`
+	- the fullscreen window field is back with `move.w  #$9100,($C00004)` and `move.w  #$9200,($C00004)`
+	- title-only plane priority is back in `PPU_RENDER_NAMETABLE_CELL`
+	- `TITLE_SCREEN_NES_PALETTE` is now tuned around the hot title indices instead of the earlier global-lift-only experiments
 
 Immediate next command set:
-1. `./run_build_and_gate.ps1 -SkipBuild -Rom 'zelda_v659'`
-2. Compare `diag/reports/gameplay_probe_zelda_v659.txt` vs `diag/reports/gameplay_probe_zelda_v657.txt`
-3. Use `zelda_v658` only as the startup-regression reference, not as a baseline
+1. Update `tools/check_vdp_title_regressions.py` so fullscreen window `#$9100/#$9200` is not treated as an automatic regression.
+2. Update `tools/check_frontend_palette_calibration.py` so `TITLE_SCREEN_OVERRIDES` matches the current `v689` title table.
+3. Run `build\build.bat` and let it produce the next normal ROM candidate.
+4. Run `.\run_title_palette_probe.ps1 -Rom zelda_v690`
+5. Run `.\run_frontend_probe.ps1 -Rom zelda_v690`
+6. Run `.\run_gameplay_probe.ps1 -Rom zelda_v690`
 
 Decision rule:
-- Preserve `v659` startup readiness and direct-buffer self-healing behavior; do not treat `v658` as baseline.
+- Preserve H32 `#$8C00`.
+- Preserve the restored fullscreen-window/title-priority composition unless new evidence disproves it.
+- Treat hardware as the goal and BizHawk as the secondary oracle. Ares/BlastEm are useful, but they are not the final judge.
+- Do not spend time on MMC1 first. Current evidence says the title darkness problem is in the composition/palette path, not mapper bank selection.
 
 ---
 
@@ -34,86 +44,110 @@ Decision rule:
 
 Important update from the latest run:
 
-- `v659` is now the practical runtime baseline.
-- `v659` passes smoke, frontend, gameplay, regression gate, and ledger recording.
-- `v658` remains the useful regression reference for the startup-readiness stall.
-- The winning structural fix was not a return to the old pre-NMI clobber. It was validating the raw `$0302` direct-buffer header before the legacy bank-6 parser consumes it.
+- `v672` is still the last fully gated runtime baseline and the key console-safety fix.
+- The bad H32 experiment was real: `#$8C80` produced the broken ~`19.20 kHz / 73.29 Hz` console mode. The correct plain H32 value is `#$8C00`.
+- The later title-darkness chase proved this is not a dead CRAM write path and probably not an MMC1 issue.
+- Palette-only tuning against the sparse `v684`/`v685` view was misleading because that title state was being dominated by a smaller sprite-driven subset of visible pixels.
+- Restoring the fullscreen window/title-priority composition brought the full title back in `v688`.
+- `v689` is the first current candidate that combines:
+	- correct H32 console timing,
+	- restored full title composition,
+	- targeted hot-index title palette tuning,
+	- passing frontend probe,
+	- passing gameplay probe.
+- `v689` was built manually with `build\toolchain\vasmm68k_mot.exe` plus `tools\fix_checksum.py` because `build\build.bat` is currently blocked by stale static-guard assumptions, not because the runtime path is broken.
 
 New reference reports:
-- `diag/reports/smoke_test_zelda_v659.json`
-- `diag/reports/frontend_probe_zelda_v659.txt`
-- `diag/reports/gameplay_probe_zelda_v659.txt`
-- `diag/reports/smoke_test_zelda_v658.json`
+- `diag/reports/title_palette_probe_zelda_v689.txt`
+- `diag/reports/frontend_probe_zelda_v689.txt`
+- `diag/reports/gameplay_probe_zelda_v689.txt`
+- `diag/reports/title_bg_regions_zelda v688.txt`
+- `diag/reports/title_sprite_histogram_zelda v685.txt`
 
 ---
 
 ## /chuckle Outcome (Latest)
 
-This section records the 4-step `/chuckle` protocol result so the next session can continue without re-discovery.
+This section records the current 4-step `/chuckle` result so the next session can continue without re-discovery.
 
 ### Step 1 - Real Problem
 
-The violated invariant was startup-safe direct PPU buffer lifecycle in bank 6:
+The remaining hardware/BizHawk darkness is not best explained by a dead palette path or by MMC1 bank selection.
 
-- the legacy `$0302` direct-buffer path must only ever parse a well-formed header or the `$FF` terminator,
-- stale `$0302` bytes must not be allowed to masquerade as a valid PPU command stream during early translated NMI,
-- bridge-side title recovery logic is not proof the startup path is healthy if bank-6 buffer consumption is unsafe.
+The more precise problem shape is:
+
+- `v672` already fixed the illegal H32 console mode write, so the remaining title issue is not the bad `#$8C80` timing state
+- the title path still writes live CRAM values, so this is not a "palette writes never land" bug
+- the sparse dark title state from `v684`/`v685` was misleading because title composition had drifted away from the fuller visible mix the title actually expects
+- once composition drifted, palette tuning was being done against the wrong visible layer mix
 
 ### Step 2 - Research What Exists
 
-Classification of existing logic:
+Important observations from the current evidence:
 
-- Workaround:
-	- title one-shot fallback that force-queues index `$10` in `src/bridge/vdp_layer.asm`
-	- title display pulse/visibility helpers in `src/bridge/vdp_layer.asm`
-- Actual solution infrastructure already present:
-	- translated NMI calls generic indexed writer in `src/banks/generated_vdp/bank_FF_gen68k_vdp.asm`
-	- generic indexed writer and real ROM-backed PPU buffer selector in `src/banks/generated_vdp/bank_06_gen68k_vdp.asm`
-	- real title blob data in `src/banks/generated_vdp/bank_06_gen68k_vdp.asm`
-	- generic writer already resets `ram_ppu_load_index`, `ram_0301_buffer_index`, and `ram_0302_ppu_buffer` to `0/0/$FF` after a clean consume
-
-Key finding:
-- `v658` did not fail because the old clobber was missing in the abstract; it failed because the legacy bank-6 `$0302` path still trusted any non-`$FF` first byte as a real PPU header.
-- when `ram_ppu_load_index` falls back to table index `00`, the request still resolves through `ram_0302_ppu_buffer`.
+- `v672` proves the correct H32 hardware setting is `move.w  #$8C00,($C00004)` in `VDP_INIT`.
+- The title/frontend path explicitly skips MMC1 CHR-bank offsets for the frontend tile base, so MMC1 is not the first suspect for title darkness.
+- `diag/reports/title_sprite_histogram_zelda v685.txt` showed that the sparse `v685` title was still driven by live sprite pixels, with hot title NES indices:
+	- `1A`
+	- `08`
+	- `3B`
+	- `28`
+	- `30`
+- `diag/reports/title_bg_regions_zelda v688.txt` mapped the restored full-title background regions:
+	- `0x36` = universal title backdrop
+	- `0x37` = central logo/triforce region
+	- `0x08`, `0x1A`, `0x28` = plaque/title interior details
+	- `0x30`, `0x3B`, `0x22` = sword/copyright/right-side accents
+- `diag/reports/title_palette_probe_zelda_v689.txt` shows the live title CRAM and proves the current title table is active.
+- `diag/reports/frontend_probe_zelda_v689.txt` and `diag/reports/gameplay_probe_zelda_v689.txt` show the runtime path is still healthy while title work continues.
 
 ### Step 3 - Structural Fix Applied
 
-Applied change:
-- added `sub_b06_sanitize_ram_0302_if_invalid` in `src/banks/generated/bank_06_gen68k.asm`
-- bank-6 legacy path now calls that helper whenever raw request pointer `$0302` is about to be parsed
+The current source state keeps the proven structural fixes and restores the fuller title composition:
 
-This makes stale direct-buffer garbage self-heal back to the `$FF` terminator instead of being misparsed as startup work.
+- keep H32 via `move.w  #$8C00,($C00004)`
+- restore the fullscreen window field via `move.w  #$9100,($C00004)` and `move.w  #$9200,($C00004)`
+- restore the window map fill to the NES backdrop tile instead of leaving the screen in the later sparse-window state
+- restore title-only plane priority in `PPU_RENDER_NAMETABLE_CELL`
+- tune the hot title palette indices in `TITLE_SCREEN_NES_PALETTE`, especially:
+	- `$08 -> $08CE`
+	- `$1A -> $08E0`
+	- `$22 -> $0ECC`
+	- `$28 -> $00EE`
+	- `$30 -> $0EEE`
+	- `$36 -> $0CCE`
+	- `$37 -> $0EEE`
+	- `$3B -> $0EEE`
+
+This is why the source is now in a `v689`-style state instead of the earlier sparse-window experiments.
 
 ### Step 4 - System Verifies Itself
 
-Verification and guardrail state:
+Measured result on the current candidate:
 
-- Build-time guard script extended in `tools/check_vdp_title_regressions.py` to fail if the exact pre-NMI clobber pattern returns.
-- Added `tools/check_ppu_buffer_safety.py` and wired it into `build/build.bat`.
-- `run_build_and_gate.ps1` still invokes the bridge guard before runtime gate, and the normal build now fails fast if the bank-6 `$0302` validation hook disappears.
+- `v689` title probe:
+	- `sample_frame=163`
+	- live CRAM shows the new title table values in `diag/reports/title_palette_probe_zelda_v689.txt`
+- `v689` frontend probe:
+	- `title_ready_frame=144`
+	- `file_select_ready_frame=248`
+	- `branch_frame=270`
+	- `branch_script=14`
+- `v689` gameplay probe:
+	- `file_select_ready_frame=249`
+	- `branch_frame=271`
+	- `gameplay_entry_frame=565`
+	- stable gameplay capture through frame `805`
 
-Measured result:
+What is still not done:
 
-- `v658` smoke fails:
-	- `pass=false`
-	- `pass_ready=false`
-	- `ready_count=0`
-	- `final_frm_cnt=0`
-- `v659` smoke passes:
-	- `pass=true`
-	- `pass_ready=true`
-	- `ready_count=802`
-	- `final_frm_cnt=207`
-- `v659` full gate passes:
-	- `title_ready_frame=143`
-	- `file_select_ready_frame=247/248`
-	- `gameplay_entry_frame=561`
-	- `accuracy_score=168`
-	- `status=PASS`
+- `build\build.bat` and `.\run_build_and_gate.ps1` are currently not the authority for this title path because the static guard scripts still encode old assumptions that fullscreen window composition must be a regression.
+- The next session should fix those guard assumptions first, then promote the next candidate through the normal build+gate flow.
 
 Conclusion:
-- `/chuckle` found the real structural issue and landed the net-correct startup fix.
-- Keep `v659` as runtime baseline and treat `v658` as the regression repro for stale `$0302` startup parsing.
+- `/chuckle` says the current work should continue from `v689`, not from the older sparse-window title builds.
+- Keep `v672` as the last fully gated baseline and `v689` as the live candidate/source state.
+- The next real unlock is guard reconciliation, then another normal build and hardware/BizHawk eyeball pass.
 
 ---
 
@@ -130,7 +164,7 @@ The best scored interaction baseline is still `v627` in the ledgers because the 
 
 ---
 
-## Current Truth
+## Older History
 
 ### Best scored interaction baseline
 

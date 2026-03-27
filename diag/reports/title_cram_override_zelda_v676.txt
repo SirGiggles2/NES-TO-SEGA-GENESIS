@@ -1,0 +1,5 @@
+=== TITLE CRAM OVERRIDE zelda_v676 ===
+sample_frame=163 ready=1 script=0 sub=0 ppu=00 hold=20
+cram[00-0F]=0CCE 0000 0888 0AAA 0CCE 0EEE 0CEA 004A 0EEE 0EEE 0EEE 0EEE 0EEE 0EEE 0EEE 0CCE
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v676_title_cram_override.png
+=== TITLE CRAM OVERRIDE COMPLETE ===

@@ -1,0 +1,52 @@
+=== TITLE SLOT HISTOGRAM zelda v685 ===
+sample_frame=199 rect=(24,8)-(231,183) pixels=36608
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\title_slot_histogram_zelda v685.png
+top_palette_lines:
+   1. 0 count=12800
+   2. 1 count=12160
+   3. 2 count=9088
+   4. 3 count=2560
+top_color_indices:
+   1. F count=26207
+   2. 1 count=4491
+   3. 3 count=3001
+   4. 2 count=2909
+top_cram_slots:
+   1. 0F word=0CCE count=10651
+   2. 1F word=0CCE count=7083
+   3. 2F word=0CCE count=6410
+   4. 11 word=02AE count=2396
+   5. 3F word=0CCE count=2063
+   6. 13 word=0000 count=1535
+   7. 12 word=0CCE count=1146
+   8. 22 word=00A0 count=1106
+   9. 01 word=0000 count=944
+  10. 21 word=0046 count=880
+  11. 03 word=0AAA count=707
+  12. 23 word=00AE count=692
+top_cram_words:
+   1. 0CCE count=27353
+   2. 0000 count=2479
+   3. 02AE count=2396
+   4. 00A0 count=1106
+   5. 0046 count=880
+   6. 0AAA count=707
+   7. 00AE count=692
+   8. 0888 count=498
+   9. 0EEE count=271
+  10. 0CEA count=159
+  11. 0EAA count=67
+top_nes_indices:
+   1. 36 count=26207
+   2. 0F count=2479
+   3. 17 count=2396
+   4. 37 count=1146
+   5. 1A count=1106
+   6. 08 count=880
+   7. 10 count=707
+   8. 28 count=692
+   9. 00 count=498
+  10. 30 count=271
+  11. 3B count=159
+  12. 22 count=67
+=== TITLE SLOT HISTOGRAM COMPLETE ===

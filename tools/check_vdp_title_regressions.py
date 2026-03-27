@@ -58,6 +58,31 @@ RULES: tuple[Rule, ...] = (
         hint="Do not use Reg 12 value $80 for H32. Normal 32-cell mode is $00 in the data byte.",
     ),
     Rule(
+        name="stale_h40_window_base",
+        pattern=r"move\.w\s+#\$8307,\(\$C00004\)",
+        hint="Keep the H32 window table on the verified $B000 base (Reg 3 = $2C).",
+    ),
+    Rule(
+        name="stale_h40_sat_base",
+        pattern=r"move\.w\s+#\$856C,\(\$C00004\)",
+        hint="Keep the H32 sprite attribute table on the verified $BE00 base (Reg 5 = $5F).",
+    ),
+    Rule(
+        name="stale_h40_hscroll_base",
+        pattern=r"move\.w\s+#\$8D2F,\(\$C00004\)",
+        hint="Keep the H32 h-scroll table on the verified $B800 base (Reg 13 = $2E).",
+    ),
+    Rule(
+        name="fullscreen_window_hpos",
+        pattern=r"move\.w\s+#\$9100,\(\$C00004\)",
+        hint="Do not leave the window H position at $00. In H32 that anchors the window at the left edge.",
+    ),
+    Rule(
+        name="fullscreen_window_vpos",
+        pattern=r"move\.w\s+#\$9200,\(\$C00004\)",
+        hint="Do not leave the window V position at $00. In 224-line mode that anchors the window at the top edge.",
+    ),
+    Rule(
         name="bg_color0_transparent_table",
         pattern=r"PPU_PIXEL_PAIR_TABLE:\s*\n\s*dc\.b\s+\$00,\$01,\$10,\$11,\$02,\$03,\$12,\$13\s*\n\s*dc\.b\s+\$20,\$21,\$30,\$31,\$22,\$23,\$32,\$33",
         hint="Do not map BG color 0 to Genesis nibble 0. NES BG color 0 must be opaque via Genesis color $F.",

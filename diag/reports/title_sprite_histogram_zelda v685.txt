@@ -1,0 +1,41 @@
+=== TITLE SPRITE HISTOGRAM zelda v685 ===
+sample_frame=199 rect=(24,8)-(231,183)
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\title_sprite_histogram_zelda v685.png
+sprite_pixels=4125
+top_sprite_palette_lines:
+   1. 2 count=3341
+   2. 3 count=429
+   3. 0 count=355
+top_sprite_color_indices:
+   1. 6 count=2202
+   2. 5 count=1501
+   3. 7 count=422
+top_sprite_cram_slots:
+   1. 26 count=1695
+   2. 25 count=1224
+   3. 27 count=422
+   4. 36 count=283
+   5. 06 count=224
+   6. 35 count=146
+   7. 05 count=131
+top_sprite_cram_words:
+   1. 00A0 count=1695
+   2. 0046 count=1224
+   3. 0CEA count=507
+   4. 00AE count=422
+   5. 0EEE count=277
+top_sprite_shadow_indices:
+   1. 1A count=1695
+   2. 19 count=1224
+   3. 1B count=422
+   4. 1E count=283
+   5. 12 count=224
+   6. 1D count=146
+   7. 11 count=131
+top_sprite_nes_indices:
+   1. 1A count=1695
+   2. 08 count=1224
+   3. 3B count=507
+   4. 28 count=422
+   5. 30 count=277
+=== TITLE SPRITE HISTOGRAM COMPLETE ===

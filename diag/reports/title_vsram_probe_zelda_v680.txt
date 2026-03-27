@@ -1,0 +1,122 @@
+=== TITLE VSRAM PROBE zelda_v680 ===
+frame=84 script=0 sub=0 ready=0 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+frame=120 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+frame=160 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v680_title_vsram_early_f160.png
+frame=180 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v680_title_vsram_mid_f180.png
+frame=200 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+nt frame=200 row=0 non24=0 first_col=-1
+nt frame=200 row=1 non24=0 first_col=-1
+nt frame=200 row=2 non24=4 first_col=0
+nt frame=200 row=3 non24=4 first_col=0
+nt frame=200 row=4 non24=4 first_col=0
+nt frame=200 row=5 non24=26 first_col=0
+nt frame=200 row=6 non24=6 first_col=0
+nt frame=200 row=7 non24=19 first_col=0
+nt frame=200 row=8 non24=23 first_col=0
+nt frame=200 row=9 non24=25 first_col=0
+nt frame=200 row=10 non24=26 first_col=0
+nt frame=200 row=11 non24=27 first_col=0
+nt frame=200 row=12 non24=13 first_col=0
+nt frame=200 row=13 non24=25 first_col=0
+nt frame=200 row=14 non24=13 first_col=0
+nt frame=200 row=15 non24=10 first_col=0
+tiles frame=200 row=5 DE D7 24 24 24 E6 E4 E5 E4 E5 E4 E5 E4 E5 E4 E5 E4 E5 E4 E5 E4 E5 E4 E5 E4 E5 E6 24 24 24 D6 DB
+tiles frame=200 row=6 DC D7 24 24 24 E2 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 E3 24 24 24 D6 DF
+tiles frame=200 row=7 DE EE 24 24 24 E3 24 24 71 72 73 74 75 76 77 78 79 79 79 7A 7B 24 24 24 24 24 E2 24 24 24 D6 DB
+tiles frame=200 row=8 DE D8 EF 24 24 E2 24 7C 7D 7E 7F 80 81 82 83 84 85 86 87 88 89 8A 8B 24 24 24 E3 24 24 24 D6 DF
+tiles frame=200 row=9 DC DA D7 24 24 E3 24 8C 8D 8E 8F 90 91 92 93 94 95 96 97 98 99 9A 9B 9C 24 24 E2 24 24 D4 D9 DB
+tiles frame=200 row=10 DC D9 EE 24 24 E2 24 9D 9E 9F A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 AA AB AC AD AE 24 E3 24 24 D6 DB DF
+chr frame=200 tile=70 nonzero=16
+chr frame=200 tile=71 nonzero=16
+chr frame=200 tile=72 nonzero=16
+chr frame=200 tile=73 nonzero=16
+chr frame=200 tile=74 nonzero=14
+chr frame=200 tile=75 nonzero=16
+chr frame=200 tile=76 nonzero=15
+chr frame=200 tile=77 nonzero=16
+chr frame=200 tile=78 nonzero=16
+chr frame=200 tile=9D nonzero=16
+chr frame=200 tile=9E nonzero=12
+chr frame=200 tile=9F nonzero=8
+chr frame=200 tile=A0 nonzero=4
+chr frame=200 tile=A1 nonzero=0
+chr frame=200 tile=A2 nonzero=0
+chr frame=200 tile=A3 nonzero=6
+chr frame=200 tile=A4 nonzero=0
+chr frame=200 tile=A5 nonzero=4
+chrbytes frame=200 tile=71 FF FF 7F 5B 19 1C 0F 0E FF FF 7F 7F 3F 3F 1F 0E
+chrbytes frame=200 tile=72 03 0E 29 23 11 30 76 94 03 0E 2B 23 11 30 76 94
+chrbytes frame=200 tile=7C 00 00 10 08 0C 04 06 06 00 03 01 80 40 60 20 30
+chrbytes frame=200 tile=7D 06 06 04 0C 08 10 00 00 30 20 60 40 80 01 03 00
+chrbytes frame=200 tile=9D 7F 4F 47 0F 1F 1F 1E 0C 70 70 79 7F 61 18 1E 0C
+chrbytes frame=200 tile=9E 00 00 08 64 A6 8E A5 15 00 00 38 7C FE FE FF FF
+attr frame=200 idx=00 val=05
+attr frame=200 idx=01 val=05
+attr frame=200 idx=02 val=05
+attr frame=200 idx=03 val=05
+attr frame=200 idx=04 val=05
+attr frame=200 idx=05 val=05
+attr frame=200 idx=06 val=05
+attr frame=200 idx=07 val=05
+attr frame=200 idx=08 val=08
+attr frame=200 idx=09 val=6A
+attr frame=200 idx=0A val=5A
+attr frame=200 idx=0B val=5A
+attr frame=200 idx=0C val=5A
+attr frame=200 idx=0D val=5A
+attr frame=200 idx=0E val=9A
+attr frame=200 idx=0F val=22
+attr frame=200 idx=10 val=00
+attr frame=200 idx=11 val=66
+attr frame=200 idx=12 val=55
+attr frame=200 idx=13 val=55
+attr frame=200 idx=14 val=55
+attr frame=200 idx=15 val=55
+attr frame=200 idx=16 val=99
+attr frame=200 idx=17 val=00
+attr frame=200 idx=18 val=00
+attr frame=200 idx=19 val=6E
+attr frame=200 idx=1A val=5F
+attr frame=200 idx=1B val=55
+attr frame=200 idx=1C val=5D
+attr frame=200 idx=1D val=DF
+attr frame=200 idx=1E val=BB
+attr frame=200 idx=1F val=00
+attr frame=200 idx=20 val=00
+attr frame=200 idx=21 val=0A
+attr frame=200 idx=22 val=0A
+attr frame=200 idx=23 val=0A
+attr frame=200 idx=24 val=0A
+attr frame=200 idx=25 val=0A
+attr frame=200 idx=26 val=0A
+attr frame=200 idx=27 val=00
+attr frame=200 idx=28 val=00
+attr frame=200 idx=29 val=00
+attr frame=200 idx=2A val=C0
+attr frame=200 idx=2B val=30
+attr frame=200 idx=2C val=00
+attr frame=200 idx=2D val=00
+attr frame=200 idx=2E val=00
+attr frame=200 idx=2F val=00
+attr frame=200 idx=30 val=00
+attr frame=200 idx=31 val=00
+attr frame=200 idx=32 val=CC
+attr frame=200 idx=33 val=33
+attr frame=200 idx=34 val=00
+attr frame=200 idx=35 val=00
+attr frame=200 idx=36 val=00
+attr frame=200 idx=37 val=00
+attr frame=200 idx=38 val=00
+attr frame=200 idx=39 val=20
+attr frame=200 idx=3A val=FC
+attr frame=200 idx=3B val=F3
+attr frame=200 idx=3C val=00
+attr frame=200 idx=3D val=00
+attr frame=200 idx=3E val=F0
+attr frame=200 idx=3F val=F0
+screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\zelda_v680_title_vsram_late_f200.png
+frame=240 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+frame=280 script=0 sub=0 ready=1 ram_scroll_Y=0 ppuscroll_y=0 vsram0=0
+=== TITLE VSRAM PROBE COMPLETE ===
