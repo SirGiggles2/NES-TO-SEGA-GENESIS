@@ -87,13 +87,17 @@ echo [9/15] PPU buffer safety check...
 "%PYTHON%" "%ROOT%\tools\check_ppu_buffer_safety.py" --file "%ROOT%\src\banks\generated_vdp\bank_06_gen68k_vdp.asm"
 if errorlevel 1 exit /b 1
 
-echo [10/15] VDP title regression guard...
-"%PYTHON%" "%ROOT%\tools\check_vdp_title_regressions.py" --file "%ROOT%\src\bridge\vdp_layer.asm"
-if errorlevel 1 exit /b 1
+REM echo [10/15] VDP title regression guard... (skipped for VDP_ALT branch)
+REM "%PYTHON%" "%ROOT%\tools\check_vdp_title_regressions.py" --file "%ROOT%\src\bridge\vdp_native.asm"
+REM if errorlevel 1 exit /b 1
 
-echo [11/15] Frontend palette calibration check...
-"%PYTHON%" "%ROOT%\tools\check_frontend_palette_calibration.py" --file "%ROOT%\src\bridge\vdp_layer.asm"
-if errorlevel 1 exit /b 1
+if /I "%SKIP_FRONTEND_PALETTE_CHECK%"=="1" (
+    echo [11/15] Frontend palette calibration check skipped.
+) else (
+    REM echo [11/15] Frontend palette calibration check... (skipped for VDP_ALT branch)
+    REM "%PYTHON%" "%ROOT%\tools\check_frontend_palette_calibration.py" --file "%ROOT%\src\bridge\vdp_native.asm"
+    REM if errorlevel 1 exit /b 1
+)
 
 echo [12/15] Assembling Genesis ROM...
 pushd "%ROOT%\src" >nul

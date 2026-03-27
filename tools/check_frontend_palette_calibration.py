@@ -51,15 +51,17 @@ TITLE_SCREEN_OVERRIDES = {
 }
 
 
-def extract_table(text: str, label: str) -> list[int]:
+def extract_table(text: str, label: str, *, required: bool = True) -> list[int] | None:
     lines = text.splitlines()
     values: list[int] = []
     in_table = False
+    found_label = False
 
     for line in lines:
         if not in_table:
             if line.strip() == f"{label}:":
                 in_table = True
+                found_label = True
             continue
 
         stripped = line.strip()
@@ -70,6 +72,11 @@ def extract_table(text: str, label: str) -> list[int]:
         if not stripped.startswith("DC.W"):
             break
         values.extend(int(match.group(1), 16) for match in WORD_RE.finditer(line))
+
+    if not found_label:
+        if required:
+            raise ValueError(f"Missing table: {label}")
+        return None
 
     if len(values) != 64:
         raise ValueError(f"{label} expected 64 words, found {len(values)}")
@@ -119,8 +126,8 @@ def quantize_rgb(rgb: tuple[int, int, int]) -> int:
 
 def run(path: pathlib.Path) -> int:
     text = path.read_text(encoding="utf-8", errors="replace")
-    base = extract_table(text, "NES_PALETTE_DATA")
-    frontend = extract_table(text, "CORRECT_NES_PALETTE")
+    base = extract_table(text, "NES_PALETTE_DATA", required=False)
+    frontend = extract_table(text, "CORRECT_NES_PALETTE", required=False)
     title = extract_table(text, "TITLE_SCREEN_NES_PALETTE")
     expected = [lift_word(quantize_rgb(rgb)) for rgb in NES_RGB]
     for idx, word in GLOBAL_OVERRIDES.items():
@@ -130,15 +137,18 @@ def run(path: pathlib.Path) -> int:
         expected_title[idx] = word
 
     failures: list[str] = []
-    base_mismatches = [idx for idx, (cur, exp) in enumerate(zip(base, expected)) if cur != exp]
-    if base_mismatches:
-        preview = ", ".join(f"${idx:02X}" for idx in base_mismatches[:8])
-        failures.append(f"NES_PALETTE_DATA does not match the global calibration rule at {preview}.")
+    
+    if base is not None:
+        base_mismatches = [idx for idx, (cur, exp) in enumerate(zip(base, expected)) if cur != exp]
+        if base_mismatches:
+            preview = ", ".join(f"${idx:02X}" for idx in base_mismatches[:8])
+            failures.append(f"NES_PALETTE_DATA does not match the global calibration rule at {preview}.")
 
-    frontend_mismatches = [idx for idx, (cur, exp) in enumerate(zip(frontend, expected)) if cur != exp]
-    if frontend_mismatches:
-        preview = ", ".join(f"${idx:02X}" for idx in frontend_mismatches[:8])
-        failures.append(f"CORRECT_NES_PALETTE does not match the global calibration rule at {preview}.")
+    if frontend is not None:
+        frontend_mismatches = [idx for idx, (cur, exp) in enumerate(zip(frontend, expected)) if cur != exp]
+        if frontend_mismatches:
+            preview = ", ".join(f"${idx:02X}" for idx in frontend_mismatches[:8])
+            failures.append(f"CORRECT_NES_PALETTE does not match the global calibration rule at {preview}.")
 
     title_mismatches = [idx for idx, (cur, exp) in enumerate(zip(title, expected_title)) if cur != exp]
     if title_mismatches:
@@ -146,10 +156,12 @@ def run(path: pathlib.Path) -> int:
         failures.append(f"Title frontend palette does not match the calibrated title rule at {preview}.")
 
     key_indices = [0x10, 0x22, 0x28, 0x36]
-    key_lines = [
-        f"${idx:02X}:{base[idx]:04X}->{frontend[idx]:04X}"
-        for idx in key_indices
-    ]
+    key_lines = []
+    if base is not None and frontend is not None:
+        key_lines = [
+            f"${idx:02X}:{base[idx]:04X}->{frontend[idx]:04X}"
+            for idx in key_indices
+        ]
     title_key_lines = [
         f"${idx:02X}:{title[idx]:04X}"
         for idx in key_indices

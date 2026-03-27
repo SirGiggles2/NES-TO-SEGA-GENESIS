@@ -1,6 +1,5 @@
 -- zelda_force_reg12.lua
 -- Force Reg 12 to H32/no-shadow each frame and capture the settled title.
-
 local ROM_VERSION = "zelda_v677"
 local MAX_FRAMES = 360
 

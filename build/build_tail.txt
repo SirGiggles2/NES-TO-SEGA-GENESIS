@@ -1,0 +1,417 @@
+[1/15] Regenerating VDP bank files...
+=======================================================
+  VDP PATCH REPORT
+=======================================================
+
+FILE: bank_00_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_00_gen68k_vdp.asm
+
+FILE: bank_01_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_01_gen68k_vdp.asm
+
+FILE: bank_02_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_02_gen68k_vdp.asm
+
+FILE: bank_03_gen68k.asm
+  PPU stubs replaced: 4
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_03_gen68k_vdp.asm
+
+FILE: bank_04_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_04_gen68k_vdp.asm
+
+FILE: bank_05_gen68k.asm
+  PPU stubs replaced: 12
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_05_gen68k_vdp.asm
+
+FILE: bank_06_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_06_gen68k_vdp.asm
+
+FILE: bank_FF_gen68k.asm
+  PPU stubs replaced: 32
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_FF_gen68k_vdp.asm
+
+FILE: bank___BF50_BFF9_gen68k.asm
+  PPU stubs replaced: 3
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank___BF50_BFF9_gen68k_vdp.asm
+
+FILE: bank_s1_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_s1_gen68k_vdp.asm
+
+FILE: bank_s2_gen68k.asm
+  PPU stubs replaced: 0
+  Unhandled:          0
+  Output:             C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_s2_gen68k_vdp.asm
+
+=======================================================
+TOTAL PPU stubs replaced: 59
+TOTAL unhandled:          0
+
+Next: build with vdp_layer.asm included!
+      assemble with: asmx or vasm (68000 mode)
+[2/15] Cleaning translated syntax...
+=================================================================
+  SYNTAX FIX REPORT
+=================================================================
+  bank_00_gen68k_vdp.asm                             fixed=  29  labels prefixed=222
+  bank_01_gen68k_vdp.asm                             fixed= 157  labels prefixed=304
+  bank_02_gen68k_vdp.asm                             fixed= 399  labels prefixed=521
+  bank_03_gen68k_vdp.asm                             fixed=  20  labels prefixed=12
+  bank_04_gen68k_vdp.asm                             fixed=1299  labels prefixed=1416
+  bank_05_gen68k_vdp.asm                             fixed= 432  labels prefixed=1083
+  bank_06_gen68k_vdp.asm                             fixed=  36  labels prefixed=180
+  bank_FF_gen68k_vdp.asm                             fixed= 434  labels prefixed=809
+  bank___BF50_BFF9_gen68k_vdp.asm                    fixed=   2  labels prefixed=4
+  bank_s1_gen68k_vdp.asm                             fixed=   0  labels prefixed=0
+  bank_s2_gen68k_vdp.asm                             fixed= 240  labels prefixed=481
+
+  Total lines fixed:         3048
+  Total labels prefixed:     5032
+
+=================================================================
+  PRE-SCAN: REMAINING SUSPECT PATTERNS
+=================================================================
+
+  FILE: bank_00_gen68k_vdp.asm (10 hits)
+    line 3238 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x00183B 00:982B: 8D 15 40  STA ($00FF8011).l
+    line 3240 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001840 00:9830: 8D 15 40  STA ($00FF8011).l
+    line 3244 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8012).l  ; orig: C - - - - - 0x001847 00:9837: 8D 17 40  STA ($00FF8012).l
+    line 3472 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001938 00:9928: 8D 15 40  STA ($00FF8011).l
+    line 4009 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BB6 00:9BA6: 8D 15 40  STA ($00FF8011).l
+    line 4022 [large displacement >4 hex digits]
+                 MOVE.B  D1,($00FF8010).l  ; orig: C - - - - - 0x001BC7 00:9BB7: 8E 11 40  STX ($00FF8010).l
+    line 4047 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BF5 00:9BE5: 8D 15 40  STA ($00FF8011).l
+    line 4049 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001BFA 00:9BEA: 8D 15 40  STA ($00FF8011).l
+    line 4472 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001D5B 00:9D4B: 8D 15 40  STA ($00FF8011).l
+    line 4474 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x001D60 00:9D50: 8D 15 40  STA ($00FF8011).l
+
+  FILE: bank_01_gen68k_vdp.asm (7 hits)
+    line  610 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x004621 01:8611: 69
+    line  932 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0047ED 01:87DD: 69
+    line 1105 [ADDX instruction]
+                 ADDI.B  #$14,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - - - - - - 0x00489F 01:888F: 69
+    line 1625 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x004B9A 01:8B8A: 69
+    line 2356 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x006178 01:A168: 69
+    line 2561 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x00626C 01:A25C: 69
+    line 2572 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x00627D 01:A26D: 69
+
+  FILE: bank_02_gen68k_vdp.asm (47 hits)
+    line  214 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x009018 02:9008: AD 2D 04  LDA ram_042B_enemy +
+    line  223 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x009024 02:9014: AD 2D 04  LDA ram_042B_enemy +
+    line  420 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x0090E4 02:90D4: AD 2D 04  LDA ram_042B_enemy +
+    line  428 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042D).l,D0  ; orig: C - - - - - 0x0090EE 02:90DE: AD 2D 04  LDA ram_042B_enemy +
+    line 1309 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C D 0 - - - 0x0094FA 02:94EA: EE 2D 04  INC ram_042B_enemy +
+    line 1353 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF042E).l  ; orig: C - - - - - 0x009537 02:9527: 8D 2E 04  STA ram_042B_enemy +
+    line 1354 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF042F).l  ; orig: C - - - - - 0x00953A 02:952A: 8D 2F 04  STA ram_042B_enemy +
+    line 1453 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF042D).l  ; orig: C - - - - - 0x0095B6 02:95A6: 8D 2D 04  STA ram_042B_enemy +
+    line 1497 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x0095F8 02:95E8: EE 2D 04  INC ram_042B_enemy +
+    line 1511 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x009604 02:95F4: EE 2D 04  INC ram_042B_enemy +
+    line 1549 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042D).l  ; orig: C - - - - - 0x00964B 02:963B: EE 2D 04  INC ram_042B_enemy +
+    line 1577 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0304).l  ; orig: C - - - - - 0x009679 02:9669: 8D 04 03  STA ram_0302_ppu_buf
+    line 1581 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0303).l  ; orig: C - - - - - 0x009685 02:9675: 8D 03 03  STA ram_0302_ppu_buf
+    line 1583 [ADDX instruction]
+                 ADDI.B  #$20,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x009689 02:9679: 69
+    line 1614 [large displacement >4 hex digits]
+                 MOVE.B  ($00FF042E).l,D0  ; orig: C - - - - - 0x0096C1 02:96B1: AD 2E 04  LDA ram_042B_enemy +
+    line 1653 [large displacement >4 hex digits]
+                 ADDQ.B  #1,($00FF042E).l  ; orig: C - - - - - 0x0096E3 02:96D3: EE 2E 04  INC ram_042B_enemy +
+    line 1670 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0325).l  ; orig: C - - - - - 0x0096FA 02:96EA: 8D 25 03  STA ram_0302_ppu_buf
+    line 1672 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0326).l  ; orig: C - - - - - 0x009700 02:96F0  STA ram_0302_ppu_buf
+    line 1674 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0327).l  ; orig: C - - - - - 0x009705 02:96F5  STA ram_0302_ppu_buf
+    line 1676 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0328).l  ; orig: C - - - - - 0x00970A 02:96FA  STA ram_0302_ppu_buf
+
+  FILE: bank_04_gen68k_vdp.asm (56 hits)
+    line  453 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0100DA 04:80CA: 69
+    line  475 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0100F6 04:80E6: 69
+    line  768 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010224 04:8214: 69
+    line  777 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01022F 04:821F: 69
+    line  862 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0240).l  ; orig: - - - - - - 0x01029C 04:828C: 8D 40 02  STA ram_spr_Y + $40
+    line  863 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF0244).l  ; orig: - - - - - - 0x01029F 04:828F: 8D 44 02  STA ram_spr_Y + $44
+    line  910 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0102D6 04:82C6: 69
+    line 1070 [ADDX instruction]
+                 ADDI.B  #$02,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010376 04:8366: 69
+    line 1634 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010582 04:8572: 69
+    line 1675 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0105B2 04:85A2: 69
+    line 2990 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010A9B 04:8A8B: 69
+    line 3281 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010BED 04:8BDD: 69
+    line 3874 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010E74 04:8E64: 69
+    line 3883 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010E7F 04:8E6F: 69
+    line 4075 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010F53 04:8F43: 69
+    line 4081 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010F5B 04:8F4B: 69
+    line 4174 [ADDX instruction]
+                 ADDI.B  #$06,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x010FAF 04:8F9F: 69
+    line 4771 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01128B 04:927B: 69
+    line 4778 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x011294 04:9284: 69
+    line 4793 [ADDX instruction]
+                 ADDI.B  #$10,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0112A7 04:9297: 69
+
+  FILE: bank_05_gen68k_vdp.asm (38 hits)
+    line  265 [ADDX instruction]
+                 ADDI.B  #$62,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0140CA 05:80BA: 69
+    line  324 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014127 05:8117: 69
+    line  580 [ADDX instruction]
+                 ADDI.B  #$20,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01424C 05:823C: 69
+    line  744 [ADDX instruction]
+                 ADDI.B  #$27,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014338 05:8328: 69
+    line 1042 [ADDX instruction]
+                 ADDI.B  #$18,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01449F 05:848F: 69
+    line 1052 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0144A7 05:8497: 69
+    line 1301 [ADDX instruction]
+                 ADDI.B  #$10,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01464E 05:863E: 69
+    line 1817 [large displacement >4 hex digits]
+                 MOVE.B  #$01,($FFEE80).l  ; CANARY: entering sub_87C6
+    line 1819 [large displacement >4 hex digits]
+                 MOVE.B  #$02,($FFEE80).l  ; CANARY: after sub_0x01EA4D
+    line 1821 [large displacement >4 hex digits]
+                 MOVE.B  #$03,($FFEE80).l  ; CANARY: after sub_0x01EA61
+    line 1825 [large displacement >4 hex digits]
+                 MOVE.B  #$04,($FFEE80).l  ; CANARY: after clear_memory
+    line 1837 [large displacement >4 hex digits]
+                 MOVE.B  #$05,($FFEE80).l  ; CANARY: after sub_B0B6
+    line 1867 [ADDX instruction]
+                 ADDI.B  #$10,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01481C 05:880C: 69
+    line 1878 [large displacement >4 hex digits]
+                 MOVE.B  #$06,($FFEE80).l  ; CANARY: took b05_bra_8820 (ram_005A==0)
+    line 1966 [ADDX instruction]
+                 ADDI.B  #$40,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0148A1 05:8891: 69
+    line 2262 [ADDX instruction]
+                 ADDI.B  #$6A,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014A0E 05:89FE: 69
+    line 2822 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014CC8 05:8CB8: 69
+    line 2928 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014D49 05:8D39: 69
+    line 3007 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014DB3 05:8DA3: 69
+    line 3026 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014DD0 05:8DC0: 69
+
+  FILE: bank_06_gen68k_vdp.asm (1 hits)
+    line  342 [large displacement >4 hex digits]
+                 LEA     ($FF67F0).l,A1
+
+  FILE: bank_FF_gen68k_vdp.asm (25 hits)
+    line  185 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8010).l  ; orig: C - - - - - 0x01E470 07:E460: 8D 11 40  STA ($00FF8010).l
+    line  187 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x01E475 07:E465: 8D 15 40  STA ($00FF8011).l
+    line  560 [large displacement >4 hex digits]
+                 LEA     ($FF0000).l,A1
+    line  604 [large displacement >4 hex digits]
+                 MOVE.B  ($FF00F0).l,D0                       ; P1: NES-format from READ_JOYPAD
+    line 1080 [ADDX instruction]
+                 ADDI.B  #$02,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01E8AE 07:E89E: 69
+    line 1100 [ADDX instruction]
+                 ADDI.B  #$0A,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01E8CB 07:E8BB: 69
+    line 1145 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$F0,D0  ; orig: C - - - - - 0x01E8FB 07:E8EB: C9 F0     CMP #< (ram_6530 + $
+    line 1148 [#>/#< with non-literal (unresolved)]
+                 CMPI.B  #$67,D0  ; orig: C - - - - - 0x01E901 07:E8F1: C9 67     CMP #> (ram_6530 + $
+    line 1849 [large displacement >4 hex digits]
+                 MOVE.B  D0,($00FF8011).l  ; orig: C - - - - - 0x01EC56 07:EC46: 8D 15 40  STA ($00FF8011).l
+    line 1879 [ADDX instruction]
+                 ADDI.B  #$10,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01EC93 07:EC83: 69
+    line 2140 [ADDX instruction]
+                 ADDI.B  #$0B,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01EE25 07:EE15: 69
+    line 2228 [ADDX instruction]
+                 ADDI.B  #$16,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01EE7D 07:EE6D: 69
+    line 3224 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F32C 07:F31C: 69
+    line 3242 [ADDX instruction]
+                 ADDI.B  #$50,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F34B 07:F33B: 69
+    line 3331 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F3AE 07:F39E: 69
+    line 3530 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F49A 07:F48A: 69
+    line 3764 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F575 07:F565: 69
+    line 3811 [ADDX instruction]
+                 ADDI.B  #$02,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F5B2 07:F5A2: 69
+    line 3872 [ADDX instruction]
+                 ADDI.B  #$10,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F5F9 07:F5E9: 69
+    line 4246 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01F7B4 07:F7A4: 69
+
+  FILE: bank_s2_gen68k_vdp.asm (21 hits)
+    line  470 [ADDX instruction]
+                 ADDI.B  #$0E,D0       ; FIX v448: ADDX->ADDI (CLC+ADC = simple add, no carry)  ; orig: - D 1 - I
+    line  562 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x0066BA 01:6E3A: 69
+    line  675 [ADDX instruction]
+                 ADDI.B  #$07,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x00671B 01:6E9B: 69
+    line  683 [ADDX instruction]
+                 ADDI.B  #$12,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x006728 01:6EA8: 69
+    line  810 [ADDX instruction]
+                 ADDI.B  #$0B,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x0067C1 01:6F41: 69
+    line  860 [ADDX instruction]
+                 ADDI.B  #$0F,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x00680B 01:6F8B: 69
+    line 1041 [ADDX instruction]
+                 ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x0068A4 01:7024: 69
+    line 1910 [ADDX instruction]
+                 ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x006BC9 01:7349: 69
+    line 3379 [ADDX instruction]
+                 ADDI.B  #$02,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x00709E 01:781E: 69
+    line 3659 [ADDX instruction]
+                 ADDI.B  #$02,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x0071C3 01:7943: 69
+    line 3673 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x0071DD 01:795D: 69
+    line 4035 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x007362 01:7AE2: 69
+    line 4039 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x007369 01:7AE9: 69
+    line 4201 [ADDX instruction]
+                 ADDI.B  #$04,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x007458 01:7BD8: 69
+    line 4207 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x007460 01:7BE0: 69
+    line 4419 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x007585 01:7D05: 69
+    line 4425 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x00758D 01:7D0D: 69
+    line 4590 [ADDX instruction]
+                 ADDI.B  #$06,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x00765D 01:7DDD: 69
+    line 4596 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x007665 01:7DE5: 69
+    line 4603 [ADDX instruction]
+                 ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: - D 1 - I - 0x00766E 01:7DEE: 69
+
+  Total suspect lines: 205
+
+  All done! Run build.bat now.
+[3/15] Fixing carry inversions (BCC/BCS after CMP)...
+  bank_s2_gen68k_vdp.asm line 697: BCC -> BCS (bS2_bra_6ED5)
+
+Total: 1 carry inversions fixed, 0 already fixed
+[4/15] Fixing ADC carry (immediate ADDX)...
+  bank_01_gen68k_vdp.asm line 1889: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_01_gen68k_vdp.asm line 1896: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_01_gen68k_vdp.asm line 2011: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_02_gen68k_vdp.asm line 3836: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_02_gen68k_vdp.asm line 4130: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_02_gen68k_vdp.asm line 5708: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_02_gen68k_vdp.asm line 6154: ADD.B #$C0,D0 -> ADDX.B (carry from preceding op)
+  bank_03_gen68k_vdp.asm line 285: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 2894: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 5827: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 7173: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 8525: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 8731: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 9864: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 10034: ADD.B #$57,D0 -> ADDX.B (carry from preceding op)
+  bank_04_gen68k_vdp.asm line 10058: ADD.B #$74,D0 -> ADDX.B (carry from preceding op)
+  bank_05_gen68k_vdp.asm line 270: ADD.B #$69,D0 -> ADDX.B (carry from preceding op)
+  bank_05_gen68k_vdp.asm line 1860: ADD.B #$4D,D0 -> ADDX.B (carry from preceding op)
+  bank_05_gen68k_vdp.asm line 8388: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_05_gen68k_vdp.asm line 9029: ADD.B #$01,D0 -> ADDX.B (carry from preceding op)
+  bank_FF_gen68k_vdp.asm line 841: ADD.B #$01,D0 -> ADDX.B (carry from preceding op)
+  bank_FF_gen68k_vdp.asm line 2707: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_FF_gen68k_vdp.asm line 2717: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_s2_gen68k_vdp.asm line 954: ADD.B #$00,D0 -> ADDX.B (carry from preceding op)
+  bank_s2_gen68k_vdp.asm line 1546: ADD.B #$17,D0 -> ADDX.B (carry from preceding op)
+
+Total: 25 ADC-with-carry fixes applied
+[5/15] Fixing 16-bit ADC carry chains...
+
+Total: 0 ADC carry chain fixes applied
+[6/15] Fixing 16-bit SBC borrow chains...
+  bank_01_gen68k_vdp.asm line 2021: SUB.B #$00,D0 -> SUBX.B (borrow from low byte)
+  bank_03_gen68k_vdp.asm line 293: SUB.B #$00,D0 -> SUBX.B (borrow from low byte)
+  bank_FF_gen68k_vdp.asm line 2697: SUB.B #$00,D0 -> SUBX.B (borrow from subroutine)
+  bank_FF_gen68k_vdp.asm line 2730: SUB.B #$00,D0 -> SUBX.B (borrow from subroutine)
+  bank_s2_gen68k_vdp.asm line 993: SUB.B #$00,D0 -> SUBX.B (borrow from PHP/PLP)
+
+Total: 5 SBC carry chain fixes applied
+[7/15] Fixing INC/DEC carry corruption...
+  bank_02_gen68k_vdp.asm lines 5707-5708: protected INC/DEC group
+  bank_02_gen68k_vdp.asm lines 5993-5994: protected INC/DEC group
+  bank_04_gen68k_vdp.asm lines 5093-5094: protected INC/DEC group
+  bank_04_gen68k_vdp.asm lines 9504-9506: protected INC/DEC group
+  bank_04_gen68k_vdp.asm lines 9528-9530: protected INC/DEC group
+  bank_04_gen68k_vdp.asm lines 9565-9566: protected INC/DEC group
+  bank_04_gen68k_vdp.asm lines 9586-9587: protected INC/DEC group
+  bank_04_gen68k_vdp.asm lines 9724-9726: protected INC/DEC group
+
+Total: 8 INC/DEC groups protected
+[8/15] Fixing BIT instruction translation...
+  bank_01_gen68k_vdp.asm: 1 BIT fixes
+  bank_04_gen68k_vdp.asm: 26 BIT fixes
+  bank_05_gen68k_vdp.asm: 15 BIT fixes
+
+Total BIT fixes: 42
+[9/15] PPU buffer safety check...
+PPU buffer safety guard passed
+Checked: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\banks\generated_vdp\bank_06_gen68k_vdp.asm
+[10/15] VDP title regression guard...
+VDP title regression guard passed
+Checked: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\bridge\vdp_layer.asm
+[11/15] Frontend palette calibration check...
+Frontend palette calibration check FAILED
+Checked: C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\src\bridge\vdp_layer.asm
+ - CORRECT_NES_PALETTE does not match the global calibration rule at $00, $01, $02, $03, $04, $05, $06, $07.
+ - Title frontend palette does not match the calibrated title rule at $00, $02, $03, $04, $05, $06, $07, $08.
+Key title mappings: 
+Title table keys: $10:0AAA, $22:0ECC, $28:00EE, $36:0CCE

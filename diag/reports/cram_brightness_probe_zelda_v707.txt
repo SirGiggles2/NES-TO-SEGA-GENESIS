@@ -1,0 +1,32 @@
+=== CRAM BRIGHTNESS PROBE zelda_v707 ===
+Purpose: verify VDP_LIFT_HARDWARE_COLOR is applied and diagnose darkness
+
+--- title (frame 30, script=$00) ---
+  screenshot=C:\Users\Jake Diggity\Documents\GitHub\NES-TO-SEGA-GENESIS\diag\reports\screens\cram_probe_zelda_v707_title.png
+  ppu_shadow_bg =0F 30 30 30 0F 21 30 30 16 30 30 0F 29 1A 09 0F
+  ppu_shadow_spr=29 37 17 0F 02 22 30 0F 16 27 30 0F 0B 1B 2B 00
+  cram[00-0F]=0000 0EEE 0EEE 0EEE 0000 0EEE 06CE 0000 0046 0080 0080 0080 0860 0000 0000 0000
+  cram[10-1F]=0000 0EEA 0EEE 0EEE 0000 0EEC 0EEE 0000 008A 00C0 00A0 06A0 0AA0 0000 0000 0000
+  cram[20-2F]=0000 0EEE 0EEE 0000 0000 0AEE 0EEE 0000 00CE 04EC 06C8 0AE8 0CE0 0888 0000 0000
+  cram[30-3F]=0000 00E0 00C0 0000 0000 0AE0 0EEC 0CCC 08CE 08EC 0CEC 0CEC 0EE0 0CCC 0000 0000
+  === LIFT VERIFICATION ===
+    pal0_color1: NES=$30  CRAM=$0EEE  expected_lifted=$0EEE  expected_raw=$0EEE  => LIFTED
+    pal0_color2: NES=$30  CRAM=$0EEE  expected_lifted=$0EEE  expected_raw=$0EEE  => LIFTED
+    pal0_color3: NES=$30  CRAM=$0EEE  expected_lifted=$0EEE  expected_raw=$0EEE  => LIFTED
+    backdrop:    NES=$0F  CRAM=$0000  expected_lifted=$0000  expected_raw=$0000  => LIFTED
+    backdrop_mirror(color15): CRAM=$0000  (should match backdrop)
+    CRAM[$0F]=$0000  (NES_BACKDROP_CRAM_INDEX)
+  VERDICT: 4 lifted, 0 raw (unlifted!), 0 unknown
+  >>> OK: All checked values are properly lifted. Darkness is NOT caused by missing lift.
+  avg_brightness: R=4.2 G=6.1 B=4.3 (of 7.0 max) over 41 non-black entries
+  avg_pct: 69% of maximum
+  === VDP REGISTER CHECK ===
+  VDP_ENFORCE_MODE_REG12 writes $8C00 every VBlank (shadow/highlight OFF)
+  If display is dim, shadow/highlight may be enabled mid-frame between VBlanks
+
+=== CAPTURES COMPLETED ===
+captured: title
+MISSED: file_select
+MISSED: gameplay (need to start a game)
+
+=== PROBE COMPLETE ===

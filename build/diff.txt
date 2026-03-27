@@ -1,0 +1,886 @@
+﻿diff --git a/src/bridge/vdp_layer.asm b/src/bridge/vdp_layer.asm
+index 4702d5b..1dc47f4 100644
+--- a/src/bridge/vdp_layer.asm
++++ b/src/bridge/vdp_layer.asm
+@@ -192,7 +192,7 @@ PPU_WRITE_2005:
+     tst.b   (PPUSCROLL_LATCH).l
+     bne     .write_y
+     move.b  D0,(PPUSCROLL_X).l
+-    ; FIX v482: removed RAM_SCROLL_X writeback ΓÇö NES $2005 write does NOT
++    ; FIX v482: removed RAM_SCROLL_X writeback ??? NES $2005 write does NOT
+     ; modify the game's RAM shadow ($FD). Only the game code itself updates
+     ; ram_scroll_X. The VDP layer must not clobber it.
+     move.b  #1,(PPUSCROLL_LATCH).l
+@@ -206,7 +206,7 @@ PPU_WRITE_2005:
+     rts
+ .write_y:
+     move.b  D0,(PPUSCROLL_Y).l
+-    ; FIX v482: removed RAM_SCROLL_Y writeback ΓÇö same as scroll X fix above.
++    ; FIX v482: removed RAM_SCROLL_Y writeback ??? same as scroll X fix above.
+     ; NES $2005 write only sets PPU internal scroll, not RAM at $FC.
+     clr.b   (PPUSCROLL_LATCH).l
+     move.l  #$40004000,($C00004)
+@@ -352,7 +352,6 @@ VDP_VBLANK_HANDLER:
+     bsr     TRACE_MARK
+     bsr     vec_0x01E494_NMI
+     bsr     PPU_HANDLE_INDEXED_BUFFERS
+-    bsr     VDP_ENFORCE_MODE_REG12
+     bsr     VDP_APPLY_TITLE_BLACK_GAP_DISPLAY
+     tst.b   (PPU_FULL_REDRAW_PENDING).l
+     beq     .skip_nt_flush
+@@ -369,12 +368,6 @@ VDP_VBLANK_HANDLER:
+     movem.l (A7)+,D0-D7/A0-A6
+     rte
+ 
+-VDP_ENFORCE_MODE_REG12:
+-    ; Reassert H32/no-shadow every VBlank so runtime VDP traffic cannot leave
+-    ; the bridge in a dimmer mode than the calibrated palette expects.
+-    move.w  #$8C00,($C00004)
+-    rts
+-
+ PPU_HANDLE_INDEXED_BUFFERS:
+     ; Bridge-side indexed buffer handling.
+     ; - bounded fallback: queue title buffer once if title hold missed it.
+@@ -514,7 +507,7 @@ VDP_OAM_DMA_TRANSFER:
+     move.b  (A1)+,D4
+     move.b  (A1)+,D5
+     move.b  (A1)+,D6
+-    ; GUARD: Sprite Y-hiding ΓÇö DO NOT REMOVE
++    ; GUARD: Sprite Y-hiding ??? DO NOT REMOVE
+     ; NES hides sprites when Y is in the $EF-$FF range. If not handled
+     ; explicitly, those entries can leak as flicker in the upper playfield.
+     cmpi.b  #$EF,D3
+@@ -749,7 +742,7 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
+     movem.l (A7)+,D0-D5/A0
+     rts
+ .sync_frontend_layout:
+-; FIX v490: Frontend palette sync ΓÇö BG at colors 0-3, sprites at colors 4-7
++; FIX v490: Frontend palette sync ??? BG at colors 0-3, sprites at colors 4-7
+     lea     (PPU_PAL_SHADOW).l,A0
+     lea     CORRECT_NES_PALETTE(PC),A1
+     cmpi.b  #con_script_title_screen,(ram_script).l
+@@ -835,56 +828,45 @@ NES_PAL_TO_BGR555:
+     lsl.w   #1,D0
+     lea     NES_PALETTE_DATA,A0
+     move.w  (A0,D0.w),D0
+-    bsr     VDP_LIFT_HARDWARE_COLOR
+     rts
+ 
+ ; Frontend-specific hardware palette lookup
+-; Uses A1 internally ΓÇö does NOT clobber A0 (critical for sync loops)
++; Uses A1 internally ??? does NOT clobber A0 (critical for sync loops)
+ FRONTEND_PAL_LOOKUP_FROM_TABLE:
+     andi.w  #$3F,D0
+     lsl.w   #1,D0
+     move.w  (A1,D0.w),D0
+-    bsr     VDP_LIFT_HARDWARE_COLOR
+     rts
+ 
+ ; Generic frontend palette lookup
+-; Uses A1 internally ├óΓé¼ΓÇ¥ does NOT clobber A0 (critical for sync loops)
++; Uses A1 internally ???????? does NOT clobber A0 (critical for sync loops)
+ FRONTEND_PAL_LOOKUP:
+     lea     CORRECT_NES_PALETTE(PC),A1
+     bra     FRONTEND_PAL_LOOKUP_FROM_TABLE
+ 
+-VDP_LIFT_HARDWARE_COLOR:
+-    ; Apply a strong shared pedestal on every non-black mapped color so the
+-    ; real console output tracks closer to the brighter diagnostic result.
+-    tst.w   D0
+-    beq     .done
+-    ori.w   #$0444,D0
+-.done:
+-    rts
+-
+ ; Runtime title balance removed in favor of the static frontend hardware
+ ; palette table below. Keeping lookup-only sync preserves v659-style timing.
+ 
+-; Accurate NES 2C02 NTSC palette ΓåÆ Genesis $0BGR (3-bit per channel)
++; Accurate NES 2C02 NTSC palette ??? Genesis $0BGR (3-bit per channel)
+ ; Lift each nonzero channel one 3-bit step until the top band to compensate
+ ; for darker BizHawk/console output without runtime title tint math.
+ CORRECT_NES_PALETTE:
+ ;   $00      $01      $02      $03      $04      $05      $06      $07
+-    DC.W $0CCC, $0E00, $0E00, $0E68, $0C0C, $060E, $006E, $00AE
++    DC.W $0AAA, $0C60, $0E06, $0E08, $0A0A, $080A, $000A, $0068
+ ;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
+-    DC.W $008A, $00C0, $00A0, $00A0, $0CCE, $0000, $0000, $0444
++    DC.W $0066, $0080, $0080, $0080, $0880, $0000, $0000, $0000
+ ;   $10      $11      $12      $13      $14      $15      $16      $17
+-    DC.W $0EEE, $0EC0, $0EEE, $0E8A, $0E0E, $0A0E, $0CCE, $08CE
++    DC.W $0EEE, $0EA6, $0E88, $0E6A, $0E6C, $0A6E, $066E, $008C
+ ;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
+-    DC.W $00CE, $00E0, $00E0, $08E0, $0EEE, $0000, $0000, $0000
++    DC.W $00AA, $00C8, $00C0, $06C0, $0CA0, $0000, $0000, $0000
+ ;   $20      $21      $22      $23      $24      $25      $26      $27
+-    DC.W $0EEE, $0EE8, $0ECA, $0ECE, $0ECE, $0EAE, $0ACE, $0AEE
++    DC.W $0EEE, $0EEA, $0ECC, $0EAE, $0EAE, $0EAE, $0ACE, $06CE
+ ;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
+-    DC.W $00EE, $08EE, $0AEA, $0EEA, $0EEE, $0CCC, $0000, $0000
++    DC.W $00EE, $00EC, $06EA, $0CE8, $0EE8, $0888, $0000, $0000
+ ;   $30      $31      $32      $33      $34      $35      $36      $37
+     DC.W $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE
+ ;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
+-    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EE0, $0EEE, $0000, $0000
++    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EEE, $0000, $0000, $0000
+ 
+ ; Title-only frontend palette calibrated from a standard NES RGB palette and
+ ; then nudged on the hottest Zelda title indices to match the darker hardware
+@@ -892,748 +874,18 @@ CORRECT_NES_PALETTE:
+ ; check so the title does not fall back into the olive/purple console look.
+ TITLE_SCREEN_NES_PALETTE:
+ ;   $00      $01      $02      $03      $04      $05      $06      $07
+-    DC.W $0CCC, $0E00, $0E00, $0E68, $0C0C, $060E, $006E, $00AE
+-;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
+-    DC.W $0CCE, $00C0, $00A0, $00A0, $0CCE, $0000, $0000, $0444
+-;   $10      $11      $12      $13      $14      $15      $16      $17
+-    DC.W $0EEE, $0EC0, $0EEE, $0E8A, $0E0E, $0A0E, $0CCE, $08CE
+-;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
+-    DC.W $00CE, $00E0, $0CE0, $08E0, $0EEE, $0000, $0000, $0000
+-;   $20      $21      $22      $23      $24      $25      $26      $27
+-    DC.W $0EEE, $0EE8, $0EEE, $0ECE, $0ECE, $0EAE, $0ACE, $0AEE
+-;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
+-    DC.W $00EE, $08EE, $0AEA, $0EEA, $0EEE, $0CCC, $0000, $0000
+-;   $30      $31      $32      $33      $34      $35      $36      $37
+-    DC.W $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE
+-;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
+-    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EE0, $0EEE, $0000, $0000
+-
+-PPU_CLEAR_SHADOWS:
+-    lea     (PPU_NT_SHADOW).l,A0
+-    move.w  #($1000/4)-1,D7
+-.nt_loop:
+-    clr.l   (A0)+
+-    dbra    D7,.nt_loop
+-    lea     (PPU_PAL_SHADOW).l,A0
+-    moveq   #0,D0
+-    move.w  #($20/4)-1,D7
+-.pal_loop:
+-    move.l  D0,(A0)+
+-    dbra    D7,.pal_loop
+-    lea     (PPU_CHR_SHADOW).l,A0
+-    move.w  #($2000/4)-1,D7
+-.chr_loop:
+-    clr.l   (A0)+
+-    dbra    D7,.chr_loop
+-    rts
+-
+-PPU_ADVANCE_VRAM_ADDR:
+-    move.w  (VRAM_ADDR_CURR).l,D3
+-    btst    #2,(PPUCTRL_SHADOW).l
+-    beq     .inc_by_1
+-    addi.w  #32,D3
+-    bra     .done
+-.inc_by_1:
+-    addi.w  #1,D3
+-.done:
+-    move.w  D3,(VRAM_ADDR_CURR).l
+-    rts
+-
+-PPU_INVALIDATE_PLANE_CACHE:
+-    clr.b   (PPU_PLANE_CACHE_VALID).l
+-    rts
+-
+-PPU_DISPATCH_TITLE_BUFFER:
+-    ; Parse NES PPU update buffer $10 and write it into bridge shadows.
+-    ; Buffer format: lo, hi, len/cmd, <len bytes> ... $FF terminator.
+-    movem.l D0-D7/A0-A1,-(A7)
+-    lea     _off000_A869_10_title_screen,A0
+-
+-.block_loop:
+-    moveq   #0,D0
+-    move.b  (A0)+,D0
+-    cmpi.b  #$FF,D0
+-    beq     .done
+-
+-    moveq   #0,D1
+-    move.b  (A0)+,D1
+-    lsl.w   #8,D1
+-    or.w    D0,D1
+-
+-    moveq   #0,D2
+-    move.b  (A0)+,D2
+-    andi.w  #$003F,D2
+-    beq     .block_loop
+-
+-    move.w  D1,D3
+-
+-.byte_loop:
+-    move.b  (A0)+,D0
+-    move.w  D3,D4
+-    andi.w  #$FF00,D4
+-    cmpi.w  #$2000,D3
+-    blo     .advance
+-    cmpi.w  #$3F00,D3
+-    bhs     .advance
+-
+-    bsr     PPU_NORMALIZE_NAMETABLE_ADDR
+-    lea     (PPU_NT_SHADOW).l,A1
+-    move.b  D0,(A1,D4.w)
+-
+-.advance:
+-    addq.w  #1,D3
+-    subq.w  #1,D2
+-    bne     .byte_loop
+-    bra     .block_loop
+-
+-.done:
+-    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
+-    bsr     PPU_INVALIDATE_PLANE_CACHE
+-    movem.l (A7)+,D0-D7/A0-A1
+-    rts
+-
+-INIT_TITLE_PALETTE_SHADOW:
+-    ; Load title screen palette data into PPU_PAL_SHADOW
+-    ; Title palettes: 8 palettes ├ù 4 colors each = 32 bytes
+-    ; Palette data from NES bank_02:954F (tbl_954F_demo_manual_palette)
+-    lea     (PPU_PAL_SHADOW).l,A0
+-    ; Palette 0: $0F, $30, $30, $30
+-    move.b  #$0F,(A0)+
+-    move.b  #$30,(A0)+
+-    move.b  #$30,(A0)+
+-    move.b  #$30,(A0)+
+-    ; Palette 1: $0F, $21, $30, $30
+-    move.b  #$0F,(A0)+
+-    move.b  #$21,(A0)+
+-    move.b  #$30,(A0)+
+-    move.b  #$30,(A0)+
+-    ; Palette 2: $0F, $16, $30, $30  move.b  #$0F,(A0)+
+-    move.b  #$16,(A0)+
+-    move.b  #$30,(A0)+
+-    move.b  #$30,(A0)+
+-    ; Palette 3: $0F, $29, $1A, $09
+-    move.b  #$0F,(A0)+
+-    move.b  #$29,(A0)+
+-    move.b  #$1A,(A0)+
+-    move.b  #$09,(A0)+
+-    ; Palette 4: $0F, $29, $37, $17
+-    move.b  #$0F,(A0)+
+-    move.b  #$29,(A0)+
+-    move.b  #$37,(A0)+
+-    move.b  #$17,(A0)+
+-    ; Palette 5: $0F, $02, $22, $30
+-    move.b  #$0F,(A0)+
+-    move.b  #$02,(A0)+
+-    move.b  #$22,(A0)+
+-    move.b  #$30,(A0)+
+-    ; Palette 6: $0F, $16, $27, $30
+-    move.b  #$0F,(A0)+
+-    move.b  #$16,(A0)+
+-    move.b  #$27,(A0)+
+-    move.b  #$30,(A0)+
+-    ; Palette 7: $0F, $0B, $1B, $2B
+-    move.b  #$0F,(A0)+
+-    move.b  #$0B,(A0)+
+-    move.b  #$1B,(A0)+
+-    move.b  #$2B,(A0)+
+-    rts
+-
+-PPU_FLUSH_VISIBLE_NAMETABLE:
+-    clr.b   (PPU_FULL_REDRAW_PENDING).l
+-    bsr     PPU_INVALIDATE_PLANE_CACHE
+-    moveq   #0,D4
+-    move.w  #29,D7
+-.row_loop:
+-    move.w  #31,D6
+-.col_loop:
+-    move.l  D6,-(A7)
+-    move.l  D7,-(A7)
+-    bsr     PPU_RENDER_NAMETABLE_CELL
+-    move.l  (A7)+,D7
+-    move.l  (A7)+,D6
+-    addq.w  #1,D4
+-    dbra    D6,.col_loop
+-    dbra    D7,.row_loop
+-    ; GUARD: H40 overflow clear ΓÇö DO NOT REMOVE
+-    ; H40 mode shows 40 tile columns but NES only uses 32.
+-    ; Clear columns 32-39 for all 32 plane rows to prevent stale
+-    ; tile data from previous screens bleeding into the right side.
+-    movem.l D0-D1/D7,-(A7)
+-    moveq   #0,D1
+-    move.w  #31,D7
+-.clear_overflow_row:
+-    move.w  D1,D0
+-    lsl.w   #7,D0              ; row * 128 (64 tiles * 2 bytes)
+-    addi.w  #64,D0             ; column 32 * 2
+-    addi.w  #PLANE_A_MAP_BASE,D0
+-    bsr     VDP_SET_VRAM_WRITE_ADDR
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    move.w  #NES_BACKDROP_TILE_INDEX,($C00000)
+-    addq.w  #1,D1
+-    dbra    D7,.clear_overflow_row
+-    movem.l (A7)+,D0-D1/D7
+-    rts
+-
+-PPU_NORMALIZE_PALETTE_INDEX:
+-    andi.w  #$001F,D4
+-    cmpi.w  #$0010,D4
+-    beq     .mirror_00
+-    cmpi.w  #$0014,D4
+-    beq     .mirror_04
+-    cmpi.w  #$0018,D4
+-    beq     .mirror_08
+-    cmpi.w  #$001C,D4
+-    beq     .mirror_0C
+-    rts
+-.mirror_00:
+-    clr.w   D4
+-    rts
+-.mirror_04:
+-    moveq   #4,D4
+-    rts
+-.mirror_08:
+-    moveq   #8,D4
+-    rts
+-.mirror_0C:
+-    moveq   #12,D4
+-    rts
+-
+-PPU_NORMALIZE_NAMETABLE_ADDR:
+-    move.w  D3,D4
+-    andi.w  #$3FFF,D4
+-    subi.w  #$2000,D4
+-    cmpi.w  #$1000,D4
+-    blo     .done
+-    subi.w  #$1000,D4
+-.done:
+-    ; Dynamic mirroring from MMC1 control bits 1:0 in dedicated shadow:
+-    ; 00 = one-screen lower, 01 = one-screen upper,
+-    ; 10 = vertical, 11 = horizontal.
+-    moveq   #0,D5
+-    move.b  (PPU_MIRROR_MODE).l,D5
+-    andi.w  #$0003,D5
+-    cmpi.w  #$0002,D5
+-    beq     .vertical
+-    cmpi.w  #$0003,D5
+-    beq     .horizontal
+-    tst.w   D5
+-    bne     .one_screen_upper
+-.one_screen_lower:
+-    andi.w  #$03FF,D4
+-    rts
+-.one_screen_upper:
+-    andi.w  #$03FF,D4
+-    ori.w   #$0400,D4
+-    rts
+-.vertical:
+-    move.w  D4,D5
+-    andi.w  #$0400,D5
+-    andi.w  #$03FF,D4
+-    or.w    D5,D4
+-    rts
+-.horizontal:
+-    move.w  D4,D5
+-    andi.w  #$0800,D5
+-    lsr.w   #1,D5
+-    andi.w  #$03FF,D4
+-    or.w    D5,D4
+-    rts
+-
+-PPU_WRITE_NAMETABLE_BYTE:
+-    ; GUARD: Frontend artifact cleanup ΓÇö DO NOT REMOVE
+-    ; Intercept stale tile 00/08 during file-select, register, elimination.
+-    ; LIVE: D0=tile byte, D3=VRAM address ΓÇö DO NOT CLOBBER D3
+-    move.b  (ram_script).l,D5
+-    cmpi.b  #$01,D5
+-    beq     .check_artifact_tile
+-    cmpi.b  #con_script_register,D5
+-    beq     .check_artifact_tile
+-    cmpi.b  #con_script_elimination,D5
+-    beq     .check_artifact_tile
+-    bra     .write_normally
+-.check_artifact_tile:
+-    cmpi.b  #$00,D0
+-    beq     .file_select_replace
+-    cmpi.b  #$08,D0
+-    bne     .write_normally
+-.file_select_replace:
+-    move.b  #$24,D0
+-.write_normally:
+-    bsr     PPU_NORMALIZE_NAMETABLE_ADDR
+-    lea     (PPU_NT_SHADOW).l,A0
+-    cmp.b   (A0,D4.w),D0
+-    beq     .done
+-    move.b  D0,(A0,D4.w)
+-    moveq   #0,D5
+-    move.b  (PPUMASK_SHADOW).l,D5
+-    andi.w  #$0018,D5
+-    beq     .defer_redraw
+-    move.w  D4,D5
+-    andi.w  #$03FF,D5
+-    cmpi.w  #$03C0,D5
+-    bhs     .attribute
+-    tst.b   (VDP_IN_VBLANK_FLAG).l
+-    beq     .defer_nt_write
+-    bsr     PPU_RENDER_NAMETABLE_CELL
+-    bra     .done
+-.defer_nt_write:
+-    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
+-    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
+-    bra     .done
+-.attribute:
+-    tst.b   (VDP_IN_VBLANK_FLAG).l
+-    beq     .defer_attr_write
+-    bsr     PPU_RENDER_ATTRIBUTE_BLOCK
+-    bra     .done
+-.defer_attr_write:
+-    addq.w  #1,(PPU_MIDFRAME_NT_WRITES).l
+-    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
+-    bra     .done
+-.defer_redraw:
+-    move.b  #1,(PPU_FULL_REDRAW_PENDING).l
+-.done:
+-    rts
+-
+-PPU_BUFFER_NAMETABLE_READ:
+-    bsr     PPU_NORMALIZE_NAMETABLE_ADDR
+-    lea     (PPU_NT_SHADOW).l,A0
+-    move.b  (A0,D4.w),(PPUDATA_BUFFER).l
+-    rts
+-
+-PPU_BUFFER_PATTERN_READ:
+-    move.w  D3,D4
+-    andi.w  #$1FFF,D4
+-    lea     (PPU_CHR_SHADOW).l,A0
+-    move.b  (A0,D4.w),(PPUDATA_BUFFER).l
+-    rts
+-
+-PPU_READ_PALETTE_BYTE:
+-    move.w  D3,D4
+-    bsr     PPU_NORMALIZE_PALETTE_INDEX
+-    lea     (PPU_PAL_SHADOW).l,A0
+-    moveq   #0,D0
+-    move.b  (A0,D4.w),D0
+-    rts
+-
+-PPU_WRITE_PATTERN_BYTE:
+-    move.w  D3,D4
+-    andi.w  #$1FFF,D4
+-    lea     (PPU_CHR_SHADOW).l,A0
+-    cmp.b   (A0,D4.w),D0
+-    beq     .done
+-    move.b  D0,(A0,D4.w)
+-    move.b  #1,(PPU_CHR_DIRTY_FLAG).l
+-.done:
+-    rts
+-
+-PPU_FLUSH_CHR_SHADOW_TO_VRAM:
+-    movem.l D0-D7/A0-A3,-(A7)
+-    move.l  #$40000000,(VDP_CTRL)
+-    lea     (PPU_CHR_SHADOW).l,A0
+-    lea     PPU_PIXEL_PAIR_TABLE(pc),A3
+-    move.w  #511,D7
+-.tile_loop:
+-    movea.l A0,A1
+-    lea     8(A0),A2
+-    moveq   #7,D6
+-.row_loop:
+-    moveq   #0,D0
+-    moveq   #0,D1
+-    move.b  (A1)+,D0
+-    move.b  (A2)+,D1
+-    bsr     PPU_BUILD_GENESIS_ROW
+-    move.l  D2,(VDP_DATA)
+-    dbra    D6,.row_loop
+-    lea     16(A0),A0
+-    dbra    D7,.tile_loop
+-    ; Keep a sprite-encoded tile copy in a separate VRAM bank so
+-    ; sprite palettes can use colors 4-7 without affecting BG tiles.
+-    move.w  #SPRITE_TILE_VRAM_BASE,D0
+-    bsr     VDP_SET_VRAM_WRITE_ADDR
+-    lea     (PPU_CHR_SHADOW).l,A0
+-    lea     PPU_SPRITE_PIXEL_PAIR_TABLE(pc),A3
+-    move.w  #511,D7
+-.sprite_tile_loop:
+-    movea.l A0,A1
+-    lea     8(A0),A2
+-    moveq   #7,D6
+-.sprite_row_loop:
+-    moveq   #0,D0
+-    moveq   #0,D1
+-    move.b  (A1)+,D0
+-    move.b  (A2)+,D1
+-    bsr     PPU_BUILD_GENESIS_ROW
+-    move.l  D2,(VDP_DATA)
+-    dbra    D6,.sprite_row_loop
+-    lea     16(A0),A0
+-    dbra    D7,.sprite_tile_loop
+-    clr.b   (PPU_CHR_DIRTY_FLAG).l
+-    movem.l (A7)+,D0-D7/A0-A3
+-    rts
+-
+-PPU_FLUSH_TITLE_CHR_TO_VRAM:
+-    ; Hardware safety: only commit bulk CHR writes during VBlank.
+-    tst.b   (VDP_IN_VBLANK_FLAG).l
+-    beq     .done
+-    ; Reduce title/manual VRAM churn:
+-    ; - During title hold (phase 0), do a one-time full CHR flush.
+-    ; - Outside that window, throttle full flushes to every 4th frame.
+-    cmpi.b  #con_script_title_screen,(ram_script).l
+-    bne     .throttled_flush
+-    tst.b   ($00FF042C).l
+-    bne     .throttled_flush
+-    tst.b   ($00FF042D).l
+-    bne     .throttled_flush
+-    tst.b   (PPU_TITLE_CHR_FLUSH_DONE).l
+-    bne     .done
+-    tst.b   (PPU_CHR_DIRTY_FLAG).l
+-    beq     .done
+-    bsr     PPU_FLUSH_CHR_SHADOW_TO_VRAM
+-    move.b  #1,(PPU_TITLE_CHR_FLUSH_DONE).l
+-    rts
+-.throttled_flush:
+-    clr.b   (PPU_TITLE_CHR_FLUSH_DONE).l
+-    tst.b   (PPU_CHR_DIRTY_FLAG).l
+-    beq     .done
+-    move.b  (ram_frm_cnt).l,D0
+-    andi.b  #$03,D0
+-    bne     .done
+-    bsr     PPU_FLUSH_CHR_SHADOW_TO_VRAM
+-.done:
+-    rts
+-
+-PPU_FLUSH_TILE_RANGE_TO_VRAM:
+-    tst.w   D1
+-    beq     .done
+-    move.w  D1,D7
+-    subq.w  #1,D7
+-    move.w  D0,D2
+-    lsl.w   #5,D2
+-    move.w  D2,D0
+-    bsr     VDP_SET_VRAM_WRITE_ADDR
+-
+-    move.w  D2,D3
+-    lsr.w   #1,D3
+-    lea     (PPU_CHR_SHADOW).l,A0
+-    adda.w  D3,A0
+-    lea     PPU_PIXEL_PAIR_TABLE(pc),A3
+-.tile_loop:
+-    movea.l A0,A1
+-    lea     8(A0),A2
+-    moveq   #7,D6
+-.row_loop:
+-    moveq   #0,D0
+-    moveq   #0,D1
+-    move.b  (A1)+,D0
+-    move.b  (A2)+,D1
+-    bsr     PPU_BUILD_GENESIS_ROW
+-    move.l  D2,(VDP_DATA)
+-    dbra    D6,.row_loop
+-    lea     16(A0),A0
+-    dbra    D7,.tile_loop
+-    ; Also refresh sprite tile copies for the same CHR range.
+-    move.w  D2,D0
+-    addi.w  #SPRITE_TILE_VRAM_BASE,D0
+-    bsr     VDP_SET_VRAM_WRITE_ADDR
+-    move.w  D2,D3
+-    lsr.w   #1,D3
+-    lea     (PPU_CHR_SHADOW).l,A0
+-    adda.w  D3,A0
+-    lea     PPU_SPRITE_PIXEL_PAIR_TABLE(pc),A3
+-    move.w  D1,D7
+-    subq.w  #1,D7
+-.sprite_tile_loop:
+-    movea.l A0,A1
+-    lea     8(A0),A2
+-    moveq   #7,D6
+-.sprite_row_loop:
+-    moveq   #0,D0
+-    moveq   #0,D1
+-    move.b  (A1)+,D0
+-    move.b  (A2)+,D1
+-    bsr     PPU_BUILD_GENESIS_ROW
+-    move.l  D2,(VDP_DATA)
+-    dbra    D6,.sprite_row_loop
+-    lea     16(A0),A0
+-    dbra    D7,.sprite_tile_loop
+-.done:
+-    rts
+-
+-PPU_BUILD_GENESIS_ROW:
+-    clr.l   D2
+-
+-    moveq   #0,D3
+-    move.b  D1,D3
+-    andi.w  #$00C0,D3
+-    lsr.w   #4,D3
+-    moveq   #0,D4
+-    move.b  D0,D4
+-    andi.w  #$00C0,D4
+-    lsr.w   #6,D4
+-    or.w    D4,D3
+-    lsl.l   #8,D2
+-    move.b  (A3,D3.w),D2
+-    lsl.b   #2,D0
+-    lsl.b   #2,D1
+-
+-    moveq   #0,D3
+-    move.b  D1,D3
+-    andi.w  #$00C0,D3
+-    lsr.w   #4,D3
+-    moveq   #0,D4
+-    move.b  D0,D4
+-    andi.w  #$00C0,D4
+-    lsr.w   #6,D4
+-    or.w    D4,D3
+-    lsl.l   #8,D2
+-    move.b  (A3,D3.w),D2
+-    lsl.b   #2,D0
+-    lsl.b   #2,D1
+-
+-    moveq   #0,D3
+-    move.b  D1,D3
+-    andi.w  #$00C0,D3
+-    lsr.w   #4,D3
+-    moveq   #0,D4
+-    move.b  D0,D4
+-    andi.w  #$00C0,D4
+-    lsr.w   #6,D4
+-    or.w    D4,D3
+-    lsl.l   #8,D2
+-    move.b  (A3,D3.w),D2
+-    lsl.b   #2,D0
+-    lsl.b   #2,D1
+-
+-    moveq   #0,D3
+-    move.b  D1,D3
+-    andi.w  #$00C0,D3
+-    lsr.w   #4,D3
+-    moveq   #0,D4
+-    move.b  D0,D4
+-    andi.w  #$00C0,D4
+-    lsr.w   #6,D4
+-    or.w    D4,D3
+-    lsl.l   #8,D2
+-    move.b  (A3,D3.w),D2
+-    rts
+-
+-; NES background color 0 is the universal backdrop color, not transparency.
+-; Encode BG zeroes as Genesis color $F and mirror the backdrop into color 15
+-; of each BG palette line during CRAM sync.
+-PPU_PIXEL_PAIR_TABLE:
+-    dc.b    $FF,$F1,$1F,$11,$F2,$F3,$12,$13
+-    dc.b    $2F,$21,$3F,$31,$22,$23,$32,$33
+-
+-; GUARD: v490 sprite pixel pair table ΓÇö DO NOT MODIFY
+-; FIX v490: Sprite pixel pair table ΓÇö non-zero pixels shifted +4
+-; So sprite tiles use palette colors 4-7 instead of 0-3.
+-; Interdependent with SPRITE_TILE_INDEX_OFS and palette split logic.
+-PPU_SPRITE_PIXEL_PAIR_TABLE:
+-    dc.b    $00,$05,$50,$55,$06,$07,$56,$57
+-    dc.b    $60,$65,$70,$75,$66,$67,$76,$77
+-
+-PPU_RENDER_ATTRIBUTE_BLOCK:
+-    move.w  D4,D5
+-    lsr.w   #8,D5
+-    lsr.w   #2,D5
+-    lsl.w   #8,D5
+-    lsl.w   #2,D5
+-    move.w  D4,D6
+-    andi.w  #$03FF,D6
+-    subi.w  #$03C0,D6
+-    move.w  D6,D7
+-    andi.w  #$0007,D7
+-    lsl.w   #2,D7
+-    lsr.w   #3,D6
+-    lsl.w   #2,D6
+-    moveq   #3,D1
+-.row_loop:
+-    move.w  D5,D4
+-    move.w  D6,D2
+-    lsl.w   #5,D2
+-    add.w   D2,D4
+-    add.w   D7,D4
+-    moveq   #3,D0
+-.col_loop:
+-    move.l  D0,-(A7)
+-    move.l  D1,-(A7)
+-    move.l  D4,-(A7)
+-    move.l  D5,-(A7)
+-    move.l  D6,-(A7)
+-    move.l  D7,-(A7)
+-    bsr     PPU_RENDER_NAMETABLE_CELL
+-    move.l  (A7)+,D7
+-    move.l  (A7)+,D6
+-    move.l  (A7)+,D5
+-    move.l  (A7)+,D4
+-    move.l  (A7)+,D1
+-    move.l  (A7)+,D0
+-    addq.w  #1,D4
+-    dbra    D0,.col_loop
+-    addq.w  #1,D6
+-    dbra    D1,.row_loop
+-    rts
+-
+-PPU_RENDER_NAMETABLE_CELL:
+-    lea     (PPU_NT_SHADOW).l,A0
+-    move.w  D4,D5
+-    lsr.w   #8,D5
+-    lsr.w   #2,D5
+-    move.w  D4,D6
+-    andi.w  #$03FF,D6
+-    move.w  D6,D7
+-    andi.w  #$001F,D7
+-    move.w  D6,D1
+-    lsr.w   #5,D1
+-
+-    moveq   #0,D2
+-    move.b  (A0,D4.w),D2
+-.ppuctrl_bg_select:
+-    ; Frontend/title/register/file-select paths should use direct NT tile IDs.
+-    ; Applying MMC1 CHR bank offsets here can generate incorrect tile numbers
+-    ; during fades/transitions when mapper registers are transient.
+-    move.b  (ram_script).l,D0
+-    cmpi.b  #con_script_title_screen,D0
+-    beq     .frontend_tile_base
+-    cmpi.b  #con_script_register,D0
+-    beq     .frontend_tile_base
+-    cmpi.b  #con_script_elimination,D0
+-    beq     .frontend_tile_base
+-    cmpi.b  #con_script_final_credits,D0
+-    beq     .frontend_tile_base
+-
+-    ; Apply MMC1 CHR banking for background tile fetch.
+-    moveq   #0,D0
+-    move.b  (PPU_MIRROR_MODE).l,D0
+-    btst    #4,D0
+-    bne     .chr_4k_mode
+-
+-.chr_8k_mode:
+-    moveq   #0,D3
+-    move.b  (ROM_$A000).l,D3
+-    andi.w  #$001E,D3
+-    lsl.w   #8,D3
+-    add.w   D3,D2
+-    btst    #4,(PPUCTRL_SHADOW).l
+-    beq     .tile_base_done
+-    addi.w  #$0100,D2
+-    bra     .tile_base_done
+-
+-.chr_4k_mode:
+-    btst    #4,(PPUCTRL_SHADOW).l
+-    bne     .chr_4k_bg_hi
+-    moveq   #0,D3
+-    move.b  (ROM_$A000).l,D3
+-    bra     .chr_4k_have_bank
+-.chr_4k_bg_hi:
+-    moveq   #0,D3
+-    move.b  (ROM_$C000).l,D3
+-.chr_4k_have_bank:
+-    andi.w  #$001F,D3
+-    lsl.w   #8,D3
+-    add.w   D3,D2
+-    bra     .tile_base_done
+-
+-.frontend_tile_base:
+-    tst.w   D2
+-    beq     .tile_base_done
+-    btst    #4,(PPUCTRL_SHADOW).l
+-    beq     .tile_base_done
+-    addi.w  #$0100,D2
+-.tile_base_done:
+-
+-    move.w  D5,D3
+-    lsl.w   #8,D3
+-    lsl.w   #2,D3
+-    move.w  D1,D6
+-    lsr.w   #2,D6
+-    lsl.w   #3,D6
+-    add.w   D6,D3
+-    move.w  D7,D6
+-    lsr.w   #2,D6
+-    add.w   D6,D3
+-    addi.w  #$03C0,D3
+-    moveq   #0,D6
+-    move.b  (A0,D3.w),D6
+-
+-    move.w  D1,D0
+-    andi.w  #$0002,D0
+-    lsl.w   #1,D0
+-    move.w  D7,D3
+-    andi.w  #$0002,D3
+-    or.w    D3,D0
+-    lsr.w   D0,D6
+-    andi.w  #$0003,D6
+-    lsl.w   #8,D6
+-    lsl.w   #5,D6
+-    or.w    D2,D6
+-    cmpi.b  #con_script_title_screen,(ram_script).l
+-    bne     .title_priority_done
+-    ori.w   #$8000,D6
+-.title_priority_done:
+-
+-    move.w  D5,D0
+-    andi.w  #$0001,D0
+-    lsl.w   #5,D0
+-    add.w   D0,D7
+-    move.w  D1,D0
+-    lsl.w   #6,D0
+-    add.w   D7,D0
+-    lsl.w   #1,D0
+-    addi.w  #PLANE_A_MAP_BASE,D0
+-    tst.b   (PPU_PLANE_CACHE_VALID).l
+-    beq     .set_addr
+-    move.w  (PPU_LAST_PLANE_ADDR).l,D3
+-    addq.w  #2,D3
+-    cmp.w   D0,D3
+-    beq     .write_cell
+-.set_addr:
+-    bsr     VDP_SET_VRAM_WRITE_ADDR
+-.write_cell:
+-    move.w  D0,(PPU_LAST_PLANE_ADDR).l
+-    move.b  #1,(PPU_PLANE_CACHE_VALID).l
+-    move.w  D6,($C00000)
+-    rts
+-
+-VDP_SET_VRAM_WRITE_ADDR:
+-    move.w  D0,D1
+-    andi.w  #$3FFF,D1
+-    swap    D1
+-    move.w  D0,D1
+-    lsr.w   #8,D1
+-    lsr.w   #6,D1
+-    ori.l   #$40000000,D1
+-    move.l  D1,($C00004)
+-    rts
+-
+-NES_PALETTE_DATA:
+-;   $00      $01      $02      $03      $04      $05      $06      $07
+-    DC.W $0CCC, $0E00, $0E00, $0E68, $0C0C, $060E, $006E, $00AE
++    DC.W $0888, $0E00, $0A00, $0A24, $0808, $020A, $002A, $0028
+ ;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
+-    DC.W $008A, $00C0, $00A0, $00A0, $0CCE, $0000, $0000, $0444
++    DC.W $0046, $0080, $0060, $0060, $0640, $0000, $0000, $0000
+ ;   $10      $11      $12      $13      $14      $15      $16      $17
+-    DC.W $0EEE, $0EC0, $0EEE, $0E8A, $0E0E, $0A0E, $0CCE, $08CE
++    DC.W $0AAA, $0E80, $0E60, $0E46, $0C0C, $060C, $004A, $02AE
+ ;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
+-    DC.W $00CE, $00E0, $00E0, $08E0, $0EEE, $0000, $0000, $0000
++    DC.W $008A, $00A0, $00A0, $04A0, $0880, $0000, $0000, $0000
+ ;   $20      $21      $22      $23      $24      $25      $26      $27
+-    DC.W $0EEE, $0EE8, $0ECA, $0ECE, $0ECE, $0EAE, $0ACE, $0AEE
++    DC.W $0EEE, $0EA4, $0EAA, $0E8A, $0E8E, $0A6E, $068E, $02AE
+ ;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
+-    DC.W $00EE, $08EE, $0AEA, $0EEA, $0EEE, $0CCC, $0000, $0000
++    DC.W $00AE, $02EA, $06C6, $0AE6, $0CC0, $0888, $0000, $0000
+ ;   $30      $31      $32      $33      $34      $35      $36      $37
+-    DC.W $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE
++    DC.W $0EEE, $0ECA, $0EAA, $0EAC, $0EAE, $0AAE, $0CCE, $0CCE
+ ;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
+-    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EE0, $0EEE, $0000, $0000
+-
+-
+-
+-; ===================================================================
+-; NES ZELDA TITLE SCREEN BUFFER (Index $10)
+-; Extracted from NES ROM - contains complete PPU nametable+attributes
+-; Structure: PPU_ADDR(2 LE) + LEN_CMD(1, $20) + DATA(32) ... repeat ... $FF
+-; ===================================================================
++    DC.W $08CE, $08EC, $0AEA, $0CEA, $0EE0, $0CCC, $0000, $0000
+\ No newline at end of file

@@ -79,6 +79,8 @@ SPRITE_TILE_INDEX_OFS   EQU $0200
 NES_BACKDROP_CRAM_INDEX EQU $000F
 DEBUG_VISUAL_ENABLE     EQU 0
 
+    INCLUDE "palette_experiment_config.asm"
+
 
 VDP_INIT:
     move.w  #$8000,($C00004)
@@ -352,7 +354,6 @@ VDP_VBLANK_HANDLER:
     bsr     TRACE_MARK
     bsr     vec_0x01E494_NMI
     bsr     PPU_HANDLE_INDEXED_BUFFERS
-    bsr     VDP_ENFORCE_MODE_REG12
     bsr     VDP_APPLY_TITLE_BLACK_GAP_DISPLAY
     tst.b   (PPU_FULL_REDRAW_PENDING).l
     beq     .skip_nt_flush
@@ -368,12 +369,6 @@ VDP_VBLANK_HANDLER:
     clr.b   (VDP_IN_VBLANK_FLAG).l
     movem.l (A7)+,D0-D7/A0-A6
     rte
-
-VDP_ENFORCE_MODE_REG12:
-    ; Reassert H32/no-shadow every VBlank so runtime VDP traffic cannot leave
-    ; the bridge in a dimmer mode than the calibrated palette expects.
-    move.w  #$8C00,($C00004)
-    rts
 
 PPU_HANDLE_INDEXED_BUFFERS:
     ; Bridge-side indexed buffer handling.
@@ -751,11 +746,7 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
 .sync_frontend_layout:
 ; FIX v490: Frontend palette sync — BG at colors 0-3, sprites at colors 4-7
     lea     (PPU_PAL_SHADOW).l,A0
-    lea     CORRECT_NES_PALETTE(PC),A1
-    cmpi.b  #con_script_title_screen,(ram_script).l
-    bne     .fe_table_ready
-    lea     TITLE_SCREEN_NES_PALETTE(PC),A1
-.fe_table_ready:
+    bsr     SELECT_FRONTEND_PALETTE_TABLE
     moveq   #0,D5
 .fe_line_loop:
     ; Set CRAM write address for palette line D5, color 0
@@ -833,9 +824,34 @@ PPU_SYNC_PALETTE_SHADOW_TO_CRAM:
 NES_PAL_TO_BGR555:
     andi.w  #$3F,D0
     lsl.w   #1,D0
+    moveq   #PALETTE_EXPERIMENT_PROFILE,D1
+    cmpi.w  #PALETTE_EXPERIMENT_CORRECTED_ALL,D1
+    beq     .use_corrected_table
     lea     NES_PALETTE_DATA,A0
     move.w  (A0,D0.w),D0
-    bsr     VDP_LIFT_HARDWARE_COLOR
+    rts
+.use_corrected_table:
+    lea     CORRECT_NES_PALETTE(PC),A0
+    move.w  (A0,D0.w),D0
+    rts
+
+SELECT_FRONTEND_PALETTE_TABLE:
+    moveq   #PALETTE_EXPERIMENT_PROFILE,D6
+    cmpi.w  #PALETTE_EXPERIMENT_RAW_ALL,D6
+    beq     .use_raw_table
+    cmpi.w  #PALETTE_EXPERIMENT_CORRECTED_ALL,D6
+    beq     .use_corrected_table
+    lea     CORRECT_NES_PALETTE(PC),A1
+    cmpi.b  #con_script_title_screen,(ram_script).l
+    bne     .done
+    lea     TITLE_SCREEN_NES_PALETTE(PC),A1
+    bra     .done
+.use_raw_table:
+    lea     NES_PALETTE_DATA,A1
+    bra     .done
+.use_corrected_table:
+    lea     CORRECT_NES_PALETTE(PC),A1
+.done:
     rts
 
 ; Frontend-specific hardware palette lookup
@@ -844,7 +860,6 @@ FRONTEND_PAL_LOOKUP_FROM_TABLE:
     andi.w  #$3F,D0
     lsl.w   #1,D0
     move.w  (A1,D0.w),D0
-    bsr     VDP_LIFT_HARDWARE_COLOR
     rts
 
 ; Generic frontend palette lookup
@@ -852,15 +867,6 @@ FRONTEND_PAL_LOOKUP_FROM_TABLE:
 FRONTEND_PAL_LOOKUP:
     lea     CORRECT_NES_PALETTE(PC),A1
     bra     FRONTEND_PAL_LOOKUP_FROM_TABLE
-
-VDP_LIFT_HARDWARE_COLOR:
-    ; Apply a strong shared pedestal on every non-black mapped color so the
-    ; real console output tracks closer to the brighter diagnostic result.
-    tst.w   D0
-    beq     .done
-    ori.w   #$0444,D0
-.done:
-    rts
 
 ; Runtime title balance removed in favor of the static frontend hardware
 ; palette table below. Keeping lookup-only sync preserves v659-style timing.
@@ -870,21 +876,21 @@ VDP_LIFT_HARDWARE_COLOR:
 ; for darker BizHawk/console output without runtime title tint math.
 CORRECT_NES_PALETTE:
 ;   $00      $01      $02      $03      $04      $05      $06      $07
-    DC.W $0CCC, $0E00, $0E00, $0E68, $0C0C, $060E, $006E, $00AE
+    DC.W $0AAA, $0C60, $0E06, $0E08, $0A0A, $080A, $000A, $0068
 ;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
-    DC.W $008A, $00C0, $00A0, $00A0, $0CCE, $0000, $0000, $0444
+    DC.W $0066, $0080, $0080, $0080, $0880, $0000, $0000, $0000
 ;   $10      $11      $12      $13      $14      $15      $16      $17
-    DC.W $0EEE, $0EC0, $0EEE, $0E8A, $0E0E, $0A0E, $0CCE, $08CE
+    DC.W $0EEE, $0EA6, $0E88, $0E6A, $0E6C, $0A6E, $066E, $008C
 ;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
-    DC.W $00CE, $00E0, $00E0, $08E0, $0EEE, $0000, $0000, $0000
+    DC.W $00AA, $00C8, $00C0, $06C0, $0CA0, $0000, $0000, $0000
 ;   $20      $21      $22      $23      $24      $25      $26      $27
-    DC.W $0EEE, $0EE8, $0ECA, $0ECE, $0ECE, $0EAE, $0ACE, $0AEE
+    DC.W $0EEE, $0EEA, $0ECC, $0EAE, $0EAE, $0EAE, $0ACE, $06CE
 ;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
-    DC.W $00EE, $08EE, $0AEA, $0EEA, $0EEE, $0CCC, $0000, $0000
+    DC.W $00EE, $00EC, $06EA, $0CE8, $0EE8, $0888, $0000, $0000
 ;   $30      $31      $32      $33      $34      $35      $36      $37
     DC.W $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE
 ;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
-    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EE0, $0EEE, $0000, $0000
+    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EEE, $0000, $0000, $0000
 
 ; Title-only frontend palette calibrated from a standard NES RGB palette and
 ; then nudged on the hottest Zelda title indices to match the darker hardware
@@ -892,21 +898,21 @@ CORRECT_NES_PALETTE:
 ; check so the title does not fall back into the olive/purple console look.
 TITLE_SCREEN_NES_PALETTE:
 ;   $00      $01      $02      $03      $04      $05      $06      $07
-    DC.W $0CCC, $0E00, $0E00, $0E68, $0C0C, $060E, $006E, $00AE
+    DC.W $0888, $0E00, $0A00, $0A24, $0808, $020A, $002A, $0028
 ;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
-    DC.W $0CCE, $00C0, $00A0, $00A0, $0CCE, $0000, $0000, $0444
+    DC.W $0046, $0080, $0060, $0060, $0640, $0000, $0000, $0000
 ;   $10      $11      $12      $13      $14      $15      $16      $17
-    DC.W $0EEE, $0EC0, $0EEE, $0E8A, $0E0E, $0A0E, $0CCE, $08CE
+    DC.W $0AAA, $0E80, $0E60, $0E46, $0C0C, $060C, $004A, $02AE
 ;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
-    DC.W $00CE, $00E0, $0CE0, $08E0, $0EEE, $0000, $0000, $0000
+    DC.W $008A, $00A0, $00A0, $04A0, $0880, $0000, $0000, $0000
 ;   $20      $21      $22      $23      $24      $25      $26      $27
-    DC.W $0EEE, $0EE8, $0EEE, $0ECE, $0ECE, $0EAE, $0ACE, $0AEE
+    DC.W $0EEE, $0EA4, $0EAA, $0E8A, $0E8E, $0A6E, $068E, $02AE
 ;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
-    DC.W $00EE, $08EE, $0AEA, $0EEA, $0EEE, $0CCC, $0000, $0000
+    DC.W $00AE, $02EA, $06C6, $0AE6, $0CC0, $0888, $0000, $0000
 ;   $30      $31      $32      $33      $34      $35      $36      $37
-    DC.W $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE
+    DC.W $0EEE, $0ECA, $0EAA, $0EAC, $0EAE, $0AAE, $0CCE, $0CCE
 ;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
-    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EE0, $0EEE, $0000, $0000
+    DC.W $08CE, $08EC, $0AEA, $0CEA, $0EE0, $0CCC, $0000, $0000
 
 PPU_CLEAR_SHADOWS:
     lea     (PPU_NT_SHADOW).l,A0
@@ -1614,21 +1620,21 @@ VDP_SET_VRAM_WRITE_ADDR:
 
 NES_PALETTE_DATA:
 ;   $00      $01      $02      $03      $04      $05      $06      $07
-    DC.W $0CCC, $0E00, $0E00, $0E68, $0C0C, $060E, $006E, $00AE
+    DC.W $0666, $0820, $0A02, $0A04, $0606, $0406, $0006, $0024
 ;   $08      $09      $0A      $0B      $0C      $0D      $0E      $0F
-    DC.W $008A, $00C0, $00A0, $00A0, $0CCE, $0000, $0000, $0444
+    DC.W $0022, $0040, $0040, $0040, $0440, $0000, $0000, $0000
 ;   $10      $11      $12      $13      $14      $15      $16      $17
-    DC.W $0EEE, $0EC0, $0EEE, $0E8A, $0E0E, $0A0E, $0CCE, $08CE
+    DC.W $0AAA, $0C62, $0E44, $0E26, $0C28, $062A, $022A, $0048
 ;   $18      $19      $1A      $1B      $1C      $1D      $1E      $1F
-    DC.W $00CE, $00E0, $00E0, $08E0, $0EEE, $0000, $0000, $0000
+    DC.W $0066, $0084, $0080, $0280, $0860, $0000, $0000, $0000
 ;   $20      $21      $22      $23      $24      $25      $26      $27
-    DC.W $0EEE, $0EE8, $0ECA, $0ECE, $0ECE, $0EAE, $0ACE, $0AEE
+    DC.W $0EEE, $0EA6, $0E88, $0E6A, $0E6E, $0C6E, $068E, $028C
 ;   $28      $29      $2A      $2B      $2C      $2D      $2E      $2F
-    DC.W $00EE, $08EE, $0AEA, $0EEA, $0EEE, $0CCC, $0000, $0000
+    DC.W $00AA, $00C8, $02C6, $08C4, $0CC4, $0444, $0000, $0000
 ;   $30      $31      $32      $33      $34      $35      $36      $37
-    DC.W $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE, $0EEE
+    DC.W $0EEE, $0ECA, $0ECC, $0EAC, $0EAE, $0CAE, $0ACE, $0ACE
 ;   $38      $39      $3A      $3B      $3C      $3D      $3E      $3F
-    DC.W $0CEE, $0CEE, $0EEE, $0EEE, $0EE0, $0EEE, $0000, $0000
+    DC.W $08CC, $08EC, $0AEA, $0CEA, $0ECA, $0000, $0000, $0000
 
 
 
