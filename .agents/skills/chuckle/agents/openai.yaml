@@ -1,0 +1,6 @@
+interface:
+  display_name: "Chuckle"
+  short_description: "4-step root-cause debug workflow"
+  default_prompt: "Use $chuckle to run the repo's 4-step root-cause workflow on the current debugging problem."
+policy:
+  allow_implicit_invocation: false
