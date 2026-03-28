@@ -6,6 +6,9 @@
 
 ; Example: PPU_WRITE_2007 (VRAM write)
 PPU_WRITE_2007:
+    ; Darkness fix: always clear high word before composing VDP command
+    andi.l  #$0000FFFF,D0   ; Zero D0's high word
+    moveq   #0,D1           ; Zero all of D1
     ; TODO: Implement VRAM write logic, including pattern table offset handling
     rts
 

@@ -30,13 +30,20 @@ if not exist "%ROOT%\src\main.asm" (
     exit /b 1
 )
 
-set /a VER=1
-:ver_loop
-if %VER% lss 10 (set "VERPAD=0%VER%") else (set "VERPAD=%VER%")
-if exist "%ROOT%\build\zelda_v%VERPAD%.md" (
-    set /a VER+=1
-    goto ver_loop
+
+REM --- Find highest zelda_v###.md in build dir and set VER to next available ---
+setlocal EnableDelayedExpansion
+set "MAXVER=0"
+for %%F in ("%ROOT%\build\zelda_v*.md") do (
+    set "FN=%%~nxF"
+    for /f "tokens=2 delims=_v." %%A in ("!FN!") do (
+        set /a CURVER=%%A
+        if !CURVER! gtr !MAXVER! set /a MAXVER=!CURVER!
+    )
 )
+set /a VER=MAXVER+1
+if !VER! lss 10 (set "VERPAD=0!VER!") else (set "VERPAD=!VER!")
+endlocal & set "VER=%VER%" & set "VERPAD=%VERPAD%"
 set "OUT_ROM=%ROOT%\build\zelda_v%VERPAD%.md"
 set "OUT_LST=%ROOT%\build\zelda_v%VERPAD%.lst"
 
