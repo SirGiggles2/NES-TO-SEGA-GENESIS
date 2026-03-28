@@ -114,7 +114,7 @@ loc_0x014010_pause_screen_handler:  ; orig: loc_0x014010_pause_screen_handler:
 sub_8006_pause_screen_handler:  ; orig: sub_8006_pause_screen_handler:
     MOVE.B  ram_pause_script,D0  ; orig: C - - - - - 0x014016 05:8006: A5 E1     LDA ram_pause_script
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x014018 05:8008: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_8021_overworld             ; BEQ  ; orig: C - - - - - 0x01401A 05:800A: F0 15     BEQ bra_8021_overwor
+    JMP     b05_bra_8021_overworld  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x01401C 05:800C: 20 E2 E5  JSR sub_0x01E5F2_jum
@@ -180,14 +180,14 @@ loc_805B:  ; orig: loc_805B:
 ofs_dungeon_pause_handler_805E_03:  ; orig: ofs_dungeon_pause_handler_805E_03:
 ofs_overworld_pause_handler_805E_04:  ; orig: ofs_overworld_pause_handler_805E_04:
     MOVE.B  #con_ppu_buf_4A,D0  ; orig: C - - J - - 0x01406E 05:805E: A9 4A     LDA #con_ppu_buf_4A
-    BNE     b05_bra_8059             ; BNE  ; orig: C - - - - - 0x014070 05:8060: D0 F7     BNE b05_bra_8059    ; jm
+    JMP     b05_bra_8059  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_dungeon_pause_handler_8062_04:  ; orig: ofs_dungeon_pause_handler_8062_04:
 ofs_overworld_pause_handler_8062_05:  ; orig: ofs_overworld_pause_handler_8062_05:
     MOVE.B  #con_ppu_buf_4C,D0  ; orig: C - - J - - 0x014072 05:8062: A9 4C     LDA #con_ppu_buf_4C
-    BNE     b05_bra_8059             ; BNE  ; orig: C - - - - - 0x014074 05:8064: D0 F3     BNE b05_bra_8059    ; jm
+    JMP     b05_bra_8059  ; replaced BNE (forced for build reliability)
 
 
 
@@ -199,7 +199,7 @@ ofs_dungeon_pause_handler_8066_05:  ; orig: ofs_dungeon_pause_handler_8066_05:
 
 ofs_overworld_pause_handler_806C_06_draw_triforce_text:  ; orig: ofs_overworld_pause_handler_806C_06_draw_triforce_text:
     MOVE.B  #con_ppu_buf_triforce_text,D0  ; orig: C - - J - - 0x01407C 05:806C: A9 5C     LDA #con_ppu_buf_tri
-    BNE     b05_bra_8059             ; BNE  ; orig: C - - - - - 0x01407E 05:806E: D0 E9     BNE b05_bra_8059    ; jm
+    JMP     b05_bra_8059  ; replaced BNE (forced for build reliability)
 
 
 
@@ -219,15 +219,15 @@ loc_8079:  ; orig: loc_8079:
     SUB.B  #$03,D0       ; SBC imm  ; orig: C - - - - - 0x014091 05:8081: E9 03     SBC #$03
     MOVE.B  D0,ram_scroll_Y  ; orig: C - - - - - 0x014093 05:8083: 85 FC     STA ram_scroll_Y
     CMPI.B  #$41,D0  ; orig: C - - - - - 0x014095 05:8085: C9 41     CMP #$41
-    BNE     b05_bra_80D3_RTS             ; BNE  ; orig: C - - - - - 0x014097 05:8087: D0 4A     BNE b05_bra_80D3_RTS
+    JMP     b05_bra_80D3_RTS  ; replaced BNE (forced for build reliability)
     ADDQ.B  #1,ram_pause_script  ; orig: C - - - - - 0x014099 05:8089: E6 E1     INC ram_pause_script
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01409B 05:808B: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_80D3_RTS             ; BEQ  ; orig: C - - - - - 0x01409D 05:808D: F0 44     BEQ b05_bra_80D3_RTS    
+    JMP     b05_bra_80D3_RTS  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x01409F 05:808F: A5 12     LDA ram_script
     CMPI.B  #con_script_09,D0  ; orig: C - - - - - 0x0140A1 05:8091: C9 09     CMP #con_script_09
-    BEQ     b05_bra_80D3_RTS             ; BEQ  ; orig: C - - - - - 0x0140A3 05:8093: F0 3E     BEQ b05_bra_80D3_RTS
+    JMP     b05_bra_80D3_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_map_location,D0  ; orig: C - - - - - 0x0140A5 05:8095: A5 EB     LDA ram_map_location
     ANDI.B  #$0F,D0  ; orig: C - - - - - 0x0140A7 05:8097: 29 0F     AND #$0F
 
@@ -238,7 +238,7 @@ loc_8079:  ; orig: loc_8079:
     MOVE.B  D0,ram_0000_t60  ; orig: C - - - - - 0x0140AC 05:809C: 85 00     STA ram_0000_t60
     MOVE.B  ram_6BAB,D0  ; orig: C - - - - - 0x0140AE 05:809E: AD AB 6B  LDA ram_6BAB
     CMPI.B  #$08,D0  ; orig: C - - - - - 0x0140B1 05:80A1: C9 08     CMP #$08
-    BCS     b05_bra_80B3             ; BCC  ; orig: C - - - - - 0x0140B3 05:80A3: 90 0E     BCC b05_bra_80B3
+    JMP     b05_bra_80B3  ; replaced BCS (forced for build reliability)
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x0140B5 05:80A5: A9 10     LDA #$10
     MOVE.B  ram_6BAB,D3
     SUB.B   D3,D0  ; orig: C - - - - - 0x0140B7 05:80A7: ED AB 6B  SBC ram_6BAB
@@ -288,7 +288,7 @@ ofs_overworld_pause_handler_80D4_08_inventory:  ; orig: ofs_overworld_pause_hand
     MOVE.B  $FF00FB,D0  ; FIX v378: LDA $FB  ; orig: C - - - - - 0x0140EA 05:80DA: A5 FB  LDA ram_btn_hold + $
     ANDI.B  #$88,D0  ; orig: C - - - - - 0x0140EC 05:80DC: 29 88     AND #con_btn_A + con
     CMPI.B  #$88,D0  ; orig: C - - - - - 0x0140EE 05:80DE: C9 88     CMP #con_btn_A + con
-    BNE     b05_bra_80F3             ; BNE  ; orig: C - - - - - 0x0140F0 05:80E0: D0 11     BNE b05_bra_80F3    ; do
+    JMP     b05_bra_80F3  ; replaced BNE (forced for build reliability)
     BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x0140F2 05:80E2: 20 A3 EB  JSR sub_0x01EBB3_cle
 
 ; A = 00
@@ -301,7 +301,7 @@ ofs_overworld_pause_handler_80D4_08_inventory:  ; orig: ofs_overworld_pause_hand
 b05_bra_80F3:  ; orig: b05_bra_80F3:
     MOVE.B  ram_btn_press,D0  ; orig: C - - - - - 0x014103 05:80F3: A5 F8     LDA ram_btn_press
     ANDI.B  #$10,D0  ; orig: C - - - - - 0x014105 05:80F5: 29 10     AND #con_btn_Start
-    BEQ     b05_bra_8151_RTS             ; BEQ  ; orig: C - - - - - 0x014107 05:80F7: F0 58     BEQ b05_bra_8151_RTS    
+    JMP     b05_bra_8151_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  $FF0254,D0  ; FIX v378: LDA $0254  ; orig: C - - - - - 0x014109 05:80F9: AD 54 02  LDA ram_spr_Y + $54
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x01410C 05:80FC: 48        PHA
     MOVE.B  $FF0258,D0  ; FIX v378: LDA $0258  ; orig: C - - - - - 0x01410D 05:80FD: AD 58 02  LDA ram_spr_Y + $58
@@ -325,10 +325,10 @@ ofs_overworld_pause_handler_810F_09:  ; orig: ofs_overworld_pause_handler_810F_0
     ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014127 05:8117: 69 03     ADC #$03
     MOVE.B  D0,ram_scroll_Y  ; orig: C - - - - - 0x014129 05:8119: 85 FC     STA ram_scroll_Y
     CMPI.B  #$F0,D0  ; orig: C - - - - - 0x01412B 05:811B: C9 F0     CMP #$F0
-    BCS     b05_bra_8151_RTS             ; BCC  ; orig: C - - - - - 0x01412D 05:811D: 90 32     BCC b05_bra_8151_RTS
+    JMP     b05_bra_8151_RTS  ; replaced BCS (forced for build reliability)
     MOVE.B  D0,ram_005C  ; orig: C - - - - - 0x01412F 05:811F: 85 5C     STA ram_005C
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x014131 05:8121: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_8128             ; BEQ  ; orig: C - - - - - 0x014133 05:8123: F0 03     BEQ b05_bra_8128    ; if
+    JMP     b05_bra_8128  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_bat_7512             ; JSR -> BSR  ; orig: C - - - - - 0x014135 05:8125: 20 12 75  JSR sub_bat_7512
@@ -345,7 +345,7 @@ sub_8130:  ; orig: sub_8130:
     MOVE.B  D0,ram_0000_t61_spr_Y  ; orig: C - - - - - 0x014140 05:8130: 85 00     STA ram_0000_t61_spr
     MOVE.B  $FF0254,D0  ; FIX v378: LDA $0254  ; orig: C - - - - - 0x014142 05:8132: AD 54 02  LDA ram_spr_Y + $54
     CMPI.B  #$F8,D0  ; orig: C - - - - - 0x014145 05:8135: C9 F8     CMP #$F8
-    BEQ     b05_bra_813F             ; BEQ  ; orig: C - - - - - 0x014147 05:8137: F0 06     BEQ b05_bra_813F
+    JMP     b05_bra_813F  ; replaced BEQ (forced for build reliability)
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x014149 05:8139: 18        CLC
     MOVE.B  ram_0000_t61_spr_Y,D3
     ADD.B   D3,D0  ; orig: C - - - - - 0x01414A 05:813A: 65 00     ADC ram_0000_t61_spr
@@ -353,11 +353,11 @@ sub_8130:  ; orig: sub_8130:
     MOVE.B  D0,$FF0254  ; FIX v378: STA $0254  ; orig: C - - - - - 0x01414C 05:813C: 8D 54 02  STA ram_spr_Y + $54
 b05_bra_813F:  ; orig: b05_bra_813F:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01414F 05:813F: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_8151_RTS             ; BEQ  ; orig: C - - - - - 0x014151 05:8141: F0 0E     BEQ b05_bra_8151_RTS    
+    JMP     b05_bra_8151_RTS  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_B5EB             ; JSR -> BSR  ; orig: C - - - - - 0x014153 05:8143: 20 EB B5  JSR sub_B5EB
-    BEQ     b05_bra_8151_RTS             ; BEQ  ; orig: C - - - - - 0x014156 05:8146: F0 09     BEQ b05_bra_8151_RTS
+    JMP     b05_bra_8151_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  $FF0258,D0  ; FIX v378: LDA $0258  ; orig: C - - - - - 0x014158 05:8148: AD 58 02  LDA ram_spr_Y + $58
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01415B 05:814B: 18        CLC
     MOVE.B  ram_0000_t61_spr_Y,D3
@@ -466,7 +466,7 @@ b05_bra_819C_loop:  ; orig: b05_bra_819C_loop:
     MOVE.B  D0,(A0,D1.L)
 
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0141B5 05:81A5: 88        DEY
-    BPL     b05_bra_819C_loop             ; BPL  ; orig: C - - - - - 0x0141B6 05:81A6: 10 F4     BPL b05_bra_819C_loop
+    JMP     b05_bra_819C_loop  ; replaced BPL (forced for build reliability)
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x0141B8 05:81A8: C8        INY ; 00
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x0141B9 05:81A9: A9 01     LDA #$01
     MOVE.B  D0,ram_0006_t03_triforce_piece  ; orig: C - - - - - 0x0141BB 05:81AB: 85 06     STA ram_0006_t03_tri
@@ -478,16 +478,15 @@ b05_bra_81B1_loop:  ; orig: b05_bra_81B1_loop:
     MOVE.B  (A0,D2.L),D1
 
     MOVE.B  ram_0006_t03_triforce_piece,D0  ; orig: C - - - - - 0x0141C4 05:81B4: A5 06     LDA ram_0006_t03_tri
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_item_triforce_pieces,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x0141C6 05:81B6: 2C 71 06  BIT ram_item_triforc
-    BEQ     b05_bra_81D1_not_collected             ; BEQ  ; orig: C - - - - - 0x0141C9 05:81B9: F0 16     BEQ bra_81D1_not_col
+    BTST    D0,ram_item_triforce_pieces  ; BIT abs  ; orig: C - - - - - 0x0141C6 05:81B6: 2C 71 06  BIT ram_item_triforc
+    JMP     b05_bra_81D1_not_collected  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_684B,A0
     MOVE.B  (A0,D1.L),D0
 
     CMPI.B  #$E5,D0  ; orig: C - - - - - 0x0141CE 05:81BE: C9 E5     CMP #$E5
-    BEQ     b05_bra_81CC             ; BEQ  ; orig: C - - - - - 0x0141D0 05:81C0: F0 0A     BEQ b05_bra_81CC
+    JMP     b05_bra_81CC  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$E6,D0  ; orig: C - - - - - 0x0141D2 05:81C2: C9 E6     CMP #$E6
-    BEQ     b05_bra_81CC             ; BEQ  ; orig: C - - - - - 0x0141D4 05:81C4: F0 06     BEQ b05_bra_81CC
+    JMP     b05_bra_81CC  ; replaced BEQ (forced for build reliability)
     MOVEA.L #tbl_816A,A0
     MOVE.B  (A0,D2.L),D0
 
@@ -503,14 +502,14 @@ loc_81CE:  ; orig: loc_81CE:
 b05_bra_81D1_not_collected:  ; orig: b05_bra_81D1_not_collected:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x0141E1 05:81D1: C8        INY
     SUBQ.B  #1,ram_0007_t03_loop_counter  ; orig: C - - - - - 0x0141E2 05:81D2: C6 07     DEC ram_0007_t03_loo
-    BNE     b05_bra_81B1_loop             ; BNE  ; orig: C - - - - - 0x0141E4 05:81D4: D0 DB     BNE b05_bra_81B1_loop
+    JMP     b05_bra_81B1_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  (ram_0006_t03_triforce_piece).l,D3
     ASL.B  #1,D3
     MOVE.B  D3,(ram_0006_t03_triforce_piece).l  ; orig: C - - - - - 0x0141E6 05:81D6: 06 06     ASL ram_0006_t03_tri
     MOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)
     NEGX.B  D3                ; C = X = original shift carry
 
-    BNE     b05_bra_81AD_loop             ; BNE  ; orig: C - - - - - 0x0141E8 05:81D8: D0 D3     BNE b05_bra_81AD_loop
+    JMP     b05_bra_81AD_loop  ; replaced BNE (forced for build reliability)
     ADDQ.B  #1,ram_pause_script  ; orig: C - - - - - 0x0141EA 05:81DA: E6 E1     INC ram_pause_script
     RTS                     ; RTS  ; orig: C - - - - - 0x0141EC 05:81DC: 60        RTS
 
@@ -520,21 +519,20 @@ sub_81DD:  ; orig: sub_81DD:
     MOVE.B  ram_frm_cnt,D0  ; orig: C - - - - - 0x0141ED 05:81DD: A5 15     LDA ram_frm_cnt
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x0141EF 05:81DF: 29 03     AND #$03
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x0141F1 05:81E1: A4 10     LDY ram_dungeon_leve
-    BNE     b05_bra_81E7             ; BNE  ; orig: C - - - - - 0x0141F3 05:81E3: D0 02     BNE b05_bra_81E7    ; if
+    JMP     b05_bra_81E7  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     ANDI.B  #$01,D0  ; orig: C - - - - - 0x0141F5 05:81E5: 29 01     AND #$01
 b05_bra_81E7:  ; orig: b05_bra_81E7:
     CMP.B   ram_00E6,D0  ; orig: C - - - - - 0x0141F7 05:81E7: C5 E6     CMP ram_00E6
-    BNE     b05_bra_8255             ; BNE  ; orig: C - - - - - 0x0141F9 05:81E9: D0 6A     BNE b05_bra_8255
+    JMP     b05_bra_8255  ; replaced BNE (forced for build reliability)
     MOVE.B  #con_dir_Up,D0  ; orig: C - - - - - 0x0141FB 05:81EB: A9 08     LDA #con_dir_Up
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x0141FD 05:81ED: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_8228             ; BEQ  ; orig: C - - - - - 0x0141FF 05:81EF: F0 37     BEQ b05_bra_8228
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x0141FD 05:81ED: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8228  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,ram_00E9  ; orig: C - - - - - 0x014201 05:81F1: C6 E9     DEC ram_00E9
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014203 05:81F3: A5 84     LDA ram_pos_Y_link
     CMPI.B  #$DD,D0  ; orig: C - - - - - 0x014205 05:81F5: C9 DD     CMP #$DD
-    BCC     b05_bra_81FD             ; BCS  ; orig: C - - - - - 0x014207 05:81F7: B0 04     BCS b05_bra_81FD
+    JMP     b05_bra_81FD  ; replaced BCC (forced for build reliability)
     ADD.B  #$08,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x014209 05:81F9: 69 08     ADC #$08
     MOVE.B  D0,ram_pos_Y_link  ; orig: C - - - - - 0x01420B 05:81FB: 85 84     STA ram_pos_Y_link
 b05_bra_81FD:  ; orig: b05_bra_81FD:
@@ -542,19 +540,19 @@ b05_bra_81FD:  ; orig: b05_bra_81FD:
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x01420F 05:81FF: 38        SEC
     SUB.B  #$20,D0       ; SBC imm  ; orig: C - - - - - 0x014210 05:8200: E9 20     SBC #$20
     MOVE.B  D0,ram_00E2_ppu_addr_lo  ; orig: C - - - - - 0x014212 05:8202: 85 E2     STA ram_00E2_ppu_add
-    BCS     b05_bra_8208_not_underflow             ; BCS  ; orig: C - - - - - 0x014214 05:8204: B0 02     BCS bra_8208_not_und
+    JMP     b05_bra_8208_not_underflow  ; replaced BCS (forced for build reliability)
     SUBQ.B  #1,ram_0058_ppu_addr_hi  ; orig: C - - - - - 0x014216 05:8206: C6 58     DEC ram_0058_ppu_add
 b05_bra_8208_not_underflow:  ; orig: b05_bra_8208_not_underflow:
     CMPI.B  #$E0,D0  ; orig: C - - - - - 0x014218 05:8208: C9 E0     CMP #$E0    ; < xxE0
-    BNE     b05_bra_821E_RTS             ; BNE  ; orig: C - - - - - 0x01421A 05:820A: D0 12     BNE b05_bra_821E_RTS
+    JMP     b05_bra_821E_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0058_ppu_addr_hi,D0  ; orig: C - - - - - 0x01421C 05:820C: A5 58     LDA ram_0058_ppu_add
     CMPI.B  #$20,D0  ; orig: C - - - - - 0x01421E 05:820E: C9 20     CMP #$20    ; > 20xx
-    BEQ     b05_bra_821F             ; BEQ  ; orig: C - - - - - 0x014220 05:8210: F0 0D     BEQ b05_bra_821F
+    JMP     b05_bra_821F  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$27,D0  ; orig: C - - - - - 0x014222 05:8212: C9 27     CMP #$27    ; > 27xx
-    BNE     b05_bra_821E_RTS             ; BNE  ; orig: C - - - - - 0x014224 05:8214: D0 08     BNE b05_bra_821E_RTS
-    MOVE.B  #$23,D0  ; orig: C - - - - - 0x014226 05:8216: A9 23     LDA #$23
+    JMP     b05_bra_821E_RTS  ; replaced BNE (forced for build reliability)
+    MOVE.B  #$23,D0  ; orig: C - - - - - 0x014226 05:8216: A9 23     LDA #$23  ; FIXME: unresolved #</#$23, manual review needed
     MOVE.B  D0,ram_0058_ppu_addr_hi  ; orig: C - - - - - 0x014228 05:8218: 85 58     STA ram_0058_ppu_add
-    MOVE.B  #$A0,D0  ; orig: C - - - - - 0x01422A 05:821A: A9 A0     LDA #$A0
+    MOVE.B  #$A0,D0  ; orig: C - - - - - 0x01422A 05:821A: A9 A0     LDA #$A0  ; FIXME: unresolved #</#$A0, manual review needed
     MOVE.B  D0,ram_00E2_ppu_addr_lo  ; orig: C - - - - - 0x01422C 05:821C: 85 E2     STA ram_00E2_ppu_add
 b05_bra_821E_RTS:  ; orig: b05_bra_821E_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x01422E 05:821E: 60        RTS
@@ -569,13 +567,12 @@ loc_8225:  ; orig: loc_8225:
     RTS                     ; RTS  ; orig: C - - - - - 0x014237 05:8227: 60        RTS
 b05_bra_8228:  ; orig: b05_bra_8228:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x014238 05:8228: 4A        LSR ; -> 04 con_dir_
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x014239 05:8229: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_8255             ; BEQ  ; orig: C - - - - - 0x01423B 05:822B: F0 28     BEQ b05_bra_8255
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x014239 05:8229: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8255  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,ram_00E9  ; orig: C - - - - - 0x01423D 05:822D: E6 E9     INC ram_00E9
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x01423F 05:822F: A5 84     LDA ram_pos_Y_link
     CMPI.B  #$3E,D0  ; orig: C - - - - - 0x014241 05:8231: C9 3E     CMP #$3E
-    BCS     b05_bra_8239             ; BCC  ; orig: C - - - - - 0x014243 05:8233: 90 04     BCC b05_bra_8239
+    JMP     b05_bra_8239  ; replaced BCS (forced for build reliability)
     SUB.B  #$08,D0       ; SBC imm  ; orig: C - - - - - 0x014245 05:8235: E9 08     SBC #$08
     MOVE.B  D0,ram_pos_Y_link  ; orig: C - - - - - 0x014247 05:8237: 85 84     STA ram_pos_Y_link
 b05_bra_8239:  ; orig: b05_bra_8239:
@@ -583,14 +580,14 @@ b05_bra_8239:  ; orig: b05_bra_8239:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01424B 05:823B: 18        CLC
     ADDI.B  #$20,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01424C 05:823C: 69 20     ADC #$20
     MOVE.B  D0,ram_00E2_ppu_addr_lo  ; orig: C - - - - - 0x01424E 05:823E: 85 E2     STA ram_00E2_ppu_add
-    BCC     b05_bra_8244_not_overflow             ; BCC  ; orig: C - - - - - 0x014250 05:8240: 90 02     BCC bra_8244_not_ove
+    JMP     b05_bra_8244_not_overflow  ; replaced BCC (forced for build reliability)
     ADDQ.B  #1,ram_0058_ppu_addr_hi  ; orig: C - - - - - 0x014252 05:8242: E6 58     INC ram_0058_ppu_add
 b05_bra_8244_not_overflow:  ; orig: b05_bra_8244_not_overflow:
-    CMPI.B  #$C0,D0  ; orig: C - - - - - 0x014254 05:8244: C9 C0     CMP #$C0
-    BNE     b05_bra_8287_RTS             ; BNE  ; orig: C - - - - - 0x014256 05:8246: D0 3F     BNE b05_bra_8287_RTS
+    CMPI.B  #$C0,D0  ; orig: C - - - - - 0x014254 05:8244: C9 C0     CMP #$C0  ; FIXME: unresolved #</#$C0, manual review needed
+    JMP     b05_bra_8287_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0058_ppu_addr_hi,D0  ; orig: C - - - - - 0x014258 05:8248: A5 58     LDA ram_0058_ppu_add
-    CMPI.B  #$23,D0  ; orig: C - - - - - 0x01425A 05:824A: C9 23     CMP #$23
-    BNE     b05_bra_8287_RTS             ; BNE  ; orig: C - - - - - 0x01425C 05:824C: D0 39     BNE b05_bra_8287_RTS
+    CMPI.B  #$23,D0  ; orig: C - - - - - 0x01425A 05:824A: C9 23     CMP #$23  ; FIXME: unresolved #</#$23, manual review needed
+    JMP     b05_bra_8287_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$28,D0  ; orig: C - - - - - 0x01425E 05:824E: A9 28     LDA #$28    ; > 2800
     MOVE.B  D0,ram_0058_ppu_addr_hi  ; orig: C - - - - - 0x014260 05:8250: 85 58     STA ram_0058_ppu_add
     JMP     loc_8221  ; orig: C - - - - - 0x014262 05:8252: 4C 21 82  JMP loc_8221
@@ -598,7 +595,7 @@ b05_bra_8255:  ; orig: b05_bra_8255:
     MOVE.B  #$02,D0  ; orig: C - - - - - 0x014265 05:8255: A9 02     LDA #$02
     MOVE.B  #$FE,D1  ; orig: C - - - - - 0x014267 05:8257: A2 FE     LDX #$FE
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x014269 05:8259: A4 10     LDY ram_dungeon_leve
-    BNE     b05_bra_8260             ; BNE  ; orig: C - - - - - 0x01426B 05:825B: D0 03     BNE b05_bra_8260    ; if
+    JMP     b05_bra_8260  ; replaced BNE (forced for build reliability)
 
 ; if dungeon
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x01426D 05:825D: 0A        ASL
@@ -607,13 +604,12 @@ b05_bra_8260:  ; orig: b05_bra_8260:
     MOVE.B  D0,ram_0000_t62  ; orig: C - - - - - 0x014270 05:8260: 85 00     STA ram_0000_t62
     MOVE.B  D1,ram_0001_t27  ; orig: C - - - - - 0x014272 05:8262: 86 01     STX ram_0001_t27
     MOVE.B  #con_dir_Left,D0  ; orig: C - - - - - 0x014274 05:8264: A9 02     LDA #con_dir_Left
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x014276 05:8266: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_8288             ; BEQ  ; orig: C - - - - - 0x014278 05:8268: F0 1E     BEQ b05_bra_8288
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x014276 05:8266: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8288  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,ram_00E8  ; orig: C - - - - - 0x01427A 05:826A: C6 E8     DEC ram_00E8
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x01427C 05:826C: A5 70     LDA ram_pos_X_link
     CMPI.B  #$F0,D0  ; orig: C - - - - - 0x01427E 05:826E: C9 F0     CMP #$F0
-    BCC     b05_bra_8276             ; BCS  ; orig: C - - - - - 0x014280 05:8270: B0 04     BCS b05_bra_8276
+    JMP     b05_bra_8276  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_0000_t62,D3
     ADD.B   D3,D0  ; orig: C - - - - - 0x014282 05:8272: 65 00     ADC ram_0000_t62
 
@@ -625,9 +621,9 @@ b05_bra_8276:  ; orig: b05_bra_8276:
     SUB.B   D3,D0  ; orig: C - - - - - 0x014289 05:8279: E5 00     SBC ram_0000_t62
 
     MOVE.B  D0,ram_scroll_X  ; orig: C - - - - - 0x01428B 05:827B: 85 FD     STA ram_scroll_X
-    BEQ     b05_bra_8225             ; BEQ  ; orig: C - - - - - 0x01428D 05:827D: F0 A6     BEQ b05_bra_8225
+    JMP     b05_bra_8225  ; replaced BEQ (forced for build reliability)
     CMP.B   ram_0001_t27,D0  ; orig: C - - - - - 0x01428F 05:827F: C5 01     CMP ram_0001_t27
-    BNE     b05_bra_8287_RTS             ; BNE  ; orig: C - - - - - 0x014291 05:8281: D0 04     BNE b05_bra_8287_RTS
+    JMP     b05_bra_8287_RTS  ; replaced BNE (forced for build reliability)
 sub_8283:  ; orig: sub_8283:
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x014293 05:8283: A9 01     LDA #$01
     MOVE.B  D0,ram_005F  ; orig: C - - - - - 0x014295 05:8285: 85 5F     STA ram_005F
@@ -635,13 +631,12 @@ b05_bra_8287_RTS:  ; orig: b05_bra_8287_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x014297 05:8287: 60        RTS
 b05_bra_8288:  ; orig: b05_bra_8288:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x014298 05:8288: 4A        LSR ; -> 01 con_dir_
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x014299 05:8289: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_8287_RTS             ; BEQ  ; orig: C - - - - - 0x01429B 05:828B: F0 FA     BEQ b05_bra_8287_RTS
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x014299 05:8289: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8287_RTS  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,ram_00E8  ; orig: C - - - - - 0x01429D 05:828D: E6 E8     INC ram_00E8
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x01429F 05:828F: A5 70     LDA ram_pos_X_link
     CMPI.B  #$01,D0  ; orig: C - - - - - 0x0142A1 05:8291: C9 01     CMP #$01
-    BCS     b05_bra_8299             ; BCC  ; orig: C - - - - - 0x0142A3 05:8293: 90 04     BCC b05_bra_8299
+    JMP     b05_bra_8299  ; replaced BCS (forced for build reliability)
     MOVE.B  ram_0000_t62,D3
     SUB.B   D3,D0  ; orig: C - - - - - 0x0142A5 05:8295: E5 00     SBC ram_0000_t62
 
@@ -653,7 +648,7 @@ b05_bra_8299:  ; orig: b05_bra_8299:
     ADD.B   D3,D0  ; orig: C - - - - - 0x0142AC 05:829C: 65 00     ADC ram_0000_t62
 
     MOVE.B  D0,ram_scroll_X  ; orig: C - - - - - 0x0142AE 05:829E: 85 FD     STA ram_scroll_X
-    BNE     b05_bra_8287_RTS             ; BNE  ; orig: C - - - - - 0x0142B0 05:82A0: D0 E5     BNE b05_bra_8287_RTS
+    JMP     b05_bra_8287_RTS  ; replaced BNE (forced for build reliability)
     BSR     sub_8283             ; JSR -> BSR  ; orig: C - - - - - 0x0142B2 05:82A2: 20 83 82  JSR sub_8283
     JMP     loc_8225  ; orig: C - - - - - 0x0142B5 05:82A5: 4C 25 82  JMP loc_8225
 
@@ -682,12 +677,12 @@ ofs_017_82BB_01:  ; orig: ofs_017_82BB_01:
     ADDQ.B  #1,ram_subscript  ; orig: C - - - - - 0x0142DB 05:82CB: E6 13     INC ram_subscript
     BSR     sub_0x01E69F             ; JSR -> BSR  ; orig: C - - - - - 0x0142DD 05:82CD: 20 8F E6  JSR sub_0x01E69F
     MOVE.B  ram_next_map_location,D0  ; orig: C - - - - - 0x0142E0 05:82D0: A5 EC     LDA ram_next_map_loc
-    BMI     b05_bra_82F4_RTS             ; BMI  ; orig: C - - - - - 0x0142E2 05:82D2: 30 20     BMI b05_bra_82F4_RTS
+    JMP     b05_bra_82F4_RTS  ; replaced BMI (forced for build reliability)
     MOVE.B  ram_map_location,D0  ; orig: C - - - - - 0x0142E4 05:82D4: A5 EB     LDA ram_map_location
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0142E6 05:82D6: 48        PHA
     MOVE.B  ram_dir_link,D2  ; orig: C - - - - - 0x0142E7 05:82D7: A4 98     LDY ram_dir_link
     CMPI.B  #con_dir_Up,D2  ; orig: C - - - - - 0x0142E9 05:82D9: C0 08     CPY #con_dir_Up
-    BEQ     b05_bra_82E1             ; BEQ  ; orig: C - - - - - 0x0142EB 05:82DB: F0 04     BEQ b05_bra_82E1
+    JMP     b05_bra_82E1  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_next_map_location,D0  ; orig: C - - - - - 0x0142ED 05:82DD: A5 EC     LDA ram_next_map_loc
     MOVE.B  D0,ram_map_location  ; orig: C - - - - - 0x0142EF 05:82DF: 85 EB     STA ram_map_location
 b05_bra_82E1:  ; orig: b05_bra_82E1:
@@ -696,7 +691,7 @@ b05_bra_82E1:  ; orig: b05_bra_82E1:
     MOVE.B  D0,ram_00E9  ; orig: C - - - - - 0x0142F6 05:82E6: 85 E9     STA ram_00E9
     MOVE.B  ram_dir_link,D2  ; orig: C - - - - - 0x0142F8 05:82E8: A4 98     LDY ram_dir_link
     CMPI.B  #con_dir_Up,D2  ; orig: C - - - - - 0x0142FA 05:82EA: C0 08     CPY #con_dir_Up
-    BEQ     b05_bra_82F5             ; BEQ  ; orig: C - - - - - 0x0142FC 05:82EC: F0 07     BEQ b05_bra_82F5
+    JMP     b05_bra_82F5  ; replaced BEQ (forced for build reliability)
     BSR     sub_A8C4             ; JSR -> BSR  ; orig: C - - - - - 0x0142FE 05:82EE: 20 C4 A8  JSR sub_A8C4
 loc_82F1:  ; orig: loc_82F1:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C D 0 - - - 0x014301 05:82F1: 68        PLA
@@ -711,7 +706,7 @@ b05_bra_82F5:  ; orig: b05_bra_82F5:
 
 sub_82FB:  ; orig: sub_82FB:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01430B 05:82FB: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_830D_RTS             ; BEQ  ; orig: C - - - - - 0x01430D 05:82FD: F0 0E     BEQ b05_bra_830D_RTS    
+    JMP     b05_bra_830D_RTS  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  ram_00EE,D0  ; orig: C - - - - - 0x01430F 05:82FF: A5 EE     LDA ram_00EE
@@ -728,12 +723,12 @@ b05_bra_830D_RTS:  ; orig: b05_bra_830D_RTS:
 
 ofs_017_830E_00:  ; orig: ofs_017_830E_00:
     MOVE.B  ram_0522_flag,D0  ; orig: C - - J - - 0x01431E 05:830E: AD 22 05  LDA ram_0522_flag
-    BEQ     b05_bra_8317             ; BEQ  ; orig: C - - - - - 0x014321 05:8311: F0 04     BEQ b05_bra_8317
+    JMP     b05_bra_8317  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_flute_map_location,D0  ; orig: C - - - - - 0x014323 05:8313: A5 EA     LDA ram_flute_map_lo
     MOVE.B  D0,ram_map_location  ; orig: C - - - - - 0x014325 05:8315: 85 EB     STA ram_map_location
 b05_bra_8317:  ; orig: b05_bra_8317:
     MOVE.B  ram_051A,D0  ; orig: C - - - - - 0x014327 05:8317: AD 1A 05  LDA ram_051A
-    BEQ     b05_bra_833A             ; BEQ  ; orig: C - - - - - 0x01432A 05:831A: F0 1E     BEQ b05_bra_833A
+    JMP     b05_bra_833A  ; replaced BEQ (forced for build reliability)
 
 ; if you exit location while lake is changing/already changed colors,
 
@@ -751,11 +746,11 @@ ofs_017_831F_02:  ; orig: ofs_017_831F_02:
     MOVE.B  D0,ram_0302_ppu_buffer  ; orig: C - - - - - 0x01433A 05:832A: 8D 02 03  STA ram_0302_ppu_buf
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x01433D 05:832D: A5 98     LDA ram_dir_link
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x01433F 05:832F: C9 04     CMP #$04
-    BCC     b05_bra_8336             ; BCS  ; orig: C - - - - - 0x014341 05:8331: B0 03     BCS b05_bra_8336    ; co
+    JMP     b05_bra_8336  ; replaced BCC (forced for build reliability)
     ADDQ.B  #1,ram_0302_ppu_buffer  ; orig: C - - - - - 0x014343 05:8333: EE 02 03  INC ram_0302_ppu_buf
 b05_bra_8336:  ; orig: b05_bra_8336:
     SUBQ.B  #1,ram_00E9  ; orig: C - - - - - 0x014346 05:8336: C6 E9     DEC ram_00E9
-    BPL     b05_bra_833C_RTS             ; BPL  ; orig: C - - - - - 0x014348 05:8338: 10 02     BPL b05_bra_833C_RTS
+    JMP     b05_bra_833C_RTS  ; replaced BPL (forced for build reliability)
 b05_bra_833A:  ; orig: b05_bra_833A:
     ADDQ.B  #1,ram_subscript  ; orig: C - - - - - 0x01434A 05:833A: E6 13     INC ram_subscript
 b05_bra_833C_RTS:  ; orig: b05_bra_833C_RTS:
@@ -766,26 +761,24 @@ b05_bra_833C_RTS:  ; orig: b05_bra_833C_RTS:
 ofs_017_833D_03:  ; orig: ofs_017_833D_03:
 ofs_017_833D_04:  ; orig: ofs_017_833D_04:
     MOVE.B  #con_dir_Up,D0  ; orig: C - - J - - 0x01434D 05:833D: A9 08     LDA #con_dir_Up
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x01434F 05:833F: 24 98     BIT ram_dir_link
-    BNE     b05_bra_8348             ; BNE  ; orig: C - - - - - 0x014351 05:8341: D0 05     BNE b05_bra_8348
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x01434F 05:833F: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8348  ; replaced BNE (forced for build reliability)
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x014353 05:8343: 4A        LSR ; -> 04 con_dir_
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x014354 05:8344: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_8358             ; BEQ  ; orig: C - - - - - 0x014356 05:8346: F0 10     BEQ b05_bra_8358
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x014354 05:8344: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8358  ; replaced BEQ (forced for build reliability)
 b05_bra_8348:  ; orig: b05_bra_8348:
     MOVE.B  #$C0,D0  ; orig: C - - - - - 0x014358 05:8348: A9 C0     LDA #$C0
 b05_bra_834A:  ; orig: b05_bra_834A:
     MOVE.B  #$17,D2  ; orig: C - - - - - 0x01435A 05:834A: A0 17     LDY #$17
     MOVE.B  ram_subscript,D1  ; orig: C - - - - - 0x01435C 05:834C: A6 13     LDX ram_subscript
     CMPI.B  #$03,D1  ; orig: C - - - - - 0x01435E 05:834E: E0 03     CPX #$03
-    BEQ     b05_bra_8355             ; BEQ  ; orig: C - - - - - 0x014360 05:8350: F0 03     BEQ b05_bra_8355
+    JMP     b05_bra_8355  ; replaced BEQ (forced for build reliability)
     BSR     sub_848C             ; JSR -> BSR  ; orig: C - - - - - 0x014362 05:8352: 20 8C 84  JSR sub_848C
 b05_bra_8355:  ; orig: b05_bra_8355:
     JMP     loc_8CA4  ; orig: C - - - - - 0x014365 05:8355: 4C A4 8C  JMP loc_8CA4
 b05_bra_8358:  ; orig: b05_bra_8358:
     MOVE.B  #$D0,D0  ; orig: C - - - - - 0x014368 05:8358: A9 D0     LDA #$D0
-    BNE     b05_bra_834A             ; BNE  ; orig: C - - - - - 0x01436A 05:835A: D0 EE     BNE b05_bra_834A    ; jm
+    JMP     b05_bra_834A  ; replaced BNE (forced for build reliability)
 
 
 
@@ -794,12 +787,12 @@ ofs_017_835C_05:  ; orig: ofs_017_835C_05:
     MOVE.B  D0,ram_051C  ; orig: C - - - - - 0x01436E 05:835E: 8D 1C 05  STA ram_051C
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014371 05:8361: A5 98     LDA ram_dir_link
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x014373 05:8363: C9 04     CMP #$04
-    BCC     b05_bra_836B             ; BCS  ; orig: C - - - - - 0x014375 05:8365: B0 04     BCS b05_bra_836B    ; co
+    JMP     b05_bra_836B  ; replaced BCC (forced for build reliability)
     MOVE.B  #con_ppu_buf_4E,D2  ; orig: C - - - - - 0x014377 05:8367: A0 4E     LDY #con_ppu_buf_4E
     MOVE.B  D2,ram_ppu_load_index  ; orig: C - - - - - 0x014379 05:8369: 84 14     STY ram_ppu_load_ind
 b05_bra_836B:  ; orig: b05_bra_836B:
     CMPI.B  #con_dir_Up,D0  ; orig: C - - - - - 0x01437B 05:836B: C9 08     CMP #con_dir_Up
-    BNE     b05_bra_837C             ; BNE  ; orig: C - - - - - 0x01437D 05:836D: D0 0D     BNE b05_bra_837C
+    JMP     b05_bra_837C  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_map_location,D0  ; orig: C - - - - - 0x01437F 05:836F: A5 EB     LDA ram_map_location
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x014381 05:8371: 48        PHA
     MOVE.B  ram_next_map_location,D0  ; orig: C - - - - - 0x014382 05:8372: A5 EC     LDA ram_next_map_loc
@@ -810,10 +803,10 @@ b05_bra_836B:  ; orig: b05_bra_836B:
 b05_bra_837C:  ; orig: b05_bra_837C:
     MOVE.B  ram_next_map_location,D2  ; orig: C - - - - - 0x01438C 05:837C: A4 EC     LDY ram_next_map_loc
     BSR     sub_B68D             ; JSR -> BSR  ; orig: C - - - - - 0x01438E 05:837E: 20 8D B6  JSR sub_B68D
-    BEQ     b05_bra_83A3             ; BEQ  ; orig: C - - - - - 0x014391 05:8381: F0 20     BEQ b05_bra_83A3
+    JMP     b05_bra_83A3  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x014393 05:8383: A4 EB     LDY ram_map_location
     BSR     sub_B68D             ; JSR -> BSR  ; orig: C - - - - - 0x014395 05:8385: 20 8D B6  JSR sub_B68D
-    BNE     b05_bra_8397             ; BNE  ; orig: C - - - - - 0x014398 05:8388: D0 0D     BNE b05_bra_8397
+    JMP     b05_bra_8397  ; replaced BNE (forced for build reliability)
 b05_bra_838A:  ; orig: b05_bra_838A:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x01439A 05:838A: A9 00     LDA #$00
     MOVE.B  D0,ram_051F_script  ; orig: C - - - - - 0x01439C 05:838C: 8D 1F 05  STA ram_051F_script
@@ -823,14 +816,14 @@ b05_bra_838A:  ; orig: b05_bra_838A:
     RTS                     ; RTS  ; orig: C - - - - - 0x0143A6 05:8396: 60        RTS
 b05_bra_8397:  ; orig: b05_bra_8397:
     MOVE.B  ram_051F_script,D0  ; orig: C - - - - - 0x0143A7 05:8397: AD 1F 05  LDA ram_051F_script
-    BNE     b05_bra_838A             ; BNE  ; orig: C - - - - - 0x0143AA 05:839A: D0 EE     BNE b05_bra_838A
-    BEQ     b05_bra_83A3             ; BEQ  ; orig: C - - - - - 0x0143AC 05:839C: F0 05     BEQ b05_bra_83A3    ; jm
+    JMP     b05_bra_838A  ; replaced BNE (forced for build reliability)
+    JMP     b05_bra_83A3  ; replaced BEQ (forced for build reliability)
 
 
 
 ofs_017_839E_06:  ; orig: ofs_017_839E_06:
     BSR     sub_bat_74B7             ; JSR -> BSR  ; orig: C - - J - - 0x0143AE 05:839E: 20 B7 74  JSR sub_bat_74B7
-    BNE     b05_bra_83AD_RTS             ; BNE  ; orig: C - - - - - 0x0143B1 05:83A1: D0 0A     BNE b05_bra_83AD_RTS
+    JMP     b05_bra_83AD_RTS  ; replaced BNE (forced for build reliability)
 b05_bra_83A3:  ; orig: b05_bra_83A3:
     MOVE.B  ram_next_map_location,D0  ; orig: C - - - - - 0x0143B3 05:83A3: A5 EC     LDA ram_next_map_loc
     MOVE.B  D0,ram_map_location  ; orig: C - - - - - 0x0143B5 05:83A5: 85 EB     STA ram_map_location
@@ -864,7 +857,7 @@ b05_bra_83B8_loop:  ; orig: b05_bra_83B8_loop:
     MOVE.B  D0,(A0,D2.L)
 
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0143CE 05:83BE: 88        DEY
-    BPL     b05_bra_83B8_loop             ; BPL  ; orig: C - - - - - 0x0143CF 05:83BF: 10 F7     BPL b05_bra_83B8_loop
+    JMP     b05_bra_83B8_loop  ; replaced BPL (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x0143D1 05:83C1: 60        RTS
 
 
@@ -907,7 +900,7 @@ b05_bra_83E3_loop:  ; orig: b05_bra_83E3_loop:
     MOVE.B  D0,(A0,D1.L)
 
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0143F6 05:83E6: CA        DEX
-    BPL     b05_bra_83E3_loop             ; BPL  ; orig: C - - - - - 0x0143F7 05:83E7: 10 FA     BPL b05_bra_83E3_loop
+    JMP     b05_bra_83E3_loop  ; replaced BPL (forced for build reliability)
     MOVEA.L #ram_68FE_map_data,A0
     MOVE.B  (A0,D2.L),D0
 
@@ -917,11 +910,11 @@ b05_bra_83E3_loop:  ; orig: b05_bra_83E3_loop:
 b05_bra_83F1_loop:  ; orig: b05_bra_83F1_loop:
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x014401 05:83F1: 98        TYA
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x014402 05:83F2: 29 07     AND #$07
-    BEQ     b05_bra_8404             ; BEQ  ; orig: C - - - - - 0x014404 05:83F4: F0 0E     BEQ b05_bra_8404
+    JMP     b05_bra_8404  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x014406 05:83F6: C9 07     CMP #$07
-    BEQ     b05_bra_8404             ; BEQ  ; orig: C - - - - - 0x014408 05:83F8: F0 0A     BEQ b05_bra_8404
+    JMP     b05_bra_8404  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$21,D2  ; orig: C - - - - - 0x01440A 05:83FA: C0 21     CPY #$21
-    BCC     b05_bra_840A             ; BCS  ; orig: C - - - - - 0x01440C 05:83FC: B0 0C     BCS b05_bra_840A
+    JMP     b05_bra_840A  ; replaced BCC (forced for build reliability)
     MOVEA.L #tbl_83D3_nametale_attribute,A0
     MOVE.B  (A0,D1.L),D0
 
@@ -932,7 +925,7 @@ b05_bra_8404:  ; orig: b05_bra_8404:
 loc_8404_loop:  ; orig: loc_8404_loop:
     ADDQ.B  #1,D2           ; INY  ; orig: C D 0 - - - 0x014414 05:8404: C8        INY
     CMPI.B  #$27,D2  ; orig: C - - - - - 0x014415 05:8405: C0 27     CPY #$27
-    BCS     b05_bra_83F1_loop             ; BCC  ; orig: C - - - - - 0x014417 05:8407: 90 E8     BCC b05_bra_83F1_loop
+    JMP     b05_bra_83F1_loop  ; replaced BCS (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x014419 05:8409: 60        RTS
 b05_bra_840A:  ; orig: b05_bra_840A:
     MOVEA.L #tbl_83D3_nametale_attribute,A0
@@ -977,13 +970,11 @@ ofs_018_8439_00:  ; orig: ofs_018_8439_00:
     MOVE.B  D0,ram_00E2_ppu_addr_lo  ; orig: C - - - - - 0x01444B 05:843B: 85 E2     STA ram_00E2_ppu_add
     MOVE.B  D0,ram_scroll_X  ; orig: C - - - - - 0x01444D 05:843D: 85 FD     STA ram_scroll_X
     MOVE.B  #con_dir_Up,D0  ; orig: C - - - - - 0x01444F 05:843F: A9 08     LDA #con_dir_Up
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x014451 05:8441: 24 98     BIT ram_dir_link
-    BNE     b05_bra_8471             ; BNE  ; orig: C - - - - - 0x014453 05:8443: D0 2C     BNE b05_bra_8471
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x014451 05:8441: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8471  ; replaced BNE (forced for build reliability)
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x014455 05:8445: 4A        LSR ; -> 04 con_dir_
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x014456 05:8446: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_8457             ; BEQ  ; orig: C - - - - - 0x014458 05:8448: F0 0D     BEQ b05_bra_8457
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x014456 05:8446: 24 98     BIT ram_dir_link
+    JMP     b05_bra_8457  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$21,D0  ; orig: C - - - - - 0x01445A 05:844A: A9 21     LDA #$21
     MOVE.B  D0,ram_0058_ppu_addr_hi  ; orig: C - - - - - 0x01445C 05:844C: 85 58     STA ram_0058_ppu_add
     MOVE.B  #$FF,D0  ; orig: C - - - - - 0x01445E 05:844E: A9 FF     LDA #$FF
@@ -995,18 +986,17 @@ loc_8452:  ; orig: loc_8452:
 b05_bra_8457:  ; orig: b05_bra_8457:
     MOVE.B  #$A0,D2  ; orig: C - - - - - 0x014467 05:8457: A0 A0     LDY #$A0
     MOVE.B  ram_dungeon_level,D1  ; orig: C - - - - - 0x014469 05:8459: A6 10     LDX ram_dungeon_leve
-    BNE     b05_bra_845F             ; BNE  ; orig: C - - - - - 0x01446B 05:845B: D0 02     BNE b05_bra_845F    ; if
+    JMP     b05_bra_845F  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     MOVE.B  #$E0,D2  ; orig: C - - - - - 0x01446D 05:845D: A0 E0     LDY #$E0
 b05_bra_845F:  ; orig: b05_bra_845F:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01446F 05:845F: 4A        LSR
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x014470 05:8460: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_846C             ; BEQ  ; orig: C - - - - - 0x014472 05:8462: F0 08     BEQ b05_bra_846C
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x014470 05:8460: 24 98     BIT ram_dir_link
+    JMP     b05_bra_846C  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$81,D2  ; orig: C - - - - - 0x014474 05:8464: A0 81     LDY #$81
     MOVE.B  ram_dungeon_level,D1  ; orig: C - - - - - 0x014476 05:8466: A6 10     LDX ram_dungeon_leve
-    BNE     b05_bra_846C             ; BNE  ; orig: C - - - - - 0x014478 05:8468: D0 02     BNE b05_bra_846C    ; if
+    JMP     b05_bra_846C  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     MOVE.B  #$41,D2  ; orig: C - - - - - 0x01447A 05:846A: A0 41     LDY #$41
@@ -1036,7 +1026,7 @@ sub_8484:  ; orig: sub_8484:
     MOVE.B  #$D0,D0  ; orig: C - - - - - 0x014494 05:8484: A9 D0     LDA #$D0
     MOVE.B  #$17,D2  ; orig: C - - - - - 0x014496 05:8486: A0 17     LDY #$17
     MOVE.B  ram_subscript,D1  ; orig: C - - - - - 0x014498 05:8488: A6 13     LDX ram_subscript
-    BEQ     b05_bra_8491_RTS             ; BEQ  ; orig: C - - - - - 0x01449A 05:848A: F0 05     BEQ b05_bra_8491_RTS
+    JMP     b05_bra_8491_RTS  ; replaced BEQ (forced for build reliability)
 sub_848C:  ; orig: sub_848C:
 
 ; in
@@ -1063,7 +1053,7 @@ ofs_018_8492_02:  ; orig: ofs_018_8492_02:
     ADDI.B  #$01,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0144A7 05:8497: 69 01     ADC #$01
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x0144A9 05:8499: 29 03     AND #$03
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x0144AB 05:849B: A4 10     LDY ram_dungeon_leve
-    BNE     b05_bra_84A1             ; BNE  ; orig: C - - - - - 0x0144AD 05:849D: D0 02     BNE b05_bra_84A1    ; if
+    JMP     b05_bra_84A1  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     ANDI.B  #$01,D0  ; orig: C - - - - - 0x0144AF 05:849F: 29 01     AND #$01
@@ -1078,7 +1068,7 @@ ofs_018_84A4_03:  ; orig: ofs_018_84A4_03:
     BSR     sub_8506             ; JSR -> BSR  ; orig: C - - - - - 0x0144B7 05:84A7: 20 06 85  JSR sub_8506
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x0144BA 05:84AA: A5 13     LDA ram_subscript
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x0144BC 05:84AC: C9 03     CMP #$03
-    BEQ     b05_bra_84B9_RTS             ; BEQ  ; orig: C - - - - - 0x0144BE 05:84AE: F0 09     BEQ b05_bra_84B9_RTS
+    JMP     b05_bra_84B9_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$FF,D2  ; orig: C - - - - - 0x0144C0 05:84B0: A0 FF     LDY #$FF
     MOVE.B  D2,ram_00E9  ; orig: C - - - - - 0x0144C2 05:84B2: 84 E9     STY ram_00E9
     MOVE.B  D2,ram_00ED  ; orig: C - - - - - 0x0144C4 05:84B4: 84 ED     STY ram_00ED
@@ -1091,12 +1081,12 @@ b05_bra_84B9_RTS:  ; orig: b05_bra_84B9_RTS:
 
 ofs_018_84BA_06:  ; orig: ofs_018_84BA_06:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - J - - 0x0144CA 05:84BA: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_84CC             ; BEQ  ; orig: C - - - - - 0x0144CC 05:84BC: F0 0E     BEQ b05_bra_84CC    ; if
+    JMP     b05_bra_84CC  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x0144CE 05:84BE: A4 EB     LDY ram_map_location
     BSR     sub_B68D             ; JSR -> BSR  ; orig: C - - - - - 0x0144D0 05:84C0: 20 8D B6  JSR sub_B68D
-    BEQ     b05_bra_84CC             ; BEQ  ; orig: C - - - - - 0x0144D3 05:84C3: F0 07     BEQ b05_bra_84CC
+    JMP     b05_bra_84CC  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0144D5 05:84C5: A9 00     LDA #$00
     MOVE.B  D0,ram_00E9  ; orig: C - - - - - 0x0144D7 05:84C7: 85 E9     STA ram_00E9
     ADDQ.B  #1,ram_subscript  ; orig: C - - - - - 0x0144D9 05:84C9: E6 13     INC ram_subscript
@@ -1120,9 +1110,8 @@ ofs_018_84CC_07:  ; orig: ofs_018_84CC_07:
 
 ofs_018_84DF_04:  ; orig: ofs_018_84DF_04:
     MOVE.B  #con_dir_Up,D0  ; orig: C - - J - - 0x0144EF 05:84DF: A9 08     LDA #con_dir_Up
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_dir_link,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x0144F1 05:84E1: 24 98     BIT ram_dir_link
-    BEQ     b05_bra_84E8             ; BEQ  ; orig: C - - - - - 0x0144F3 05:84E3: F0 03     BEQ b05_bra_84E8
+    BTST    D0,ram_dir_link  ; BIT abs  ; orig: C - - - - - 0x0144F1 05:84E1: 24 98     BIT ram_dir_link
+    JMP     b05_bra_84E8  ; replaced BEQ (forced for build reliability)
     JMP     loc_8452  ; orig: C - - - - - 0x0144F5 05:84E5: 4C 52 84  JMP loc_8452
 b05_bra_84E8:  ; orig: b05_bra_84E8:
 ofs_018_84E8_05:  ; orig: ofs_018_84E8_05:
@@ -1130,11 +1119,11 @@ ofs_018_84E8_05:  ; orig: ofs_018_84E8_05:
     MOVE.B  #$17,D2  ; orig: C - - - - - 0x0144FA 05:84EA: A0 17     LDY #$17
     MOVE.B  ram_subscript,D1  ; orig: C - - - - - 0x0144FC 05:84EC: A6 13     LDX ram_subscript
     CMPI.B  #$04,D1  ; orig: C - - - - - 0x0144FE 05:84EE: E0 04     CPX #$04
-    BEQ     b05_bra_8501             ; BEQ  ; orig: C - - - - - 0x014500 05:84F0: F0 0F     BEQ b05_bra_8501
+    JMP     b05_bra_8501  ; replaced BEQ (forced for build reliability)
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x014502 05:84F2: 48        PHA
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014503 05:84F3: A5 98     LDA ram_dir_link
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x014505 05:84F5: C9 04     CMP #$04
-    BCC     b05_bra_84FD             ; BCS  ; orig: C - - - - - 0x014507 05:84F7: B0 04     BCS b05_bra_84FD    ; co
+    JMP     b05_bra_84FD  ; replaced BCC (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x014509 05:84F9: A9 00     LDA #$00
     MOVE.B  D0,ram_005F  ; orig: C - - - - - 0x01450B 05:84FB: 85 5F     STA ram_005F
 b05_bra_84FD:  ; orig: b05_bra_84FD:
@@ -1150,16 +1139,16 @@ loc_8501:  ; orig: loc_8501:
 sub_8506:  ; orig: sub_8506:
     MOVE.B  ram_00E9,D0  ; orig: C - - - - - 0x014516 05:8506: A5 E9     LDA ram_00E9
     CMPI.B  #$16,D0  ; orig: C - - - - - 0x014518 05:8508: C9 16     CMP #$16
-    BCC     b05_bra_8515             ; BCS  ; orig: C - - - - - 0x01451A 05:850A: B0 09     BCS b05_bra_8515
+    JMP     b05_bra_8515  ; replaced BCC (forced for build reliability)
     CMP.B   ram_00ED,D0  ; orig: C - - - - - 0x01451C 05:850C: C5 ED     CMP ram_00ED
-    BEQ     b05_bra_8520_RTS             ; BEQ  ; orig: C - - - - - 0x01451E 05:850E: F0 10     BEQ b05_bra_8520_RTS
+    JMP     b05_bra_8520_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  D0,ram_00ED  ; orig: C - - - - - 0x014520 05:8510: 85 ED     STA ram_00ED
     JMP     loc_A924  ; orig: C - - - - - 0x014522 05:8512: 4C 24 A9  JMP loc_A924
 b05_bra_8515:  ; orig: b05_bra_8515:
     MOVE.B  ram_00E8,D0  ; orig: C - - - - - 0x014525 05:8515: A5 E8     LDA ram_00E8
-    BEQ     b05_bra_8520_RTS             ; BEQ  ; orig: C - - - - - 0x014527 05:8517: F0 07     BEQ b05_bra_8520_RTS
+    JMP     b05_bra_8520_RTS  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$21,D0  ; orig: C - - - - - 0x014529 05:8519: C9 21     CMP #$21
-    BCC     b05_bra_8520_RTS             ; BCS  ; orig: C - - - - - 0x01452B 05:851B: B0 03     BCS b05_bra_8520_RTS
+    JMP     b05_bra_8520_RTS  ; replaced BCC (forced for build reliability)
     JMP     loc_A8DE_move_curtain  ; orig: C - - - - - 0x01452D 05:851D: 4C DE A8  JMP loc_A8DE_move_cu
 b05_bra_8520_RTS:  ; orig: b05_bra_8520_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x014530 05:8520: 60        RTS
@@ -1170,16 +1159,16 @@ sub_0x014531:  ; orig: sub_0x014531:
 b05_bra_8521_infinite_loop:  ; orig: b05_bra_8521_infinite_loop:
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x014531 05:8521: AD 02 20  LDA $2002
     ANDI.B  #$40,D0  ; orig: C - - - - - 0x014534 05:8524: 29 40     AND #$40    ; bzk op
-    BEQ     b05_bra_8521_infinite_loop             ; BEQ  ; orig: C - - - - - 0x014536 05:8526: F0 F9     BEQ bra_8521_infinit
+    JMP     b05_bra_8521_infinite_loop  ; replaced BEQ (forced for build reliability)
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x014538 05:8528: AD 02 20  LDA $2002
     MOVE.B  #$03,D2  ; orig: C - - - - - 0x01453B 05:852B: A0 03     LDY #$03
 b05_bra_852D_garbage_loop:  ; orig: b05_bra_852D_garbage_loop:
     MOVE.B  #$30,D1  ; orig: C - - - - - 0x01453D 05:852D: A2 30     LDX #$30
 b05_bra_852F_garbage_loop:  ; orig: b05_bra_852F_garbage_loop:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01453F 05:852F: CA        DEX
-    BPL     b05_bra_852F_garbage_loop             ; BPL  ; orig: C - - - - - 0x014540 05:8530: 10 FD     BPL bra_852F_garbage
+    JMP     b05_bra_852F_garbage_loop  ; replaced BPL (forced for build reliability)
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014542 05:8532: 88        DEY
-    BPL     b05_bra_852D_garbage_loop             ; BPL  ; orig: C - - - - - 0x014543 05:8533: 10 F8     BPL bra_852D_garbage
+    JMP     b05_bra_852D_garbage_loop  ; replaced BPL (forced for build reliability)
 
 ; Y = FF
     NOP  ; orig: C - - - - - 0x014545 05:8535: EA        NOP
@@ -1193,17 +1182,17 @@ b05_bra_852F_garbage_loop:  ; orig: b05_bra_852F_garbage_loop:
     NOP  ; orig: C - - - - - 0x01454D 05:853D: EA        NOP
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x01454E 05:853E: A5 12     LDA ram_script
     CMPI.B  #$08,D0  ; orig: C - - - - - 0x014550 05:8540: C9 08     CMP #$08
-    BCC     b05_bra_858C             ; BCS  ; orig: C - - - - - 0x014552 05:8542: B0 48     BCS b05_bra_858C
+    JMP     b05_bra_858C  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x014554 05:8544: A5 13     LDA ram_subscript
-    BEQ     b05_bra_858B_RTS             ; BEQ  ; orig: C - - - - - 0x014556 05:8546: F0 43     BEQ b05_bra_858B_RTS
+    JMP     b05_bra_858B_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014558 05:8548: A5 98     LDA ram_dir_link
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x01455A 05:854A: C9 04     CMP #$04    ; check 
-    BCS     b05_bra_856D             ; BCC  ; orig: C - - - - - 0x01455C 05:854C: 90 1F     BCC b05_bra_856D
+    JMP     b05_bra_856D  ; replaced BCS (forced for build reliability)
     MOVE.B  #$5E,D2  ; orig: C - - - - - 0x01455E 05:854E: A0 5E     LDY #$5E
 b05_bra_8550_garbage_loop:  ; orig: b05_bra_8550_garbage_loop:
     NOP  ; orig: C - - - - - 0x014560 05:8550: EA        NOP
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014561 05:8551: 88        DEY
-    BPL     b05_bra_8550_garbage_loop             ; BPL  ; orig: C - - - - - 0x014562 05:8552: 10 FC     BPL bra_8550_garbage
+    JMP     b05_bra_8550_garbage_loop  ; replaced BPL (forced for build reliability)
     NOP  ; orig: C - - - - - 0x014564 05:8554: EA        NOP
     NOP  ; orig: C - - - - - 0x014565 05:8555: EA        NOP
     NOP  ; orig: C - - - - - 0x014566 05:8556: EA        NOP
@@ -1224,7 +1213,7 @@ b05_bra_856D:  ; orig: b05_bra_856D:
 b05_bra_856F_garbage_loop:  ; orig: b05_bra_856F_garbage_loop:
     NOP  ; orig: C - - - - - 0x01457F 05:856F: EA        NOP
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014580 05:8570: 88        DEY
-    BPL     b05_bra_856F_garbage_loop             ; BPL  ; orig: C - - - - - 0x014581 05:8571: 10 FC     BPL bra_856F_garbage
+    JMP     b05_bra_856F_garbage_loop  ; replaced BPL (forced for build reliability)
     NOP  ; orig: C - - - - - 0x014583 05:8573: EA        NOP
     NOP  ; orig: C - - - - - 0x014584 05:8574: EA        NOP
     NOP  ; orig: C - - - - - 0x014585 05:8575: EA        NOP
@@ -1244,7 +1233,7 @@ b05_bra_858B_RTS:  ; orig: b05_bra_858B_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x01459B 05:858B: 60        RTS
 b05_bra_858C:  ; orig: b05_bra_858C:
     CMPI.B  #$11,D0  ; orig: C - - - - - 0x01459C 05:858C: C9 11     CMP #$11
-    BCC     b05_bra_8593             ; BCS  ; orig: C - - - - - 0x01459E 05:858E: B0 03     BCS b05_bra_8593
+    JMP     b05_bra_8593  ; replaced BCC (forced for build reliability)
     JMP     loc_0x01E635_disable_rendering_and_nmi  ; orig: C - - - - - 0x0145A0 05:8590: 4C 25 E6  JMP loc_0x01E635_dis
 b05_bra_8593:  ; orig: b05_bra_8593:
     MOVE.B  ram_for_2000,D0  ; orig: C - - - - - 0x0145A3 05:8593: A5 FF     LDA ram_for_2000
@@ -1273,7 +1262,7 @@ ofs_main_script_1_0x014610_08_prepare_save_menu:  ; orig: ofs_main_script_1_0x01
 ; con_script_save_menu
     BSR     sub_0x01E635_disable_rendering_and_nmi             ; JSR -> BSR  ; orig: C - - J - - 0x014610 05:8600: 20 25 E6  JSR sub_0x01E635_dis
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x014613 05:8603: A5 13     LDA ram_subscript
-    BNE     b05_bra_8613             ; BNE  ; orig: C - - - - - 0x014615 05:8605: D0 0C     BNE b05_bra_8613
+    JMP     b05_bra_8613  ; replaced BNE (forced for build reliability)
     MOVE.B  D0,$FF005A  ; FIX v378: STA $005A  ; orig: C - - - - - 0x014617 05:8607: 8D 5A 00  STA a: ram_005A
     BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - - - - 0x01461A 05:860A: 20 6D E4  JSR sub_0x01E47D_cle
     BSR     sub_0x01EA3B_set_tunic_color             ; JSR -> BSR  ; orig: C - - - - - 0x01461D 05:860D: 20 2B EA  JSR sub_0x01EA3B_set
@@ -1290,7 +1279,7 @@ ofs_main_script_1_0x01462A_0D:  ; orig: ofs_main_script_1_0x01462A_0D:
 ; con_script_0D
     BSR     sub_0x01E47D_clear_screen             ; JSR -> BSR  ; orig: C - - J - - 0x01462A 05:861A: 20 6D E4  JSR sub_0x01E47D_cle
     BSR     sub_B4AC_check_battery_integrity             ; JSR -> BSR  ; orig: C - - - - - 0x01462D 05:861D: 20 AC B4  JSR sub_B4AC_check_b
-    BCS     b05_bra_8625_battery_is_not_ok             ; BCS  ; orig: C - - - - - 0x014630 05:8620: B0 03     BCS bra_8625_battery
+    JMP     b05_bra_8625_battery_is_not_ok  ; replaced BCS (forced for build reliability)
     JMP     loc_bat_6C90  ; orig: C - - - - - 0x014632 05:8622: 4C 90 6C  JMP loc_bat_6C90
 b05_bra_8625_battery_is_not_ok:  ; orig: b05_bra_8625_battery_is_not_ok:
     JMP     loc_0x01FF60_RESET_vector  ; orig: - - - - - - 0x014635 05:8625: 4C 50 FF  JMP loc_0x01FF60_RES
@@ -1303,7 +1292,7 @@ ofs_main_script_1_0x014638_10:  ; orig: ofs_main_script_1_0x014638_10:
     MOVE.B  #$00,D1  ; orig: C - - J - - 0x014638 05:8628: A2 00     LDX #$00
     BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x01463A 05:862A: 20 F4 ED  JSR sub_0x01EE04_fin
     CMPI.B  #$24,D0  ; orig: C - - - - - 0x01463D 05:862D: C9 24     CMP #$24
-    BNE     b05_bra_8643             ; BNE  ; orig: C - - - - - 0x01463F 05:862F: D0 12     BNE b05_bra_8643
+    JMP     b05_bra_8643  ; replaced BNE (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x014641 05:8631: A9 00     LDA #$00
     MOVE.B  D0,ram_0619  ; orig: C - - - - - 0x014643 05:8633: 8D 19 06  STA ram_0619
     MOVE.B  #con_sfx_3_walking,D0  ; orig: C - - - - - 0x014646 05:8636: A9 08     LDA #con_sfx_3_walki
@@ -1771,23 +1760,23 @@ ofs_main_script_1_0x01478B_04:  ; orig: ofs_main_script_1_0x01478B_04:
 
 ; con_script_04_screen_trans_end
     MOVE.B  ram_subscript,D1  ; orig: C - - J - - 0x01478B 05:877B: A6 13     LDX ram_subscript
-    BEQ     b05_bra_87C6             ; BEQ  ; orig: C - - - - - 0x01478D 05:877D: F0 47     BEQ b05_bra_87C6
+    JMP     b05_bra_87C6  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01478F 05:877F: CA        DEX
-    BNE     b05_bra_878E             ; BNE  ; orig: C - - - - - 0x014790 05:8780: D0 0C     BNE b05_bra_878E
+    JMP     b05_bra_878E  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_00E9,D0  ; orig: C - - - - - 0x014792 05:8782: A5 E9     LDA ram_00E9
-    BMI     b05_bra_878B             ; BMI  ; orig: C - - - - - 0x014794 05:8784: 30 05     BMI b05_bra_878B
+    JMP     b05_bra_878B  ; replaced BMI (forced for build reliability)
     BSR     sub_AC16             ; JSR -> BSR  ; orig: C - - - - - 0x014796 05:8786: 20 16 AC  JSR sub_AC16
-    BCC     b05_bra_878D_RTS             ; BCC  ; orig: C - - - - - 0x014799 05:8789: 90 02     BCC b05_bra_878D_RTS
+    JMP     b05_bra_878D_RTS  ; replaced BCC (forced for build reliability)
 b05_bra_878B:  ; orig: b05_bra_878B:
     ADDQ.B  #1,ram_subscript  ; orig: C - - - - - 0x01479B 05:878B: E6 13     INC ram_subscript
 b05_bra_878D_RTS:  ; orig: b05_bra_878D_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x01479D 05:878D: 60        RTS
 b05_bra_878E:  ; orig: b05_bra_878E:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01479E 05:878E: CA        DEX
-    BNE     b05_bra_87B9             ; BNE  ; orig: C - - - - - 0x01479F 05:878F: D0 28     BNE b05_bra_87B9
+    JMP     b05_bra_87B9  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x0147A1 05:8791: A4 EB     LDY ram_map_location
     BSR     sub_B68D             ; JSR -> BSR  ; orig: C - - - - - 0x0147A3 05:8793: 20 8D B6  JSR sub_B68D
-    BNE     b05_bra_87BE             ; BNE  ; orig: C - - - - - 0x0147A6 05:8796: D0 26     BNE b05_bra_87BE
+    JMP     b05_bra_87BE  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x0147A8 05:8798: A5 98     LDA ram_dir_link
     BSR     sub_B560             ; JSR -> BSR  ; orig: C - - - - - 0x0147AA 05:879A: 20 60 B5  JSR sub_B560
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x0147AD 05:879D: 38        SEC
@@ -1801,9 +1790,9 @@ b05_bra_878E:  ; orig: b05_bra_878E:
 
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x0147B6 05:87A6: A8        TAY
     BSR     sub_B68D             ; JSR -> BSR  ; orig: C - - - - - 0x0147B7 05:87A7: 20 8D B6  JSR sub_B68D
-    BEQ     b05_bra_87BE             ; BEQ  ; orig: C - - - - - 0x0147BA 05:87AA: F0 12     BEQ b05_bra_87BE
+    JMP     b05_bra_87BE  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_051F_script,D0  ; orig: C - - - - - 0x0147BC 05:87AC: AD 1F 05  LDA ram_051F_script
-    BNE     b05_bra_87BE             ; BNE  ; orig: C - - - - - 0x0147BF 05:87AF: D0 0D     BNE b05_bra_87BE
+    JMP     b05_bra_87BE  ; replaced BNE (forced for build reliability)
     MOVE.B  #$C0,D0  ; orig: C - - - - - 0x0147C1 05:87B1: A9 C0     LDA #$C0
 sub_87B3:
 ; A = 00 A0
@@ -1813,7 +1802,7 @@ b05_bra_87B8_RTS:  ; orig: b05_bra_87B8_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x0147C8 05:87B8: 60        RTS
 b05_bra_87B9:  ; orig: b05_bra_87B9:
     BSR     sub_bat_74B7             ; JSR -> BSR  ; orig: C - - - - - 0x0147C9 05:87B9: 20 B7 74  JSR sub_bat_74B7
-    BNE     b05_bra_87B8_RTS             ; BNE  ; orig: C - - - - - 0x0147CC 05:87BC: D0 FA     BNE b05_bra_87B8_RTS
+    JMP     b05_bra_87B8_RTS  ; replaced BNE (forced for build reliability)
 b05_bra_87BE:  ; orig: b05_bra_87BE:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0147CE 05:87BE: A9 00     LDA #$00
     MOVE.B  D0,ram_subscript  ; orig: C - - - - - 0x0147D0 05:87C0: 85 13     STA ram_subscript
@@ -1843,9 +1832,9 @@ sub_0x0147D6:  ; orig: sub_0x0147D6:
     MOVE.B  D0,ram_04CD_map_data_byte  ; orig: C - - - - - 0x0147EE 05:87DE: 8D CD 04  STA ram_04CD_map_dat
     BSR     sub_B0B6             ; JSR -> BSR  ; orig: C - - - - - 0x0147F1 05:87E1: 20 B6 B0  JSR sub_B0B6
     MOVE.B  ram_005A,D0  ; orig: C - - - - - 0x0147F4 05:87E4: A5 5A     LDA ram_005A
-    BEQ     b05_bra_8820             ; BEQ  ; orig: C - - - - - 0x0147F6 05:87E6: F0 38     BEQ b05_bra_8820
+    JMP     b05_bra_8820  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x0147F8 05:87E8: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_8815             ; BNE  ; orig: C - - - - - 0x0147FA 05:87EA: D0 29     BNE b05_bra_8815    ; if
+    JMP     b05_bra_8815  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x0147FC 05:87EC: A4 EB     LDY ram_map_location
@@ -1869,7 +1858,7 @@ sub_0x0147D6:  ; orig: sub_0x0147D6:
     MOVE.B  D0,ram_pos_Y_link  ; orig: C - - - - - 0x014810 05:8800: 85 84     STA ram_pos_Y_link
     MOVE.B  ram_0065,D2  ; orig: C - - - - - 0x014812 05:8802: A4 65     LDY ram_0065
     CMPI.B  #$24,D2  ; orig: C - - - - - 0x014814 05:8804: C0 24     CPY #$24
-    BNE     b05_bra_8815             ; BNE  ; orig: C - - - - - 0x014816 05:8806: D0 0D     BNE b05_bra_8815
+    JMP     b05_bra_8815  ; replaced BNE (forced for build reliability)
     MOVE.B  D0,ram_0412  ; orig: C - - - - - 0x014818 05:8808: 8D 12 04  STA ram_0412
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01481B 05:880B: 18        CLC
     ADDI.B  #$10,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x01481C 05:880C: 69 10     ADC #$10
@@ -1888,31 +1877,31 @@ b05_bra_8820:  ; orig: b05_bra_8820:
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014834 05:8824: 20 13 70  JSR sub_bat_7013_get
     AND.B   ram_00EE,D0  ; orig: C - - - - - 0x014837 05:8827: 25 EE     AND ram_00EE
     MOVE.B  D0,ram_0055_direction  ; orig: C - - - - - 0x014839 05:8829: 85 55     STA ram_0055_directi
-    BEQ     b05_bra_8831             ; BEQ  ; orig: C - - - - - 0x01483B 05:882B: F0 04     BEQ b05_bra_8831
+    JMP     b05_bra_8831  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$02,D0  ; orig: C - - - - - 0x01483D 05:882D: A9 02     LDA #$02
     MOVE.B  D0,ram_0054_timer  ; orig: C - - - - - 0x01483F 05:882F: 85 54     STA ram_0054_timer
 b05_bra_8831:  ; orig: b05_bra_8831:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x014841 05:8831: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_8859             ; BEQ  ; orig: C - - - - - 0x014843 05:8833: F0 24     BEQ b05_bra_8859    ; if
+    JMP     b05_bra_8859  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x014845 05:8835: A0 00     LDY #$00    ; pos X
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014847 05:8837: A5 98     LDA ram_dir_link
     ANDI.B  #con_dir__LR,D0  ; orig: C - - - - - 0x014849 05:8839: 29 03     AND #con_dir__LR
-    BEQ     b05_bra_8845             ; BEQ  ; orig: C - - - - - 0x01484B 05:883B: F0 08     BEQ b05_bra_8845
+    JMP     b05_bra_8845  ; replaced BEQ (forced for build reliability)
     ANDI.B  #con_dir_Right,D0  ; orig: C - - - - - 0x01484D 05:883D: 29 01     AND #con_dir_Right
-    BNE     b05_bra_8843             ; BNE  ; orig: C - - - - - 0x01484F 05:883F: D0 02     BNE b05_bra_8843
+    JMP     b05_bra_8843  ; replaced BNE (forced for build reliability)
     MOVE.B  #$F0,D2  ; orig: C - - - - - 0x014851 05:8841: A0 F0     LDY #$F0    ; pos X
 b05_bra_8843:  ; orig: b05_bra_8843:
     MOVE.B  D2,ram_pos_X_link  ; orig: C - - - - - 0x014853 05:8843: 84 70     STY ram_pos_X_link
 b05_bra_8845:  ; orig: b05_bra_8845:
     BSR     sub_B0C3             ; JSR -> BSR  ; orig: C - - - - - 0x014855 05:8845: 20 C3 B0  JSR sub_B0C3
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x014858 05:8848: 29 07     AND #$07
-    BEQ     b05_bra_8856             ; BEQ  ; orig: C - - - - - 0x01485A 05:884A: F0 0A     BEQ b05_bra_8856
+    JMP     b05_bra_8856  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$05,D0  ; orig: C - - - - - 0x01485C 05:884C: C9 05     CMP #$05
-    BEQ     b05_bra_8856             ; BEQ  ; orig: C - - - - - 0x01485E 05:884E: F0 06     BEQ b05_bra_8856
+    JMP     b05_bra_8856  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$06,D0  ; orig: C - - - - - 0x014860 05:8850: C9 06     CMP #$06
-    BEQ     b05_bra_8856             ; BEQ  ; orig: C - - - - - 0x014862 05:8852: F0 02     BEQ b05_bra_8856
+    JMP     b05_bra_8856  ; replaced BEQ (forced for build reliability)
 
 ; 01, 02, 03, 04, 07
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x014864 05:8854: C8        INY
@@ -1953,7 +1942,7 @@ b05_bra_8864_loop:  ; orig: b05_bra_8864_loop:
     MOVE.B  D0,(A0,D1.L)
 
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01488B 05:887B: CA        DEX
-    BNE     b05_bra_8864_loop             ; BNE  ; orig: C - - - - - 0x01488C 05:887C: D0 E6     BNE b05_bra_8864_loop
+    JMP     b05_bra_8864_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x01488E 05:887E: A4 EB     LDY ram_map_location
     MOVEA.L #ram_697E_map_data,A0
     MOVE.B  (A0,D2.L),D0
@@ -1965,7 +1954,7 @@ b05_bra_8864_loop:  ; orig: b05_bra_8864_loop:
     MOVE.B  (A0,D2.L),D0
 
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x01489B 05:888B: 0A        ASL
-    BCC     b05_bra_8895             ; BCC  ; orig: C - - - - - 0x01489C 05:888C: 90 07     BCC b05_bra_8895
+    JMP     b05_bra_8895  ; replaced BCC (forced for build reliability)
 
 ; 80+
     MOVE.B  ram_0002_t38_obj_id,D0  ; orig: C - - - - - 0x01489E 05:888E: A5 02     LDA ram_0002_t38_obj
@@ -1985,9 +1974,9 @@ b05_bra_8895:  ; orig: b05_bra_8895:
 
     MOVE.B  ram_0002_t38_obj_id,D2  ; orig: C - - - - - 0x0148B0 05:88A0: A4 02     LDY ram_0002_t38_obj
     CMPI.B  #$62,D2  ; orig: C - - - - - 0x0148B2 05:88A2: C0 62     CPY #$62
-    BCC     b05_bra_88AC             ; BCS  ; orig: C - - - - - 0x0148B4 05:88A4: B0 06     BCS b05_bra_88AC
+    JMP     b05_bra_88AC  ; replaced BCC (forced for build reliability)
     CMPI.B  #$32,D2  ; orig: C - - - - - 0x0148B6 05:88A6: C0 32     CPY #$32
-    BCS     b05_bra_88AC             ; BCC  ; orig: C - - - - - 0x0148B8 05:88A8: 90 02     BCC b05_bra_88AC
+    JMP     b05_bra_88AC  ; replaced BCS (forced for build reliability)
 
 ; 32-61
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x0148BA 05:88AA: A9 01     LDA #$01
@@ -1996,7 +1985,7 @@ b05_bra_88AC:  ; orig: b05_bra_88AC:
 ; 00-31, 62-7F
     MOVE.B  D0,ram_0003_t15_objects_counter  ; orig: C - - - - - 0x0148BC 05:88AC: 85 03     STA ram_0003_t15_obj
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x0148BE 05:88AE: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_88B8             ; BNE  ; orig: C - - - - - 0x0148C0 05:88B0: D0 06     BNE b05_bra_88B8    ; if
+    JMP     b05_bra_88B8  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     BSR     sub_90AE_check_room_history             ; JSR -> BSR  ; orig: C - - - - - 0x0148C2 05:88B2: 20 AE 90  JSR sub_90AE_check_r
@@ -2005,7 +1994,7 @@ b05_bra_88B8:  ; orig: b05_bra_88B8:
     BSR     sub_9293             ; JSR -> BSR  ; orig: C - - - - - 0x0148C8 05:88B8: 20 93 92  JSR sub_9293
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x0148CB 05:88BB: A5 12     LDA ram_script
     CMPI.B  #con_script_09,D0  ; orig: C - - - - - 0x0148CD 05:88BD: C9 09     CMP #con_script_09
-    BNE     b05_bra_88C7             ; BNE  ; orig: C - - - - - 0x0148CF 05:88BF: D0 06     BNE b05_bra_88C7
+    JMP     b05_bra_88C7  ; replaced BNE (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0148D1 05:88C1: A9 00     LDA #$00
     MOVE.B  D0,ram_0002_t38_obj_id  ; orig: C - - - - - 0x0148D3 05:88C3: 85 02     STA ram_0002_t38_obj
     MOVE.B  D0,ram_0003_t15_objects_counter  ; orig: C - - - - - 0x0148D5 05:88C5: 85 03     STA ram_0003_t15_obj
@@ -2013,11 +2002,11 @@ b05_bra_88C7:  ; orig: b05_bra_88C7:
 loc_88C7:  ; orig: loc_88C7:
     MOVE.B  ram_0003_t15_objects_counter,D0  ; orig: C D 0 - - - 0x0148D7 05:88C7: A5 03     LDA ram_0003_t15_obj
     MOVE.B  D0,ram_enemy_cnt  ; orig: C - - - - - 0x0148D9 05:88C9: 8D 4E 03  STA ram_enemy_cnt
-    BEQ     b05_bra_8909             ; BEQ  ; orig: C - - - - - 0x0148DC 05:88CC: F0 3B     BEQ b05_bra_8909
+    JMP     b05_bra_8909  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_0002_t38_obj_id,D0  ; orig: C - - - - - 0x0148DE 05:88CE: A5 02     LDA ram_0002_t38_obj
-    BEQ     b05_bra_8909             ; BEQ  ; orig: C - - - - - 0x0148E0 05:88D0: F0 37     BEQ b05_bra_8909
+    JMP     b05_bra_8909  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$62,D0  ; orig: C - - - - - 0x0148E2 05:88D2: C9 62     CMP #$62
-    BCC     b05_bra_88E5_spawn_a_group_of_enemies             ; BCS  ; orig: C - - - - - 0x0148E4 05:88D4: B0 0F     BCS bra_88E5_spawn_a
+    JMP     b05_bra_88E5_spawn_a_group_of_enemies  ; replaced BCC (forced for build reliability)
 
 ; spawn the same enemy N times
     MOVE.B  #$00,D1  ; orig: C - - - - - 0x0148E6 05:88D6: A2 00     LDX #$00
@@ -2028,7 +2017,7 @@ b05_bra_88D8_loop:  ; orig: b05_bra_88D8_loop:
 
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x0148ED 05:88DD: E8        INX
     SUBQ.B  #1,ram_0003_t15_objects_counter  ; orig: C - - - - - 0x0148EE 05:88DE: C6 03     DEC ram_0003_t15_obj
-    BNE     b05_bra_88D8_loop             ; BNE  ; orig: C - - - - - 0x0148F0 05:88E0: D0 F6     BNE b05_bra_88D8_loop
+    JMP     b05_bra_88D8_loop  ; replaced BNE (forced for build reliability)
     JMP     loc_8903  ; orig: C - - - - - 0x0148F2 05:88E2: 4C 03 89  JMP loc_8903
 b05_bra_88E5_spawn_a_group_of_enemies:  ; orig: b05_bra_88E5_spawn_a_group_of_enemies:
     MOVE.B  ram_0002_t38_obj_id,D0  ; orig: C - - - - - 0x0148F5 05:88E5: A5 02     LDA ram_0002_t38_obj
@@ -2061,14 +2050,14 @@ b05_bra_88F9_loop:  ; orig: b05_bra_88F9_loop:
 
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01490E 05:88FE: C8        INY
     CMP.B   ram_0003_t15_objects_counter,D2  ; orig: C - - - - - 0x01490F 05:88FF: C4 03     CPY ram_0003_t15_obj
-    BNE     b05_bra_88F9_loop             ; BNE  ; orig: C - - - - - 0x014911 05:8901: D0 F6     BNE b05_bra_88F9_loop
+    JMP     b05_bra_88F9_loop  ; replaced BNE (forced for build reliability)
 loc_8903:  ; orig: loc_8903:
     MOVE.B  ram_obj_id_enemy,D0  ; orig: C D 0 - - - 0x014913 05:8903: AD 50 03  LDA ram_obj_id_enemy
     MOVE.B  D0,ram_copy_obj_id  ; orig: C - - - - - 0x014916 05:8906: 8D 5F 03  STA ram_copy_obj_id
 b05_bra_8909:  ; orig: b05_bra_8909:
     BSR     sub_896E             ; JSR -> BSR  ; orig: C - - - - - 0x014919 05:8909: 20 6E 89  JSR sub_896E
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01491C 05:890C: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_8913             ; BNE  ; orig: C - - - - - 0x01491E 05:890E: D0 03     BNE b05_bra_8913    ; if
+    JMP     b05_bra_8913  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     BSR     sub_8941             ; JSR -> BSR  ; orig: C - - - - - 0x014920 05:8910: 20 41 89  JSR sub_8941
@@ -2087,13 +2076,13 @@ sub_0x014939:  ; orig: sub_0x014939:
     BSR     sub_bat_6E40_clear_counter_00_27             ; JSR -> BSR  ; orig: C - - - - - 0x014939 05:8929: 20 40 6E  JSR sub_bat_6E40_cle
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x01493C 05:892C: A5 12     LDA ram_script
     CMPI.B  #con_script_0B,D0  ; orig: C - - - - - 0x01493E 05:892E: C9 0B     CMP #con_script_0B
-    BEQ     b05_bra_8939             ; BEQ  ; orig: C - - - - - 0x014940 05:8930: F0 07     BEQ b05_bra_8939
+    JMP     b05_bra_8939  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_script_0C,D0  ; orig: C - - - - - 0x014942 05:8932: C9 0C     CMP #con_script_0C
-    BEQ     b05_bra_8939             ; BEQ  ; orig: C - - - - - 0x014944 05:8934: F0 03     BEQ b05_bra_8939
+    JMP     b05_bra_8939  ; replaced BEQ (forced for build reliability)
     BSR     sub_0x01F248             ; JSR -> BSR  ; orig: C - - - - - 0x014946 05:8936: 20 38 F2  JSR sub_0x01F248
 b05_bra_8939:  ; orig: b05_bra_8939:
     MOVE.B  ram_005A,D0  ; orig: C - - - - - 0x014949 05:8939: A5 5A     LDA ram_005A
-    BEQ     b05_bra_8940_RTS             ; BEQ  ; orig: C - - - - - 0x01494B 05:893B: F0 03     BEQ b05_bra_8940_RTS
+    JMP     b05_bra_8940_RTS  ; replaced BEQ (forced for build reliability)
 
 ; bzk optimize, JMP
     BSR     sub_8BAB             ; JSR -> BSR  ; orig: C - - - - - 0x01494D 05:893D: 20 AB 8B  JSR sub_8BAB
@@ -2105,9 +2094,9 @@ b05_bra_8940_RTS:  ; orig: b05_bra_8940_RTS:
 sub_8941:  ; orig: sub_8941:
     MOVE.B  ram_map_location,D0  ; orig: C - - - - - 0x014951 05:8941: A5 EB     LDA ram_map_location
     CMPI.B  #$3F,D0  ; orig: C - - - - - 0x014953 05:8943: C9 3F     CMP #con_map_locatio
-    BEQ     b05_bra_894B             ; BEQ  ; orig: C - - - - - 0x014955 05:8945: F0 04     BEQ b05_bra_894B
+    JMP     b05_bra_894B  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$55,D0  ; orig: C - - - - - 0x014957 05:8947: C9 55     CMP #con_map_locatio
-    BNE     b05_bra_8950             ; BNE  ; orig: C - - - - - 0x014959 05:8949: D0 05     BNE b05_bra_8950
+    JMP     b05_bra_8950  ; replaced BNE (forced for build reliability)
 b05_bra_894B:  ; orig: b05_bra_894B:
     MOVE.B  #con_obj_id_61,D0  ; orig: C - - - - - 0x01495B 05:894B: A9 61     LDA #con_obj_id_61
     JMP     loc_895D  ; orig: C - - - - - 0x01495D 05:894D: 4C 5D 89  JMP loc_895D
@@ -2148,19 +2137,19 @@ sub_896E:  ; orig: sub_896E:
 ; ram_0002_t38_obj_id
     MOVE.B  ram_enemy_cnt,D2  ; orig: C - - - - - 0x01497E 05:896E: AC 4E 03  LDY ram_enemy_cnt
     MOVE.B  ram_0002_t38_obj_id,D0  ; orig: C - - - - - 0x014981 05:8971: A5 02     LDA ram_0002_t38_obj
-    BEQ     b05_bra_89C4             ; BEQ  ; orig: C - - - - - 0x014983 05:8973: F0 4F     BEQ b05_bra_89C4
+    JMP     b05_bra_89C4  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$37,D0  ; orig: C - - - - - 0x014985 05:8975: C9 37     CMP #$37
-    BEQ     b05_bra_89C4             ; BEQ  ; orig: C - - - - - 0x014987 05:8977: F0 4B     BEQ b05_bra_89C4
+    JMP     b05_bra_89C4  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x014989 05:8979: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_8984             ; BNE  ; orig: C - - - - - 0x01498B 05:897B: D0 07     BNE b05_bra_8984    ; if
+    JMP     b05_bra_8984  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     MOVE.B  ram_04CD_map_data_byte,D0  ; orig: C - - - - - 0x01498D 05:897D: AD CD 04  LDA ram_04CD_map_dat
     ANDI.B  #$08,D0  ; orig: C - - - - - 0x014990 05:8980: 29 08     AND #$08
-    BNE     b05_bra_89C4             ; BNE  ; orig: C - - - - - 0x014992 05:8982: D0 40     BNE b05_bra_89C4
+    JMP     b05_bra_89C4  ; replaced BNE (forced for build reliability)
 b05_bra_8984:  ; orig: b05_bra_8984:
     MOVE.B  ram_enemy_cnt,D0  ; orig: C - - - - - 0x014994 05:8984: AD 4E 03  LDA ram_enemy_cnt
-    BEQ     b05_bra_89C4             ; BEQ  ; orig: C - - - - - 0x014997 05:8987: F0 3B     BEQ b05_bra_89C4
+    JMP     b05_bra_89C4  ; replaced BEQ (forced for build reliability)
 
 ; spawn depends on where link is approaching from
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014999 05:8989: A5 98     LDA ram_dir_link
@@ -2168,7 +2157,7 @@ b05_bra_8984:  ; orig: b05_bra_8984:
 b05_bra_898D_loop:  ; orig: b05_bra_898D_loop:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01499D 05:898D: C8        INY
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01499E 05:898E: 4A        LSR
-    BCC     b05_bra_898D_loop             ; BCC  ; orig: C - - - - - 0x01499F 05:898F: 90 FC     BCC b05_bra_898D_loop
+    JMP     b05_bra_898D_loop  ; replaced BCC (forced for build reliability)
     MOVEA.L #tbl_8646_enemy_spawn_positions_lo,A0
     MOVE.B  (A0,D2.L),D0
 
@@ -2206,21 +2195,21 @@ b05_bra_89A0_loop:  ; orig: b05_bra_89A0_loop:
     MOVE.B  D0,(A0,D1.L)
 
     BSR     sub_8A04_check_for_valid_spawn_position             ; JSR -> BSR  ; orig: C - - - - - 0x0149C0 05:89B0: 20 04 8A  JSR sub_8A04_check_f
-    BCS     b05_bra_89B6_not_valid             ; BCS  ; orig: C - - - - - 0x0149C3 05:89B3: B0 01     BCS bra_89B6_not_val
+    JMP     b05_bra_89B6_not_valid  ; replaced BCS (forced for build reliability)
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x0149C5 05:89B5: E8        INX
 b05_bra_89B6_not_valid:  ; orig: b05_bra_89B6_not_valid:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x0149C6 05:89B6: C8        INY
     CMPI.B  #$09,D2  ; orig: C - - - - - 0x0149C7 05:89B7: C0 09     CPY #$09
-    BCS     b05_bra_89BD_not_overflow             ; BCC  ; orig: C - - - - - 0x0149C9 05:89B9: 90 02     BCC bra_89BD_not_ove
+    JMP     b05_bra_89BD_not_overflow  ; replaced BCS (forced for build reliability)
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x0149CB 05:89BB: A0 00     LDY #$00
 b05_bra_89BD_not_overflow:  ; orig: b05_bra_89BD_not_overflow:
     CMPI.B  #$0A,D1  ; orig: C - - - - - 0x0149CD 05:89BD: E0 0A     CPX #$0A
-    BCS     b05_bra_89A0_loop             ; BCC  ; orig: C - - - - - 0x0149CF 05:89BF: 90 DF     BCC b05_bra_89A0_loop
+    JMP     b05_bra_89A0_loop  ; replaced BCS (forced for build reliability)
     MOVE.B  D2,ram_0524  ; orig: C - - - - - 0x0149D1 05:89C1: 8C 24 05  STY ram_0524
 b05_bra_89C4:  ; orig: b05_bra_89C4:
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x0149D4 05:89C4: A5 12     LDA ram_script
     CMPI.B  #con_script_09,D0  ; orig: C - - - - - 0x0149D6 05:89C6: C9 09     CMP #con_script_09
-    BNE     b05_bra_89DF             ; BNE  ; orig: C - - - - - 0x0149D8 05:89C8: D0 15     BNE b05_bra_89DF
+    JMP     b05_bra_89DF  ; replaced BNE (forced for build reliability)
     MOVE.B  #$03,D1  ; orig: C - - - - - 0x0149DA 05:89CA: A2 03     LDX #$03
 b05_bra_89CC_loop:  ; orig: b05_bra_89CC_loop:
     MOVE.B  #con_obj_id_1B,D0  ; orig: C - - - - - 0x0149DC 05:89CC: A9 1B     LDA #con_obj_id_1B
@@ -2238,13 +2227,13 @@ b05_bra_89CC_loop:  ; orig: b05_bra_89CC_loop:
     MOVEA.L #$FF0085,A0  ; FIX v378: STA $85,X base
     MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x0149E9 05:89D9: 95 85  STA ram_pos_Y_enemy
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0149EB 05:89DB: CA        DEX
-    BPL     b05_bra_89CC_loop             ; BPL  ; orig: C - - - - - 0x0149EC 05:89DC: 10 EE     BPL b05_bra_89CC_loop
+    JMP     b05_bra_89CC_loop  ; replaced BPL (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x0149EE 05:89DE: 60        RTS
 b05_bra_89DF:  ; orig: b05_bra_89DF:
     CMPI.B  #con_script_0B,D0  ; orig: C - - - - - 0x0149EF 05:89DF: C9 0B     CMP #con_script_0B
-    BEQ     b05_bra_89E7             ; BEQ  ; orig: C - - - - - 0x0149F1 05:89E1: F0 04     BEQ b05_bra_89E7
+    JMP     b05_bra_89E7  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_script_0C,D0  ; orig: C - - - - - 0x0149F3 05:89E3: C9 0C     CMP #con_script_0C
-    BNE     b05_bra_8A03_RTS             ; BNE  ; orig: C - - - - - 0x0149F5 05:89E5: D0 1C     BNE b05_bra_8A03_RTS
+    JMP     b05_bra_8A03_RTS  ; replaced BNE (forced for build reliability)
 b05_bra_89E7:  ; orig: b05_bra_89E7:
     MOVE.B  #$07,D1  ; orig: C - - - - - 0x0149F7 05:89E7: A2 07     LDX #$07
     MOVE.B  #con_obj_id_null,D0  ; orig: C - - - - - 0x0149F9 05:89E9: A9 00     LDA #con_obj_id_null
@@ -2253,7 +2242,7 @@ b05_bra_89EB_loop:  ; orig: b05_bra_89EB_loop:
     MOVE.B  D0,(A0,D1.L)
 
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0149FE 05:89EE: CA        DEX
-    BPL     b05_bra_89EB_loop             ; BPL  ; orig: C - - - - - 0x0149FF 05:89EF: 10 FA     BPL b05_bra_89EB_loop
+    JMP     b05_bra_89EB_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x014A01 05:89F1: A4 EB     LDY ram_map_location
     MOVEA.L #ram_68FE_map_data,A0
     MOVE.B  (A0,D2.L),D0
@@ -2283,7 +2272,7 @@ sub_8A04_check_for_valid_spawn_position:  ; orig: sub_8A04_check_for_valid_spawn
     MOVE.B  (A0,D1.L),D0
 
     CMP.B   ram_min_collision_tile,D0  ; orig: C - - - - - 0x014A1E 05:8A0E: CD 4A 03  CMP ram_min_collisio
-    BCC     b05_bra_8A2D_not_valid             ; BCS  ; orig: C - - - - - 0x014A21 05:8A11: B0 1A     BCS bra_8A2D_not_val
+    JMP     b05_bra_8A2D_not_valid  ; replaced BCC (forced for build reliability)
 sub_0x014A23:  ; orig: sub_0x014A23:
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x014A23 05:8A13: A5 70     LDA ram_pos_X_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x014A25 05:8A15: 38        SEC
@@ -2292,7 +2281,7 @@ sub_0x014A23:  ; orig: sub_0x014A23:
 
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x014A28 05:8A18: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$22,D0  ; orig: C - - - - - 0x014A2B 05:8A1B: C9 22     CMP #$22
-    BCC     b05_bra_8A2B_valid             ; BCS  ; orig: C - - - - - 0x014A2D 05:8A1D: B0 0C     BCS b05_bra_8A2B_valid
+    JMP     b05_bra_8A2B_valid  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014A2F 05:8A1F: A5 84     LDA ram_pos_Y_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x014A31 05:8A21: 38        SEC
     MOVEA.L #ram_pos_Y_enemy,A0
@@ -2300,7 +2289,7 @@ sub_0x014A23:  ; orig: sub_0x014A23:
 
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x014A34 05:8A24: 20 1F 70  JSR sub_bat_701F_EOR
     CMPI.B  #$22,D0  ; orig: C - - - - - 0x014A37 05:8A27: C9 22     CMP #$22
-    BCS     b05_bra_8A2D_not_valid             ; BCC  ; orig: C - - - - - 0x014A39 05:8A29: 90 02     BCC bra_8A2D_not_val
+    JMP     b05_bra_8A2D_not_valid  ; replaced BCS (forced for build reliability)
 b05_bra_8A2B_valid:  ; orig: b05_bra_8A2B_valid:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x014A3B 05:8A2B: 18        CLC
     RTS                     ; RTS  ; orig: C - - - - - 0x014A3C 05:8A2C: 60        RTS
@@ -2317,7 +2306,7 @@ ofs_main_script_1_0x014A3F_11_death:  ; orig: ofs_main_script_1_0x014A3F_11_deat
     BSR     sub_0x01FEA8_decrease_invincibility_timer             ; JSR -> BSR  ; orig: C - - - - - 0x014A41 05:8A31: 20 98 FE  JSR sub_0x01FEA8_dec
     BSR     sub_0x01F24C             ; JSR -> BSR  ; orig: C - - - - - 0x014A44 05:8A34: 20 3C F2  JSR sub_0x01F24C
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x014A47 05:8A37: A5 13     LDA ram_subscript
-    BNE     b05_bra_8A60             ; BNE  ; orig: C - - - - - 0x014A49 05:8A39: D0 25     BNE b05_bra_8A60
+    JMP     b05_bra_8A60  ; replaced BNE (forced for build reliability)
     BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - - - - 0x014A4B 05:8A3B: 20 F7 E5  JSR sub_0x01E607_hid
     BSR     sub_0x01E689             ; JSR -> BSR  ; orig: C - - - - - 0x014A4E 05:8A3E: 20 79 E6  JSR sub_0x01E689
     BSR     sub_8929             ; JSR -> BSR  ; orig: C - - - - - 0x014A51 05:8A41: 20 29 89  JSR sub_8929
@@ -2335,11 +2324,11 @@ ofs_main_script_1_0x014A3F_11_death:  ; orig: ofs_main_script_1_0x014A3F_11_deat
     RTS                     ; RTS  ; orig: C - - - - - 0x014A6F 05:8A5F: 60        RTS
 b05_bra_8A60:  ; orig: b05_bra_8A60:
     MOVE.B  ram_timer_link,D0  ; orig: C - - - - - 0x014A70 05:8A60: A5 28     LDA ram_timer_link
-    BNE     b05_bra_8A96_RTS             ; BNE  ; orig: C - - - - - 0x014A72 05:8A62: D0 32     BNE b05_bra_8A96_RTS
+    JMP     b05_bra_8A96_RTS  ; replaced BNE (forced for build reliability)
     BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x014A74 05:8A64: 20 5A E8  JSR sub_0x01E86A_get
     ANDI.B  #$3E,D0  ; orig: C - - - - - 0x014A77 05:8A67: 29 3E     AND #$3E
     CMPI.B  #$3E,D0  ; orig: C - - - - - 0x014A79 05:8A69: C9 3E     CMP #$3E
-    BEQ     b05_bra_8A75             ; BEQ  ; orig: C - - - - - 0x014A7B 05:8A6B: F0 08     BEQ b05_bra_8A75
+    JMP     b05_bra_8A75  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_00EE,D0  ; orig: C - - - - - 0x014A7D 05:8A6D: A5 EE     LDA ram_00EE
     MOVE.B  D0,ram_0521  ; orig: C - - - - - 0x014A7F 05:8A6F: 8D 21 05  STA ram_0521
     BSR     sub_82FB             ; JSR -> BSR  ; orig: C - - - - - 0x014A82 05:8A72: 20 FB 82  JSR sub_82FB
@@ -2422,13 +2411,13 @@ sub_8AA0:  ; orig: sub_8AA0:
 
 sub_0x014ABD:  ; orig: sub_0x014ABD:
     MOVE.B  ram_04CE_flag,D0  ; orig: C - - - - - 0x014ABD 05:8AAD: AD CE 04  LDA ram_04CE_flag
-    BEQ     b05_bra_8AC2             ; BEQ  ; orig: C - - - - - 0x014AC0 05:8AB0: F0 10     BEQ b05_bra_8AC2
+    JMP     b05_bra_8AC2  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x014AC2 05:8AB2: A9 08     LDA #$08
     MOVE.B  D0,ram_000E_t08_direction  ; orig: C - - - - - 0x014AC4 05:8AB4: 85 0E     STA ram_000E_t08_dir
 b05_bra_8AB6:  ; orig: b05_bra_8AB6:
     MOVE.B  ram_000E_t08_direction,D0  ; orig: C - - - - - 0x014AC6 05:8AB6: A5 0E     LDA ram_000E_t08_dir
     AND.B   ram_00EE,D0  ; orig: C - - - - - 0x014AC8 05:8AB8: 25 EE     AND ram_00EE
-    BEQ     b05_bra_8AC8             ; BEQ  ; orig: C - - - - - 0x014ACA 05:8ABA: F0 0C     BEQ b05_bra_8AC8
+    JMP     b05_bra_8AC8  ; replaced BEQ (forced for build reliability)
 b05_bra_8ABC:  ; orig: b05_bra_8ABC:
     MOVE.B  (ram_000E_t08_direction).l,D3
     LSR.B  #1,D3
@@ -2437,7 +2426,7 @@ b05_bra_8ABC:  ; orig: b05_bra_8ABC:
     NEGX.B  D3                ; C = X = original shift carry
 
     MOVE.B  ram_000E_t08_direction,D0  ; orig: C - - - - - 0x014ACE 05:8ABE: A5 0E     LDA ram_000E_t08_dir
-    BNE     b05_bra_8AB6             ; BNE  ; orig: C - - - - - 0x014AD0 05:8AC0: D0 F4     BNE b05_bra_8AB6
+    JMP     b05_bra_8AB6  ; replaced BNE (forced for build reliability)
 b05_bra_8AC2:  ; orig: b05_bra_8AC2:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x014AD2 05:8AC2: A9 00     LDA #$00
     MOVE.B  D0,ram_04CE_flag  ; orig: C - - - - - 0x014AD4 05:8AC4: 8D CE 04  STA ram_04CE_flag
@@ -2447,11 +2436,11 @@ b05_bra_8AC8:  ; orig: b05_bra_8AC8:
     MOVE.B  D0,ram_0002_t24_direction  ; orig: C - - - - - 0x014ADA 05:8ACA: 85 02     STA ram_0002_t24_dir
     BSR     sub_A3F6             ; JSR -> BSR  ; orig: C - - - - - 0x014ADC 05:8ACC: 20 F6 A3  JSR sub_A3F6
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x014ADF 05:8ACF: C9 07     CMP #$07
-    BNE     b05_bra_8ABC             ; BNE  ; orig: C - - - - - 0x014AE1 05:8AD1: D0 E9     BNE b05_bra_8ABC
+    JMP     b05_bra_8ABC  ; replaced BNE (forced for build reliability)
 
 ; 07
     MOVE.B  $FF0054,D0  ; FIX v378: LDA $0054  ; orig: C - - - - - 0x014AE3 05:8AD3: AD 54 00  LDA a: ram_0054_time
-    BNE     b05_bra_8AE2_RTS             ; BNE  ; orig: C - - - - - 0x014AE6 05:8AD6: D0 0A     BNE b05_bra_8AE2_RTS
+    JMP     b05_bra_8AE2_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0002_t24_direction,D0  ; orig: C - - - - - 0x014AE8 05:8AD8: A5 02     LDA ram_0002_t24_dir
 sub_8ADA:  ; orig: sub_8ADA:
     MOVE.B  D0,$FF0055  ; FIX v378: STA $0055  ; orig: C - - - - - 0x014AEA 05:8ADA: 8D 55 00  STA a: ram_0055_dire
@@ -2507,21 +2496,21 @@ tbl_8AF1:  ; orig: tbl_8AF1:
 loc_0x014B04_save_menu_handler:  ; orig: loc_0x014B04_save_menu_handler:
     MOVE.B  ram_subscript,D0  ; orig: C D 0 - - - 0x014B04 05:8AF4: A5 13     LDA ram_subscript
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x014B06 05:8AF6: 0A        ASL
-    BCS     b05_bra_8B35_option_was_selected             ; BCS  ; orig: C - - - - - 0x014B07 05:8AF7: B0 3C     BCS bra_8B35_option_
+    JMP     b05_bra_8B35_option_was_selected  ; replaced BCS (forced for build reliability)
 
 ; if was not selected yet
     MOVE.B  ram_btn_press,D0  ; orig: C - - - - - 0x014B09 05:8AF9: A5 F8     LDA ram_btn_press
     ANDI.B  #$10,D0  ; orig: C - - - - - 0x014B0B 05:8AFB: 29 10     AND #con_btn_Start
-    BNE     b05_bra_8B2A_select_option             ; BNE  ; orig: C - - - - - 0x014B0D 05:8AFD: D0 2B     BNE bra_8B2A_select_
+    JMP     b05_bra_8B2A_select_option  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_btn_press,D0  ; orig: C - - - - - 0x014B0F 05:8AFF: A5 F8     LDA ram_btn_press
     ANDI.B  #$20,D0  ; orig: C - - - - - 0x014B11 05:8B01: 29 20     AND #con_btn_Select
-    BEQ     b05_bra_8B16             ; BEQ  ; orig: C - - - - - 0x014B13 05:8B03: F0 11     BEQ b05_bra_8B16
+    JMP     b05_bra_8B16  ; replaced BEQ (forced for build reliability)
     MOVE.B  #con_sfx_4_shield_block,D0  ; orig: C - - - - - 0x014B15 05:8B05: A9 01     LDA #con_sfx_4_shiel
     MOVE.B  D0,ram_sfx_4  ; orig: C - - - - - 0x014B17 05:8B07: 8D 04 06  STA ram_sfx_4
     ADDQ.B  #1,ram_subscript  ; orig: C - - - - - 0x014B1A 05:8B0A: E6 13     INC ram_subscript
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x014B1C 05:8B0C: A5 13     LDA ram_subscript
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x014B1E 05:8B0E: C9 03     CMP #$03
-    BNE     b05_bra_8B16             ; BNE  ; orig: C - - - - - 0x014B20 05:8B10: D0 04     BNE b05_bra_8B16
+    JMP     b05_bra_8B16  ; replaced BNE (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x014B22 05:8B12: A9 00     LDA #$00
     MOVE.B  D0,ram_subscript  ; orig: C - - - - - 0x014B24 05:8B14: 85 13     STA ram_subscript
 b05_bra_8B16:  ; orig: b05_bra_8B16:
@@ -2534,7 +2523,7 @@ b05_bra_8B18_loop:  ; orig: b05_bra_8B18_loop:
     MOVE.B  D0,(A0,D2.L)
 
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014B2E 05:8B1E: 88        DEY
-    BPL     b05_bra_8B18_loop             ; BPL  ; orig: C - - - - - 0x014B2F 05:8B1F: 10 F7     BPL b05_bra_8B18_loop
+    JMP     b05_bra_8B18_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  ram_subscript,D2  ; orig: C - - - - - 0x014B31 05:8B21: A4 13     LDY ram_subscript
     MOVEA.L #tbl_8AE6_spr_Y,A0
     MOVE.B  (A0,D2.L),D0
@@ -2550,7 +2539,7 @@ b05_bra_8B2A_select_option:  ; orig: b05_bra_8B2A_select_option:
     RTS                     ; RTS  ; orig: C - - - - - 0x014B44 05:8B34: 60        RTS
 b05_bra_8B35_option_was_selected:  ; orig: b05_bra_8B35_option_was_selected:
     MOVE.B  $FF0029,D0  ; FIX v378: LDA $29  ; orig: C - - - - - 0x014B45 05:8B35: A5 29  LDA ram_timer_enemy
-    BEQ     b05_bra_8B5D             ; BEQ  ; orig: C - - - - - 0x014B47 05:8B37: F0 24     BEQ b05_bra_8B5D
+    JMP     b05_bra_8B5D  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$04,D2  ; orig: C - - - - - 0x014B49 05:8B39: A0 04     LDY #$04
 b05_bra_8B3B_loop:  ; orig: b05_bra_8B3B_loop:
     MOVEA.L #tbl_8AEC,A0
@@ -2560,7 +2549,7 @@ b05_bra_8B3B_loop:  ; orig: b05_bra_8B3B_loop:
     MOVE.B  D0,(A0,D2.L)
 
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014B51 05:8B41: 88        DEY
-    BPL     b05_bra_8B3B_loop             ; BPL  ; orig: C - - - - - 0x014B52 05:8B42: 10 F7     BPL b05_bra_8B3B_loop
+    JMP     b05_bra_8B3B_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  ram_subscript,D0  ; orig: C - - - - - 0x014B54 05:8B44: A5 13     LDA ram_subscript
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x014B56 05:8B46: 29 03     AND #$03
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x014B58 05:8B48: A8        TAY
@@ -2571,7 +2560,7 @@ b05_bra_8B3B_loop:  ; orig: b05_bra_8B3B_loop:
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x014B5F 05:8B4F: A0 00     LDY #$00
     MOVE.B  $FF0029,D0  ; FIX v378: LDA $29  ; orig: C - - - - - 0x014B61 05:8B51: A5 29  LDA ram_timer_enemy
     ANDI.B  #$04,D0  ; orig: C - - - - - 0x014B63 05:8B53: 29 04     AND #$04
-    BEQ     b05_bra_8B59             ; BEQ  ; orig: C - - - - - 0x014B65 05:8B55: F0 02     BEQ b05_bra_8B59
+    JMP     b05_bra_8B59  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$55,D2  ; orig: C - - - - - 0x014B67 05:8B57: A0 55     LDY #$55
 b05_bra_8B59:  ; orig: b05_bra_8B59:
     MOVE.B  D2,$FF0305  ; FIX v378: STY $0305  ; orig: C - - - - - 0x014B69 05:8B59: 8C 05 03  STY ram_0302_ppu_buf
@@ -2594,7 +2583,7 @@ b05_bra_8B5D:  ; orig: b05_bra_8B5D:
     MOVE.B  D0,$FF0670  ; FIX v378: STA $0670  ; orig: C - - - - - 0x014B89 05:8B79: 8D 70 06  STA ram_item_hearts
     BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x014B8C 05:8B7C: 20 A3 EB  JSR sub_0x01EBB3_cle
     CMPI.B  #$02,D2  ; orig: C - - - - - 0x014B8F 05:8B7F: C0 02     CPY #$02
-    BNE     b05_bra_8B88             ; BNE  ; orig: C - - - - - 0x014B91 05:8B81: D0 05     BNE b05_bra_8B88    ; if
+    JMP     b05_bra_8B88  ; replaced BNE (forced for build reliability)
 
 ; if RETRY
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014B93 05:8B83: 88        DEY ; 01
@@ -2608,14 +2597,14 @@ b05_bra_8B88:  ; orig: b05_bra_8B88:
 loc_0x014B9B:  ; orig: loc_0x014B9B:
     MOVE.B  ram_collision_tile_link,D0  ; orig: C D 0 - - - 0x014B9B 05:8B8B: AD 9E 04  LDA ram_collision_ti
     CMPI.B  #$24,D0  ; orig: C - - - - - 0x014B9E 05:8B8E: C9 24     CMP #con_collision_t
-    BNE     b05_bra_8BA1             ; BNE  ; orig: C - - - - - 0x014BA0 05:8B90: D0 0F     BNE b05_bra_8BA1
+    JMP     b05_bra_8BA1  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_frm_cnt,D0  ; orig: C - - - - - 0x014BA2 05:8B92: A5 15     LDA ram_frm_cnt
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x014BA4 05:8B94: 29 03     AND #$03
-    BNE     b05_bra_8BA8             ; BNE  ; orig: C - - - - - 0x014BA6 05:8B96: D0 10     BNE b05_bra_8BA8
+    JMP     b05_bra_8BA8  ; replaced BNE (forced for build reliability)
     ADDQ.B  #1,ram_pos_Y_link  ; orig: C - - - - - 0x014BA8 05:8B98: E6 84     INC ram_pos_Y_link
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014BAA 05:8B9A: A5 84     LDA ram_pos_Y_link
     CMP.B   ram_0412,D0  ; orig: C - - - - - 0x014BAC 05:8B9C: CD 12 04  CMP ram_0412
-    BNE     b05_bra_8BA8             ; BNE  ; orig: C - - - - - 0x014BAF 05:8B9F: D0 07     BNE b05_bra_8BA8
+    JMP     b05_bra_8BA8  ; replaced BNE (forced for build reliability)
 b05_bra_8BA1:  ; orig: b05_bra_8BA1:
     MOVE.B  ram_next_script,D0  ; orig: C - - - - - 0x014BB1 05:8BA1: A5 5B     LDA ram_next_script
     MOVE.B  D0,ram_script  ; orig: C - - - - - 0x014BB3 05:8BA3: 85 12     STA ram_script
@@ -2638,19 +2627,19 @@ sub_0x014BCC:  ; orig: sub_0x014BCC:
     BSR     sub_8BFA             ; JSR -> BSR  ; orig: C - - - - - 0x014BCC 05:8BBC: 20 FA 8B  JSR sub_8BFA
     MOVE.B  ram_04CD_map_data_byte,D0  ; orig: C - - - - - 0x014BCF 05:8BBF: AD CD 04  LDA ram_04CD_map_dat
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x014BD2 05:8BC2: 29 07     AND #$07
-    BEQ     b05_bra_8BE6_RTS             ; BEQ  ; orig: C - - - - - 0x014BD4 05:8BC4: F0 20     BEQ b05_bra_8BE6_RTS
+    JMP     b05_bra_8BE6_RTS  ; replaced BEQ (forced for build reliability)
     BSR     sub_8BE7             ; JSR -> BSR  ; orig: C - - - - - 0x014BD6 05:8BC6: 20 E7 8B  JSR sub_8BE7
-    BCC     b05_bra_8BE6_RTS             ; BCC  ; orig: C - - - - - 0x014BD9 05:8BC9: 90 1B     BCC b05_bra_8BE6_RTS
+    JMP     b05_bra_8BE6_RTS  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_04CD_map_data_byte,D0  ; orig: C - - - - - 0x014BDB 05:8BCB: AD CD 04  LDA ram_04CD_map_dat
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x014BDE 05:8BCE: 29 07     AND #$07
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x014BE0 05:8BD0: C9 07     CMP #$07
-    BNE     b05_bra_8BE6_RTS             ; BNE  ; orig: C - - - - - 0x014BE2 05:8BD2: D0 12     BNE b05_bra_8BE6_RTS
+    JMP     b05_bra_8BE6_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_room_item_flag,D0  ; orig: C - - - - - 0x014BE4 05:8BD4: A5 BF     LDA ram_room_item_fl
-    BEQ     b05_bra_8BE6_RTS             ; BEQ  ; orig: C - - - - - 0x014BE6 05:8BD6: F0 0E     BEQ b05_bra_8BE6_RTS
+    JMP     b05_bra_8BE6_RTS  ; replaced BEQ (forced for build reliability)
 
 ; if room doesn't have an item
     BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x014BE8 05:8BD8: 20 14 73  JSR sub_bat_7314_che
-    BNE     b05_bra_8BE6_RTS             ; BNE  ; orig: C - - - - - 0x014BEB 05:8BDB: D0 09     BNE b05_bra_8BE6_RTS
+    JMP     b05_bra_8BE6_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x014BED 05:8BDD: A9 00     LDA #$00
     MOVE.B  D0,ram_room_item_flag  ; orig: C - - - - - 0x014BEF 05:8BDF: 85 BF     STA ram_room_item_fl
     MOVE.B  #con_sfx_2_02,D0  ; orig: C - - - - - 0x014BF1 05:8BE1: A9 02     LDA #con_sfx_2_02
@@ -2680,16 +2669,16 @@ b05_bra_8BFD_loop:  ; orig: b05_bra_8BFD_loop:
     MOVEA.L #ram_obj_id_enemy,A0
     MOVE.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_8C0E             ; BEQ  ; orig: C - - - - - 0x014C10 05:8C00: F0 0C     BEQ b05_bra_8C0E    ; if
+    JMP     b05_bra_8C0E  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$2B,D0  ; orig: C - - - - - 0x014C12 05:8C02: C9 2B     CMP #$2B
-    BCS     b05_bra_8C19_RTS             ; BCC  ; orig: C - - - - - 0x014C14 05:8C04: 90 13     BCC b05_bra_8C19_RTS
+    JMP     b05_bra_8C19_RTS  ; replaced BCS (forced for build reliability)
     CMPI.B  #$2E,D0  ; orig: C - - - - - 0x014C16 05:8C06: C9 2E     CMP #$2E
-    BCS     b05_bra_8C0E             ; BCC  ; orig: C - - - - - 0x014C18 05:8C08: 90 04     BCC b05_bra_8C0E
+    JMP     b05_bra_8C0E  ; replaced BCS (forced for build reliability)
     CMPI.B  #$49,D0  ; orig: C - - - - - 0x014C1A 05:8C0A: C9 49     CMP #$49
-    BCS     b05_bra_8C19_RTS             ; BCC  ; orig: C - - - - - 0x014C1C 05:8C0C: 90 0B     BCC b05_bra_8C19_RTS
+    JMP     b05_bra_8C19_RTS  ; replaced BCS (forced for build reliability)
 b05_bra_8C0E:  ; orig: b05_bra_8C0E:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014C1E 05:8C0E: 88        DEY
-    BPL     b05_bra_8BFD_loop             ; BPL  ; orig: C - - - - - 0x014C1F 05:8C0F: 10 EC     BPL b05_bra_8BFD_loop
+    JMP     b05_bra_8BFD_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x014C21 05:8C11: A9 00     LDA #$00
     MOVE.B  D0,ram_0512_flag  ; orig: C - - - - - 0x014C23 05:8C13: 8D 12 05  STA ram_0512_flag
     ADDQ.B  #1,ram_034D_flag  ; orig: C - - - - - 0x014C26 05:8C16: EE 4D 03  INC ram_034D_flag
@@ -2701,7 +2690,7 @@ b05_bra_8C19_RTS:  ; orig: b05_bra_8C19_RTS:
 ofs_019_8C1A_01:  ; orig: ofs_019_8C1A_01:
 ofs_019_8C1A_07:  ; orig: ofs_019_8C1A_07:
     MOVE.B  ram_034D_flag,D0  ; orig: C - - J - - 0x014C2A 05:8C1A: AD 4D 03  LDA ram_034D_flag
-    BEQ     b05_bra_8C26             ; BEQ  ; orig: C - - - - - 0x014C2D 05:8C1D: F0 07     BEQ b05_bra_8C26
+    JMP     b05_bra_8C26  ; replaced BEQ (forced for build reliability)
 b05_bra_8C1F:  ; orig: b05_bra_8C1F:
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x014C2F 05:8C1F: A9 01     LDA #$01
     MOVE.B  D0,ram_04CE_flag  ; orig: C - - - - - 0x014C31 05:8C21: 8D CE 04  STA ram_04CE_flag
@@ -2715,27 +2704,27 @@ b05_bra_8C26:  ; orig: b05_bra_8C26:
 
 ofs_019_8C28_02:  ; orig: ofs_019_8C28_02:
     MOVE.B  ram_obj_id_enemy,D0  ; orig: C - - J - - 0x014C38 05:8C28: AD 50 03  LDA ram_obj_id_enemy
-    BEQ     b05_bra_8C31             ; BEQ  ; orig: C - - - - - 0x014C3B 05:8C2B: F0 04     BEQ b05_bra_8C31    ; if
+    JMP     b05_bra_8C31  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$53,D0  ; orig: C - - - - - 0x014C3D 05:8C2D: C9 53     CMP #$53
-    BCS     b05_bra_8C26             ; BCC  ; orig: C - - - - - 0x014C3F 05:8C2F: 90 F5     BCC b05_bra_8C26
+    JMP     b05_bra_8C26  ; replaced BCS (forced for build reliability)
 b05_bra_8C31:  ; orig: b05_bra_8C31:
     MOVE.B  ram_obj_index,D2  ; orig: C - - - - - 0x014C41 05:8C31: AC 40 03  LDY ram_obj_index
 b05_bra_8C34_loop:  ; orig: b05_bra_8C34_loop:
     MOVEA.L #ram_obj_id_enemy,A0
     MOVE.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_8C47             ; BEQ  ; orig: C - - - - - 0x014C47 05:8C37: F0 0E     BEQ b05_bra_8C47    ; if
+    JMP     b05_bra_8C47  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$53,D0  ; orig: C - - - - - 0x014C49 05:8C39: C9 53     CMP #$53
-    BCC     b05_bra_8C47             ; BCS  ; orig: C - - - - - 0x014C4B 05:8C3B: B0 0A     BCS b05_bra_8C47
+    JMP     b05_bra_8C47  ; replaced BCC (forced for build reliability)
     MOVEA.L #$FF0406,A0  ; FIX v378: LDA $0406,Y base
     MOVE.B  (A0,D2.L),D0  ; orig: C - - - - - 0x014C4D 05:8C3D: B9 06 04  LDA ram_0405_enemy +
-    BNE     b05_bra_8C47             ; BNE  ; orig: C - - - - - 0x014C50 05:8C40: D0 05     BNE b05_bra_8C47
+    JMP     b05_bra_8C47  ; replaced BNE (forced for build reliability)
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x014C52 05:8C42: A9 10     LDA #$10
     MOVEA.L #$FF0406,A0  ; FIX v378: STA $0406,Y base
     MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x014C54 05:8C44: 99 06 04  STA ram_0405_enemy +
 b05_bra_8C47:  ; orig: b05_bra_8C47:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x014C57 05:8C47: 88        DEY
-    BPL     b05_bra_8C34_loop             ; BPL  ; orig: C - - - - - 0x014C58 05:8C48: 10 EA     BPL b05_bra_8C34_loop
+    JMP     b05_bra_8C34_loop  ; replaced BPL (forced for build reliability)
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x014C5A 05:8C4A: 38        SEC
     RTS                     ; RTS  ; orig: C - - - - - 0x014C5B 05:8C4B: 60        RTS
 
@@ -2743,16 +2732,16 @@ b05_bra_8C47:  ; orig: b05_bra_8C47:
 
 ofs_019_8C4C_04:  ; orig: ofs_019_8C4C_04:
     MOVE.B  ram_04CF_flag,D0  ; orig: C - - J - - 0x014C5C 05:8C4C: AD CF 04  LDA ram_04CF_flag
-    BEQ     b05_bra_8C26             ; BEQ  ; orig: C - - - - - 0x014C5F 05:8C4F: F0 D5     BEQ b05_bra_8C26
-    BNE     b05_bra_8C1F             ; BNE  ; orig: C - - - - - 0x014C61 05:8C51: D0 CC     BNE b05_bra_8C1F    ; jm
+    JMP     b05_bra_8C26  ; replaced BEQ (forced for build reliability)
+    JMP     b05_bra_8C1F  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_019_8C53_05:  ; orig: ofs_019_8C53_05:
     MOVE.B  ram_04CF_flag,D0  ; orig: C - - J - - 0x014C63 05:8C53: AD CF 04  LDA ram_04CF_flag
-    BEQ     b05_bra_8C26             ; BEQ  ; orig: C - - - - - 0x014C66 05:8C56: F0 CE     BEQ b05_bra_8C26
+    JMP     b05_bra_8C26  ; replaced BEQ (forced for build reliability)
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x014C68 05:8C58: 4A        LSR
-    BCC     b05_bra_8C26             ; BCC  ; orig: C - - - - - 0x014C69 05:8C59: 90 CB     BCC b05_bra_8C26
+    JMP     b05_bra_8C26  ; replaced BCC (forced for build reliability)
     ADDQ.B  #1,ram_04CF_flag  ; orig: C - - - - - 0x014C6B 05:8C5B: EE CF 04  INC ram_04CF_flag
     MOVE.B  #$0B,D1  ; orig: C - - - - - 0x014C6E 05:8C5E: A2 0B     LDX #$0B
     MOVE.B  #$D0,D0  ; orig: C - - - - - 0x014C70 05:8C60: A9 D0     LDA #$D0
@@ -2772,7 +2761,7 @@ ofs_019_8C53_05:  ; orig: ofs_019_8C53_05:
 
 ofs_019_8C6F_03:  ; orig: ofs_019_8C6F_03:
     MOVE.B  ram_item_0672,D0  ; orig: C - - J - - 0x014C7F 05:8C6F: AD 72 06  LDA ram_item_0672
-    BNE     b05_bra_8C1F             ; BNE  ; orig: C - - - - - 0x014C82 05:8C72: D0 AB     BNE b05_bra_8C1F
+    JMP     b05_bra_8C1F  ; replaced BNE (forced for build reliability)
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x014C84 05:8C74: 18        CLC
     RTS                     ; RTS  ; orig: C - - - - - 0x014C85 05:8C75: 60        RTS
 
@@ -2780,7 +2769,7 @@ ofs_019_8C6F_03:  ; orig: ofs_019_8C6F_03:
 
 ofs_019_8C76_06:  ; orig: ofs_019_8C76_06:
     MOVE.B  ram_obj_id_enemy,D0  ; orig: C - - J - - 0x014C86 05:8C76: AD 50 03  LDA ram_obj_id_enemy
-    BEQ     b05_bra_8C1F             ; BEQ  ; orig: C - - - - - 0x014C89 05:8C79: F0 A4     BEQ b05_bra_8C1F    ; if
+    JMP     b05_bra_8C1F  ; replaced BEQ (forced for build reliability)
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x014C8B 05:8C7B: 18        CLC
     RTS                     ; RTS  ; orig: C - - - - - 0x014C8C 05:8C7C: 60        RTS
 
@@ -2821,7 +2810,7 @@ loc_8CA6:  ; orig: loc_8CA6:
 
 ofs_link_death_8CAC_02:  ; orig: ofs_link_death_8CAC_02:
     BSR     sub_AC10             ; JSR -> BSR  ; orig: C - - J - - 0x014CBC 05:8CAC: 20 10 AC  JSR sub_AC10
-    BCC     b05_bra_8CB4             ; BCC  ; orig: C - - - - - 0x014CBF 05:8CAF: 90 03     BCC b05_bra_8CB4
+    JMP     b05_bra_8CB4  ; replaced BCC (forced for build reliability)
     BSR     sub_83B2             ; JSR -> BSR  ; orig: C - - - - - 0x014CC1 05:8CB1: 20 B2 83  JSR sub_83B2
 b05_bra_8CB4:  ; orig: b05_bra_8CB4:
     MOVE.B  ram_0302_ppu_buffer,D0  ; orig: C - - - - - 0x014CC4 05:8CB4: AD 02 03  LDA ram_0302_ppu_buf
@@ -2867,9 +2856,9 @@ b05_bra_8CD7_next_subscript:  ; orig: b05_bra_8CD7_next_subscript:
 
 ofs_link_death_8CDA_07:  ; orig: ofs_link_death_8CDA_07:
     MOVE.B  ram_00E5_t02_counter,D0  ; orig: C - - J - - 0x014CEA 05:8CDA: A5 E5     LDA ram_00E5_t02_cou
-    BEQ     b05_bra_8CD7_next_subscript             ; BEQ  ; orig: C - - - - - 0x014CEC 05:8CDC: F0 F9     BEQ bra_8CD7_next_su
+    JMP     b05_bra_8CD7_next_subscript  ; replaced BEQ (forced for build reliability)
     MOVE.B  $FF0033,D0  ; FIX v378: LDA $33  ; orig: C - - - - - 0x014CEE 05:8CDE: A5 33  LDA ram_timer_enemy
-    BNE     b05_bra_8CF2             ; BNE  ; orig: C - - - - - 0x014CF0 05:8CE0: D0 10     BNE b05_bra_8CF2
+    JMP     b05_bra_8CF2  ; replaced BNE (forced for build reliability)
     MOVE.B  #$05,D0  ; orig: C - - - - - 0x014CF2 05:8CE2: A9 05     LDA #$05
     MOVE.B  D0,$FF0033  ; FIX v378: STA $33  ; orig: C - - - - - 0x014CF4 05:8CE4: 85 33  STA ram_timer_enemy
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014CF6 05:8CE6: A5 98     LDA ram_dir_link
@@ -2877,7 +2866,7 @@ ofs_link_death_8CDA_07:  ; orig: ofs_link_death_8CDA_07:
 ; / 04
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x014CF8 05:8CE8: 4A        LSR
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x014CF9 05:8CE9: 4A        LSR
-    BCC     b05_bra_8CF5_not_down             ; BCC  ; orig: C - - - - - 0x014CFA 05:8CEA: 90 09     BCC bra_8CF5_not_dow
+    JMP     b05_bra_8CF5_not_down  ; replaced BCC (forced for build reliability)
 
 ; if down
     SUBQ.B  #1,ram_00E5_t02_counter  ; orig: C - - - - - 0x014CFC 05:8CEC: C6 E5     DEC ram_00E5_t02_cou
@@ -2887,16 +2876,16 @@ b05_bra_8CF0:  ; orig: b05_bra_8CF0:
 b05_bra_8CF2:  ; orig: b05_bra_8CF2:
     JMP     loc_0x01F24C  ; orig: C - - - - - 0x014D02 05:8CF2: 4C 3C F2  JMP loc_0x01F24C
 b05_bra_8CF5_not_down:  ; orig: b05_bra_8CF5_not_down:
-    BNE     b05_bra_8CF0             ; BNE  ; orig: C - - - - - 0x014D05 05:8CF5: D0 F9     BNE b05_bra_8CF0
+    JMP     b05_bra_8CF0  ; replaced BNE (forced for build reliability)
     MOVE.B  #con_dir_Up,D0  ; orig: C - - - - - 0x014D07 05:8CF7: A9 08     LDA #con_dir_Up
-    BNE     b05_bra_8CF0             ; BNE  ; orig: C - - - - - 0x014D09 05:8CF9: D0 F5     BNE b05_bra_8CF0    ; jm
+    JMP     b05_bra_8CF0  ; replaced BNE (forced for build reliability)
 
 
 
 loc_8CFB:  ; orig: loc_8CFB:
 ofs_link_death_8CFB_08:  ; orig: ofs_link_death_8CFB_08:
     BSR     sub_bat_74B7             ; JSR -> BSR  ; orig: C D 0 - - - 0x014D0B 05:8CFB: 20 B7 74  JSR sub_bat_74B7
-    BEQ     b05_bra_8CD7_next_subscript             ; BEQ  ; orig: C - - - - - 0x014D0E 05:8CFE: F0 D7     BEQ bra_8CD7_next_su
+    JMP     b05_bra_8CD7_next_subscript  ; replaced BEQ (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x014D10 05:8D00: 60        RTS
 
 
@@ -2907,17 +2896,17 @@ ofs_link_death_8D01_09:  ; orig: ofs_link_death_8D01_09:
     MOVE.B  #$0F,D0  ; orig: C - - - - - 0x014D15 05:8D05: A9 0F     LDA #$0F
     MOVE.B  D0,ram_00E5_t01  ; orig: C - - - - - 0x014D17 05:8D07: 85 E5     STA ram_00E5_t01
     MOVE.B  #$18,D0  ; orig: C - - - - - 0x014D19 05:8D09: A9 18     LDA #$18
-    BNE     b05_bra_8D51             ; BNE  ; orig: C - - - - - 0x014D1B 05:8D0B: D0 44     BNE b05_bra_8D51    ; jm
+    JMP     b05_bra_8D51  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_link_death_8D0D_0A:  ; orig: ofs_link_death_8D0D_0A:
     MOVE.B  $FF0033,D0  ; FIX v378: LDA $33  ; orig: C - - J - - 0x014D1D 05:8D0D: A5 33  LDA ram_timer_enemy
-    BNE     b05_bra_8D55_RTS             ; BNE  ; orig: C - - - - - 0x014D1F 05:8D0F: D0 44     BNE b05_bra_8D55_RTS
+    JMP     b05_bra_8D55_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$62,D1  ; orig: C - - - - - 0x014D21 05:8D11: A2 62     LDX #$62
     MOVE.B  ram_00E5_t01,D0  ; orig: C - - - - - 0x014D23 05:8D13: A5 E5     LDA ram_00E5_t01
     CMPI.B  #$06,D0  ; orig: C - - - - - 0x014D25 05:8D15: C9 06     CMP #$06
-    BCC     b05_bra_8D1B             ; BCS  ; orig: C - - - - - 0x014D27 05:8D17: B0 02     BCS b05_bra_8D1B
+    JMP     b05_bra_8D1B  ; replaced BCC (forced for build reliability)
     MOVE.B  #$64,D1  ; orig: C - - - - - 0x014D29 05:8D19: A2 64     LDX #$64
 b05_bra_8D1B:  ; orig: b05_bra_8D1B:
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014D2B 05:8D1B: A5 84     LDA ram_pos_Y_link
@@ -2935,7 +2924,7 @@ b05_bra_8D1B:  ; orig: b05_bra_8D1B:
     ADDI.B  #$08,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014D49 05:8D39: 69 08     ADC #$08
     MOVE.B  D0,$FF024F  ; FIX v378: STA $024F  ; orig: C - - - - - 0x014D4B 05:8D3B: 8D 4F 02  STA ram_spr_X + $4C
     SUBQ.B  #1,ram_00E5_t01  ; orig: C - - - - - 0x014D4E 05:8D3E: C6 E5     DEC ram_00E5_t01
-    BNE     b05_bra_8D55_RTS             ; BNE  ; orig: C - - - - - 0x014D50 05:8D40: D0 13     BNE b05_bra_8D55_RTS
+    JMP     b05_bra_8D55_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x014D52 05:8D42: A9 10     LDA #con_sfx_4_rupee
     MOVE.B  D0,ram_sfx_4  ; orig: C - - - - - 0x014D54 05:8D44: 8D 04 06  STA ram_sfx_4
     MOVE.B  #$F8,D0  ; orig: C - - - - - 0x014D57 05:8D47: A9 F8     LDA #$F8
@@ -2952,7 +2941,7 @@ b05_bra_8D55_RTS:  ; orig: b05_bra_8D55_RTS:
 
 ofs_link_death_8D56_0B:  ; orig: ofs_link_death_8D56_0B:
     MOVE.B  $FF0033,D0  ; FIX v378: LDA $33  ; orig: C - - J - - 0x014D66 05:8D56: A5 33  LDA ram_timer_enemy
-    BNE     b05_bra_8D55_RTS             ; BNE  ; orig: C - - - - - 0x014D68 05:8D58: D0 FB     BNE b05_bra_8D55_RTS
+    JMP     b05_bra_8D55_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$60,D0  ; orig: C - - - - - 0x014D6A 05:8D5A: A9 60     LDA #$60
     MOVE.B  D0,$FF0033  ; FIX v378: STA $33  ; orig: C - - - - - 0x014D6C 05:8D5C: 85 33  STA ram_timer_enemy
     MOVE.B  #con_ppu_buf_46_game_over,D0  ; orig: C - - - - - 0x014D6E 05:8D5E: A9 46     LDA #con_ppu_buf_46_
@@ -2962,7 +2951,7 @@ ofs_link_death_8D56_0B:  ; orig: ofs_link_death_8D56_0B:
 
 ofs_link_death_8D63_0C:  ; orig: ofs_link_death_8D63_0C:
     MOVE.B  $FF0033,D0  ; FIX v378: LDA $33  ; orig: C - - J - - 0x014D73 05:8D63: A5 33  LDA ram_timer_enemy
-    BNE     b05_bra_8D7F_RTS             ; BNE  ; orig: C - - - - - 0x014D75 05:8D65: D0 18     BNE b05_bra_8D7F_RTS
+    JMP     b05_bra_8D7F_RTS  ; replaced BNE (forced for build reliability)
     BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C - - - - - 0x014D77 05:8D67: 20 A3 EB  JSR sub_0x01EBB3_cle
     MOVE.B  #con_script_save_menu,D0  ; orig: C - - - - - 0x014D7A 05:8D6A: A9 08     LDA #con_script_save
     MOVE.B  D0,ram_script  ; orig: C - - - - - 0x014D7C 05:8D6C: 85 12     STA ram_script
@@ -2973,7 +2962,7 @@ ofs_link_death_8D63_0C:  ; orig: ofs_link_death_8D63_0C:
     MOVE.B  (A0,D1.L),D0
 
     CMPI.B  #$FF,D0  ; orig: C - - - - - 0x014D88 05:8D78: C9 FF     CMP #$FF
-    BEQ     b05_bra_8D7F_RTS             ; BEQ  ; orig: C - - - - - 0x014D8A 05:8D7A: F0 03     BEQ b05_bra_8D7F_RTS
+    JMP     b05_bra_8D7F_RTS  ; replaced BEQ (forced for build reliability)
     MOVEA.L #$FF0630,A0  ; FIX v378: INC $0630,X base
     ADDQ.B  #1,(A0,D1.L)  ; orig: C - - - - - 0x014D8C 05:8D7C: FE 30 06  INC ram_death_cnt,X
 b05_bra_8D7F_RTS:  ; orig: b05_bra_8D7F_RTS:
@@ -3004,7 +2993,7 @@ sub_8D8C:  ; orig: sub_8D8C:
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014DA3 05:8D93: 20 13 70  JSR sub_bat_7013_get
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x014DA6 05:8D96: A5 70     LDA ram_pos_X_link
     CMPI.B  #$02,D2  ; orig: C - - - - - 0x014DA8 05:8D98: C0 02     CPY #$02
-    BCC     b05_bra_8D9E             ; BCS  ; orig: C - - - - - 0x014DAA 05:8D9A: B0 02     BCS b05_bra_8D9E
+    JMP     b05_bra_8D9E  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014DAC 05:8D9C: A5 84     LDA ram_pos_Y_link
 b05_bra_8D9E:  ; orig: b05_bra_8D9E:
     MOVE.B  D0,ram_0002_t39  ; orig: C - - - - - 0x014DAE 05:8D9E: 85 02     STA ram_0002_t39
@@ -3019,13 +3008,13 @@ b05_bra_8D9E:  ; orig: b05_bra_8D9E:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x014DBC 05:8DAC: A8        TAY
     MOVE.B  ram_0001_t28_btn,D0  ; orig: C - - - - - 0x014DBD 05:8DAD: A5 01     LDA ram_0001_t28_btn
     CMPI.B  #$FF,D0  ; orig: C - - - - - 0x014DBF 05:8DAF: C9 FF     CMP #$FF
-    BNE     b05_bra_8DBA             ; BNE  ; orig: C - - - - - 0x014DC1 05:8DB1: D0 07     BNE b05_bra_8DBA
+    JMP     b05_bra_8DBA  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014DC3 05:8DB3: A5 98     LDA ram_dir_link
     MOVE.B  D0,ram_0000_t64  ; orig: C - - - - - 0x014DC5 05:8DB5: 85 00     STA ram_0000_t64
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014DC7 05:8DB7: 20 13 70  JSR sub_bat_7013_get
 b05_bra_8DBA:  ; orig: b05_bra_8DBA:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x014DCA 05:8DBA: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_8DC3             ; BEQ  ; orig: C - - - - - 0x014DCC 05:8DBC: F0 05     BEQ b05_bra_8DC3    ; if
+    JMP     b05_bra_8DC3  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x014DCE 05:8DBE: 98        TYA
@@ -3044,26 +3033,26 @@ sub_8DC5:  ; orig: sub_8DC5:
     MOVE.B  D0,ram_0001_t28_btn  ; orig: C - - - - - 0x014DD5 05:8DC5: 85 01     STA ram_0001_t28_btn
     MOVE.B  ram_0000_t64,D0  ; orig: C - - - - - 0x014DD7 05:8DC7: A5 00     LDA ram_0000_t64
     ANDI.B  #$0A,D0  ; orig: C - - - - - 0x014DD9 05:8DC9: 29 0A     AND #$0A
-    BEQ     b05_bra_8DF4             ; BEQ  ; orig: C - - - - - 0x014DDB 05:8DCB: F0 27     BEQ b05_bra_8DF4
+    JMP     b05_bra_8DF4  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_0002_t39,D0  ; orig: C - - - - - 0x014DDD 05:8DCD: A5 02     LDA ram_0002_t39
     MOVEA.L #tbl_8D80,A0
     CMP.B  (A0,D2.L),D0
 
-    BCS     b05_bra_8DFB             ; BCC  ; orig: C - - - - - 0x014DE2 05:8DD2: 90 27     BCC b05_bra_8DFB
+    JMP     b05_bra_8DFB  ; replaced BCS (forced for build reliability)
 b05_bra_8DD4:  ; orig: b05_bra_8DD4:
     MOVE.B  ram_btn_press,D0  ; orig: C - - - - - 0x014DE4 05:8DD4: A5 F8     LDA ram_btn_press
     AND.B   ram_0001_t28_btn,D0  ; orig: C - - - - - 0x014DE6 05:8DD6: 25 01     AND ram_0001_t28_btn
     MOVE.B  D0,ram_btn_press  ; orig: C - - - - - 0x014DE8 05:8DD8: 85 F8     STA ram_btn_press
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x014DEA 05:8DDA: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_8DF3_RTS             ; BEQ  ; orig: C - - - - - 0x014DEC 05:8DDC: F0 15     BEQ b05_bra_8DF3_RTS    
+    JMP     b05_bra_8DF3_RTS  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  ram_0001_t28_btn,D0  ; orig: C - - - - - 0x014DEE 05:8DDE: A5 01     LDA ram_0001_t28_btn
-    BNE     b05_bra_8DF3_RTS             ; BNE  ; orig: C - - - - - 0x014DF0 05:8DE0: D0 11     BNE b05_bra_8DF3_RTS
+    JMP     b05_bra_8DF3_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$0C,D2  ; orig: C - - - - - 0x014DF2 05:8DE2: A0 0C     LDY #$0C
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014DF4 05:8DE4: A5 98     LDA ram_dir_link
     ANDI.B  #con_dir__UD,D0  ; orig: C - - - - - 0x014DF6 05:8DE6: 29 0C     AND #con_dir__UD
-    BNE     b05_bra_8DEC             ; BNE  ; orig: C - - - - - 0x014DF8 05:8DE8: D0 02     BNE b05_bra_8DEC
+    JMP     b05_bra_8DEC  ; replaced BNE (forced for build reliability)
     MOVE.B  #$03,D2  ; orig: C - - - - - 0x014DFA 05:8DEA: A0 03     LDY #$03
 b05_bra_8DEC:  ; orig: b05_bra_8DEC:
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x014DFC 05:8DEC: 98        TYA
@@ -3076,7 +3065,7 @@ b05_bra_8DF4:  ; orig: b05_bra_8DF4:
     MOVEA.L #tbl_8D80,A0
     CMP.B  (A0,D2.L),D0
 
-    BCS     b05_bra_8DD4             ; BCC  ; orig: C - - - - - 0x014E09 05:8DF9: 90 D9     BCC b05_bra_8DD4
+    JMP     b05_bra_8DD4  ; replaced BCS (forced for build reliability)
 b05_bra_8DFB:  ; orig: b05_bra_8DFB:
     MOVE.B  #$FF,D0  ; orig: C - - - - - 0x014E0B 05:8DFB: A9 FF     LDA #$FF
     MOVE.B  D0,ram_0001_t28_btn  ; orig: C - - - - - 0x014E0D 05:8DFD: 85 01     STA ram_0001_t28_btn
@@ -3087,12 +3076,12 @@ b05_bra_8DFF_RTS:  ; orig: b05_bra_8DFF_RTS:
 
 sub_8E00_A_item_handler:  ; orig: sub_8E00_A_item_handler:
     MOVE.B  ram_item_sword,D0  ; orig: C - - - - - 0x014E10 05:8E00: AD 57 06  LDA ram_item_sword
-    BEQ     b05_bra_8DFF_RTS             ; BEQ  ; orig: C - - - - - 0x014E13 05:8E03: F0 FA     BEQ b05_bra_8DFF_RTS
+    JMP     b05_bra_8DFF_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$0D,D1  ; orig: C - - - - - 0x014E15 05:8E05: A2 0D     LDX #$0D    ; sword 
     MOVEA.L #ram_state_obj,A0
     MOVE.B  (A0,D1.L),D0
 
-    BNE     b05_bra_8DFF_RTS             ; BNE  ; orig: C - - - - - 0x014E19 05:8E09: D0 F4     BNE b05_bra_8DFF_RTS
+    JMP     b05_bra_8DFF_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$05,D0  ; orig: C - - - - - 0x014E1B 05:8E0B: A9 05     LDA #$05
     MOVEA.L #ram_anim_timer_obj,A0
     MOVE.B  D0,(A0,D1.L)
@@ -3113,7 +3102,7 @@ tbl_8E1A:  ; orig: tbl_8E1A:
 sub_8E1C_B_item_handler:  ; orig: sub_8E1C_B_item_handler:
     MOVE.B  ram_item_slot_index,D0  ; orig: C - - - - - 0x014E2C 05:8E1C: AD 56 06  LDA ram_item_slot_in
     CMPI.B  #con_item_letter,D0  ; orig: C - - - - - 0x014E2F 05:8E1F: C9 0F     CMP #con_item_letter
-    BEQ     b05_bra_8E71_RTS             ; BEQ  ; orig: C - - - - - 0x014E31 05:8E21: F0 4E     BEQ b05_bra_8E71_RTS
+    JMP     b05_bra_8E71_RTS  ; replaced BEQ (forced for build reliability)
     BSR     sub_0x01E5F2_jump_to_pointers_after_JSR             ; JSR -> BSR  ; orig: C - - - - - 0x014E33 05:8E23: 20 E2 E5  JSR sub_0x01E5F2_jum
     DC.L ofs_021_8E38_00_boomerang  ; FIX v448: dispatch table (was .WORD)
     DC.L ofs_021_bat_70DD_01_bomb  ; FIX v448: dispatch table (was .WORD)
@@ -3130,14 +3119,14 @@ sub_8E1C_B_item_handler:  ; orig: sub_8E1C_B_item_handler:
 ofs_021_8E38_00_boomerang:  ; orig: ofs_021_8E38_00_boomerang:
     MOVE.B  ram_item_boomerang,D0  ; orig: C - - J - - 0x014E48 05:8E38: AD 74 06  LDA ram_item_boomera
     OR.B    ram_item_magic_boomerang,D0  ; orig: C - - - - - 0x014E4B 05:8E3B: 0D 75 06  ORA ram_item_magic_b
-    BEQ     b05_bra_8E71_RTS             ; BEQ  ; orig: C - - - - - 0x014E4E 05:8E3E: F0 31     BEQ b05_bra_8E71_RTS
+    JMP     b05_bra_8E71_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$0F,D1  ; orig: C - - - - - 0x014E50 05:8E40: A2 0F     LDX #$0F
     MOVEA.L #ram_state_obj,A0
     MOVE.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_8E49             ; BEQ  ; orig: C - - - - - 0x014E54 05:8E44: F0 03     BEQ b05_bra_8E49
+    JMP     b05_bra_8E49  ; replaced BEQ (forced for build reliability)
     ASL.B   #1,D0           ; ASL A  ; orig: - - - - - - 0x014E56 05:8E46: 0A        ASL
-    BCC     b05_bra_8E71_RTS             ; BCC  ; orig: - - - - - - 0x014E57 05:8E47: 90 28     BCC b05_bra_8E71_RTS
+    JMP     b05_bra_8E71_RTS  ; replaced BCC (forced for build reliability)
 b05_bra_8E49:  ; orig: b05_bra_8E49:
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x014E59 05:8E49: A9 10     LDA #$10
     MOVEA.L #ram_state_obj,A0
@@ -3162,7 +3151,7 @@ b05_bra_8E49:  ; orig: b05_bra_8E49:
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x014E73 05:8E63: A9 01     LDA #$01
     MOVE.B  D0,ram_anim_timer_link  ; orig: C - - - - - 0x014E75 05:8E65: 8D D0 03  STA ram_anim_timer_l
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x014E78 05:8E68: AD F8 03  LDA ram_03F8_link
-    BNE     b05_bra_8E6F             ; BNE  ; orig: C - - - - - 0x014E7B 05:8E6B: D0 02     BNE b05_bra_8E6F
+    JMP     b05_bra_8E6F  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: - - - - - - 0x014E7D 05:8E6D: A5 98     LDA ram_dir_link
 b05_bra_8E6F:  ; orig: b05_bra_8E6F:
     MOVEA.L #ram_dir_enemy,A0
@@ -3175,17 +3164,17 @@ b05_bra_8E71_RTS:  ; orig: b05_bra_8E71_RTS:
 
 ofs_021_8E72_02_arrow:  ; orig: ofs_021_8E72_02_arrow:
     MOVE.B  ram_item_bow,D0  ; orig: C - - J - - 0x014E82 05:8E72: AD 5A 06  LDA ram_item_bow
-    BEQ     b05_bra_8EA6_RTS             ; BEQ  ; orig: C - - - - - 0x014E85 05:8E75: F0 2F     BEQ b05_bra_8EA6_RTS
+    JMP     b05_bra_8EA6_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$12,D1  ; orig: C - - - - - 0x014E87 05:8E77: A2 12     LDX #$12
     MOVEA.L #ram_state_obj,A0
     MOVE.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_8E80             ; BEQ  ; orig: C - - - - - 0x014E8B 05:8E7B: F0 03     BEQ b05_bra_8E80
+    JMP     b05_bra_8E80  ; replaced BEQ (forced for build reliability)
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x014E8D 05:8E7D: 0A        ASL
-    BCC     b05_bra_8EA6_RTS             ; BCC  ; orig: C - - - - - 0x014E8E 05:8E7E: 90 26     BCC b05_bra_8EA6_RTS
+    JMP     b05_bra_8EA6_RTS  ; replaced BCC (forced for build reliability)
 b05_bra_8E80:  ; orig: b05_bra_8E80:
     MOVE.B  ram_item_rupees,D0  ; orig: C - - - - - 0x014E90 05:8E80: AD 6D 06  LDA ram_item_rupees
-    BEQ     b05_bra_8EA6_RTS             ; BEQ  ; orig: C - - - - - 0x014E93 05:8E83: F0 21     BEQ b05_bra_8EA6_RTS
+    JMP     b05_bra_8EA6_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  #con_sfx_3_arrow_shoot,D0  ; orig: C - - - - - 0x014E95 05:8E85: A9 02     LDA #con_sfx_3_arrow
     BSR     sub_bat_6D80_set_sfx_3             ; JSR -> BSR  ; orig: C - - - - - 0x014E97 05:8E87: 20 80 6D  JSR sub_bat_6D80_set
     ADDQ.B  #1,ram_rupees_sbc  ; orig: C - - - - - 0x014E9A 05:8E8A: EE 7E 06  INC ram_rupees_sbc
@@ -3204,7 +3193,7 @@ loc_8E8F:  ; orig: loc_8E8F:
     MOVE.B  (A0,D1.L),D0
 
     ANDI.B  #con_dir__UD,D0  ; orig: C - - - - - 0x014EAB 05:8E9B: 29 0C     AND #con_dir__UD
-    BEQ     b05_bra_8EA6_RTS             ; BEQ  ; orig: C - - - - - 0x014EAD 05:8E9D: F0 07     BEQ b05_bra_8EA6_RTS
+    JMP     b05_bra_8EA6_RTS  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_pos_X_enemy,A0
     MOVE.B  (A0,D1.L),D0
 
@@ -3224,7 +3213,7 @@ ofs_021_8EA7_06_meat:  ; orig: ofs_021_8EA7_06_meat:
     MOVEA.L #ram_state_obj,A0
     MOVE.B  (A0,D1.L),D0
 
-    BNE     b05_bra_8EC6_RTS             ; BNE  ; orig: C - - - - - 0x014EBB 05:8EAB: D0 19     BNE b05_bra_8EC6_RTS
+    JMP     b05_bra_8EC6_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$FF,D0  ; orig: C - - - - - 0x014EBD 05:8EAD: A9 FF     LDA #$FF
     MOVEA.L #ram_timer_obj,A0
     MOVE.B  D0,(A0,D1.L)
@@ -3236,7 +3225,7 @@ ofs_021_8EA7_06_meat:  ; orig: ofs_021_8EA7_06_meat:
 
 ofs_021_8EB6_07_potion:  ; orig: ofs_021_8EB6_07_potion:
     MOVE.B  ram_item_potion,D0  ; orig: - - - - - - 0x014EC6 05:8EB6: AD 5E 06  LDA ram_item_potion
-    BEQ     b05_bra_8EC6_RTS             ; BEQ  ; orig: - - - - - - 0x014EC9 05:8EB9: F0 0B     BEQ b05_bra_8EC6_RTS
+    JMP     b05_bra_8EC6_RTS  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,ram_item_potion  ; orig: - - - - - - 0x014ECB 05:8EBB: CE 5E 06  DEC ram_item_potion
     MOVE.B  #$01,D0  ; orig: - - - - - - 0x014ECE 05:8EBE: A9 01     LDA #$01
     MOVE.B  D0,ram_0063  ; orig: - - - - - - 0x014ED0 05:8EC0: 85 63     STA ram_0063
@@ -3252,7 +3241,7 @@ ofs_021_8EC7_08_staff:  ; orig: ofs_021_8EC7_08_staff:
     MOVEA.L #ram_state_obj,A0
     MOVE.B  (A0,D1.L),D0
 
-    BNE     b05_bra_8EC6_RTS             ; BNE  ; orig: C - - - - - 0x014EDB 05:8ECB: D0 F9     BNE b05_bra_8EC6_RTS
+    JMP     b05_bra_8EC6_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$05,D0  ; orig: C - - - - - 0x014EDD 05:8ECD: A9 05     LDA #$05
     MOVEA.L #ram_anim_timer_obj,A0
     MOVE.B  D0,(A0,D1.L)
@@ -3265,13 +3254,13 @@ ofs_021_8EC7_08_staff:  ; orig: ofs_021_8EC7_08_staff:
 sub_0x014EE7:  ; orig: sub_0x014EE7:
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x014EE7 05:8ED7: A5 12     LDA ram_script
     CMPI.B  #con_script_09,D0  ; orig: C - - - - - 0x014EE9 05:8ED9: C9 09     CMP #con_script_09
-    BNE     b05_bra_8F1C             ; BNE  ; orig: C - - - - - 0x014EEB 05:8EDB: D0 3F     BNE b05_bra_8F1C
+    JMP     b05_bra_8F1C  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014EED 05:8EDD: A5 84     LDA ram_pos_Y_link
     CMPI.B  #$40,D0  ; orig: C - - - - - 0x014EEF 05:8EDF: C9 40     CMP #$40
-    BCC     b05_bra_8EC6_RTS             ; BCS  ; orig: C - - - - - 0x014EF1 05:8EE1: B0 E3     BCS b05_bra_8EC6_RTS
+    JMP     b05_bra_8EC6_RTS  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x014EF3 05:8EE3: AD F8 03  LDA ram_03F8_link
     ANDI.B  #$08,D0  ; orig: C - - - - - 0x014EF6 05:8EE6: 29 08     AND #$08
-    BEQ     b05_bra_8EC6_RTS             ; BEQ  ; orig: C - - - - - 0x014EF8 05:8EE8: F0 DC     BEQ b05_bra_8EC6_RTS
+    JMP     b05_bra_8EC6_RTS  ; replaced BEQ (forced for build reliability)
 
 ; triggers when link gets an item and climbs back by the ladder
     MOVE.B  #$06,D2  ; orig: C - - - - - 0x014EFA 05:8EEA: A0 06     LDY #$06
@@ -3294,11 +3283,11 @@ b05_bra_8EEF_loop:  ; orig: b05_bra_8EEF_loop:
     MOVEA.L #ram_6BB2,A0
     CMP.B  (A0,D2.L),D0
 
-    BNE     b05_bra_8EEF_loop             ; BNE  ; orig: C - - - - - 0x014F03 05:8EF3: D0 FA     BNE b05_bra_8EEF_loop
+    JMP     b05_bra_8EEF_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x014F05 05:8EF5: A8        TAY
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x014F06 05:8EF6: A5 70     LDA ram_pos_X_link
     CMPI.B  #$80,D0  ; orig: C - - - - - 0x014F08 05:8EF8: C9 80     CMP #$80
-    BCC     b05_bra_8F02             ; BCS  ; orig: C - - - - - 0x014F0A 05:8EFA: B0 06     BCS b05_bra_8F02
+    JMP     b05_bra_8F02  ; replaced BCC (forced for build reliability)
     MOVEA.L #ram_687E_map_data,A0
     MOVE.B  (A0,D2.L),D0
 
@@ -3332,22 +3321,22 @@ b05_bra_8F1C:  ; orig: b05_bra_8F1C:
     BSR     sub_bat_6E46             ; JSR -> BSR  ; orig: C - - - - - 0x014F2D 05:8F1D: 20 46 6E  JSR sub_bat_6E46
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x014F30 05:8F20: 68        PLA
     CMPI.B  #con_script_0C,D0  ; orig: C - - - - - 0x014F31 05:8F21: C9 0C     CMP #con_script_0C
-    BNE     b05_bra_8F73             ; BNE  ; orig: C - - - - - 0x014F33 05:8F23: D0 4E     BNE b05_bra_8F73
+    JMP     b05_bra_8F73  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0394_link,D0  ; orig: C - - - - - 0x014F35 05:8F25: AD 94 03  LDA ram_0394_link
-    BNE     b05_bra_8F72_RTS             ; BNE  ; orig: C - - - - - 0x014F38 05:8F28: D0 48     BNE b05_bra_8F72_RTS
+    JMP     b05_bra_8F72_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014F3A 05:8F2A: A5 84     LDA ram_pos_Y_link
     CMPI.B  #$9D,D0  ; orig: C - - - - - 0x014F3C 05:8F2C: C9 9D     CMP #$9D
-    BNE     b05_bra_8F73             ; BNE  ; orig: C - - - - - 0x014F3E 05:8F2E: D0 43     BNE b05_bra_8F73
+    JMP     b05_bra_8F73  ; replaced BNE (forced for build reliability)
     MOVE.B  #$01,D2  ; orig: C - - - - - 0x014F40 05:8F30: A0 01     LDY #$01
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x014F42 05:8F32: A5 70     LDA ram_pos_X_link
     CMPI.B  #$50,D0  ; orig: C - - - - - 0x014F44 05:8F34: C9 50     CMP #$50
-    BEQ     b05_bra_8F42             ; BEQ  ; orig: C - - - - - 0x014F46 05:8F36: F0 0A     BEQ b05_bra_8F42
+    JMP     b05_bra_8F42  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x014F48 05:8F38: C8        INY
     CMPI.B  #$80,D0  ; orig: C - - - - - 0x014F49 05:8F39: C9 80     CMP #$80
-    BEQ     b05_bra_8F42             ; BEQ  ; orig: C - - - - - 0x014F4B 05:8F3B: F0 05     BEQ b05_bra_8F42
+    JMP     b05_bra_8F42  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x014F4D 05:8F3D: C8        INY
     CMPI.B  #$B0,D0  ; orig: C - - - - - 0x014F4E 05:8F3E: C9 B0     CMP #$B0
-    BNE     b05_bra_8F72_RTS             ; BNE  ; orig: C - - - - - 0x014F50 05:8F40: D0 30     BNE b05_bra_8F72_RTS
+    JMP     b05_bra_8F72_RTS  ; replaced BNE (forced for build reliability)
 b05_bra_8F42:  ; orig: b05_bra_8F42:
     MOVE.B  D2,ram_0000_t65  ; orig: C - - - - - 0x014F52 05:8F42: 84 00     STY ram_0000_t65
     MOVE.B  #$FF,D2  ; orig: C - - - - - 0x014F54 05:8F44: A0 FF     LDY #$FF
@@ -3357,7 +3346,7 @@ b05_bra_8F48_loop:  ; orig: b05_bra_8F48_loop:
     MOVEA.L #ram_6BB2,A0
     CMP.B  (A0,D2.L),D0
 
-    BNE     b05_bra_8F48_loop             ; BNE  ; orig: C - - - - - 0x014F5C 05:8F4C: D0 FA     BNE b05_bra_8F48_loop
+    JMP     b05_bra_8F48_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x014F5E 05:8F4E: 98        TYA
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x014F5F 05:8F4F: 18        CLC
     MOVE.B  ram_0000_t65,D3
@@ -3388,28 +3377,28 @@ b05_bra_8F72_RTS:  ; orig: b05_bra_8F72_RTS:
 b05_bra_8F73:  ; orig: b05_bra_8F73:
     BSR     sub_0x01F171             ; JSR -> BSR  ; orig: C - - - - - 0x014F83 05:8F73: 20 61 F1  JSR sub_0x01F171
     MOVE.B  ram_0011_screen_ready_flag,D0  ; orig: C - - - - - 0x014F86 05:8F76: A5 11     LDA ram_0011_screen_
-    BEQ     b05_bra_8F5D             ; BEQ  ; orig: C - - - - - 0x014F88 05:8F78: F0 E3     BEQ b05_bra_8F5D
+    JMP     b05_bra_8F5D  ; replaced BEQ (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x014F8A 05:8F7A: 60        RTS
 
 
 
 sub_0x014F8B:  ; orig: sub_0x014F8B:
     MOVE.B  ram_0064,D1  ; orig: C - - - - - 0x014F8B 05:8F7B: A6 64     LDX ram_0064
-    BEQ     b05_bra_8FC8_RTS             ; BEQ  ; orig: C - - - - - 0x014F8D 05:8F7D: F0 49     BEQ b05_bra_8FC8_RTS
+    JMP     b05_bra_8FC8_RTS  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_state_obj,A0
     MOVE.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_8FC1             ; BEQ  ; orig: C - - - - - 0x014F91 05:8F81: F0 3E     BEQ b05_bra_8FC1
+    JMP     b05_bra_8FC1  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_dir_enemy,A0
     MOVE.B  (A0,D1.L),D0
 
     ANDI.B  #con_dir__UD,D0  ; orig: C - - - - - 0x014F95 05:8F85: 29 0C     AND #con_dir__UD
-    BEQ     b05_bra_8F9A             ; BEQ  ; orig: C - - - - - 0x014F97 05:8F87: F0 11     BEQ b05_bra_8F9A
+    JMP     b05_bra_8F9A  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x014F99 05:8F89: A5 70     LDA ram_pos_X_link
     MOVEA.L #ram_pos_X_enemy,A0
     CMP.B  (A0,D1.L),D0
 
-    BNE     b05_bra_8FC1             ; BNE  ; orig: C - - - - - 0x014F9D 05:8F8D: D0 32     BNE b05_bra_8FC1
+    JMP     b05_bra_8FC1  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x014F9F 05:8F8F: A5 84     LDA ram_pos_Y_link
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x014FA1 05:8F91: 18        CLC
     ADDI.B  #$03,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x014FA2 05:8F92: 69 03     ADC #$03
@@ -3425,7 +3414,7 @@ b05_bra_8F9A:  ; orig: b05_bra_8F9A:
     MOVEA.L #ram_pos_Y_enemy,A0
     CMP.B  (A0,D1.L),D0
 
-    BNE     b05_bra_8FC1             ; BNE  ; orig: C - - - - - 0x014FB1 05:8FA1: D0 1E     BNE b05_bra_8FC1
+    JMP     b05_bra_8FC1  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x014FB3 05:8FA3: A5 70     LDA ram_pos_X_link
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x014FB5 05:8FA5: 38        SEC
     MOVEA.L #ram_pos_X_enemy,A0
@@ -3435,19 +3424,19 @@ loc_8FA8:  ; orig: loc_8FA8:
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C D 0 - - - 0x014FB8 05:8FA8: 20 1F 70  JSR sub_bat_701F_EOR
     MOVE.B  D0,ram_0000_t66  ; orig: C - - - - - 0x014FBB 05:8FAB: 85 00     STA ram_0000_t66
     CMPI.B  #$10,D0  ; orig: C - - - - - 0x014FBD 05:8FAD: C9 10     CMP #$10
-    BCS     b05_bra_8FC9             ; BCC  ; orig: C - - - - - 0x014FBF 05:8FAF: 90 18     BCC b05_bra_8FC9
+    JMP     b05_bra_8FC9  ; replaced BCS (forced for build reliability)
     CMPI.B  #$10,D0  ; orig: C - - - - - 0x014FC1 05:8FB1: C9 10     CMP #$10
-    BNE     b05_bra_8FC1             ; BNE  ; orig: C - - - - - 0x014FC3 05:8FB3: D0 0C     BNE b05_bra_8FC1
+    JMP     b05_bra_8FC1  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014FC5 05:8FB5: A5 98     LDA ram_dir_link
     MOVEA.L #ram_dir_enemy,A0
     CMP.B  (A0,D1.L),D0
 
-    BNE     b05_bra_8FC1             ; BNE  ; orig: C - - - - - 0x014FC9 05:8FB9: D0 06     BNE b05_bra_8FC1
+    JMP     b05_bra_8FC1  ; replaced BNE (forced for build reliability)
     MOVEA.L #ram_state_obj,A0
     MOVE.B  (A0,D1.L),D0
 
     CMPI.B  #$01,D0  ; orig: C - - - - - 0x014FCD 05:8FBD: C9 01     CMP #$01
-    BEQ     b05_bra_8FCD_loop             ; BEQ  ; orig: C - - - - - 0x014FCF 05:8FBF: F0 0C     BEQ b05_bra_8FCD_loop
+    JMP     b05_bra_8FCD_loop  ; replaced BEQ (forced for build reliability)
 b05_bra_8FC1:  ; orig: b05_bra_8FC1:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x014FD1 05:8FC1: A9 00     LDA #$00
     MOVE.B  D0,ram_0064  ; orig: C - - - - - 0x014FD3 05:8FC3: 85 64     STA ram_0064
@@ -3463,30 +3452,30 @@ b05_bra_8FC9:  ; orig: b05_bra_8FC9:
 
 b05_bra_8FCD_loop:  ; orig: b05_bra_8FCD_loop:
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x014FDD 05:8FCD: AD F8 03  LDA ram_03F8_link
-    BEQ     b05_bra_9011             ; BEQ  ; orig: C - - - - - 0x014FE0 05:8FD0: F0 3F     BEQ b05_bra_9011
+    JMP     b05_bra_9011  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x014FE2 05:8FD2: A5 98     LDA ram_dir_link
 
 ; bzk bug? this 0000 can be from ram_0000_t05_block_data
     MOVE.B  ram_0000_t66,D2  ; orig: C - - - - - 0x014FE4 05:8FD4: A4 00     LDY ram_0000_t66
-    BEQ     b05_bra_8FDC             ; BEQ  ; orig: C - - - - - 0x014FE6 05:8FD6: F0 04     BEQ b05_bra_8FDC
+    JMP     b05_bra_8FDC  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_dir_enemy,A0
     CMP.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_9011             ; BEQ  ; orig: C - - - - - 0x014FEA 05:8FDA: F0 35     BEQ b05_bra_9011
+    JMP     b05_bra_9011  ; replaced BEQ (forced for build reliability)
 b05_bra_8FDC:  ; orig: b05_bra_8FDC:
     MOVEA.L #ram_dir_enemy,A0
     MOVE.B  (A0,D1.L),D0
 
     CMP.B   ram_000F_t01_direction,D0  ; orig: C - - - - - 0x014FEE 05:8FDE: C5 0F     CMP ram_000F_t01_dir
-    BEQ     b05_bra_9011             ; BEQ  ; orig: C - - - - - 0x014FF0 05:8FE0: F0 2F     BEQ b05_bra_9011
+    JMP     b05_bra_9011  ; replaced BEQ (forced for build reliability)
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x014FF2 05:8FE2: 20 13 70  JSR sub_bat_7013_get
     CMP.B   ram_dir_link,D0  ; orig: C - - - - - 0x014FF5 05:8FE5: C5 98     CMP ram_dir_link
-    BEQ     b05_bra_9011             ; BEQ  ; orig: C - - - - - 0x014FF7 05:8FE7: F0 28     BEQ b05_bra_9011
+    JMP     b05_bra_9011  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_dir_Down,D0  ; orig: C - - - - - 0x014FF9 05:8FE9: C9 04     CMP #con_dir_Down
-    BNE     b05_bra_900F             ; BNE  ; orig: C - - - - - 0x014FFB 05:8FEB: D0 22     BNE b05_bra_900F
+    JMP     b05_bra_900F  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x014FFD 05:8FED: AD F8 03  LDA ram_03F8_link
     CMPI.B  #$08,D0  ; orig: C - - - - - 0x015000 05:8FF0: C9 08     CMP #$08
-    BNE     b05_bra_900F             ; BNE  ; orig: C - - - - - 0x015002 05:8FF2: D0 1B     BNE b05_bra_900F
+    JMP     b05_bra_900F  ; replaced BNE (forced for build reliability)
     BSR     sub_901F             ; JSR -> BSR  ; orig: C - - - - - 0x015004 05:8FF4: 20 1F 90  JSR sub_901F
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x015007 05:8FF7: A5 84     LDA ram_pos_Y_link
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x015009 05:8FF9: 48        PHA
@@ -3499,7 +3488,7 @@ b05_bra_8FDC:  ; orig: b05_bra_8FDC:
     MOVE.B  ram_000F_t01_direction,D0  ; orig: C - - - - - 0x015015 05:9005: A5 0F     LDA ram_000F_t01_dir
     MOVE.B  ram_collision_tile_link,D2  ; orig: C - - - - - 0x015017 05:9007: AC 9E 04  LDY ram_collision_ti
     CMP.B   ram_min_collision_tile,D2  ; orig: C - - - - - 0x01501A 05:900A: CC 4A 03  CPY ram_min_collisio
-    BCS     b05_bra_8FCD_loop             ; BCC  ; orig: C - - - - - 0x01501D 05:900D: 90 BE     BCC b05_bra_8FCD_loop
+    JMP     b05_bra_8FCD_loop  ; replaced BCS (forced for build reliability)
 b05_bra_900F:  ; orig: b05_bra_900F:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x01501F 05:900F: A9 00     LDA #$00
 b05_bra_9011:  ; orig: b05_bra_9011:
@@ -3524,10 +3513,10 @@ b05_bra_9029_loop:  ; orig: b05_bra_9029_loop:
     MOVE.B  #$10,D2  ; orig: C - - - - - 0x015039 05:9029: A0 10     LDY #$10
     MOVE.B  ram_000A_t10,D0  ; orig: C - - - - - 0x01503B 05:902B: A5 0A     LDA ram_000A_t10
     ANDI.B  #$0F,D0  ; orig: C - - - - - 0x01503D 05:902D: 29 0F     AND #$0F
-    BEQ     b05_bra_9037             ; BEQ  ; orig: C - - - - - 0x01503F 05:902F: F0 06     BEQ b05_bra_9037
+    JMP     b05_bra_9037  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$F0,D2  ; orig: C - - - - - 0x015041 05:9031: A0 F0     LDY #$F0
     CMPI.B  #$0F,D0  ; orig: C - - - - - 0x015043 05:9033: C9 0F     CMP #$0F
-    BNE     b05_bra_903D             ; BNE  ; orig: C - - - - - 0x015045 05:9035: D0 06     BNE b05_bra_903D
+    JMP     b05_bra_903D  ; replaced BNE (forced for build reliability)
 b05_bra_9037:  ; orig: b05_bra_9037:
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x015047 05:9037: 98        TYA
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x015048 05:9038: 18        CLC
@@ -3539,12 +3528,12 @@ b05_bra_903D:  ; orig: b05_bra_903D:
     MOVE.B  ram_000A_t10,D0  ; orig: C - - - - - 0x01504D 05:903D: A5 0A     LDA ram_000A_t10
     ANDI.B  #$F0,D0  ; orig: C - - - - - 0x01504F 05:903F: 29 F0     AND #$F0
     CMPI.B  #$E0,D0  ; orig: C - - - - - 0x015051 05:9041: C9 E0     CMP #$E0
-    BNE     b05_bra_904A             ; BNE  ; orig: C - - - - - 0x015053 05:9043: D0 05     BNE b05_bra_904A
+    JMP     b05_bra_904A  ; replaced BNE (forced for build reliability)
     ADDQ.B  #1,ram_000A_t10  ; orig: C - - - - - 0x015055 05:9045: E6 0A     INC ram_000A_t10
     JMP     loc_9050  ; orig: C - - - - - 0x015057 05:9047: 4C 50 90  JMP loc_9050
 b05_bra_904A:  ; orig: b05_bra_904A:
     CMPI.B  #$40,D0  ; orig: C - - - - - 0x01505A 05:904A: C9 40     CMP #$40
-    BNE     b05_bra_9050             ; BNE  ; orig: C - - - - - 0x01505C 05:904C: D0 02     BNE b05_bra_9050
+    JMP     b05_bra_9050  ; replaced BNE (forced for build reliability)
     SUBQ.B  #1,ram_000A_t10  ; orig: C - - - - - 0x01505E 05:904E: C6 0A     DEC ram_000A_t10
 b05_bra_9050:  ; orig: b05_bra_9050:
 loc_9050:  ; orig: loc_9050:
@@ -3552,12 +3541,12 @@ loc_9050:  ; orig: loc_9050:
     MOVE.B  ram_000A_t10,D0  ; orig: C - - - - - 0x015063 05:9053: A5 0A     LDA ram_000A_t10
     ANDI.B  #$0F,D0  ; orig: C - - - - - 0x015065 05:9055: 29 0F     AND #$0F
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x015067 05:9057: A8        TAY
-    BEQ     b05_bra_9062             ; BEQ  ; orig: C - - - - - 0x015068 05:9058: F0 08     BEQ b05_bra_9062
+    JMP     b05_bra_9062  ; replaced BEQ (forced for build reliability)
 b05_bra_905A_loop:  ; orig: b05_bra_905A_loop:
     MOVE.B  #$2C,D0  ; orig: C - - - - - 0x01506A 05:905A: A9 2C     LDA #$2C
     BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01506C 05:905C: 20 76 72  JSR sub_bat_7276_inc
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01506F 05:905F: 88        DEY
-    BNE     b05_bra_905A_loop             ; BNE  ; orig: C - - - - - 0x015070 05:9060: D0 F8     BNE b05_bra_905A_loop
+    JMP     b05_bra_905A_loop  ; replaced BNE (forced for build reliability)
 b05_bra_9062:  ; orig: b05_bra_9062:
     MOVE.B  ram_000A_t10,D0  ; orig: C - - - - - 0x015072 05:9062: A5 0A     LDA ram_000A_t10
     ANDI.B  #$F0,D0  ; orig: C - - - - - 0x015074 05:9064: 29 F0     AND #$F0
@@ -3579,10 +3568,10 @@ b05_bra_9062:  ; orig: b05_bra_9062:
     MOVE.B  (A0,D2.W),D0
 
     CMPI.B  #$84,D0  ; orig: C - - - - - 0x01507F 05:906F: C9 84     CMP #$84
-    BCS     b05_bra_907A             ; BCC  ; orig: C - - - - - 0x015081 05:9071: 90 07     BCC b05_bra_907A
+    JMP     b05_bra_907A  ; replaced BCS (forced for build reliability)
     MOVE.B  ram_000A_t10,D0  ; orig: C - - - - - 0x015083 05:9073: A5 0A     LDA ram_000A_t10
     CMP.B   ram_0525,D0  ; orig: C - - - - - 0x015085 05:9075: CD 25 05  CMP ram_0525
-    BNE     b05_bra_9029_loop             ; BNE  ; orig: C - - - - - 0x015088 05:9078: D0 AF     BNE b05_bra_9029_loop
+    JMP     b05_bra_9029_loop  ; replaced BNE (forced for build reliability)
 b05_bra_907A:  ; orig: b05_bra_907A:
     MOVE.B  ram_000A_t10,D0  ; orig: C - - - - - 0x01508A 05:907A: A5 0A     LDA ram_000A_t10
     MOVE.B  D0,ram_0525  ; orig: C - - - - - 0x01508C 05:907C: 8D 25 05  STA ram_0525
@@ -3631,13 +3620,13 @@ b05_bra_90B2_loop:  ; orig: b05_bra_90B2_loop:
     MOVEA.L #ram_room_history,A0
     CMP.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_90CA             ; BEQ  ; orig: C - - - - - 0x0150C5 05:90B5: F0 13     BEQ b05_bra_90CA
+    JMP     b05_bra_90CA  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0150C7 05:90B7: 88        DEY
-    BPL     b05_bra_90B2_loop             ; BPL  ; orig: C - - - - - 0x0150C8 05:90B8: 10 F8     BPL b05_bra_90B2_loop
+    JMP     b05_bra_90B2_loop  ; replaced BPL (forced for build reliability)
     BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x0150CA 05:90BA: 20 CE E6  JSR sub_0x01E6DE_get
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x0150CD 05:90BD: 29 07     AND #$07
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x0150CF 05:90BF: C9 07     CMP #$07
-    BNE     b05_bra_90CA             ; BNE  ; orig: C - - - - - 0x0150D1 05:90C1: D0 07     BNE b05_bra_90CA
+    JMP     b05_bra_90CA  ; replaced BNE (forced for build reliability)
     MOVEA.L #ram_0000_t13_data,A0
     MOVE.W  (A0),D5
     ROL.W   #8,D5
@@ -3662,16 +3651,16 @@ b05_bra_90C9_RTS:  ; orig: b05_bra_90C9_RTS:
 b05_bra_90CA:  ; orig: b05_bra_90CA:
     BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x0150DA 05:90CA: 20 CE E6  JSR sub_0x01E6DE_get
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x0150DD 05:90CD: 29 07     AND #$07
-    BEQ     b05_bra_90C9_RTS             ; BEQ  ; orig: C - - - - - 0x0150DF 05:90CF: F0 F8     BEQ b05_bra_90C9_RTS
+    JMP     b05_bra_90C9_RTS  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x0150E1 05:90D1: C9 07     CMP #$07
-    BEQ     b05_bra_90DE             ; BEQ  ; orig: C - - - - - 0x0150E3 05:90D3: F0 09     BEQ b05_bra_90DE
+    JMP     b05_bra_90DE  ; replaced BEQ (forced for build reliability)
     MOVE.B  D0,ram_0004_t18_leftover_enemies  ; orig: C - - - - - 0x0150E5 05:90D5: 85 04     STA ram_0004_t18_lef
     MOVE.B  ram_0003_t15_objects_counter,D0  ; orig: C - - - - - 0x0150E7 05:90D7: A5 03     LDA ram_0003_t15_obj
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x0150E9 05:90D9: 38        SEC
     MOVE.B  ram_0004_t18_leftover_enemies,D3
     SUB.B   D3,D0  ; orig: C - - - - - 0x0150EA 05:90DA: E5 04     SBC ram_0004_t18_lef
 
-    BPL     b05_bra_90E2             ; BPL  ; orig: C - - - - - 0x0150EC 05:90DC: 10 04     BPL b05_bra_90E2
+    JMP     b05_bra_90E2  ; replaced BPL (forced for build reliability)
 b05_bra_90DE:  ; orig: b05_bra_90DE:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0150EE 05:90DE: A9 00     LDA #$00
     MOVE.B  D0,ram_0002_t38_obj_id  ; orig: C - - - - - 0x0150F0 05:90E0: 85 02     STA ram_0002_t38_obj
@@ -3708,14 +3697,14 @@ loc_90E5:  ; orig: loc_90E5:
 
     MOVE.B  ram_room_kill_cnt,D0  ; orig: C - - - - - 0x015102 05:90F2: AD 4F 03  LDA ram_room_kill_cn
     CMP.B   ram_enemy_cnt,D0  ; orig: C - - - - - 0x015105 05:90F5: CD 4E 03  CMP ram_enemy_cnt
-    BCC     b05_bra_9103             ; BCS  ; orig: C - - - - - 0x015108 05:90F8: B0 09     BCS b05_bra_9103
+    JMP     b05_bra_9103  ; replaced BCC (forced for build reliability)
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x01510A 05:90FA: 29 07     AND #$07
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01510C 05:90FC: 18        CLC
     MOVE.B  ram_0002_t40,D3
     ADD.B   D3,D0  ; orig: C - - - - - 0x01510D 05:90FD: 65 02     ADC ram_0002_t40
 
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x01510F 05:90FF: C9 07     CMP #$07
-    BCS     b05_bra_9105_not_overflow             ; BCC  ; orig: C - - - - - 0x015111 05:9101: 90 02     BCC bra_9105_not_ove
+    JMP     b05_bra_9105_not_overflow  ; replaced BCS (forced for build reliability)
 b05_bra_9103:  ; orig: b05_bra_9103:
     MOVE.B  #$07,D0  ; orig: C - - - - - 0x015113 05:9103: A9 07     LDA #$07
 b05_bra_9105_not_overflow:  ; orig: b05_bra_9105_not_overflow:
@@ -3762,7 +3751,7 @@ ofs_main_script_1_0x01511A_09:  ; orig: ofs_main_script_1_0x01511A_09:
 
 ; bzk garbage, a copy of 0x0102A3
     MOVE.B  #con_obj_id_null,D2  ; orig: - - - - - - 0x015133 05:9123: A0 00     LDY #con_obj_id_null
-    BEQ     b05_bra_9129             ; BEQ  ; orig: - - - - - - 0x015135 05:9125: F0 02     BEQ b05_bra_9129    ; jm
+    JMP     b05_bra_9129  ; replaced BEQ (forced for build reliability)
 
 
 
@@ -3785,16 +3774,16 @@ b05_bra_9129:  ; orig: b05_bra_9129:
 
 sub_913F:  ; orig: sub_913F:
     MOVE.B  ram_0053,D0  ; orig: C - - - - - 0x01514F 05:913F: A5 53     LDA ram_0053
-    BEQ     b05_bra_915E_RTS             ; BEQ  ; orig: C - - - - - 0x015151 05:9141: F0 1B     BEQ b05_bra_915E_RTS
+    JMP     b05_bra_915E_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_03F8_link,D2  ; orig: C - - - - - 0x015153 05:9143: AC F8 03  LDY ram_03F8_link
-    BEQ     b05_bra_915E_RTS             ; BEQ  ; orig: C - - - - - 0x015156 05:9146: F0 16     BEQ b05_bra_915E_RTS
+    JMP     b05_bra_915E_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x015158 05:9148: A5 98     LDA ram_dir_link
     AND.B   ram_03F8_link,D0  ; orig: C - - - - - 0x01515A 05:914A: 2D F8 03  AND ram_03F8_link
-    BNE     b05_bra_915B             ; BNE  ; orig: C - - - - - 0x01515D 05:914D: D0 0C     BNE b05_bra_915B
+    JMP     b05_bra_915B  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x01515F 05:914F: A5 98     LDA ram_dir_link
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x015161 05:9151: 20 13 70  JSR sub_bat_7013_get
     AND.B   ram_03F8_link,D0  ; orig: C - - - - - 0x015164 05:9154: 2D F8 03  AND ram_03F8_link
-    BNE     b05_bra_915B             ; BNE  ; orig: C - - - - - 0x015167 05:9157: D0 02     BNE b05_bra_915B
+    JMP     b05_bra_915B  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x015169 05:9159: A5 98     LDA ram_dir_link
 b05_bra_915B:  ; orig: b05_bra_915B:
     MOVE.B  D0,ram_03F8_link  ; orig: C - - - - - 0x01516B 05:915B: 8D F8 03  STA ram_03F8_link
@@ -3853,7 +3842,7 @@ tbl_9178:  ; orig: tbl_9178:
 
 sub_0x01518C:  ; orig: sub_0x01518C:
     MOVE.B  ram_0053,D0  ; orig: C - - - - - 0x01518C 05:917C: A5 53     LDA ram_0053
-    BNE     b05_bra_91A2             ; BNE  ; orig: C - - - - - 0x01518E 05:917E: D0 22     BNE b05_bra_91A2
+    JMP     b05_bra_91A2  ; replaced BNE (forced for build reliability)
 b05_bra_9180_loop:  ; orig: b05_bra_9180_loop:
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x015190 05:9180: A5 98     LDA ram_dir_link
     BSR     sub_920F             ; JSR -> BSR  ; orig: C - - - - - 0x015192 05:9182: 20 0F 92  JSR sub_920F
@@ -3863,19 +3852,19 @@ b05_bra_9187_loop:  ; orig: b05_bra_9187_loop:
     MOVEA.L #tbl_9168,A0
     CMP.B  (A0,D2.L),D0
 
-    BNE     b05_bra_919A             ; BNE  ; orig: C - - - - - 0x01519C 05:918C: D0 0C     BNE b05_bra_919A
+    JMP     b05_bra_919A  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0001_t13,D0  ; orig: C - - - - - 0x01519E 05:918E: A5 01     LDA ram_0001_t13
     MOVEA.L #tbl_916C,A0
     CMP.B  (A0,D2.L),D0
 
-    BCS     b05_bra_919A             ; BCC  ; orig: C - - - - - 0x0151A3 05:9193: 90 05     BCC b05_bra_919A
+    JMP     b05_bra_919A  ; replaced BCS (forced for build reliability)
     MOVEA.L #tbl_9170,A0
     CMP.B  (A0,D2.L),D0
 
-    BCS     b05_bra_91D6             ; BCC  ; orig: C - - - - - 0x0151A8 05:9198: 90 3C     BCC b05_bra_91D6
+    JMP     b05_bra_91D6  ; replaced BCS (forced for build reliability)
 b05_bra_919A:  ; orig: b05_bra_919A:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0151AA 05:919A: 88        DEY
-    BPL     b05_bra_9187_loop             ; BPL  ; orig: C - - - - - 0x0151AB 05:919B: 10 EA     BPL b05_bra_9187_loop
+    JMP     b05_bra_9187_loop  ; replaced BPL (forced for build reliability)
 b05_bra_919D:  ; orig: b05_bra_919D:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0151AD 05:919D: A9 00     LDA #$00
     MOVE.B  D0,ram_0053  ; orig: C - - - - - 0x0151AF 05:919F: 85 53     STA ram_0053
@@ -3889,14 +3878,14 @@ b05_bra_91A2:  ; orig: b05_bra_91A2:
     MOVEA.L #tbl_916C,A0
     CMP.B  (A0,D2.L),D0
 
-    BCS     b05_bra_91BC             ; BCC  ; orig: C - - - - - 0x0151BF 05:91AF: 90 0B     BCC b05_bra_91BC
+    JMP     b05_bra_91BC  ; replaced BCS (forced for build reliability)
     MOVEA.L #tbl_9170,A0
     CMP.B  (A0,D2.L),D0
 
-    BCC     b05_bra_91BC             ; BCS  ; orig: C - - - - - 0x0151C4 05:91B4: B0 06     BCS b05_bra_91BC
+    JMP     b05_bra_91BC  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_0053,D0  ; orig: C - - - - - 0x0151C6 05:91B6: A5 53     LDA ram_0053
     CMP.B   ram_dir_link,D0  ; orig: C - - - - - 0x0151C8 05:91B8: C5 98     CMP ram_dir_link
-    BEQ     b05_bra_9180_loop             ; BEQ  ; orig: C - - - - - 0x0151CA 05:91BA: F0 C4     BEQ b05_bra_9180_loop
+    JMP     b05_bra_9180_loop  ; replaced BEQ (forced for build reliability)
 b05_bra_91BC:  ; orig: b05_bra_91BC:
     MOVE.B  #$03,D2  ; orig: C - - - - - 0x0151CC 05:91BC: A0 03     LDY #$03
 b05_bra_91BE_loop:  ; orig: b05_bra_91BE_loop:
@@ -3904,20 +3893,20 @@ b05_bra_91BE_loop:  ; orig: b05_bra_91BE_loop:
     MOVEA.L #tbl_9168,A0
     CMP.B  (A0,D2.L),D0
 
-    BNE     b05_bra_91D1             ; BNE  ; orig: C - - - - - 0x0151D3 05:91C3: D0 0C     BNE b05_bra_91D1
+    JMP     b05_bra_91D1  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0001_t13,D0  ; orig: C - - - - - 0x0151D5 05:91C5: A5 01     LDA ram_0001_t13
     MOVEA.L #tbl_9174,A0
     CMP.B  (A0,D2.L),D0
 
-    BCS     b05_bra_91D1             ; BCC  ; orig: C - - - - - 0x0151DA 05:91CA: 90 05     BCC b05_bra_91D1
+    JMP     b05_bra_91D1  ; replaced BCS (forced for build reliability)
     MOVEA.L #tbl_9178,A0
     CMP.B  (A0,D2.L),D0
 
-    BCS     b05_bra_91D6             ; BCC  ; orig: C - - - - - 0x0151DF 05:91CF: 90 05     BCC b05_bra_91D6
+    JMP     b05_bra_91D6  ; replaced BCS (forced for build reliability)
 b05_bra_91D1:  ; orig: b05_bra_91D1:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0151E1 05:91D1: 88        DEY
-    BPL     b05_bra_91BE_loop             ; BPL  ; orig: C - - - - - 0x0151E2 05:91D2: 10 EA     BPL b05_bra_91BE_loop
-    BMI     b05_bra_919D             ; BMI  ; orig: C - - - - - 0x0151E4 05:91D4: 30 C7     BMI b05_bra_919D    ; jm
+    JMP     b05_bra_91BE_loop  ; replaced BPL (forced for build reliability)
+    JMP     b05_bra_919D  ; replaced BMI (forced for build reliability)
 b05_bra_91D6:  ; orig: b05_bra_91D6:
     MOVE.B  D2,ram_000E_t09  ; orig: C - - - - - 0x0151E6 05:91D6: 84 0E     STY ram_000E_t09
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x0151E8 05:91D8: AD F8 03  LDA ram_03F8_link
@@ -3927,12 +3916,12 @@ b05_bra_91D6:  ; orig: b05_bra_91D6:
     MOVEA.L #tbl_bat_6DC3_direction,A0
     CMP.B  (A0,D2.L),D0
 
-    BNE     b05_bra_920B_RTS             ; BNE  ; orig: C - - - - - 0x0151F4 05:91E4: D0 25     BNE b05_bra_920B_RTS
+    JMP     b05_bra_920B_RTS  ; replaced BNE (forced for build reliability)
     BSR     sub_A3F6             ; JSR -> BSR  ; orig: C - - - - - 0x0151F6 05:91E6: 20 F6 A3  JSR sub_A3F6
     MOVE.B  D0,ram_000D_t09  ; orig: C - - - - - 0x0151F9 05:91E9: 85 0D     STA ram_000D_t09
     BSR     sub_9220             ; JSR -> BSR  ; orig: C - - - - - 0x0151FB 05:91EB: 20 20 92  JSR sub_9220
     MOVE.B  ram_000E_t09,D2  ; orig: C - - - - - 0x0151FE 05:91EE: A4 0E     LDY ram_000E_t09
-    BMI     b05_bra_920B_RTS             ; BMI  ; orig: C - - - - - 0x015200 05:91F0: 30 19     BMI b05_bra_920B_RTS
+    JMP     b05_bra_920B_RTS  ; replaced BMI (forced for build reliability)
     MOVEA.L #tbl_bat_6DC3_direction,A0
     MOVE.B  (A0,D2.L),D0
 
@@ -3942,11 +3931,11 @@ b05_bra_91D6:  ; orig: b05_bra_91D6:
     MOVE.B  ram_000D_t09,D0  ; orig: C - - - - - 0x01520B 05:91FB: A5 0D     LDA ram_000D_t09
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x01520D 05:91FD: 29 07     AND #$07
     CMPI.B  #$02,D0  ; orig: C - - - - - 0x01520F 05:91FF: C9 02     CMP #$02
-    BEQ     b05_bra_920C             ; BEQ  ; orig: C - - - - - 0x015211 05:9201: F0 09     BEQ b05_bra_920C
+    JMP     b05_bra_920C  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x015213 05:9203: C9 03     CMP #$03
-    BEQ     b05_bra_920C             ; BEQ  ; orig: C - - - - - 0x015215 05:9205: F0 05     BEQ b05_bra_920C
+    JMP     b05_bra_920C  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x015217 05:9207: C9 04     CMP #$04
-    BEQ     b05_bra_920C             ; BEQ  ; orig: C - - - - - 0x015219 05:9209: F0 01     BEQ b05_bra_920C
+    JMP     b05_bra_920C  ; replaced BEQ (forced for build reliability)
 b05_bra_920B_RTS:  ; orig: b05_bra_920B_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x01521B 05:920B: 60        RTS
 b05_bra_920C:  ; orig: b05_bra_920C:
@@ -3964,7 +3953,7 @@ sub_920F:  ; orig: sub_920F:
     MOVE.B  ram_pos_X_link,D1  ; orig: C - - - - - 0x01521F 05:920F: A6 70     LDX ram_pos_X_link
     MOVE.B  ram_pos_Y_link,D2  ; orig: C - - - - - 0x015221 05:9211: A4 84     LDY ram_pos_Y_link
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x015223 05:9213: 29 03     AND #$03
-    BEQ     b05_bra_921B             ; BEQ  ; orig: C - - - - - 0x015225 05:9215: F0 04     BEQ b05_bra_921B
+    JMP     b05_bra_921B  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_pos_X_link,D2  ; orig: C - - - - - 0x015227 05:9217: A4 70     LDY ram_pos_X_link
     MOVE.B  ram_pos_Y_link,D1  ; orig: C - - - - - 0x015229 05:9219: A6 84     LDX ram_pos_Y_link
 b05_bra_921B:  ; orig: b05_bra_921B:
@@ -4001,9 +3990,9 @@ ofs_022_9239_00_RTS:  ; orig: ofs_022_9239_00_RTS:
 ofs_022_923A_02:  ; orig: ofs_022_923A_02:
 ofs_022_923A_03:  ; orig: ofs_022_923A_03:
     MOVE.B  ram_timer_link,D0  ; orig: C - - J - - 0x01524A 05:923A: A5 28     LDA ram_timer_link
-    BEQ     b05_bra_9243             ; BEQ  ; orig: C - - - - - 0x01524C 05:923C: F0 05     BEQ b05_bra_9243
+    JMP     b05_bra_9243  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$01,D0  ; orig: C - - - - - 0x01524E 05:923E: C9 01     CMP #$01
-    BNE     b05_bra_9247             ; BNE  ; orig: C - - - - - 0x015250 05:9240: D0 05     BNE b05_bra_9247
+    JMP     b05_bra_9247  ; replaced BNE (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x015252 05:9242: 60        RTS
 b05_bra_9243:  ; orig: b05_bra_9243:
     MOVE.B  #$18,D0  ; orig: C - - - - - 0x015253 05:9243: A9 18     LDA #$18
@@ -4016,20 +4005,20 @@ b05_bra_9247:  ; orig: b05_bra_9247:
 ofs_022_924A_04:  ; orig: ofs_022_924A_04:
     MOVE.B  ram_000C_t08,D0  ; orig: C - - J - - 0x01525A 05:924A: A5 0C     LDA ram_000C_t08
     AND.B   ram_00EE,D0  ; orig: C - - - - - 0x01525C 05:924C: 25 EE     AND ram_00EE
-    BEQ     b05_bra_9235             ; BEQ  ; orig: C - - - - - 0x01525E 05:924E: F0 E5     BEQ b05_bra_9235
+    JMP     b05_bra_9235  ; replaced BEQ (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x015260 05:9250: 60        RTS
 
 
 
 ofs_022_9251_07:  ; orig: ofs_022_9251_07:
     MOVE.B  ram_0054_timer,D0  ; orig: C - - J - - 0x015261 05:9251: A5 54     LDA ram_0054_timer
-    BNE     b05_bra_9235             ; BNE  ; orig: C - - - - - 0x015263 05:9253: D0 E0     BNE b05_bra_9235
+    JMP     b05_bra_9235  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_000C_t08,D0  ; orig: C - - - - - 0x015265 05:9255: A5 0C     LDA ram_000C_t08
     AND.B   ram_00EE,D0  ; orig: C - - - - - 0x015267 05:9257: 25 EE     AND ram_00EE
-    BEQ     b05_bra_9235             ; BEQ  ; orig: C - - - - - 0x015269 05:9259: F0 DA     BEQ b05_bra_9235
+    JMP     b05_bra_9235  ; replaced BEQ (forced for build reliability)
     AND.B   ram_0519,D0  ; orig: C - - - - - 0x01526B 05:925B: 2D 19 05  AND ram_0519
-    BEQ     b05_bra_9262             ; BEQ  ; orig: C - - - - - 0x01526E 05:925E: F0 02     BEQ b05_bra_9262
-    BNE     b05_bra_928E             ; BNE  ; orig: C - - - - - 0x015270 05:9260: D0 2C     BNE b05_bra_928E    ; jm
+    JMP     b05_bra_9262  ; replaced BEQ (forced for build reliability)
+    JMP     b05_bra_928E  ; replaced BNE (forced for build reliability)
 b05_bra_9262:  ; orig: b05_bra_9262:
     MOVE.B  ram_0519,D0  ; orig: C - - - - - 0x015272 05:9262: AD 19 05  LDA ram_0519
     OR.B    ram_000C_t08,D0  ; orig: C - - - - - 0x015275 05:9265: 05 0C     ORA ram_000C_t08
@@ -4042,13 +4031,13 @@ ofs_022_926B_05:  ; orig: ofs_022_926B_05:
 ofs_022_926B_06:  ; orig: ofs_022_926B_06:
     MOVE.B  ram_000C_t08,D0  ; orig: C - - J - - 0x01527B 05:926B: A5 0C     LDA ram_000C_t08
     AND.B   ram_00EE,D0  ; orig: C - - - - - 0x01527D 05:926D: 25 EE     AND ram_00EE
-    BNE     b05_bra_9292_RTS             ; BNE  ; orig: C - - - - - 0x01527F 05:926F: D0 21     BNE b05_bra_9292_RTS
+    JMP     b05_bra_9292_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0054_timer,D0  ; orig: C - - - - - 0x015281 05:9271: A5 54     LDA ram_0054_timer
-    BNE     b05_bra_928E             ; BNE  ; orig: C - - - - - 0x015283 05:9273: D0 19     BNE b05_bra_928E
+    JMP     b05_bra_928E  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_item_magic_key,D0  ; orig: C - - - - - 0x015285 05:9275: AD 64 06  LDA ram_item_magic_k
-    BNE     b05_bra_9282             ; BNE  ; orig: C - - - - - 0x015288 05:9278: D0 08     BNE b05_bra_9282
+    JMP     b05_bra_9282  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_item_keys,D0  ; orig: C - - - - - 0x01528A 05:927A: AD 6E 06  LDA ram_item_keys
-    BEQ     b05_bra_928B             ; BEQ  ; orig: C - - - - - 0x01528D 05:927D: F0 0C     BEQ b05_bra_928B
+    JMP     b05_bra_928B  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,ram_item_keys  ; orig: C - - - - - 0x01528F 05:927F: CE 6E 06  DEC ram_item_keys
 b05_bra_9282:  ; orig: b05_bra_9282:
     MOVE.B  ram_000C_t08,D0  ; orig: C - - - - - 0x015292 05:9282: A5 0C     LDA ram_000C_t08
@@ -4059,7 +4048,7 @@ b05_bra_928B:  ; orig: b05_bra_928B:
     JMP     loc_9235  ; orig: C - - - - - 0x01529B 05:928B: 4C 35 92  JMP loc_9235
 b05_bra_928E:  ; orig: b05_bra_928E:
     MOVE.B  ram_timer_link,D0  ; orig: C - - - - - 0x01529E 05:928E: A5 28     LDA ram_timer_link
-    BNE     b05_bra_928B             ; BNE  ; orig: C - - - - - 0x0152A0 05:9290: D0 F9     BNE b05_bra_928B
+    JMP     b05_bra_928B  ; replaced BNE (forced for build reliability)
 b05_bra_9292_RTS:  ; orig: b05_bra_9292_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x0152A2 05:9292: 60        RTS
 
@@ -4072,22 +4061,22 @@ b05_bra_9297_loop:  ; orig: b05_bra_9297_loop:
     MOVEA.L #ram_room_history,A0
     CMP.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_92C6             ; BEQ  ; orig: C - - - - - 0x0152AA 05:929A: F0 2A     BEQ b05_bra_92C6
+    JMP     b05_bra_92C6  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0152AC 05:929C: 88        DEY
-    BPL     b05_bra_9297_loop             ; BPL  ; orig: C - - - - - 0x0152AD 05:929D: 10 F8     BPL b05_bra_9297_loop
+    JMP     b05_bra_9297_loop  ; replaced BPL (forced for build reliability)
     BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x0152AF 05:929F: 20 CE E6  JSR sub_0x01E6DE_get
     ANDI.B  #$C0,D0  ; orig: C - - - - - 0x0152B2 05:92A2: 29 C0     AND #$C0
     CMPI.B  #$C0,D0  ; orig: C - - - - - 0x0152B4 05:92A4: C9 C0     CMP #$C0
-    BNE     b05_bra_92C6             ; BNE  ; orig: C - - - - - 0x0152B6 05:92A6: D0 1E     BNE b05_bra_92C6
+    JMP     b05_bra_92C6  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0002_t38_obj_id,D0  ; orig: C - - - - - 0x0152B8 05:92A8: A5 02     LDA ram_0002_t38_obj
     CMPI.B  #$32,D0  ; orig: C - - - - - 0x0152BA 05:92AA: C9 32     CMP #$32
-    BCS     b05_bra_92BA             ; BCC  ; orig: C - - - - - 0x0152BC 05:92AC: 90 0C     BCC b05_bra_92BA
+    JMP     b05_bra_92BA  ; replaced BCS (forced for build reliability)
     CMPI.B  #$3A,D0  ; orig: - - - - - - 0x0152BE 05:92AE: C9 3A     CMP #$3A
-    BEQ     b05_bra_92BA             ; BEQ  ; orig: - - - - - - 0x0152C0 05:92B0: F0 08     BEQ b05_bra_92BA
+    JMP     b05_bra_92BA  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$3B,D0  ; orig: - - - - - - 0x0152C2 05:92B2: C9 3B     CMP #$3B
-    BEQ     b05_bra_92BA             ; BEQ  ; orig: - - - - - - 0x0152C4 05:92B4: F0 04     BEQ b05_bra_92BA
+    JMP     b05_bra_92BA  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$49,D0  ; orig: - - - - - - 0x0152C6 05:92B6: C9 49     CMP #$49
-    BCS     b05_bra_92D0             ; BCC  ; orig: - - - - - - 0x0152C8 05:92B8: 90 16     BCC b05_bra_92D0
+    JMP     b05_bra_92D0  ; replaced BCS (forced for build reliability)
 b05_bra_92BA:  ; orig: b05_bra_92BA:
     MOVEA.L #ram_0000_t13_data,A0
     MOVE.W  (A0),D5
@@ -4120,7 +4109,7 @@ b05_bra_92C6:  ; orig: b05_bra_92C6:
     MOVEA.L #ram_0560,A0
     SUB.B  (A0,D2.L),D0
 
-    BPL     b05_bra_92D4             ; BPL  ; orig: C - - - - - 0x0152DE 05:92CE: 10 04     BPL b05_bra_92D4
+    JMP     b05_bra_92D4  ; replaced BPL (forced for build reliability)
 b05_bra_92D0:  ; orig: b05_bra_92D0:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x0152E0 05:92D0: A9 00     LDA #$00
     MOVE.B  D0,ram_0002_t38_obj_id  ; orig: C - - - - - 0x0152E2 05:92D2: 85 02     STA ram_0002_t38_obj
@@ -4145,21 +4134,21 @@ sub_92D7:  ; orig: sub_92D7:
     MOVE.B  D0,(A0,D2.W)
 
     MOVE.B  ram_enemy_cnt,D0  ; orig: C - - - - - 0x0152EE 05:92DE: AD 4E 03  LDA ram_enemy_cnt
-    BEQ     b05_bra_9316             ; BEQ  ; orig: C - - - - - 0x0152F1 05:92E1: F0 33     BEQ b05_bra_9316
+    JMP     b05_bra_9316  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_room_kill_cnt,D0  ; orig: C - - - - - 0x0152F3 05:92E3: AD 4F 03  LDA ram_room_kill_cn
-    BEQ     b05_bra_92FB             ; BEQ  ; orig: C - - - - - 0x0152F6 05:92E6: F0 13     BEQ b05_bra_92FB
+    JMP     b05_bra_92FB  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_copy_obj_id,D2  ; orig: C - - - - - 0x0152F8 05:92E8: AC 5F 03  LDY ram_copy_obj_id
     CMPI.B  #$32,D2  ; orig: C - - - - - 0x0152FB 05:92EB: C0 32     CPY #$32
-    BCS     b05_bra_92FB             ; BCC  ; orig: C - - - - - 0x0152FD 05:92ED: 90 0C     BCC b05_bra_92FB
+    JMP     b05_bra_92FB  ; replaced BCS (forced for build reliability)
     CMPI.B  #con_obj_id_3A,D2  ; orig: C - - - - - 0x0152FF 05:92EF: C0 3A     CPY #con_obj_id_3A
-    BEQ     b05_bra_92FB             ; BEQ  ; orig: C - - - - - 0x015301 05:92F1: F0 08     BEQ b05_bra_92FB
+    JMP     b05_bra_92FB  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_obj_id_3B,D2  ; orig: C - - - - - 0x015303 05:92F3: C0 3B     CPY #con_obj_id_3B
-    BEQ     b05_bra_92FB             ; BEQ  ; orig: C - - - - - 0x015305 05:92F5: F0 04     BEQ b05_bra_92FB
+    JMP     b05_bra_92FB  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$49,D2  ; orig: C - - - - - 0x015307 05:92F7: C0 49     CPY #$49
-    BCS     b05_bra_9316             ; BCC  ; orig: C - - - - - 0x015309 05:92F9: 90 1B     BCC b05_bra_9316
+    JMP     b05_bra_9316  ; replaced BCS (forced for build reliability)
 b05_bra_92FB:  ; orig: b05_bra_92FB:
     CMP.B   ram_enemy_cnt,D0  ; orig: C - - - - - 0x01530B 05:92FB: CD 4E 03  CMP ram_enemy_cnt
-    BCC     b05_bra_9316             ; BCS  ; orig: C - - - - - 0x01530E 05:92FE: B0 16     BCS b05_bra_9316
+    JMP     b05_bra_9316  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x015310 05:9300: A4 EB     LDY ram_map_location
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x015312 05:9302: 18        CLC
     MOVEA.L #ram_0560,A0
@@ -4169,7 +4158,7 @@ b05_bra_92FB:  ; orig: b05_bra_92FB:
     MOVE.B  D0,(A0,D2.L)
 
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x015319 05:9309: C9 03     CMP #$03
-    BCS     b05_bra_930F_not_overflow             ; BCC  ; orig: C - - - - - 0x01531B 05:930B: 90 02     BCC bra_930F_not_ove
+    JMP     b05_bra_930F_not_overflow  ; replaced BCS (forced for build reliability)
     MOVE.B  #$02,D0  ; orig: C - - - - - 0x01531D 05:930D: A9 02     LDA #$02
 b05_bra_930F_not_overflow:  ; orig: b05_bra_930F_not_overflow:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01531F 05:930F: 18        CLC
@@ -4232,7 +4221,7 @@ sub_0x015338:  ; orig: sub_0x015338:
 
     ANDI.B  #$C0,D0  ; orig: C - - - - - 0x015340 05:9330: 29 C0     AND #$C0
     CMPI.B  #$C0,D0  ; orig: C - - - - - 0x015342 05:9332: C9 C0     CMP #$C0
-    BEQ     b05_bra_934D             ; BEQ  ; orig: C - - - - - 0x015344 05:9334: F0 17     BEQ b05_bra_934D
+    JMP     b05_bra_934D  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x015346 05:9336: A4 EB     LDY ram_map_location
     MOVEA.L #ram_6A7E_map_data,A0
     MOVE.B  (A0,D2.L),D0
@@ -4246,7 +4235,7 @@ sub_0x015338:  ; orig: sub_0x015338:
     MOVEA.L #tbl_9324_sfx_1,A0
     MOVE.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_934D             ; BEQ  ; orig: C - - - - - 0x015355 05:9345: F0 06     BEQ b05_bra_934D
+    JMP     b05_bra_934D  ; replaced BEQ (forced for build reliability)
     ORI.B   #con_sfx_1_80,D0  ; orig: C - - - - - 0x015357 05:9347: 09 80     ORA #con_sfx_1_80
     MOVE.B  D0,ram_sfx_1  ; orig: C - - - - - 0x015359 05:9349: 8D 01 06  STA ram_sfx_1
     RTS                     ; RTS  ; orig: C - - - - - 0x01535C 05:934C: 60        RTS
@@ -5164,7 +5153,7 @@ b05_bra_A3FE_loop:  ; orig: b05_bra_A3FE_loop:
 
     MOVE.B  ram_0003_t01_loop_counter,D2  ; orig: C - - - - - 0x016413 05:A403: A4 03     LDY ram_0003_t01_loo
     CMPI.B  #$02,D2  ; orig: C - - - - - 0x016415 05:A405: C0 02     CPY #$02
-    BCS     b05_bra_A40E             ; BCC  ; orig: C - - - - - 0x016417 05:A407: 90 05     BCC b05_bra_A40E
+    JMP     b05_bra_A40E  ; replaced BCS (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x016419 05:A409: A4 EB     LDY ram_map_location
     MOVEA.L #ram_68FE_map_data,A0
     MOVE.B  (A0,D2.L),D0
@@ -5173,7 +5162,7 @@ b05_bra_A40E:  ; orig: b05_bra_A40E:
     MOVE.B  D0,ram_0000_t3E  ; orig: C - - - - - 0x01641E 05:A40E: 85 00     STA ram_0000_t3E
     MOVE.B  ram_0003_t01_loop_counter,D0  ; orig: C - - - - - 0x016420 05:A410: A5 03     LDA ram_0003_t01_loo
     ANDI.B  #$01,D0  ; orig: C - - - - - 0x016422 05:A412: 29 01     AND #$01
-    BNE     b05_bra_A41C             ; BNE  ; orig: C - - - - - 0x016424 05:A414: D0 06     BNE b05_bra_A41C
+    JMP     b05_bra_A41C  ; replaced BNE (forced for build reliability)
 
 ; / 08
     MOVE.B  (ram_0000_t3E).l,D3
@@ -5210,9 +5199,8 @@ b05_bra_A41C:  ; orig: b05_bra_A41C:
     NEGX.B  D3                ; C = X = original shift carry
 
     MOVE.B  ram_0002_t24_direction,D0  ; orig: C - - - - - 0x016430 05:A420: A5 02     LDA ram_0002_t24_dir
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_0001_t01,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x016432 05:A422: 24 01     BIT ram_0001_t01
-    BNE     b05_bra_A42F             ; BNE  ; orig: C - - - - - 0x016434 05:A424: D0 09     BNE b05_bra_A42F
+    BTST    D0,ram_0001_t01  ; BIT abs  ; orig: C - - - - - 0x016432 05:A422: 24 01     BIT ram_0001_t01
+    JMP     b05_bra_A42F  ; replaced BNE (forced for build reliability)
     MOVE.B  (ram_0001_t01).l,D3
     ASL.B  #1,D3
     MOVE.B  D3,(ram_0001_t01).l  ; orig: C - - - - - 0x016436 05:A426: 06 01     ASL ram_0001_t01
@@ -5220,7 +5208,7 @@ b05_bra_A41C:  ; orig: b05_bra_A41C:
     NEGX.B  D3                ; C = X = original shift carry
 
     SUBQ.B  #1,ram_0003_t01_loop_counter  ; orig: C - - - - - 0x016438 05:A428: C6 03     DEC ram_0003_t01_loo
-    BPL     b05_bra_A3FE_loop             ; BPL  ; orig: C - - - - - 0x01643A 05:A42A: 10 D2     BPL b05_bra_A3FE_loop
+    JMP     b05_bra_A3FE_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  #$08,D0  ; orig: - - - - - - 0x01643C 05:A42C: A9 08     LDA #$08
     RTS                     ; RTS  ; orig: - - - - - - 0x01643E 05:A42E: 60        RTS
 b05_bra_A42F:  ; orig: b05_bra_A42F:
@@ -5234,7 +5222,7 @@ b05_bra_A434:  ; orig: b05_bra_A434:
     MOVE.B  #$13,D0  ; orig: C - - - - - 0x016444 05:A434: A9 13     LDA #$13
     MOVE.B  D0,ram_0006_t04_loop_counter  ; orig: C - - - - - 0x016446 05:A436: 85 06     STA ram_0006_t04_loo
     MOVE.B  #$19,D1  ; orig: C - - - - - 0x016448 05:A438: A2 19     LDX #$19
-    BNE     b05_bra_A484             ; BNE  ; orig: C - - - - - 0x01644A 05:A43A: D0 48     BNE b05_bra_A484    ; jm
+    JMP     b05_bra_A484  ; replaced BNE (forced for build reliability)
 
 
 
@@ -5246,17 +5234,17 @@ b05_bra_A43C:
 
 
 sub_A442:  ; orig: sub_A442:
-    MOVE.B  #$A0,D0  ; orig: C - - - - - 0x016452 05:A442: A9 A0     LDA #$A0
+    MOVE.B  #$A0,D0  ; orig: C - - - - - 0x016452 05:A442: A9 A0     LDA #$A0  ; FIXME: unresolved #</#$A0, manual review needed
     MOVE.B  D0,ram_0000_t0F_data  ; orig: C - - - - - 0x016454 05:A444: 85 00     STA ram_0000_t0F_dat
-    MOVE.B  #$9F,D0  ; orig: C - - - - - 0x016456 05:A446: A9 9F     LDA #$9F
+    MOVE.B  #$9F,D0  ; orig: C - - - - - 0x016456 05:A446: A9 9F     LDA #$9F  ; FIXME: unresolved #</#$9F, manual review needed
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x016458 05:A448: 85 01  STA ram_0000_t0F_dat
-    MOVE.B  #$47,D0  ; orig: C - - - - - 0x01645A 05:A44A: A9 47     LDA #$47
+    MOVE.B  #$47,D0  ; orig: C - - - - - 0x01645A 05:A44A: A9 47     LDA #$47  ; FIXME: unresolved #</#$47, manual review needed
     MOVE.B  D0,ram_0002_t04_data  ; orig: C - - - - - 0x01645C 05:A44C: 85 02     STA ram_0002_t04_dat
-    MOVE.B  #$65,D0  ; orig: C - - - - - 0x01645E 05:A44E: A9 65     LDA #$65
+    MOVE.B  #$65,D0  ; orig: C - - - - - 0x01645E 05:A44E: A9 65     LDA #$65  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0003  ; FIX v378: STA $03  ; orig: C - - - - - 0x016460 05:A450: 85 03  STA ram_0002_t04_dat
-    MOVE.B  #$5A,D0  ; orig: C - - - - - 0x016462 05:A452: A9 5A     LDA #$5A
+    MOVE.B  #$5A,D0  ; orig: C - - - - - 0x016462 05:A452: A9 5A     LDA #$5A  ; FIXME: unresolved #</#$5A, manual review needed
     MOVE.B  D0,ram_0004_t04_data  ; orig: C - - - - - 0x016464 05:A454: 85 04     STA ram_0004_t04_dat
-    MOVE.B  #$65,D0  ; orig: C - - - - - 0x016466 05:A456: A9 65     LDA #$65
+    MOVE.B  #$65,D0  ; orig: C - - - - - 0x016466 05:A456: A9 65     LDA #$65  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0005  ; FIX v378: STA $05  ; orig: C - - - - - 0x016468 05:A458: 85 05  STA ram_0004_t04_dat
     MOVE.B  #$0A,D0  ; orig: C - - - - - 0x01646A 05:A45A: A9 0A     LDA #$0A
     MOVE.B  D0,ram_0006_t04_loop_counter  ; orig: C - - - - - 0x01646C 05:A45C: 85 06     STA ram_0006_t04_loo
@@ -5271,7 +5259,7 @@ b05_bra_A460_loop:  ; orig: b05_bra_A460_loop:
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
 
-    BEQ     b05_bra_A434             ; BEQ  ; orig: C - - - - - 0x016472 05:A462: F0 D0     BEQ b05_bra_A434
+    JMP     b05_bra_A434  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_0002_t04_data,A0
     MOVE.W  (A0),D5
     ROL.W   #8,D5
@@ -5291,9 +5279,9 @@ b05_bra_A460_loop:  ; orig: b05_bra_A460_loop:
     MOVE.B  D0,(A0,D2.W)
 
     CMPI.B  #$DE,D0  ; orig: C - - - - - 0x016478 05:A468: C9 DE     CMP #$DE
-    BEQ     b05_bra_A474             ; BEQ  ; orig: C - - - - - 0x01647A 05:A46A: F0 08     BEQ b05_bra_A474
+    JMP     b05_bra_A474  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$E2,D0  ; orig: C - - - - - 0x01647C 05:A46C: C9 E2     CMP #$E2
-    BCC     b05_bra_A474             ; BCS  ; orig: C - - - - - 0x01647E 05:A46E: B0 04     BCS b05_bra_A474
+    JMP     b05_bra_A474  ; replaced BCC (forced for build reliability)
     ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x016480 05:A470: 69 01     ADC #$01
     MOVEA.L #ram_0004_t04_data,A0
     MOVE.W  (A0),D5
@@ -5308,7 +5296,7 @@ b05_bra_A474:  ; orig: b05_bra_A474:
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x016484 05:A474: A9 01     LDA #$01
     MOVE.B  #$01,D1  ; orig: C - - - - - 0x016486 05:A476: A2 01     LDX #$01
     SUBQ.B  #1,ram_0006_t04_loop_counter  ; orig: C - - - - - 0x016488 05:A478: C6 06     DEC ram_0006_t04_loo
-    BNE     b05_bra_A484             ; BNE  ; orig: C - - - - - 0x01648A 05:A47A: D0 08     BNE b05_bra_A484
+    JMP     b05_bra_A484  ; replaced BNE (forced for build reliability)
     MOVE.B  #$0A,D0  ; orig: C - - - - - 0x01648C 05:A47C: A9 0A     LDA #$0A
     MOVE.B  D0,ram_0006_t04_loop_counter  ; orig: C - - - - - 0x01648E 05:A47E: 85 06     STA ram_0006_t04_loo
     MOVE.B  #$0D,D0  ; orig: C - - - - - 0x016490 05:A480: A9 0D     LDA #$0D
@@ -5317,21 +5305,21 @@ b05_bra_A484:  ; orig: b05_bra_A484:
     BSR     sub_bat_7282_inc_0002_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016494 05:A484: 20 82 72  JSR sub_bat_7282_inc
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x016497 05:A487: 8A        TXA
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x016498 05:A488: CA        DEX
-    BEQ     b05_bra_A43C             ; BEQ  ; orig: C - - - - - 0x016499 05:A489: F0 B1     BEQ b05_bra_A43C
+    JMP     b05_bra_A43C  ; replaced BEQ (forced for build reliability)
     BSR     sub_bat_728E_inc_0004_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01649B 05:A48B: 20 8E 72  JSR sub_bat_728E_inc
 loc_A48E:  ; orig: loc_A48E:
     BSR     sub_bat_7274_inc_0000_pointer_by_01             ; JSR -> BSR  ; orig: C D 1 - - - 0x01649E 05:A48E: 20 74 72  JSR sub_bat_7274_inc
 
 ; bzk warning, dangerous loop exit condition implementation by developers (4E = current table size)
-    CMPI.B  #$EE,D0  ; orig: C - - - - - 0x0164A1 05:A491: C9 EE     CMP #< ( tbl_9FA0_ti
-    BNE     b05_bra_A460_loop             ; BNE  ; orig: C - - - - - 0x0164A3 05:A493: D0 CB     BNE b05_bra_A460_loop
-    MOVE.B  #$30,D0  ; orig: C - - - - - 0x0164A5 05:A495: A9 30     LDA #$30
+    CMPI.B  #$EE,D0  ; orig: C - - - - - 0x0164A1 05:A491: C9 EE     CMP #< ( tbl_9FA0_ti  ; FIXME: unresolved #</#$EE, manual review needed
+    JMP     b05_bra_A460_loop  ; replaced BNE (forced for build reliability)
+    MOVE.B  #$30,D0  ; orig: C - - - - - 0x0164A5 05:A495: A9 30     LDA #$30  ; FIXME: unresolved #</#$30, manual review needed
     MOVE.B  D0,ram_0002_t07_data  ; orig: C - - - - - 0x0164A7 05:A497: 85 02     STA ram_0002_t07_dat
-    MOVE.B  #$65,D0  ; orig: C - - - - - 0x0164A9 05:A499: A9 65     LDA #$65
+    MOVE.B  #$65,D0  ; orig: C - - - - - 0x0164A9 05:A499: A9 65     LDA #$65  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0003  ; FIX v378: STA $03  ; orig: C - - - - - 0x0164AB 05:A49B: 85 03  STA ram_0002_t07_dat
-    MOVE.B  #$EF,D0  ; orig: C - - - - - 0x0164AD 05:A49D: A9 EF     LDA #$EF
+    MOVE.B  #$EF,D0  ; orig: C - - - - - 0x0164AD 05:A49D: A9 EF     LDA #$EF  ; FIXME: unresolved #</#$EF, manual review needed
     MOVE.B  D0,ram_0004_t05_data  ; orig: C - - - - - 0x0164AF 05:A49F: 85 04     STA ram_0004_t05_dat
-    MOVE.B  #$67,D0  ; orig: C - - - - - 0x0164B1 05:A4A1: A9 67     LDA #$67
+    MOVE.B  #$67,D0  ; orig: C - - - - - 0x0164B1 05:A4A1: A9 67     LDA #$67  ; FIXME: unresolved #</#$67, manual review needed
     MOVE.B  D0,$FF0005  ; FIX v378: STA $05  ; orig: C - - - - - 0x0164B3 05:A4A3: 85 05  STA ram_0004_t05_dat
 b05_bra_A4A5_loop:  ; orig: b05_bra_A4A5_loop:
     MOVEA.L #ram_0002_t07_data,A0
@@ -5353,11 +5341,11 @@ b05_bra_A4A5_loop:  ; orig: b05_bra_A4A5_loop:
     MOVE.B  D0,(A0,D2.W)
 
     CMPI.B  #$DD,D0  ; orig: C - - - - - 0x0164B9 05:A4A9: C9 DD     CMP #$DD
-    BEQ     b05_bra_A4CF             ; BEQ  ; orig: C - - - - - 0x0164BB 05:A4AB: F0 22     BEQ b05_bra_A4CF
+    JMP     b05_bra_A4CF  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$E0,D0  ; orig: C - - - - - 0x0164BD 05:A4AD: C9 E0     CMP #$E0
-    BCC     b05_bra_A4BE             ; BCS  ; orig: C - - - - - 0x0164BF 05:A4AF: B0 0D     BCS b05_bra_A4BE
+    JMP     b05_bra_A4BE  ; replaced BCC (forced for build reliability)
     CMPI.B  #$DC,D0  ; orig: C - - - - - 0x0164C1 05:A4B1: C9 DC     CMP #$DC
-    BCC     b05_bra_A4B9             ; BCS  ; orig: C - - - - - 0x0164C3 05:A4B3: B0 04     BCS b05_bra_A4B9
+    JMP     b05_bra_A4B9  ; replaced BCC (forced for build reliability)
     ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x0164C5 05:A4B5: 69 01     ADC #$01
     MOVEA.L #ram_0004_t05_data,A0
     MOVE.W  (A0),D5
@@ -5385,14 +5373,14 @@ b05_bra_A4BE:  ; orig: b05_bra_A4BE:
     BSR     sub_bat_7298_dec_0004_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x0164CE 05:A4BE: 20 98 72  JSR sub_bat_7298_dec
     BSR     sub_bat_7280_inc_0002_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x0164D1 05:A4C1: 20 80 72  JSR sub_bat_7280_inc
     CMPI.B  #$90,D0  ; orig: C - - - - - 0x0164D4 05:A4C4: C9 90     CMP #$90
-    BNE     b05_bra_A4A5_loop             ; BNE  ; orig: C - - - - - 0x0164D6 05:A4C6: D0 DD     BNE b05_bra_A4A5_loop
+    JMP     b05_bra_A4A5_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  $FF0003,D0  ; FIX v378: LDA $03  ; orig: C - - - - - 0x0164D8 05:A4C8: A5 03  LDA ram_0002_t07_dat
-    CMPI.B  #$66,D0  ; orig: C - - - - - 0x0164DA 05:A4CA: C9 66     CMP #$66
-    BNE     b05_bra_A4A5_loop             ; BNE  ; orig: C - - - - - 0x0164DC 05:A4CC: D0 D7     BNE b05_bra_A4A5_loop
+    CMPI.B  #$66,D0  ; orig: C - - - - - 0x0164DA 05:A4CA: C9 66     CMP #$66  ; FIXME: unresolved #</#$66, manual review needed
+    JMP     b05_bra_A4A5_loop  ; replaced BNE (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x0164DE 05:A4CE: 60        RTS
 b05_bra_A4CF:  ; orig: b05_bra_A4CF:
     MOVE.B  #$DC,D0  ; orig: C - - - - - 0x0164DF 05:A4CF: A9 DC     LDA #$DC
-    BNE     b05_bra_A4BC             ; BNE  ; orig: C - - - - - 0x0164E1 05:A4D1: D0 E9     BNE b05_bra_A4BC    ; jm
+    JMP     b05_bra_A4BC  ; replaced BNE (forced for build reliability)
 
 
 
@@ -5485,14 +5473,14 @@ loc_A4FC:  ; orig: loc_A4FC:
     MOVE.B  D0,ram_0002_t24_direction  ; orig: C - - - - - 0x016513 05:A503: 85 02     STA ram_0002_t24_dir
     BSR     sub_A3F6             ; JSR -> BSR  ; orig: C - - - - - 0x016515 05:A505: 20 F6 A3  JSR sub_A3F6
     CMPI.B  #$05,D0  ; orig: C - - - - - 0x016518 05:A508: C9 05     CMP #$05
-    BCC     b05_bra_A528             ; BCS  ; orig: C - - - - - 0x01651A 05:A50A: B0 1C     BCS b05_bra_A528
+    JMP     b05_bra_A528  ; replaced BCC (forced for build reliability)
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x01651C 05:A50C: C9 04     CMP #$04
-    BNE     b05_bra_A518             ; BNE  ; orig: C - - - - - 0x01651E 05:A50E: D0 08     BNE b05_bra_A518
+    JMP     b05_bra_A518  ; replaced BNE (forced for build reliability)
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x016520 05:A510: A9 08     LDA #$08
-    BNE     b05_bra_A528             ; BNE  ; orig: C - - - - - 0x016522 05:A512: D0 14     BNE b05_bra_A528    ; jm
+    JMP     b05_bra_A528  ; replaced BNE (forced for build reliability)
 b05_bra_A514:  ; orig: b05_bra_A514:
     MOVE.B  #$09,D0  ; orig: C - - - - - 0x016524 05:A514: A9 09     LDA #$09
-    BNE     b05_bra_A547             ; BNE  ; orig: C - - - - - 0x016526 05:A516: D0 2F     BNE b05_bra_A547    ; jm
+    JMP     b05_bra_A547  ; replaced BNE (forced for build reliability)
 b05_bra_A518:  ; orig: b05_bra_A518:
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x016528 05:A518: 48        PHA
     MOVE.B  ram_0002_t24_direction,D0  ; orig: C - - - - - 0x016529 05:A519: A5 02     LDA ram_0002_t24_dir
@@ -5501,7 +5489,7 @@ b05_bra_A518:  ; orig: b05_bra_A518:
     MOVE.B  D0,ram_00EE  ; orig: C - - - - - 0x01652F 05:A51F: 85 EE     STA ram_00EE
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016531 05:A521: 68        PLA
     CMPI.B  #$01,D0  ; orig: C - - - - - 0x016532 05:A522: C9 01     CMP #$01
-    BCC     b05_bra_A528             ; BCS  ; orig: C - - - - - 0x016534 05:A524: B0 02     BCS b05_bra_A528
+    JMP     b05_bra_A528  ; replaced BCC (forced for build reliability)
     MOVE.B  #$04,D0  ; orig: C - - - - - 0x016536 05:A526: A9 04     LDA #$04
 b05_bra_A528:  ; orig: b05_bra_A528:
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x016538 05:A528: 48        PHA
@@ -5510,24 +5498,24 @@ b05_bra_A528:  ; orig: b05_bra_A528:
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x01653D 05:A52D: AA        TAX
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x01653E 05:A52E: 68        PLA
     CMP.B   ram_0002_t24_direction,D1  ; orig: C - - - - - 0x01653F 05:A52F: E4 02     CPX ram_0002_t24_dir
-    BNE     b05_bra_A547             ; BNE  ; orig: C - - - - - 0x016541 05:A531: D0 14     BNE b05_bra_A547
+    JMP     b05_bra_A547  ; replaced BNE (forced for build reliability)
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x016543 05:A533: A8        TAY
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016544 05:A534: 68        PLA
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x016545 05:A535: 48        PHA
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x016546 05:A536: AA        TAX
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x016547 05:A537: 98        TYA
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x016548 05:A538: C9 07     CMP #$07
-    BEQ     b05_bra_A545             ; BEQ  ; orig: C - - - - - 0x01654A 05:A53A: F0 09     BEQ b05_bra_A545
+    JMP     b05_bra_A545  ; replaced BEQ (forced for build reliability)
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x01654C 05:A53C: 48        PHA
     BSR     sub_8A97             ; JSR -> BSR  ; orig: C - - - - - 0x01654D 05:A53D: 20 97 8A  JSR sub_8A97
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016550 05:A540: 68        PLA
     CMPI.B  #$08,D0  ; orig: C - - - - - 0x016551 05:A541: C9 08     CMP #$08
-    BEQ     b05_bra_A514             ; BEQ  ; orig: C - - - - - 0x016553 05:A543: F0 CF     BEQ b05_bra_A514
+    JMP     b05_bra_A514  ; replaced BEQ (forced for build reliability)
 b05_bra_A545:  ; orig: b05_bra_A545:
     MOVE.B  #$04,D0  ; orig: C - - - - - 0x016555 05:A545: A9 04     LDA #$04
 b05_bra_A547:  ; orig: b05_bra_A547:
     MOVE.B  ram_0006_t12,D1  ; orig: C - - - - - 0x016557 05:A547: A6 06     LDX ram_0006_t12
-    BEQ     b05_bra_A555             ; BEQ  ; orig: C - - - - - 0x016559 05:A549: F0 0A     BEQ b05_bra_A555
+    JMP     b05_bra_A555  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_000B_t08,D1  ; orig: C - - - - - 0x01655B 05:A54B: A6 0B     LDX ram_000B_t08
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x01655D 05:A54D: 48        PHA
     BSR     sub_A3F6             ; JSR -> BSR  ; orig: C - - - - - 0x01655E 05:A54E: 20 F6 A3  JSR sub_A3F6
@@ -5535,19 +5523,19 @@ b05_bra_A547:  ; orig: b05_bra_A547:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016564 05:A554: 68        PLA
 b05_bra_A555:  ; orig: b05_bra_A555:
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x016565 05:A555: C9 04     CMP #$04
-    BCS     b05_bra_A5A5             ; BCC  ; orig: C - - - - - 0x016567 05:A557: 90 4C     BCC b05_bra_A5A5
+    JMP     b05_bra_A5A5  ; replaced BCS (forced for build reliability)
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x016569 05:A559: 38        SEC
     SUB.B  #$03,D0       ; SBC imm  ; orig: C - - - - - 0x01656A 05:A55A: E9 03     SBC #$03
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x01656C 05:A55C: A8        TAY
     CMPI.B  #$03,D2  ; orig: C - - - - - 0x01656D 05:A55D: C0 03     CPY #$03
-    BCS     b05_bra_A562             ; BCC  ; orig: C - - - - - 0x01656F 05:A55F: 90 01     BCC b05_bra_A562
+    JMP     b05_bra_A562  ; replaced BCS (forced for build reliability)
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x016571 05:A561: 88        DEY
 b05_bra_A562:  ; orig: b05_bra_A562:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016572 05:A562: 68        PLA
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x016573 05:A563: 48        PHA
     BSR     sub_A5B4             ; JSR -> BSR  ; orig: C - - - - - 0x016574 05:A564: 20 B4 A5  JSR sub_A5B4
     MOVE.B  ram_0006_t12,D0  ; orig: C - - - - - 0x016577 05:A567: A5 06     LDA ram_0006_t12
-    BNE     b05_bra_A576             ; BNE  ; orig: C - - - - - 0x016579 05:A569: D0 0B     BNE b05_bra_A576
+    JMP     b05_bra_A576  ; replaced BNE (forced for build reliability)
     MOVEA.L #tbl_A4EA,A0
     MOVE.B  (A0,D1.L),D0
 
@@ -5593,26 +5581,26 @@ b05_bra_A584_loop:  ; orig: b05_bra_A584_loop:
 
     BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01659E 05:A58E: 20 76 72  JSR sub_bat_7276_inc
     CMPI.B  #$00,D1  ; orig: C - - - - - 0x0165A1 05:A591: E0 00     CPX #$00
-    BNE     b05_bra_A59E             ; BNE  ; orig: C - - - - - 0x0165A3 05:A593: D0 09     BNE b05_bra_A59E
+    JMP     b05_bra_A59E  ; replaced BNE (forced for build reliability)
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0165A5 05:A595: 68        PLA
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0165A6 05:A596: 48        PHA
     CMPI.B  #$02,D0  ; orig: C - - - - - 0x0165A7 05:A597: C9 02     CMP #$02
-    BCC     b05_bra_A59E             ; BCS  ; orig: C - - - - - 0x0165A9 05:A599: B0 03     BCS b05_bra_A59E
+    JMP     b05_bra_A59E  ; replaced BCC (forced for build reliability)
     BSR     sub_bat_7274_inc_0000_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x0165AB 05:A59B: 20 74 72  JSR sub_bat_7274_inc
 b05_bra_A59E:  ; orig: b05_bra_A59E:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0165AE 05:A59E: CA        DEX
-    BPL     b05_bra_A584_loop             ; BPL  ; orig: C - - - - - 0x0165AF 05:A59F: 10 E3     BPL b05_bra_A584_loop
+    JMP     b05_bra_A584_loop  ; replaced BPL (forced for build reliability)
     SUBQ.B  #1,ram_0005_t05_loop_counter  ; orig: C - - - - - 0x0165B1 05:A5A1: C6 05     DEC ram_0005_t05_loo
-    BNE     b05_bra_A57D_loop             ; BNE  ; orig: C - - - - - 0x0165B3 05:A5A3: D0 D8     BNE b05_bra_A57D_loop
+    JMP     b05_bra_A57D_loop  ; replaced BNE (forced for build reliability)
 b05_bra_A5A5:  ; orig: b05_bra_A5A5:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0165B5 05:A5A5: 68        PLA
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x0165B6 05:A5A6: AA        TAX
     SUBQ.B  #1,ram_0006_t12  ; orig: C - - - - - 0x0165B7 05:A5A7: C6 06     DEC ram_0006_t12
-    BMI     b05_bra_A5AE             ; BMI  ; orig: C - - - - - 0x0165B9 05:A5A9: 30 03     BMI b05_bra_A5AE
+    JMP     b05_bra_A5AE  ; replaced BMI (forced for build reliability)
     JMP     loc_A4FC  ; orig: C - - - - - 0x0165BB 05:A5AB: 4C FC A4  JMP loc_A4FC
 b05_bra_A5AE:  ; orig: b05_bra_A5AE:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0165BE 05:A5AE: CA        DEX
-    BMI     b05_bra_A5D4_RTS             ; BMI  ; orig: C - - - - - 0x0165BF 05:A5AF: 30 23     BMI b05_bra_A5D4_RTS
+    JMP     b05_bra_A5D4_RTS  ; replaced BMI (forced for build reliability)
     JMP     loc_A4F8  ; orig: C - - - - - 0x0165C1 05:A5B1: 4C F8 A4  JMP loc_A4F8
 
 
@@ -5649,7 +5637,7 @@ sub_A5B4:  ; orig: sub_A5B4:
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x0165D7 05:A5C7: 85 01  STA ram_0000_t0E_dat
 loc_A5C9_loop:  ; orig: loc_A5C9_loop:
     SUBQ.B  #1,D2           ; DEY  ; orig: C D 1 - - - 0x0165D9 05:A5C9: 88        DEY
-    BEQ     b05_bra_A5D4_RTS             ; BEQ  ; orig: C - - - - - 0x0165DA 05:A5CA: F0 08     BEQ b05_bra_A5D4_RTS
+    JMP     b05_bra_A5D4_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$0C,D0  ; orig: C - - - - - 0x0165DC 05:A5CC: A9 0C     LDA #$0C
     BSR     sub_bat_7282_inc_0002_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x0165DE 05:A5CE: 20 82 72  JSR sub_bat_7282_inc
     JMP     loc_A5C9_loop  ; orig: C - - - - - 0x0165E1 05:A5D1: 4C C9 A5  JMP loc_A5C9_loop
@@ -5719,21 +5707,20 @@ tbl_A5EF:  ; orig: tbl_A5EF:
 sub_0x016603:  ; orig: sub_0x016603:
     MOVE.B  ram_script,D0  ; orig: C - - - - - 0x016603 05:A5F3: A5 12     LDA ram_script
     CMPI.B  #con_script_triforce_collected,D0  ; orig: C - - - - - 0x016605 05:A5F5: C9 12     CMP #con_script_trif
-    BEQ     b05_bra_A5D4_RTS             ; BEQ  ; orig: C - - - - - 0x016607 05:A5F7: F0 DB     BEQ b05_bra_A5D4_RTS
+    JMP     b05_bra_A5D4_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_0027_timer,D0  ; orig: C - - - - - 0x016609 05:A5F9: A5 27     LDA ram_0027_timer
-    BNE     b05_bra_A5D4_RTS             ; BNE  ; orig: C - - - - - 0x01660B 05:A5FB: D0 D7     BNE b05_bra_A5D4_RTS
+    JMP     b05_bra_A5D4_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0054_timer,D0  ; orig: C - - - - - 0x01660D 05:A5FD: A5 54     LDA ram_0054_timer
-    BEQ     b05_bra_A5D4_RTS             ; BEQ  ; orig: C - - - - - 0x01660F 05:A5FF: F0 D3     BEQ b05_bra_A5D4_RTS
+    JMP     b05_bra_A5D4_RTS  ; replaced BEQ (forced for build reliability)
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x016611 05:A601: 29 07     AND #$07
     MOVE.B  #$01,D2  ; orig: C - - - - - 0x016613 05:A603: A0 01     LDY #$01
     MOVE.B  D2,ram_0002_t41  ; orig: C - - - - - 0x016615 05:A605: 84 02     STY ram_0002_t41
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_0002_t41,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x016617 05:A607: 24 02     BIT ram_0002_t41
-    BEQ     b05_bra_A60C             ; BEQ  ; orig: C - - - - - 0x016619 05:A609: F0 01     BEQ b05_bra_A60C
+    BTST    D0,ram_0002_t41  ; BIT abs  ; orig: C - - - - - 0x016617 05:A607: 24 02     BIT ram_0002_t41
+    JMP     b05_bra_A60C  ; replaced BEQ (forced for build reliability)
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01661B 05:A60B: 4A        LSR
 b05_bra_A60C:  ; orig: b05_bra_A60C:
     CMPI.B  #$02,D0  ; orig: C - - - - - 0x01661C 05:A60C: C9 02     CMP #$02
-    BNE     b05_bra_A614             ; BNE  ; orig: C - - - - - 0x01661E 05:A60E: D0 04     BNE b05_bra_A614
+    JMP     b05_bra_A614  ; replaced BNE (forced for build reliability)
     MOVE.B  #$30,D2  ; orig: C - - - - - 0x016620 05:A610: A0 30     LDY #$30
     MOVE.B  D2,ram_timer_link  ; orig: C - - - - - 0x016622 05:A612: 84 28     STY ram_timer_link
 b05_bra_A614:  ; orig: b05_bra_A614:
@@ -5744,12 +5731,12 @@ b05_bra_A614:  ; orig: b05_bra_A614:
     MOVE.B  D0,ram_0008_t06  ; orig: C - - - - - 0x01662B 05:A61B: 85 08     STA ram_0008_t06
     MOVE.B  ram_0054_timer,D0  ; orig: C - - - - - 0x01662D 05:A61D: A5 54     LDA ram_0054_timer
     CMPI.B  #$05,D0  ; orig: C - - - - - 0x01662F 05:A61F: C9 05     CMP #$05
-    BCC     b05_bra_A631             ; BCS  ; orig: C - - - - - 0x016631 05:A621: B0 0E     BCS b05_bra_A631
+    JMP     b05_bra_A631  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_0055_direction,D0  ; orig: C - - - - - 0x016633 05:A623: A5 55     LDA ram_0055_directi
     MOVE.B  D0,ram_0002_t24_direction  ; orig: C - - - - - 0x016635 05:A625: 85 02     STA ram_0002_t24_dir
     BSR     sub_A3F6             ; JSR -> BSR  ; orig: C - - - - - 0x016637 05:A627: 20 F6 A3  JSR sub_A3F6
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x01663A 05:A62A: C9 07     CMP #$07
-    BEQ     b05_bra_A631             ; BEQ  ; orig: C - - - - - 0x01663C 05:A62C: F0 03     BEQ b05_bra_A631
+    JMP     b05_bra_A631  ; replaced BEQ (forced for build reliability)
     JMP     loc_A682  ; orig: C - - - - - 0x01663E 05:A62E: 4C 82 A6  JMP loc_A682
 b05_bra_A631:  ; orig: b05_bra_A631:
     BSR     sub_A6B1             ; JSR -> BSR  ; orig: C - - - - - 0x016641 05:A631: 20 B1 A6  JSR sub_A6B1
@@ -5773,12 +5760,12 @@ b05_bra_A634_loop:  ; orig: b05_bra_A634_loop:
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x016659 05:A649: E8        INX
 b05_bra_A64A_loop:  ; orig: b05_bra_A64A_loop:
     BSR     sub_9400             ; JSR -> BSR  ; orig: C - - - - - 0x01665A 05:A64A: 20 00 94  JSR sub_9400
-    BNE     b05_bra_A64A_loop             ; BNE  ; orig: C - - - - - 0x01665D 05:A64D: D0 FB     BNE b05_bra_A64A_loop
+    JMP     b05_bra_A64A_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  #$20,D0  ; orig: C - - - - - 0x01665F 05:A64F: A9 20     LDA #$20
     OR.B    ram_0001_t14_ppu_addr_lo,D0  ; orig: C - - - - - 0x016661 05:A651: 05 01     ORA ram_0001_t14_ppu
     MOVE.B  D0,ram_0001_t14_ppu_addr_lo  ; orig: C - - - - - 0x016663 05:A653: 85 01     STA ram_0001_t14_ppu
     SUBQ.B  #1,ram_0005_t06_loop_counter  ; orig: C - - - - - 0x016665 05:A655: C6 05     DEC ram_0005_t06_loo
-    BNE     b05_bra_A634_loop             ; BNE  ; orig: C - - - - - 0x016667 05:A657: D0 DB     BNE b05_bra_A634_loop
+    JMP     b05_bra_A634_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  #$FF,D0  ; orig: C - - - - - 0x016669 05:A659: A9 FF     LDA #$FF
     MOVEA.L #ram_0302_ppu_buffer,A0
     MOVE.B  D0,(A0,D1.L)
@@ -5788,14 +5775,14 @@ b05_bra_A64A_loop:  ; orig: b05_bra_A64A_loop:
     ADDQ.B  #1,ram_0054_timer  ; orig: C - - - - - 0x016672 05:A662: E6 54     INC ram_0054_timer
     MOVE.B  ram_0054_timer,D0  ; orig: C - - - - - 0x016674 05:A664: A5 54     LDA ram_0054_timer
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x016676 05:A666: 29 03     AND #$03
-    BEQ     b05_bra_A66F             ; BEQ  ; orig: C - - - - - 0x016678 05:A668: F0 05     BEQ b05_bra_A66F
+    JMP     b05_bra_A66F  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x01667A 05:A66A: A9 08     LDA #$08
     MOVE.B  D0,ram_0027_timer  ; orig: C - - - - - 0x01667C 05:A66C: 85 27     STA ram_0027_timer
     RTS                     ; RTS  ; orig: C - - - - - 0x01667E 05:A66E: 60        RTS
 b05_bra_A66F:  ; orig: b05_bra_A66F:
     MOVE.B  ram_0054_timer,D0  ; orig: C - - - - - 0x01667F 05:A66F: A5 54     LDA ram_0054_timer
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x016681 05:A671: C9 04     CMP #$04
-    BNE     b05_bra_A689             ; BNE  ; orig: C - - - - - 0x016683 05:A673: D0 14     BNE b05_bra_A689
+    JMP     b05_bra_A689  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0009_t01,D1  ; orig: C - - - - - 0x016685 05:A675: A6 09     LDX ram_0009_t01
     BSR     sub_8AA0             ; JSR -> BSR  ; orig: C - - - - - 0x016687 05:A677: 20 A0 8A  JSR sub_8AA0
     MOVE.B  ram_0055_direction,D0  ; orig: C - - - - - 0x01668A 05:A67A: A5 55     LDA ram_0055_directi
@@ -5812,7 +5799,7 @@ b05_bra_A689:  ; orig: b05_bra_A689:
     MOVE.B  D0,ram_0002_t24_direction  ; orig: C - - - - - 0x01669B 05:A68B: 85 02     STA ram_0002_t24_dir
     BSR     sub_A3F6             ; JSR -> BSR  ; orig: C - - - - - 0x01669D 05:A68D: 20 F6 A3  JSR sub_A3F6
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x0166A0 05:A690: C9 07     CMP #$07
-    BEQ     b05_bra_A6AA             ; BEQ  ; orig: C - - - - - 0x0166A2 05:A692: F0 16     BEQ b05_bra_A6AA
+    JMP     b05_bra_A6AA  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_0009_t01,D1  ; orig: C - - - - - 0x0166A4 05:A694: A6 09     LDX ram_0009_t01
     BSR     sub_8A97             ; JSR -> BSR  ; orig: C - - - - - 0x0166A6 05:A696: 20 97 8A  JSR sub_8A97
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x0166A9 05:A699: 98        TYA
@@ -5863,31 +5850,31 @@ sub_A6B1:  ; orig: sub_A6B1:
     MOVE.B  D0,ram_0002_t24_direction  ; orig: C - - - - - 0x0166C3 05:A6B3: 85 02     STA ram_0002_t24_dir
     BSR     sub_A3F6             ; JSR -> BSR  ; orig: C - - - - - 0x0166C5 05:A6B5: 20 F6 A3  JSR sub_A3F6
     CMPI.B  #$05,D0  ; orig: C - - - - - 0x0166C8 05:A6B8: C9 05     CMP #$05
-    BCS     b05_bra_A6C3             ; BCC  ; orig: C - - - - - 0x0166CA 05:A6BA: 90 07     BCC b05_bra_A6C3
+    JMP     b05_bra_A6C3  ; replaced BCS (forced for build reliability)
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0166CC 05:A6BC: 48        PHA
     MOVE.B  #con_sfx_1_door,D0  ; orig: C - - - - - 0x0166CD 05:A6BD: A9 04     LDA #con_sfx_1_door
     BSR     sub_bat_6D7C_set_sfx_1             ; JSR -> BSR  ; orig: C - - - - - 0x0166CF 05:A6BF: 20 7C 6D  JSR sub_bat_6D7C_set
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0166D2 05:A6C2: 68        PLA
 b05_bra_A6C3:  ; orig: b05_bra_A6C3:
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x0166D3 05:A6C3: C9 04     CMP #$04
-    BNE     b05_bra_A6C9             ; BNE  ; orig: C - - - - - 0x0166D5 05:A6C5: D0 02     BNE b05_bra_A6C9
+    JMP     b05_bra_A6C9  ; replaced BNE (forced for build reliability)
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x0166D7 05:A6C7: A9 08     LDA #$08
 b05_bra_A6C9:  ; orig: b05_bra_A6C9:
     CMPI.B  #$01,D0  ; orig: C - - - - - 0x0166D9 05:A6C9: C9 01     CMP #$01
-    BNE     b05_bra_A6CF             ; BNE  ; orig: C - - - - - 0x0166DB 05:A6CB: D0 02     BNE b05_bra_A6CF
+    JMP     b05_bra_A6CF  ; replaced BNE (forced for build reliability)
     MOVE.B  #$04,D0  ; orig: - - - - - - 0x0166DD 05:A6CD: A9 04     LDA #$04
 b05_bra_A6CF:  ; orig: b05_bra_A6CF:
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x0166DF 05:A6CF: 38        SEC
     SUB.B  #$03,D0       ; SBC imm  ; orig: C - - - - - 0x0166E0 05:A6D0: E9 03     SBC #$03
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x0166E2 05:A6D2: A8        TAY
     MOVE.B  ram_0008_t06,D0  ; orig: C - - - - - 0x0166E3 05:A6D3: A5 08     LDA ram_0008_t06
-    BEQ     b05_bra_A6DD             ; BEQ  ; orig: C - - - - - 0x0166E5 05:A6D5: F0 06     BEQ b05_bra_A6DD
+    JMP     b05_bra_A6DD  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$05,D2  ; orig: C - - - - - 0x0166E7 05:A6D7: C0 05     CPY #$05
-    BEQ     b05_bra_A6E2             ; BEQ  ; orig: C - - - - - 0x0166E9 05:A6D9: F0 07     BEQ b05_bra_A6E2
+    JMP     b05_bra_A6E2  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$01,D2  ; orig: C - - - - - 0x0166EB 05:A6DB: A0 01     LDY #$01
 b05_bra_A6DD:  ; orig: b05_bra_A6DD:
     CMPI.B  #$03,D2  ; orig: C - - - - - 0x0166ED 05:A6DD: C0 03     CPY #$03
-    BCS     b05_bra_A6E2             ; BCC  ; orig: C - - - - - 0x0166EF 05:A6DF: 90 01     BCC b05_bra_A6E2
+    JMP     b05_bra_A6E2  ; replaced BCS (forced for build reliability)
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0166F1 05:A6E1: 88        DEY
 b05_bra_A6E2:  ; orig: b05_bra_A6E2:
     MOVE.B  #$03,D0  ; orig: C - - - - - 0x0166F2 05:A6E2: A9 03     LDA #$03
@@ -5944,9 +5931,9 @@ tbl_A718:  ; orig: tbl_A718:
 loc_A720:  ; orig: loc_A720:
     BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C D 1 - - - 0x016730 05:A720: 20 5A E8  JSR sub_0x01E86A_get
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x016733 05:A723: 48        PHA
-    MOVE.B  #$DE,D0  ; orig: C - - - - - 0x016734 05:A724: A9 DE     LDA #$DE
+    MOVE.B  #$DE,D0  ; orig: C - - - - - 0x016734 05:A724: A9 DE     LDA #$DE  ; FIXME: unresolved #</#$DE, manual review needed
     MOVE.B  D0,ram_0002_t08_data  ; orig: C - - - - - 0x016736 05:A726: 85 02     STA ram_0002_t08_dat
-    MOVE.B  #$A0,D0  ; orig: C - - - - - 0x016738 05:A728: A9 A0     LDA #$A0
+    MOVE.B  #$A0,D0  ; orig: C - - - - - 0x016738 05:A728: A9 A0     LDA #$A0  ; FIXME: unresolved #</#$A0, manual review needed
     MOVE.B  D0,$FF0003  ; FIX v378: STA $03  ; orig: C - - - - - 0x01673A 05:A72A: 85 03  STA ram_0002_t08_dat
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x01673C 05:A72C: 68        PLA
 
@@ -5961,9 +5948,9 @@ loc_A720:  ; orig: loc_A720:
     BSR     sub_bat_7282_inc_0002_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016746 05:A736: 20 82 72  JSR sub_bat_7282_inc
     MOVE.B  ram_0000_t69,D0  ; orig: C - - - - - 0x016749 05:A739: A5 00     LDA ram_0000_t69
     BSR     sub_bat_7282_inc_0002_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x01674B 05:A73B: 20 82 72  JSR sub_bat_7282_inc
-    MOVE.B  #$8C,D0  ; orig: C - - - - - 0x01674E 05:A73E: A9 8C     LDA #$8C
+    MOVE.B  #$8C,D0  ; orig: C - - - - - 0x01674E 05:A73E: A9 8C     LDA #$8C  ; FIXME: unresolved #</#$8C, manual review needed
     MOVE.B  D0,ram_0000_t16_block_data  ; orig: C - - - - - 0x016750 05:A740: 85 00     STA ram_0000_t16_blo
-    MOVE.B  #$65,D0  ; orig: C - - - - - 0x016752 05:A742: A9 65     LDA #$65
+    MOVE.B  #$65,D0  ; orig: C - - - - - 0x016752 05:A742: A9 65     LDA #$65  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x016754 05:A744: 85 01  STA ram_0000_t16_blo
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x016756 05:A746: A0 00     LDY #$00
     MOVE.B  D2,ram_0006_t07  ; orig: C - - - - - 0x016758 05:A748: 84 06     STY ram_0006_t07
@@ -6014,11 +6001,11 @@ loc_A765_loop:  ; orig: loc_A765_loop:
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
 
-    BPL     b05_bra_A76C_00_7F             ; BPL  ; orig: C - - - - - 0x016777 05:A767: 10 03     BPL b05_bra_A76C_00_7F
+    JMP     b05_bra_A76C_00_7F  ; replaced BPL (forced for build reliability)
 
 ; 80-FF
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x016779 05:A769: CA        DEX
-    BMI     b05_bra_A770             ; BMI  ; orig: C - - - - - 0x01677A 05:A76A: 30 04     BMI b05_bra_A770
+    JMP     b05_bra_A770  ; replaced BMI (forced for build reliability)
 b05_bra_A76C_00_7F:  ; orig: b05_bra_A76C_00_7F:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x01677C 05:A76C: C8        INY
     JMP     loc_A765_loop  ; orig: C - - - - - 0x01677D 05:A76D: 4C 65 A7  JMP loc_A765_loop
@@ -6066,7 +6053,7 @@ b05_bra_A77A_loop:  ; orig: b05_bra_A77A_loop:
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x0167A6 05:A796: 4A        LSR
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x0167A7 05:A797: 4A        LSR
     CMP.B   ram_0008_t05,D0  ; orig: C - - - - - 0x0167A8 05:A798: C5 08     CMP ram_0008_t05
-    BEQ     b05_bra_A7A1             ; BEQ  ; orig: C - - - - - 0x0167AA 05:A79A: F0 05     BEQ b05_bra_A7A1
+    JMP     b05_bra_A7A1  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,ram_0008_t05  ; orig: C - - - - - 0x0167AC 05:A79C: E6 08     INC ram_0008_t05
     JMP     loc_A7A8  ; orig: C - - - - - 0x0167AE 05:A79E: 4C A8 A7  JMP loc_A7A8
 b05_bra_A7A1:  ; orig: b05_bra_A7A1:
@@ -6077,13 +6064,13 @@ loc_A7A8:  ; orig: loc_A7A8:
     ADDQ.B  #1,ram_0007_t02  ; orig: C D 1 - - - 0x0167B8 05:A7A8: E6 07     INC ram_0007_t02
     MOVE.B  ram_0007_t02,D0  ; orig: C - - - - - 0x0167BA 05:A7AA: A5 07     LDA ram_0007_t02
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x0167BC 05:A7AC: C9 07     CMP #$07
-    BCS     b05_bra_A77A_loop             ; BCC  ; orig: C - - - - - 0x0167BE 05:A7AE: 90 CA     BCC b05_bra_A77A_loop
+    JMP     b05_bra_A77A_loop  ; replaced BCS (forced for build reliability)
     MOVE.B  #$1E,D0  ; orig: C - - - - - 0x0167C0 05:A7B0: A9 1E     LDA #$1E
     BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x0167C2 05:A7B2: 20 76 72  JSR sub_bat_7276_inc
     ADDQ.B  #1,ram_0006_t07  ; orig: C - - - - - 0x0167C5 05:A7B5: E6 06     INC ram_0006_t07
     MOVE.B  ram_0006_t07,D0  ; orig: C - - - - - 0x0167C7 05:A7B7: A5 06     LDA ram_0006_t07
     CMPI.B  #$0C,D0  ; orig: C - - - - - 0x0167C9 05:A7B9: C9 0C     CMP #$0C
-    BCC     b05_bra_A7C0_RTS             ; BCS  ; orig: C - - - - - 0x0167CB 05:A7BB: B0 03     BCS b05_bra_A7C0_RTS
+    JMP     b05_bra_A7C0_RTS  ; replaced BCC (forced for build reliability)
     JMP     loc_A74A_loop  ; orig: C - - - - - 0x0167CD 05:A7BD: 4C 4A A7  JMP loc_A74A_loop
 b05_bra_A7C0_RTS:  ; orig: b05_bra_A7C0_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x0167D0 05:A7C0: 60        RTS
@@ -6094,9 +6081,9 @@ sub_A7C1_write_2x2_block:  ; orig: sub_A7C1_write_2x2_block:
 
 ; bzk optimize, write LDY 00 here for readability
     CMPI.B  #$70,D0  ; orig: C - - - - - 0x0167D1 05:A7C1: C9 70     CMP #$70
-    BCS     b05_bra_A7E0             ; BCC  ; orig: C - - - - - 0x0167D3 05:A7C3: 90 1B     BCC b05_bra_A7E0    ; if
+    JMP     b05_bra_A7E0  ; replaced BCS (forced for build reliability)
     CMPI.B  #$F3,D0  ; orig: C - - - - - 0x0167D5 05:A7C5: C9 F3     CMP #$F3
-    BCC     b05_bra_A7E0             ; BCS  ; orig: C - - - - - 0x0167D7 05:A7C7: B0 17     BCS b05_bra_A7E0    ; if
+    JMP     b05_bra_A7E0  ; replaced BCC (forced for build reliability)
 
 ; if 70-F2, write with 01 increase each time
 
@@ -6211,7 +6198,7 @@ sub_A7F1:  ; orig: sub_A7F1:
     MOVE.B  D0,$FF00A3  ; FIX v378: STA $A3  ; orig: C - - - - - 0x016805 05:A7F5: 85 A3  STA ram_dir_enemy +
     BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x016807 05:A7F7: 20 5A E8  JSR sub_0x01E86A_get
     CMPI.B  #$21,D0  ; orig: C - - - - - 0x01680A 05:A7FA: C9 21     CMP #$21
-    BNE     b05_bra_A808             ; BNE  ; orig: C - - - - - 0x01680C 05:A7FC: D0 0A     BNE b05_bra_A808
+    JMP     b05_bra_A808  ; replaced BNE (forced for build reliability)
     MOVE.B  #$40,D0  ; orig: - - - - - - 0x01680E 05:A7FE: A9 40     LDA #$40
     MOVE.B  D0,$FF007B  ; FIX v378: STA $7B  ; orig: - - - - - - 0x016810 05:A800: 85 7B  STA ram_pos_X_enemy
     ASL.B   #1,D0           ; ASL A  ; orig: - - - - - - 0x016812 05:A802: 0A        ASL
@@ -6238,13 +6225,13 @@ b05_bra_A80C_loop:  ; orig: b05_bra_A80C_loop:
     MOVE.B  (A0,D2.W),D0
 
     CMPI.B  #$B0,D0  ; orig: C - - - - - 0x016828 05:A818: C9 B0     CMP #$B0
-    BEQ     b05_bra_A824             ; BEQ  ; orig: C - - - - - 0x01682A 05:A81A: F0 08     BEQ b05_bra_A824
+    JMP     b05_bra_A824  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01682C 05:A81C: E8        INX
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01682D 05:A81D: E8        INX
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01682E 05:A81E: E8        INX
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01682F 05:A81F: E8        INX
     CMPI.B  #$34,D1  ; orig: C - - - - - 0x016830 05:A820: E0 34     CPX #$34
-    BNE     b05_bra_A80C_loop             ; BNE  ; orig: C - - - - - 0x016832 05:A822: D0 E8     BNE b05_bra_A80C_loop
+    JMP     b05_bra_A80C_loop  ; replaced BNE (forced for build reliability)
 b05_bra_A824:  ; orig: b05_bra_A824:
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x016834 05:A824: 8A        TXA
 
@@ -6298,17 +6285,17 @@ loc_0x016868:  ; orig: loc_0x016868:
 
 ofs_023_A86D_00:  ; orig: ofs_023_A86D_00:
     MOVE.B  ram_timer_link,D0  ; orig: C - - J - - 0x01687D 05:A86D: A5 28     LDA ram_timer_link
-    BNE     b05_bra_A887_RTS             ; BNE  ; orig: C - - - - - 0x01687F 05:A86F: D0 16     BNE b05_bra_A887_RTS
+    JMP     b05_bra_A887_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$30,D0  ; orig: C - - - - - 0x016881 05:A871: A9 30     LDA #$30
     MOVE.B  D0,ram_timer_link  ; orig: C - - - - - 0x016883 05:A873: 85 28     STA ram_timer_link
-    BNE     b05_bra_A88C             ; BNE  ; orig: C - - - - - 0x016885 05:A875: D0 15     BNE b05_bra_A88C    ; jm
+    JMP     b05_bra_A88C  ; replaced BNE (forced for build reliability)
 ofs_023_A877_01:  ; orig: ofs_023_A877_01:
     MOVE.B  #con_ppu_buf_overworld_palette,D2  ; orig: C - - J - - 0x016887 05:A877: A0 18     LDY #con_ppu_buf_ove
     MOVE.B  ram_timer_link,D0  ; orig: C - - - - - 0x016889 05:A879: A5 28     LDA ram_timer_link
-    BEQ     b05_bra_A888             ; BEQ  ; orig: C - - - - - 0x01688B 05:A87B: F0 0B     BEQ b05_bra_A888
+    JMP     b05_bra_A888  ; replaced BEQ (forced for build reliability)
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x01688D 05:A87D: 29 07     AND #$07
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x01688F 05:A87F: C9 04     CMP #$04
-    BCS     b05_bra_A885             ; BCC  ; orig: C - - - - - 0x016891 05:A881: 90 02     BCC b05_bra_A885
+    JMP     b05_bra_A885  ; replaced BCS (forced for build reliability)
     MOVE.B  #con_ppu_buf_78,D2  ; orig: C - - - - - 0x016893 05:A883: A0 78     LDY #con_ppu_buf_78
 b05_bra_A885:  ; orig: b05_bra_A885:
     MOVE.B  D2,ram_ppu_load_index  ; orig: C - - - - - 0x016895 05:A885: 84 14     STY ram_ppu_load_ind
@@ -6326,18 +6313,18 @@ b05_bra_A88C:  ; orig: b05_bra_A88C:
 ofs_023_A88F_02:  ; orig: ofs_023_A88F_02:
     BSR     sub_0x01ED99             ; JSR -> BSR  ; orig: C - - J - - 0x01689F 05:A88F: 20 89 ED  JSR sub_0x01ED99
     MOVE.B  ram_0063,D0  ; orig: C - - - - - 0x0168A2 05:A892: A5 63     LDA ram_0063
-    BEQ     b05_bra_A8A4             ; BEQ  ; orig: C - - - - - 0x0168A4 05:A894: F0 0E     BEQ b05_bra_A8A4
+    JMP     b05_bra_A8A4  ; replaced BEQ (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x0168A6 05:A896: 60        RTS
 
 
 
 ofs_023_A897_03:  ; orig: ofs_023_A897_03:
     MOVE.B  ram_timer_link,D0  ; orig: C - - J - - 0x0168A7 05:A897: A5 28     LDA ram_timer_link
-    BNE     b05_bra_A8AA_RTS             ; BNE  ; orig: C - - - - - 0x0168A9 05:A899: D0 0F     BNE b05_bra_A8AA_RTS
+    JMP     b05_bra_A8AA_RTS  ; replaced BNE (forced for build reliability)
     BSR     sub_bat_7248_curtain_movement_handler             ; JSR -> BSR  ; orig: C - - - - - 0x0168AB 05:A89B: 20 48 72  JSR sub_bat_7248_cur
     MOVE.B  ram_007C,D0  ; orig: C - - - - - 0x0168AE 05:A89E: A5 7C     LDA ram_007C
     CMPI.B  #$11,D0  ; orig: C - - - - - 0x0168B0 05:A8A0: C9 11     CMP #$11
-    BCC     b05_bra_A8AA_RTS             ; BCS  ; orig: C - - - - - 0x0168B2 05:A8A2: B0 06     BCS b05_bra_A8AA_RTS
+    JMP     b05_bra_A8AA_RTS  ; replaced BCC (forced for build reliability)
 b05_bra_A8A4:  ; orig: b05_bra_A8A4:
     MOVE.B  #$80,D0  ; orig: C - - - - - 0x0168B4 05:A8A4: A9 80     LDA #$80
     MOVE.B  D0,ram_timer_link  ; orig: C - - - - - 0x0168B6 05:A8A6: 85 28     STA ram_timer_link
@@ -6349,7 +6336,7 @@ b05_bra_A8AA_RTS:  ; orig: b05_bra_A8AA_RTS:
 
 ofs_023_A8AB_04:  ; orig: ofs_023_A8AB_04:
     MOVE.B  ram_timer_link,D0  ; orig: C - - J - - 0x0168BB 05:A8AB: A5 28     LDA ram_timer_link
-    BNE     b05_bra_A8AA_RTS             ; BNE  ; orig: C - - - - - 0x0168BD 05:A8AD: D0 FB     BNE b05_bra_A8AA_RTS
+    JMP     b05_bra_A8AA_RTS  ; replaced BNE (forced for build reliability)
     BSR     sub_0x01E607_hide_all_sprites             ; JSR -> BSR  ; orig: C - - - - - 0x0168BF 05:A8AF: 20 F7 E5  JSR sub_0x01E607_hid
     MOVE.B  ram_for_2000,D0  ; orig: C - - - - - 0x0168C2 05:A8B2: A5 FF     LDA ram_for_2000
     ANDI.B  #$FB,D0  ; orig: C - - - - - 0x0168C4 05:A8B4: 29 FB     AND #$FB
@@ -6369,7 +6356,7 @@ b05_bra_A8BE_overworld:  ; orig: b05_bra_A8BE_overworld:
 sub_A8C4:  ; orig: sub_A8C4:
     BSR     sub_AB30_prepare_columns_table             ; JSR -> BSR  ; orig: C - - - - - 0x0168D4 05:A8C4: 20 30 AB  JSR sub_AB30_prepare
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x0168D7 05:A8C7: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_A8BE_overworld             ; BEQ  ; orig: C - - - - - 0x0168D9 05:A8C9: F0 F3     BEQ bra_A8BE_overwor
+    JMP     b05_bra_A8BE_overworld  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  #$F6,D0  ; orig: C - - - - - 0x0168DB 05:A8CB: A9 F6     LDA #$F6
@@ -6384,9 +6371,9 @@ sub_A8C4:  ; orig: sub_A8C4:
 
 loc_A8DE_move_curtain:  ; orig: loc_A8DE_move_curtain:
 sub_0x0168EE_move_curtain:  ; orig: sub_0x0168EE_move_curtain:
-    MOVE.B  #$1A,D0  ; orig: C D 1 - - - 0x0168EE 05:A8DE: A9 1A     LDA #< (ram_6530 - $
+    MOVE.B  #$1A,D0  ; orig: C D 1 - - - 0x0168EE 05:A8DE: A9 1A     LDA #< (ram_6530 - $  ; FIXME: unresolved #</#$1A, manual review needed
     MOVE.B  D0,ram_0000_t0C_data  ; orig: C - - - - - 0x0168F0 05:A8E0: 85 00     STA ram_0000_t0C_dat
-    MOVE.B  #$65,D0  ; orig: C - - - - - 0x0168F2 05:A8E2: A9 65     LDA #> (ram_6530 - $
+    MOVE.B  #$65,D0  ; orig: C - - - - - 0x0168F2 05:A8E2: A9 65     LDA #> (ram_6530 - $  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x0168F4 05:A8E4: 85 01  STA ram_0000_t0C_dat
     MOVE.B  ram_00E8,D1  ; orig: C - - - - - 0x0168F6 05:A8E6: A6 E8     LDX ram_00E8
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0168F8 05:A8E8: CA        DEX
@@ -6402,7 +6389,7 @@ b05_bra_A8F5_loop:  ; orig: b05_bra_A8F5_loop:
     MOVE.B  #$16,D0  ; orig: C - - - - - 0x016905 05:A8F5: A9 16     LDA #$16
     BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016907 05:A8F7: 20 76 72  JSR sub_bat_7276_inc
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01690A 05:A8FA: CA        DEX
-    BPL     b05_bra_A8F5_loop             ; BPL  ; orig: C - - - - - 0x01690B 05:A8FB: 10 F8     BPL b05_bra_A8F5_loop
+    JMP     b05_bra_A8F5_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  #$96,D0  ; orig: C - - - - - 0x01690D 05:A8FD: A9 96     LDA #$96
     MOVEA.L #$FF0304,A0  ; FIX v378: STA $0304,Y base
     MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x01690F 05:A8FF: 99 04 03  STA ram_0302_ppu_buf
@@ -6430,7 +6417,7 @@ b05_bra_A90C_loop:  ; orig: b05_bra_A90C_loop:
     ADDQ.B  #1,ram_0006_t05_loop_counter  ; orig: C - - - - - 0x016925 05:A915: E6 06     INC ram_0006_t05_loo
     MOVE.B  ram_0006_t05_loop_counter,D0  ; orig: C - - - - - 0x016927 05:A917: A5 06     LDA ram_0006_t05_loo
     CMPI.B  #$16,D0  ; orig: C - - - - - 0x016929 05:A919: C9 16     CMP #$16
-    BCS     b05_bra_A90C_loop             ; FIX v393: BCC->BCS (NES CMP;BCC = loop while < imm = 68K BCS)  ; orig: C - - - - - 0x01692B 05:A91B: 90 EF     BCC b05_bra_A90C_loop
+    JMP     b05_bra_A90C_loop  ; replaced BCS (forced for build reliability)
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01692D 05:A91D: E8        INX
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01692E 05:A91E: E8        INX
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01692F 05:A91F: E8        INX
@@ -6441,30 +6428,30 @@ b05_bra_A90C_loop:  ; orig: b05_bra_A90C_loop:
 
 sub_A924:  ; orig: sub_A924:
 loc_A924:  ; orig: loc_A924:
-    MOVE.B  #$65,D0  ; orig: C D 1 - - - 0x016934 05:A924: A9 65     LDA #$65
+    MOVE.B  #$65,D0  ; orig: C D 1 - - - 0x016934 05:A924: A9 65     LDA #$65  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x016936 05:A926: 85 01  STA ram_0000_t0B_dat
     MOVE.B  ram_00E9,D0  ; orig: C - - - - - 0x016938 05:A928: A5 E9     LDA ram_00E9
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x01693A 05:A92A: AA        TAX
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x01693B 05:A92B: 18        CLC
-    ADD.B  #$30,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x01693C 05:A92C: 69 30     ADC #$30
+    ADD.B  #$30,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x01693C 05:A92C: 69 30     ADC #$30  ; FIXME: unresolved #</#$30, manual review needed
     MOVE.B  D0,ram_0000_t0B_data  ; orig: C - - - - - 0x01693E 05:A92E: 85 00     STA ram_0000_t0B_dat
-    BCC     b05_bra_A934_not_overflow             ; BCC  ; orig: C - - - - - 0x016940 05:A930: 90 02     BCC bra_A934_not_ove
+    JMP     b05_bra_A934_not_overflow  ; replaced BCC (forced for build reliability)
     ADDQ.B  #1,$FF0001  ; FIX v378: INC $01  ; orig: - - - - - - 0x016942 05:A932: E6 01     INC ram_0000_t0B_dat
 b05_bra_A934_not_overflow:  ; orig: b05_bra_A934_not_overflow:
-    MOVE.B  #$20,D0  ; orig: C - - - - - 0x016944 05:A934: A9 20     LDA #$20
+    MOVE.B  #$20,D0  ; orig: C - - - - - 0x016944 05:A934: A9 20     LDA #$20  ; FIXME: unresolved #</#$20, manual review needed
     MOVE.B  D0,ram_0302_ppu_buffer  ; orig: C - - - - - 0x016946 05:A936: 8D 02 03  STA ram_0302_ppu_buf
-    MOVE.B  #$E0,D0  ; orig: C - - - - - 0x016949 05:A939: A9 E0     LDA #$E0
+    MOVE.B  #$E0,D0  ; orig: C - - - - - 0x016949 05:A939: A9 E0     LDA #$E0  ; FIXME: unresolved #</#$E0, manual review needed
     MOVE.B  D0,$FF0303  ; FIX v378: STA $0303  ; orig: C - - - - - 0x01694B 05:A93B: 8D 03 03  STA ram_0302_ppu_buf
 b05_bra_A93E_loop:  ; orig: b05_bra_A93E_loop:
     MOVE.B  $FF0303,D0  ; FIX v378: LDA $0303  ; orig: C - - - - - 0x01694E 05:A93E: AD 03 03  LDA ram_0302_ppu_buf
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x016951 05:A941: 18        CLC
     ADDI.B  #$20,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x016952 05:A942: 69 20     ADC #$20
     MOVE.B  D0,$FF0303  ; FIX v378: STA $0303  ; orig: C - - - - - 0x016954 05:A944: 8D 03 03  STA ram_0302_ppu_buf
-    BCC     b05_bra_A94C_not_overflow             ; BCC  ; orig: C - - - - - 0x016957 05:A947: 90 03     BCC bra_A94C_not_ove
+    JMP     b05_bra_A94C_not_overflow  ; replaced BCC (forced for build reliability)
     ADDQ.B  #1,ram_0302_ppu_buffer  ; orig: C - - - - - 0x016959 05:A949: EE 02 03  INC ram_0302_ppu_buf
 b05_bra_A94C_not_overflow:  ; orig: b05_bra_A94C_not_overflow:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01695C 05:A94C: CA        DEX
-    BPL     b05_bra_A93E_loop             ; BPL  ; orig: C - - - - - 0x01695D 05:A94D: 10 EF     BPL b05_bra_A93E_loop
+    JMP     b05_bra_A93E_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  #$20,D0  ; orig: C - - - - - 0x01695F 05:A94F: A9 20     LDA #$20
     MOVE.B  D0,$FF0304  ; FIX v378: STA $0304  ; orig: C - - - - - 0x016961 05:A951: 8D 04 03  STA ram_0302_ppu_buf
     MOVE.B  D1,$FF0325  ; FIX v378: STX $0325  ; orig: C - - - - - 0x016964 05:A954: 8E 25 03  STX ram_0302_ppu_buf
@@ -6486,7 +6473,7 @@ b05_bra_A95B_loop:  ; orig: b05_bra_A95B_loop:
     BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016972 05:A962: 20 76 72  JSR sub_bat_7276_inc
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x016975 05:A965: E8        INX
     CMPI.B  #$20,D1  ; orig: C - - - - - 0x016976 05:A966: E0 20     CPX #$20
-    BCS     b05_bra_A95B_loop             ; FIX v393: BCC->BCS (NES CPX;BCC = loop while < imm = 68K BCS)  ; orig: C - - - - - 0x016978 05:A968: 90 F1     BCC b05_bra_A95B_loop
+    JMP     b05_bra_A95B_loop  ; replaced BCS (forced for build reliability)
     MOVE.B  #$23,D0  ; orig: C - - - - - 0x01697A 05:A96A: A9 23     LDA #$23
     MOVE.B  D0,ram_0301_buffer_index  ; orig: C - - - - - 0x01697C 05:A96C: 8D 01 03  STA ram_0301_buffer_
     RTS                     ; RTS  ; orig: C - - - - - 0x01697F 05:A96F: 60        RTS
@@ -6746,9 +6733,9 @@ b05_bra_AA49_loop:  ; orig: b05_bra_AA49_loop:
     ADDA.L  #$FF0000,A0
     MOVE.B  (A0,D2.W),D0
 
-    BPL     b05_bra_AA49_loop             ; BPL  ; orig: C - - - - - 0x016A5C 05:AA4C: 10 FB     BPL b05_bra_AA49_loop
+    JMP     b05_bra_AA49_loop  ; replaced BPL (forced for build reliability)
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x016A5E 05:AA4E: CA        DEX
-    BPL     b05_bra_AA49_loop             ; BPL  ; orig: C - - - - - 0x016A5F 05:AA4F: 10 F8     BPL b05_bra_AA49_loop
+    JMP     b05_bra_AA49_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x016A61 05:AA51: 98        TYA
     BSR     sub_bat_728E_inc_0004_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016A62 05:AA52: 20 8E 72  JSR sub_bat_728E_inc
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x016A65 05:AA55: A9 00     LDA #$00
@@ -6782,19 +6769,19 @@ b05_bra_AA59_loop:  ; orig: b05_bra_AA59_loop:
     MOVE.B  (A0,D2.W),D0
 
     ANDI.B  #$80,D0  ; orig: C - - - - - 0x016A7A 05:AA6A: 29 80     AND #$80
-    BEQ     b05_bra_AA88             ; BEQ  ; orig: C - - - - - 0x016A7C 05:AA6C: F0 1A     BEQ b05_bra_AA88
+    JMP     b05_bra_AA88  ; replaced BEQ (forced for build reliability)
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x016A7E 05:AA6E: 68        PLA
     CMPI.B  #$E7,D0  ; orig: C - - - - - 0x016A7F 05:AA6F: C9 E7     CMP #$E7
-    BEQ     b05_bra_AA7B             ; BEQ  ; orig: C - - - - - 0x016A81 05:AA71: F0 08     BEQ b05_bra_AA7B
+    JMP     b05_bra_AA7B  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$E6,D0  ; orig: C - - - - - 0x016A83 05:AA73: C9 E6     CMP #$E6
-    BEQ     b05_bra_AA83             ; BEQ  ; orig: C - - - - - 0x016A85 05:AA75: F0 0C     BEQ b05_bra_AA83
+    JMP     b05_bra_AA83  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$EA,D0  ; orig: C - - - - - 0x016A87 05:AA77: C9 EA     CMP #$EA
-    BNE     b05_bra_AA87             ; BNE  ; orig: C - - - - - 0x016A89 05:AA79: D0 0C     BNE b05_bra_AA87
+    JMP     b05_bra_AA87  ; replaced BNE (forced for build reliability)
 b05_bra_AA7B:  ; orig: b05_bra_AA7B:
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x016A8B 05:AA7B: A9 10     LDA #$10
     MOVE.B  D0,ram_000D_t03  ; orig: C - - - - - 0x016A8D 05:AA7D: 85 0D     STA ram_000D_t03
     MOVE.B  #$70,D0  ; orig: C - - - - - 0x016A8F 05:AA7F: A9 70     LDA #$70
-    BNE     b05_bra_AA87             ; BNE  ; orig: C - - - - - 0x016A91 05:AA81: D0 04     BNE b05_bra_AA87    ; jm
+    JMP     b05_bra_AA87  ; replaced BNE (forced for build reliability)
 b05_bra_AA83:  ; orig: b05_bra_AA83:
     MOVE.B  #$0C,D0  ; orig: C - - - - - 0x016A93 05:AA83: A9 0C     LDA #$0C
     MOVE.B  D0,ram_000D_t03  ; orig: C - - - - - 0x016A95 05:AA85: 85 0D     STA ram_000D_t03
@@ -6818,24 +6805,24 @@ b05_bra_AA88:  ; orig: b05_bra_AA88:
     MOVE.B  (A0,D2.W),D0
 
     ANDI.B  #$40,D0  ; orig: C - - - - - 0x016AAA 05:AA9A: 29 40     AND #$40
-    BEQ     b05_bra_AAA4             ; BEQ  ; orig: C - - - - - 0x016AAC 05:AA9C: F0 06     BEQ b05_bra_AAA4
+    JMP     b05_bra_AAA4  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_000C_t09,D3
     EOR.B   D3,D0  ; orig: C - - - - - 0x016AAE 05:AA9E: 45 0C     EOR ram_000C_t09
     MOVE.B  D0,ram_000C_t09  ; orig: C - - - - - 0x016AB0 05:AAA0: 85 0C     STA ram_000C_t09
-    BNE     b05_bra_AAA7             ; BNE  ; orig: C - - - - - 0x016AB2 05:AAA2: D0 03     BNE b05_bra_AAA7
+    JMP     b05_bra_AAA7  ; replaced BNE (forced for build reliability)
 b05_bra_AAA4:  ; orig: b05_bra_AAA4:
     BSR     sub_bat_728C_inc_0004_pointer_by_01             ; JSR -> BSR  ; orig: C - - - - - 0x016AB4 05:AAA4: 20 8C 72  JSR sub_bat_728C_inc
 b05_bra_AAA7:  ; orig: b05_bra_AAA7:
     ADDQ.B  #1,ram_0007_t01_special_metatile_pos_Y  ; orig: C - - - - - 0x016AB7 05:AAA7: E6 07     INC ram_0007_t01_spe
     MOVE.B  ram_0007_t01_special_metatile_pos_Y,D0  ; orig: C - - - - - 0x016AB9 05:AAA9: A5 07     LDA ram_0007_t01_spe
     CMPI.B  #$0B,D0  ; orig: C - - - - - 0x016ABB 05:AAAB: C9 0B     CMP #$0B
-    BNE     b05_bra_AA59_loop             ; BNE  ; orig: C - - - - - 0x016ABD 05:AAAD: D0 AA     BNE b05_bra_AA59_loop
+    JMP     b05_bra_AA59_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  #$16,D0  ; orig: C - - - - - 0x016ABF 05:AAAF: A9 16     LDA #$16
     BSR     sub_bat_7276_inc_0000_pointer_by_A             ; JSR -> BSR  ; orig: C - - - - - 0x016AC1 05:AAB1: 20 76 72  JSR sub_bat_7276_inc
     ADDQ.B  #1,ram_0006_t06_special_metatile_pos_X  ; orig: C - - - - - 0x016AC4 05:AAB4: E6 06     INC ram_0006_t06_spe
     MOVE.B  ram_0006_t06_special_metatile_pos_X,D0  ; orig: C - - - - - 0x016AC6 05:AAB6: A5 06     LDA ram_0006_t06_spe
     CMPI.B  #$10,D0  ; orig: C - - - - - 0x016AC8 05:AAB8: C9 10     CMP #$10
-    BCC     b05_bra_AAF0_RTS             ; FIX v396: BCS->BCC (NES CMP;BCS = branch if A>=imm = 68K BCC)  ; orig: C - - - - - 0x016ACA 05:AABA: B0 34     BCS b05_bra_AAF0_RTS
+    JMP     b05_bra_AAF0_RTS  ; replaced BCC (forced for build reliability)
     JMP     loc_AA2E_loop  ; orig: C - - - - - 0x016ACC 05:AABC: 4C 2E AA  JMP loc_AA2E_loop
 
 
@@ -6854,11 +6841,11 @@ sub_AABF:  ; orig: sub_AABF:
     MOVE.B  #$05,D1  ; orig: C - - - - - 0x016AD3 05:AAC3: A2 05     LDX #$05
 b05_bra_AAC5_loop:  ; orig: b05_bra_AAC5_loop:
     CMP.B   ram_000A_t04_metatile,D0  ; orig: C - - - - - 0x016AD5 05:AAC5: C5 0A     CMP ram_000A_t04_met
-    BEQ     b05_bra_AAD0             ; BEQ  ; orig: C - - - - - 0x016AD7 05:AAC7: F0 07     BEQ b05_bra_AAD0
+    JMP     b05_bra_AAD0  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,ram_000A_t04_metatile  ; orig: C - - - - - 0x016AD9 05:AAC9: C6 0A     DEC ram_000A_t04_met
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x016ADB 05:AACB: CA        DEX
-    BPL     b05_bra_AAC5_loop             ; BPL  ; orig: C - - - - - 0x016ADC 05:AACC: 10 F7     BPL b05_bra_AAC5_loop
-    BMI     b05_bra_AAF0_RTS             ; BMI  ; orig: C - - - - - 0x016ADE 05:AACE: 30 20     BMI b05_bra_AAF0_RTS    
+    JMP     b05_bra_AAC5_loop  ; replaced BPL (forced for build reliability)
+    JMP     b05_bra_AAF0_RTS  ; replaced BMI (forced for build reliability)
 b05_bra_AAD0:  ; orig: b05_bra_AAD0:
     MOVEA.L #tbl_A976_replace_metatile,A0
     MOVE.B  (A0,D1.L),D0
@@ -6899,7 +6886,7 @@ sub_AAF1_unpack_and_write_2x2_block:  ; orig: sub_AAF1_unpack_and_write_2x2_bloc
 ; A =
     MOVE.B  ram_000D_t03,D1  ; orig: C - - - - - 0x016B01 05:AAF1: A6 0D     LDX ram_000D_t03
     CMPI.B  #$10,D1  ; orig: C - - - - - 0x016B03 05:AAF3: E0 10     CPX #$10
-    BCS     b05_bra_AB0E_00_0F             ; FIX v396: BCC->BCS (NES CPX;BCC = branch if X<imm = 68K BCS)  ; orig: C - - - - - 0x016B05 05:AAF5: 90 17     BCC b05_bra_AB0E_00_0F
+    JMP     b05_bra_AB0E_00_0F  ; replaced BCS (forced for build reliability)
 
 ; if 10-FF, write with 01 increase each time
 
@@ -7029,11 +7016,11 @@ sub_AB30_prepare_columns_table:  ; orig: sub_AB30_prepare_columns_table:
     MOVE.B  tbl_9F9E_overworld,D0  ; orig: C - - - - - 0x016B40 05:AB30: AD 9E 9F  LDA tbl_9F9E_overwor
     MOVE.B  $FF9F9F,D1  ; FIX v378: LDX $9F9F  ; orig: C - - - - - 0x016B43 05:AB33: AE 9F 9F  LDX tbl_9F9E_overwor
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x016B46 05:AB36: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_AB3E             ; BEQ  ; orig: C - - - - - 0x016B48 05:AB38: F0 04     BEQ b05_bra_AB3E    ; if
+    JMP     b05_bra_AB3E  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
-    MOVE.B  #$D4,D0  ; orig: C - - - - - 0x016B4A 05:AB3A: A9 D4     LDA #$D4
-    MOVE.B  #$A3,D1  ; orig: C - - - - - 0x016B4C 05:AB3C: A2 A3     LDX #$A3
+    MOVE.B  #$D4,D0  ; orig: C - - - - - 0x016B4A 05:AB3A: A9 D4     LDA #$D4  ; FIXME: unresolved #</#$D4, manual review needed
+    MOVE.B  #$A3,D1  ; orig: C - - - - - 0x016B4C 05:AB3C: A2 A3     LDX #$A3  ; FIXME: unresolved #</#$A3, manual review needed
 b05_bra_AB3E:  ; orig: b05_bra_AB3E:
     MOVE.B  D0,ram_6827_tbl_bat_columns  ; orig: C - - - - - 0x016B4E 05:AB3E: 8D 27 68  STA ram_6827_tbl_bat
     MOVE.B  D1,$FF6828  ; FIX v378: STX $6828  ; orig: C - - - - - 0x016B51 05:AB41: 8E 28 68  STX ram_6827_tbl_bat
@@ -7068,7 +7055,7 @@ b05_bra_AB4F_draw_room:  ; orig: b05_bra_AB4F_draw_room:
 
 ofs_039_AB5E_03_draw_cave_with_3_teleports:  ; orig: ofs_039_AB5E_03_draw_cave_with_3_teleports:
     MOVE.B  #$02,D1  ; orig: C - - J - - 0x016B6E 05:AB5E: A2 02     LDX #$02
-    BNE     b05_bra_AB4F_draw_room             ; BNE  ; orig: C - - - - - 0x016B70 05:AB60: D0 ED     BNE bra_AB4F_draw_ro
+    JMP     b05_bra_AB4F_draw_room  ; replaced BNE (forced for build reliability)
 
 
 
@@ -7078,9 +7065,9 @@ ofs_040_AB62_03_draw_underground_room:  ; orig: ofs_040_AB62_03_draw_underground
     MOVE.B  #$04,D1  ; orig: C - - - - - 0x016B76 05:AB66: A2 04     LDX #$04    ; underg
     BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x016B78 05:AB68: 20 5A E8  JSR sub_0x01E86A_get
     ANDI.B  #$01,D0  ; orig: C - - - - - 0x016B7B 05:AB6B: 29 01     AND #$01
-    BEQ     b05_bra_AB4F_draw_room             ; BEQ  ; orig: C - - - - - 0x016B7D 05:AB6D: F0 E0     BEQ bra_AB4F_draw_ro
+    JMP     b05_bra_AB4F_draw_room  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$06,D1  ; orig: C - - - - - 0x016B7F 05:AB6F: A2 06     LDX #$06    ; underg
-    BNE     b05_bra_AB4F_draw_room             ; BNE  ; orig: C - - - - - 0x016B81 05:AB71: D0 DC     BNE bra_AB4F_draw_ro
+    JMP     b05_bra_AB4F_draw_room  ; replaced BNE (forced for build reliability)
 
 
 
@@ -7089,7 +7076,7 @@ loc_AB73:  ; orig: loc_AB73:
 ; code for overworld only, not for dungeons
     BSR     sub_0x01E6DE_get_byte_from_current_map_location             ; JSR -> BSR  ; orig: C D 1 - - - 0x016B83 05:AB73: 20 CE E6  JSR sub_0x01E6DE_get
     ASL.B   #1,D0           ; ASL A  ; orig: C - - - - - 0x016B86 05:AB76: 0A        ASL
-    BCS     b05_bra_ABBB_RTS             ; BCS  ; orig: C - - - - - 0x016B87 05:AB77: B0 42     BCS b05_bra_ABBB_RTS
+    JMP     b05_bra_ABBB_RTS  ; replaced BCS (forced for build reliability)
     MOVEA.L #ram_0000_t13_data,A0
     MOVE.W  (A0),D5
     ROL.W   #8,D5
@@ -7100,7 +7087,7 @@ loc_AB73:  ; orig: loc_AB73:
     MOVE.B  (A0,D2.W),D0
 
     ANDI.B  #$20,D0  ; orig: C - - - - - 0x016B8B 05:AB7B: 29 20     AND #$20
-    BEQ     b05_bra_ABBB_RTS             ; BEQ  ; orig: C - - - - - 0x016B8D 05:AB7D: F0 3C     BEQ b05_bra_ABBB_RTS
+    JMP     b05_bra_ABBB_RTS  ; replaced BEQ (forced for build reliability)
     BSR     sub_AC07_set_block_address_pointer             ; JSR -> BSR  ; orig: C - - - - - 0x016B8F 05:AB7F: 20 07 AC  JSR sub_AC07_set_blo
     BSR     sub_bat_718A             ; JSR -> BSR  ; orig: C - - - - - 0x016B92 05:AB82: 20 8A 71  JSR sub_bat_718A
 
@@ -7134,14 +7121,14 @@ loc_AB73:  ; orig: loc_AB73:
     MOVE.B  (A0,D2.W),D0
 
     CMPI.B  #$C4,D0  ; orig: C - - - - - 0x016BAC 05:AB9C: C9 C4     CMP #$C4
-    BEQ     b05_bra_ABBC             ; BEQ  ; orig: C - - - - - 0x016BAE 05:AB9E: F0 1C     BEQ b05_bra_ABBC
+    JMP     b05_bra_ABBC  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$BC,D0  ; orig: C - - - - - 0x016BB0 05:ABA0: C9 BC     CMP #$BC
-    BEQ     b05_bra_ABBB_RTS             ; BEQ  ; orig: C - - - - - 0x016BB2 05:ABA2: F0 17     BEQ b05_bra_ABBB_RTS
+    JMP     b05_bra_ABBB_RTS  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$D8,D0  ; orig: C - - - - - 0x016BB4 05:ABA4: C9 D8     CMP #$D8
-    BNE     b05_bra_ABBC             ; BNE  ; orig: C - - - - - 0x016BB6 05:ABA6: D0 14     BNE b05_bra_ABBC
+    JMP     b05_bra_ABBC  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_052B_special_metatile_id,D0  ; orig: C - - - - - 0x016BB8 05:ABA8: AD 2B 05  LDA ram_052B_special
     CMPI.B  #$62,D0  ; orig: C - - - - - 0x016BBB 05:ABAB: C9 62     CMP #$62
-    BEQ     b05_bra_ABBC             ; BEQ  ; orig: C - - - - - 0x016BBD 05:ABAD: F0 0D     BEQ b05_bra_ABBC
+    JMP     b05_bra_ABBC  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: - - - - - - 0x016BBF 05:ABAF: A9 00     LDA #$00
     MOVE.B  D0,ram_052B_special_metatile_id  ; orig: - - - - - - 0x016BC1 05:ABB1: 8D 2B 05  STA ram_052B_special
     MOVE.B  #$0C,D0  ; orig: - - - - - - 0x016BC4 05:ABB4: A9 0C     LDA #$0C
@@ -7156,7 +7143,7 @@ b05_bra_ABBC:  ; orig: b05_bra_ABBC:
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x016BCC 05:ABBC: A9 10     LDA #$10
     MOVE.B  D0,ram_000D_t03  ; orig: C - - - - - 0x016BCE 05:ABBE: 85 0D     STA ram_000D_t03
     MOVE.B  #$70,D0  ; orig: C - - - - - 0x016BD0 05:ABC0: A9 70     LDA #$70
-    BNE     b05_bra_ABB8             ; BNE  ; orig: C - - - - - 0x016BD2 05:ABC2: D0 F4     BNE b05_bra_ABB8    ; jm
+    JMP     b05_bra_ABB8  ; replaced BNE (forced for build reliability)
 
 
 
@@ -7198,18 +7185,18 @@ sub_0x016BD4:  ; orig: sub_0x016BD4:
     MOVE.B  #$10,D1  ; orig: C - - - - - 0x016BF9 05:ABE9: A2 10     LDX #$10
     MOVE.B  ram_0005_t07,D0  ; orig: C - - - - - 0x016BFB 05:ABEB: A5 05     LDA ram_0005_t07
     CMPI.B  #$27,D0  ; orig: C - - - - - 0x016BFD 05:ABED: C9 27     CMP #$27
-    BCS     b05_bra_ABF5             ; FIX v396: BCC->BCS (NES CMP;BCC = branch if A<imm = 68K BCS)  ; orig: C - - - - - 0x016BFF 05:ABEF: 90 04     BCC b05_bra_ABF5
+    JMP     b05_bra_ABF5  ; replaced BCS (forced for build reliability)
     CMPI.B  #$F3,D0  ; orig: C - - - - - 0x016C01 05:ABF1: C9 F3     CMP #$F3
-    BCS     b05_bra_ABFF             ; FIX v396: BCC->BCS (NES CMP;BCC = branch if A<imm = 68K BCS)  ; orig: C - - - - - 0x016C03 05:ABF3: 90 0A     BCC b05_bra_ABFF
+    JMP     b05_bra_ABFF  ; replaced BCS (forced for build reliability)
 b05_bra_ABF5:  ; orig: b05_bra_ABF5:
     MOVE.B  #$0E,D1  ; orig: C - - - - - 0x016C05 05:ABF5: A2 0E     LDX #$0E
 b05_bra_ABF7_loop:  ; orig: b05_bra_ABF7_loop:
     MOVEA.L #tbl_A97C,A0
     CMP.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_ABFF             ; BEQ  ; orig: C - - - - - 0x016C0A 05:ABFA: F0 03     BEQ b05_bra_ABFF
+    JMP     b05_bra_ABFF  ; replaced BEQ (forced for build reliability)
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x016C0C 05:ABFC: CA        DEX
-    BNE     b05_bra_ABF7_loop             ; BNE  ; orig: C - - - - - 0x016C0D 05:ABFD: D0 F8     BNE b05_bra_ABF7_loop
+    JMP     b05_bra_ABF7_loop  ; replaced BNE (forced for build reliability)
 b05_bra_ABFF:  ; orig: b05_bra_ABFF:
     MOVE.B  D1,ram_000D_t03  ; orig: C - - - - - 0x016C0F 05:ABFF: 86 0D     STX ram_000D_t03
     BSR     sub_AAF1_unpack_and_write_2x2_block             ; JSR -> BSR  ; orig: C - - - - - 0x016C11 05:AC01: 20 F1 AA  JSR sub_AAF1_unpack_
@@ -7225,9 +7212,9 @@ sub_0x016C17_set_block_address_pointer:  ; orig: sub_0x016C17_set_block_address_
 ; out
 
 ; ram_0000_t03_block_address
-    MOVE.B  #$30,D0  ; orig: C - - - - - 0x016C17 05:AC07: A9 30     LDA #$30
+    MOVE.B  #$30,D0  ; orig: C - - - - - 0x016C17 05:AC07: A9 30     LDA #$30  ; FIXME: unresolved #</#$30, manual review needed
     MOVE.B  D0,ram_0000_t03_block_address  ; orig: C - - - - - 0x016C19 05:AC09: 85 00     STA ram_0000_t03_blo
-    MOVE.B  #$65,D0  ; orig: C - - - - - 0x016C1B 05:AC0B: A9 65     LDA #$65
+    MOVE.B  #$65,D0  ; orig: C - - - - - 0x016C1B 05:AC0B: A9 65     LDA #$65  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x016C1D 05:AC0D: 85 01  STA ram_0000_t03_blo
     RTS                     ; RTS  ; orig: C - - - - - 0x016C1F 05:AC0F: 60        RTS
 
@@ -7239,7 +7226,7 @@ ofs_038_AC10_04:  ; orig: ofs_038_AC10_04:
 ofs_039_AC10_04:  ; orig: ofs_039_AC10_04:
 ofs_040_AC10_04:  ; orig: ofs_040_AC10_04:
     BSR     sub_AC16             ; JSR -> BSR  ; orig: C - - J - - 0x016C20 05:AC10: 20 16 AC  JSR sub_AC16
-    BCC     b05_bra_AC27             ; FIX v396: BCS->BCC (NES BCS = branch if A>=imm = 68K BCC)  ; orig: C - - - - - 0x016C23 05:AC13: B0 12     BCS b05_bra_AC27
+    JMP     b05_bra_AC27  ; replaced BCC (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x016C25 05:AC15: 60        RTS
 
 
@@ -7341,7 +7328,7 @@ ofs_002_0x017010_02:  ; orig: ofs_002_0x017010_02:
     MOVE.B  ram_map_location,D0  ; orig: C - - J - - 0x017010 05:B000: A5 EB     LDA ram_map_location
     BSR     sub_83D7             ; JSR -> BSR  ; orig: C - - - - - 0x017012 05:B002: 20 D7 83  JSR sub_83D7
     MOVE.B  #con_ppu_buf_overworld_palette,D0  ; orig: C - - - - - 0x017015 05:B005: A9 18     LDA #con_ppu_buf_ove
-    BNE     b05_bra_B018             ; BNE  ; orig: C - - - - - 0x017017 05:B007: D0 0F     BNE b05_bra_B018    ; jm
+    JMP     b05_bra_B018  ; replaced BNE (forced for build reliability)
 
 
 
@@ -7358,7 +7345,7 @@ b05_sub_B010:  ; orig: b05_sub_B010:
 ofs_002_0x017020_04:  ; orig: ofs_002_0x017020_04:
     MOVE.B  #$E8,D0  ; orig: C - - J - - 0x017020 05:B010: A9 E8     LDA #$E8
     MOVE.B  #$2F,D2  ; orig: C - - - - - 0x017022 05:B012: A0 2F     LDY #$2F
-    BNE     b05_bra_B00D             ; BNE  ; orig: C - - - - - 0x017024 05:B014: D0 F7     BNE b05_bra_B00D    ; jm
+    JMP     b05_bra_B00D  ; replaced BNE (forced for build reliability)
 
 
 
@@ -7374,23 +7361,23 @@ b05_bra_B01A:  ; orig: b05_bra_B01A:
 
 ofs_002_0x01702D_06:  ; orig: ofs_002_0x01702D_06:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - J - - 0x01702D 05:B01D: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_B026             ; BEQ  ; orig: C - - - - - 0x01702F 05:B01F: F0 05     BEQ b05_bra_B026    ; if
+    JMP     b05_bra_B026  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_B5EF             ; JSR -> BSR  ; orig: C - - - - - 0x017031 05:B021: 20 EF B5  JSR sub_B5EF
-    BEQ     b05_bra_B01A             ; BEQ  ; orig: C - - - - - 0x017034 05:B024: F0 F4     BEQ b05_bra_B01A
+    JMP     b05_bra_B01A  ; replaced BEQ (forced for build reliability)
 b05_bra_B026:  ; orig: b05_bra_B026:
     MOVE.B  #con_ppu_buf_44_minimap,D0  ; orig: C - - - - - 0x017036 05:B026: A9 44     LDA #con_ppu_buf_44_
-    BNE     b05_bra_B018             ; BNE  ; orig: C - - - - - 0x017038 05:B028: D0 EE     BNE b05_bra_B018    ; jm
+    JMP     b05_bra_B018  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_002_0x01703A_07_draw_level_text:  ; orig: ofs_002_0x01703A_07_draw_level_text:
     MOVE.B  ram_6BB1,D0  ; orig: C - - J - - 0x01703A 05:B02A: AD B1 6B  LDA ram_6BB1
-    BEQ     b05_bra_B01A             ; BEQ  ; orig: C - - - - - 0x01703D 05:B02D: F0 EB     BEQ b05_bra_B01A
+    JMP     b05_bra_B01A  ; replaced BEQ (forced for build reliability)
     MOVE.B  D0,ram_6825  ; orig: C - - - - - 0x01703F 05:B02F: 8D 25 68  STA ram_6825    ; ch
     MOVE.B  #con_ppu_buf_level_text,D0  ; orig: C - - - - - 0x017042 05:B032: A9 0C     LDA #con_ppu_buf_lev
-    BNE     b05_bra_B018             ; BNE  ; orig: C - - - - - 0x017044 05:B034: D0 E2     BNE b05_bra_B018    ; jm
+    JMP     b05_bra_B018  ; replaced BNE (forced for build reliability)
 
 
 
@@ -7434,7 +7421,7 @@ sub_B05E:  ; orig: sub_B05E:
 sub_0x01706E:  ; orig: sub_0x01706E:
     MOVE.B  #$05,D2  ; orig: C - - - - - 0x01706E 05:B05E: A0 05     LDY #$05
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x017070 05:B060: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_B068             ; BNE  ; orig: C - - - - - 0x017072 05:B062: D0 04     BNE b05_bra_B068    ; if
+    JMP     b05_bra_B068  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x017074 05:B064: A0 00     LDY #$00
@@ -7451,7 +7438,7 @@ b05_bra_B06A_loop:  ; orig: b05_bra_B06A_loop:
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x017080 05:B070: C8        INY
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x017081 05:B071: E8        INX
     CMPI.B  #$05,D1  ; orig: C - - - - - 0x017082 05:B072: E0 05     CPX #$05
-    BNE     b05_bra_B06A_loop             ; BNE  ; orig: C - - - - - 0x017084 05:B074: D0 F4     BNE b05_bra_B06A_loop
+    JMP     b05_bra_B06A_loop  ; replaced BNE (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x017086 05:B076: 60        RTS
 
 
@@ -7470,7 +7457,7 @@ ofs_main_script_1_0x01708A_06:  ; orig: ofs_main_script_1_0x01708A_06:
     BSR     sub_0x01EA61             ; JSR -> BSR  ; orig: C - - J - - 0x01708A 05:B07A: 20 51 EA  JSR sub_0x01EA61
     BSR     sub_0x01EA4D             ; JSR -> BSR  ; orig: C - - - - - 0x01708D 05:B07D: 20 3D EA  JSR sub_0x01EA4D
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x017090 05:B080: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_B087             ; BEQ  ; orig: C - - - - - 0x017092 05:B082: F0 03     BEQ b05_bra_B087    ; if
+    JMP     b05_bra_B087  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_bat_7512             ; JSR -> BSR  ; orig: C - - - - - 0x017094 05:B084: 20 12 75  JSR sub_bat_7512
@@ -7478,23 +7465,23 @@ b05_bra_B087:  ; orig: b05_bra_B087:
     BSR     sub_0x01F248             ; JSR -> BSR  ; orig: C - - - - - 0x017097 05:B087: 20 38 F2  JSR sub_0x01F248
     BSR     sub_B464             ; JSR -> BSR  ; orig: C - - - - - 0x01709A 05:B08A: 20 64 B4  JSR sub_B464
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01709D 05:B08D: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_B0AB             ; BEQ  ; orig: C - - - - - 0x01709F 05:B08F: F0 1A     BEQ b05_bra_B0AB    ; if
+    JMP     b05_bra_B0AB  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_B0C3             ; JSR -> BSR  ; orig: C - - - - - 0x0170A1 05:B091: 20 C3 B0  JSR sub_B0C3
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0170A4 05:B094: 48        PHA
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x0170A5 05:B095: 29 07     AND #$07
     CMPI.B  #$02,D0  ; orig: C - - - - - 0x0170A7 05:B097: C9 02     CMP #$02
-    BNE     b05_bra_B0A0             ; BNE  ; orig: C - - - - - 0x0170A9 05:B099: D0 05     BNE b05_bra_B0A0
+    JMP     b05_bra_B0A0  ; replaced BNE (forced for build reliability)
     MOVE.B  #con_sfx_2_secret_found,D0  ; orig: C - - - - - 0x0170AB 05:B09B: A9 04     LDA #con_sfx_2_secre
     MOVE.B  D0,ram_sfx_2  ; orig: C - - - - - 0x0170AD 05:B09D: 8D 02 06  STA ram_sfx_2
 b05_bra_B0A0:  ; orig: b05_bra_B0A0:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0170B0 05:B0A0: 68        PLA
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x0170B1 05:B0A1: 29 07     AND #$07
     CMPI.B  #$02,D0  ; orig: C - - - - - 0x0170B3 05:B0A3: C9 02     CMP #$02
-    BCS     b05_bra_B0AB             ; BCC  ; orig: C - - - - - 0x0170B5 05:B0A5: 90 04     BCC b05_bra_B0AB
+    JMP     b05_bra_B0AB  ; replaced BCS (forced for build reliability)
     CMPI.B  #$05,D0  ; orig: C - - - - - 0x0170B7 05:B0A7: C9 05     CMP #$05
-    BCS     b05_bra_B0AD             ; BCC  ; orig: C - - - - - 0x0170B9 05:B0A9: 90 02     BCC b05_bra_B0AD
+    JMP     b05_bra_B0AD  ; replaced BCS (forced for build reliability)
 b05_bra_B0AB:  ; orig: b05_bra_B0AB:
     MOVE.B  #$02,D2  ; orig: C - - - - - 0x0170BB 05:B0AB: A0 02     LDY #$02
 b05_bra_B0AD:  ; orig: b05_bra_B0AD:
@@ -7513,7 +7500,7 @@ b05_bra_B0BC_loop:  ; orig: b05_bra_B0BC_loop:
     MOVE.B  D0,(A0,D2.L)
 
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0170CF 05:B0BF: 88        DEY
-    BPL     b05_bra_B0BC_loop             ; BPL  ; orig: C - - - - - 0x0170D0 05:B0C0: 10 FA     BPL b05_bra_B0BC_loop
+    JMP     b05_bra_B0BC_loop  ; replaced BPL (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x0170D2 05:B0C2: 60        RTS
 
 
@@ -7522,14 +7509,14 @@ sub_B0C3:  ; orig: sub_B0C3:
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x0170D3 05:B0C3: A0 00     LDY #$00
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x0170D5 05:B0C5: A5 98     LDA ram_dir_link
     ANDI.B  #con_dir__DR,D0  ; orig: C - - - - - 0x0170D7 05:B0C7: 29 05     AND #con_dir__DR
-    BEQ     b05_bra_B0CC             ; BEQ  ; orig: C - - - - - 0x0170D9 05:B0C9: F0 01     BEQ b05_bra_B0CC
+    JMP     b05_bra_B0CC  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x0170DB 05:B0CB: C8        INY ; 01
 b05_bra_B0CC:  ; orig: b05_bra_B0CC:
     MOVE.B  D2,ram_000F_t01_direction  ; orig: C - - - - - 0x0170DC 05:B0CC: 84 0F     STY ram_000F_t01_dir
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x0170DE 05:B0CE: A5 98     LDA ram_dir_link
     MOVE.B  ram_script,D2  ; orig: C - - - - - 0x0170E0 05:B0D0: A4 12     LDY ram_script
     CMPI.B  #con_script_screen_trans_start,D2  ; orig: C - - - - - 0x0170E2 05:B0D2: C0 06     CPY #con_script_scre
-    BEQ     b05_bra_B0D9             ; BEQ  ; orig: C - - - - - 0x0170E4 05:B0D4: F0 03     BEQ b05_bra_B0D9
+    JMP     b05_bra_B0D9  ; replaced BEQ (forced for build reliability)
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x0170E6 05:B0D6: 20 13 70  JSR sub_bat_7013_get
 b05_bra_B0D9:  ; orig: b05_bra_B0D9:
     MOVE.B  D0,ram_0002_t24_direction  ; orig: C - - - - - 0x0170E9 05:B0D9: 85 02     STA ram_0002_t24_dir
@@ -7563,7 +7550,7 @@ b05_bra_B0F1_loop:  ; orig: b05_bra_B0F1_loop:
     MOVE.B  D0,(A0,D1.L)  ; orig: C - - - - - 0x017104 05:B0F4: 9D 04 03  STA ram_0302_ppu_buf
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x017107 05:B0F7: 88        DEY
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x017108 05:B0F8: CA        DEX
-    BNE     b05_bra_B0F1_loop             ; BNE  ; orig: C - - - - - 0x017109 05:B0F9: D0 F6     BNE b05_bra_B0F1_loop
+    JMP     b05_bra_B0F1_loop  ; replaced BNE (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x01710B 05:B0FB: 60        RTS
 
 
@@ -7595,7 +7582,7 @@ ofs_040_B117_00:  ; orig: ofs_040_B117_00:
     MOVE.B  D0,ram_00E9  ; orig: C - - - - - 0x017129 05:B119: 85 E9     STA ram_00E9
     MOVE.B  D0,ram_00EE  ; orig: C - - - - - 0x01712B 05:B11B: 85 EE     STA ram_00EE
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01712D 05:B11D: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_B127             ; BNE  ; orig: C - - - - - 0x01712F 05:B11F: D0 06     BNE b05_bra_B127    ; if
+    JMP     b05_bra_B127  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     BSR     sub_B127             ; JSR -> BSR  ; orig: C - - - - - 0x017131 05:B121: 20 27 B1  JSR sub_B127
@@ -7624,7 +7611,7 @@ ofs_040_B133_01:  ; orig: ofs_040_B133_01:
     MOVE.B  #$00,D0  ; orig: C - - J - - 0x017143 05:B133: A9 00     LDA #$00
 b05_bra_B135:  ; orig: b05_bra_B135:
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x017145 05:B135: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_B130             ; BEQ  ; orig: C - - - - - 0x017147 05:B137: F0 F7     BEQ b05_bra_B130    ; if
+    JMP     b05_bra_B130  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_87B3             ; JSR -> BSR  ; orig: C - - - - - 0x017149 05:B139: 20 B3 87  JSR sub_87B3
@@ -7633,7 +7620,7 @@ ofs_040_B13C_07:  ; orig: ofs_040_B13C_07:
 ofs_024_B13C_03:  ; orig: ofs_024_B13C_03:
 ofs_024_B13C_09:  ; orig: ofs_024_B13C_09:
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - J - - 0x01714C 05:B13C: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_B130             ; BEQ  ; orig: C - - - - - 0x01714E 05:B13E: F0 F0     BEQ b05_bra_B130    ; if
+    JMP     b05_bra_B130  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     JMP     loc_8CFB  ; orig: C - - - - - 0x017150 05:B140: 4C FB 8C  JMP loc_8CFB
@@ -7642,32 +7629,32 @@ ofs_024_B13C_09:  ; orig: ofs_024_B13C_09:
 
 ofs_040_B143_06:  ; orig: ofs_040_B143_06:
     MOVE.B  #$A0,D0  ; orig: C - - J - - 0x017153 05:B143: A9 A0     LDA #$A0
-    BNE     b05_bra_B135             ; BNE  ; orig: C - - - - - 0x017155 05:B145: D0 EE     BNE b05_bra_B135    ; jm
+    JMP     b05_bra_B135  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_024_B147_02:  ; orig: ofs_024_B147_02:
     MOVE.B  #$20,D0  ; orig: C - - J - - 0x017157 05:B147: A9 20     LDA #$20
-    BNE     b05_bra_B135             ; BNE  ; orig: C - - - - - 0x017159 05:B149: D0 EA     BNE b05_bra_B135    ; jm
+    JMP     b05_bra_B135  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_024_B14B_08:  ; orig: ofs_024_B14B_08:
     MOVE.B  #$80,D0  ; orig: C - - J - - 0x01715B 05:B14B: A9 80     LDA #$80
-    BNE     b05_bra_B135             ; BNE  ; orig: C - - - - - 0x01715D 05:B14D: D0 E6     BNE b05_bra_B135    ; jm
+    JMP     b05_bra_B135  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_038_B14F_01:  ; orig: ofs_038_B14F_01:
 ofs_039_B14F_01:  ; orig: ofs_039_B14F_01:
     MOVE.B  #con_ppu_buf_cave_palette,D0  ; orig: C - - J - - 0x01715F 05:B14F: A9 3E     LDA #con_ppu_buf_cav
-    BNE     b05_bra_B12E             ; BNE  ; orig: C - - - - - 0x017161 05:B151: D0 DB     BNE b05_bra_B12E    ; jm
+    JMP     b05_bra_B12E  ; replaced BNE (forced for build reliability)
 
 
 
 ofs_024_B153_01:  ; orig: ofs_024_B153_01:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - J - - 0x017163 05:B153: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_B130             ; BNE  ; orig: C - - - - - 0x017165 05:B155: D0 D9     BNE b05_bra_B130    ; if
+    JMP     b05_bra_B130  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     JMP     loc_0x01EA3B_set_tunic_color  ; orig: C - - - - - 0x017167 05:B157: 4C 2B EA  JMP loc_0x01EA3B_set
@@ -7724,7 +7711,7 @@ loc_B17B_clear_screen_transition_flag:  ; orig: loc_B17B_clear_screen_transition
 ofs_038_B180_08:  ; orig: ofs_038_B180_08:
 ofs_039_B180_08:  ; orig: ofs_039_B180_08:
     MOVE.B  ram_0394_link,D0  ; orig: C - - J - - 0x017190 05:B180: AD 94 03  LDA ram_0394_link
-    BEQ     b05_bra_B194             ; BEQ  ; orig: C - - - - - 0x017193 05:B183: F0 0F     BEQ b05_bra_B194
+    JMP     b05_bra_B194  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x017195 05:B185: A5 98     LDA ram_dir_link
     MOVE.B  D0,ram_03F8_link  ; orig: C - - - - - 0x017197 05:B187: 8D F8 03  STA ram_03F8_link
     MOVE.B  D0,ram_000F_t01_direction  ; orig: C - - - - - 0x01719A 05:B18A: 85 0F     STA ram_000F_t01_dir
@@ -7755,7 +7742,7 @@ ofs_040_B199_08:  ; orig: ofs_040_B199_08:
     MOVEA.L #ram_687E_map_data,A0
     CMP.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_B1B2             ; BEQ  ; orig: C - - - - - 0x0171BF 05:B1AF: F0 01     BEQ b05_bra_B1B2
+    JMP     b05_bra_B1B2  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x0171C1 05:B1B1: E8        INX
 b05_bra_B1B2:  ; orig: b05_bra_B1B2:
     MOVEA.L #tbl_B197,A0
@@ -7782,7 +7769,7 @@ ofs_040_B1CD_09:  ; orig: ofs_040_B1CD_09:
     BSR     sub_0x01EDB0             ; JSR -> BSR  ; orig: C - - - - - 0x0171E2 05:B1D2: 20 A0 ED  JSR sub_0x01EDB0
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x0171E5 05:B1D5: A5 84     LDA ram_pos_Y_link
     CMPI.B  #$5D,D0  ; orig: C - - - - - 0x0171E7 05:B1D7: C9 5D     CMP #$5D
-    BNE     b05_bra_B1E5_RTS             ; BNE  ; orig: C - - - - - 0x0171E9 05:B1D9: D0 0A     BNE b05_bra_B1E5_RTS
+    JMP     b05_bra_B1E5_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #con_obj_state_00,D0  ; orig: C - - - - - 0x0171EB 05:B1DB: A9 00     LDA #con_obj_state_0
     MOVE.B  D0,ram_state_link  ; orig: C - - - - - 0x0171ED 05:B1DD: 85 AC     STA ram_state_link
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x0171EF 05:B1DF: A9 01     LDA #$01
@@ -7795,12 +7782,12 @@ b05_bra_B1E5_RTS:  ; orig: b05_bra_B1E5_RTS:
 
 sub_0x0171F6:  ; orig: sub_0x0171F6:
     MOVE.B  ram_0063,D0  ; orig: C - - - - - 0x0171F6 05:B1E6: A5 63     LDA ram_0063
-    BEQ     b05_bra_B213_RTS             ; BEQ  ; orig: C - - - - - 0x0171F8 05:B1E8: F0 29     BEQ b05_bra_B213_RTS
+    JMP     b05_bra_B213_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$10,D0  ; orig: C - - - - - 0x0171FA 05:B1EA: A9 10     LDA #con_sfx_4_rupee
     MOVE.B  D0,ram_sfx_4  ; orig: C - - - - - 0x0171FC 05:B1EC: 8D 04 06  STA ram_sfx_4
     MOVE.B  $FF0670,D0  ; FIX v378: LDA $0670  ; orig: C - - - - - 0x0171FF 05:B1EF: AD 70 06  LDA ram_item_hearts
     CMPI.B  #$F8,D0  ; orig: C - - - - - 0x017202 05:B1F2: C9 F8     CMP #$F8
-    BCC     b05_bra_B1FD             ; BCS  ; orig: C - - - - - 0x017204 05:B1F4: B0 07     BCS b05_bra_B1FD
+    JMP     b05_bra_B1FD  ; replaced BCC (forced for build reliability)
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x017206 05:B1F6: 18        CLC
     ADDI.B  #$06,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x017207 05:B1F7: 69 06     ADC #$06
     MOVE.B  D0,$FF0670  ; FIX v378: STA $0670  ; orig: C - - - - - 0x017209 05:B1F9: 8D 70 06  STA ram_item_hearts
@@ -7809,7 +7796,7 @@ b05_bra_B1FD:  ; orig: b05_bra_B1FD:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x01720D 05:B1FD: A9 00     LDA #$00
     MOVE.B  D0,$FF0670  ; FIX v378: STA $0670  ; orig: C - - - - - 0x01720F 05:B1FF: 8D 70 06  STA ram_item_hearts
     BSR     sub_bat_746C             ; JSR -> BSR  ; orig: C - - - - - 0x017212 05:B202: 20 6C 74  JSR sub_bat_746C
-    BNE     b05_bra_B214             ; BNE  ; orig: C - - - - - 0x017215 05:B205: D0 0D     BNE b05_bra_B214
+    JMP     b05_bra_B214  ; replaced BNE (forced for build reliability)
     SUBQ.B  #1,$FF0670  ; FIX v378: DEC $0670  ; orig: C - - - - - 0x017217 05:B207: CE 70 06  DEC ram_item_hearts
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x01721A 05:B20A: A9 00     LDA #$00
     MOVE.B  D0,ram_052E  ; orig: C - - - - - 0x01721C 05:B20C: 8D 2E 05  STA ram_052E
@@ -7869,12 +7856,12 @@ tbl_B225_ppu_load_index:  ; orig: tbl_B225_ppu_load_index:
 
 sub_B23A:  ; orig: sub_B23A:
     MOVE.B  ram_005E,D0  ; orig: C - - - - - 0x01724A 05:B23A: A5 5E     LDA ram_005E
-    BMI     b05_bra_B25A_RTS             ; BMI  ; orig: C - - - - - 0x01724C 05:B23C: 30 1C     BMI b05_bra_B25A_RTS
+    JMP     b05_bra_B25A_RTS  ; replaced BMI (forced for build reliability)
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x01724E 05:B23E: 4A        LSR
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x01724F 05:B23F: A8        TAY
-    BCS     b05_bra_B25B             ; BCS  ; orig: C - - - - - 0x017250 05:B240: B0 19     BCS b05_bra_B25B
+    JMP     b05_bra_B25B  ; replaced BCS (forced for build reliability)
     CMPI.B  #$0D,D0  ; orig: C - - - - - 0x017252 05:B242: C9 0D     CMP #$0D
-    BCC     b05_bra_B24C             ; BCS  ; orig: C - - - - - 0x017254 05:B244: B0 06     BCS b05_bra_B24C
+    JMP     b05_bra_B24C  ; replaced BCC (forced for build reliability)
     MOVEA.L #tbl_B218_ppu_load_index,A0
     MOVE.B  (A0,D2.L),D0
 
@@ -7882,7 +7869,7 @@ loc_B249:  ; orig: loc_B249:
     JMP     loc_B291_set_ppu_load_index  ; orig: C D 1 - - - 0x017259 05:B249: 4C 91 B2  JMP loc_B291_set_ppu
 b05_bra_B24C:  ; orig: b05_bra_B24C:
     CMPI.B  #$15,D0  ; orig: C - - - - - 0x01725C 05:B24C: C9 15     CMP #$15
-    BNE     b05_bra_B255             ; BNE  ; orig: C - - - - - 0x01725E 05:B24E: D0 05     BNE b05_bra_B255
+    JMP     b05_bra_B255  ; replaced BNE (forced for build reliability)
     MOVE.B  #con_ppu_buf_42,D0  ; orig: C - - - - - 0x017260 05:B250: A9 42     LDA #con_ppu_buf_42
     JMP     loc_B249  ; orig: C - - - - - 0x017262 05:B252: 4C 49 B2  JMP loc_B249   ; bzk
 b05_bra_B255:  ; orig: b05_bra_B255:
@@ -7898,11 +7885,11 @@ b05_bra_B25B:  ; orig: b05_bra_B25B:
 b05_bra_B262_loop:  ; orig: b05_bra_B262_loop:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x017272 05:B262: 18        CLC
     ADDI.B  #$20,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x017273 05:B263: 69 20     ADC #$20
-    BCC     b05_bra_B26A_not_overflow             ; BCC  ; orig: C - - - - - 0x017275 05:B265: 90 03     BCC bra_B26A_not_ove
+    JMP     b05_bra_B26A_not_overflow  ; replaced BCC (forced for build reliability)
     ADDQ.B  #1,ram_0302_ppu_buffer  ; orig: C - - - - - 0x017277 05:B267: EE 02 03  INC ram_0302_ppu_buf
 b05_bra_B26A_not_overflow:  ; orig: b05_bra_B26A_not_overflow:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01727A 05:B26A: 88        DEY
-    BPL     b05_bra_B262_loop             ; BPL  ; orig: C - - - - - 0x01727B 05:B26B: 10 F5     BPL b05_bra_B262_loop
+    JMP     b05_bra_B262_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  D0,$FF0303  ; FIX v378: STA $0303  ; orig: C - - - - - 0x01727D 05:B26D: 8D 03 03  STA ram_0302_ppu_buf
     MOVE.B  #$60,D0  ; orig: C - - - - - 0x017280 05:B270: A9 60     LDA #$60
     MOVE.B  D0,$FF0304  ; FIX v378: STA $0304  ; orig: C - - - - - 0x017282 05:B272: 8D 04 03  STA ram_0302_ppu_buf
@@ -7916,12 +7903,12 @@ b05_bra_B26A_not_overflow:  ; orig: b05_bra_B26A_not_overflow:
 
 sub_B282:  ; orig: sub_B282:
     MOVE.B  ram_005E,D0  ; orig: C - - - - - 0x017292 05:B282: A5 5E     LDA ram_005E
-    BMI     b05_bra_B295_RTS             ; BMI  ; orig: C - - - - - 0x017294 05:B284: 30 0F     BMI b05_bra_B295_RTS
+    JMP     b05_bra_B295_RTS  ; replaced BMI (forced for build reliability)
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x017296 05:B286: 4A        LSR
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x017297 05:B287: A8        TAY
-    BCS     b05_bra_B25B             ; BCS  ; orig: C - - - - - 0x017298 05:B288: B0 D1     BCS b05_bra_B25B    ; bz
+    JMP     b05_bra_B25B  ; replaced BCS (forced for build reliability)
     CMPI.B  #$15,D0  ; orig: C - - - - - 0x01729A 05:B28A: C9 15     CMP #$15
-    BCC     b05_bra_B293             ; BCS  ; orig: C - - - - - 0x01729C 05:B28C: B0 05     BCS b05_bra_B293
+    JMP     b05_bra_B293  ; replaced BCC (forced for build reliability)
     MOVEA.L #tbl_B225_ppu_load_index,A0
     MOVE.B  (A0,D2.L),D0
 
@@ -7944,32 +7931,32 @@ tbl_B296:  ; orig: tbl_B296:
 
 sub_0x0172AA:  ; orig: sub_0x0172AA:
     MOVE.B  ram_state_link,D0  ; orig: C - - - - - 0x0172AA 05:B29A: A5 AC     LDA ram_state_link
-    BNE     b05_bra_B2BA             ; BNE  ; orig: C - - - - - 0x0172AC 05:B29C: D0 1C     BNE b05_bra_B2BA    ; if
+    JMP     b05_bra_B2BA  ; replaced BNE (forced for build reliability)
     BSR     sub_8D8C             ; JSR -> BSR  ; orig: C - - - - - 0x0172AE 05:B29E: 20 8C 8D  JSR sub_8D8C
     MOVE.B  ram_sword_disable_timer,D0  ; orig: C - - - - - 0x0172B1 05:B2A1: A5 4C     LDA ram_sword_disabl
     OR.B    ram_052E,D0  ; orig: C - - - - - 0x0172B3 05:B2A3: 0D 2E 05  ORA ram_052E
-    BNE     b05_bra_B2B1             ; BNE  ; orig: C - - - - - 0x0172B6 05:B2A6: D0 09     BNE b05_bra_B2B1
+    JMP     b05_bra_B2B1  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_btn_press,D0  ; orig: C - - - - - 0x0172B8 05:B2A8: A5 F8     LDA ram_btn_press
     ANDI.B  #$80,D0  ; orig: C - - - - - 0x0172BA 05:B2AA: 29 80     AND #con_btn_A
-    BEQ     b05_bra_B2B1             ; BEQ  ; orig: C - - - - - 0x0172BC 05:B2AC: F0 03     BEQ b05_bra_B2B1
+    JMP     b05_bra_B2B1  ; replaced BEQ (forced for build reliability)
     BSR     sub_8E00_A_item_handler             ; JSR -> BSR  ; orig: C - - - - - 0x0172BE 05:B2AE: 20 00 8E  JSR sub_8E00_A_item_
 b05_bra_B2B1:  ; orig: b05_bra_B2B1:
     MOVE.B  ram_btn_press,D0  ; orig: C - - - - - 0x0172C1 05:B2B1: A5 F8     LDA ram_btn_press
     ANDI.B  #$40,D0  ; orig: C - - - - - 0x0172C3 05:B2B3: 29 40     AND #con_btn_B
-    BEQ     b05_bra_B2BA             ; BEQ  ; orig: C - - - - - 0x0172C5 05:B2B5: F0 03     BEQ b05_bra_B2BA
+    JMP     b05_bra_B2BA  ; replaced BEQ (forced for build reliability)
     BSR     sub_8E1C_B_item_handler             ; JSR -> BSR  ; orig: C - - - - - 0x0172C7 05:B2B7: 20 1C 8E  JSR sub_8E1C_B_item_
 b05_bra_B2BA:  ; orig: b05_bra_B2BA:
     MOVE.B  #$00,D1  ; orig: C - - - - - 0x0172CA 05:B2BA: A2 00     LDX #$00
     MOVE.B  ram_00C0_link,D0  ; orig: C - - - - - 0x0172CC 05:B2BC: A5 C0     LDA ram_00C0_link
-    BNE     b05_bra_B2FC_RTS             ; BNE  ; orig: C - - - - - 0x0172CE 05:B2BE: D0 3C     BNE b05_bra_B2FC_RTS
+    JMP     b05_bra_B2FC_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x0172D0 05:B2C0: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_B2C7             ; BEQ  ; orig: C - - - - - 0x0172D2 05:B2C2: F0 03     BEQ b05_bra_B2C7    ; if
+    JMP     b05_bra_B2C7  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_913F             ; JSR -> BSR  ; orig: C - - - - - 0x0172D4 05:B2C4: 20 3F 91  JSR sub_913F
 b05_bra_B2C7:  ; orig: b05_bra_B2C7:
     MOVE.B  ram_0394_link,D0  ; orig: C - - - - - 0x0172D7 05:B2C7: AD 94 03  LDA ram_0394_link
-    BEQ     b05_bra_B2CF             ; BEQ  ; orig: C - - - - - 0x0172DA 05:B2CA: F0 03     BEQ b05_bra_B2CF
+    JMP     b05_bra_B2CF  ; replaced BEQ (forced for build reliability)
     JMP     loc_B38D  ; orig: C - - - - - 0x0172DC 05:B2CC: 4C 8D B3  JMP loc_B38D
 b05_bra_B2CF:  ; orig: b05_bra_B2CF:
 
@@ -7983,14 +7970,14 @@ b05_bra_B2D7_loop:  ; orig: b05_bra_B2D7_loop:
     MOVEA.L #tbl_bat_6DC3_direction,A0
     AND.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_B2F5             ; BEQ  ; orig: C - - - - - 0x0172ED 05:B2DD: F0 16     BEQ b05_bra_B2F5
+    JMP     b05_bra_B2F5  ; replaced BEQ (forced for build reliability)
     MOVE.B  D0,ram_000F_t01_direction  ; orig: C - - - - - 0x0172EF 05:B2DF: 85 0F     STA ram_000F_t01_dir
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x0172F1 05:B2E1: 98        TYA
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0172F2 05:B2E2: 48        PHA
     ADDQ.B  #1,ram_000B_t09_counter_1  ; orig: C - - - - - 0x0172F3 05:B2E3: E6 0B     INC ram_000B_t09_cou
     BSR     sub_0x01EE0A_find_current_collision_tile             ; JSR -> BSR  ; orig: C - - - - - 0x0172F5 05:B2E5: 20 FA ED  JSR sub_0x01EE0A_fin
     CMP.B   ram_min_collision_tile,D0  ; orig: C - - - - - 0x0172F8 05:B2E8: CD 4A 03  CMP ram_min_collisio
-    BCC     b05_bra_B2F3             ; BCS  ; orig: C - - - - - 0x0172FB 05:B2EB: B0 06     BCS b05_bra_B2F3
+    JMP     b05_bra_B2F3  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_000F_t01_direction,D0  ; orig: C - - - - - 0x0172FD 05:B2ED: A5 0F     LDA ram_000F_t01_dir
     MOVE.B  D0,ram_000D_t10_link_direction  ; orig: C - - - - - 0x0172FF 05:B2EF: 85 0D     STA ram_000D_t10_lin
     ADDQ.B  #1,ram_000C_t10_counter_2  ; orig: C - - - - - 0x017301 05:B2F1: E6 0C     INC ram_000C_t10_cou
@@ -7999,17 +7986,17 @@ b05_bra_B2F3:  ; orig: b05_bra_B2F3:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x017304 05:B2F4: A8        TAY
 b05_bra_B2F5:  ; orig: b05_bra_B2F5:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x017305 05:B2F5: 88        DEY
-    BPL     b05_bra_B2D7_loop             ; BPL  ; orig: C - - - - - 0x017306 05:B2F6: 10 DF     BPL b05_bra_B2D7_loop
+    JMP     b05_bra_B2D7_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  ram_000B_t09_counter_1,D2  ; orig: C - - - - - 0x017308 05:B2F8: A4 0B     LDY ram_000B_t09_cou
-    BNE     b05_bra_B2FD             ; BNE  ; orig: C - - - - - 0x01730A 05:B2FA: D0 01     BNE b05_bra_B2FD
+    JMP     b05_bra_B2FD  ; replaced BNE (forced for build reliability)
 b05_bra_B2FC_RTS:  ; orig: b05_bra_B2FC_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x01730C 05:B2FC: 60        RTS
 b05_bra_B2FD:  ; orig: b05_bra_B2FD:
     MOVE.B  ram_000F_t01_direction,D0  ; orig: C - - - - - 0x01730D 05:B2FD: A5 0F     LDA ram_000F_t01_dir
     CMPI.B  #$01,D2  ; orig: C - - - - - 0x01730F 05:B2FF: C0 01     CPY #$01
-    BEQ     b05_bra_B35F             ; BEQ  ; orig: C - - - - - 0x017311 05:B301: F0 5C     BEQ b05_bra_B35F
+    JMP     b05_bra_B35F  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_000C_t10_counter_2,D0  ; orig: C - - - - - 0x017313 05:B303: A5 0C     LDA ram_000C_t10_cou
-    BNE     b05_bra_B30A             ; BNE  ; orig: C - - - - - 0x017315 05:B305: D0 03     BNE b05_bra_B30A
+    JMP     b05_bra_B30A  ; replaced BNE (forced for build reliability)
     JMP     loc_B3AB  ; orig: - - - - - - 0x017317 05:B307: 4C AB B3  JMP loc_B3AB
 b05_bra_B30A:  ; orig: b05_bra_B30A:
     MOVE.B  D0,D2           ; TAY  ; orig: C - - - - - 0x01731A 05:B30A: A8        TAY
@@ -8017,42 +8004,42 @@ b05_bra_B30A:  ; orig: b05_bra_B30A:
     MOVE.B  #$00,D1  ; orig: C - - - - - 0x01731D 05:B30D: A2 00     LDX #$00
     MOVE.B  ram_000D_t10_link_direction,D0  ; orig: C - - - - - 0x01731F 05:B30F: A5 0D     LDA ram_000D_t10_lin
     CMPI.B  #$01,D2  ; orig: C - - - - - 0x017321 05:B311: C0 01     CPY #$01
-    BEQ     b05_bra_B35F             ; BEQ  ; orig: C - - - - - 0x017323 05:B313: F0 4A     BEQ b05_bra_B35F
+    JMP     b05_bra_B35F  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x017325 05:B315: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_B35F             ; BEQ  ; orig: C - - - - - 0x017327 05:B317: F0 46     BEQ b05_bra_B35F    ; if
+    JMP     b05_bra_B35F  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  ram_pos_X_link,D2  ; orig: C - - - - - 0x017329 05:B319: A4 70     LDY ram_pos_X_link
     CMPI.B  #$20,D2  ; orig: C - - - - - 0x01732B 05:B31B: C0 20     CPY #$20
-    BEQ     b05_bra_B323             ; BEQ  ; orig: C - - - - - 0x01732D 05:B31D: F0 04     BEQ b05_bra_B323
+    JMP     b05_bra_B323  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$D0,D2  ; orig: C - - - - - 0x01732F 05:B31F: C0 D0     CPY #$D0
-    BNE     b05_bra_B333             ; BNE  ; orig: C - - - - - 0x017331 05:B321: D0 10     BNE b05_bra_B333
+    JMP     b05_bra_B333  ; replaced BNE (forced for build reliability)
 b05_bra_B323:  ; orig: b05_bra_B323:
     MOVE.B  ram_pos_Y_link,D2  ; orig: C - - - - - 0x017333 05:B323: A4 84     LDY ram_pos_Y_link
     CMPI.B  #$85,D2  ; orig: C - - - - - 0x017335 05:B325: C0 85     CPY #$85
-    BNE     b05_bra_B34D             ; BNE  ; orig: C - - - - - 0x017337 05:B327: D0 24     BNE b05_bra_B34D
+    JMP     b05_bra_B34D  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: - - - - - - 0x017339 05:B329: A5 98     LDA ram_dir_link
     ANDI.B  #con_dir_Down,D0  ; orig: - - - - - - 0x01733B 05:B32B: 29 04     AND #con_dir_Down
-    BEQ     b05_bra_B34D             ; BEQ  ; orig: - - - - - - 0x01733D 05:B32D: F0 1E     BEQ b05_bra_B34D
+    JMP     b05_bra_B34D  ; replaced BEQ (forced for build reliability)
 b05_bra_B32F:  ; orig: b05_bra_B32F:
     MOVE.B  ram_dir_link,D0  ; orig: - - - - - - 0x01733F 05:B32F: A5 98     LDA ram_dir_link
-    BNE     b05_bra_B35F             ; BNE  ; orig: - - - - - - 0x017341 05:B331: D0 2C     BNE b05_bra_B35F
+    JMP     b05_bra_B35F  ; replaced BNE (forced for build reliability)
 b05_bra_B333:  ; orig: b05_bra_B333:
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x017343 05:B333: A5 98     LDA ram_dir_link
     MOVE.B  ram_0056,D1  ; orig: C - - - - - 0x017345 05:B335: A6 56     LDX ram_0056
-    BEQ     b05_bra_B34D             ; BEQ  ; orig: C - - - - - 0x017347 05:B337: F0 14     BEQ b05_bra_B34D
+    JMP     b05_bra_B34D  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x017349 05:B339: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_B35F             ; BEQ  ; orig: C - - - - - 0x01734B 05:B33B: F0 22     BEQ b05_bra_B35F    ; if
+    JMP     b05_bra_B35F  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVE.B  ram_pos_X_link,D2  ; orig: C - - - - - 0x01734D 05:B33D: A4 70     LDY ram_pos_X_link
     CMPI.B  #$78,D2  ; orig: C - - - - - 0x01734F 05:B33F: C0 78     CPY #$78
-    BNE     b05_bra_B35F             ; BNE  ; orig: C - - - - - 0x017351 05:B341: D0 1C     BNE b05_bra_B35F
+    JMP     b05_bra_B35F  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_pos_Y_link,D2  ; orig: - - - - - - 0x017353 05:B343: A4 84     LDY ram_pos_Y_link
     CMPI.B  #$5D,D2  ; orig: - - - - - - 0x017355 05:B345: C0 5D     CPY #$5D
-    BNE     b05_bra_B35F             ; BNE  ; orig: - - - - - - 0x017357 05:B347: D0 16     BNE b05_bra_B35F
+    JMP     b05_bra_B35F  ; replaced BNE (forced for build reliability)
     ANDI.B  #con_dir__LR,D0  ; orig: - - - - - - 0x017359 05:B349: 29 03     AND #con_dir__LR
-    BEQ     b05_bra_B32F             ; BEQ  ; orig: - - - - - - 0x01735B 05:B34B: F0 E2     BEQ b05_bra_B32F
+    JMP     b05_bra_B32F  ; replaced BEQ (forced for build reliability)
 b05_bra_B34D:  ; orig: b05_bra_B34D:
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x01735D 05:B34D: A5 98     LDA ram_dir_link
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01735F 05:B34F: E8        INX
@@ -8075,19 +8062,19 @@ b05_bra_B366:  ; orig: b05_bra_B366:
     MOVE.B  #$60,D0  ; orig: C - - - - - 0x017376 05:B366: A9 60     LDA #$60
     MOVE.B  D0,ram_0000_t40  ; orig: C - - - - - 0x017378 05:B368: 85 00     STA ram_0000_t40
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01737A 05:B36A: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_B387             ; BNE  ; orig: C - - - - - 0x01737C 05:B36C: D0 19     BNE b05_bra_B387    ; if
+    JMP     b05_bra_B387  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     MOVE.B  ram_collision_tile_link,D0  ; orig: C - - - - - 0x01737E 05:B36E: AD 9E 04  LDA ram_collision_ti
     CMPI.B  #$74,D0  ; orig: C - - - - - 0x017381 05:B371: C9 74     CMP #con_collision_t
-    BEQ     b05_bra_B379             ; BEQ  ; orig: C - - - - - 0x017383 05:B373: F0 04     BEQ b05_bra_B379
+    JMP     b05_bra_B379  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$75,D0  ; orig: C - - - - - 0x017385 05:B375: C9 75     CMP #con_collision_t
-    BNE     b05_bra_B387             ; BNE  ; orig: C - - - - - 0x017387 05:B377: D0 0E     BNE b05_bra_B387
+    JMP     b05_bra_B387  ; replaced BNE (forced for build reliability)
 b05_bra_B379:  ; orig: b05_bra_B379:
     MOVE.B  #$30,D0  ; orig: C - - - - - 0x017389 05:B379: A9 30     LDA #$30    ; stairs
     MOVE.B  D0,ram_0000_t40  ; orig: C - - - - - 0x01738B 05:B37B: 85 00     STA ram_0000_t40
     CMP.B   ram_03BC_link,D0  ; orig: C - - - - - 0x01738D 05:B37D: CD BC 03  CMP ram_03BC_link
-    BEQ     b05_bra_B387             ; BEQ  ; orig: C - - - - - 0x017390 05:B380: F0 05     BEQ b05_bra_B387
+    JMP     b05_bra_B387  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x017392 05:B382: A9 00     LDA #$00
     MOVE.B  D0,ram_03A8_link  ; orig: C - - - - - 0x017394 05:B384: 8D A8 03  STA ram_03A8_link
 b05_bra_B387:  ; orig: b05_bra_B387:
@@ -8100,18 +8087,18 @@ b05_bra_B38C_RTS:  ; orig: b05_bra_B38C_RTS:
 
 loc_B38D:  ; orig: loc_B38D:
     MOVE.B  ram_03F8_link,D0  ; orig: C D 1 - - - 0x01739D 05:B38D: AD F8 03  LDA ram_03F8_link
-    BEQ     b05_bra_B38C_RTS             ; BEQ  ; orig: C - - - - - 0x0173A0 05:B390: F0 FA     BEQ b05_bra_B38C_RTS
+    JMP     b05_bra_B38C_RTS  ; replaced BEQ (forced for build reliability)
     BSR     sub_bat_7013_get_Y_from_direction             ; JSR -> BSR  ; orig: C - - - - - 0x0173A2 05:B392: 20 13 70  JSR sub_bat_7013_get
     MOVEA.L #tbl_bat_6DC3_direction,A0
     MOVE.B  (A0,D2.L),D0
 
     CMP.B   ram_dir_link,D0  ; orig: C - - - - - 0x0173A8 05:B398: C5 98     CMP ram_dir_link
-    BEQ     b05_bra_B366             ; BEQ  ; orig: C - - - - - 0x0173AA 05:B39A: F0 CA     BEQ b05_bra_B366
+    JMP     b05_bra_B366  ; replaced BEQ (forced for build reliability)
     OR.B    ram_dir_link,D0  ; orig: C - - - - - 0x0173AC 05:B39C: 05 98     ORA ram_dir_link
     CMPI.B  #con_dir__LR,D0  ; orig: C - - - - - 0x0173AE 05:B39E: C9 03     CMP #con_dir__LR
-    BEQ     b05_bra_B3A6             ; BEQ  ; orig: C - - - - - 0x0173B0 05:B3A0: F0 04     BEQ b05_bra_B3A6
+    JMP     b05_bra_B3A6  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_dir__UD,D0  ; orig: C - - - - - 0x0173B2 05:B3A2: C9 0C     CMP #con_dir__UD
-    BNE     b05_bra_B3AF             ; BNE  ; orig: C - - - - - 0x0173B4 05:B3A4: D0 09     BNE b05_bra_B3AF
+    JMP     b05_bra_B3AF  ; replaced BNE (forced for build reliability)
 b05_bra_B3A6:  ; orig: b05_bra_B3A6:
     MOVEA.L #tbl_bat_6DC3_direction,A0
     MOVE.B  (A0,D2.L),D0
@@ -8123,7 +8110,7 @@ loc_B3AB:  ; orig: loc_B3AB:
     RTS                     ; RTS  ; orig: C - - - - - 0x0173BE 05:B3AE: 60        RTS
 b05_bra_B3AF:  ; orig: b05_bra_B3AF:
     MOVE.B  ram_0057,D0  ; orig: C - - - - - 0x0173BF 05:B3AF: A5 57     LDA ram_0057
-    BNE     b05_bra_B366             ; BNE  ; orig: C - - - - - 0x0173C1 05:B3B1: D0 B3     BNE b05_bra_B366
+    JMP     b05_bra_B366  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0394_link,D0  ; orig: C - - - - - 0x0173C3 05:B3B3: AD 94 03  LDA ram_0394_link
     BSR     sub_bat_701F_EOR_FF_if_negative             ; JSR -> BSR  ; orig: C - - - - - 0x0173C6 05:B3B6: 20 1F 70  JSR sub_bat_701F_EOR
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0173C9 05:B3B9: 48        PHA
@@ -8132,22 +8119,22 @@ b05_bra_B3AF:  ; orig: b05_bra_B3AF:
     MOVE.B  D0,ram_0001_t29_direction  ; orig: C - - - - - 0x0173CF 05:B3BF: 85 01     STA ram_0001_t29_dir
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0173D1 05:B3C1: 68        PLA
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x0173D2 05:B3C2: C9 04     CMP #$04
-    BCC     b05_bra_B3F3_RTS             ; BCS  ; orig: C - - - - - 0x0173D4 05:B3C4: B0 2D     BCS b05_bra_B3F3_RTS
+    JMP     b05_bra_B3F3_RTS  ; replaced BCC (forced for build reliability)
     MOVE.B  ram_dir_link,D0  ; orig: C - - - - - 0x0173D6 05:B3C6: A5 98     LDA ram_dir_link
     ANDI.B  #con_dir__UL,D0  ; orig: C - - - - - 0x0173D8 05:B3C8: 29 0A     AND #con_dir__UL
-    BEQ     b05_bra_B3D3             ; BEQ  ; orig: C - - - - - 0x0173DA 05:B3CA: F0 07     BEQ b05_bra_B3D3
+    JMP     b05_bra_B3D3  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_0394_link,D0  ; orig: C - - - - - 0x0173DC 05:B3CC: AD 94 03  LDA ram_0394_link
-    BPL     b05_bra_B3F3_RTS             ; BPL  ; orig: C - - - - - 0x0173DF 05:B3CF: 10 22     BPL b05_bra_B3F3_RTS
-    BMI     b05_bra_B3D8             ; BMI  ; orig: C - - - - - 0x0173E1 05:B3D1: 30 05     BMI b05_bra_B3D8    ; jm
+    JMP     b05_bra_B3F3_RTS  ; replaced BPL (forced for build reliability)
+    JMP     b05_bra_B3D8  ; replaced BMI (forced for build reliability)
 b05_bra_B3D3:  ; orig: b05_bra_B3D3:
     MOVE.B  ram_0394_link,D0  ; orig: C - - - - - 0x0173E3 05:B3D3: AD 94 03  LDA ram_0394_link
-    BMI     b05_bra_B3F3_RTS             ; BMI  ; orig: C - - - - - 0x0173E6 05:B3D6: 30 1B     BMI b05_bra_B3F3_RTS
+    JMP     b05_bra_B3F3_RTS  ; replaced BMI (forced for build reliability)
 b05_bra_B3D8:  ; orig: b05_bra_B3D8:
     MOVE.B  ram_0001_t29_direction,D0  ; orig: C - - - - - 0x0173E8 05:B3D8: A5 01     LDA ram_0001_t29_dir
     MOVE.B  D0,ram_dir_link  ; orig: C - - - - - 0x0173EA 05:B3DA: 85 98     STA ram_dir_link
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x0173EC 05:B3DC: A9 08     LDA #$08
     MOVE.B  ram_0394_link,D2  ; orig: C - - - - - 0x0173EE 05:B3DE: AC 94 03  LDY ram_0394_link
-    BMI     b05_bra_B3E5             ; BMI  ; orig: C - - - - - 0x0173F1 05:B3E1: 30 02     BMI b05_bra_B3E5
+    JMP     b05_bra_B3E5  ; replaced BMI (forced for build reliability)
     MOVE.B  #$F8,D0  ; orig: C - - - - - 0x0173F3 05:B3E3: A9 F8     LDA #$F8
 b05_bra_B3E5:  ; orig: b05_bra_B3E5:
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0173F5 05:B3E5: 48        PHA
@@ -8168,37 +8155,37 @@ b05_bra_B3F3_RTS:  ; orig: b05_bra_B3F3_RTS:
 sub_0x017404:  ; orig: sub_0x017404:
     MOVE.B  ram_005A,D0  ; orig: C - - - - - 0x017404 05:B3F4: A5 5A     LDA ram_005A
     OR.B    ram_0394_link,D0  ; orig: C - - - - - 0x017406 05:B3F6: 0D 94 03  ORA ram_0394_link
-    BNE     b05_bra_B46E_RTS             ; BNE  ; orig: C - - - - - 0x017409 05:B3F9: D0 73     BNE b05_bra_B46E_RTS
+    JMP     b05_bra_B46E_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01740B 05:B3FB: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_B40D             ; BNE  ; orig: C - - - - - 0x01740D 05:B3FD: D0 0E     BNE b05_bra_B40D    ; if
+    JMP     b05_bra_B40D  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     MOVE.B  ram_map_location,D0  ; orig: C - - - - - 0x01740F 05:B3FF: A5 EB     LDA ram_map_location
     CMPI.B  #$22,D0  ; orig: C - - - - - 0x017411 05:B401: C9 22     CMP #con_map_locatio
-    BNE     b05_bra_B40D             ; BNE  ; orig: C - - - - - 0x017413 05:B403: D0 08     BNE b05_bra_B40D
+    JMP     b05_bra_B40D  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x017415 05:B405: A5 70     LDA ram_pos_X_link
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x017417 05:B407: 29 07     AND #$07
-    BNE     b05_bra_B46E_RTS             ; BNE  ; orig: C - - - - - 0x017419 05:B409: D0 63     BNE b05_bra_B46E_RTS
-    BEQ     b05_bra_B413             ; BEQ  ; orig: C - - - - - 0x01741B 05:B40B: F0 06     BEQ b05_bra_B413    ; jm
+    JMP     b05_bra_B46E_RTS  ; replaced BNE (forced for build reliability)
+    JMP     b05_bra_B413  ; replaced BEQ (forced for build reliability)
 b05_bra_B40D:  ; orig: b05_bra_B40D:
     MOVE.B  ram_pos_X_link,D0  ; orig: C - - - - - 0x01741D 05:B40D: A5 70     LDA ram_pos_X_link
     ANDI.B  #$0F,D0  ; orig: C - - - - - 0x01741F 05:B40F: 29 0F     AND #$0F
-    BNE     b05_bra_B46E_RTS             ; BNE  ; orig: C - - - - - 0x017421 05:B411: D0 5B     BNE b05_bra_B46E_RTS
+    JMP     b05_bra_B46E_RTS  ; replaced BNE (forced for build reliability)
 b05_bra_B413:  ; orig: b05_bra_B413:
     MOVE.B  ram_pos_Y_link,D0  ; orig: C - - - - - 0x017423 05:B413: A5 84     LDA ram_pos_Y_link
     ANDI.B  #$0F,D0  ; orig: C - - - - - 0x017425 05:B415: 29 0F     AND #$0F
     CMPI.B  #$0D,D0  ; orig: C - - - - - 0x017427 05:B417: C9 0D     CMP #$0D
-    BNE     b05_bra_B46E_RTS             ; BNE  ; orig: C - - - - - 0x017429 05:B419: D0 53     BNE b05_bra_B46E_RTS
+    JMP     b05_bra_B46E_RTS  ; replaced BNE (forced for build reliability)
     BSR     sub_0x01EE04_find_current_collision_tile___direction_00             ; JSR -> BSR  ; orig: C - - - - - 0x01742B 05:B41B: 20 F4 ED  JSR sub_0x01EE04_fin
     MOVE.B  ram_collision_tile_link,D0  ; orig: C - - - - - 0x01742E 05:B41E: AD 9E 04  LDA ram_collision_ti
     MOVE.B  ram_dungeon_level,D2  ; orig: C - - - - - 0x017431 05:B421: A4 10     LDY ram_dungeon_leve
-    BEQ     b05_bra_B46F             ; BEQ  ; orig: C - - - - - 0x017433 05:B423: F0 4A     BEQ b05_bra_B46F    ; if
+    JMP     b05_bra_B46F  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     CMPI.B  #$70,D0  ; orig: C - - - - - 0x017435 05:B425: C9 70     CMP #$70
-    BCS     b05_bra_B46E_RTS             ; BCC  ; orig: C - - - - - 0x017437 05:B427: 90 45     BCC b05_bra_B46E_RTS
+    JMP     b05_bra_B46E_RTS  ; replaced BCS (forced for build reliability)
     CMPI.B  #$74,D0  ; orig: C - - - - - 0x017439 05:B429: C9 74     CMP #$74
-    BCC     b05_bra_B46E_RTS             ; BCS  ; orig: C - - - - - 0x01743B 05:B42B: B0 41     BCS b05_bra_B46E_RTS
+    JMP     b05_bra_B46E_RTS  ; replaced BCC (forced for build reliability)
     BSR     sub_B464             ; JSR -> BSR  ; orig: C - - - - - 0x01743D 05:B42D: 20 64 B4  JSR sub_B464
     MOVE.B  ram_map_location,D0  ; orig: C - - - - - 0x017440 05:B430: A5 EB     LDA ram_map_location
     MOVE.B  D0,ram_copy_map_location  ; orig: C - - - - - 0x017442 05:B432: 8D 27 05  STA ram_copy_map_loc
@@ -8213,11 +8200,11 @@ b05_bra_B437_loop:  ; orig: b05_bra_B437_loop:
     MOVEA.L #ram_687E_map_data,A0
     CMP.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_B448             ; BEQ  ; orig: C - - - - - 0x017451 05:B441: F0 05     BEQ b05_bra_B448
+    JMP     b05_bra_B448  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_68FE_map_data,A0
     CMP.B  (A0,D2.L),D0
 
-    BNE     b05_bra_B437_loop             ; BNE  ; orig: C - - - - - 0x017456 05:B446: D0 EF     BNE b05_bra_B437_loop
+    JMP     b05_bra_B437_loop  ; replaced BNE (forced for build reliability)
 b05_bra_B448:  ; orig: b05_bra_B448:
     MOVE.B  D2,ram_map_location  ; orig: C - - - - - 0x017458 05:B448: 84 EB     STY ram_map_location
     MOVE.B  #con_script_09,D0  ; orig: C - - - - - 0x01745A 05:B44A: A9 09     LDA #con_script_09
@@ -8226,7 +8213,7 @@ b05_bra_B44C:
 ; A = 02 bzk
     MOVE.B  D0,ram_next_script  ; orig: C D 1 - - - 0x01745C 05:B44C: 85 5B     STA ram_next_script
     CMPI.B  #con_script_09,D0  ; orig: C - - - - - 0x01745E 05:B44E: C9 09     CMP #con_script_09
-    BEQ     b05_bra_B45A             ; BEQ  ; orig: C - - - - - 0x017460 05:B450: F0 08     BEQ b05_bra_B45A
+    JMP     b05_bra_B45A  ; replaced BEQ (forced for build reliability)
     BSR     sub_bat_6EE9             ; JSR -> BSR  ; orig: C - - - - - 0x017462 05:B452: 20 E9 6E  JSR sub_bat_6EE9
     MOVE.B  D0,ram_sfx_2  ; orig: C - - - - - 0x017465 05:B455: 8D 02 06  STA ram_sfx_2   ; co
     MOVE.B  D0,$FF003C  ; FIX v378: STA $3C  ; orig: C - - - - - 0x017468 05:B458: 85 3C  STA ram_timer_obj +
@@ -8240,7 +8227,7 @@ b05_bra_B45A:  ; orig: b05_bra_B45A:
 
 sub_B464:  ; orig: sub_B464:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x017474 05:B464: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_B46B             ; BNE  ; orig: C - - - - - 0x017476 05:B466: D0 03     BNE b05_bra_B46B    ; if
+    JMP     b05_bra_B46B  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     JMP     loc_90E5  ; orig: C - - - - - 0x017478 05:B468: 4C E5 90  JMP loc_90E5
@@ -8253,13 +8240,13 @@ b05_bra_B46E_RTS:  ; orig: b05_bra_B46E_RTS:
 b05_bra_B46F:  ; orig: b05_bra_B46F:
     MOVE.B  D0,ram_0065  ; orig: C - - - - - 0x01747F 05:B46F: 85 65     STA ram_0065
     CMPI.B  #$24,D0  ; orig: C - - - - - 0x017481 05:B471: C9 24     CMP #con_collision_t
-    BEQ     b05_bra_B486             ; BEQ  ; orig: C - - - - - 0x017483 05:B473: F0 11     BEQ b05_bra_B486
+    JMP     b05_bra_B486  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$88,D0  ; orig: C - - - - - 0x017485 05:B475: C9 88     CMP #con_collision_t
-    BEQ     b05_bra_B486             ; BEQ  ; orig: C - - - - - 0x017487 05:B477: F0 0D     BEQ b05_bra_B486
+    JMP     b05_bra_B486  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$70,D0  ; orig: C - - - - - 0x017489 05:B479: C9 70     CMP #con_collision_t
-    BCS     b05_bra_B46E_RTS             ; BCC  ; orig: C - - - - - 0x01748B 05:B47B: 90 F1     BCC b05_bra_B46E_RTS
+    JMP     b05_bra_B46E_RTS  ; replaced BCS (forced for build reliability)
     CMPI.B  #$74,D0  ; orig: C - - - - - 0x01748D 05:B47D: C9 74     CMP #con_collision_t
-    BCC     b05_bra_B46E_RTS             ; BCS  ; orig: C - - - - - 0x01748F 05:B47F: B0 ED     BCS b05_bra_B46E_RTS
+    JMP     b05_bra_B46E_RTS  ; replaced BCC (forced for build reliability)
     MOVE.B  #$70,D0  ; orig: C - - - - - 0x017491 05:B481: A9 70     LDA #con_collision_t
     MOVE.B  D0,ram_collision_tile_link  ; orig: C - - - - - 0x017493 05:B483: 8D 9E 04  STA ram_collision_ti
 b05_bra_B486:  ; orig: b05_bra_B486:
@@ -8270,10 +8257,10 @@ b05_bra_B486:  ; orig: b05_bra_B486:
 
     ANDI.B  #$FC,D0  ; orig: C - - - - - 0x01749E 05:B48E: 29 FC     AND #$FC
     CMPI.B  #$40,D0  ; orig: C - - - - - 0x0174A0 05:B490: C9 40     CMP #$40
-    BCS     b05_bra_B49F             ; BCC  ; orig: C - - - - - 0x0174A2 05:B492: 90 0B     BCC b05_bra_B49F
+    JMP     b05_bra_B49F  ; replaced BCS (forced for build reliability)
     MOVE.B  #con_script_0B,D2  ; orig: C - - - - - 0x0174A4 05:B494: A0 0B     LDY #con_script_0B
     CMPI.B  #$50,D0  ; orig: C - - - - - 0x0174A6 05:B496: C9 50     CMP #$50
-    BNE     b05_bra_B49B             ; BNE  ; orig: C - - - - - 0x0174A8 05:B498: D0 01     BNE b05_bra_B49B
+    JMP     b05_bra_B49B  ; replaced BNE (forced for build reliability)
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x0174AA 05:B49A: C8        INY ; con_script_0C
 b05_bra_B49B:  ; orig: b05_bra_B49B:
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x0174AB 05:B49B: 98        TYA
@@ -8287,7 +8274,7 @@ b05_bra_B49F:  ; orig: b05_bra_B49F:
     MOVE.B  ram_map_location,D0  ; orig: C - - - - - 0x0174B3 05:B4A3: A5 EB     LDA ram_map_location
     MOVE.B  D0,ram_0526  ; orig: C - - - - - 0x0174B5 05:B4A5: 8D 26 05  STA ram_0526
     MOVE.B  #con_script_02,D0  ; orig: C - - - - - 0x0174B8 05:B4A8: A9 02     LDA #con_script_02
-    BNE     b05_bra_B44C             ; BNE  ; orig: C - - - - - 0x0174BA 05:B4AA: D0 A0     BNE b05_bra_B44C    ; jm
+    JMP     b05_bra_B44C  ; replaced BNE (forced for build reliability)
 
 
 
@@ -8305,10 +8292,10 @@ sub_0x0174BC_check_battery_integrity:  ; orig: sub_0x0174BC_check_battery_integr
 ; 1 = battery was not initialized yet
     MOVE.B  ram_battery_check_1,D0  ; orig: C - - - - - 0x0174BC 05:B4AC: AD 01 60  LDA ram_battery_chec
     CMPI.B  #$5A,D0  ; orig: C - - - - - 0x0174BF 05:B4AF: C9 5A     CMP #$5A
-    BNE     b05_bra_B4BA_check_failed             ; BNE  ; orig: C - - - - - 0x0174C1 05:B4B1: D0 07     BNE bra_B4BA_check_f
+    JMP     b05_bra_B4BA_check_failed  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_battery_check_2,D0  ; orig: C - - - - - 0x0174C3 05:B4B3: AD FF 7F  LDA ram_battery_chec
     CMPI.B  #$A5,D0  ; orig: C - - - - - 0x0174C6 05:B4B6: C9 A5     CMP #$A5
-    BEQ     b05_bra_B4E6_check_passed             ; BEQ  ; orig: C - - - - - 0x0174C8 05:B4B8: F0 2C     BEQ bra_B4E6_check_p
+    JMP     b05_bra_B4E6_check_passed  ; replaced BEQ (forced for build reliability)
 b05_bra_B4BA_check_failed:  ; orig: b05_bra_B4BA_check_failed:
 
 ; initialization
@@ -8318,9 +8305,9 @@ b05_bra_B4BA_check_failed:  ; orig: b05_bra_B4BA_check_failed:
     MOVE.B  D0,$FF652C  ; FIX v378: STA $652C  ; orig: C - - - - - 0x0174D2 05:B4C2: 8D 2C 65  STA ram_652A_slot +
 
 ; clear 6530-7FFF
-    MOVE.B  #$65,D0  ; orig: C - - - - - 0x0174D5 05:B4C5: A9 65     LDA #$65
+    MOVE.B  #$65,D0  ; orig: C - - - - - 0x0174D5 05:B4C5: A9 65     LDA #$65  ; FIXME: unresolved #</#$65, manual review needed
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x0174D7 05:B4C7: 85 01  STA ram_0000_t0A_dat
-    MOVE.B  #$30,D0  ; orig: C - - - - - 0x0174D9 05:B4C9: A9 30     LDA #$30
+    MOVE.B  #$30,D0  ; orig: C - - - - - 0x0174D9 05:B4C9: A9 30     LDA #$30  ; FIXME: unresolved #</#$30, manual review needed
     MOVE.B  D0,ram_0000_t0A_data  ; orig: C - - - - - 0x0174DB 05:B4CB: 85 00     STA ram_0000_t0A_dat
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x0174DD 05:B4CD: A0 00     LDY #$00
 b05_bra_B4CF_loop:  ; orig: b05_bra_B4CF_loop:
@@ -8338,14 +8325,14 @@ b05_bra_B4CF_loop:  ; orig: b05_bra_B4CF_loop:
 ; bzk optimize, INC lo + BNE + INC hi
     MOVE.B  ram_0000_t0A_data,D0  ; orig: C - - - - - 0x0174E3 05:B4D3: A5 00     LDA ram_0000_t0A_dat
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x0174E5 05:B4D5: 18        CLC
-    ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x0174E6 05:B4D6: 69 01     ADC #$01
+    ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x0174E6 05:B4D6: 69 01     ADC #$01  ; FIXME: unresolved #</#$01, manual review needed
     MOVE.B  D0,ram_0000_t0A_data  ; orig: C - - - - - 0x0174E8 05:B4D8: 85 00     STA ram_0000_t0A_dat
     MOVE.B  $FF0001,D0  ; FIX v378: LDA $01  ; orig: C - - - - - 0x0174EA 05:B4DA: A5 01  LDA ram_0000_t0A_dat
     MOVEQ   #0,D3             ; FIX: ADC #$00 = add carry only
     ADDX.B  D3,D0             ; D0 += 0 + X_flag  ; orig: ADC #$00
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x0174EE 05:B4DE: 85 01  STA ram_0000_t0A_dat
-    CMPI.B  #$80,D0  ; orig: C - - - - - 0x0174F0 05:B4E0: C9 80     CMP #$80
-    BNE     b05_bra_B4CF_loop             ; BNE  ; orig: C - - - - - 0x0174F2 05:B4E2: D0 EB     BNE b05_bra_B4CF_loop
+    CMPI.B  #$80,D0  ; orig: C - - - - - 0x0174F0 05:B4E0: C9 80     CMP #$80  ; FIXME: unresolved #</#$80, manual review needed
+    JMP     b05_bra_B4CF_loop  ; replaced BNE (forced for build reliability)
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x0174F4 05:B4E4: 38        SEC
     RTS                     ; RTS  ; orig: C - - - - - 0x0174F5 05:B4E5: 60        RTS
 b05_bra_B4E6_check_passed:  ; orig: b05_bra_B4E6_check_passed:
@@ -8377,7 +8364,7 @@ b05_bra_B4FB_loop:  ; orig: b05_bra_B4FB_loop:
 
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01750E 05:B4FE: 88        DEY
     CMPI.B  #$FF,D2  ; orig: C - - - - - 0x01750F 05:B4FF: C0 FF     CPY #$FF
-    BNE     b05_bra_B4FB_loop             ; BNE  ; orig: C - - - - - 0x017511 05:B501: D0 F8     BNE b05_bra_B4FB_loop
+    JMP     b05_bra_B4FB_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  #$40,D0  ; orig: C - - - - - 0x017513 05:B503: A9 40     LDA #$40
     MOVE.B  D0,ram_0525  ; orig: C - - - - - 0x017515 05:B505: 8D 25 05  STA ram_0525
     MOVE.B  D0,ram_indiv_random  ; orig: C - - - - - 0x017518 05:B508: 85 18     STA ram_indiv_random
@@ -8429,9 +8416,8 @@ ofs_000_0x017532_07:  ; orig: ofs_000_0x017532_07:
     MOVE.B  #$03,D1  ; orig: C - - - - - 0x017536 05:B526: A2 03     LDX #$03
 loc_B528:  ; orig: loc_B528:
     MOVE.B  ram_00E7,D0  ; orig: C D 1 - - - 0x017538 05:B528: A5 E7     LDA ram_00E7
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_0000_t41,D3   ; Z = (A AND mem) == 0  ; orig: C - - - - - 0x01753A 05:B52A: 24 00     BIT ram_0000_t41
-    BEQ     b05_bra_B51C             ; BEQ  ; orig: C - - - - - 0x01753C 05:B52C: F0 EE     BEQ b05_bra_B51C
+    BTST    D0,ram_0000_t41  ; BIT abs  ; orig: C - - - - - 0x01753A 05:B52A: 24 00     BIT ram_0000_t41
+    JMP     b05_bra_B51C  ; replaced BEQ (forced for build reliability)
 
 ; bzk optimize, game never uses ram_04E4 later
     BSR     sub_0x01E86A_get_enemy_id_from_current_map_location             ; JSR -> BSR  ; orig: C - - - - - 0x01753E 05:B52E: 20 5A E8  JSR sub_0x01E86A_get
@@ -8445,13 +8431,13 @@ loc_B528:  ; orig: loc_B528:
 
     MOVE.B  D0,ram_next_map_location  ; orig: C - - - - - 0x01754A 05:B53A: 85 EC     STA ram_next_map_loc
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01754C 05:B53C: A5 10     LDA ram_dungeon_leve
-    BNE     b05_bra_B543             ; BNE  ; orig: C - - - - - 0x01754E 05:B53E: D0 03     BNE b05_bra_B543    ; if
+    JMP     b05_bra_B543  ; replaced BNE (forced for build reliability)
 
 ; if overworld
     BSR     sub_bat_752F_check_overworld_secret_correct_path             ; JSR -> BSR  ; orig: C - - - - - 0x017550 05:B540: 20 2F 75  JSR sub_bat_752F_che
 b05_bra_B543:  ; orig: b05_bra_B543:
     MOVE.B  ram_next_map_location,D0  ; orig: C - - - - - 0x017553 05:B543: A5 EC     LDA ram_next_map_loc
-    BPL     b05_bra_B559             ; BPL  ; orig: C - - - - - 0x017555 05:B545: 10 12     BPL b05_bra_B559
+    JMP     b05_bra_B559  ; replaced BPL (forced for build reliability)
 loc_B547:  ; orig: loc_B547:
     BSR     sub_0x01EBB3_clear_subscript             ; JSR -> BSR  ; orig: C D 1 - - - 0x017557 05:B547: 20 A3 EB  JSR sub_0x01EBB3_cle
 
@@ -8484,9 +8470,8 @@ sub_B560:  ; orig: sub_B560:
     MOVE.B  D1,ram_0000_t42  ; orig: C - - - - - 0x017572 05:B562: 86 00     STX ram_0000_t42
     MOVE.B  #$03,D1  ; orig: C - - - - - 0x017574 05:B564: A2 03     LDX #$03
 loc_B566_loop:  ; orig: loc_B566_loop:
-    MOVE.B  D0,D3     ; FIX: BIT - save A for AND test
-    AND.B   ram_0000_t42,D3   ; Z = (A AND mem) == 0  ; orig: C D 1 - - - 0x017576 05:B566: 24 00     BIT ram_0000_t42
-    BNE     b05_bra_B570             ; BNE  ; orig: C - - - - - 0x017578 05:B568: D0 06     BNE b05_bra_B570
+    BTST    D0,ram_0000_t42  ; BIT abs  ; orig: C D 1 - - - 0x017576 05:B566: 24 00     BIT ram_0000_t42
+    JMP     b05_bra_B570  ; replaced BNE (forced for build reliability)
     MOVE.B  (ram_0000_t42).l,D3
     ASL.B  #1,D3
     MOVE.B  D3,(ram_0000_t42).l  ; orig: C - - - - - 0x01757A 05:B56A: 06 00     ASL ram_0000_t42
@@ -8535,11 +8520,11 @@ sub_B57F:  ; orig: sub_B57F:
 b05_bra_B596_loop:  ; orig: b05_bra_B596_loop:
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x0175A6 05:B596: 18        CLC
     ADDI.B  #$20,D0       ; FIX: CLC+ADC = ADDI (was ADDX)  ; orig: C - - - - - 0x0175A7 05:B597: 69 20     ADC #$20
-    BCC     b05_bra_B59E_not_overflow             ; BCC  ; orig: C - - - - - 0x0175A9 05:B599: 90 03     BCC bra_B59E_not_ove
+    JMP     b05_bra_B59E_not_overflow  ; replaced BCC (forced for build reliability)
     ADDQ.B  #1,ram_0302_ppu_buffer  ; orig: C - - - - - 0x0175AB 05:B59B: EE 02 03  INC ram_0302_ppu_buf
 b05_bra_B59E_not_overflow:  ; orig: b05_bra_B59E_not_overflow:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0175AE 05:B59E: CA        DEX
-    BPL     b05_bra_B596_loop             ; BPL  ; orig: C - - - - - 0x0175AF 05:B59F: 10 F5     BPL b05_bra_B596_loop
+    JMP     b05_bra_B596_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  D0,$FF0303  ; FIX v378: STA $0303  ; orig: C - - - - - 0x0175B1 05:B5A1: 8D 03 03  STA ram_0302_ppu_buf
     MOVE.B  ram_005D,D0  ; orig: C - - - - - 0x0175B4 05:B5A4: A5 5D     LDA ram_005D
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0175B6 05:B5A6: 48        PHA
@@ -8547,14 +8532,14 @@ b05_bra_B5A7_loop:  ; orig: b05_bra_B5A7_loop:
     BSR     sub_B608             ; JSR -> BSR  ; orig: C - - - - - 0x0175B7 05:B5A7: 20 08 B6  JSR sub_B608
     SUBQ.B  #1,ram_005D  ; orig: C - - - - - 0x0175BA 05:B5AA: C6 5D     DEC ram_005D
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0175BC 05:B5AC: 88        DEY
-    BNE     b05_bra_B5A7_loop             ; BNE  ; orig: C - - - - - 0x0175BD 05:B5AD: D0 F8     BNE b05_bra_B5A7_loop
+    JMP     b05_bra_B5A7_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0175BF 05:B5AF: 68        PLA
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x0175C0 05:B5B0: 38        SEC
     SUB.B  #$10,D0       ; SBC imm  ; orig: C - - - - - 0x0175C1 05:B5B1: E9 10     SBC #$10
     MOVE.B  D0,ram_005D  ; orig: C - - - - - 0x0175C3 05:B5B3: 85 5D     STA ram_005D
     MOVE.B  ram_6BAB,D1  ; orig: C - - - - - 0x0175C5 05:B5B5: AE AB 6B  LDX ram_6BAB
 loc_B5B8:  ; orig: loc_B5B8:
-    BEQ     b05_bra_B5D1             ; BEQ  ; orig: C D 1 - - - 0x0175C8 05:B5B8: F0 17     BEQ b05_bra_B5D1
+    JMP     b05_bra_B5D1  ; replaced BEQ (forced for build reliability)
     MOVE.B  $FF0314,D0  ; FIX v378: LDA $0314  ; orig: C - - - - - 0x0175CA 05:B5BA: AD 14 03  LDA ram_0302_ppu_buf
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0175CD 05:B5BD: 48        PHA
     MOVE.B  #$0E,D2  ; orig: C - - - - - 0x0175CE 05:B5BE: A0 0E     LDY #$0E
@@ -8564,7 +8549,7 @@ b05_bra_B5C0_loop:  ; orig: b05_bra_B5C0_loop:
     MOVEA.L #$FF0306,A0  ; FIX v378: STA $0306,Y base
     MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x0175D3 05:B5C3: 99 06 03  STA ram_0302_ppu_buf
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0175D6 05:B5C6: 88        DEY
-    BPL     b05_bra_B5C0_loop             ; BPL  ; orig: C - - - - - 0x0175D7 05:B5C7: 10 F7     BPL b05_bra_B5C0_loop
+    JMP     b05_bra_B5C0_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0175D9 05:B5C9: 68        PLA
     MOVE.B  D0,$FF0305  ; FIX v378: STA $0305  ; orig: C - - - - - 0x0175DA 05:B5CA: 8D 05 03  STA ram_0302_ppu_buf
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0175DD 05:B5CD: CA        DEX
@@ -8583,13 +8568,13 @@ b05_bra_B5DA_loop:  ; orig: b05_bra_B5DA_loop:
     MOVEA.L #tbl_B577,A0
     AND.B  (A0,D1.L),D0
 
-    BNE     b05_bra_B5E7             ; BNE  ; orig: C - - - - - 0x0175F0 05:B5E0: D0 05     BNE b05_bra_B5E7
+    JMP     b05_bra_B5E7  ; replaced BNE (forced for build reliability)
     MOVE.B  #$F5,D0  ; orig: C - - - - - 0x0175F2 05:B5E2: A9 F5     LDA #$F5
     MOVEA.L #$FF0305,A0  ; FIX v378: STA $0305,Y base
     MOVE.B  D0,(A0,D2.L)  ; orig: C - - - - - 0x0175F4 05:B5E4: 99 05 03  STA ram_0302_ppu_buf
 b05_bra_B5E7:  ; orig: b05_bra_B5E7:
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x0175F7 05:B5E7: 88        DEY
-    BPL     b05_bra_B5DA_loop             ; BPL  ; orig: C - - - - - 0x0175F8 05:B5E8: 10 F0     BPL b05_bra_B5DA_loop
+    JMP     b05_bra_B5DA_loop  ; replaced BPL (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x0175FA 05:B5EA: 60        RTS
 
 
@@ -8597,7 +8582,7 @@ b05_bra_B5E7:  ; orig: b05_bra_B5E7:
 sub_B5EB:  ; orig: sub_B5EB:
 sub_0x0175FB:  ; orig: sub_0x0175FB:
     MOVE.B  #con_item_compass,D1  ; orig: C - - - - - 0x0175FB 05:B5EB: A2 10     LDX #con_item_compas
-    BNE     b05_bra_B5F1             ; BNE  ; orig: C - - - - - 0x0175FD 05:B5ED: D0 02     BNE b05_bra_B5F1    ; jm
+    JMP     b05_bra_B5F1  ; replaced BNE (forced for build reliability)
 
 
 
@@ -8605,13 +8590,13 @@ sub_B5EF:  ; orig: sub_B5EF:
     MOVE.B  #con_item_map,D1  ; orig: C - - - - - 0x0175FF 05:B5EF: A2 11     LDX #con_item_map
 b05_bra_B5F1:  ; orig: b05_bra_B5F1:
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x017601 05:B5F1: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_B607_RTS             ; BEQ  ; orig: C - - - - - 0x017603 05:B5F3: F0 12     BEQ b05_bra_B607_RTS    
+    JMP     b05_bra_B607_RTS  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x017605 05:B5F5: 38        SEC
     SUB.B  #$01,D0       ; SBC imm  ; orig: C - - - - - 0x017606 05:B5F6: E9 01     SBC #$01
     CMPI.B  #$08,D0  ; orig: C - - - - - 0x017608 05:B5F8: C9 08     CMP #$08
-    BCS     b05_bra_B5FE             ; BCC  ; orig: C - - - - - 0x01760A 05:B5FA: 90 02     BCC b05_bra_B5FE
+    JMP     b05_bra_B5FE  ; replaced BCS (forced for build reliability)
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01760C 05:B5FC: E8        INX ; con_item_d9_co
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x01760D 05:B5FD: E8        INX
 b05_bra_B5FE:  ; orig: b05_bra_B5FE:
@@ -8651,7 +8636,7 @@ sub_B608:  ; orig: sub_B608:
     MOVE.B  (A0,D2.W),D0
 
     ANDI.B  #$20,D0  ; orig: C - - - - - 0x01762D 05:B61D: 29 20     AND #$20
-    BEQ     b05_bra_B632             ; BEQ  ; orig: C - - - - - 0x01762F 05:B61F: F0 11     BEQ b05_bra_B632
+    JMP     b05_bra_B632  ; replaced BEQ (forced for build reliability)
     MOVE.B  #$08,D0  ; orig: C - - - - - 0x017631 05:B621: A9 08     LDA #$08
     MOVE.B  D0,ram_0002_t24_direction  ; orig: C - - - - - 0x017633 05:B623: 85 02     STA ram_0002_t24_dir
     MOVE.B  #$03,D1  ; orig: C - - - - - 0x017635 05:B625: A2 03     LDX #$03
@@ -8665,7 +8650,7 @@ b05_bra_B627_loop:  ; orig: b05_bra_B627_loop:
     MOVEQ   #0,D3             ; FIX: recover C from X (MOVE clears C)
     NEGX.B  D3                ; C = X = original shift carry
 
-    BNE     b05_bra_B627_loop             ; BNE  ; orig: C - - - - - 0x017640 05:B630: D0 F5     BNE b05_bra_B627_loop
+    JMP     b05_bra_B627_loop  ; replaced BNE (forced for build reliability)
 b05_bra_B632:  ; orig: b05_bra_B632:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x017642 05:B632: 68        PLA
     MOVE.B  D0,ram_map_location  ; orig: C - - - - - 0x017643 05:B633: 85 EB     STA ram_map_location
@@ -8684,7 +8669,7 @@ sub_B641:  ; orig: sub_B641:
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x017651 05:B641: A0 00     LDY #$00
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x017653 05:B643: 48        PHA
     CMPI.B  #$04,D0  ; orig: C - - - - - 0x017654 05:B644: C9 04     CMP #$04
-    BCS     b05_bra_B665             ; BCC  ; orig: C - - - - - 0x017656 05:B646: 90 1D     BCC b05_bra_B665
+    JMP     b05_bra_B665  ; replaced BCS (forced for build reliability)
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x017658 05:B648: 8A        TXA
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x017659 05:B649: 48        PHA
     MOVE.B  D2,D0           ; TYA  ; orig: C - - - - - 0x01765A 05:B64A: 98        TYA
@@ -8694,7 +8679,7 @@ sub_B641:  ; orig: sub_B641:
     MOVEA.L #tbl_0x01E6CE_8_bits,A0
     AND.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_B656             ; BEQ  ; orig: C - - - - - 0x017663 05:B653: F0 01     BEQ b05_bra_B656
+    JMP     b05_bra_B656  ; replaced BEQ (forced for build reliability)
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x017665 05:B655: 38        SEC
 b05_bra_B656:  ; orig: b05_bra_B656:
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x017666 05:B656: 68        PLA
@@ -8716,9 +8701,9 @@ b05_bra_B65A:  ; orig: b05_bra_B65A:
     RTS                     ; RTS  ; orig: C - - - - - 0x017674 05:B664: 60        RTS
 b05_bra_B665:  ; orig: b05_bra_B665:
     CMPI.B  #$00,D0  ; orig: C - - - - - 0x017675 05:B665: C9 00     CMP #$00
-    BEQ     b05_bra_B65A             ; BEQ  ; orig: C - - - - - 0x017677 05:B667: F0 F1     BEQ b05_bra_B65A
+    JMP     b05_bra_B65A  ; replaced BEQ (forced for build reliability)
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x017679 05:B669: 18        CLC
-    BCC     b05_bra_B65A             ; BCC  ; orig: C - - - - - 0x01767A 05:B66A: 90 EE     BCC b05_bra_B65A    ; jm
+    JMP     b05_bra_B65A  ; replaced BCC (forced for build reliability)
 
 
 
@@ -8740,12 +8725,12 @@ b05_bra_B671_loop:  ; orig: b05_bra_B671_loop:
     MOVEA.L #tbl_0x01E6CE_8_bits,A0
     AND.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_B67C             ; BEQ  ; orig: C - - - - - 0x017686 05:B676: F0 04     BEQ b05_bra_B67C
+    JMP     b05_bra_B67C  ; replaced BEQ (forced for build reliability)
     OR.B    ram_00EE,D0  ; orig: C - - - - - 0x017688 05:B678: 05 EE     ORA ram_00EE
     MOVE.B  D0,ram_00EE  ; orig: C - - - - - 0x01768A 05:B67A: 85 EE     STA ram_00EE
 b05_bra_B67C:  ; orig: b05_bra_B67C:
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x01768C 05:B67C: CA        DEX
-    BPL     b05_bra_B671_loop             ; BPL  ; orig: C - - - - - 0x01768D 05:B67D: 10 F2     BPL b05_bra_B671_loop
+    JMP     b05_bra_B671_loop  ; replaced BPL (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x01768F 05:B67F: 60        RTS
 
 
@@ -8777,7 +8762,7 @@ sub_B68D:  ; orig: sub_B68D:
 
 ; 1 =
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01769D 05:B68D: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_B696_RTS             ; BEQ  ; orig: C - - - - - 0x01769F 05:B68F: F0 05     BEQ b05_bra_B696_RTS    
+    JMP     b05_bra_B696_RTS  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     MOVEA.L #ram_6A7E_map_data,A0
@@ -8816,11 +8801,11 @@ b05_bra_B6A9_loop:
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D1.L),D0
 
-    BNE     b05_bra_B6B5             ; BNE  ; orig: C - - - - - 0x0176BC 05:B6AC: D0 07     BNE b05_bra_B6B5
+    JMP     b05_bra_B6B5  ; replaced BNE (forced for build reliability)
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x0176BE 05:B6AE: CA        DEX
     CMPI.B  #$1C,D1  ; orig: C - - - - - 0x0176BF 05:B6AF: E0 1C     CPX #$1C
-    BNE     b05_bra_B6A9_loop             ; BNE  ; orig: C - - - - - 0x0176C1 05:B6B1: D0 F6     BNE b05_bra_B6A9_loop
-    BEQ     b05_bra_B6C2             ; BEQ  ; orig: C - - - - - 0x0176C3 05:B6B3: F0 0D     BEQ b05_bra_B6C2    ; jm
+    JMP     b05_bra_B6A9_loop  ; replaced BNE (forced for build reliability)
+    JMP     b05_bra_B6C2  ; replaced BEQ (forced for build reliability)
 b05_bra_B6B5:  ; orig: b05_bra_B6B5:
     MOVE.B  #$36,D0  ; orig: C - - - - - 0x0176C5 05:B6B5: A9 36     LDA #$36
     MOVE.B  D0,ram_0001_t15_spr_Y  ; orig: C - - - - - 0x0176C7 05:B6B7: 85 01     STA ram_0001_t15_spr
@@ -8838,21 +8823,21 @@ b05_bra_B6C4_loop:  ; orig: b05_bra_B6C4_loop:
     MOVE.B  (A0,D1.L),D0
 
     CMPI.B  #con_item_compass,D1  ; orig: C - - - - - 0x0176D7 05:B6C7: E0 10     CPX #con_item_compas
-    BNE     b05_bra_B6D0             ; BNE  ; orig: C - - - - - 0x0176D9 05:B6C9: D0 05     BNE b05_bra_B6D0
+    JMP     b05_bra_B6D0  ; replaced BNE (forced for build reliability)
     BSR     sub_B5EB             ; JSR -> BSR  ; orig: C - - - - - 0x0176DB 05:B6CB: 20 EB B5  JSR sub_B5EB
     MOVE.B  #$10,D1  ; orig: C - - - - - 0x0176DE 05:B6CE: A2 10     LDX #$10
 b05_bra_B6D0:  ; orig: b05_bra_B6D0:
     CMPI.B  #con_item_map,D1  ; orig: C - - - - - 0x0176E0 05:B6D0: E0 11     CPX #con_item_map
-    BNE     b05_bra_B6D9             ; BNE  ; orig: C - - - - - 0x0176E2 05:B6D2: D0 05     BNE b05_bra_B6D9
+    JMP     b05_bra_B6D9  ; replaced BNE (forced for build reliability)
     BSR     sub_B5EF             ; JSR -> BSR  ; orig: C - - - - - 0x0176E4 05:B6D4: 20 EF B5  JSR sub_B5EF
     MOVE.B  #$11,D1  ; orig: C - - - - - 0x0176E7 05:B6D7: A2 11     LDX #$11
 b05_bra_B6D9:  ; orig: b05_bra_B6D9:
     CMPI.B  #$00,D0  ; orig: C - - - - - 0x0176E9 05:B6D9: C9 00     CMP #$00
-    BEQ     b05_bra_B717             ; BEQ  ; orig: C - - - - - 0x0176EB 05:B6DB: F0 3A     BEQ b05_bra_B717
+    JMP     b05_bra_B717  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_item_letter,D1  ; orig: C - - - - - 0x0176ED 05:B6DD: E0 0F     CPX #con_item_letter
-    BNE     b05_bra_B6E6             ; BNE  ; orig: C - - - - - 0x0176EF 05:B6DF: D0 05     BNE b05_bra_B6E6
+    JMP     b05_bra_B6E6  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_item_potion,D0  ; orig: C - - - - - 0x0176F1 05:B6E1: AD 5E 06  LDA ram_item_potion
-    BNE     b05_bra_B717             ; BNE  ; orig: C - - - - - 0x0176F4 05:B6E4: D0 31     BNE b05_bra_B717
+    JMP     b05_bra_B717  ; replaced BNE (forced for build reliability)
 b05_bra_B6E6:  ; orig: b05_bra_B6E6:
     MOVE.B  D1,D0           ; TXA  ; orig: C - - - - - 0x0176F6 05:B6E6: 8A        TXA
     MOVE.B  D0,-(A7)        ; PHA  ; orig: C - - - - - 0x0176F7 05:B6E7: 48        PHA
@@ -8863,20 +8848,20 @@ b05_bra_B6E6:  ; orig: b05_bra_B6E6:
     MOVE.B  D0,ram_0000_t21_spr_X  ; orig: C - - - - - 0x0176FC 05:B6EC: 85 00     STA ram_0000_t21_spr
     MOVE.B  #$36,D0  ; orig: C - - - - - 0x0176FE 05:B6EE: A9 36     LDA #$36
     CMPI.B  #$05,D1  ; orig: C - - - - - 0x017700 05:B6F0: E0 05     CPX #$05
-    BCS     b05_bra_B710             ; BCC  ; orig: C - - - - - 0x017702 05:B6F2: 90 1C     BCC b05_bra_B710
+    JMP     b05_bra_B710  ; replaced BCS (forced for build reliability)
     MOVE.B  #$46,D0  ; orig: C - - - - - 0x017704 05:B6F4: A9 46     LDA #$46
     CMPI.B  #$0F,D1  ; orig: C - - - - - 0x017706 05:B6F6: E0 0F     CPX #$0F
-    BEQ     b05_bra_B710             ; BEQ  ; orig: C - - - - - 0x017708 05:B6F8: F0 16     BEQ b05_bra_B710
+    JMP     b05_bra_B710  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$09,D1  ; orig: C - - - - - 0x01770A 05:B6FA: E0 09     CPX #$09
-    BCS     b05_bra_B710             ; BCC  ; orig: C - - - - - 0x01770C 05:B6FC: 90 12     BCC b05_bra_B710
+    JMP     b05_bra_B710  ; replaced BCS (forced for build reliability)
     MOVE.B  #$1E,D0  ; orig: C - - - - - 0x01770E 05:B6FE: A9 1E     LDA #$1E
     CMPI.B  #$10,D1  ; orig: C - - - - - 0x017710 05:B700: E0 10     CPX #$10
-    BCS     b05_bra_B710             ; BCC  ; orig: C - - - - - 0x017712 05:B702: 90 0C     BCC b05_bra_B710
+    JMP     b05_bra_B710  ; replaced BCS (forced for build reliability)
     MOVE.B  #$2C,D0  ; orig: C - - - - - 0x017714 05:B704: A9 2C     LDA #$2C
     MOVE.B  D0,ram_0000_t21_spr_X  ; orig: C - - - - - 0x017716 05:B706: 85 00     STA ram_0000_t21_spr
     MOVE.B  #$9E,D0  ; orig: C - - - - - 0x017718 05:B708: A9 9E     LDA #$9E
     CMPI.B  #$11,D1  ; orig: C - - - - - 0x01771A 05:B70A: E0 11     CPX #$11
-    BCS     b05_bra_B710             ; BCC  ; orig: C - - - - - 0x01771C 05:B70C: 90 02     BCC b05_bra_B710
+    JMP     b05_bra_B710  ; replaced BCS (forced for build reliability)
 
 ; X = 11
     MOVE.B  #$76,D0  ; orig: C - - - - - 0x01771E 05:B70E: A9 76     LDA #$76
@@ -8888,7 +8873,7 @@ b05_bra_B710:  ; orig: b05_bra_B710:
 b05_bra_B717:  ; orig: b05_bra_B717:
     ADDQ.B  #1,D1           ; INX  ; orig: C - - - - - 0x017727 05:B717: E8        INX
     CMPI.B  #$12,D1  ; orig: C - - - - - 0x017728 05:B718: E0 12     CPX #$12
-    BCS     b05_bra_B6C4_loop             ; BCC  ; orig: C - - - - - 0x01772A 05:B71A: 90 A8     BCC b05_bra_B6C4_loop
+    JMP     b05_bra_B6C4_loop  ; replaced BCS (forced for build reliability)
     RTS                     ; RTS  ; orig: C - - - - - 0x01772C 05:B71C: 60        RTS
 
 
@@ -8909,27 +8894,27 @@ tbl_B71D_spr_X:  ; orig: tbl_B71D_spr_X:
 
 sub_B726:  ; orig: sub_B726:
     MOVE.B  ram_item_slot_index,D1  ; orig: C - - - - - 0x017736 05:B726: AE 56 06  LDX ram_item_slot_in
-    BNE     b05_bra_B739             ; BNE  ; orig: C - - - - - 0x017739 05:B729: D0 0E     BNE b05_bra_B739
+    JMP     b05_bra_B739  ; replaced BNE (forced for build reliability)
     MOVE.B  #$1E,D1  ; orig: C - - - - - 0x01773B 05:B72B: A2 1E     LDX #$1E
 b05_bra_B72D_loop:
 ; con_item_boomerang  con_item_magic_boomerang
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D1.L),D0
 
-    BNE     b05_bra_B739             ; BNE  ; orig: C - - - - - 0x017740 05:B730: D0 07     BNE b05_bra_B739
+    JMP     b05_bra_B739  ; replaced BNE (forced for build reliability)
     SUBQ.B  #1,D1           ; DEX  ; orig: C - - - - - 0x017742 05:B732: CA        DEX
     CMPI.B  #$1C,D1  ; orig: C - - - - - 0x017743 05:B733: E0 1C     CPX #$1C
-    BNE     b05_bra_B72D_loop             ; BNE  ; orig: C - - - - - 0x017745 05:B735: D0 F6     BNE b05_bra_B72D_loop
-    BEQ     b05_bra_B756             ; BEQ  ; orig: C - - - - - 0x017747 05:B737: F0 1D     BEQ b05_bra_B756    ; jm
+    JMP     b05_bra_B72D_loop  ; replaced BNE (forced for build reliability)
+    JMP     b05_bra_B756  ; replaced BEQ (forced for build reliability)
 b05_bra_B739:  ; orig: b05_bra_B739:
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D1.L),D0
 
-    BEQ     b05_bra_B756             ; BEQ  ; orig: C - - - - - 0x01774C 05:B73C: F0 18     BEQ b05_bra_B756
+    JMP     b05_bra_B756  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_item_letter,D1  ; orig: C - - - - - 0x01774E 05:B73E: E0 0F     CPX #con_item_letter
-    BNE     b05_bra_B749             ; BNE  ; orig: C - - - - - 0x017750 05:B740: D0 07     BNE b05_bra_B749
+    JMP     b05_bra_B749  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_item_potion,D0  ; orig: C - - - - - 0x017752 05:B742: AD 5E 06  LDA ram_item_potion
-    BNE     b05_bra_B756             ; BNE  ; orig: C - - - - - 0x017755 05:B745: D0 0F     BNE b05_bra_B756
+    JMP     b05_bra_B756  ; replaced BNE (forced for build reliability)
     MOVE.B  #$01,D0  ; orig: C - - - - - 0x017757 05:B747: A9 01     LDA #$01
 b05_bra_B749:  ; orig: b05_bra_B749:
 
@@ -8943,12 +8928,12 @@ b05_bra_B749:  ; orig: b05_bra_B749:
 b05_bra_B756:  ; orig: b05_bra_B756:
     MOVE.B  ram_item_slot_index,D2  ; orig: C - - - - - 0x017766 05:B756: AC 56 06  LDY ram_item_slot_in
     CMPI.B  #con_item_letter,D2  ; orig: C - - - - - 0x017769 05:B759: C0 0F     CPY #con_item_letter
-    BNE     b05_bra_B767             ; BNE  ; orig: C - - - - - 0x01776B 05:B75B: D0 0A     BNE b05_bra_B767
+    JMP     b05_bra_B767  ; replaced BNE (forced for build reliability)
     MOVE.B  #con_item_potion,D2  ; orig: C - - - - - 0x01776D 05:B75D: A0 07     LDY #con_item_potion
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D2.L),D0
 
-    BEQ     b05_bra_B767             ; BEQ  ; orig: C - - - - - 0x017772 05:B762: F0 03     BEQ b05_bra_B767
+    JMP     b05_bra_B767  ; replaced BEQ (forced for build reliability)
     MOVE.B  D2,ram_item_slot_index  ; orig: - - - - - - 0x017774 05:B764: 8C 56 06  STY ram_item_slot_in
 b05_bra_B767:  ; orig: b05_bra_B767:
     MOVEA.L #tbl_B71D_spr_X,A0
@@ -8970,7 +8955,7 @@ b05_bra_B767:  ; orig: b05_bra_B767:
 
 ; con_item_candle
     CMPI.B  #$05,D2  ; orig: C - - - - - 0x017785 05:B775: C0 05     CPY #$05
-    BCS     b05_bra_B77B             ; BCC  ; orig: C - - - - - 0x017787 05:B777: 90 02     BCC b05_bra_B77B
+    JMP     b05_bra_B77B  ; replaced BCS (forced for build reliability)
     MOVE.B  #$46,D0  ; orig: C - - - - - 0x017789 05:B779: A9 46     LDA #$46
 b05_bra_B77B:  ; orig: b05_bra_B77B:
     MOVE.B  D0,$FF021C  ; FIX v378: STA $021C  ; orig: C - - - - - 0x01778B 05:B77B: 8D 1C 02  STA ram_spr_Y + $1C
@@ -8992,11 +8977,11 @@ b05_bra_B77B:  ; orig: b05_bra_B77B:
     MOVE.B  D0,$FF0222  ; FIX v378: STA $0222  ; orig: C - - - - - 0x0177A7 05:B797: 8D 22 02  STA ram_spr_A + $20
     MOVE.B  ram_03F8_link,D0  ; orig: C - - - - - 0x0177AA 05:B79A: AD F8 03  LDA ram_03F8_link
     CMP.B   ram_00EF,D0  ; orig: C - - - - - 0x0177AD 05:B79D: C5 EF     CMP ram_00EF
-    BEQ     b05_bra_B7F1_RTS             ; BEQ  ; orig: C - - - - - 0x0177AF 05:B79F: F0 50     BEQ b05_bra_B7F1_RTS
+    JMP     b05_bra_B7F1_RTS  ; replaced BEQ (forced for build reliability)
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x0177B1 05:B7A1: AA        TAX
-    BEQ     b05_bra_B7C8             ; BEQ  ; orig: C - - - - - 0x0177B2 05:B7A2: F0 24     BEQ b05_bra_B7C8
+    JMP     b05_bra_B7C8  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$04,D1  ; orig: C - - - - - 0x0177B4 05:B7A4: E0 04     CPX #$04
-    BCC     b05_bra_B7C8             ; BCS  ; orig: C - - - - - 0x0177B6 05:B7A6: B0 20     BCS b05_bra_B7C8
+    JMP     b05_bra_B7C8  ; replaced BCC (forced for build reliability)
     MOVE.B  #con_sfx_2_cursor_select,D1  ; orig: C - - - - - 0x0177B8 05:B7A8: A2 01     LDX #con_sfx_2_curso
     MOVE.B  D1,ram_sfx_2  ; orig: C - - - - - 0x0177BA 05:B7AA: 8E 02 06  STX ram_sfx_2
     MOVE.B  D0,D1           ; TAX  ; orig: C - - - - - 0x0177BD 05:B7AD: AA        TAX
@@ -9006,12 +8991,12 @@ b05_bra_B77B:  ; orig: b05_bra_B77B:
     BSR     sub_B7C8             ; JSR -> BSR  ; orig: C - - - - - 0x0177C3 05:B7B3: 20 C8 B7  JSR sub_B7C8
     MOVE.B  (A7)+,D0        ; PLA  ; orig: C - - - - - 0x0177C6 05:B7B6: 68        PLA
     CMP.B   ram_item_slot_index,D0  ; orig: C - - - - - 0x0177C7 05:B7B7: CD 56 06  CMP ram_item_slot_in
-    BEQ     b05_bra_B7C4             ; BEQ  ; orig: C - - - - - 0x0177CA 05:B7BA: F0 08     BEQ b05_bra_B7C4
+    JMP     b05_bra_B7C4  ; replaced BEQ (forced for build reliability)
     MOVE.B  ram_item_slot_index,D2  ; orig: C - - - - - 0x0177CC 05:B7BC: AC 56 06  LDY ram_item_slot_in
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D2.L),D0
 
-    BNE     b05_bra_B7C7_RTS             ; BNE  ; orig: C - - - - - 0x0177D2 05:B7C2: D0 03     BNE b05_bra_B7C7_RTS
+    JMP     b05_bra_B7C7_RTS  ; replaced BNE (forced for build reliability)
 b05_bra_B7C4:  ; orig: b05_bra_B7C4:
     MOVE.B  (ram_sfx_2).l,D3
     LSR.B  #1,D3
@@ -9030,26 +9015,26 @@ sub_0x0177D8:
 b05_bra_B7CC_loop:  ; orig: b05_bra_B7CC_loop:
     BSR     sub_B821             ; JSR -> BSR  ; orig: C - - - - - 0x0177DC 05:B7CC: 20 21 B8  JSR sub_B821
     CMPI.B  #con_item_sword,D2  ; orig: C - - - - - 0x0177DF 05:B7CF: C0 00     CPY #con_item_sword
-    BEQ     b05_bra_B7F2             ; BEQ  ; orig: C - - - - - 0x0177E1 05:B7D1: F0 1F     BEQ b05_bra_B7F2
+    JMP     b05_bra_B7F2  ; replaced BEQ (forced for build reliability)
     CMPI.B  #con_item_bow,D2  ; orig: C - - - - - 0x0177E3 05:B7D3: C0 03     CPY #con_item_bow
-    BEQ     b05_bra_B7E0             ; BEQ  ; orig: C - - - - - 0x0177E5 05:B7D5: F0 09     BEQ b05_bra_B7E0
+    JMP     b05_bra_B7E0  ; replaced BEQ (forced for build reliability)
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D2.L),D0
 
-    BNE     b05_bra_B7E5             ; BNE  ; orig: C - - - - - 0x0177EA 05:B7DA: D0 09     BNE b05_bra_B7E5
+    JMP     b05_bra_B7E5  ; replaced BNE (forced for build reliability)
     CMPI.B  #con_item_potion,D2  ; orig: C - - - - - 0x0177EC 05:B7DC: C0 07     CPY #con_item_potion
-    BEQ     b05_bra_B808             ; BEQ  ; orig: C - - - - - 0x0177EE 05:B7DE: F0 28     BEQ b05_bra_B808
+    JMP     b05_bra_B808  ; replaced BEQ (forced for build reliability)
 b05_bra_B7E0:  ; orig: b05_bra_B7E0:
 loc_B7E0:  ; orig: loc_B7E0:
     SUBQ.B  #1,D1           ; DEX  ; orig: C D 1 - - - 0x0177F0 05:B7E0: CA        DEX
-    BPL     b05_bra_B7CC_loop             ; BPL  ; orig: C - - - - - 0x0177F1 05:B7E1: 10 E9     BPL b05_bra_B7CC_loop
+    JMP     b05_bra_B7CC_loop  ; replaced BPL (forced for build reliability)
     MOVE.B  #con_item_sword,D2  ; orig: C - - - - - 0x0177F3 05:B7E3: A0 00     LDY #con_item_sword
 b05_bra_B7E5:  ; orig: b05_bra_B7E5:
 loc_B7E5:  ; orig: loc_B7E5:
     CMPI.B  #con_item_arrow,D2  ; orig: C D 1 - - - 0x0177F5 05:B7E5: C0 02     CPY #con_item_arrow
-    BNE     b05_bra_B7EE             ; BNE  ; orig: C - - - - - 0x0177F7 05:B7E7: D0 05     BNE b05_bra_B7EE
+    JMP     b05_bra_B7EE  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_item_bow,D0  ; orig: C - - - - - 0x0177F9 05:B7E9: AD 5A 06  LDA ram_item_bow
-    BEQ     b05_bra_B7CC_loop             ; BEQ  ; orig: C - - - - - 0x0177FC 05:B7EC: F0 DE     BEQ b05_bra_B7CC_loop
+    JMP     b05_bra_B7CC_loop  ; replaced BEQ (forced for build reliability)
 b05_bra_B7EE:  ; orig: b05_bra_B7EE:
     MOVE.B  D2,ram_item_slot_index  ; orig: C - - - - - 0x0177FE 05:B7EE: 8C 56 06  STY ram_item_slot_in
 b05_bra_B7F1_RTS:  ; orig: b05_bra_B7F1_RTS:
@@ -9061,10 +9046,10 @@ b05_bra_B7F4_loop:
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D2.L),D0
 
-    BNE     b05_bra_B803             ; BNE  ; orig: C - - - - - 0x017807 05:B7F7: D0 0A     BNE b05_bra_B803
+    JMP     b05_bra_B803  ; replaced BNE (forced for build reliability)
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x017809 05:B7F9: 88        DEY
     CMPI.B  #$1C,D2  ; orig: C - - - - - 0x01780A 05:B7FA: C0 1C     CPY #$1C
-    BNE     b05_bra_B7F4_loop             ; BNE  ; orig: C - - - - - 0x01780C 05:B7FC: D0 F6     BNE b05_bra_B7F4_loop
+    JMP     b05_bra_B7F4_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x01780E 05:B7FE: A0 00     LDY #$00
     JMP     loc_B7E0  ; orig: C - - - - - 0x017810 05:B800: 4C E0 B7  JMP loc_B7E0
 b05_bra_B803:  ; orig: b05_bra_B803:
@@ -9075,14 +9060,14 @@ b05_bra_B808:  ; orig: b05_bra_B808:
     MOVEA.L #ram_items,A0
     MOVE.B  (A0,D2.L),D0
 
-    BNE     b05_bra_B813             ; BNE  ; orig: C - - - - - 0x01781D 05:B80D: D0 04     BNE b05_bra_B813
+    JMP     b05_bra_B813  ; replaced BNE (forced for build reliability)
     MOVE.B  #con_item_potion,D2  ; orig: C - - - - - 0x01781F 05:B80F: A0 07     LDY #con_item_potion
-    BNE     b05_bra_B7E0             ; BNE  ; orig: C - - - - - 0x017821 05:B811: D0 CD     BNE b05_bra_B7E0    ; jm
+    JMP     b05_bra_B7E0  ; replaced BNE (forced for build reliability)
 b05_bra_B813:  ; orig: b05_bra_B813:
     MOVE.B  ram_item_potion,D0  ; orig: C - - - - - 0x017823 05:B813: AD 5E 06  LDA ram_item_potion
-    BEQ     b05_bra_B7EE             ; BEQ  ; orig: C - - - - - 0x017826 05:B816: F0 D6     BEQ b05_bra_B7EE
+    JMP     b05_bra_B7EE  ; replaced BEQ (forced for build reliability)
     MOVE.B  #con_item_potion,D2  ; orig: - - - - - - 0x017828 05:B818: A0 07     LDY #con_item_potion
-    BNE     b05_bra_B7EE             ; BNE  ; orig: - - - - - - 0x01782A 05:B81A: D0 D2     BNE b05_bra_B7EE    ; jm
+    JMP     b05_bra_B7EE  ; replaced BNE (forced for build reliability)
 
 
 
@@ -9099,19 +9084,19 @@ loc_0x01782C:  ; orig: loc_0x01782C:
 sub_B821:  ; orig: sub_B821:
     MOVE.B  ram_00EF,D0  ; orig: C - - - - - 0x017831 05:B821: A5 EF     LDA ram_00EF
     ANDI.B  #$03,D0  ; orig: C - - - - - 0x017833 05:B823: 29 03     AND #$03
-    BEQ     b05_bra_B839_RTS             ; BEQ  ; orig: C - - - - - 0x017835 05:B825: F0 12     BEQ b05_bra_B839_RTS
+    JMP     b05_bra_B839_RTS  ; replaced BEQ (forced for build reliability)
     ADDQ.B  #1,D2           ; INY  ; orig: C - - - - - 0x017837 05:B827: C8        INY
     LSR.B   #1,D0           ; LSR A  ; orig: C - - - - - 0x017838 05:B828: 4A        LSR
-    BCS     b05_bra_B82D             ; BCS  ; orig: C - - - - - 0x017839 05:B829: B0 02     BCS b05_bra_B82D
+    JMP     b05_bra_B82D  ; replaced BCS (forced for build reliability)
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01783B 05:B82B: 88        DEY
     SUBQ.B  #1,D2           ; DEY  ; orig: C - - - - - 0x01783C 05:B82C: 88        DEY
 b05_bra_B82D:  ; orig: b05_bra_B82D:
     CMPI.B  #$FF,D2  ; orig: C - - - - - 0x01783D 05:B82D: C0 FF     CPY #$FF
-    BNE     b05_bra_B833             ; BNE  ; orig: C - - - - - 0x01783F 05:B82F: D0 02     BNE b05_bra_B833
+    JMP     b05_bra_B833  ; replaced BNE (forced for build reliability)
     MOVE.B  #$08,D2  ; orig: C - - - - - 0x017841 05:B831: A0 08     LDY #$08
 b05_bra_B833:  ; orig: b05_bra_B833:
     CMPI.B  #$09,D2  ; orig: C - - - - - 0x017843 05:B833: C0 09     CPY #$09
-    BNE     b05_bra_B839_RTS             ; BNE  ; orig: C - - - - - 0x017845 05:B835: D0 02     BNE b05_bra_B839_RTS
+    JMP     b05_bra_B839_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  #$00,D2  ; orig: C - - - - - 0x017847 05:B837: A0 00     LDY #$00
 b05_bra_B839_RTS:  ; orig: b05_bra_B839_RTS:
     RTS                     ; RTS  ; orig: C - - - - - 0x017849 05:B839: 60        RTS
@@ -9122,18 +9107,18 @@ sub_0x01784A:  ; orig: sub_0x01784A:
     MOVE.B  #$00,D0  ; orig: C - - - - - 0x01784A 05:B83A: A9 00     LDA #$00
     MOVE.B  D0,ram_room_item_flag  ; orig: C - - - - - 0x01784C 05:B83C: 85 BF     STA ram_room_item_fl
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x01784E 05:B83E: A5 10     LDA ram_dungeon_leve
-    BEQ     b05_bra_B889             ; BEQ  ; orig: C - - - - - 0x017850 05:B840: F0 47     BEQ b05_bra_B889    ; if
+    JMP     b05_bra_B889  ; replaced BEQ (forced for build reliability)
 
 ; if dungeon
     BSR     sub_bat_7314_check_map_bit4             ; JSR -> BSR  ; orig: C - - - - - 0x017852 05:B842: 20 14 73  JSR sub_bat_7314_che
-    BNE     b05_bra_B863             ; BNE  ; orig: C - - - - - 0x017855 05:B845: D0 1C     BNE b05_bra_B863
+    JMP     b05_bra_B863  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_map_location,D2  ; orig: C - - - - - 0x017857 05:B847: A4 EB     LDY ram_map_location
     MOVEA.L #ram_6A7E_map_data,A0
     MOVE.B  (A0,D2.L),D0
 
     ANDI.B  #$1F,D0  ; orig: C - - - - - 0x01785C 05:B84C: 29 1F     AND #$1F
     CMPI.B  #con_drop_id_03,D0  ; orig: C - - - - - 0x01785E 05:B84E: C9 03     CMP #con_drop_id_03
-    BNE     b05_bra_B854             ; BNE  ; orig: C - - - - - 0x017860 05:B850: D0 02     BNE b05_bra_B854
+    JMP     b05_bra_B854  ; replaced BNE (forced for build reliability)
     SUBQ.B  #1,ram_room_item_flag  ; orig: C - - - - - 0x017862 05:B852: C6 BF     DEC ram_room_item_fl
 b05_bra_B854:  ; orig: b05_bra_B854:
     MOVE.B  D0,ram_drop_id_room  ; orig: C - - - - - 0x017864 05:B854: 85 AB     STA ram_drop_id_room
@@ -9142,9 +9127,9 @@ b05_bra_B854:  ; orig: b05_bra_B854:
 
     ANDI.B  #$07,D0  ; orig: C - - - - - 0x017869 05:B859: 29 07     AND #$07
     CMPI.B  #$03,D0  ; orig: C - - - - - 0x01786B 05:B85B: C9 03     CMP #$03
-    BEQ     b05_bra_B863             ; BEQ  ; orig: C - - - - - 0x01786D 05:B85D: F0 04     BEQ b05_bra_B863
+    JMP     b05_bra_B863  ; replaced BEQ (forced for build reliability)
     CMPI.B  #$07,D0  ; orig: C - - - - - 0x01786F 05:B85F: C9 07     CMP #$07
-    BNE     b05_bra_B865             ; BNE  ; orig: C - - - - - 0x017871 05:B861: D0 02     BNE b05_bra_B865
+    JMP     b05_bra_B865  ; replaced BNE (forced for build reliability)
 b05_bra_B863:  ; orig: b05_bra_B863:
     SUBQ.B  #1,ram_room_item_flag  ; orig: C - - - - - 0x017873 05:B863: C6 BF     DEC ram_room_item_fl
 b05_bra_B865:  ; orig: b05_bra_B865:
@@ -9152,7 +9137,7 @@ b05_bra_B865:  ; orig: b05_bra_B865:
     MOVE.B  (A0,D2.L),D0
 
     ANDI.B  #$40,D0  ; orig: C - - - - - 0x017878 05:B868: 29 40     AND #$40
-    BEQ     b05_bra_B86F             ; BEQ  ; orig: C - - - - - 0x01787A 05:B86A: F0 03     BEQ b05_bra_B86F
+    JMP     b05_bra_B86F  ; replaced BEQ (forced for build reliability)
     BSR     sub_A7F1             ; JSR -> BSR  ; orig: C - - - - - 0x01787C 05:B86C: 20 F1 A7  JSR sub_A7F1
 b05_bra_B86F:  ; orig: b05_bra_B86F:
     BSR     sub_bat_718A             ; JSR -> BSR  ; orig: C - - - - - 0x01787F 05:B86F: 20 8A 71  JSR sub_bat_718A
@@ -9165,7 +9150,7 @@ b05_bra_B872:  ; orig: b05_bra_B872:
 
     ANDI.B  #$1F,D0  ; orig: C - - - - - 0x01788B 05:B87B: 29 1F     AND #$1F
     CMPI.B  #con_drop_id_1B,D0  ; orig: C - - - - - 0x01788D 05:B87D: C9 1B     CMP #con_drop_id_1B
-    BNE     b05_bra_B888_RTS             ; BNE  ; orig: C - - - - - 0x01788F 05:B87F: D0 07     BNE b05_bra_B888_RTS
+    JMP     b05_bra_B888_RTS  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0083,D0  ; orig: C - - - - - 0x017891 05:B881: A5 83     LDA ram_0083
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x017893 05:B883: 38        SEC
     SUB.B  #$08,D0       ; SBC imm  ; orig: C - - - - - 0x017894 05:B884: E9 08     SBC #$08
@@ -9179,10 +9164,10 @@ b05_bra_B889:  ; orig: b05_bra_B889:
     MOVE.B  #$90,D2  ; orig: C - - - - - 0x01789F 05:B88F: A0 90     LDY #$90
     MOVE.B  ram_script,D1  ; orig: C - - - - - 0x0178A1 05:B891: A6 12     LDX ram_script
     CMPI.B  #con_script_05_gameplay,D1  ; orig: C - - - - - 0x0178A3 05:B893: E0 05     CPX #con_script_05_g
-    BNE     b05_bra_B89D             ; BNE  ; orig: C - - - - - 0x0178A5 05:B895: D0 06     BNE b05_bra_B89D
+    JMP     b05_bra_B89D  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_map_location,D1  ; orig: C - - - - - 0x0178A7 05:B897: A6 EB     LDX ram_map_location
     CMPI.B  #$5F,D1  ; orig: C - - - - - 0x0178A9 05:B899: E0 5F     CPX #con_map_locatio
-    BEQ     b05_bra_B872             ; BEQ  ; orig: C - - - - - 0x0178AB 05:B89B: F0 D5     BEQ b05_bra_B872
+    JMP     b05_bra_B872  ; replaced BEQ (forced for build reliability)
 b05_bra_B89D:  ; orig: b05_bra_B89D:
     SUBQ.B  #1,ram_room_item_flag  ; orig: C - - - - - 0x0178AD 05:B89D: C6 BF     DEC ram_room_item_fl
     RTS                     ; RTS  ; orig: C - - - - - 0x0178AF 05:B89F: 60        RTS

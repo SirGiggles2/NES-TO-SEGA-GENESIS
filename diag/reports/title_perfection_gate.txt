@@ -4,13 +4,13 @@
 - ref: `nes_ss_title_nmi700.png`
 - bizhawk: OK score=89.4 MAD=27.03 RMSE=45.68 ref_nz=14897 cur_nz=53093
 - ares: OK score=72.4 MAD=70.29 RMSE=84.90 ref_nz=14897 cur_nz=57344
-- blastem: OK score=89.7 MAD=26.35 RMSE=54.88 ref_nz=14897 cur_nz=7599
+- blastem: OK score=89.7 MAD=26.29 RMSE=54.84 ref_nz=14897 cur_nz=7605
 
 ## fade_mid
 - ref: `nes_ss_fade_nmi930.png`
 - bizhawk: INVALID score=97.1 MAD=7.47 RMSE=15.31 ref_nz=0 cur_nz=18248
 - ares: INVALID score=96.1 MAD=10.00 RMSE=10.00 ref_nz=0 cur_nz=57344
-- blastem: INVALID score=97.2 MAD=7.15 RMSE=30.48 ref_nz=0 cur_nz=7571
+- blastem: INVALID score=97.2 MAD=7.14 RMSE=30.48 ref_nz=0 cur_nz=7572
 
 ## scroll_start_visible
 - ref: `nes_ss_scroll_visible_sy30.png`

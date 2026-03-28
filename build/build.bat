@@ -32,12 +32,16 @@ if not exist "%ROOT%\src\main.asm" (
 
 
 REM --- Find highest zelda_v###.md in build dir and set VER to next available ---
+
 setlocal EnableDelayedExpansion
 set "MAXVER=0"
 for %%F in ("%ROOT%\build\zelda_v*.md") do (
     set "FN=%%~nxF"
+    rem Extract all digit sequences after _v and before .md
     for /f "tokens=2 delims=_v." %%A in ("!FN!") do (
-        set /a CURVER=%%A
+        set "CURVER=%%A"
+        rem Remove any leading zeros for correct numeric comparison
+        set /a CURVER=1!CURVER! - 10000000000
         if !CURVER! gtr !MAXVER! set /a MAXVER=!CURVER!
     )
 )

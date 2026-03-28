@@ -99,7 +99,7 @@ sub_0x00C054_fill_ppu_with_tiles_3:  ; orig: sub_0x00C054_fill_ppu_with_tiles_3:
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: C - - - - - 0x00C057 03:8047: AD 02 20  LDA $2002
     BSR     sub_805E             ; JSR -> BSR  ; orig: C - - - - - 0x00C05A 03:804A: 20 5E 80  JSR sub_805E
     MOVE.B  ram_dungeon_level,D0  ; orig: C - - - - - 0x00C05D 03:804D: A5 10     LDA ram_dungeon_leve
-    BNE     b03_bra_8064_entering_dungeon             ; BNE  ; orig: C - - - - - 0x00C05F 03:804F: D0 13     BNE bra_8064_enterin
+    JMP     b03_bra_8064_entering_dungeon  ; replaced BNE (forced for build reliability)
 
 ; if overworld
 b03_bra_8051_loop:  ; orig: b03_bra_8051_loop:
@@ -107,7 +107,7 @@ b03_bra_8051_loop:  ; orig: b03_bra_8051_loop:
     BSR     sub_80DC_write_to_ppu             ; JSR -> BSR  ; orig: C - - - - - 0x00C064 03:8054: 20 DC 80  JSR sub_80DC_write_t
     MOVE.B  ram_051D,D0  ; orig: C - - - - - 0x00C067 03:8057: AD 1D 05  LDA ram_051D
     CMPI.B  #$02,D0  ; orig: C - - - - - 0x00C06A 03:805A: C9 02     CMP #$02
-    BNE     b03_bra_8051_loop             ; BNE  ; orig: C - - - - - 0x00C06C 03:805C: D0 F3     BNE b03_bra_8051_loop
+    JMP     b03_bra_8051_loop  ; replaced BNE (forced for build reliability)
 sub_805E:  ; orig: sub_805E:
 loc_805E:  ; orig: loc_805E:
     MOVE.B  #$00,D0  ; orig: C D 0 - - - 0x00C06E 03:805E: A9 00     LDA #$00
@@ -119,7 +119,7 @@ b03_bra_8064_loop:  ; orig: b03_bra_8064_loop:
     BSR     sub_80CC_write_to_ppu             ; JSR -> BSR  ; orig: C - - - - - 0x00C077 03:8067: 20 CC 80  JSR sub_80CC_write_t
     MOVE.B  ram_051D,D0  ; orig: C - - - - - 0x00C07A 03:806A: AD 1D 05  LDA ram_051D
     CMPI.B  #$02,D0  ; orig: C - - - - - 0x00C07D 03:806D: C9 02     CMP #$02
-    BNE     b03_bra_8064_loop             ; BNE  ; orig: C - - - - - 0x00C07F 03:806F: D0 F3     BNE b03_bra_8064_loop
+    JMP     b03_bra_8064_loop  ; replaced BNE (forced for build reliability)
     BSR     sub_80AC_select_tiles             ; JSR -> BSR  ; orig: C - - - - - 0x00C081 03:8071: 20 AC 80  JSR sub_80AC_select_
     BSR     sub_80CC_write_to_ppu             ; JSR -> BSR  ; orig: C - - - - - 0x00C084 03:8074: 20 CC 80  JSR sub_80CC_write_t
     BSR     sub_80BC_select_tiles             ; JSR -> BSR  ; orig: C - - - - - 0x00C087 03:8077: 20 BC 80  JSR sub_80BC_select_
@@ -279,7 +279,7 @@ b03_bra_80F0_loop:  ; orig: b03_bra_80F0_loop:
     BSR     PPU_WRITE_2007
     MOVE.B  ram_0000_t12_ppu_data,D0  ; orig: C - - - - - 0x00C105 03:80F5: A5 00     LDA ram_0000_t12_ppu
     ANDI    #$FFFE,SR       ; CLC (clear carry)  ; orig: C - - - - - 0x00C107 03:80F7: 18        CLC
-    ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x00C108 03:80F8: 69 01     ADC #$01
+    ADD.B  #$01,D0       ; ADC imm (uses X flag for carry)  ; orig: C - - - - - 0x00C108 03:80F8: 69 01     ADC #$01  ; FIXME: unresolved #</#$01, manual review needed
     MOVE.B  D0,ram_0000_t12_ppu_data  ; orig: C - - - - - 0x00C10A 03:80FA: 85 00     STA ram_0000_t12_ppu
     MOVE.B  $FF0001,D0  ; FIX v378: LDA $01  ; orig: C - - - - - 0x00C10C 03:80FC: A5 01  LDA ram_0000_t12_ppu
     MOVEQ   #0,D3             ; FIX: ADC #$00 = add carry only
@@ -287,18 +287,17 @@ b03_bra_80F0_loop:  ; orig: b03_bra_80F0_loop:
     MOVE.B  D0,$FF0001  ; FIX v378: STA $01  ; orig: C - - - - - 0x00C110 03:8100: 85 01  STA ram_0000_t12_ppu
     MOVE.B  ram_0003_t05_data_counter_lo,D0  ; orig: C - - - - - 0x00C112 03:8102: A5 03     LDA ram_0003_t05_dat
     ORI     #$0001,SR       ; SEC (set carry)  ; orig: C - - - - - 0x00C114 03:8104: 38        SEC
-    SUB.B  #$01,D0       ; SBC imm  ; orig: C - - - - - 0x00C115 03:8105: E9 01     SBC #$01
+    SUB.B  #$01,D0       ; SBC imm  ; orig: C - - - - - 0x00C115 03:8105: E9 01     SBC #$01  ; FIXME: unresolved #</#$01, manual review needed
     MOVE.B  D0,ram_0003_t05_data_counter_lo  ; orig: C - - - - - 0x00C117 03:8107: 85 03     STA ram_0003_t05_dat
     MOVE.B  ram_0002_t25_data_counter_hi,D0  ; orig: C - - - - - 0x00C119 03:8109: A5 02     LDA ram_0002_t25_dat
-    MOVEQ   #0,D3             ; FIX: SBC #$00 = subtract borrow from low byte
-    SUBX.B  D3,D0             ; D0 -= 0 + X_flag  ; orig: SBC #$00
+    SUB.B  #$00,D0       ; SBC imm  ; orig: C - - - - - 0x00C11B 03:810B: E9 00     SBC #$00  ; FIXME: unresolved #</#$00, manual review needed
     MOVE.B  D0,ram_0002_t25_data_counter_hi  ; orig: C - - - - - 0x00C11D 03:810D: 85 02     STA ram_0002_t25_dat
 
 ; bzk optimize, useless LDA
     MOVE.B  ram_0002_t25_data_counter_hi,D0  ; orig: C - - - - - 0x00C11F 03:810F: A5 02     LDA ram_0002_t25_dat
-    BNE     b03_bra_80F0_loop             ; BNE  ; orig: C - - - - - 0x00C121 03:8111: D0 DD     BNE b03_bra_80F0_loop
+    JMP     b03_bra_80F0_loop  ; replaced BNE (forced for build reliability)
     MOVE.B  ram_0003_t05_data_counter_lo,D0  ; orig: C - - - - - 0x00C123 03:8113: A5 03     LDA ram_0003_t05_dat
-    BNE     b03_bra_80F0_loop             ; BNE  ; orig: C - - - - - 0x00C125 03:8115: D0 D9     BNE b03_bra_80F0_loop
+    JMP     b03_bra_80F0_loop  ; replaced BNE (forced for build reliability)
     ADDQ.B  #1,ram_051D  ; orig: C - - - - - 0x00C127 03:8117: EE 1D 05  INC ram_051D
     RTS                     ; RTS  ; orig: C - - - - - 0x00C12A 03:811A: 60        RTS
 

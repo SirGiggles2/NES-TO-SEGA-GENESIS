@@ -44,6 +44,24 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "Build with restored NES_PALETTE_DATA",
+			"type": "shell",
+			"command": "build\\build.bat",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Build after branch fix",
+			"type": "shell",
+			"command": "build\\build.bat",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }

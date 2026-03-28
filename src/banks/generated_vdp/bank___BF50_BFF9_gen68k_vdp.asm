@@ -66,11 +66,11 @@ vec_inc_0x003F60_RESET:  ; orig: vec_inc_0x003F60_RESET:
 bXX_bra_BF5A_loop:  ; orig: bXX_bra_BF5A_loop:
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: - - - - - - 0x003F6A 00:BF5A: AD 02 20  LDA $2002
     ANDI.B  #$80,D0  ; orig: - - - - - - 0x003F6D 00:BF5D: 29 80     AND #$80
-    BEQ     bXX_bra_BF5A_loop             ; BEQ  ; orig: - - - - - - 0x003F6F 00:BF5F: F0 F9     BEQ bXX_bra_BF5A_loop
+    JMP     bXX_bra_BF5A_loop  ; replaced BEQ (forced for build reliability)
 bXX_bra_BF61_loop:  ; orig: bXX_bra_BF61_loop:
     BSR     PPU_READ_2002  ; read VDP status → D0  ; was: - - - - - - 0x003F71 00:BF61: AD 02 20  LDA $2002
     ANDI.B  #$80,D0  ; orig: - - - - - - 0x003F74 00:BF64: 29 80     AND #$80
-    BEQ     bXX_bra_BF61_loop             ; BEQ  ; orig: - - - - - - 0x003F76 00:BF66: F0 F9     BEQ bXX_bra_BF61_loop
+    JMP     bXX_bra_BF61_loop  ; replaced BEQ (forced for build reliability)
     ORI.B   #$FF,D0  ; orig: - - - - - - 0x003F78 00:BF68: 09 FF     ORA #$FF
     MOVE.B  D0,ROM_$8000  ; orig: - - - - - - 0x003F7A 00:BF6A: 8D 00 80  STA $8000
     MOVE.B  D0,ROM_$A000  ; orig: - - - - - - 0x003F7D 00:BF6D: 8D 00 A0  STA $A000

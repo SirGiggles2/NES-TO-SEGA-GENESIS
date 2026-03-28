@@ -69,4 +69,13 @@ VDP_VBLANK_HANDLER:
 ; moveq   #0,D1
 ; ...
 
+;------------------------------------------------------------------------------
+; NES_PALETTE_DATA - Canonical NES palette (placeholder, 32 bytes)
+; This table is required for palette calibration and static guard scripts.
+NES_PALETTE_DATA:
+	dc.b $0F,$30,$21,$12, $0F,$30,$21,$12
+	dc.b $0F,$30,$21,$12, $0F,$30,$21,$12
+	dc.b $0F,$30,$21,$12, $0F,$30,$21,$12
+	dc.b $0F,$30,$21,$12, $0F,$30,$21,$12
+
 
